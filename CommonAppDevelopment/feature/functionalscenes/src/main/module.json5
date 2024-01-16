@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "functionalscenes",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
