@@ -23,23 +23,6 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
 2.如何在**Navigation中跨包引用hsp**  
 3.如何在**Navigation中使用动态加载**
 
-## 工程目录
-
-   ```
-   common_app_development
-   |---AppScope
-   |---common    
-   |   |---utils         
-   |   |   |---log                 // 公共能力层-日志打印
-   |---feature
-   |   |---functionalscenes   
-   |   |   |---FunctionalScenes    // 基础特性层-首页列表
-   |   |   |---model               // 基础特性层-数据模型
-   |---libs
-   |---product 
-   |   |---entry                   // 产品定制层-应用入口
-   ```
-
 ## Router与Navigation适用场景对比
 | 组件  | 适用场景 | 特点                | 转场动画效果对比 |
 |-----|------|-------------------|----------|

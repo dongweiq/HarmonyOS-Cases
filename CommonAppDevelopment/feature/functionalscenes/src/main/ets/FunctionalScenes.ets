@@ -51,8 +51,8 @@ export struct FunctionalScenes {
   }
 
   /**
-   * 主页通过瀑布流和lazyForeach加载
-   * waterFlow+lazyForEach详细用法可参考性能范例：
+   * 主页通过瀑布流和LazyForeach加载
+   * WaterFlow+LazyForEach详细用法可参考性能范例：
    * https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/waterflow_optimization.md/
    */
   build() {

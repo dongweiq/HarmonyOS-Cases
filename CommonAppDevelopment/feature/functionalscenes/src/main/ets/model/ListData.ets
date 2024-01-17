@@ -17,7 +17,10 @@
  *  首页瀑布流列表信息
  */
 export class ListData {
+  // 首页列表图片
   imageSrc: ResourceStr | null = null;
+  // 首页列表名称
   name: string | null = null;
+  // 首页路由跳转信息
   path: string | null = null;
 }

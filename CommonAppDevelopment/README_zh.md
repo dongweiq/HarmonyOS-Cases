@@ -25,9 +25,7 @@
    |   |---utils         
    |   |   |---log                 // 公共能力层-日志打印
    |---feature
-   |   |---functionalscenes   
-   |   |   |---FunctionalScenes    // 基础特性层-首页列表
-   |   |   |---model               // 基础特性层-数据模型
+   |   |---functionalscenes        // 基础特性层-功能场景列表   
    |---libs
    |---product 
    |   |---entry                   // 产品定制层-应用入口
@@ -51,7 +49,7 @@
 
 基础特性层为上层的产品定制层提供稳健且丰富的基础功能支持，包括UI组件、基础服务等。同时依赖于下层的公共能力层为其提供通用功能和服务。
 
-首页[以Navigation组件为基础，实现了主要页面或模块的路由管理和跳转](./product/entry/src/main/ets/pages/EntryView.ets)。
+首页[以Navigation组件为基础，实现了主要页面或模块的路由管理和跳转](./product/entry/Navigation.md)。
 
 ### 公共能力层
 
