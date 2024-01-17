@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import { ListData } from '@ohos/base';
-import { FunctionalScenes } from '@ohos/functionalscenes';
+import { FunctionalScenes, ListData } from '@ohos/functionalscenes';
 
 @Entry
 @Component

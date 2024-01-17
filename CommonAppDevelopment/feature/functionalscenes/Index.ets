@@ -13,4 +13,5 @@
  * limitations under the License.
  */
 
-export { FunctionalScenes } from './src/main/ets/components/mainpage/FunctionalScenes'
+export { FunctionalScenes } from './src/main/ets/FunctionalScenes';
+export { ListData } from './src/main/ets/model/ListData';

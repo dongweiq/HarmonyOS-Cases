@@ -13,13 +13,7 @@
  * limitations under the License.
  */
 
-/**
- *  首页瀑布流列表信息
- */
-export class ListData {
-  imageSrc: ResourceStr | null = null;
-  name: string | null = null;
-}
+import { ListData } from './ListData'
 
 /**
  * 实现IDataSource接口的对象，用于瀑布流组件加载数据

@@ -13,13 +13,4 @@
  * limitations under the License.
  */
 
-{
-  "module": {
-    "name": "base",
-    "type": "har",
-    "deviceTypes": [
-      "default",
-      "tablet"
-    ]
-  }
-}
+export { logger } from './src/main/ets/Logger'

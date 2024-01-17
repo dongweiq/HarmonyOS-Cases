@@ -52,8 +52,8 @@
       "srcPath": "./feature/functionalscenes"
     },
     {
-      "name": "base",
-      "srcPath": "./common/base"
+      "name": "utils",
+      "srcPath": "./common/utils"
     }
   ]
 }

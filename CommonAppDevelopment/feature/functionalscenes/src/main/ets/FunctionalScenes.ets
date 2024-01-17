@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ListData, WaterFlowDataSource } from '@ohos/base';
+import { ListData } from './model/ListData';
+import { WaterFlowDataSource } from './model/WaterFlowDataSource';
 
 /**
  * 主页瀑布流列表

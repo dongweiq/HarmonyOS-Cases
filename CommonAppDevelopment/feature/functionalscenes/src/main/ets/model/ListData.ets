@@ -13,6 +13,10 @@
  * limitations under the License.
  */
 
-export { logger } from './src/main/ets/utils/Logger'
-
-export { ListData, WaterFlowDataSource } from './src/main/ets/model/ListData'
+/**
+ *  首页瀑布流列表信息
+ */
+export class ListData {
+  imageSrc: ResourceStr | null = null;
+  name: string | null = null;
+}
