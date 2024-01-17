@@ -46,7 +46,7 @@ export struct FunctionalScenes {
         .fontSize(14)
     }
     .onClick(() => {
-      this.pageStack.pushPath({ name: 'scene' });
+      this.pageStack.pushPath({ name: listData.path });
     })
   }
 

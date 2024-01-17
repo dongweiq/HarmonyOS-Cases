@@ -19,7 +19,7 @@ import { FunctionalScenes, ListData } from '@ohos/functionalscenes';
 @Component
 struct EntryView {
   // TODO:路由栈信息，待后续封装路由管理HAR
-  @State listData: ListData[] = [{ imageSrc: $r('app.media.img'), name: '场景1' },];
+  @State listData: ListData[] = [{ imageSrc: $r('app.media.img'), name: '场景1', path: 'scene' },];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
 

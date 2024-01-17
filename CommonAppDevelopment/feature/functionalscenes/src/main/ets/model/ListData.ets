@@ -19,4 +19,5 @@
 export class ListData {
   imageSrc: ResourceStr | null = null;
   name: string | null = null;
+  path: string | null = null;
 }
