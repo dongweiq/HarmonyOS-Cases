@@ -14,6 +14,9 @@
  */
 import { ListData, WaterFlowDataSource } from '@ohos/base';
 
+/**
+ * 主页瀑布流列表
+ */
 @Component
 export struct FunctionalScenes {
   @Link listData: ListData[];

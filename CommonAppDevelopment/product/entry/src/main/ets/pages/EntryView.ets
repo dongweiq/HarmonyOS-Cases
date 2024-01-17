@@ -19,7 +19,7 @@ import { FunctionalScenes } from '@ohos/functionalscenes';
 @Entry
 @Component
 struct EntryView {
-  //TODO:路由栈信息，待封装路由管理HAR。
+  // TODO:路由栈信息，待后续封装路由管理HAR
   @State listData: ListData[] = [{ imageSrc: $r('app.media.img'), name: '场景1' },];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -27,7 +27,7 @@ struct EntryView {
   @Builder
   PageMap(name: string, param: NavPathStack) {
     NavDestination() {
-      //TODO:补充场景示例组件导航
+      // TODO:补充场景示例组件导航
       if (name === 'scene') {
       }
     }

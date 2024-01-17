@@ -17,6 +17,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
+// 基础公共工具类base，主要包括日志打印和主页列表数据类型以及控制器
 import { logger } from '@ohos/base';
 
 const TAG = 'EntryAbility'
@@ -34,6 +35,7 @@ export default class EntryAbility extends UIAbility {
     // Main window is created, set main page for this ability
     logger.info(TAG, '%{public}s', 'Ability onWindowStageCreate');
 
+    // 加载应用入口页面
     windowStage.loadContent('pages/EntryView', (err, data) => {
       if (err.code) {
         logger.info(TAG, 'Failed to load the content. Cause:', JSON.stringify(err));
