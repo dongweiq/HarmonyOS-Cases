@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "toggle_selectedColor",
+      "value": "#007DFF"
+    },
+    {
+      "name": "toggle_switchpointColor",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "click_event_area_background_color",
+      "value": "#ffd2c8c8"
+    }
+  ]
+}

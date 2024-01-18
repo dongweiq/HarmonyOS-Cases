@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "control_enable_toggle",
+      "value": "控制使能开关"
+    },
+    {
+      "name": "parent_component_dialog_message",
+      "value": "父组件弹窗信息"
+    },
+    {
+      "name": "child_component",
+      "value": "子组件"
+    },
+    {
+      "name": "click_event_alert_dialog_message",
+      "value": "子组件点击事件触发弹窗"
+    },
+    {
+      "name": "common_container_width",
+      "value": "100%"
+    }
+  ]
+}

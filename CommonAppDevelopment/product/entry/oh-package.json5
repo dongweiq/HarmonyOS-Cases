@@ -7,9 +7,8 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
-    // 基础工具类，需要使用日志打印
     "@ohos/base": "file:../../common/utils",
-    // 应用首页列表子组件，需要进入应用时加载
-    "@ohos/functionalscenes": "file:../../feature/functionalscenes"
+    "@ohos/functionalscenes": "file:../../feature/functionalscenes",
+    "@ohos/event_transmission_solution": "file:../../feature/eventtransmission"
   }
 }
