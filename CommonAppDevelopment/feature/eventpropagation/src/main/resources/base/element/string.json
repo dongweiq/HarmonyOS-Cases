@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "control_enable_toggle",
+      "value": "控制使能开关"
+    },
+    {
+      "name": "parent_component_dialog_message",
+      "value": "父组件弹窗信息"
+    },
+    {
+      "name": "child_component_response",
+      "value": "子组件:点击可响应冒泡事件"
+    },
+    {
+      "name": "child_component_no_response",
+      "value": "子组件:点击不会响应冒泡事件"
+    },
+    {
+      "name": "parent_component_text",
+      "value": "灰色区域为父组件区域，点击可触发父组件事件"
+    },
+    {
+      "name": "click_event_alert_dialog_message",
+      "value": "子组件点击事件触发弹窗"
+    },
+    {
+      "name": "common_container_width",
+      "value": "100%"
+    },
+    {
+      "name": "click_event_title",
+      "value": "功能描述：子组件的enabled属性值为false时，关闭使能开关，点击子组件事件冒泡(子组件向父组件透传onClick事件)，打开使能开关，点击子组件事件冒泡被阻止。(enabled：控制组件是否可交互，可交互状态下响应点击事件、触摸事件、拖拽事件、按键事件、焦点事件和鼠标事件。)"
+    },
+    {
+      "name": "touch_event_title",
+      "value": "功能描述：关闭使能开关，点击子组件事件冒泡(子组件向父组件透传onTouch事件)，打开使能开关，点击子组件事件冒泡被阻止。"
+    },
+    {
+      "name": "parent_component_response_times_text",
+      "value": "父组件响应次数："
+    },
+    {
+      "name": "child_component_response_times_text",
+      "value": "子组件响应次数："
+    },
+    {
+      "name": "position_common_space",
+      "value": "100%"
+    }
+  ]
+}

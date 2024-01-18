@@ -56,8 +56,8 @@
       "srcPath": "./common/utils"
     },
     {
-      "name": "eventtransmission",
-      "srcPath": "./feature/eventtransmission"
+      "name": "eventpropagation",
+      "srcPath": "./feature/eventpropagation"
     }
   ]
 }

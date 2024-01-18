@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 {
   "license": "",
   "devDependencies": {},
@@ -7,8 +22,11 @@
   "main": "",
   "version": "1.0.0",
   "dependencies": {
+    // 基础工具类，需要使用日志打印
     "@ohos/base": "file:../../common/utils",
+    // 应用首页列表子组件，需要进入应用时加载
     "@ohos/functionalscenes": "file:../../feature/functionalscenes",
-    "@ohos/event_transmission_solution": "file:../../feature/eventtransmission"
+    // 阻塞事件冒泡方案
+    "@ohos/event-propagation": "file:../../feature/eventpropagation"
   }
 }

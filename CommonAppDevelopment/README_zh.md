@@ -23,13 +23,13 @@
    |---AppScope
    |---common    
    |   |---utils         
-   |   |   |---log                 // 公共能力层-日志打印
+   |   |   |---log                             // 公共能力层-日志打印
    |---feature
-   |   |---functionalscenes        // 基础特性层-功能场景列表 
-   |   |---eventtransmission       // 基础特性层-事件透传解决方案模块     
+   |   |---functionalscenes                    // 基础特性层-功能场景列表 
+   |   |---eventpropagation                    // 基础特性层-阻塞事件冒泡方案   
    |---libs
    |---product 
-   |   |---entry                   // 产品定制层-应用入口
+   |   |---entry                               // 产品定制层-应用入口
    ```
 
 ## 工程框架和实现设计
@@ -52,21 +52,9 @@
 
 首页[以Navigation组件为基础，实现了主要页面或模块的路由管理和跳转](./product/entry/Navigation.md)。
 
-#### 特性：事件透传解决方案
+#### 阻塞事件冒泡方案
 
-**场景**：子组件enabled属性设置为false的时候，点击子组件模块区域会触发父组件的点击事件、
-
-**解决方案**：设置enabled属性的子组件可以外层嵌套一层父组件，并且添加.hitTestBehavior(HitTestMode.Block)，其中鼠标事件情况下，enabled属性设置为true的时候，需要设置event.stopPropagation()来阻止透传。
-属性，具体可参考[EventTransmissionSolution.ets](./feature/eventtransmission/src/main/ets/view/EventTransmissionSolution.ets)。
-
-**效果图预览**：
-
-![](screenshots/device/eventTransmission.jpeg)
-
-**操作步骤**：
-
-1. 点击Button按钮，不触发父组件点击事件，点击父组件区域，触发父组件点击事件。
-2. 打开使能开关，点击Button按钮，触发Button点击事件，但触发父组件点击事件，点击父组件区域，触发父组件点击事件。
+事件冒泡是指触发子组件事件的时候，事件会传递到父组件，这样会导致父组件的事件也会触发。阻塞事件冒泡的方案可以参考此[详细说明文档](./feature/stopeventtransmissionsolution/README_zh.md)。
 
 ### 公共能力层
 

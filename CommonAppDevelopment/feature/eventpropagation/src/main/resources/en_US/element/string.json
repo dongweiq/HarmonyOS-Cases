@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "control_enable_toggle",
+      "value": "Control enable switch"
+    },
+    {
+      "name": "parent_component_dialog_message",
+      "value": "Parent component dialog message"
+    },
+    {
+      "name": "child_component_response",
+      "value": "Child component:Clicking will respond to bubble events"
+    },
+    {
+      "name": "child_component_no_response",
+      "value": "Child component:Clicking will not respond to bubble events"
+    },
+    {
+      "name": "parent_component_text",
+      "value": "The gray area is the parent component area, and clicking can trigger the parent component event"
+    },
+    {
+      "name": "click_event_alert_dialog_message",
+      "value": "Sub component click event triggers dialog window"
+    },
+    {
+      "name": "common_container_width",
+      "value": "100%"
+    },
+    {
+      "name": "click_event_title",
+      "value": "Function Description: When the enabled attribute value of a subcomponent is false, turn off the enable switch, click on the subcomponent event bubble (subcomponent passes an onClick event to the parent component), turn on the enable switch, and click on the subcomponent event bubble to be blocked. (enabled: controls whether components can interact and respond to click events, touch events, drag events, button events, focus events, and mouse events in an interactive state.)"
+    },
+    {
+      "name": "touch_event_title",
+      "value": "Function Description: When the enabled attribute value of a subcomponent is true, turn off the enable switch, click on the subcomponent event bubble (subcomponent passes onTouch events to the parent component), turn on the enable switch, and click on the subcomponent event bubble to be blocked."
+    },
+    {
+      "name": "parent_component_response_times_text",
+      "value": "parent component response times："
+    },
+    {
+      "name": "child_component_response_times_text",
+      "value": "child component response times text："
+    },
+    {
+      "name": "position_common_space",
+      "value": "100%"
+    }
+  ]
+}

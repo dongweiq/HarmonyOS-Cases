@@ -17,7 +17,7 @@
   "license": "Apache-2.0",
   "devDependencies": {},
   "author": "",
-  "name": "eventtransmission",
+  "name": "eventpropagation",
   "description": "Please describe the basic information.",
   "main": "Index.ets",
   "version": "1.0.0",

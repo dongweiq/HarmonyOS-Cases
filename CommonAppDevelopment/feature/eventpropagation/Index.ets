@@ -13,13 +13,4 @@
  * limitations under the License.
  */
 
-{
-  "module": {
-    "name": "eventtransmission",
-    "type": "har",
-    "deviceTypes": [
-      "default",
-      "tablet"
-    ]
-  }
-}
+export { EventPropagation } from './src/main/ets/view/EventPropagation';

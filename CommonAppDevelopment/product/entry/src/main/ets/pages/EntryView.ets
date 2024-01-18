@@ -14,7 +14,7 @@
  */
 
 import { FunctionalScenes, ListData } from '@ohos/functionalscenes';
-import { EventTransmissionSolution } from '@ohos/event_transmission_solution';
+import { EventPropagation } from '@ohos/event-propagation';
 
 @Entry
 @Component
@@ -33,8 +33,8 @@ struct EntryView {
     NavDestination() {
       // TODO:补充场景示例组件导航
       if (name === 'eventTransmissionSolution') {
-        // 事件透传解决模块
-        EventTransmissionSolution()
+        // 阻塞事件冒泡模块
+        EventPropagation()
       }
     }
     .hideTitleBar(true)
