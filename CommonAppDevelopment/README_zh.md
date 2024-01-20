@@ -23,12 +23,13 @@
    |---AppScope
    |---common    
    |   |---utils         
-   |   |   |---log                 // 公共能力层-日志打印
+   |   |   |---log                             // 公共能力层-日志打印
    |---feature
-   |   |---functionalscenes        // 基础特性层-功能场景列表   
+   |   |---functionalscenes                    // 基础特性层-功能场景列表 
+   |   |---eventpropagation                    // 基础特性层-阻塞事件冒泡方案   
    |---libs
    |---product 
-   |   |---entry                   // 产品定制层-应用入口
+   |   |---entry                               // 产品定制层-应用入口
    ```
 
 ## 工程框架和实现设计
@@ -50,6 +51,10 @@
 基础特性层为上层的产品定制层提供稳健且丰富的基础功能支持，包括UI组件、基础服务等。同时依赖于下层的公共能力层为其提供通用功能和服务。
 
 首页[以Navigation组件为基础，实现了主要页面或模块的路由管理和跳转](./product/entry/Navigation.md)。
+
+#### 阻塞事件冒泡方案
+
+事件冒泡是指触发子组件事件的时候，事件会传递到父组件，这样会导致父组件的事件也会触发。阻塞事件冒泡的方案可以参考此[详细说明文档](./feature/stopeventtransmissionsolution/README_zh.md)。
 
 ### 公共能力层
 

@@ -14,12 +14,17 @@
  */
 
 import { FunctionalScenes, ListData } from '@ohos/functionalscenes';
+import { EventPropagation } from '@ohos/event-propagation';
 
 @Entry
 @Component
 struct EntryView {
   // TODO:路由栈信息，待后续封装路由管理HAR
-  @State listData: ListData[] = [{ imageSrc: $r('app.media.img'), name: '场景1', path: 'scene' },];
+  @State listData: ListData[] = [{
+    imageSrc: $r('app.media.img'),
+    name: '解决事件透传场景',
+    path: 'eventTransmissionSolution'
+  }];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
 
@@ -27,7 +32,9 @@ struct EntryView {
   PageMap(name: string, param: NavPathStack) {
     NavDestination() {
       // TODO:补充场景示例组件导航
-      if (name === 'scene') {
+      if (name === 'eventTransmissionSolution') {
+        // 阻塞事件冒泡模块
+        EventPropagation()
       }
     }
     .hideTitleBar(true)

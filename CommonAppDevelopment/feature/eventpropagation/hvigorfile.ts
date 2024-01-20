@@ -13,20 +13,9 @@
  * limitations under the License.
  */
 
-{
-  "license": "",
-  "devDependencies": {},
-  "author": "",
-  "name": "entry",
-  "description": "Please describe the basic information.",
-  "main": "",
-  "version": "1.0.0",
-  "dependencies": {
-    // 基础工具类，需要使用日志打印
-    "@ohos/base": "file:../../common/utils",
-    // 应用首页列表子组件，需要进入应用时加载
-    "@ohos/functionalscenes": "file:../../feature/functionalscenes",
-    // 阻塞事件冒泡方案
-    "@ohos/event-propagation": "file:../../feature/eventpropagation"
-  }
+import { harTasks } from '@ohos/hvigor-ohos-plugin';
+
+export default {
+    system: harTasks,  /* Built-in plugin of Hvigor. It cannot be modified. */
+    plugins:[]         /* Custom plugin to extend the functionality of Hvigor. */
 }

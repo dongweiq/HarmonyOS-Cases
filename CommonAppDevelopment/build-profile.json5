@@ -54,6 +54,10 @@
     {
       "name": "utils",
       "srcPath": "./common/utils"
+    },
+    {
+      "name": "eventpropagation",
+      "srcPath": "./feature/eventpropagation"
     }
   ]
 }

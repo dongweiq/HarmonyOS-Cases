@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "eventpropagation",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
