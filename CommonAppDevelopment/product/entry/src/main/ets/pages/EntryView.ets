@@ -19,10 +19,10 @@ import { EventPropagation } from '@ohos/event-propagation';
 @Entry
 @Component
 struct EntryView {
-  // TODO:路由栈信息，待后续封装路由管理HAR
+  // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: ListData[] = [{
-    imageSrc: $r('app.media.img'),
-    name: '解决事件透传场景',
+    imageSrc: $r('app.media.propagation'),
+    name: '阻塞事件冒泡',
     path: 'eventTransmissionSolution'
   }];
   // Navigation路由栈,控制页面跳转
@@ -31,7 +31,7 @@ struct EntryView {
   @Builder
   PageMap(name: string, param: NavPathStack) {
     NavDestination() {
-      // TODO:补充场景示例组件导航
+      // TODO:需求：补充场景示例组件导航
       if (name === 'eventTransmissionSolution') {
         // 阻塞事件冒泡模块
         EventPropagation()
