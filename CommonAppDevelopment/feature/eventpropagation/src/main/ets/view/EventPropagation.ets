@@ -62,8 +62,6 @@ struct ClickEvent {
   @Consume isEnabled: boolean;
   // 父组件响应次数
   @State parentCompResponseTimes: number = 0;
-  // 子组件响应次数
-  @State childCompResponseTimes: number = 0;
 
   build() {
     Column() {
@@ -73,30 +71,23 @@ struct ClickEvent {
         .margin($r('app.integer.common_space_size'))
         .textAlign(TextAlign.Start)
       Column() {
+        Text($r('app.string.parent_component_text'))
+          .fontSize($r('app.integer.parent_component_text_font_size'))
+          .margin($r('app.integer.common_space_size'))
         // 父组件响应次数
         Row() {
           Text($r('app.string.parent_component_response_times_text'))
             .fontSize($r('app.integer.response_text_font_size'))
           Text(`${this.parentCompResponseTimes}`)
             .fontSize($r('app.integer.response_text_font_size'))
-        }.margin({ bottom: $r('app.integer.common_space_size') })
-
-        // 子组件响应次数
-        Row() {
-          Text($r('app.string.child_component_response_times_text'))
-            .fontSize($r('app.integer.response_text_font_size'))
-          Text(`${this.childCompResponseTimes}`)
-            .fontSize($r('app.integer.response_text_font_size'))
-        }.margin({ bottom: $r('app.integer.common_space_size') })
+        }.margin({ top: $r('app.integer.common_space_size'), bottom: $r('app.integer.common_space_size') })
 
         Column() {
           Button(this.isEnabled ? $r('app.string.child_component_no_response') : $r('app.string.child_component_response'))
             .enabled(false)
             .fontSize($r('app.integer.child_component_font_size'))
-            .width($r('app.integer.button_width_size'))
             .height($r('app.integer.button_height_size'))
             .onClick(() => {
-              this.childCompResponseTimes++;
             })
         }
         /*
@@ -104,21 +95,11 @@ struct ClickEvent {
           hitTestBehavior的属性值设置为HitTestMode.Block。
          */
         .hitTestBehavior(this.isEnabled ? HitTestMode.Block : HitTestMode.Default)
-
-        Text($r('app.string.parent_component_text'))
-          .fontSize($r('app.integer.parent_component_text_font_size'))
-          .width($r('app.integer.parent_component_text_width_size'))
-          .maxLines(2)
-          .textAlign(TextAlign.Start)
-          .position({ x: $r('app.string.position_common_space'), y: $r('app.string.position_common_space') })
-          .translate({ x: -150, y: -40 })
-
       }
       .width($r('app.string.common_container_width'))
       .height($r('app.integer.button_click_event_area_height'))
       .backgroundColor($r('app.color.click_event_area_background_color'))
       .alignItems(HorizontalAlign.Center)
-      .justifyContent(FlexAlign.Center)
       .onClick(() => {
         // 冒泡事件发生时，该回调不会触发
         this.parentCompResponseTimes++;
@@ -149,13 +130,16 @@ struct TouchEvent {
         .margin($r('app.integer.common_space_size'))
         .textAlign(TextAlign.Start)
       Column() {
+        Text($r('app.string.parent_component_text_touch'))
+          .fontSize($r('app.integer.parent_component_text_font_size'))
+          .margin($r('app.integer.common_space_size'))
         // 父组件响应次数
         Row() {
           Text($r('app.string.parent_component_response_times_text'))
             .fontSize($r('app.integer.response_text_font_size'))
           Text(`${this.parentCompResponseTimes}`)
             .fontSize($r('app.integer.response_text_font_size'))
-        }.margin({ bottom: $r('app.integer.common_space_size') })
+        }.margin({ top: $r('app.integer.common_space_size'), bottom: $r('app.integer.common_space_size') })
 
         // 子组件响应次数
         Row() {
@@ -166,39 +150,26 @@ struct TouchEvent {
         }.margin({ bottom: $r('app.integer.common_space_size') })
 
 
-        Text(this.isEnabled ? $r('app.string.child_component_no_response') : $r('app.string.child_component_response'))
-          .width($r('app.integer.button_width_size'))
+        Text(this.isEnabled ? $r('app.string.child_touch_component_no_response') : $r('app.string.child_touch_component_response'))
           .height($r('app.integer.button_height_size'))
           .textAlign(TextAlign.Center)
-          .borderRadius($r('app.integer.child_component_border_radius'))
           .backgroundColor(Color.White)
+          .padding($r('app.integer.common_space_size'))
           .onTouch((event) => {
-            if (event.type === TouchType.Down) {
-              if (this.isEnabled) {
-                event.stopPropagation(); // TODO：知识点：在onTouch事件里，通过调用event.stopPropagation()阻止事件冒泡(子组件向父组件透传Touch事件)
-              }
-              this.childCompResponseTimes++;
+            if (this.isEnabled) {
+              event.stopPropagation(); // TODO：知识点：在onTouch事件里，通过调用event.stopPropagation()阻止事件冒泡(子组件向父组件透传Touch事件)
             }
+            this.childCompResponseTimes++;
           })
-        Text($r('app.string.parent_component_text'))
-          .fontSize($r('app.integer.parent_component_text_font_size'))
-          .width($r('app.integer.parent_component_text_width_size'))
-          .maxLines(2)
-          .textAlign(TextAlign.Start)
-          .position({ x: $r('app.string.position_common_space'), y: $r('app.string.position_common_space') })
-          .translate({ x: -150, y: -40 })
       }
       .width($r('app.string.common_container_width'))
       .height($r('app.integer.button_click_event_area_height'))
       .backgroundColor($r('app.color.click_event_area_background_color'))
       .margin($r('app.integer.common_space_size'))
-      .justifyContent(FlexAlign.Center)
       .alignItems(HorizontalAlign.Center)
-      .onTouch((event) => {
+      .onTouch(() => {
         // 冒泡事件发生时，该回调不会触发
-        if (event.type === TouchType.Down) {
-          this.parentCompResponseTimes++;
-        }
+        this.parentCompResponseTimes++;
       })
     }
   }

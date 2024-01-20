@@ -44,7 +44,9 @@ export struct FunctionalScenes {
         .maxLines(1)
         .height(16)
         .fontSize(14)
+        .margin({ top: 10 })
     }
+    .margin(20)
     .onClick(() => {
       this.pageStack.pushPath({ name: listData.path });
     })
