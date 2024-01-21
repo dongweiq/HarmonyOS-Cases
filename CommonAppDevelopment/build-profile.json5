@@ -58,6 +58,10 @@
     {
       "name": "eventpropagation",
       "srcPath": "./feature/eventpropagation"
+    },
+    {
+      "name": "nativerawfile",
+      "srcPath": "./feature/nativerawfile"
     }
   ]
 }

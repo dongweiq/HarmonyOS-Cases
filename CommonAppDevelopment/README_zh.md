@@ -27,6 +27,7 @@
    |---feature
    |   |---functionalscenes                    // 基础特性层-功能场景列表 
    |   |---eventpropagation                    // 基础特性层-阻塞事件冒泡方案   
+   |   |---nativerawfile                       // 基础特性层-读取Rawfile中文件部分内容
    |---libs
    |---product 
    |   |---entry                               // 产品定制层-应用入口
@@ -55,6 +56,10 @@
 #### 阻塞事件冒泡方案
 
 事件冒泡是指触发子组件事件的时候，事件会传递到父组件，这样会导致父组件的事件也会触发。阻塞事件冒泡的方案可以参考此[详细说明文档](./feature/stopeventtransmissionsolution/README_zh.md)。
+
+#### 读取Rawfile中文件部分内容方案
+
+使用native从rawfile中文件读取部分内容。具体方案可以参考此[详细说明文档](./feature/nativerawfile/NativeRawFile.md)。
 
 ### 公共能力层
 

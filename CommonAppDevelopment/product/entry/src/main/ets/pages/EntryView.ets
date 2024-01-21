@@ -15,6 +15,7 @@
 
 import { FunctionalScenes, ListData } from '@ohos/functionalscenes';
 import { EventPropagation } from '@ohos/event-propagation';
+import { NativeRawfileDemo } from '@ohos/nativerawfile';
 
 @Entry
 @Component
@@ -24,6 +25,10 @@ struct EntryView {
     imageSrc: $r('app.media.propagation'),
     name: '阻塞事件冒泡',
     path: 'eventTransmissionSolution'
+  },{
+    imageSrc: $r('app.media.rawFile'),
+    name: '读取RawFile文件内容',
+    path: 'ReadRawFile'
   }];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -35,6 +40,9 @@ struct EntryView {
       if (name === 'eventTransmissionSolution') {
         // 阻塞事件冒泡模块
         EventPropagation()
+      } else if (name === 'ReadRawFile') {
+        // 读取RawFile文件内容
+        NativeRawfileDemo()
       }
     }
     .hideTitleBar(true)
