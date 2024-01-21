@@ -13,8 +13,6 @@
  * limitations under the License.
  */
 
-import promptAction from '@ohos.promptAction';
-
 @Component
 export struct EventPropagation {
   // 初始化控制使能开关变量
