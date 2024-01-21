@@ -71,6 +71,10 @@
     {
       "name": "imageviewer",
       "srcPath": "./feature/imageviewer"
+    },
+    {
+      "name": "handletabs",
+      "srcPath": "./feature/handletabs"
     }
   ]
 }
