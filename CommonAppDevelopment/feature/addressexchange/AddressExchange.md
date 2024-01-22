@@ -9,7 +9,6 @@
 
 ![](../../screenshots/device/AddressExchange.gif)
 
-
 ### 场景概述
 
 通过状态变量控制中间图片旋转角度，控制左右两边文本组件偏移量，达成地址切换动画效果。

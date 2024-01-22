@@ -1,0 +1,15 @@
+integer address_exchange_address_font_size 0x01000008
+integer address_exchange_airplane_size 0x0100000a
+integer address_exchange_content_height 0x0100000d
+integer address_exchange_recycle_size 0x0100000b
+integer address_exchange_title_top_space 0x01000000
+string address_exchange_address_left 0x01000004
+string address_exchange_address_right 0x01000005
+string address_exchange_address_width 0x01000007
+string address_exchange_detail 0x0100000e
+string address_exchange_image_width 0x0100000c
+string address_exchange_title 0x01000001
+string full_size 0x01000002
+string page_show 0x01000003
+media address_exchange_airplane 0x01000006
+media address_exchange_recycle 0x01000009

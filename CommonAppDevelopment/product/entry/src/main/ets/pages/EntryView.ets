@@ -23,7 +23,6 @@ import { AddressExchangeView } from '@ohos/addressexchange';
 @Component
 struct EntryView {
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
-<<<<<<< HEAD
   @State listData: ListData[] = [
     {
       imageSrc: $r('app.media.propagation'),
@@ -69,9 +68,9 @@ struct EntryView {
         // 二级联动模块
         SecondaryLinkExample()
       } else if (name === 'addressExchange') {
+        // 地址切换动画模块
         AddressExchangeView()
-      }
-      else if (name === 'barChartSolution') {
+      } else if (name === 'barChartSolution') {
         // 柱状图模块
         BarChartPage()
       }
