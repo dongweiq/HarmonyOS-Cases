@@ -50,7 +50,11 @@
     },
     {
       "name": "secondarylinkage",
-      "srcPath": "./feature/secondarylinkage",
+      "srcPath": "./feature/secondarylinkage"
+    },
+    {
+      "name": "barchart",
+      "srcPath": "./feature/barchart"
     }
   ]
 }

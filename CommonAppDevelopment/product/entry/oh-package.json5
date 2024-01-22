@@ -16,6 +16,8 @@
     // 自定义tabBar
     "@ohos/custom-tabbar": "file:../../feature/customtabbar",
     // 二级联动方案
-    "@ohos/secondarylinkage": "file:../../feature/secondarylinkage"
+    "@ohos/secondarylinkage": "file:../../feature/secondarylinkage",
+    // 柱状图方案
+    "@ohos/barchart": "file:../../feature/barchart"
   }
 }

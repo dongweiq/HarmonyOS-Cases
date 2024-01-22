@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "barchart",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}
