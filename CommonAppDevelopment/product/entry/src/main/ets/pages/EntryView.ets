@@ -28,12 +28,12 @@ struct EntryView {
     imageSrc: $r('app.media.propagation'),
     name: '阻塞事件冒泡',
     path: 'eventTransmissionSolution'
-  },{
+    },
+	{
     imageSrc: $r('app.media.rawFile'),
     name: '读取RawFile文件内容',
     path: 'ReadRawFile'
-  }];
-  @State listData: ListData[] = [
+    },
     {
       imageSrc: $r('app.media.propagation'),
       name: '阻塞事件冒泡',
