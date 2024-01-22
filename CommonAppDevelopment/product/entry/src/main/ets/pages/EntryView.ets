@@ -12,17 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { FunctionalScenes, ListData } from '@ohos/functionalscenes';
 import { EventPropagation } from '@ohos/event-propagation';
 import { TabView } from '@ohos/custom-tabbar';
 import { SecondaryLinkExample } from '@ohos/secondarylinkage';
 import { BarChartPage } from '@ohos/barchart';
+import { AddressExchangeView } from '@ohos/addressexchange';
 
 @Entry
 @Component
 struct EntryView {
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
+<<<<<<< HEAD
   @State listData: ListData[] = [
     {
       imageSrc: $r('app.media.propagation'),
@@ -43,8 +44,14 @@ struct EntryView {
       imageSrc: $r('app.media.barchart'),
       name: '柱状图',
       path: 'barChartSolution'
+    },
+    {
+      imageSrc: $r('app.media.addressExchange'),
+      name: '地址切换动画',
+      path: 'addressExchange'
     }
   ];
+
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
 
@@ -61,6 +68,8 @@ struct EntryView {
       } else if (name === 'secondarylinkage') {
         // 二级联动模块
         SecondaryLinkExample()
+      } else if (name === 'addressExchange') {
+        AddressExchangeView()
       }
       else if (name === 'barChartSolution') {
         // 柱状图模块

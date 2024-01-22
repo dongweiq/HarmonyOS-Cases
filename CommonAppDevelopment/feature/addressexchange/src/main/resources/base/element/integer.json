@@ -1,0 +1,24 @@
+{
+  "integer": [
+    {
+      "name": "address_exchange_title_top_space",
+      "value": 30
+    },
+    {
+      "name": "address_exchange_address_font_size",
+      "value": 24
+    },
+    {
+      "name": "address_exchange_airplane_size",
+      "value": 16
+    },
+    {
+      "name": "address_exchange_recycle_size",
+      "value": 28
+    },
+    {
+      "name": "address_exchange_content_height",
+      "value": 60
+    }
+  ]
+}
