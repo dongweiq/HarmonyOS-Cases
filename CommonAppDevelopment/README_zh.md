@@ -27,7 +27,7 @@
    |---feature
    |   |---functionalscenes                    // 基础特性层-功能场景列表 
    |   |---eventpropagation                    // 基础特性层-阻塞事件冒泡方案   
-   |   |---nativerawfile                       // 基础特性层-读取Rawfile中文件部分内容
+   |   |---nativerawfile                       // 基础特性层-Native读取Rawfile中文件部分内容
    |---libs
    |---product 
    |   |---entry                               // 产品定制层-应用入口

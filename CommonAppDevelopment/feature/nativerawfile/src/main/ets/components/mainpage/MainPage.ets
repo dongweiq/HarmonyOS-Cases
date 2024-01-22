@@ -15,26 +15,37 @@
 
 
 import testNapi from 'libnativerawfile.so';
-
+let rawfileTotalContent:string;
 let rawfileContent:string;
 
 @Component
 export struct NativeRawfileDemo {
-  @State startPos: number = 0;
+  @State startPos: number = 2;
+  @State len: number = 5;
   async aboutToAppear() {
+    // TODO：知识点：通过Native中暴露的接口读取rawfile内容。
     rawfileContent = testNapi.getRawFileContent(getContext().resourceManager, 'rawfile.txt', 2, 5);
+    rawfileTotalContent = testNapi.getTotalRawFileContent(getContext().resourceManager, 'rawfile.txt');
   }
 
   build() {
     Row() {
       Column() {
-        Text("开始读取位置: " + this.startPos.toString())
+        Text("TotalContent: " + rawfileTotalContent)
           .fontSize(30)
-          .fontWeight(FontWeight.Bold).margin(10)
+          .fontWeight(FontWeight.Normal).margin(10)
           .align(Alignment.Start)
-        Text("内容: " + rawfileContent)
-          .fontSize(20)
-          .fontWeight(FontWeight.Bold).margin(10)
+        Text("ReadStartPos: " + this.startPos.toString())
+          .fontSize(30)
+          .fontWeight(FontWeight.Normal).margin(10)
+          .align(Alignment.Start)
+        Text("ReadLen: " + this.len.toString())
+          .fontSize(30)
+          .fontWeight(FontWeight.Normal).margin(10)
+          .align(Alignment.Start)
+        Text("ReadContent: " + rawfileContent)
+          .fontSize(30)
+          .fontWeight(FontWeight.Normal).margin(10)
       }
       .width('100%')
     }
