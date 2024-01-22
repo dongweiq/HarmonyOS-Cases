@@ -28,6 +28,7 @@
    |   |---customtabbar                        // 基础特性层-自定义TabBar页签 
    |   |---functionalscenes                    // 基础特性层-功能场景列表 
    |   |---eventpropagation                    // 基础特性层-阻塞事件冒泡方案   
+   |   |---secondarylinkage                    // 基础特性层-二级联动实现方案  
    |---libs
    |---product 
    |   |---entry                               // 产品定制层-应用入口
@@ -61,6 +62,10 @@
 
 TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不一样的TabBar样式，Tab组件自带的TabBar属性对于部分效果无法满足，如页签中间显示一圈圆弧外轮廓等，
 因此我们需要去自己定义一个TabBar页签来满足开发的需要。自定义TabBar页签的方案可以参考此[详细说明文档](./feature/eventpropagation/EventPropagation.md)。
+
+#### 二级联动实现方案
+
+二级联动是指一个列表（一级列表）的选择结果，来更新另一个列表（二级列表）的选项。二级联动的方案可以参考此[详细说明文档](./feature/eventpropagation/SecondaryLink.md)。
 
 ### 公共能力层
 

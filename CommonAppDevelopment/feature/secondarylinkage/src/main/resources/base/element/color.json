@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "lineColor",
+      "value": "#ffcf9861"
+    },
+    {
+      "name": "contentItemBcColor",
+      "value": "#ff355ac8"
+    },
+    {
+      "name": "contentTextFontColor",
+      "value": "#ff3cc824"
+    },
+    {
+      "name": "categorySelectedColor",
+      "value": "#66355ac8"
+    },
+    {
+      "name": "pageContainerBcColor",
+      "value": "#f1f3f5"
+    }
+  ]
+}
