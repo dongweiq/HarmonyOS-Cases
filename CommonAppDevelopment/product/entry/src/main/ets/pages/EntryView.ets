@@ -16,20 +16,35 @@
 import { FunctionalScenes, ListData } from '@ohos/functionalscenes';
 import { EventPropagation } from '@ohos/event-propagation';
 import { TabView } from '@ohos/custom-tabbar';
+import { SecondaryLinkExample } from '@ohos/secondarylinkage';
+import { BarChartPage } from '@ohos/barchart';
 
 @Entry
 @Component
 struct EntryView {
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
-  @State listData: ListData[] = [{
-    imageSrc: $r('app.media.propagation'),
-    name: '阻塞事件冒泡',
-    path: 'eventTransmissionSolution'
-  }, {
-    imageSrc: $r('app.media.tabBar'),
-    name: 'TabBar页签设计',
-    path: 'customTabBar'
-  }];
+  @State listData: ListData[] = [
+    {
+      imageSrc: $r('app.media.propagation'),
+      name: '阻塞事件冒泡',
+      path: 'eventTransmissionSolution'
+    },
+    {
+      imageSrc: $r('app.media.tabBar'),
+      name: 'TabBar页签设计',
+      path: 'customTabBar'
+    },
+    {
+      imageSrc: $r('app.media.secondaryLinkImage'),
+      name: '二级联动',
+      path: 'secondarylinkage'
+    },
+    {
+      imageSrc: $r('app.media.barchart'),
+      name: '柱状图',
+      path: 'barChartSolution'
+    }
+  ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
 
@@ -43,6 +58,13 @@ struct EntryView {
       } else if (name === 'customTabBar') {
         // TabBar页签模块
         TabView()
+      } else if (name === 'secondarylinkage') {
+        // 二级联动模块
+        SecondaryLinkExample()
+      }
+      else if (name === 'barChartSolution') {
+        // 柱状图模块
+        BarChartPage()
       }
     }
     .hideTitleBar(true)

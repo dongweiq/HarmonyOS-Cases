@@ -1,0 +1,104 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "common_bar_chart_width",
+      "value": "100%"
+    },
+    {
+      "name": "common_bar_chart_height",
+      "value": "30%"
+    },
+    {
+      "name": "common_divider",
+      "value": "1px"
+    },
+    {
+      "name": "control_data_type",
+      "value": "数据类型："
+    },
+    {
+      "name": "control_normal",
+      "value": "普通: "
+    },
+    {
+      "name": "control_gradient",
+      "value": "渐变: "
+    },
+    {
+      "name": "control_stack",
+      "value": "堆叠: "
+    },
+    {
+      "name": "control_leftYAxis_is_display",
+      "value": "Y轴是否显示： "
+    },
+    {
+      "name": "control_leftYAxis",
+      "value": "左Y轴: "
+    },
+    {
+      "name": "control_rightYAxis",
+      "value": "右Y轴: "
+    },
+    {
+      "name": "control_leftYAxis_location",
+      "value": "左Y轴位置： "
+    },
+    {
+      "name": "control_outSideChart",
+      "value": "表外: "
+    },
+    {
+      "name": "control_inSideChart",
+      "value": "表内: "
+    },
+    {
+      "name": "control_right_YAxis_location",
+      "value": "右Y轴位置： "
+    },
+    {
+      "name": "control_right_outSideChart",
+      "value": "表外: "
+    },
+    {
+      "name": "control_left_outSideChart",
+      "value": "表内: "
+    },
+    {
+      "name": "control_XAxis_is_display",
+      "value": "X轴是否显示： "
+    },
+    {
+      "name": "control_XAxis",
+      "value": "X轴: "
+    },
+    {
+      "name": "control_XAxis_location",
+      "value": "X轴位置"
+    },
+    {
+      "name": "control_is_draw_background",
+      "value": "是否绘制背景色： "
+    },
+    {
+      "name": "control_is_show_markerview",
+      "value": "是否设置MarkerView: "
+    },
+    {
+      "name": "control_is_show_limitline_behinddata",
+      "value": "LimitLine是否在数据后： "
+    },
+    {
+      "name": "control_leftYAxis_limitline_location",
+      "value": "左Y轴LimitLine位置"
+    },
+    {
+      "name": "control_refresh",
+      "value": "刷新"
+    }
+  ]
+}

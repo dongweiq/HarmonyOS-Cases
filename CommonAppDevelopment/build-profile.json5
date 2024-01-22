@@ -47,6 +47,14 @@
     {
       "name": "customtabbar",
       "srcPath": "./feature/customtabbar"
+    },
+    {
+      "name": "secondarylinkage",
+      "srcPath": "./feature/secondarylinkage"
+    },
+    {
+      "name": "barchart",
+      "srcPath": "./feature/barchart"
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "integer": [
+    {
+      "name": "common_padding_top",
+      "value": 5
+    },
+    {
+      "name": "common_padding_left",
+      "value": 20
+    },
+    {
+      "name": "common_layout_weight",
+      "value": 1
+    }
+  ]
+}
