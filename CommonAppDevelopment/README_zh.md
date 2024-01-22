@@ -25,9 +25,12 @@
    |   |---utils         
    |   |   |---log                             // 公共能力层-日志打印
    |---feature
+   |   |---customtabbar                        // 基础特性层-自定义TabBar页签 
    |   |---functionalscenes                    // 基础特性层-功能场景列表 
    |   |---eventpropagation                    // 基础特性层-阻塞事件冒泡方案   
    |   |---nativerawfile                       // 基础特性层-Native读取Rawfile中文件部分内容
+   |   |---secondarylinkage                    // 基础特性层-二级联动实现方案  
+   |   |---barchart                            // 基础特性层-柱状图方案
    |---libs
    |---product 
    |   |---entry                               // 产品定制层-应用入口
@@ -55,7 +58,20 @@
 
 #### 阻塞事件冒泡方案
 
-事件冒泡是指触发子组件事件的时候，事件会传递到父组件，这样会导致父组件的事件也会触发。阻塞事件冒泡的方案可以参考此[详细说明文档](./feature/stopeventtransmissionsolution/README_zh.md)。
+事件冒泡是指触发子组件事件的时候，事件会传递到父组件，这样会导致父组件的事件也会触发。阻塞事件冒泡的方案可以参考此[详细说明文档](./feature/eventpropagation/EventPropagation.md)。
+
+#### 自定义TabBar页签方案
+
+TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不一样的TabBar样式，Tab组件自带的TabBar属性对于部分效果无法满足，如页签中间显示一圈圆弧外轮廓等，
+因此我们需要去自己定义一个TabBar页签来满足开发的需要。自定义TabBar页签的方案可以参考此[详细说明文档](./feature/eventpropagation/EventPropagation.md)。
+
+#### 二级联动实现方案
+
+二级联动是指一个列表（一级列表）的选择结果，来更新另一个列表（二级列表）的选项。二级联动的方案可以参考此[详细说明文档](./feature/eventpropagation/SecondaryLink.md)。
+
+#### 柱状图方案
+
+使用三方库mpchart可以实现柱状图UI效果。柱状图方案可以参考此[详细说明文档](./feature/barchart/BarChart.md)。
 
 #### 读取Rawfile中文件部分内容方案
 

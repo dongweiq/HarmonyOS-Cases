@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "home",
+      "value": "首页"
+    },
+    {
+      "name": "news",
+      "value": "新品"
+    },
+    {
+      "name": "community",
+      "value": "社区"
+    },
+    {
+      "name": "shopping_cart",
+      "value": "购物车"
+    },
+    {
+      "name": "mine",
+      "value": "我的"
+    },
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "scene_description",
+      "value": "功能介绍：Tab页签中间有一圈圆弧外轮廓效果，点击TabBar页签会改变图标显示，并有一小段动画效果"
+    }
+  ]
+}

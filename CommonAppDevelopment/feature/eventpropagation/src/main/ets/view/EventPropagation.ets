@@ -64,7 +64,7 @@ struct ClickEvent {
   build() {
     Column() {
       Text($r('app.string.click_event_title'))
-        .fontSize($r('app.integer.title_font_size'))
+        .fontSize($r('app.integer.describe_text_font_size'))
         .width('100%')
         .margin($r('app.integer.common_space_size'))
         .textAlign(TextAlign.Start)
@@ -123,7 +123,7 @@ struct TouchEvent {
   build() {
     Column() {
       Text($r('app.string.touch_event_title'))
-        .fontSize($r('app.integer.title_font_size'))
+        .fontSize($r('app.integer.describe_text_font_size'))
         .width('100%')
         .margin($r('app.integer.common_space_size'))
         .textAlign(TextAlign.Start)
