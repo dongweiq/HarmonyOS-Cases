@@ -1,0 +1,44 @@
+{
+  "integer": [
+    {
+      "name": "tab_bar_height_size",
+      "value": 60
+    },
+    {
+      "name": "community_image_size",
+      "value": 43
+    },
+    {
+      "name": "tab_bar_image_size",
+      "value": 28
+    },
+    {
+      "name": "community_image_container_size",
+      "value": 52
+    },
+    {
+      "name": "community_image_container_border_radius_size",
+      "value": 24
+    },
+    {
+      "name": "tab_bar_image_container_size",
+      "value": 37
+    },
+    {
+      "name": "tab_bar_text_font_size",
+      "value": 14
+    },
+    {
+      "name": "common_size_0",
+      "value": 0
+    },
+    {
+      "name": "title_font_size",
+      "value": 26
+    },
+    {
+      "name": "padding_size",
+      "value": 20
+    }
+  ]
+}
