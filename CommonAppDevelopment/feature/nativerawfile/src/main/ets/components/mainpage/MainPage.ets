@@ -13,39 +13,92 @@
  * limitations under the License.
  */
 
-
 import testNapi from 'libnativerawfile.so';
 let rawfileTotalContent:string;
-let rawfileContent:string;
 
 @Component
 export struct NativeRawfileDemo {
-  @State startPos: number = 2;
-  @State len: number = 5;
+  @State ReadStartPos: number = 2;
+  @State readLength: number = 5;
+  @State rawfileContent:string = "";
   async aboutToAppear() {
-    // TODO：知识点：通过Native中暴露的接口读取rawfile内容。
-    rawfileContent = testNapi.getRawFileContent(getContext().resourceManager, 'rawfile.txt', 2, 5);
+    this.rawfileContent = testNapi.getRawFileContent(getContext().resourceManager, 'rawfile.txt', 2, 5);
     rawfileTotalContent = testNapi.getTotalRawFileContent(getContext().resourceManager, 'rawfile.txt');
   }
 
   build() {
     Row() {
       Column() {
-        Text("TotalContent: " + rawfileTotalContent)
-          .fontSize(30)
-          .fontWeight(FontWeight.Normal).margin(10)
-          .align(Alignment.Start)
-        Text("ReadStartPos: " + this.startPos.toString())
-          .fontSize(30)
-          .fontWeight(FontWeight.Normal).margin(10)
-          .align(Alignment.Start)
-        Text("ReadLen: " + this.len.toString())
-          .fontSize(30)
-          .fontWeight(FontWeight.Normal).margin(10)
-          .align(Alignment.Start)
-        Text("ReadContent: " + rawfileContent)
-          .fontSize(30)
-          .fontWeight(FontWeight.Normal).margin(10)
+        Row() {
+          Text($r('app.string.rawFileContent'))
+            .fontSize(20)
+            .width('40%')
+            .align(Alignment.End)
+            .textAlign(TextAlign.End)
+            .fontWeight(FontWeight.Normal).margin(10)
+          Text(rawfileTotalContent)
+            .width('60%')
+            .fontSize(20)
+            .fontWeight(FontWeight.Normal).margin(10)
+        }
+        Row() {
+          Text($r('app.string.ReadStartPos'))
+            .fontSize(20)
+            .width('30%')
+            .textAlign(TextAlign.End)
+            .fontWeight(FontWeight.Normal).margin(10)
+            .align(Alignment.End)
+          TextInput({ text: this.ReadStartPos.toString() })
+            .id('startPos')
+            .width('40%')
+            .placeholderColor(Color.Grey)
+            .placeholderFont({ size: 14, weight: 20 })
+            .caretColor(Color.Blue)
+            .margin(10)
+            .fontSize(14)
+            .fontColor(Color.Black)
+            .onChange((value: string) => {
+              this.ReadStartPos = Number(value);
+            })
+        }
+        Row() {
+          Text($r('app.string.ReadLength'))
+            .fontSize(20)
+            .width('30%')
+            .fontWeight(FontWeight.Normal).margin(10)
+            .textAlign(TextAlign.End)
+            .align(Alignment.End)
+          TextInput({text: this.readLength.toString()})
+            .id('contentLen')
+            .width('40%')
+            .placeholderColor(Color.Grey)
+            .placeholderFont({ size: 14})
+            .caretColor(Color.Blue)
+            .margin(10)
+            .fontSize(14)
+            .fontColor(Color.Black)
+            .onChange((value: string) => {
+              this.readLength = Number(value);
+            })
+        }
+        Row() {
+          Text($r('app.string.ReadResult'))
+            .fontSize(20)
+            .width('40%')
+            .fontWeight(FontWeight.Normal).margin(10)
+            .textAlign(TextAlign.End)
+            .align(Alignment.Start)
+          Text(this.rawfileContent)
+            .width('60%')
+            .fontSize(20)
+            .fontWeight(FontWeight.Normal).margin(10)
+            .align(Alignment.Start)
+        }
+
+        Button($r('app.string.ReadButton'))
+          .onClick(()=> {
+            this.rawfileContent = testNapi.getRawFileContent(getContext().resourceManager, 'rawfile.txt', this.ReadStartPos, this.readLength);
+          }).margin(10)
       }
       .width('100%')
     }

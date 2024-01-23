@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "rawFileContent",
+      "value": "Rawfile内容:"
+    },
+    {
+      "name": "ReadStartPos",
+      "value": "读取位置:"
+    },
+    {
+      "name": "ReadLength",
+      "value": "读取长度:"
+    },
+    {
+      "name": "ReadResult",
+      "value": "读取结果:"
+    },
+    {
+      "name": "ReadButton",
+      "value": "开始读取"
+    }
+  ]
+}
