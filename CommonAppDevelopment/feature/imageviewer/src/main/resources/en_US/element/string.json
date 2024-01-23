@@ -3,10 +3,6 @@
     {
       "name": "page_show",
       "value": "page from package"
-    },
-    {
-      "name": "prompt",
-      "value": "some other info"
     }
   ]
 }
