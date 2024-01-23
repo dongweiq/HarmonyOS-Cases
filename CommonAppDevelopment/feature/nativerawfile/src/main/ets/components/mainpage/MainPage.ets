@@ -22,6 +22,7 @@ export struct NativeRawfileDemo {
   @State readLength: number = 5;
   @State rawfileContent:string = "";
   async aboutToAppear() {
+    // TODO：知识点：通过Native暴露的接口getRawFileContent读取文件部分内容，getTotalRawFileContent接口读取文件全部内容
     this.rawfileContent = testNapi.getRawFileContent(getContext().resourceManager, 'rawfile.txt', 2, 5);
     rawfileTotalContent = testNapi.getTotalRawFileContent(getContext().resourceManager, 'rawfile.txt');
   }
