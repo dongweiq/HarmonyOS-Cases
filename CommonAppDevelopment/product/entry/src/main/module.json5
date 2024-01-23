@@ -34,7 +34,7 @@
         "icon": "$media:icon",
         "label": "$string:EntryAbility_label",
         // 启动页图标设置
-        "startWindowIcon": "$media:startIcon",
+        "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
         "exported": true,
         "skills": [

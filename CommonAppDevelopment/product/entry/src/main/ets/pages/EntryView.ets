@@ -24,33 +24,12 @@ import { AddressExchangeView } from '@ohos/addressexchange';
 struct EntryView {
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: ListData[] = [
-    {
-      imageSrc: $r('app.media.propagation'),
-      name: '阻塞事件冒泡',
-      path: 'eventTransmissionSolution'
-    },
-    {
-      imageSrc: $r('app.media.tabBar'),
-      name: 'TabBar页签设计',
-      path: 'customTabBar'
-    },
-    {
-      imageSrc: $r('app.media.secondaryLinkImage'),
-      name: '二级联动',
-      path: 'secondarylinkage'
-    },
-    {
-      imageSrc: $r('app.media.barchart'),
-      name: '柱状图',
-      path: 'barChartSolution'
-    },
-    {
-      imageSrc: $r('app.media.addressExchange'),
-      name: '地址交换动画',
-      path: 'addressExchange'
-    }
+    new ListData($r('app.media.barChart'), 'MpChat柱状图', 'barChartSolution'),
+    new ListData($r('app.media.addressExchange'), '地址交换动画', 'addressExchange', 95),
+    new ListData($r('app.media.tabBar'), '自定义TabBar页签', 'customTabBar'),
+    new ListData($r('app.media.secondaryLinkage'), '列表二级联动', 'secondarylinkage'),
+    new ListData($r('app.media.eventPropagation'), '阻塞事件冒泡', 'eventTransmissionSolution')
   ];
-
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
 
@@ -88,5 +67,6 @@ struct EntryView {
       .navDestination(this.PageMap)
     }
     .height('100%')
+    .backgroundColor($r('app.color.main_background_color'))
   }
 }
