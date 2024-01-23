@@ -18,6 +18,8 @@
     // 二级联动方案
     "@ohos/secondarylinkage": "file:../../feature/secondarylinkage",
     // 柱状图方案
-    "@ohos/barchart": "file:../../feature/barchart"
+    "@ohos/barchart": "file:../../feature/barchart",
+    // 地址交换方案
+    "@ohos/addressexchange": "file:../../feature/addressexchange"
   }
 }
