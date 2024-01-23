@@ -72,9 +72,11 @@ export struct ImageViewerView {
         .onChange((index: number) => {
           this.currentIndex = index + 1;
         })
+
         Text($r("app.string.prompt_info"))
           .hitTestBehavior(HitTestMode.None)
           .fontColor($r("app.color.prompt_font_color"))
+          .position({ x: 10, y: 10 })
       }
     }
     .hideTitleBar(true)
