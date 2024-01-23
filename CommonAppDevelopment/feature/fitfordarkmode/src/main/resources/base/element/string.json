@@ -1,0 +1,37 @@
+{
+  "string": [
+    {
+      "name": "fixed_color_value",
+      "value": "直接设置固定色值"
+    },
+    {
+      "name": "resource_color_value",
+      "value": "用资源方式设置色值"
+    },
+    {
+      "name": "system_color_value",
+      "value": "用系统方式设置色值"
+    },
+    {
+      "name": "png_format_image",
+      "value": "Png格式图片（WEBG/JEPG）"
+    },
+    {
+      "name": "svg_format_image",
+      "value": "SVG格式图片"
+    },
+    {
+      "name": "listen_mode",
+      "value": "监听方式实现深浅模式布局或逻辑的差异"
+    },
+    {
+      "name": "light_string",
+      "value": "Light"
+    },
+    {
+      "name": "dark_string",
+      "value": "Dark"
+    }
+
+  ]
+}

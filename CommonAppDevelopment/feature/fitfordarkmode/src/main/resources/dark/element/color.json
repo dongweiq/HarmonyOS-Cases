@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "row_bg_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "row_border_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "title_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "ic_files_name_fillColor",
+      "value": "#FFFFFF"
+    }
+  ]
+}

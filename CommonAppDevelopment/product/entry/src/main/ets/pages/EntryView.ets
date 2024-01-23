@@ -12,12 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { FunctionalScenes, ListData } from '@ohos/functionalscenes';
 import { EventPropagation } from '@ohos/event-propagation';
 import { TabView } from '@ohos/custom-tabbar';
 import { SecondaryLinkExample } from '@ohos/secondarylinkage';
 import { BarChartPage } from '@ohos/barchart';
 import { AddressExchangeView } from '@ohos/addressexchange';
+import { FitForDarkModePage } from '@ohos/fitfordarkmode';
 
 @Entry
 @Component
@@ -28,7 +30,8 @@ struct EntryView {
     new ListData($r('app.media.addressExchange'), '地址交换动画', 'addressExchange', 95),
     new ListData($r('app.media.tabBar'), '自定义TabBar页签', 'customTabBar'),
     new ListData($r('app.media.secondaryLinkage'), '列表二级联动', 'secondarylinkage'),
-    new ListData($r('app.media.eventPropagation'), '阻塞事件冒泡', 'eventTransmissionSolution')
+    new ListData($r('app.media.eventPropagation'), '阻塞事件冒泡', 'eventTransmissionSolution'),
+    new ListData($r('app.media.fitfordarkmode'), '深色模式适配', 'fitForDarkModeSolution')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -52,6 +55,10 @@ struct EntryView {
       } else if (name === 'barChartSolution') {
         // 柱状图模块
         BarChartPage()
+      }
+      else if (name === 'fitForDarkModeSolution') {
+        // 深色模式适配模块
+        FitForDarkModePage()
       }
     }
     .hideTitleBar(true)

@@ -59,6 +59,10 @@
     {
       "name": "addressexchange",
       "srcPath": "./feature/addressexchange"
+    },
+    {
+      "name": "fitfordarkmode",
+      "srcPath": "./feature/fitfordarkmode"
     }
   ]
 }
