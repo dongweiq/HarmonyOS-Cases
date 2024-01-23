@@ -18,9 +18,18 @@
  */
 export class ListData {
   // 首页列表图片
-  imageSrc: ResourceStr | null = null;
+  imageSrc: ResourceStr;
+  // 图片高度
+  imageHeight: number;
   // 首页列表名称
-  name: string | null = null;
+  name: string;
   // 首页路由跳转信息
-  path: string | null = null;
+  path: string;
+
+  constructor(imageSrc: ResourceStr, name: string, path: string, imageHeight?: number) {
+    this.imageSrc = imageSrc;
+    this.name = name;
+    this.path = path;
+    this.imageHeight = imageHeight === undefined ? 330 : imageHeight;
+  }
 }

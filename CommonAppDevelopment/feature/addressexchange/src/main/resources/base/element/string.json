@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "address_exchange_title",
+      "value": "地址交换动画"
+    },
+    {
+      "name": "address_exchange_detail",
+      "value": "点击中间图片，进行地址交换"
+    },
+    {
+      "name": "address_exchange_address_left",
+      "value": "北京"
+    },
+    {
+      "name": "address_exchange_address_right",
+      "value": "上海"
+    },
+    {
+      "name": "address_exchange_address_width",
+      "value": "40%"
+    },
+    {
+      "name": "address_exchange_image_width",
+      "value": "20%"
+    }
+  ]
+}
