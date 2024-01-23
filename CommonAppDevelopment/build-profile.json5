@@ -15,33 +15,19 @@
 
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\aodongbiao\\.ohos\\config\\auto_debug_CommonAppDevelopment_com.north.commonappdevelopment_30086000562003651.cer",
-          "storePassword": "0000001AEA93D264EC7C703D9038237DA1107CC328E069BD8883818D2274709BDAA716109FF085B7FC65",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001A2FE0BAE953659D392734E6EFAA41C7B290718FF9D8E0DCAAC326F1B50D9D2585541E3D9567D8",
-          "profile": "C:\\Users\\aodongbiao\\.ohos\\config\\auto_debug_CommonAppDevelopment_com.north.commonappdevelopment_30086000562003651.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\aodongbiao\\.ohos\\config\\auto_debug_CommonAppDevelopment_com.north.commonappdevelopment_30086000562003651.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": "4.1.0(11)",
-        "compatibleSdkVersion": "4.1.0(11)",
+        "compileSdkVersion": '4.1.0(11)',
+        "compatibleSdkVersion": '4.1.0(11)',
         "runtimeOS": "HarmonyOS"
       }
     ],
     "buildModeSet": [
       {
-        "name": "debug"
+        "name": "debug",
       },
       {
         "name": "release"
