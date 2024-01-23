@@ -17,7 +17,7 @@ import { TabBarDataType } from './DataType';
 
 // TarBar数据
 export const TABINFO: TabBarDataType[] = [
-  new TabBarDataType(0, $r('app.string.home'), $r("app.media.tabBar"), $r('app.media.home')),
+  new TabBarDataType(0, $r('app.string.home'), $r("app.media.tabBarMain"), $r('app.media.home')),
   new TabBarDataType(1, $r('app.string.news'), $r('app.media.new_selected'), $r('app.media.new')),
   new TabBarDataType(2, $r('app.string.community'), $r('app.media.community_selected'), $r('app.media.community')),
   new TabBarDataType(3, $r('app.string.shopping_cart'), $r('app.media.cart_selected'), $r('app.media.cart')),
