@@ -45,6 +45,10 @@
       "srcPath": "./feature/eventpropagation"
     },
     {
+      "name": "nativerawfile",
+      "srcPath": "./feature/nativerawfile"
+    },
+    {
       "name": "customtabbar",
       "srcPath": "./feature/customtabbar"
     },
