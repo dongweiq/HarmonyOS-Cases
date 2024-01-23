@@ -14,7 +14,7 @@
     // 阻塞事件冒泡方案
     "@ohos/event-propagation": "file:../../feature/eventpropagation",
     // 读取RawFile中文件的一部分
-    "@ohos/nativerawfile": "file:../../feature/nativerawfile"
+    "@ohos/nativerawfile": "file:../../feature/nativerawfile",
     // 自定义tabBar
     "@ohos/custom-tabbar": "file:../../feature/customtabbar",
     // 二级联动方案

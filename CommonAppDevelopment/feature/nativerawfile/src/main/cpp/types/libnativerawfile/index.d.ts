@@ -15,5 +15,6 @@
 
 
 import resourceManager from '@ohos.resourceManager';
+// TODO：知识点：将接Native接口导出。
 export const getRawFileContent: (resmgr: resourceManager.ResourceManager, path: string, startPos: Number, len: Number) => string;
 export const getTotalRawFileContent: (resmgr: resourceManager.ResourceManager, path: string) => string;

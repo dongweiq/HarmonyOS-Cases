@@ -13,6 +13,14 @@
  * limitations under the License.
  */
 
+/** 实现步骤
+   1。在cpp文件中引入所用API函数及系统函数的头文件
+   2。在cpp文件的Init函数中描述并定义要实现、暴露的接口
+   3。在cpp文件中实现要暴露的接口
+   4。在.d.ts文件中通过export暴露接口
+   5。在CMakeLists中通过target_link_libraries导入所用的库
+*/
+
 #include <bits/alltypes.h>
 #include <js_native_api.h>
 #include <js_native_api_types.h>
@@ -144,9 +152,11 @@ static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
+    // TODO：知识点：napi_property_descriptor 为结构体，做用是描述扩展暴露的 属性/方法 的描述。
     napi_property_descriptor desc[] = {
         {"getTotalRawFileContent", nullptr, GetTotalRawFileContent, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getRawFileContent", nullptr, GetRawFileContent, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    // TODO: 知识点：定义暴露的方法
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
