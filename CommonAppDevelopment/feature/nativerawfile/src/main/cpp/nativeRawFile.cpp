@@ -14,11 +14,11 @@
  */
 
 /** 实现步骤
-   1。在cpp文件中引入所用API函数及系统函数的头文件
-   2。在cpp文件的Init函数中描述并定义要实现、暴露的接口
-   3。在cpp文件中实现要暴露的接口
-   4。在.d.ts文件中通过export暴露接口
-   5。在CMakeLists中通过target_link_libraries导入所用的库
+   1.在cpp文件中引入所用API函数及系统函数的头文件
+   2.在cpp文件的Init函数中描述并定义要实现、暴露的接口
+   3.在cpp文件中实现要暴露的接口
+   4.在.d.ts文件中通过export暴露接口
+   5.在CMakeLists中通过target_link_libraries导入所用的库
 */
 
 #include <bits/alltypes.h>
