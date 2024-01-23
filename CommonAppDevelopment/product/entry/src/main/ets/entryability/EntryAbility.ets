@@ -19,7 +19,6 @@ import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 // 基础公共工具类base，主要包括日志打印和主页列表数据类型以及控制器
 import { logger } from '@ohos/base';
-import { BusinessError } from '@ohos.base';
 
 const TAG = 'EntryAbility'
 
