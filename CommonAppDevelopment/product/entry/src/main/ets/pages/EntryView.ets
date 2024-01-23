@@ -24,36 +24,12 @@ import { AddressExchangeView } from '@ohos/addressexchange';
 @Component
 struct EntryView {
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
-  @State listData: ListData[] = [{
-    imageSrc: $r('app.media.propagation'),
-    name: '阻塞事件冒泡',
-    path: 'eventTransmissionSolution'
-    },
-	{
-    imageSrc: $r('app.media.rawFile'),
-    name: '读取RawFile文件内容',
-    path: 'ReadRawFile'
-    },
-    {
-      imageSrc: $r('app.media.tabBar'),
-      name: 'TabBar页签设计',
-      path: 'customTabBar'
-    },
-    {
-      imageSrc: $r('app.media.secondaryLinkImage'),
-      name: '二级联动',
-      path: 'secondarylinkage'
-    },
-    {
-      imageSrc: $r('app.media.barchart'),
-      name: '柱状图',
-      path: 'barChartSolution'
-    }
   @State listData: ListData[] = [
     new ListData($r('app.media.barChart'), 'MpChat柱状图', 'barChartSolution'),
     new ListData($r('app.media.addressExchange'), '地址交换动画', 'addressExchange', 95),
     new ListData($r('app.media.tabBar'), '自定义TabBar页签', 'customTabBar'),
     new ListData($r('app.media.secondaryLinkage'), '列表二级联动', 'secondarylinkage'),
+    new ListData($r('app.media.rawFile'), '读取RawFile文件部分内容', 'ReadRawFile'),
     new ListData($r('app.media.eventPropagation'), '阻塞事件冒泡', 'eventTransmissionSolution')
   ];
   // Navigation路由栈,控制页面跳转
@@ -66,7 +42,8 @@ struct EntryView {
       if (name === 'eventTransmissionSolution') {
         // 阻塞事件冒泡模块
         EventPropagation()
-      } else if (name === 'ReadRawFile') {
+      }
+      else if (name === 'ReadRawFile') {
         // 读取RawFile文件内容
         NativeRawfileDemo()
       } else if (name === 'customTabBar') {
