@@ -59,6 +59,10 @@
     {
       "name": "barchart",
       "srcPath": "./feature/barchart"
+    },
+    {
+      "name": "addressexchange",
+      "srcPath": "./feature/addressexchange"
     }
   ]
 }

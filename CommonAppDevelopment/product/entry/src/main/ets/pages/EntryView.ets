@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { FunctionalScenes, ListData } from '@ohos/functionalscenes';
 import { EventPropagation } from '@ohos/event-propagation';
 import { NativeRawfileDemo } from '@ohos/nativerawfile';
 import { TabView } from '@ohos/custom-tabbar';
 import { SecondaryLinkExample } from '@ohos/secondarylinkage';
 import { BarChartPage } from '@ohos/barchart';
+import { AddressExchangeView } from '@ohos/addressexchange';
 
 @Entry
 @Component
@@ -35,11 +35,6 @@ struct EntryView {
     path: 'ReadRawFile'
     },
     {
-      imageSrc: $r('app.media.propagation'),
-      name: '阻塞事件冒泡',
-      path: 'eventTransmissionSolution'
-    },
-    {
       imageSrc: $r('app.media.tabBar'),
       name: 'TabBar页签设计',
       path: 'customTabBar'
@@ -54,6 +49,12 @@ struct EntryView {
       name: '柱状图',
       path: 'barChartSolution'
     }
+  @State listData: ListData[] = [
+    new ListData($r('app.media.barChart'), 'MpChat柱状图', 'barChartSolution'),
+    new ListData($r('app.media.addressExchange'), '地址交换动画', 'addressExchange', 95),
+    new ListData($r('app.media.tabBar'), '自定义TabBar页签', 'customTabBar'),
+    new ListData($r('app.media.secondaryLinkage'), '列表二级联动', 'secondarylinkage'),
+    new ListData($r('app.media.eventPropagation'), '阻塞事件冒泡', 'eventTransmissionSolution')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -74,8 +75,10 @@ struct EntryView {
       } else if (name === 'secondarylinkage') {
         // 二级联动模块
         SecondaryLinkExample()
-      }
-      else if (name === 'barChartSolution') {
+      } else if (name === 'addressExchange') {
+        // 地址切换动画模块
+        AddressExchangeView()
+      } else if (name === 'barChartSolution') {
         // 柱状图模块
         BarChartPage()
       }
@@ -93,5 +96,6 @@ struct EntryView {
       .navDestination(this.PageMap)
     }
     .height('100%')
+    .backgroundColor($r('app.color.main_background_color'))
   }
 }

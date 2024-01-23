@@ -33,11 +33,10 @@ export struct FunctionalScenes {
   MethodPoints(listData: ListData) {
     Column() {
       Image(listData.imageSrc)
-        .width('50%')
-        .height('50%')
-        .aspectRatio(1)
-        .objectFit(ImageFit.Cover)
         .borderRadius(10)
+        .objectFit(ImageFit.Fill)
+        .width('45%')
+        .height(listData.imageHeight)
       Text(listData.name)
         .fontColor(Color.Black)
         .textAlign(TextAlign.Center)
@@ -46,7 +45,8 @@ export struct FunctionalScenes {
         .fontSize(14)
         .margin({ top: 10 })
     }
-    .margin(20)
+    .margin({ left: 10, right: 10, top: 10 })
+    .alignItems(HorizontalAlign.Center)
     .onClick(() => {
       this.pageStack.pushPath({ name: listData.path });
     })
@@ -67,7 +67,7 @@ export struct FunctionalScenes {
         })
       }
       .columnsTemplate('1fr 1fr')
-      .columnsGap(10)
+      .columnsGap(5)
       .rowsGap(5)
       .width('100%')
       .height('100%')
