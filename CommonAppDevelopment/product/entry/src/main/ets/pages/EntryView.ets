@@ -50,7 +50,6 @@ struct EntryView {
       path: 'addressExchange'
     }
   ];
-
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
 

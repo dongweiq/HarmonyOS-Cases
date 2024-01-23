@@ -1,0 +1,11 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },{
+      "name": "prompt_info",
+      "value": "功能介绍：\n1. 左右滑动切换图片\n2. 双击切换图片大小\n3. 双指捏合进行图片缩放"
+    }
+  ]
+}

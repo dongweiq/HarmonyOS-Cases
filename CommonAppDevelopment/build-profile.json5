@@ -1,18 +1,47 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\aodongbiao\\.ohos\\config\\auto_debug_CommonAppDevelopment_com.north.commonappdevelopment_30086000562003651.cer",
+          "storePassword": "0000001AEA93D264EC7C703D9038237DA1107CC328E069BD8883818D2274709BDAA716109FF085B7FC65",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001A2FE0BAE953659D392734E6EFAA41C7B290718FF9D8E0DCAAC326F1B50D9D2585541E3D9567D8",
+          "profile": "C:\\Users\\aodongbiao\\.ohos\\config\\auto_debug_CommonAppDevelopment_com.north.commonappdevelopment_30086000562003651.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\aodongbiao\\.ohos\\config\\auto_debug_CommonAppDevelopment_com.north.commonappdevelopment_30086000562003651.p12"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": '4.1.0(11)',
-        "compatibleSdkVersion": '4.1.0(11)',
+        "compileSdkVersion": "4.1.0(11)",
+        "compatibleSdkVersion": "4.1.0(11)",
         "runtimeOS": "HarmonyOS"
       }
     ],
     "buildModeSet": [
       {
-        "name": "debug",
+        "name": "debug"
       },
       {
         "name": "release"
