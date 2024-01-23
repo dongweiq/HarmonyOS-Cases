@@ -30,6 +30,7 @@
    |   |---eventpropagation                    // 基础特性层-阻塞事件冒泡方案   
    |   |---secondarylinkage                    // 基础特性层-二级联动实现方案  
    |   |---barchart                            // 基础特性层-柱状图方案
+   |   |---addressexchange                     // 基础特性层-地址交换动画方案
    |---libs
    |---product 
    |   |---entry                               // 产品定制层-应用入口
@@ -72,9 +73,9 @@ TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不�
 
 使用三方库mpchart可以实现柱状图UI效果。柱状图方案可以参考此[详细说明文档](./feature/barchart/BarChart.md)。
 
-#### 地址切换动画方案
+#### 地址交换动画方案
 
-在出行类订票软件中，一般都有此动画效果，点击切换后，起点和终点互换。地址切换动画的方案可以参考此[详细说明文档](./feature/addressexchange/AddressExchange.md)。
+在出行类订票软件中，一般都有此动画效果，点击交换后，起点和终点互换。地址交换动画的方案可以参考此[详细说明文档](./feature/addressexchange/AddressExchange.md)。
 
 ### 公共能力层
 

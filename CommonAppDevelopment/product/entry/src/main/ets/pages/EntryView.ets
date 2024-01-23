@@ -46,7 +46,7 @@ struct EntryView {
     },
     {
       imageSrc: $r('app.media.addressExchange'),
-      name: '地址切换动画',
+      name: '地址交换动画',
       path: 'addressExchange'
     }
   ];

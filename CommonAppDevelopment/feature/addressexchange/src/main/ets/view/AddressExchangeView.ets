@@ -21,7 +21,7 @@ export struct AddressExchangeView {
   @State rotateAngle: number = 0;
   // 偏移量
   @State translateX: number = 0;
-  // 是否已切换
+  // 是否已交换
   @State swap: boolean = false;
   // 整体内容区宽度
   rowWidth: number = 300;
