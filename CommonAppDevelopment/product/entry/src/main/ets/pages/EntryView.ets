@@ -18,6 +18,7 @@ import { TabView } from '@ohos/custom-tabbar';
 import { SecondaryLinkExample } from '@ohos/secondarylinkage';
 import { BarChartPage } from '@ohos/barchart';
 import { AddressExchangeView } from '@ohos/addressexchange';
+import { ImageViewerView } from '@ohos/imageviewer';
 
 @Entry
 @Component
@@ -50,6 +51,7 @@ struct EntryView {
       path: 'addressExchange'
     }
   ];
+  
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
 
@@ -72,6 +74,8 @@ struct EntryView {
       } else if (name === 'barChartSolution') {
         // 柱状图模块
         BarChartPage()
+      } else if (name === 'imageViewer') {
+        ImageViewerView()
       }
     }
     .hideTitleBar(true)
