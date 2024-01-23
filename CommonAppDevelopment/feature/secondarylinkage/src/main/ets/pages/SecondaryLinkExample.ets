@@ -37,6 +37,7 @@ export struct SecondaryLinkExample {
       this.records.push(i * 6);
       this.contentData.pushData(tempData);
     }
+    this.records.push(54);
   }
 
   /**
@@ -135,6 +136,13 @@ export struct SecondaryLinkExample {
               .justifyContent(FlexAlign.Center)
             }
           })
+
+          ListItem() {
+            Column() {
+              Text($r('app.string.nomore')).fontColor($r('sys.color.ohos_fa_text_secondary'))
+              Row().width('100%').layoutWeight(1).constraintSize({ maxHeight: 200 })
+            }
+          }.width('100%')
         }
         .scrollBar(BarState.Off)
         .listDirection(Axis.Vertical) // 列表排列方向水平
