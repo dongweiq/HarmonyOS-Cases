@@ -6,14 +6,20 @@
   "description": "Please describe the basic information.",
   "main": "",
   "version": "1.0.0",
-  "dynamicDependencies": {},
   "dependencies": {
+    // 基础工具类，需要使用日志打印
     "@ohos/base": "file:../../common/utils",
-    "@ohos/custom-tabbar": "file:../../feature/customtabbar",
+    // 应用首页列表子组件，需要进入应用时加载
     "@ohos/functionalscenes": "file:../../feature/functionalscenes",
-    "@ohos/secondarylinkage": "file:../../feature/secondarylinkage",
-    "@ohos/barchart": "file:../../feature/barchart",
+    // 阻塞事件冒泡方案
     "@ohos/event-propagation": "file:../../feature/eventpropagation",
+    // 自定义tabBar
+    "@ohos/custom-tabbar": "file:../../feature/customtabbar",
+    // 二级联动方案
+    "@ohos/secondarylinkage": "file:../../feature/secondarylinkage",
+    // 柱状图方案
+    "@ohos/barchart": "file:../../feature/barchart",
+    // 地址交换方案
     "@ohos/addressexchange": "file:../../feature/addressexchange"
   }
 }
