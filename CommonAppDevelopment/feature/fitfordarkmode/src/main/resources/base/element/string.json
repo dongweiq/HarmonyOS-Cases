@@ -29,9 +29,76 @@
       "value": "Light"
     },
     {
-      "name": "dark_string",
-      "value": "Dark"
+      "name": "product_title00",
+      "value": "充电宝"
+    },
+    {
+      "name": "product_title01",
+      "value": "笔记本电脑"
+    },
+    {
+      "name": "product_title02",
+      "value": "华为手机"
+    },
+    {
+      "name": "product_title03",
+      "value": "电动按摩椅"
+    },
+    {
+      "name": "product_title04",
+      "value": "华为折叠屏"
+    },
+    {
+      "name": "product_title05",
+      "value": "极简潮流背包"
+    },
+    {
+      "name": "product_price00",
+      "value": "￥79.9"
+    },
+    {
+      "name": "product_price01",
+      "value": "￥6975.8"
+    },
+    {
+      "name": "product_price02",
+      "value": "￥4279.6"
+    },
+    {
+      "name": "product_price03",
+      "value": "￥5385.4"
+    },
+    {
+      "name": "product_price04",
+      "value": "￥1252.9"
+    },
+    {
+      "name": "product_price05",
+      "value": "￥105.3"
+    },
+    {
+      "name": "product_view00",
+      "value": "3.2W"
+    },
+    {
+      "name": "product_view01",
+      "value": "9.8k"
+    },
+    {
+      "name": "product_view02",
+      "value": "1.8k"
+    },
+    {
+      "name": "product_view03",
+      "value": "859"
+    },
+    {
+      "name": "product_view04",
+      "value": "4.7W"
+    },
+    {
+      "name": "product_view05",
+      "value": "1.2W"
     }
-
   ]
 }

@@ -1,28 +1,40 @@
 {
   "color": [
     {
-      "name": "row_bg_color",
-      "value": "#000000"
-    },
-    {
-      "name": "row_border_color",
-      "value": "#000000"
-    },
-    {
-      "name": "title_color",
-      "value": "#000000"
-    },
-    {
-      "name": "ic_files_name_fillColor",
-      "value": "#000000"
-    },
-    {
-      "name": "black_color",
-      "value": "#000000"
-    },
-    {
-      "name": "white_color",
+      "name": "page_bg_color",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "column_bg_color",
+      "value": "#FA5A3C"
+    },
+    {
+      "name": "black_font_color",
+      "value": "#000000"
+    },
+    {
+      "name": "white_font_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "search_bg_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "product_bg_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "list_bg_color",
+      "value": "#E7D9D9"
+    },
+    {
+      "name": "custom_bg_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "view_fill_color",
+      "value": "#000000"
     }
   ]
 }

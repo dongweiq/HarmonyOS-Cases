@@ -20,5 +20,8 @@
   "main": "Index.ets",
   "author": "",
   "license": "Apache-2.0",
-  "dependencies": {}
+  "dependencies": {
+    // 基础工具类，需要使用日志打印
+    "@ohos/base": "file:../../common/utils"
+  }
 }

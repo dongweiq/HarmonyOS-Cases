@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { FunctionalScenes, ListData } from '@ohos/functionalscenes';
 import { EventPropagation } from '@ohos/event-propagation';
+import { NativeRawfileDemo } from '@ohos/nativerawfile';
 import { TabView } from '@ohos/custom-tabbar';
 import { SecondaryLinkExample } from '@ohos/secondarylinkage';
 import { BarChartPage } from '@ohos/barchart';
@@ -31,7 +31,8 @@ struct EntryView {
     new ListData($r('app.media.tabBar'), '自定义TabBar页签', 'customTabBar'),
     new ListData($r('app.media.secondaryLinkage'), '列表二级联动', 'secondarylinkage'),
     new ListData($r('app.media.eventPropagation'), '阻塞事件冒泡', 'eventTransmissionSolution'),
-    new ListData($r('app.media.fitfordarkmode'), '深色模式适配', 'fitForDarkModeSolution')
+    new ListData($r('app.media.rawFile'), '读取RawFile文件部分内容', 'readRawFile'),
+    new ListData($r('app.media.fitfordarkmode'), '深色模式适配', 'fitForDarkMode')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -43,6 +44,9 @@ struct EntryView {
       if (name === 'eventTransmissionSolution') {
         // 阻塞事件冒泡模块
         EventPropagation()
+      } else if (name === 'readRawFile') {
+        // 读取RawFile文件内容
+        NativeRawfileDemo()
       } else if (name === 'customTabBar') {
         // TabBar页签模块
         TabView()
@@ -56,7 +60,7 @@ struct EntryView {
         // 柱状图模块
         BarChartPage()
       }
-      else if (name === 'fitForDarkModeSolution') {
+      else if (name === 'fitForDarkMode') {
         // 深色模式适配模块
         FitForDarkModePage()
       }

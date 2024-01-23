@@ -19,7 +19,9 @@ import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 // 基础公共工具类base，主要包括日志打印和主页列表数据类型以及控制器
 import { logger } from '@ohos/base';
+import { BusinessError } from '@ohos.base';
 import { Configuration } from '@ohos.app.ability.Configuration';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 const TAG = 'EntryAbility'
 
@@ -37,7 +39,7 @@ export default class EntryAbility extends UIAbility {
     logger.info(TAG, '%{public}s', 'Ability onWindowStageCreate');
 
     // 加载应用入口页面
-    windowStage.loadContent('pages/EntryView', (err, data) => {
+    windowStage.loadContent('pages/EntryView', (err:BusinessError, data) => {
       if (err.code) {
         logger.info(TAG, 'Failed to load the content. Cause:', JSON.stringify(err));
         return;
@@ -47,6 +49,7 @@ export default class EntryAbility extends UIAbility {
 
     // 获取当前的颜色模式并保存
     AppStorage.setOrCreate('currentColorMode', this.context.config.colorMode);
+    AppStorage.setOrCreate('windowStage', windowStage);
   }
 
   onWindowStageDestroy(): void {

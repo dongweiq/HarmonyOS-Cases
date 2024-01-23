@@ -12,126 +12,156 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import { GoodsList } from './GoodsList'
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
+import window from '@ohos.window';
+import { logger } from '@ohos/base';
 
-@Entry
+
 @Component
 export struct FitForDarkModePage {
-  @State text: ResourceStr = '';
-  @State color: ResourceStr = '';
+  @State banner: ResourceStr = '';
   // @StorageProp + @Watch 获取并监听当前颜色模式
   @StorageProp('currentColorMode') @Watch('onColorModeChange') currentMode: number = 0;
 
   // @Watch回调函数，监听颜色模式刷新状态变量
   onColorModeChange(): void {
-    if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
-      this.color = $r('app.color.black_color');
-      this.text = $r('app.string.light_string');
+    if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
+      this.banner = $r("app.media.dark_mode_banner");
     } else {
-      this.color = $r('app.color.white_color');
-      this.text = $r('app.string.dark_string');
+      this.banner = $r("app.media.light_mode_banner");
     }
   }
-
-  // 根据当前颜色模式刷新状态变量
-  aboutToAppear() {
-    console.log(`onColorModeChange: ${this.currentMode}`);
-    if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
-      this.color = $r('app.color.black_color');
-      this.text = $r('app.string.light_string');
+  // 在自定义组件生命周期aboutToAppear中，根据当前颜色模式刷新banner状态变量，切换不同的图片。
+  aboutToAppear(): void {
+    if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
+      this.banner = $r("app.media.dark_mode_banner");
     } else {
-      this.color = $r('app.color.white_color');
-      this.text = $r('app.string.dark_string');
+      this.banner = $r("app.media.light_mode_banner");
+      // 在当前为浅色模式中，确保界面美观且颜色统一，设置导航栏的背景色。
+      setStatusBar(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     }
+  }
+  // 在自定义组件生命周期aboutToDisappear中，重置导航栏的背景色避免影响其它页面的导航栏为红色。
+  aboutToDisappear(): void {
+    setStatusBar(this.currentMode)
   }
 
   build() {
-    Column({ space: 30 }) {
-      Column({ space: 5 }) {
-        Text($r('app.string.fixed_color_value'))
-          .fontColor($r('app.color.title_color'))
-          .fontSize(15)
-        // TODO: 知识点：UI组件颜色属性是固定颜色值，深浅模式颜色不变。
-        // 直接设置成'#000000'固定色值
-        Row()
-          .backgroundColor($r('app.color.black_color'))
-          .borderColor($r('app.color.row_border_color'))
-          .borderWidth(2)
-          .height(40)
-          .width('80%')
+    Column() {
+      Column({ space: 10 }) {
+        Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+          Image($r('app.media.logo'))
+            .width(32)
+            .aspectRatio(1)
 
-      }.alignItems(HorizontalAlign.Start)
+          Image($r('app.media.scan'))
+            .width(32)
+            .aspectRatio(1)
+        }
+        .width('100%')
+        .height(32)
 
-      Column({ space: 5 }) {
-        Text($r('app.string.resource_color_value'))
-          .fontColor($r('app.color.title_color'))
-          .fontSize(15)
-        // TODO: 知识点：在resources目录下新增dark/element目录，创建深色模式color.json文件，设置深色模式UI组件颜色。（注意事项:颜色name必须相同）
-        // 用资源ID方式设置色值
-        Row()
-          .backgroundColor($r('app.color.row_bg_color'))
-          .borderColor($r('app.color.row_border_color'))
-          .borderWidth(2)
-          .height(40)
-          .width('80%')
-
-      }.alignItems(HorizontalAlign.Start)
-
-      Column({ space: 5 }) {
-        Text($r('app.string.system_color_value'))
-          .fontColor($r('app.color.title_color'))
-          .fontSize(15)
-        // TODO: 知识点：UI组件颜色属性是系统中的颜色（即分层参数颜色资源），深浅模式自动切换色值。
-        // 用系统提供颜色方式设置色值
-        Row()
-          .backgroundColor($r('sys.color.ohos_id_color_sub_background_dark'))
-          .borderColor($r('app.color.row_border_color'))
-          .borderWidth(2)
-          .height(40)
-          .width('80%')
-
-      }.alignItems(HorizontalAlign.Start)
-
-      Column({ space: 5 }) {
-        Text($r('app.string.png_format_image'))
-          .fontColor($r('app.color.title_color'))
-          .fontSize(15)
         Row() {
-          // TODO: 知识点：PNG/WEBG/JEPG格式在resources目录下新增dark/media目录，设置深色模式组件图片。（注意事项:图片name必须相同）
-          // PNG格式图片资源ID方式设置
-          Image($r('app.media.ic_public_list_add'))
-            .height(48).width(48)
-        }.height(50).width('80%')
+          Image($r('app.media.search'))
+            .width(20)
+            .aspectRatio(1)
+            .margin({ left: 20 })
+          // TODO: 知识点1：UI组件颜色属性是固定颜色值，深浅模式颜色不变。
+          // 将Text直接设置成'#000000'固定色值
+          Text("精品好礼")
+            .opacity(0.6)
+            .fontColor($r('app.color.black_font_color'))
+            .margin({ left: 12 })
+        }
+        .width('100%')
+        .height(40)
+        .backgroundColor($r('app.color.search_bg_color'))
+        .borderRadius(20)
 
-      }.alignItems(HorizontalAlign.Start)
+      }
+      .padding({ left: 12, right: 12 })
+      // TODO: 知识点2：在resources目录下新增dark/element目录，创建深色模式color.json文件，设置深色模式UI组件颜色。（注意事项:颜色name必须相同）
+      // 用资源ID方式设置Column背景色。（浅色模式色值为'#FA5A3C'、深色模式色值为'#000000'）
+      .backgroundColor($r('app.color.column_bg_color'))
+      .width('100%')
+      .height(90)
 
-      Column({ space: 5 }) {
-        Text($r('app.string.svg_format_image'))
-          .fontColor($r('app.color.title_color'))
-          .fontSize(15)
-        Row() {
-          // TODO: 知识点：SVG格式在resources目录下新增dark/element目录，创建深色模式color.json文件，设置深色模式图片fillColor颜色。（注意事项:颜色name必须相同）
-          // SVG格式图片fillColor颜色资源ID方式设置
-          Image($r('app.media.ic_files_name'))
-            .height(48).width(48).fillColor($r('app.color.ic_files_name_fillColor'))
-        }.height(50).width('80%')
 
-      }.alignItems(HorizontalAlign.Start)
+      Scroll() {
+        Column() {
+          Column() {
+            // TODO: 知识点：在深浅模式下，UI布局或逻辑存在差异，采用AbilityStage.onConfigurationUpdate监听实现
+            Image(this.banner)
+              .width("100%")
+              .height(160)
+              .borderRadius(20)
 
-      Column() {
-        Text($r('app.string.listen_mode'))
-          .fontColor($r('app.color.title_color'))
-          .fontSize(15)
-        // TODO: 知识点：在深浅模式下，UI布局或逻辑存在差异，采用AbilityStage.onConfigurationUpdate监听实现
-        Text(this.text).fontSize(28).fontColor(this.color)
-          .height(50).width('80%')
+            Text("新品首发")
+              .fontColor($r('app.color.white_font_color'))
+              .fontSize(18)
+              .fontWeight(FontWeight.Bold)
+              .height(45)
+              .width('100%')
+              .textAlign(TextAlign.Center)
+              .padding({ top: 5 })
+          }
+          .backgroundColor($r('app.color.column_bg_color'))
+          .padding({ left: 12, right: 12 })
+          .borderRadius({ bottomLeft: 20, bottomRight: 20 })
 
-      }.alignItems(HorizontalAlign.Start)
 
-    }.margin({ top: 30 })
+          // 产品列表组件
+          GoodsList()
+        }
+      }
+      .backgroundColor($r("app.color.list_bg_color"))
+      .padding({ bottom: 12 })
+      .width('100%')
+      .height('100%')
+      .layoutWeight(1)
+      .scrollBar(BarState.Off)
+      .align(Alignment.Top)
+
+    }
+    .backgroundColor($r('app.color.page_bg_color'))
     .width('100%')
     .height('100%')
   }
 }
 
+async function setStatusBar(currentMode: number) {
+  // 1.获取应用主窗口。
+  let windowClass: window.Window;
+  let windowStage: window.WindowStage = AppStorage.get('windowStage') as window.WindowStage;
+  windowStage.getMainWindow((err, data) => {
+    if (err.code) {
+      logger.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+      return;
+    }
+    windowClass = data;
+    logger.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+
+    let color = '';
+    // 设置窗口为全屏布局，配合设置导航栏、状态栏的透明度、背景/文字颜色及高亮图标等属性，与主窗口显示保持协调一致。
+    if (currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
+      color = '#000000';
+    } else if (currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
+      color = '#FFFFFF';
+    } else {
+      color = '#FA5a3C';
+    }
+    let sysBarProps: window.SystemBarProperties = {
+      statusBarColor: color  // 状态栏背景颜色
+    };
+
+    // TODO: 知识点：调用setWindowSystemBarProperties()设置状态栏及导航栏的颜色
+    windowClass.setWindowSystemBarProperties(sysBarProps, (err) => {
+      if (err.code) {
+        logger.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+        return;
+      }
+      logger.info('Succeeded in setting the system bar properties.');
+    });
+  })
+}
