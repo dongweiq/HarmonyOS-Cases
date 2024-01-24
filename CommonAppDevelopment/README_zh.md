@@ -32,6 +32,7 @@
    |   |---secondarylinkage                    // 基础特性层-二级联动实现方案  
    |   |---barchart                            // 基础特性层-柱状图方案
    |   |---addressexchange                     // 基础特性层-地址交换动画方案
+   |   |---pendingitems                        // 基础特性层-待办事项方案  
    |---libs
    |---product 
    |   |---entry                               // 产品定制层-应用入口
@@ -64,11 +65,15 @@
 #### 自定义TabBar页签方案
 
 TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不一样的TabBar样式，Tab组件自带的TabBar属性对于部分效果无法满足，如页签中间显示一圈圆弧外轮廓等，
-因此我们需要去自己定义一个TabBar页签来满足开发的需要。自定义TabBar页签的方案可以参考此[详细说明文档](./feature/eventpropagation/EventPropagation.md)。
+因此我们需要去自己定义一个TabBar页签来满足开发的需要。自定义TabBar页签的方案可以参考此[详细说明文档](./feature/customtabbar/CustomTabBar.md)。
 
 #### 二级联动实现方案
 
-二级联动是指一个列表（一级列表）的选择结果，来更新另一个列表（二级列表）的选项。二级联动的方案可以参考此[详细说明文档](./feature/eventpropagation/SecondaryLink.md)。
+二级联动是指一个列表（一级列表）的选择结果，来更新另一个列表（二级列表）的选项。二级联动的方案可以参考此[详细说明文档](./feature/secondarylinkage/SecondaryLink.md)。
+
+#### 列表编辑实现方案
+
+列表的编辑模式用途十分广泛，常见于待办事项管理、文件管理、备忘录的记录管理等应用场景。待办事项实现可以参考此[详细说明文档](./feature/pendingitems/PendingItems.md)。
 
 #### 柱状图方案
 
