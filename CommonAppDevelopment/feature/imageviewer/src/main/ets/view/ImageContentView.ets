@@ -50,10 +50,11 @@ export struct ImageContentView {
    * 通常紧跟在图片的缩放之后使用
    * @param targetX：缩放中心的x轴坐标
    * @param targetY：缩放中心的y轴坐标
+   * @param eventScale：当前缩放因子的大小
    */
-  moveToOriginAfterScale(targetX: number, targetY: number) {
-    this.imagePosition.currentX = this.imagePosition.lastX - targetX * (this.imageScale.scaleValue - this.imageScale.pinchValue);
-    this.imagePosition.currentY = this.imagePosition.lastY - targetY * (this.imageScale.scaleValue - this.imageScale.pinchValue);
+  moveToOriginAfterScale(targetX: number, targetY: number, eventScale: number) {
+    this.imagePosition.currentX = targetX - (targetX - this.imagePosition.lastX) * eventScale;
+    this.imagePosition.currentY = targetY - (targetY - this.imagePosition.lastY) * eventScale;
   }
 
   build() {
@@ -80,7 +81,7 @@ export struct ImageContentView {
                 // 缩放
                 this.imageScale.scaleValue = this.imageScale.defaultMaxScaleValue;
                 // 偏移
-                this.moveToOriginAfterScale(targetX, targetY);
+                this.moveToOriginAfterScale(targetX, targetY, this.imageScale.scaleValue)
                 this.imageScale.stash();
                 this.imagePosition.stash();
               })
@@ -90,7 +91,7 @@ export struct ImageContentView {
           PinchGesture({ fingers: 2 })
             .onActionUpdate((event: GestureEvent) => {
               this.imageScale.scaleValue = this.imageScale.pinchValue * event.scale;
-              this.moveToOriginAfterScale(event.pinchCenterX, event.pinchCenterY);
+              this.moveToOriginAfterScale(event.pinchCenterX, event.pinchCenterY, event.scale);
             })
             .onActionEnd((event: GestureEvent) => {
               if (this.imageScale.scaleValue < this.imageScale.defaultScaleValue) {

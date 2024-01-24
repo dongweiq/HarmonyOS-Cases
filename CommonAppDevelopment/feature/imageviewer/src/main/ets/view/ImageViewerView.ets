@@ -32,7 +32,6 @@ export struct ImageViewerView {
   @State scaleArray: Array<ImageScaleModel> = [];
   controller: SwiperController = new SwiperController();
 
-  // TODO: 需求：图片缩放、上下图切换体验待优化
   aboutToAppear() {
     this.currentIndex = this.imageModel.currentIndex + 1;
     for (let index = 0; index < this.imageModel.imageArray.length; index++) {
