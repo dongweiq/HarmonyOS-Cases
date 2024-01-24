@@ -82,7 +82,7 @@ export struct HandleTabs {
             Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
               /**
                * TODO：知识点：2.通过ForEach循环数组动态创建TabContent组件
-               * 性能注释：ForEach的第三个入参keyGenerator唯一时，动态修改ForEach时，可降低渲染开销
+               * 性能知识点：ForEach的第三个入参keyGenerator唯一时，动态修改ForEach时，可降低渲染开销
                * 参考文档：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md
                */
               ForEach(this.tabArray, (item: number, index: number) => {

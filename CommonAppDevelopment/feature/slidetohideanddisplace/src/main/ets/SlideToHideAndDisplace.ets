@@ -247,7 +247,7 @@ export struct SlideToHideAndDisplace {
       .scrollBar(BarState.Off)
       .onScroll(() => {
         // TODO: 知识点: Scroll组件绑定onScroll事件，然后在此方法里改变该组件的margin和opacity属性值的大小实现组件移动和隐显
-        // 性能注释: onScroll属于频繁回调，不建议在onScroll做耗时和冗余操作
+        // 性能知识点: onScroll属于频繁回调，不建议在onScroll做耗时和冗余操作
         let yOffset: number = this.scroller.currentOffset().yOffset;
         if (yOffset < YOffset100) {
           this.scrollMarginTop = -yOffset;
