@@ -56,35 +56,35 @@
 
 基础特性层为上层的产品定制层提供稳健且丰富的基础功能支持，包括UI组件、基础服务等。同时依赖于下层的公共能力层为其提供通用功能和服务。
 
-首页[以Navigation组件为基础，实现了主要页面或模块的路由管理和跳转](./product/entry/Navigation.md)。
+首页[以Navigation组件为基础，实现了主要页面或模块的路由管理和跳转](./product/entry/README_zh.md)。
 
 #### 阻塞事件冒泡方案
 
-事件冒泡是指触发子组件事件的时候，事件会传递到父组件，这样会导致父组件的事件也会触发。阻塞事件冒泡的方案可以参考此[详细说明文档](./feature/eventpropagation/EventPropagation.md)。
+事件冒泡是指触发子组件事件的时候，事件会传递到父组件，这样会导致父组件的事件也会触发。阻塞事件冒泡的方案可以参考此[详细说明文档](./feature/eventpropagation/README_zh.md)。
 
 #### 自定义TabBar页签方案
 
 TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不一样的TabBar样式，Tab组件自带的TabBar属性对于部分效果无法满足，如页签中间显示一圈圆弧外轮廓等，
-因此我们需要去自己定义一个TabBar页签来满足开发的需要。自定义TabBar页签的方案可以参考此[详细说明文档](./feature/customtabbar/CustomTabBar.md)。
+因此我们需要去自己定义一个TabBar页签来满足开发的需要。自定义TabBar页签的方案可以参考此[详细说明文档](./feature/customtabbar/README_zh.md)。
 
 #### 二级联动实现方案
 
-二级联动是指一个列表（一级列表）的选择结果，来更新另一个列表（二级列表）的选项。二级联动的方案可以参考此[详细说明文档](./feature/secondarylinkage/SecondaryLink.md)。
+二级联动是指一个列表（一级列表）的选择结果，来更新另一个列表（二级列表）的选项。二级联动的方案可以参考此[详细说明文档](./feature/secondarylinkage/README_zh.md)。
 
 #### 列表编辑实现方案
 
-列表的编辑模式用途十分广泛，常见于待办事项管理、文件管理、备忘录的记录管理等应用场景。待办事项实现可以参考此[详细说明文档](./feature/pendingitems/PendingItems.md)。
+列表的编辑模式用途十分广泛，常见于待办事项管理、文件管理、备忘录的记录管理等应用场景。待办事项实现可以参考此[详细说明文档](./feature/pendingitems/README_zh.md)。
 
 #### 柱状图方案
 
-使用三方库mpchart可以实现柱状图UI效果。柱状图方案可以参考此[详细说明文档](./feature/barchart/BarChart.md)。
+使用三方库mpchart可以实现柱状图UI效果。柱状图方案可以参考此[详细说明文档](./feature/barchart/README_zh.md)。
 
 #### 读取Rawfile中文件部分内容方案
 
 使用native从rawfile中文件读取部分内容。具体方案可以参考此[详细说明文档](./feature/nativerawfile/NativeRawFile.md)。
 #### 地址交换动画方案
 
-在出行类订票软件中，一般都有此动画效果，点击交换后，起点和终点互换。地址交换动画的方案可以参考此[详细说明文档](./feature/addressexchange/AddressExchange.md)。
+在出行类订票软件中，一般都有此动画效果，点击交换后，起点和终点互换。地址交换动画的方案可以参考此[详细说明文档](./feature/addressexchange/README_zh.md)。
 
 ### 公共能力层
 
