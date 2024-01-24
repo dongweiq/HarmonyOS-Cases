@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "launch_title",
+      "value": "应用启动页"
+    },
+    {
+      "name": "launch_string",
+      "value": "欢迎进入HarmonyOS的世界"
+    },
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "half_screen_advert_size",
+      "value": "87%"
+    },
+    {
+      "name": "permission_internet",
+      "value": "需要使用网络权限"
+    },
+    {
+      "name": "permission_advertisement",
+      "value": "需要使用广告跟踪权限"
+    },
+    {
+      "name": "half_screen_advert_detail",
+      "value": "此处是非全屏的广告底部展示的信息，可展示媒体自定义icon、应用名称、版权信息"
+    },
+    {
+      "name": "advert_close",
+      "value": "开屏广告关闭"
+    }
+  ]
+}

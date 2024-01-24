@@ -1,0 +1,20 @@
+{
+  "integer": [
+    {
+      "name": "launch_space_size",
+      "value": 40
+    },
+    {
+      "name": "launch_logo_size",
+      "value": 100
+    },
+    {
+      "name": "launch_logo_font_size",
+      "value": 20
+    },
+    {
+      "name": "launch_title_top_space",
+      "value": 30
+    }
+  ]
+}
