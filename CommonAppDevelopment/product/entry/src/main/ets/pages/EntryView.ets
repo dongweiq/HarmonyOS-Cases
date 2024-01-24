@@ -22,7 +22,8 @@ import { AddressExchangeView } from '@ohos/addressexchange';
 import { ToDoList } from '@ohos/pendingitems';
 import { ImageViewerView } from '@ohos/imageviewer';
 import { HandleTabs } from '@ohos/handtabs';
-import { LaunchAppView, LaunchAdvertView } from '@ohos/launchscenes';
+// 导入应用启动页和开屏动画页面。如果在预览器中，请注释下面的一行代码。
+// import { LaunchAppView, LaunchAdvertView } from '@ohos/launchscenes';
 import { NavPathParam } from '@ohos/base';
 
 @Entry
@@ -74,11 +75,11 @@ struct EntryView {
         // 增删tab页签
         HandleTabs()
       } else if (name === 'launchAppView') {
-        // 应用启动页
-        LaunchAppView()
+        // 应用启动页（如果在预览器中，请注释下面的一行代码）
+        // LaunchAppView()
       } else if (name === 'launchAdvertView') {
-        // 开屏广告页
-        LaunchAdvertView({ ads: param.ads, isFullScreenAdvert: param.isFullScreenAdvert })
+        // 开屏广告页（如果在预览器中，请注释下面的一行代码）
+        // LaunchAdvertView({ ads: param.ads, isFullScreenAdvert: param.isFullScreenAdvert })
       }
     }
     .hideTitleBar(true)
