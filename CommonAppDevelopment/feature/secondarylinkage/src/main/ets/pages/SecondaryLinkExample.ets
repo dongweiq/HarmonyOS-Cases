@@ -15,7 +15,6 @@
 
 import { CustomDataType, MyDataSource } from './DataType';
 
-@Entry
 @Component
 export struct SecondaryLinkExample {
   @State currentTagIndex: number = 0; // 一级列表焦点索引值

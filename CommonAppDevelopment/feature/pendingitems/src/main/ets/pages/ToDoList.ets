@@ -17,13 +17,21 @@ import { ToDo } from '../model/ToDo';
 import { ToDoListItem } from './ToDoListItem';
 import promptAction from '@ohos.promptAction';
 
-/**
+/*
  * 实现步骤：
  * 1. List组件绑定@State修饰的数组变量toDoData。
  * 2. ListItem组件设置左滑动效swipeAction属性。
  * 3. 触发点击事件新增/删除列表项，更新数组变量toDoData，并同时更新List组件UI(MVVM)。
  */
-@Entry
+
+@Extend(Image)
+function ImageStyle() {
+  .width(32)
+  .height(32)
+  .margin(4)
+}
+
+@Preview
 @Component
 export struct ToDoList {
   @State toDoData: ToDo[] = []; // 待办事项数据
@@ -51,24 +59,29 @@ export struct ToDoList {
       Row()
     } else {
       Row({ space: 4 }) {
-        Image($r('app.media.ic_public_settings_filled')).width(32).height(32).margin(4)
-        Image($r('app.media.ic_public_detail_filled')).width(32).height(32).margin(4)
-        Image($r('app.media.ic_public_delete_filled')).width(32).height(32).margin(4)
+        Image($r('app.media.ic_public_settings_filled')).ImageStyle()
+        Image($r('app.media.ic_public_detail_filled')).ImageStyle()
+        Image($r('app.media.ic_public_delete_filled')).ImageStyle()
           .onClick(() => {
             this.toDoData.splice(index, 1); // 删除当前操作的待办事项
             promptAction.showToast({ message: 'delete success!' });
           })
-      }.padding(4).justifyContent(FlexAlign.SpaceEvenly)
+      }
+      .padding(4)
+      .justifyContent(FlexAlign.SpaceEvenly)
     }
   }
 
   build() {
     Column() {
       Column({ space: 12 }) {
-        Text($r('app.string.todo')).fontSize(24)
+        Text($r('app.string.todo'))
+          .fontSize(24)
         Text($r('app.string.todoListDesc'))
           .fontColor($r('sys.color.ohos_fa_text_secondary'))
-      }.backgroundColor($r('app.color.white')).padding(6)
+      }
+      .backgroundColor($r('app.color.white'))
+      .padding(6)
 
       Row() {
         if (this.isEditMode) {
@@ -117,7 +130,8 @@ export struct ToDoList {
               toDoItem: toDoItem,
               selectedItems: $selectedItems
             })
-          }.padding({ left: 24, right: 24, bottom: 12 })
+          }
+          .padding({ left: 24, right: 24, bottom: 12 })
           // TODO：知识点：3.设置ListItem的swipeAction属性，左滑时，显示自定义UI视图
           .swipeAction({ end: this.ItemEnd(index), edgeEffect: SwipeEdgeEffect.Spring })
         }, (toDoItem: ToDo) => toDoItem.key)
@@ -146,7 +160,9 @@ export struct ToDoList {
               })
           })
         }
-        .height(56).justifyContent(FlexAlign.SpaceEvenly).width('100%')
+        .height(56)
+        .justifyContent(FlexAlign.SpaceEvenly)
+        .width('100%')
       }
     }
     .backgroundColor($r('app.color.pageBcColor'))
