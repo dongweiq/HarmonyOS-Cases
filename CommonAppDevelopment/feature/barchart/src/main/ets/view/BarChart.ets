@@ -97,7 +97,7 @@ export struct BarChartPage {
     // 获取图表描述部件，设置图表描述部件不可用，即图表不进行绘制描述部件
     let description: Description | null = this.model.getDescription();
     if (description) {
-      description.setEnabled(true);
+      description.setEnabled(false);
     }
     // 获取图表图例部件，设置图表图例部件不可用
     let legend: Legend | null = this.model.getLegend();
@@ -115,13 +115,13 @@ export struct BarChartPage {
     // 设置柱状图的高亮范围是否为整个柱体，只在堆叠柱状图中有区别
     this.model.setHighlightFullBarEnabled(false);
     // 为左Y轴设置LimitLine,可设置限制线的宽度，线段样式，限制标签的位置，标签字体大小等
-    this.limitLine1 = new LimitLine(120, 'Upper Limit');
+    this.limitLine1 = new LimitLine(80, 'Upper Limit');
     this.limitLine1.setLineWidth(4);
     this.limitLine1.enableDashedLine(10, 10, 0);
     this.limitLine1.setLabelPosition(LimitLabelPosition.RIGHT_TOP);
     this.limitLine1.setTextSize(vp2px(10));
 
-    this.limitLine2 = new LimitLine(50, 'Lower Limit');
+    this.limitLine2 = new LimitLine(30, 'Lower Limit');
     this.limitLine2.setLineWidth(4);
     this.limitLine2.enableDashedLine(10, 10, 0);
     this.limitLine2.setLineColor(Color.Yellow);
@@ -288,330 +288,351 @@ export struct BarChartPage {
     return data;
   }
 
+  private refresh(): void {
+    if (this.model) {
+      this.model.notifyDataSetChanged();
+      this.model.invalidate();
+    }
+  }
+
   build() {
     Column() {
-      Column() {
+      Column({ space: 5 }) {
         // TODO 知识点：为组件设置配置构建类。可通过在事件中使用this.model.notifyDataSetChanged()触发坐标轴数据更新。通过在事件中使用this.model.invalidate()触发绘制更新。
         BarChart({ model: this.model })
           .width($r('app.string.common_bar_chart_width'))
           .height($r('app.string.common_bar_chart_height'))
+      }
+      .border({ width: 1, color: $r('app.color.border_color'), radius: 10, style: BorderStyle.Solid })
+      .backgroundColor(Color.White)
 
-        Divider()
-          .width($r('app.string.common_divider'))
-          .padding({ top: $r('app.integer.common_padding_top') })
+      Divider()
+        .width($r('app.string.common_divider'))
+        .padding({ top: $r('app.integer.common_padding_top') })
 
-        Scroll() {
-          Stack() {
-            Column() {
-              Row() {
-                Text($r('app.string.control_data_type'))
-                Row() {
-                  Text($r('app.string.control_normal'))
-                  Radio({ value: 'normal', group: 'dataType' })
-                    .checked(true)
-                    .onChange((isChecked: boolean) => {
-                      if (isChecked) {
-                        this.data = this.getNormalData();
-                        if (this.model) {
-                          if (this.normalMarker) {
-                            this.model.setMarker(this.normalMarker);
-                          }
-                          this.model.setData(this.data);
-                        }
-                      }
-                    })
-                }
-
-                Row() {
-                  Text($r('app.string.control_gradient'))
-                  Radio({ value: 'gradient', group: 'dataType' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (isChecked) {
-                        this.data = this.getGradientData();
-                        if (this.model) {
-                          if (this.normalMarker) {
-                            this.model.setMarker(this.normalMarker);
-                          }
-                          this.model.setData(this.data);
-                        }
-                      }
-                    })
-                }
-
-                Row() {
-                  Text($r('app.string.control_stack'))
-                  Radio({ value: 'stack', group: 'dataType' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (isChecked) {
-                        this.data = this.getStackData();
-                        if (this.model) {
-                          this.model.setData(this.data);
-                        }
-                      }
-                    })
-                }
-              }.alignSelf(ItemAlign.Start)
-
-              Row() {
-                Text($r('app.string.control_leftYAxis_is_display'))
-                Row() {
-                  Text($r('app.string.control_leftYAxis'))
-                  Checkbox({ name: 'leftYAxis', group: 'yAxis' })
-                    .select(true)
-                    .onChange((isChecked: boolean) => {
-                      if (this.leftAxis) {
-                        this.leftAxis.setEnabled(isChecked);
-                      }
-                    })
-                }
-
-                Row() {
-                  Text($r('app.string.control_rightYAxis'))
-                  Checkbox({ name: 'rightYAxis', group: 'yAxis' })
-                    .onChange((isChecked: boolean) => {
-                      if (this.rightAxis) {
-                        this.rightAxis.setEnabled(isChecked);
-                      }
-                    })
-                }
-              }.alignSelf(ItemAlign.Start)
-
-              Row() {
-                Text($r('app.string.control_leftYAxis_location'))
-                Row() {
-                  Text($r('app.string.control_outSideChart'))
-                  Radio({ value: 'outSideChart', group: 'leftYAxisLabelPosition' })
-                    .checked(true)
-                    .onChange((isChecked: boolean) => {
-                      if (this.leftAxis && isChecked) {
-                        this.leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
-                      }
-                    })
-                }
-
-                Row() {
-                  Text($r('app.string.control_inSideChart'))
-                  Radio({ value: 'inSideChart', group: 'leftYAxisLabelPosition' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (this.leftAxis && isChecked) {
-                        this.leftAxis.setPosition(YAxisLabelPosition.INSIDE_CHART);
-                      }
-                    })
-                }.padding({ left: $r('app.integer.common_padding_left') })
-              }.alignSelf(ItemAlign.Start)
-
-              Row() {
-                Text($r('app.string.control_right_YAxis_location'))
-                Row() {
-                  Text($r('app.string.control_right_outSideChart'))
-                  Radio({ value: 'outSideChart', group: 'rightYAxisLabelPosition' })
-                    .checked(true)
-                    .onChange((isChecked: boolean) => {
-                      if (this.rightAxis && isChecked) {
-                        this.rightAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
-                      }
-                    })
-                }
-
-                Row() {
-                  Text($r('app.string.control_left_outSideChart'))
-                  Radio({ value: 'inSideChart', group: 'rightYAxisLabelPosition' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (this.rightAxis && isChecked) {
-                        this.rightAxis.setPosition(YAxisLabelPosition.INSIDE_CHART);
-                      }
-                    })
-                }.padding({ left: $r('app.integer.common_padding_left') })
-              }.alignSelf(ItemAlign.Start)
-
-              Row() {
-                Text($r('app.string.control_XAxis_is_display'))
-                Row() {
-                  Text($r('app.string.control_XAxis'))
-                  Checkbox({ name: 'isShowXAxis', group: 'xAxis' })
-                    .select(true)
-                    .onChange((isChecked: boolean) => {
-                      if (this.xAxis) {
-                        this.xAxis.setEnabled(isChecked);
-                      }
-                    })
-                }
-              }.alignSelf(ItemAlign.Start)
-
-              Text($r('app.string.control_XAxis_location'))
-                .alignSelf(ItemAlign.Start)
-
-              Row() {
-                Column() {
-                  Text('top')
-                  Radio({ value: 'top', group: 'xAxisLabelPosition' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (this.xAxis && isChecked) {
-                        this.xAxis.setPosition(XAxisPosition.TOP);
-                      }
-                    })
-                }.layoutWeight(1)
-
-                Column() {
-                  Text('bottom')
-                  Radio({ value: 'bottom', group: 'xAxisLabelPosition' })
-                    .checked(true)
-                    .onChange((isChecked: boolean) => {
-                      if (this.xAxis && isChecked) {
-                        this.xAxis.setPosition(XAxisPosition.BOTTOM);
-                      }
-                    })
-                }.layoutWeight("1")
-
-                Column() {
-                  Text('both side')
-                  Radio({ value: 'both', group: 'xAxisLabelPosition' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (this.xAxis && isChecked) {
-                        this.xAxis.setPosition(XAxisPosition.BOTH_SIDED);
-                      }
-                    })
-                }.layoutWeight(1)
-
-                Column() {
-                  Text('top')
-                  Text('InSide')
-                  Radio({ value: 'topInSide', group: 'xAxisLabelPosition' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (this.xAxis && isChecked) {
-                        this.xAxis.setPosition(XAxisPosition.TOP_INSIDE);
-                      }
-                    })
-                }.layoutWeight(1)
-
-                Column() {
-                  Text('bottom')
-                  Text('InSide')
-                  Radio({ value: 'bottomInSide', group: 'xAxisLabelPosition' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (this.xAxis && isChecked) {
-                        this.xAxis.setPosition(XAxisPosition.BOTTOM_INSIDE);
-                      }
-                    })
-                }.layoutWeight(1)
-              }.alignSelf(ItemAlign.Start)
-
-              Row() {
-                Text($r('app.string.control_is_draw_background'))
-                Checkbox({ name: 'isDrawBackground', group: 'isDrawBackground' })
-                  .select(false)
-                  .onChange((isChecked: boolean) => {
-                    if (this.model) {
-                      this.model.setDrawGridBackground(isChecked);
+      Column({ space: 5 }) {
+        Row({ space: 10 }) {
+          Text($r('app.string.control_data_type'))
+          Row() {
+            Text($r('app.string.control_normal'))
+            Radio({ value: 'normal', group: 'dataType' })
+              .checked(true)
+              .onChange((isChecked: boolean) => {
+                if (isChecked) {
+                  this.data = this.getNormalData();
+                  if (this.model) {
+                    if (this.normalMarker) {
+                      this.model.setMarker(this.normalMarker);
                     }
-                  })
-              }.alignSelf(ItemAlign.Start)
-
-              Row() {
-                Text($r('app.string.control_is_show_markerview'))
-                Checkbox({ name: 'isShowMarkerView', group: 'isShowMarkerView' })
-                  .select(true)
-                  .onChange((isChecked: boolean) => {
-                    if (this.model) {
-                      this.model.setDrawMarkerViews(isChecked);
-                    }
-                  })
-              }.alignSelf(ItemAlign.Start)
-
-              Row() {
-                Text($r('app.string.control_is_show_limitline_behinddata'))
-                Checkbox({ name: 'isShowLimitLineBehindData', group: 'isShowLimitLineBehindData' })
-                  .select(false)
-                  .onChange((isChecked: boolean) => {
-                    if (this.leftAxis) {
-                      this.leftAxis.setDrawLimitLinesBehindData(isChecked);
-                    }
-                  })
-              }.alignSelf(ItemAlign.Start)
-
-              Row() {
-                Column() {
-                  Text($r('app.string.control_leftYAxis_limitline_location'))
-                }
-
-                Column() {
-                  Text('both')
-                  Radio({ value: 'both', group: 'limitLinePosition' })
-                    .checked(true)
-                    .onChange((isChecked: boolean) => {
-                      if (this.leftAxis && isChecked) {
-                        this.leftAxis.removeAllLimitLines();
-                        if (this.limitLine1) {
-                          this.leftAxis.addLimitLine(this.limitLine1);
-                        }
-                        if (this.limitLine2) {
-                          this.leftAxis.addLimitLine(this.limitLine2);
-                        }
-                      }
-                    })
-                }.layoutWeight(1)
-
-                Column() {
-                  Text('none')
-                  Radio({ value: 'none', group: 'limitLinePosition' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (this.leftAxis && isChecked) {
-                        this.leftAxis.removeAllLimitLines();
-                      }
-                    })
-                }.layoutWeight(1)
-
-                Column() {
-                  Text('upper')
-                  Radio({ value: 'upper', group: 'limitLinePosition' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (this.leftAxis && isChecked) {
-                        this.leftAxis.removeAllLimitLines();
-                        if (this.limitLine1) {
-                          this.leftAxis.addLimitLine(this.limitLine1);
-                        }
-                      }
-                    })
-                }.layoutWeight(1)
-
-                Column() {
-                  Text('lower')
-                  Radio({ value: 'lower', group: 'limitLinePosition' })
-                    .checked(false)
-                    .onChange((isChecked: boolean) => {
-                      if (this.leftAxis && isChecked) {
-                        this.leftAxis.removeAllLimitLines();
-                        if (this.limitLine2) {
-                          this.leftAxis.addLimitLine(this.limitLine2);
-                        }
-                      }
-                    })
-                }.layoutWeight(1)
-              }.alignSelf(ItemAlign.Start)
-            }
-
-            Button($r('app.string.control_refresh'))
-              .margin({ top: 100 })
-              .onClick(() => {
-                if (this.model) {
-                  this.model.notifyDataSetChanged();
-                  this.model.invalidate();
+                    this.model.setData(this.data);
+                  }
                 }
               })
-          }.align(Alignment.TopEnd);
-        }.layoutWeight(1)
-        .margin({ bottom: 50 })
+          }
+
+          Row() {
+            Text($r('app.string.control_gradient'))
+            Radio({ value: 'gradient', group: 'dataType' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (isChecked) {
+                  this.data = this.getGradientData();
+                  if (this.model) {
+                    if (this.normalMarker) {
+                      this.model.setMarker(this.normalMarker);
+                    }
+                    this.model.setData(this.data);
+                  }
+                }
+              })
+          }
+
+          Row() {
+            Text($r('app.string.control_stack'))
+            Radio({ value: 'stack', group: 'dataType' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (isChecked) {
+                  this.data = this.getStackData();
+                  if (this.model) {
+                    this.model.setData(this.data);
+                  }
+                }
+              })
+          }
+        }.alignSelf(ItemAlign.Start)
+
+        Row() {
+          Text($r('app.string.control_XAxis_is_display'))
+          Row() {
+            Checkbox({ name: 'isShowXAxis', group: 'xAxis' })
+              .select(true)
+              .onChange((isChecked: boolean) => {
+                if (this.xAxis) {
+                  this.xAxis.setEnabled(isChecked);
+                  this.refresh();
+                }
+              })
+          }
+        }.alignSelf(ItemAlign.Start)
+
+        Row({ space: 10 }) {
+          Text($r('app.string.control_leftYAxis_is_display'))
+          Row() {
+            Text($r('app.string.control_leftYAxis'))
+            Checkbox({ name: 'leftYAxis', group: 'yAxis' })
+              .select(true)
+              .onChange((isChecked: boolean) => {
+                if (this.leftAxis) {
+                  this.leftAxis.setEnabled(isChecked);
+                  this.refresh();
+                }
+              })
+          }
+
+          Row() {
+            Text($r('app.string.control_rightYAxis'))
+            Checkbox({ name: 'rightYAxis', group: 'yAxis' })
+              .onChange((isChecked: boolean) => {
+                if (this.rightAxis) {
+                  this.rightAxis.setEnabled(isChecked);
+                  this.refresh();
+                }
+              })
+          }
+        }.alignSelf(ItemAlign.Start)
+
+        Row({ space: 10 }) {
+          Text($r('app.string.control_leftYAxis_location'))
+          Row() {
+            Text($r('app.string.control_outSideChart'))
+            Radio({ value: 'outSideChart', group: 'leftYAxisLabelPosition' })
+              .checked(true)
+              .onChange((isChecked: boolean) => {
+                if (this.leftAxis && isChecked) {
+                  this.leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
+                  this.refresh();
+                }
+              })
+          }
+
+          Row() {
+            Text($r('app.string.control_inSideChart'))
+            Radio({ value: 'inSideChart', group: 'leftYAxisLabelPosition' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (this.leftAxis && isChecked) {
+                  this.leftAxis.setPosition(YAxisLabelPosition.INSIDE_CHART);
+                  this.refresh();
+                }
+              })
+          }
+        }.alignSelf(ItemAlign.Start)
+
+        Row({ space: 10 }) {
+          Text($r('app.string.control_right_YAxis_location'))
+          Row() {
+            Text($r('app.string.control_right_outSideChart'))
+            Radio({ value: 'outSideChart', group: 'rightYAxisLabelPosition' })
+              .checked(true)
+              .onChange((isChecked: boolean) => {
+                if (this.rightAxis && isChecked) {
+                  this.rightAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
+                  this.refresh();
+                }
+              })
+          }
+
+          Row() {
+            Text($r('app.string.control_left_outSideChart'))
+            Radio({ value: 'inSideChart', group: 'rightYAxisLabelPosition' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (this.rightAxis && isChecked) {
+                  this.rightAxis.setPosition(YAxisLabelPosition.INSIDE_CHART);
+                  this.refresh();
+                }
+              })
+          }
+        }.alignSelf(ItemAlign.Start)
+
+        Row() {
+          Text($r('app.string.control_is_draw_background'))
+          Checkbox({ name: 'isDrawBackground', group: 'isDrawBackground' })
+            .select(false)
+            .onChange((isChecked: boolean) => {
+              if (this.model) {
+                this.model.setDrawGridBackground(isChecked);
+                this.model.notifyDataSetChanged();
+                this.model.invalidate();
+              }
+            })
+        }.alignSelf(ItemAlign.Start)
+
+        Row() {
+          Text($r('app.string.control_is_show_markerview'))
+          Checkbox({ name: 'isShowMarkerView', group: 'isShowMarkerView' })
+            .select(true)
+            .onChange((isChecked: boolean) => {
+              if (this.model) {
+                // 使用setDrawMarkerViews设置true，点击柱状图中柱子会有弹窗效果
+                this.model.setDrawMarkerViews(isChecked);
+                this.model.notifyDataSetChanged();
+                this.model.invalidate();
+              }
+            })
+        }.alignSelf(ItemAlign.Start)
+
+        Row() {
+          Text($r('app.string.control_is_show_limitline_behinddata'))
+          Checkbox({ name: 'isShowLimitLineBehindData', group: 'isShowLimitLineBehindData' })
+            .select(false)
+            .onChange((isChecked: boolean) => {
+              if (this.leftAxis) {
+                this.leftAxis.setDrawLimitLinesBehindData(isChecked);
+                this.refresh();
+              }
+            })
+        }.alignSelf(ItemAlign.Start)
+
+        Row() {
+          Text($r('app.string.control_leftYAxis_limitline_location'))
+        }.alignSelf(ItemAlign.Start)
+
+        Flex({ wrap: FlexWrap.Wrap }) {
+          Row() {
+            Text('Both')
+            Radio({ value: 'both', group: 'limitLinePosition' })
+              .checked(true)
+              .onChange((isChecked: boolean) => {
+                if (this.leftAxis && isChecked) {
+                  this.leftAxis.removeAllLimitLines();
+                  if (this.limitLine1) {
+                    this.leftAxis.addLimitLine(this.limitLine1);
+                  }
+                  if (this.limitLine2) {
+                    this.leftAxis.addLimitLine(this.limitLine2);
+                  }
+                  this.refresh();
+                }
+              })
+          }.margin({ right: $r('app.integer.common_margin_left') })
+
+          Row() {
+            Text('None')
+            Radio({ value: 'none', group: 'limitLinePosition' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (this.leftAxis && isChecked) {
+                  this.leftAxis.removeAllLimitLines();
+                  this.refresh();
+                }
+              })
+          }.margin({ right: $r('app.integer.common_margin_left') })
+
+          Row() {
+            Text('Upper')
+            Radio({ value: 'upper', group: 'limitLinePosition' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (this.leftAxis && isChecked) {
+                  this.leftAxis.removeAllLimitLines();
+                  if (this.limitLine1) {
+                    this.leftAxis.addLimitLine(this.limitLine1);
+                  }
+                  this.refresh();
+                }
+              })
+          }.margin({ right: $r('app.integer.common_margin_left') })
+
+          Row() {
+            Text('Lower')
+            Radio({ value: 'lower', group: 'limitLinePosition' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (this.leftAxis && isChecked) {
+                  this.leftAxis.removeAllLimitLines();
+                  if (this.limitLine2) {
+                    this.leftAxis.addLimitLine(this.limitLine2);
+                  }
+                  this.refresh();
+                }
+              })
+          }
+        }.alignSelf(ItemAlign.Start)
+
+        Row() {
+          Text($r('app.string.control_XAxis_location'))
+        }.alignSelf(ItemAlign.Start)
+
+        Flex({ wrap: FlexWrap.Wrap }) {
+          Row() {
+            Text('Top')
+            Radio({ value: 'top', group: 'xAxisLabelPosition' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (this.xAxis && isChecked) {
+                  this.xAxis.setPosition(XAxisPosition.TOP);
+                  this.refresh();
+                }
+              })
+          }.margin({ right: $r('app.integer.common_margin_left') })
+
+          Row() {
+            Text('Bottom')
+            Radio({ value: 'bottom', group: 'xAxisLabelPosition' })
+              .checked(true)
+              .onChange((isChecked: boolean) => {
+                if (this.xAxis && isChecked) {
+                  this.xAxis.setPosition(XAxisPosition.BOTTOM);
+                  this.refresh();
+                }
+              })
+          }.margin({ right: $r('app.integer.common_margin_left') })
+
+          Row() {
+            Text('Both Side')
+            Radio({ value: 'both', group: 'xAxisLabelPosition' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (this.xAxis && isChecked) {
+                  this.xAxis.setPosition(XAxisPosition.BOTH_SIDED);
+                  this.refresh();
+                }
+              })
+          }.margin({ right: $r('app.integer.common_margin_left') })
+
+          Row() {
+            Text('Top InSide')
+            Radio({ value: 'topInSide', group: 'xAxisLabelPosition' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (this.xAxis && isChecked) {
+                  this.xAxis.setPosition(XAxisPosition.TOP_INSIDE);
+                  this.refresh();
+                }
+              })
+          }.margin({ right: $r('app.integer.common_margin_left') })
+
+          Row() {
+            Text('Bottom InSide')
+            Radio({ value: 'bottomInSide', group: 'xAxisLabelPosition' })
+              .checked(false)
+              .onChange((isChecked: boolean) => {
+                if (this.xAxis && isChecked) {
+                  this.xAxis.setPosition(XAxisPosition.BOTTOM_INSIDE);
+                  this.refresh();
+                }
+              })
+          }
+        }.alignSelf(ItemAlign.Start)
       }
+      .border({ width: 1, color: $r('app.color.border_color'), radius: 10, style: BorderStyle.Solid })
+      .backgroundColor(Color.White)
+      .padding($r('app.integer.common_padding'))
     }
+    .height($r('app.string.common_column_height'))
+    .backgroundColor($r('app.color.background_color'))
+    .padding($r('app.integer.common_padding'))
   }
 }
