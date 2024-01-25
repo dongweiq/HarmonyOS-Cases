@@ -63,6 +63,14 @@
     {
       "name": "addressexchange",
       "srcPath": "./feature/addressexchange"
+    },
+    {
+      "name": "pendingitems",
+      "srcPath": "./feature/pendingitems"
+    },
+    {
+      "name": "imageviewer",
+      "srcPath": "./feature/imageviewer"
     }
   ]
 }
