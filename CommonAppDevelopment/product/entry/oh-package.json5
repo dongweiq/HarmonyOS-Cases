@@ -22,6 +22,10 @@
     // 柱状图方案
     "@ohos/barchart": "file:../../feature/barchart",
     // 地址交换方案
-    "@ohos/addressexchange": "file:../../feature/addressexchange"
+    "@ohos/addressexchange": "file:../../feature/addressexchange",
+    // 图片预览器方案
+    "@ohos/imageviewer": "file:../../feature/imageviewer",
+    // 列表编辑实现方案
+    "@ohos/pendingitems": "file:../../feature/pendingitems"
   }
 }
