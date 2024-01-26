@@ -9,12 +9,24 @@
       "value": "100%"
     },
     {
+      "name": "content_size",
+      "value": "94%"
+    },
+    {
       "name": "address_exchange_title",
       "value": "地址交换动画"
     },
     {
       "name": "address_exchange_detail",
       "value": "点击中间图片，进行地址交换"
+    },
+    {
+      "name": "address_date",
+      "value": "2月8日"
+    },
+    {
+      "name": "address_week",
+      "value": "周四"
     },
     {
       "name": "address_exchange_address_left",
