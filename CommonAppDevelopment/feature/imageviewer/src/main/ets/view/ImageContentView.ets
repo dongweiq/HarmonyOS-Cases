@@ -39,8 +39,8 @@ export struct ImageContentView {
       this.windowWidth = px2vp(rect.width);
       this.windowHeight = px2vp(rect.height);
       data.on("windowSizeChange", (size: window.Size) => {
-        this.windowWidth = size.width;
-        this.windowHeight = size.height;
+        this.windowWidth = px2vp(size.width);
+        this.windowHeight = px2vp(size.height);
       })
     })
   }
