@@ -74,11 +74,7 @@
     },
     {
       "name": "handletabs",
-      "srcPath": "./feature/handletabs",
-    },
-    {
-      "name": "launchscenes",
-      "srcPath": "./feature/launchscenes",
+      "srcPath": "./feature/handletabs"
     }
   ]
 }

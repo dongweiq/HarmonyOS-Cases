@@ -28,8 +28,6 @@
     // 列表编辑实现方案
     "@ohos/pendingitems": "file:../../feature/pendingitems",
     // 自定义增删tab页签
-    "@ohos/handtabs": "file:../../feature/handletabs",
-    // 开屏广告方案
-    "@ohos/launchscenes": "file:../../feature/launchscenes"
+    "@ohos/handtabs": "file:../../feature/handletabs"
   }
 }

@@ -22,7 +22,6 @@ import { AddressExchangeView } from '@ohos/addressexchange';
 import { ToDoList } from '@ohos/pendingitems';
 import { ImageViewerView } from '@ohos/imageviewer';
 import { HandleTabs } from '@ohos/handtabs';
-import { LaunchAdvertView } from '@ohos/launchscenes'
 
 @Entry
 @Component
@@ -37,8 +36,7 @@ struct EntryView {
     new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', 'eventTransmissionSolution'),
     new ListData($r("app.media.image_viewer"), '图片缩放功能实现', 'imageViewer'),
     new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems'),
-    new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs'),
-    new ListData($r("app.media.icon"), '应用开屏广告', 'launchAdvert')
+    new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -72,8 +70,6 @@ struct EntryView {
       } else if (name === 'handletabs') {
         // 增删tab页签
         HandleTabs()
-      } else if (name === 'launchAdvert') {
-        LaunchAdvertView()
       }
     }
     .hideTitleBar(true)
