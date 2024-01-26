@@ -7,7 +7,7 @@
 
 ### 效果预览图
 
-![](../../screenshots/device/LaunchScenes.gif)
+![]()
 
 **使用说明**
 1. 加载完成后显示应用启动页。
