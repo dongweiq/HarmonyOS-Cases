@@ -14,6 +14,13 @@
  */
 
 import curves from '@ohos.curves';
+import { FunctionDescription } from '@ohos/base';
+
+/*
+ * 实现步骤：
+ * 1. 创建左右两边Text组件显示地址。设置初始偏移量以及文本对齐方式。
+ * 2. 点击中间的图标时，修改是否切换的状态变量值和通过animateTo修改偏移量的值，来实现动态更新左右两边地址的显示，完成动画效果。
+ */
 
 @Component
 export struct AddressExchangeView {
@@ -33,16 +40,16 @@ export struct AddressExchangeView {
   zeroTranslate: number = 0;
   // 单次旋转180°
   rotateAddAngle: number = 180;
+  //描述标题
+  @State title: Resource = $r('app.string.address_exchange_title');
+  //描述详情
+  @State content: Resource = $r('app.string.address_exchange_detail');
 
   build() {
     Column({ space: this.columnSpace }) {
-      Text($r('app.string.address_exchange_title'))
-        .fontSize($r('app.string.ohos_id_text_size_headline'))
-        .fontWeight(FontWeight.Medium)
-        .margin({ top: $r('app.string.ohos_id_card_margin_start') })
-
-      Text($r('app.string.address_exchange_detail'))
-
+      // 描述层
+      FunctionDescription({title: this.title, content: this.content})
+      // 地址交换
       Column({ space: this.columnSpace }) {
         Row() {
           Text($r('app.string.address_exchange_address_left'))
@@ -73,12 +80,12 @@ export struct AddressExchangeView {
             // TODO 知识点：动画效果，修改偏移量，修改旋转角度，实现效果
             animateTo({ curve: curves.springMotion() }, () => {
               if (this.swap) {
-                this.translateX = this.distance
+                this.translateX = this.distance;
               } else {
-                this.translateX = this.zeroTranslate
+                this.translateX = this.zeroTranslate;
               }
             })
-            this.rotateAngle += this.rotateAddAngle
+            this.rotateAngle += this.rotateAddAngle;
           })
 
           Text($r('app.string.address_exchange_address_right'))
