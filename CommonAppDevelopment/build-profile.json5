@@ -1,20 +1,6 @@
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\yangtianyu\\.ohos\\config\\default_CommonAppDevelopment_zA8IKV3cm2igGy14cEDCBk-nUbUSj3_iAPVPBQiUuSo=.cer",
-          "storePassword": "0000001AEC798F7DAFF8C250531C70AA72B0F7F08510A64F197AD5F7354002F3014DCC6900E2A943FA1C",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001A0186FD84A8801425BCCEF1BB87EF31CF4DAFD678140E52FE3DB8AB991940CDECCD1126F5BF4D",
-          "profile": "C:\\Users\\yangtianyu\\.ohos\\config\\default_CommonAppDevelopment_zA8IKV3cm2igGy14cEDCBk-nUbUSj3_iAPVPBQiUuSo=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\yangtianyu\\.ohos\\config\\default_CommonAppDevelopment_zA8IKV3cm2igGy14cEDCBk-nUbUSj3_iAPVPBQiUuSo=.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
@@ -89,10 +75,6 @@
     {
       "name": "handletabs",
       "srcPath": "./feature/handletabs",
-    },
-    {
-      "name": "launchscenes",
-      "srcPath": "./feature/launchscenes"
     }
   ]
 }

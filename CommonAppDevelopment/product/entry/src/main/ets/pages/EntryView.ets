@@ -22,9 +22,6 @@ import { AddressExchangeView } from '@ohos/addressexchange';
 import { ToDoList } from '@ohos/pendingitems';
 import { ImageViewerView } from '@ohos/imageviewer';
 import { HandleTabs } from '@ohos/handtabs';
-// 导入应用启动页和开屏动画页面。如果在预览器中，请注释下面的一行代码。
-// import { LaunchAppView, LaunchAdvertView } from '@ohos/launchscenes';
-import { NavPathParam } from '@ohos/base';
 
 @Entry
 @Component
@@ -39,14 +36,13 @@ struct EntryView {
     new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', 'eventTransmissionSolution'),
     new ListData($r("app.media.image_viewer"), '图片缩放功能实现', 'imageViewer'),
     new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems'),
-    new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs'),
-    new ListData($r('app.media.icon'), '应用启动页和开屏广告页', 'launchAppView', 95)
+    new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
 
   @Builder
-  PageMap(name: string, param: NavPathParam) {
+  PageMap(name: string, param: NavPathStack) {
     NavDestination() {
       // TODO:需求：补充场景示例组件导航
       if (name === 'eventTransmissionSolution') {
@@ -74,12 +70,6 @@ struct EntryView {
       } else if (name === 'handletabs') {
         // 增删tab页签
         HandleTabs()
-      } else if (name === 'launchAppView') {
-        // 应用启动页（如果在预览器中，请注释下面的一行代码）
-        // LaunchAppView()
-      } else if (name === 'launchAdvertView') {
-        // 开屏广告页（如果在预览器中，请注释下面的一行代码）
-        // LaunchAdvertView({ ads: param.ads, isFullScreenAdvert: param.isFullScreenAdvert })
       }
     }
     .hideTitleBar(true)
