@@ -31,18 +31,18 @@ export struct AddressExchangeView {
   // 是否已交换
   @State swap: boolean = false;
   // 整体内容区宽度
-  rowWidth: number = 300;
+  private rowWidth: number = 300;
   // 单次偏移距离
-  distance: number = this.rowWidth * 0.6;
+  private distance: number = this.rowWidth * 0.6;
   // 内容相隔距离
-  columnSpace: number = 16;
+  private columnSpace: number = 16;
   // 初始化偏移距离
-  zeroTranslate: number = 0;
+  private zeroTranslate: number = 0;
   // 单次旋转180°
-  rotateAddAngle: number = 180;
-  //描述标题
+  private rotateAddAngle: number = 180;
+  // 描述标题
   @State title: Resource = $r('app.string.address_exchange_title');
-  //描述详情
+  // 描述详情
   @State content: Resource = $r('app.string.address_exchange_detail');
 
   build() {

@@ -34,7 +34,7 @@
    |   |---nativerawfile              // 基础特性层-Native读取Rawfile中文件部分内容
    |   |---pendingitems               // 基础特性层-列表编辑实现方案 
    |   |---secondarylinkage           // 基础特性层-二级联动实现方案   
-   |   |---launchscenes               // 基础特性层-应用开屏广告方案 
+   |   |---launchscenes               // 基础特性层-应用广告页实现方案 
    |---libs
    |---product 
    |   |---entry                      // 产品定制层-应用入口
@@ -97,9 +97,9 @@ TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不�
 
 本模块基于Image组件实现了简单的图片预览功能，支持双指捏合等效果。图片预览方案可参考[详细说明文档](./feature/imageviewer/README.md)。
 
-#### 应用开屏广告方案
+#### 应用广告页实现方案
 
-在大部分应用软件中，都需要开屏展示广告内容，用户任意时刻可点击跳转进入首页。应用开屏广告的方案可以参考此[详细说明文档](./feature/launchscenes/README.md)。
+在大部分应用软件中，都需要开屏展示广告内容，用户任意时刻可点击跳转进入首页。应用广告页实现方案可以参考此[详细说明文档](./feature/launchscenes/README.md)。
 
 ### 公共能力层
 

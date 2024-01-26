@@ -1,5 +1,5 @@
 
-# 应用启动页+开屏广告页
+# 应用广告页实现方案
 
 ### 介绍
 
@@ -37,3 +37,5 @@
 [@ohos.identifier.oaid (广告标识服务)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/js-apis-oaid-0000001717643901-V2)
 
 [@ohos.advertising (广告服务框架)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/js-apis-advertising-0000001795402253-V2)
+
+[申请广告位ID](https://developer.huawei.com/consumer/cn/forum/topic/0204858516053660175)

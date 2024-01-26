@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export { LaunchAppView } from './src/main/ets/view/LaunchAppView';
+export { LaunchAdvertView } from './src/main/ets/view/LaunchAdvertView';
