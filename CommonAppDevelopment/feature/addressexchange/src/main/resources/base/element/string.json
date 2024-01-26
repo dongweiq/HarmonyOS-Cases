@@ -29,6 +29,10 @@
       "value": "周四"
     },
     {
+      "name": "address_search_ticket",
+      "value": "查询车票"
+    },
+    {
       "name": "address_exchange_address_left",
       "value": "北京"
     },

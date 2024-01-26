@@ -82,6 +82,7 @@ export struct LaunchAdvertView {
         Column() {
           Text($r('app.string.half_screen_advert_detail'))
         }
+        .backgroundColor($r('app.color.ohos_id_color_background'))
         .width($r('app.string.full_size'))
         .height($r('app.string.full_size'))
       }

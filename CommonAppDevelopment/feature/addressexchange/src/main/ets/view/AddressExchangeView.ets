@@ -33,17 +33,17 @@ export struct AddressExchangeView {
   zeroTranslate: number = 0;
   // 单次旋转180°
   rotateAddAngle: number = 180;
-  // 内容区背景颜色
-  contentBackgroundColor: ResourceColor = '#90BBFFFF'
 
   build() {
     Column({ space: this.columnSpace }) {
       Text($r('app.string.address_exchange_title'))
-        .margin({ top: $r('app.integer.address_exchange_title_top_space') })
+        .fontSize($r('app.string.ohos_id_text_size_headline'))
+        .fontWeight(FontWeight.Medium)
+        .margin({ top: $r('app.string.ohos_id_card_margin_start') })
 
       Text($r('app.string.address_exchange_detail'))
 
-      Column({ space: this.columnSpace}) {
+      Column({ space: this.columnSpace }) {
         Row() {
           Text($r('app.string.address_exchange_address_left'))
             .translate({ x: this.translateX })
@@ -89,10 +89,10 @@ export struct AddressExchangeView {
         .width(this.rowWidth)
         .height($r('app.integer.address_exchange_content_height'))
 
-        Row({space:16}) {
+        Row({ space: this.columnSpace }) {
           Text($r('app.string.address_date'))
-            .fontSize(24)
-            .fontWeight(FontWeight.Bold)
+            .fontSize($r('app.string.ohos_id_text_size_headline'))
+            .fontWeight(FontWeight.Medium)
             .height($r('app.integer.address_exchange_date_height'))
 
           Text($r('app.string.address_week'))
@@ -100,16 +100,17 @@ export struct AddressExchangeView {
         }
         .width(this.rowWidth)
 
-        Button('查询车票')
+        Button($r('app.string.address_search_ticket'))
           .fontColor(Color.White)
           .height($r('app.integer.address_exchange_button_height'))
           .width(this.rowWidth)
       }
-      .backgroundColor(this.contentBackgroundColor)
-      .borderRadius(12)
+      .backgroundColor($r('app.color.ohos_id_color_sub_background'))
+      .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
       .width($r('app.string.content_size'))
       .height($r('app.integer.address_exchange_total_height'))
     }
+    .backgroundColor($r('app.color.ohos_id_color_background'))
     .justifyContent(FlexAlign.Start)
     .width($r('app.string.full_size'))
     .height($r('app.string.full_size'))

@@ -31,7 +31,7 @@ const TAG = 'LaunchAppView';
 @Component
 export struct LaunchAppView {
   // 内容区相隔距离
-  columnSpace: number = 40;
+  columnSpace: number = 16;
   // 当前路由栈
   @Consume('pageStack') pageStack: NavPathStack;
   // 当前context
@@ -141,7 +141,7 @@ export struct LaunchAppView {
           .fontSize($r('app.integer.launch_logo_font_size'))
       }
       .justifyContent(FlexAlign.Center)
-      .backgroundColor($r('app.color.launch_background_color'))
+      .backgroundColor($r('app.color.ohos_id_color_background'))
       .width($r('app.string.full_size'))
       .height($r('app.string.full_size'))
 

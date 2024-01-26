@@ -32,7 +32,7 @@ struct EntryView {
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: ListData[] = [
     new ListData($r("app.media.bar_chart"), 'MpChat柱状图', 'barChartSolution'),
-    new ListData($r("app.media.address_exchange"), '地址交换动画', 'addressExchange', 95),
+    new ListData($r("app.media.address_exchange"), '地址交换动画', 'addressExchange', 140),
     new ListData($r("app.media.tab_bar"), '自定义TabBar页签', 'customTabBar'),
     new ListData($r("app.media.secondary_linkage"), '列表二级联动', 'secondarylinkage'),
     new ListData($r("app.media.raw_file"), '读取RawFile文件部分内容', 'readRawFile'),

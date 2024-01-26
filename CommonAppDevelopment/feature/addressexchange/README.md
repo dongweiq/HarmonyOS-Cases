@@ -26,8 +26,8 @@
 
 ### 模块依赖
 
-**不涉及**
+[**utils**](../../common/utils)
 
 ### 参考资料
 
-[显式动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V2/ts-explicit-animation-0000001478341181-V2)
+[显式动画](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/ts-explicit-animation-0000001478341181-V3)

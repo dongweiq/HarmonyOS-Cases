@@ -3,7 +3,7 @@
 
 ### 介绍
 
-在应用开发时，基本上都需要一个应用的启动页，包含logo和应用的说明语。根据需求在启动页后，展示广告内容，用户任意时刻可点击跳转进入首页。 本示例介绍使用 **AdsKit** 来实现开屏广告的开发。
+在应用开发时，基本上都需要一个应用的启动页，包含logo和应用的说明语。根据需求在启动页后，展示广告内容，用户任意时刻可点击跳转进入首页。 本示例介绍使用 **广告服务** 来实现开屏广告的开发。
 
 ### 效果预览图
 
@@ -15,7 +15,7 @@
 
 ### 实现思路
 
-1. 创建启动页Component，在aboutToAppear方法中申请广告跟踪权限，使用getOAID方法获取OAID信息。
+1. 创建启动页组件，在aboutToAppear方法中申请广告跟踪权限，使用getOAID方法获取OAID信息。
 2. 将OAID信息作为请求参数，获取广告信息。
 3. 跳转广告展示页面，广告结束后，回到首页。
 
@@ -34,4 +34,6 @@
 
 ### 参考资料
 
-[AdsKit](https://harmonyosdevelopertest.devccsrnd.hwcloudtest.cn:3087/cn/docs/documentation/doc-guides/ads-publisher-service-splash-0000001819969069)
+[@ohos.identifier.oaid (广告标识服务)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/js-apis-oaid-0000001717643901-V2)
+
+[@ohos.advertising (广告服务框架)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/js-apis-advertising-0000001795402253-V2)

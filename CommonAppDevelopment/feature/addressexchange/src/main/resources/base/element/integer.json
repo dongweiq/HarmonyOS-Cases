@@ -1,10 +1,6 @@
 {
   "integer": [
     {
-      "name": "address_exchange_title_top_space",
-      "value": 30
-    },
-    {
       "name": "address_exchange_airplane_size",
       "value": 16
     },
