@@ -21,6 +21,7 @@ import { BarChartPage } from '@ohos/barchart';
 import { AddressExchangeView } from '@ohos/addressexchange';
 import { ToDoList } from '@ohos/pendingitems';
 import { ImageViewerView } from '@ohos/imageviewer';
+import { FriendsBook } from '@ohos/gbktranscoding';
 
 @Entry
 @Component
@@ -34,7 +35,8 @@ struct EntryView {
     new ListData($r("app.media.raw_file"), '读取RawFile文件部分内容', 'readRawFile'),
     new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', 'eventTransmissionSolution'),
     new ListData($r("app.media.image_viewer"), '图片预览器', 'imageViewer'),
-    new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems')
+    new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems'),
+    new ListData($r("app.media.friends_book"), 'GBK转换UTF-8', 'friendsBook')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -65,6 +67,9 @@ struct EntryView {
         ImageViewerView()
       } else if (name === 'pendingitems') {
         ToDoList()
+      } else if (name === 'friendsBook') {
+        // GBK转UTF-8模块
+        FriendsBook()
       }
     }
     .hideTitleBar(true)
