@@ -2,9 +2,13 @@
 
 ### 介绍
 
+<<<<<<< HEAD:CommonAppDevelopment/feature/imageviewer/README_zh.md
 图片预览在应用开发中是一种常见场景，在诸如QQ、微信、微博等应用中均被广泛使用。本模块基于Image组件实现了简单的图片预览功能。
 
 **使用说明：**
+=======
+本模块基于Image组件实现了简单的图片预览功能。具体功能如下：
+>>>>>>> 7179dad827d24ae2e35681f39e69e96eb6672d83:CommonAppDevelopment/feature/imageviewer/README.md
 
 1. 左右滑动切换图片
 2. 双指捏合缩放图片大小
