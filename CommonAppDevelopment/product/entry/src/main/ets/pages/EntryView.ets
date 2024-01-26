@@ -33,7 +33,7 @@ struct EntryView {
     new ListData($r("app.media.secondary_linkage"), '列表二级联动', 'secondarylinkage'),
     new ListData($r("app.media.raw_file"), '读取RawFile文件部分内容', 'readRawFile'),
     new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', 'eventTransmissionSolution'),
-    new ListData($r("app.media.image_viewer"), '图片预览器', 'imageViewer'),
+    new ListData($r("app.media.image_viewer"), '图片缩放功能实现', 'imageViewer'),
     new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems')
   ];
   // Navigation路由栈,控制页面跳转
