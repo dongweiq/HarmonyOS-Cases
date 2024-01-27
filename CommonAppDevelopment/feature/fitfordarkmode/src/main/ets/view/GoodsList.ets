@@ -13,86 +13,75 @@
  * limitations under the License.
  */
 
-// 设置项的数据类
-class ProductDataModel {
-  id: number = 0;
-  uri: ResourceStr = '';
-  title: ResourceStr = '';
-  price: ResourceStr = '';
-  views: ResourceStr = '';
+import { PRODUCT_DATA } from '../mock/GoodsMock'
+import { ProductDataModel } from '../model/GoodsModel'
 
-  constructor(id: number, uri: ResourceStr, title: ResourceStr, price: ResourceStr, views: ResourceStr) {
-    this.id = id;
-    this.uri = uri;
-    this.title = title;
-    this.price = price;
-    this.views = views;
-  }
-}
+const GUTTER_X: number = 8; // 商品上下间隔
+const GUTTER_Y: number = 8; // 商品左右间隔
+const IMAGE_ASPECT_RATIO: number = 1; // 图片的宽高比
+const OFFSET: number = -3; // 价格控件偏移量
+const SPAN: number = 6; // 超过规定列数6时自动换行
+
 
 @Component
 export struct GoodsList {
-  private productData: Array<ProductDataModel> = [
-    new ProductDataModel(0, $r('app.media.product00'), $r('app.string.product_title00'), $r('app.string.product_price00'), $r('app.string.product_view00')),
-    new ProductDataModel(1, $r('app.media.product01'), $r('app.string.product_title01'), $r('app.string.product_price01'), $r('app.string.product_view01')),
-    new ProductDataModel(2, $r('app.media.product02'), $r('app.string.product_title02'), $r('app.string.product_price02'), $r('app.string.product_view02')),
-    new ProductDataModel(3, $r('app.media.product03'), $r('app.string.product_title03'), $r('app.string.product_price03'), $r('app.string.product_view03')),
-    new ProductDataModel(4, $r('app.media.product04'), $r('app.string.product_title04'), $r('app.string.product_price04'), $r('app.string.product_view04')),
-    new ProductDataModel(5, $r('app.media.product05'), $r('app.string.product_title05'), $r('app.string.product_price05'), $r('app.string.product_view05'))
-  ];
-
   build() {
-    GridRow({ gutter: { x: 8, y: 8 }, }) {
-      ForEach(this.productData, (item: ProductDataModel) => {
-        GridCol({ span: { sm: 6, md: 6, lg: 4 } }) {
+    GridRow({ gutter: { x: GUTTER_X, y: GUTTER_Y }, }) {
+      // GridRow组件不支持LazyForEach方法
+      ForEach(PRODUCT_DATA, (item: ProductDataModel) => {
+        GridCol({ span: SPAN }) {
           Column() {
             // 此处的商品图片需要根据父组件的宽度而变化，这里使用70%
             Image(item.uri)
               .width('70%')
-              .aspectRatio(1)
+              .aspectRatio(IMAGE_ASPECT_RATIO)
               .objectFit(ImageFit.Contain)
-              .margin({ bottom: 12 })
+              .margin({ bottom: $r('app.integer.goods_image_margin_bottom') })
 
             Column() {
               Text(item.title)
                 .width('100%')
-                .fontSize(14)
-                .fontColor($r('sys.color.ohos_id_color_sub_background_dark'))
+                .fontSize($r('app.integer.goods_font'))
+                .fontColor($r('sys.color.ohos_id_color_foreground'))
               Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-                // TODO: 知识点3：UI组件颜色属性是系统中的颜色（即分层参数颜色资源），深浅模式自动切换色值。
+                // TODO: 知识点：UI组件颜色属性是系统中的颜色（即分层参数颜色资源），深浅模式自动切换色值。
                 // 用系统提供的分层参数颜色资源方式设置色值
                 Text(item.price)
-                  .fontSize(16)
-                  .offset({ x: -3 })// 因为￥是中文字符，上面的是中文字符，占的宽度不一样，所以需要对齐，添加offset
-                  .fontColor($r('sys.color.ohos_id_color_sub_background_dark'))
+                  .fontSize($r('app.integer.goods_font'))
+                  .offset({ x: OFFSET })// 因为￥是中文字符，上面的是中文字符，占的宽度不一样，所以需要对齐，添加offset
+                  .fontColor($r('sys.color.ohos_id_color_foreground'))
                 Row() {
-                  // TODO: 知识点4：SVG格式在resources目录下新增dark/element目录，创建深色模式color.json文件，设置深色模式图片fillColor颜色。（注意事项:颜色name必须相同）
+                  // TODO: 知识点：SVG格式在resources目录下新增dark/element目录，创建深色模式color.json文件，设置深色模式图片fillColor颜色。（注意事项:颜色name必须相同）
                   // SVG格式图片fillColor颜色资源ID方式设置（浅色模式色值为'#000000'、深色模式色值为'#FFFFFF'）
                   Image($r('app.media.view'))
                     .fillColor($r('app.color.view_fill_color'))
-                    .width(20)
-                    .aspectRatio(1)
+                    .width($r('app.integer.view_image_width'))
+                    .aspectRatio(IMAGE_ASPECT_RATIO)
                     .objectFit(ImageFit.Contain)
 
                   Text(item.views)
-                    .fontSize(16)
-                    .margin({  left: 5 })
-                    .offset({ x: -3 })// 因为￥是中文字符，上面的是中文字符，占的宽度不一样，所以需要对齐，添加offset
-                    .fontColor($r('sys.color.ohos_id_color_sub_background_dark'))
+                    .fontSize($r('app.integer.view_font'))
+                    .margin({ left: $r('app.integer.view_margin_left') })
+                    .fontColor($r('sys.color.ohos_id_color_foreground'))
                 }.alignItems(VerticalAlign.Center)
-              }.margin({ top: 6 })
+              }.margin({ top: $r('app.integer.flex_margin_top') })
 
             }
-            .margin({ left: 10 })
+            .margin({ left: $r('app.integer.goods_column_padding_left') })
             .alignItems(HorizontalAlign.Start)
           }
-          .borderRadius(10)
-          .padding(12)
+          .borderRadius($r('app.integer.goods_border_radius'))
+          .padding($r('app.integer.column_padding'))
           .backgroundColor($r("app.color.product_bg_color"))
         }
       }, (item: ProductDataModel) => item.id.toString())
     }
-    .padding({ left: 12, right: 12, top: 12, bottom: 12 })
+    .padding({
+      left: $r('app.integer.grid_row_padding'),
+      right: $r('app.integer.grid_row_padding'),
+      top: $r('app.integer.grid_row_padding'),
+      bottom: $r('app.integer.grid_row_padding')
+    })
     .backgroundColor($r("app.color.list_bg_color"))
   }
 }

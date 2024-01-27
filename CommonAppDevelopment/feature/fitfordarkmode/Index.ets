@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export { FitForDarkModePage } from './src/main/ets/view/FitForDarkModePage';
+export { FitForDarkMode } from './src/main/ets/view/FitForDarkMode';

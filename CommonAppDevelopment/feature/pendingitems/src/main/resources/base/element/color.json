@@ -1,0 +1,11 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },{
+      "name": "pageBcColor",
+      "value": "#fff1f3f5"
+    }
+  ]
+}

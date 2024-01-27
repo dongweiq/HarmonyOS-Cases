@@ -1,19 +1,6 @@
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:/Users/SunRen/.ohos/config/openharmony/default_CommonAppDevelopment_78MmcbM5ftpkbSNUbKOjCVPMrZ6gwieOkbIUjZR9bZg=.cer",
-          "storePassword": "0000001B9A5DD8C7C7A1CCBC34AAC76D4623DF48718C7EDC7F7FBE1459ADE6235F2C574A3DBD32E14DB39B",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001BF2C143A07E430AA5B4759540DC676BB21431414A2FCA92430CF5B027C9DA923921F95E1B761DF2",
-          "profile": "C:/Users/SunRen/.ohos/config/openharmony/default_CommonAppDevelopment_78MmcbM5ftpkbSNUbKOjCVPMrZ6gwieOkbIUjZR9bZg=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/SunRen/.ohos/config/openharmony/default_CommonAppDevelopment_78MmcbM5ftpkbSNUbKOjCVPMrZ6gwieOkbIUjZR9bZg=.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
@@ -78,8 +65,20 @@
       "srcPath": "./feature/addressexchange"
     },
     {
-      "name": "fitfordarkmode",
-      "srcPath": "./feature/fitfordarkmode"
+      "name": "pendingitems",
+      "srcPath": "./feature/pendingitems"
+    },
+    {
+      "name": "imageviewer",
+      "srcPath": "./feature/imageviewer"
+    },
+    {
+      "name": "handletabs",
+      "srcPath": "./feature/handletabs"
+    },
+    {
+      "name": "launchscenes",
+      "srcPath": "./feature/launchscenes"
     }
   ]
 }

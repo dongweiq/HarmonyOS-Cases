@@ -36,7 +36,6 @@ export struct FunctionalScenes {
         .borderRadius(10)
         .objectFit(ImageFit.Fill)
         .width('45%')
-        .height(listData.imageHeight)
       Text(listData.name)
         .fontColor(Color.Black)
         .textAlign(TextAlign.Center)

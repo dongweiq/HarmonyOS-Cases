@@ -15,6 +15,12 @@
 
 import curves from '@ohos.curves';
 
+/**
+ * 实现步骤：
+ * 1. 创建左右两边Text组件显示地址。设置初始偏移量以及文本对齐方式。
+ * 2. 点击中间的图标时，修改是否切换的状态变量值和通过animateTo修改偏移量的值，来实现动态更新左右两边地址的显示，完成动画效果。
+ */
+
 @Component
 export struct AddressExchangeView {
   // 旋转角度
@@ -24,74 +30,88 @@ export struct AddressExchangeView {
   // 是否已交换
   @State swap: boolean = false;
   // 整体内容区宽度
-  rowWidth: number = 300;
+  private rowWidth: number = 300;
   // 单次偏移距离
-  distance: number = this.rowWidth * 0.6;
+  private distance: number = this.rowWidth * 0.6;
   // 内容相隔距离
-  columnSpace: number = 40;
+  private columnSpace: number = 16;
   // 初始化偏移距离
-  zeroTranslate: number = 0;
+  private zeroTranslate: number = 0;
   // 单次旋转180°
-  rotateAddAngle: number = 180;
-  // 内容区背景颜色
-  contentBackgroundColor: Color = 0x888888;
+  private rotateAddAngle: number = 180;
 
   build() {
     Column({ space: this.columnSpace }) {
-      Text($r('app.string.address_exchange_title'))
-        .margin({ top: $r('app.integer.address_exchange_title_top_space') })
+      // 地址交换
+      Column({ space: this.columnSpace }) {
+        Row() {
+          Text($r('app.string.address_exchange_address_left'))
+            .translate({ x: this.translateX })
+            .width($r('app.string.address_exchange_address_width'))
+            .textAlign(this.swap ? TextAlign.End : TextAlign.Start)
 
-      Text($r('app.string.address_exchange_detail'))
-
-      Row() {
-        Text($r('app.string.address_exchange_address_left'))
-          .translate({ x: this.translateX })
-          .width($r('app.string.address_exchange_address_width'))
-          .fontSize($r('app.integer.address_exchange_address_font_size'))
-          .textAlign(this.swap ? TextAlign.End : TextAlign.Start)
-
-        Stack() {
-          Image($r('app.media.address_exchange_airplane'))
-            .size({
-              height: $r('app.integer.address_exchange_airplane_size'),
-              width: $r('app.integer.address_exchange_airplane_size')
+          Stack() {
+            Image($r('app.media.address_exchange_airplane'))
+              .size({
+                height: $r('app.integer.address_exchange_airplane_size'),
+                width: $r('app.integer.address_exchange_airplane_size')
+              })
+            Image($r('app.media.address_exchange_recycle'))
+              .size({
+                height: $r('app.integer.address_exchange_recycle_size'),
+                width: $r('app.integer.address_exchange_recycle_size')
+              })
+              .rotate({ angle: this.rotateAngle })
+              .animation({
+                curve: Curve.EaseOut,
+                playMode: PlayMode.Normal,
+              })
+          }
+          .width($r('app.string.address_exchange_image_width'))
+          .onClick(() => {
+            this.swap = !this.swap
+            // TODO 知识点：动画效果，修改偏移量，修改旋转角度，实现效果
+            animateTo({ curve: curves.springMotion() }, () => {
+              if (this.swap) {
+                this.translateX = this.distance;
+              } else {
+                this.translateX = this.zeroTranslate;
+              }
             })
-          Image($r('app.media.address_exchange_recycle'))
-            .size({
-              height: $r('app.integer.address_exchange_recycle_size'),
-              width: $r('app.integer.address_exchange_recycle_size')
-            })
-            .rotate({ angle: this.rotateAngle })
-            .animation({
-              curve: Curve.EaseOut,
-              playMode: PlayMode.Normal,
-            })
-        }
-        .width($r('app.string.address_exchange_image_width'))
-        .onClick(() => {
-          this.swap = !this.swap
-          // TODO 知识点：动画效果，修改偏移量，修改旋转角度，实现效果
-          animateTo({ curve: curves.springMotion() }, () => {
-            if (this.swap) {
-              this.translateX = this.distance
-            } else {
-              this.translateX = this.zeroTranslate
-            }
+            this.rotateAngle += this.rotateAddAngle;
           })
-          this.rotateAngle += this.rotateAddAngle
-        })
 
-        Text($r('app.string.address_exchange_address_right'))
-          .translate({ x: -this.translateX })
-          .width($r('app.string.address_exchange_address_width'))
-          .fontSize($r('app.integer.address_exchange_address_font_size'))
-          .textAlign(this.swap ? TextAlign.Start : TextAlign.End)
+          Text($r('app.string.address_exchange_address_right'))
+            .translate({ x: -this.translateX })
+            .width($r('app.string.address_exchange_address_width'))
+            .textAlign(this.swap ? TextAlign.Start : TextAlign.End)
+        }
+        .width(this.rowWidth)
+        .height($r('app.integer.address_exchange_content_height'))
+
+        Row({ space: this.columnSpace }) {
+          Text($r('app.string.address_date'))
+            .fontSize($r('app.string.ohos_id_text_size_headline'))
+            .fontWeight(FontWeight.Medium)
+            .height($r('app.integer.address_exchange_date_height'))
+
+          Text($r('app.string.address_week'))
+            .height($r('app.integer.address_exchange_date_height'))
+        }
+        .width(this.rowWidth)
+
+        Button($r('app.string.address_search_ticket'))
+          .fontColor(Color.White)
+          .height($r('app.integer.address_exchange_button_height'))
+          .width(this.rowWidth)
       }
-      .width(this.rowWidth)
-      .justifyContent(FlexAlign.SpaceBetween)
-      .height($r('app.integer.address_exchange_content_height'))
-      .backgroundColor(this.contentBackgroundColor)
+      .backgroundColor($r('app.color.ohos_id_color_sub_background'))
+      .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
+      .width($r('app.string.content_size'))
+      .height($r('app.integer.address_exchange_total_height'))
+      .margin($r('app.string.ohos_id_card_margin_start'))
     }
+    .backgroundColor($r('app.color.ohos_id_color_background'))
     .justifyContent(FlexAlign.Start)
     .width($r('app.string.full_size'))
     .height($r('app.string.full_size'))

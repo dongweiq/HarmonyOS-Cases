@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "tabBarBcColor",
+      "value": "#ffb7b7b7"
+    }
+  ]
+}

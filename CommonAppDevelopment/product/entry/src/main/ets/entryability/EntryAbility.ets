@@ -21,7 +21,6 @@ import window from '@ohos.window';
 import { logger } from '@ohos/base';
 import { BusinessError } from '@ohos.base';
 import { Configuration } from '@ohos.app.ability.Configuration';
-import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 
 const TAG = 'EntryAbility'
 
@@ -49,6 +48,7 @@ export default class EntryAbility extends UIAbility {
 
     // 获取当前的颜色模式并保存
     AppStorage.setOrCreate('currentColorMode', this.context.config.colorMode);
+    // 保存windowStage供fitfordarkmode的har包中FitForDarkPage.ets中setStatusBar方法修改状态栏颜色。
     AppStorage.setOrCreate('windowStage', windowStage);
   }
 
@@ -72,6 +72,6 @@ export default class EntryAbility extends UIAbility {
   onConfigurationUpdate(config: Configuration) {
     // 获取最新的变更颜色并更新到AppStorage
     AppStorage.setOrCreate('currentColorMode', config.colorMode);
-    console.log(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
+    logger.info(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
   }
 }
