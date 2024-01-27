@@ -1,0 +1,20 @@
+{
+  "integer": [
+    {
+      "name": "common_padding_top",
+      "value": 5
+    },
+    {
+      "name": "common_margin_left",
+      "value": 10
+    },
+    {
+      "name": "common_radius",
+      "value": 10
+    },
+    {
+      "name": "common_padding",
+      "value": 10
+    }
+  ]
+}

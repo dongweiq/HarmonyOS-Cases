@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "user_name",
+      "value": "用户姓名："
+    },
+    {
+      "name": "user_id",
+      "value": "身份证号："
+    },
+    {
+      "name": "user_seatNo",
+      "value": "座位号："
+    },
+    {
+      "name": "next_page",
+      "value": "下一步"
+    },
+    {
+      "name": "btn_submit",
+      "value": "提交"
+    },
+    {
+      "name": "btn_back",
+      "value": "返回"
+    }
+  ]
+}
