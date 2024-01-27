@@ -30,7 +30,7 @@ import { LaunchAdvertView } from '@ohos/launchscenes';
 struct EntryView {
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: ListData[] = [
-    new ListData($r("app.media.bar_chart"), 'MpChat柱状图', 'barChartSolution'),
+    new ListData($r("app.media.bar_chart"), 'MpChart图表实现', 'barChartSolution'),
     new ListData($r("app.media.address_exchange"), '地址交换动画', 'addressExchange'),
     new ListData($r("app.media.tab_bar"), '自定义TabBar页签', 'customTabBar'),
     new ListData($r("app.media.secondary_linkage"), '列表二级联动', 'secondarylinkage'),
@@ -64,7 +64,7 @@ struct EntryView {
         // 地址切换动画模块
         AddressExchangeView()
       } else if (name === 'barChartSolution') {
-        // 柱状图模块
+        // MpChart图表实现模块
         BarChartPage()
       } else if (name === 'imageViewer') {
         ImageViewerView()
