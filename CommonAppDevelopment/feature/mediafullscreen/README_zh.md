@@ -7,7 +7,7 @@
 
 ### 效果图预览
 
-<img src="./src/main/resources/base/media/mediafullscreen.jpg" width="300">
+<img src="./src/main/resources/base/media/media_fullscreen.jpg" width="300">
 
 **使用说明**：
 
