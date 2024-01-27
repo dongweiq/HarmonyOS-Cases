@@ -17,9 +17,34 @@
 ## 实现步骤
 
 1. 在Video组件内调用onFullscreenChange方法，实现媒体全屏效果。
+    ```ts
+    Video({
+      src: this.videoSrc,
+      controller: this.controller
+    })
+     .width($r('app.string.video_width'))
+     .height($r('app.integer.video_height'))
+     .objectFit(ImageFit.Contain)
+     .onFullscreenChange(() => {
+       // 横竖屏切换
+       this.windowChange(this.isFullscreen);
+     })
+   ```
 2. 调用[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)的[getLastWindow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#windowgetlastwindow9)方法获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口。
 3. 利用获取到的窗口对象，调用[setWindowSystemBarEnable](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#setwindowsystembarenable9)方法设置窗口是否显示导航栏和状态栏。
 4. 调用窗口对象的[setPreferredOrientation]()方法设置窗口旋转方向以及是否应用重力感应。
+    ```ts
+    window.getLastWindow(getContext(), (err: BusinessError, data) => {
+        const errCode = err.code;
+        if (errCode) {
+          return;
+        }
+        // 设置窗口是否显示导航栏和状态栏
+        data.setWindowSystemBarEnable(windowSystemBar);
+        // 设置窗口旋转方向以及是否应用重力感应
+        data.setPreferredOrientation(window.Orientation.PORTRAIT);
+      })
+    ```
 ### 高性能知识点
 
 **不涉及**
