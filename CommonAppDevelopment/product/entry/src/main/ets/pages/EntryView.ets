@@ -41,7 +41,6 @@ import { SwiperSmoothVariation } from '@ohos/swipersmoothvariation';
 import { SwiperComponent } from '@ohos/swipercomponent';
 import { SearchComponent } from '@ohos/searchcomponent';
 
-
 @Entry
 @Component
 struct EntryView {

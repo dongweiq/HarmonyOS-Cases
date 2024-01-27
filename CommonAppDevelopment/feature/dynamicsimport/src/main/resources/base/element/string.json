@@ -1,0 +1,103 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },{
+      "name": "product_data_title_device",
+      "value": "XX equipment new product discount!"
+    },
+    {
+      "name": "product_data_title_device0",
+      "value": "battery"
+    },
+    {
+      "name": "product_data_info_device",
+      "value": "XX equipment new product discount!"
+    },
+    {
+      "name": "product_data_labels_new_product",
+      "value": "new"
+    },
+    {
+      "name": "product_data_info_device0",
+      "value": "20000mA USB-C18W"
+    },
+    {
+      "name": "product_data_title_device2",
+      "value": "华为畅享 50z"
+    },
+    {
+      "name": "product_data_info_device2",
+      "value": "高清三摄 | 超能续航"
+    },
+    {
+      "name": "product_data_title_device1",
+      "value": "HUAWEI MateBook"
+    },
+    {
+      "name": "product_data_info_device1",
+      "value": "32GB 16英寸触屏"
+    },
+    {
+      "name": "product_data_title_device3",
+      "value": "华为按摩椅"
+    },
+    {
+      "name": "product_data_info_device3",
+      "value": "AI智能芯片 | 语音声控"
+    },
+    {
+      "name": "product_data_price3",
+      "value": "￥8999"
+    },
+    {
+      "name": "product_data_title_device4",
+      "value": "华为电脑包"
+    },
+    {
+      "name": "product_data_info_device4",
+      "value": "保时捷联名款 | 多层内胆"
+    },
+    {
+      "name": "product_data_price4",
+      "value": "￥699"
+    },
+    {
+      "name": "product_data_title_device5",
+      "value": "华为P50"
+    },
+    {
+      "name": "product_data_info_device5",
+      "value": "4800像素 | 120W快充"
+    },
+    {
+      "name": "product_data_price5",
+      "value": "￥6999"
+    },
+    {
+      "name": "product_data_price",
+      "value": "￥4999"
+    },
+    {
+      "name": "product_data_price1",
+      "value": "￥4122"
+    },
+    {
+      "name": "product_data_price0",
+      "value": "￥138"
+    },
+    {
+      "name": "product_data_price2",
+      "value": "￥1388"
+    },
+    {
+      "name": "width_size_percent_100",
+      "value": "100%"
+    },
+    {
+      "name": "width_size_percent_70",
+      "value": "70%"
+    }
+  ]
+}
