@@ -14,16 +14,44 @@
  */
 
 import { GoodsListView } from './GoodsGridView';
+import { FunctionDescription } from '@ohos/base';
+
+/**
+ * 实现步骤：
+ * 1.创建功能描述组件，展示页面功能。
+ * 2.通过GoodsListView()创建商品列表页面。
+ * 3.将页面组件export，使其他模块可以加载商品列表页面。
+ */
 
 @Component
 struct DynamicsImportView {
   build() {
-    // 加载商品列表
-    GoodsListView();
+    Column(){
+      // 添加功能描述组件，用于展示该页面的功能。
+      this.buildFunctionDescriptionView();
+      // 商品列表页面。
+      GoodsListView();
+    }
+  }
+
+  // 添加功能描述
+  @Builder
+  buildFunctionDescriptionView() {
+    GridItem() {
+      // 功能描述
+      Row() {
+        FunctionDescription({
+          title: $r('app.string.dynamics_import_tips_title'),
+          content: $r('app.string.dynamics_import_tips_content')
+        })
+      }
+    }
+    .columnStart(0)
+    .columnEnd(1)
   }
 }
 
-// 导出接口，供其他模块使用
+// 导出接口，供其他模块使用。
 @Builder
 export function createDynamicsImportView(): void {
   DynamicsImportView();

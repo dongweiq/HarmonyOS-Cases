@@ -22,15 +22,5 @@ export const PRODUCT_DATA: Array<Goods> = [
   new Goods(2, $r('app.media.product003'), $r('app.string.product_data_title_device2'), $r('app.string.product_data_info_device2'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price2')),
   new Goods(3, $r('app.media.product004'), $r('app.string.product_data_title_device3'), $r('app.string.product_data_info_device3'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price3')),
   new Goods(4, $r('app.media.product005'), $r('app.string.product_data_title_device4'), $r('app.string.product_data_info_device4'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price4')),
-  new Goods(5, $r('app.media.product006'), $r('app.string.product_data_title_device5'), $r('app.string.product_data_info_device5'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price5')),
-  new Goods(6, $r('app.media.product007'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
-  new Goods(7, $r('app.media.product008'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
-  new Goods(8, $r('app.media.product001'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
-  new Goods(9, $r('app.media.product002'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
-  new Goods(10, $r('app.media.product003'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
-  new Goods(11, $r('app.media.product004'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
-  new Goods(12, $r('app.media.product005'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
-  new Goods(13, $r('app.media.product006'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
-  new Goods(14, $r('app.media.product007'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price')),
-  new Goods(15, $r('app.media.product008'), $r('app.string.product_data_title_device'), $r('app.string.product_data_info_device'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price'))
+  new Goods(5, $r('app.media.product006'), $r('app.string.product_data_title_device5'), $r('app.string.product_data_info_device5'), $r('app.string.product_data_labels_new_product'), $r('app.string.product_data_price5'))
 ]

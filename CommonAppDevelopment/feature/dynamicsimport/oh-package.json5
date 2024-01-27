@@ -21,6 +21,11 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
+    /**
+     * 1.使用FunctionDescription组件，添加模块功能描述。
+     * 2.使用Logger打印日志。
+     * 3.使用公共资源。
+     */
     "@ohos/base": "file:../../common/utils"
   }
 }

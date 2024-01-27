@@ -14,3 +14,5 @@
  */
 
 export { createDynamicsImportView } from './src/main/ets/view/DynamicsImportView';
+
+export { loggerInfo } from './src/main/ets/utils/LoggerUtil';

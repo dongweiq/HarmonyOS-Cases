@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export { AddressExchangeView } from './src/main/ets/view/AddressExchangeView'
+export { AddressExchangeView } from './src/main/ets/view/AddressExchangeView';

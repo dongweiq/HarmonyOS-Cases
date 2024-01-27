@@ -1,7 +1,7 @@
 {
   "integer": [
     {
-      "name": "product_grid_padding",
+      "name": "product_grid_padding_left",
       "value": 12
     },{
       "name": "product_grid_padding_right",

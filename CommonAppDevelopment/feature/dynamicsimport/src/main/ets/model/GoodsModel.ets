@@ -13,7 +13,16 @@
  * limitations under the License.
  */
 
-// 商品数据模型
+/**
+ * 商品数据类型
+ *
+ * @param id 商品id
+ * @param uri 商品图片地址
+ * @param title 商品名称
+ * @param info 商品信息
+ * @param labels 商品标签
+ * @param price 商品价格
+ */
 export class Goods {
   public id: number;
   public uri: Resource;

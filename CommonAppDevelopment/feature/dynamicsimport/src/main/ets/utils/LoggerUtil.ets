@@ -15,12 +15,11 @@
 
 let logger: ESObject = null;
 
-// 输出log，展示HAR动态加载HAR的使用。
 export function loggerInfo(message: String) {
   if (logger) {
     logger.info(message);
   } else {
-    // 动态加载utils HAR中的模块
+    // TODO：知识点：加载Logger，展示HAR动态加载HAR的使用。
     import('@ohos/base').then((loggerResult: ESObject) => {
       logger = loggerResult.logger;
       logger.info(message);

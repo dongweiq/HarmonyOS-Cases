@@ -75,6 +75,26 @@
     {
       "name": "dynamicsimport",
       "srcPath": "./feature/dynamicsimport"
+    },
+    {
+      "name": "gbktranscoding",
+      "srcPath": "./feature/gbktranscoding"
+    },
+    {
+      "name": "handletabs",
+      "srcPath": "./feature/handletabs"
+    },
+    {
+      "name": "launchscenes",
+      "srcPath": "./feature/launchscenes"
+    },
+    {
+      "name": "modalwindow",
+      "srcPath": "./feature/modalwindow"
+    },
+    {
+      "name": "slidetohideanddisplace",
+      "srcPath": "./feature/slidetohideanddisplace"
     }
   ]
 }

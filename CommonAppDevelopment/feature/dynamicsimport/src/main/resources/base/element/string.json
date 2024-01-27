@@ -96,8 +96,20 @@
       "value": "100%"
     },
     {
+      "name": "height_size_percent_100",
+      "value": "100%"
+    },
+    {
       "name": "width_size_percent_70",
       "value": "70%"
+    },
+    {
+      "name": "dynamics_import_tips_title",
+      "value": "功能描述"
+    },
+    {
+      "name": "dynamics_import_tips_content",
+      "value": "商品列表页面，使用动态import的方式加载Logger打印日志，在主页面EntryView中通过动态import的方式加载该页面。"
     }
   ]
 }

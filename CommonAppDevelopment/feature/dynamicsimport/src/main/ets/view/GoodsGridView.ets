@@ -17,12 +17,14 @@ import { PRODUCT_DATA } from '../model/ProductsData';
 import { Goods } from '../model/GoodsModel';
 import { loggerInfo } from '../utils/LoggerUtil';
 import { DynamicsImportConstants } from '../constants/DynamicsImportConstants';
+import promptAction from '@ohos.promptAction';
 
 // 商品列表页面
 @Component
 export struct GoodsListView {
   build() {
     Grid() {
+      // 通过ForEach将模拟数据添加到Grid中。
       ForEach(PRODUCT_DATA, (item: Goods) => {
         GridItem() {
           // 创建Grid中的单个商品View。
@@ -30,6 +32,11 @@ export struct GoodsListView {
         }.onClick(() => {
           // 点击时打印日志，输出被点击的商品的名字。
           loggerInfo(`${item.title}`);
+          // 弹出Toast，显示动态加载Logger成功。
+          promptAction.showToast({
+            message: DynamicsImportConstants.DYNAMICS_IMPORT_LOGGER_SUCCESS,
+            duration: DynamicsImportConstants.TOAST_DURATION
+          });
         })
       }, (item: Goods) => item.id.toString())
     }
@@ -38,7 +45,13 @@ export struct GoodsListView {
     .columnsTemplate('1fr 1fr')
     .scrollBar(BarState.Off)
     .backgroundColor($r('app.color.product_page_background'))
-    .padding($r('app.integer.product_grid_padding'))
+    .padding({
+      left: $r('app.integer.product_grid_padding_left'),
+      right: $r('app.integer.product_grid_padding_right'),
+      top: $r('app.integer.product_grid_padding_top'),
+      bottom: $r('app.integer.product_grid_padding_bottom')
+    })
+    .layoutWeight(DynamicsImportConstants.PRODUCT_GRID_LAYOUT_WEIGHT)
   }
 
   // 构建商品视图，加载商品的简要信息。

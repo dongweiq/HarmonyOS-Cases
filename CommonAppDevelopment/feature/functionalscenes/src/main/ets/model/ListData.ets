@@ -19,17 +19,17 @@
 export class ListData {
   // 首页列表图片
   imageSrc: ResourceStr;
-  // 图片高度
-  imageHeight: number;
   // 首页列表名称
   name: string;
   // 首页路由跳转信息
   path: string;
+  // 路由传参数据
+  param: string;
 
-  constructor(imageSrc: ResourceStr, name: string, path: string, imageHeight?: number) {
+  constructor(imageSrc: ResourceStr, name: string, path: string, param?: string) {
     this.imageSrc = imageSrc;
     this.name = name;
     this.path = path;
-    this.imageHeight = imageHeight === undefined ? 330 : imageHeight;
+    this.param = param === undefined ? '' : param;
   }
 }
