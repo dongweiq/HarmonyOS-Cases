@@ -71,6 +71,10 @@
     {
       "name": "imageviewer",
       "srcPath": "./feature/imageviewer"
+    },
+    {
+      "name": "dynamicsimport",
+      "srcPath": "./feature/dynamicsimport"
     }
   ]
 }

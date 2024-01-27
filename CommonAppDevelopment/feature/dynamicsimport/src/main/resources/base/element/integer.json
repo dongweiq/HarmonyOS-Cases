@@ -1,0 +1,62 @@
+{
+  "integer": [
+    {
+      "name": "product_grid_padding",
+      "value": 12
+    },{
+      "name": "product_grid_padding_right",
+      "value": 12
+    },{
+      "name": "product_grid_padding_top",
+      "value": 12
+    },{
+      "name": "product_grid_padding_bottom",
+      "value": 12
+    },{
+      "name": "product_title_font_size",
+      "value": 14
+    },{
+      "name": "product_info_font_size",
+      "value": 12
+    },{
+      "name": "product_price_font_size",
+      "value": 16
+    },{
+      "name": "product_label_font_size",
+      "value": 10
+    },{
+      "name": "product_label_padding_left",
+      "value": 6
+    },{
+      "name": "product_label_padding_right",
+      "value": 6
+    },{
+      "name": "product_label_padding_top",
+      "value": 4
+    },{
+      "name": "product_label_padding_bottom",
+      "value": 4
+    },{
+      "name": "product_label_margin_top",
+      "value": 6
+    },{
+      "name": "product_label_border_radius",
+      "value": 6
+    },{
+      "name": "product_item_view_border_radius",
+      "value": 10
+    },{
+      "name": "product_item_view_padding",
+      "value": 12
+    },{
+      "name": "product_title_margin_top",
+      "value": 12
+    },{
+      "name": "product_info_margin_top",
+      "value": 6
+    },{
+      "name": "product_price_margin_top",
+      "value": 6
+    }
+  ]
+}

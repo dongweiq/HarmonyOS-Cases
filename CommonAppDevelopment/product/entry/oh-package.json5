@@ -26,6 +26,8 @@
     // 图片预览器方案
     "@ohos/imageviewer": "file:../../feature/imageviewer",
     // 列表编辑实现方案
-    "@ohos/pendingitems": "file:../../feature/pendingitems"
+    "@ohos/pendingitems": "file:../../feature/pendingitems",
+    // 动态import实现方案
+    "@ohos/dynamicsimport": "file:../../feature/dynamicsimport"
   }
 }
