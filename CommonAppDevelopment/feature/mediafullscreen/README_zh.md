@@ -32,7 +32,7 @@
    ```
 2. 调用[@ohos.window](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md)的[getLastWindow](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#windowgetlastwindow9)方法获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口。
 3. 利用获取到的窗口对象，调用[setWindowSystemBarEnable](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#setwindowsystembarenable9)方法设置窗口是否显示导航栏和状态栏。
-4. 调用窗口对象的[setPreferredOrientation]()方法设置窗口旋转方向以及是否应用重力感应。
+4. 调用窗口对象的[setPreferredOrientation](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#setpreferredorientation9)方法设置窗口旋转方向以及是否应用重力感应。
     ```ts
     window.getLastWindow(getContext(), (err: BusinessError, data) => {
         const errCode = err.code;

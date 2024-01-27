@@ -16,11 +16,19 @@
 import window from '@ohos.window'
 import { BusinessError } from '@ohos.base';
 
-const windowSystemBar: Array<'status' | 'navigation'> = ['navigation', 'status']
+// window.setWindowSystemBarEnable方法的预设值，设置窗口全屏模式时状态栏和导航栏是否显示
+const windowSystemBar: Array<'status' | 'navigation'> = ['navigation', 'status'];
 
+/**
+ * 实现步骤：
+ * 1. 在Video组件内调用onFullscreenChange方法，实现媒体全屏效果。
+ * 2. 调用@ohos.window的getLastWindow方法获取当前应用内最上层的子窗口，若无应用子窗口，则返回应用主窗口。
+ * 3. 利用获取到的窗口对象，调用setWindowSystemBarEnable方法设置窗口是否显示导航栏和状态栏。
+ * 4. 调用窗口对象的setPreferredOrientation方法设置窗口旋转方向以及是否应用重力感应。
+ */
 @Component
 export struct MediaFullscreen {
-  @State isFullscreen: boolean = false;
+  @State isFullscreen: boolean = false; // 判断当前是否为全屏状态
   scroller: Scroller = new Scroller();
   @State videoSrc: Resource = $r('app.media.video');
   @State contentData: Array<number> = new Array(10).fill(0);
@@ -34,9 +42,9 @@ export struct MediaFullscreen {
         if (errCode) {
           return;
         }
-        // TODO 知识点1： 设置窗口是否显示导航栏和状态栏
+        // TODO:知识点1： 设置窗口是否显示导航栏和状态栏
         data.setWindowSystemBarEnable(windowSystemBar);
-        // TODO 知识点2：设置窗口旋转方向以及是否应用重力感应
+        // TODO:知识点2：设置窗口旋转方向以及是否应用重力感应
         data.setPreferredOrientation(window.Orientation.PORTRAIT);
       })
     } else {
