@@ -25,25 +25,22 @@ export struct FunctionDescription {
 
   build() {
     Column() {
-      Column() {
-        Row() {
-          Text(this.title)
-            .fontSize($r('app.string.ohos_id_text_size_headline'))
-            .fontWeight(FontWeight.Medium)
-            .textOverflow({overflow:TextOverflow.Ellipsis})
-            .maxLines(1)
-        }
-        .margin({ bottom: $r('app.string.ohos_id_elements_margin_vertical_m') })
-        Row(){
-          Text(this.content)
-        }
-        .width('100%')
+      Row() {
+        Text(this.title)
+          .fontSize($r('app.string.ohos_id_text_size_headline'))
+          .fontWeight(FontWeight.Medium)
+          .textOverflow({overflow:TextOverflow.Ellipsis})
+          .maxLines(1)
       }
-      .backgroundColor($r('app.color.ohos_id_color_sub_background'))
-      .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
-      .padding($r('app.string.ohos_id_card_padding_start'))
-      .margin($r('app.string.ohos_id_card_margin_start'))
+      .margin({ bottom: $r('app.string.ohos_id_elements_margin_vertical_m') })
+      Row(){
+        Text(this.content)
+      }
+      .width('100%')
     }
     .width('100%')
+    .backgroundColor($r('app.color.ohos_id_color_sub_background'))
+    .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
+    .padding($r('app.string.ohos_id_card_padding_start'))
   }
 }
