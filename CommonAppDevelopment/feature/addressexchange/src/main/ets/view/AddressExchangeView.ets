@@ -14,9 +14,8 @@
  */
 
 import curves from '@ohos.curves';
-import { FunctionDescription } from '@ohos/base';
 
-/*
+/**
  * 实现步骤：
  * 1. 创建左右两边Text组件显示地址。设置初始偏移量以及文本对齐方式。
  * 2. 点击中间的图标时，修改是否切换的状态变量值和通过animateTo修改偏移量的值，来实现动态更新左右两边地址的显示，完成动画效果。
@@ -40,15 +39,9 @@ export struct AddressExchangeView {
   private zeroTranslate: number = 0;
   // 单次旋转180°
   private rotateAddAngle: number = 180;
-  // 描述标题
-  @State title: Resource = $r('app.string.address_exchange_title');
-  // 描述详情
-  @State content: Resource = $r('app.string.address_exchange_detail');
 
   build() {
     Column({ space: this.columnSpace }) {
-      // 描述层
-      FunctionDescription({title: this.title, content: this.content})
       // 地址交换
       Column({ space: this.columnSpace }) {
         Row() {
@@ -116,6 +109,7 @@ export struct AddressExchangeView {
       .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
       .width($r('app.string.content_size'))
       .height($r('app.integer.address_exchange_total_height'))
+      .margin($r('app.string.ohos_id_card_margin_start'))
     }
     .backgroundColor($r('app.color.ohos_id_color_background'))
     .justifyContent(FlexAlign.Start)

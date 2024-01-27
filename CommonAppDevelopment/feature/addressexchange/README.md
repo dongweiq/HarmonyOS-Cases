@@ -7,7 +7,7 @@
 
 ### 效果预览图
 
-![](../../screenshots/device/AddressExchange.gif )
+![](../../screenshots/device/AddressExchange.gif)
 
 **使用说明**
 1. 加载完成后显示地址交换动画页面，点击中间的图标，左右两边地址交换。

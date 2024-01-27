@@ -22,7 +22,7 @@ import advertising from '@ohos.advertising';
 import promptAction from '@ohos.promptAction';
 import { AdvertShowPage } from './AdvertShowPage';
 
-/*
+/**
  * 实现步骤：
  * 1. 创建广告选择页，点击展示广告方法申请广告跟踪权限，使用getOAID方法获取OAID信息。
  * 2. 将OAID信息作为请求参数，获取广告信息。
@@ -101,8 +101,10 @@ export struct LaunchAdvertView {
             logger.info(TAG, `get oaid by callback success. oaid: ${data}`);
             // 请求广告信息
             this.requestAd({
-              // 当前广告位ID为测试专用的广告位ID，App正式发布时需要改为正式的广告位ID。应用上线后，才会下发广告任务，并请求到广告，做展示。
-              // TODO 知识点: 当前广告位ID为测试专用的广告位ID，App正式发布时需要改为正式的广告位ID。正式广告位ID获取方法参考请参考 https://developer.huawei.com/consumer/cn/forum/topic/0204858516053660175
+              /**
+               * 当前广告位ID为测试专用的广告位ID，App正式发布时需要改为正式的广告位ID。应用上线后，才会下发广告任务，并请求到广告，做展示。
+               * TODO 知识点: 当前广告位ID为测试专用的广告位ID，App正式发布时需要改为正式的广告位ID。正式广告位ID获取方法参考请参考 https://developer.huawei.com/consumer/cn/forum/topic/0204858516053660175
+               */
               adId: this.isVideoAdvert ? this.videoAvertID : this.imageAdvertID,
               adType: AdType.SPLASH_AD,
               adCount: this.requestAdvertCount,
@@ -166,31 +168,29 @@ export struct LaunchAdvertView {
         // 描述层
         FunctionDescription({ title: this.title, content: this.content })
 
-        // 视频广告按钮
-        Button($r('app.string.video_button'))
-          .fontColor(Color.White)
-          .margin($r('app.string.ohos_id_card_margin_start'))
-          .height($r('app.integer.launch_advert_button_height'))
-          .width($r('app.string.button_size'))
-          .onClick(() => {
-            // 请求视频广告
-            this.isVideoAdvert = true;
-            // 申请广告跟踪权限，获取广告信息
-            this.requestOAIDTrackingConsentPermissions(this.context);
-          })
+        Column({ space: this.columnSpace }) {
+          // 视频广告按钮
+          Button($r('app.string.video_button'))
+            .width($r('app.string.full_size'))
+            .onClick(() => {
+              // 请求视频广告
+              this.isVideoAdvert = true;
+              // 申请广告跟踪权限，获取广告信息
+              this.requestOAIDTrackingConsentPermissions(this.context);
+            })
 
-        // 图片广告按钮
-        Button($r('app.string.image_button'))
-          .fontColor(Color.White)
-          .margin($r('app.string.ohos_id_card_margin_start'))
-          .height($r('app.integer.launch_advert_button_height'))
-          .width($r('app.string.button_size'))
-          .onClick(() => {
-            // 请求图片广告
-            this.isVideoAdvert = false;
-            // 申请广告跟踪权限，获取广告信息
-            this.requestOAIDTrackingConsentPermissions(this.context);
-          })
+          // 图片广告按钮
+          Button($r('app.string.image_button'))
+            .width($r('app.string.full_size'))
+            .onClick(() => {
+              // 请求图片广告
+              this.isVideoAdvert = false;
+              // 申请广告跟踪权限，获取广告信息
+              this.requestOAIDTrackingConsentPermissions(this.context);
+            })
+        }
+        .padding({ left: $r('app.string.ohos_id_card_margin_start'), right: $r('app.string.ohos_id_card_margin_start')})
+        .width($r('app.string.full_size'))
       }
 
       // 广告展示视图

@@ -18,7 +18,7 @@ import advertising from '@ohos.advertising';
 import promptAction from '@ohos.promptAction';
 import { logger } from '@ohos/base';
 
-/*
+/**
  * 实现步骤：
  * 1. 创建广告展示页，根据获取的广告信息，调用AdComponent广告展示组件，展示广告。
  * 2. 监听广告展示状态，在广告展示结束后，关闭广告展示页。
