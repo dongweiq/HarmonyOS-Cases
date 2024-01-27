@@ -31,5 +31,9 @@
     "@ohos/handtabs": "file:../../feature/handletabs",
     // 应用广告页实现方案
     "@ohos/launchscenes": "file:../../feature/launchscenes"
+    // 各种登录页面方案
+    "@ohos/modalwindow": "file:../../feature/modalwindow",
+    // 滑动页面改变顶部个人信息栏显示效果方案
+    "@ohos/slidetohideanddisplace": "file:../../feature/slidetohideanddisplace"
   }
 }
