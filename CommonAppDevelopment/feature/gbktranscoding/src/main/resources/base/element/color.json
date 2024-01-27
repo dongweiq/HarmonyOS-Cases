@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "title_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "friends_page_divider_color",
+      "value": "#0c000000"
+    },
+    {
+      "name": "search_outline_background_color",
+      "value": "#ffffff"
+    },
+    {
+      "name": "friends_page_background",
+      "value": "#ffffff"
+    }
+  ]
+}

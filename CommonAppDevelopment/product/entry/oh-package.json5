@@ -27,6 +27,8 @@
     "@ohos/imageviewer": "file:../../feature/imageviewer",
     // 列表编辑实现方案
     "@ohos/pendingitems": "file:../../feature/pendingitems",
+    // GBK转码UTF-8方案
+    "@ohos/gbktranscoding": 'file:../../feature/gbktranscoding',
     // 自定义增删tab页签
     "@ohos/handtabs": "file:../../feature/handletabs",
     // 应用广告页实现方案

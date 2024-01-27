@@ -21,6 +21,7 @@ import { BarChartPage } from '@ohos/barchart';
 import { AddressExchangeView } from '@ohos/addressexchange';
 import { ToDoList } from '@ohos/pendingitems';
 import { ImageViewerView } from '@ohos/imageviewer';
+import { FriendsBook } from '@ohos/gbktranscoding';
 import { HandleTabs } from '@ohos/handtabs';
 // 模拟器因没有广告kit，无法正确加载首页。
 import { LaunchAdvertView } from '@ohos/launchscenes';
@@ -38,8 +39,9 @@ struct EntryView {
     new ListData($r("app.media.secondary_linkage"), '列表二级联动', 'secondarylinkage'),
     new ListData($r("app.media.raw_file"), '读取RawFile文件部分内容', 'readRawFile'),
     new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', 'eventTransmissionSolution'),
-    new ListData($r("app.media.image_viewer"), '图片缩放功能实现', 'imageViewer'),
+    new ListData($r("app.media.image_viewer"), '图片预览器', 'imageViewer'),
     new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems'),
+    new ListData($r("app.media.friends_book"), 'GBK转换UTF-8', 'friendsBook'),
     new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs'),
     new ListData($r("app.media.launch_advert"), '应用广告页', 'launchAvert'),
     new ListData($r("app.media.modal_window"), '全屏登录页面', 'modalWindow'),
@@ -74,6 +76,9 @@ struct EntryView {
         ImageViewerView()
       } else if (name === 'pendingitems') {
         ToDoList()
+      } else if (name === 'friendsBook') {
+        // GBK转UTF-8模块
+        FriendsBook()
       } else if (name === 'handletabs') {
         // 增删tab页签
         HandleTabs()
