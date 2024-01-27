@@ -24,6 +24,8 @@ import { ImageViewerView } from '@ohos/imageviewer';
 import { HandleTabs } from '@ohos/handtabs';
 // 模拟器因没有广告kit，无法正确加载首页。
 import { LaunchAdvertView } from '@ohos/launchscenes';
+import { ModalWindow } from '@ohos/modalwindow/Index';
+import { SlideToHideAndDisplace } from '@ohos/slidetohideanddisplace/Index';
 import { MediaFullscreen } from '@ohos/mediafullscreen';
 
 @Entry
@@ -41,8 +43,9 @@ struct EntryView {
     new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems'),
     new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs'),
     new ListData($r("app.media.launch_advert"), '应用广告页', 'launchAvert'),
+    new ListData($r("app.media.modal_window"), '全屏登录页面', 'modalWindow'),
+    new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', 'slideToHideAndDisplace'),
     new ListData($r("app.media.media_fullscreen"), '媒体全屏', 'mediaFullscreen')
-
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -79,6 +82,12 @@ struct EntryView {
       } else if (name === 'launchAvert') {
         // 应用广告页模块(模拟器因没有广告kit，无法正确加载首页。)
         LaunchAdvertView()
+      } else if (name === 'modalWindow') {
+        // 全屏登录页面
+        ModalWindow()
+      } else if (name === 'slideToHideAndDisplace') {
+        // 滑动页面改变顶部个人信息栏显示效果
+        SlideToHideAndDisplace()
       } else if (name === 'mediaFullscreen') {
         // 媒体全屏模块
         MediaFullscreen()

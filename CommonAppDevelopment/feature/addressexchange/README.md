@@ -13,8 +13,56 @@
 1. 加载完成后显示地址交换动画页面，点击中间的图标，左右两边地址交换。
 
 ### 实现思路
-1. 创建左右两边Text组件显示地址。设置初始偏移量以及文本对齐方式。
-2. 点击中间的图标时，修改是否切换的状态变量值和通过animateTo修改偏移量的值，来实现动态更新左右两边地址的显示，完成动画效果。
+1. 创建左右两边Text组件显示地址。设置初始偏移量以及文本对齐方式。源码参考[AddressExchangeView.ets](./src/main/ets/view/AddressExchangeView.ets)。
+
+```ts
+Row() {
+  Text($r('app.string.address_exchange_address_left'))
+    .translate({ x: this.translateX })
+    .width($r('app.string.address_exchange_address_width'))
+    .textAlign(this.swap ? TextAlign.End : TextAlign.Start)
+  ...
+  Text($r('app.string.address_exchange_address_right'))
+    .translate({ x: -this.translateX })
+    .width($r('app.string.address_exchange_address_width'))
+    .textAlign(this.swap ? TextAlign.Start : TextAlign.End)
+  ...
+}
+```
+
+2. 点击中间的图标时，修改是否切换的状态变量值和通过animateTo修改偏移量的值，来实现动态更新左右两边地址的显示，完成动画效果。源码参考[AddressExchangeView.ets](./src/main/ets/view/AddressExchangeView.ets)。
+
+```ts
+Stack() {
+  Image($r('app.media.address_exchange_airplane'))
+    .size({
+        height: $r('app.integer.address_exchange_airplane_size'),
+        width: $r('app.integer.address_exchange_airplane_size')
+    })
+  Image($r('app.media.address_exchange_recycle'))
+    .size({
+        height: $r('app.integer.address_exchange_recycle_size'),
+        width: $r('app.integer.address_exchange_recycle_size')
+    })
+    .rotate({ angle: this.rotateAngle })
+    .animation({
+        curve: Curve.EaseOut,
+        playMode: PlayMode.Normal,
+    })
+}
+  .width($r('app.string.address_exchange_image_width'))
+  .onClick(() => {
+    this.swap = !this.swap
+    animateTo({ curve: curves.springMotion() }, () => {
+        if (this.swap) {
+            this.translateX = this.distance;
+        } else {
+            this.translateX = this.zeroTranslate;
+        }
+    })
+    this.rotateAngle += this.rotateAddAngle;
+  })
+```
 
 ### 工程结构&模块类型
 

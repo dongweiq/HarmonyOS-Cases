@@ -15,7 +15,6 @@
 
 import window from '@ohos.window'
 import { BusinessError } from '@ohos.base';
-import { BasicDataSource } from './DataType';
 
 const windowSystemBar: Array<'status' | 'navigation'> = ['navigation', 'status']
 
@@ -24,7 +23,7 @@ export struct MediaFullscreen {
   @State isFullscreen: boolean = false;
   scroller: Scroller = new Scroller();
   @State videoSrc: Resource = $r('app.media.video');
-  @State contentData: Array<BasicDataSource> = new Array(10).fill(0);
+  @State contentData: Array<number> = new Array(10).fill(0);
   controller: VideoController = new VideoController();
 
   windowChange(isFullscreen: boolean) {
@@ -60,7 +59,7 @@ export struct MediaFullscreen {
 
   build() {
     List({ space: 12, scroller: this.scroller }) {
-      ForEach(this.contentData, (item: number, index: number) => {
+      ForEach(this.contentData, () => {
         ListItem() {
           Column() {
             Stack() {
@@ -71,7 +70,7 @@ export struct MediaFullscreen {
                 .width($r('app.string.video_width'))
                 .height($r('app.integer.video_height'))
                 .objectFit(ImageFit.Contain)
-                .onFullscreenChange((event) => {
+                .onFullscreenChange(() => {
                   // 横竖屏切换
                   this.windowChange(this.isFullscreen);
                 })
@@ -81,6 +80,8 @@ export struct MediaFullscreen {
         .width($r('app.string.video_width'))
       })
     }
+    .width($r('app.string.video_width'))
+    .height($r('app.string.video_width'))
     .enableScrollInteraction(!this.isFullscreen)
     .scrollBar(BarState.Off)
   }
