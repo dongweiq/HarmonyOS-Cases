@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "color_transparent_aa",
+      "value": "#aaffffff"
+    },
+    {
+      "name": "color_transparent_55",
+      "value": "#55ffffff"
+    },
+    {
+      "name": "member1",
+      "value": "#ffffdd00"
+    },
+    {
+      "name": "member2",
+      "value": "#ffcd9900"
+    },
+    {
+      "name": "member3",
+      "value": "#ffffd247"
+    },
+    {
+      "name": "shopping",
+      "value": "#ffa4750d"
+    }
+  ]
+}

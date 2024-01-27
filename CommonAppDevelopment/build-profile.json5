@@ -79,6 +79,14 @@
     {
       "name": "launchscenes",
       "srcPath": "./feature/launchscenes"
+    },
+    {
+      "name": "modalwindow",
+      "srcPath": "./feature/modalwindow"
+    },
+    {
+      "name": "slidetohideanddisplace",
+      "srcPath": "./feature/slidetohideanddisplace"
     }
   ]
 }
