@@ -14,9 +14,55 @@
 
 ### 实现思路
 
-1. 创建WaterFlowDataSource类，实现IDataSource接口的对象，用于WaterFlow和LazyForEach加载数据。
-2. 通过@Builder自定义瀑布流列表项组件，作为FlowItem的子组件。
-3. 结合父组件传递的数据以及WaterFlow和LazyForEach循环构造出整个列表。
+1. 创建WaterFlowDataSource类，实现IDataSource接口的对象，用于WaterFlow和LazyForEach加载数据。源码参考[WaterFlowDataSource.ets](./feature/functionalscenes/src/main/ets/model/WaterFlowDataSource.ets)
+```ts
+export class WaterFlowDataSource implements IDataSource {
+  private dataArray: ListData[] = [];
+  private listeners: DataChangeListener[] = [];
+  
+  constructor(dataArray: ListData[]) {
+    for (let i = 0; i < dataArray.length; i++) {
+      this.dataArray.push(dataArray[i]);
+    }
+  }
+  
+  public getData(index: number): ListData {
+    return this.dataArray[index];
+  }  
+  
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded();
+    })
+  }
+  
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index);
+    })
+  }
+  ...
+  ```
+2. 通过@Builder自定义瀑布流列表项组件，作为FlowItem的子组件。源码参考[FunctionalScenes.ets](./feature/functionalscenes/src/main/ets/FunctionalScenes.ets)
+```ts
+  @Builder
+  MethodPoints(listData: ListData) {
+    Column() {
+      Image(listData.imageSrc)
+      ...
+    }
+  }
+  ```
+3. 结合父组件传递的数据以及WaterFlow和LazyForEach循环构造出整个列表。源码参考[FunctionalScenes.ets](./feature/functionalscenes/src/main/ets/FunctionalScenes.ets)
+```ts
+WaterFlow() {
+  LazyForEach(this.dataSource, (item: ListData) => {
+    FlowItem() {
+      this.MethodPoints(item)
+    }
+  })
+}
+  ```
 
 ### 高性能知识点
 
