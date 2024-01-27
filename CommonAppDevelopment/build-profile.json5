@@ -73,6 +73,10 @@
       "srcPath": "./feature/imageviewer"
     },
     {
+      "name": "gbktranscoding",
+      "srcPath": "./feature/gbktranscoding"
+    },
+    {
       "name": "handletabs",
       "srcPath": "./feature/handletabs"
     },

@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "GBKTranscoding"
+    },
+    {
+      "name": "contacts",
+      "value": "通讯录"
+    },
+    {
+      "name": "harmony_hei_ti",
+      "value": "HarmonyHeiTi"
+    },
+    {
+      "name": "layout_100",
+      "value": "100%"
+    },
+    {
+      "name": "search_place_holder",
+      "value": "搜索..."
+    },
+    {
+      "name": "search_inline_border_color",
+      "value": "rgba(24,36,49,0.20)"
+    },
+    {
+      "name": "friends_page_height",
+      "value": "82%"
+    },
+    {
+      "name": "friends_pages_tips",
+      "value": "功能描述：使用Axios获取编码格式为GBK的数据时，使用TextDecoder解码成中文"
+    }
+  ]
+}
