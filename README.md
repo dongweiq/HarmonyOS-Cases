@@ -95,11 +95,11 @@ TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不�
 
 #### 图片预览方案
 
-本模块基于Image组件实现了简单的图片预览功能，支持双指捏合等效果。图片预览方案可参考[详细说明文档](./CommonAppDevelopment/feature/imageviewer/README.md)。
+本模块基于Image组件实现了简单的图片预览功能，支持双指捏合等效果。图片预览方案可参考此[详细说明文档](./CommonAppDevelopment/feature/imageviewer/README.md)。
 
 #### 应用广告页实现方案
 
-在大部分应用软件中，都需要开屏展示广告内容，用户任意时刻可点击跳转进入首页。应用广告页实现方案可以参考此[详细说明文档](./feature/launchscenes/README.md)。
+在大部分应用软件中，都需要开屏展示广告内容，用户任意时刻可点击跳转查看广告详情，或点击跳过进入首页。应用广告页实现方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/launchscenes/README.md)。
 
 ### 公共能力层
 
