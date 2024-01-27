@@ -22,21 +22,30 @@ import { AddressExchangeView } from '@ohos/addressexchange';
 import { ToDoList } from '@ohos/pendingitems';
 import { ImageViewerView } from '@ohos/imageviewer';
 import { FriendsBook } from '@ohos/gbktranscoding';
+import { HandleTabs } from '@ohos/handtabs';
+// 模拟器因没有广告kit，无法正确加载首页。
+import { LaunchAdvertView } from '@ohos/launchscenes';
+import { ModalWindow } from '@ohos/modalwindow/Index';
+import { SlideToHideAndDisplace } from '@ohos/slidetohideanddisplace/Index';
 
 @Entry
 @Component
 struct EntryView {
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: ListData[] = [
-    new ListData($r("app.media.bar_chart"), 'MpChat柱状图', 'barChartSolution'),
-    new ListData($r("app.media.address_exchange"), '地址交换动画', 'addressExchange', 95),
+    new ListData($r("app.media.bar_chart"), 'MpChart图表实现', 'barChartSolution'),
+    new ListData($r("app.media.address_exchange"), '地址交换动画', 'addressExchange'),
     new ListData($r("app.media.tab_bar"), '自定义TabBar页签', 'customTabBar'),
     new ListData($r("app.media.secondary_linkage"), '列表二级联动', 'secondarylinkage'),
     new ListData($r("app.media.raw_file"), '读取RawFile文件部分内容', 'readRawFile'),
     new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', 'eventTransmissionSolution'),
     new ListData($r("app.media.image_viewer"), '图片预览器', 'imageViewer'),
     new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems'),
-    new ListData($r("app.media.friends_book"), 'GBK转换UTF-8', 'friendsBook')
+    new ListData($r("app.media.friends_book"), 'GBK转换UTF-8', 'friendsBook'),
+    new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs'),
+    new ListData($r("app.media.launch_advert"), '应用广告页', 'launchAvert'),
+    new ListData($r("app.media.modal_window"), '全屏登录页面', 'modalWindow'),
+    new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', 'slideToHideAndDisplace')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -61,7 +70,7 @@ struct EntryView {
         // 地址切换动画模块
         AddressExchangeView()
       } else if (name === 'barChartSolution') {
-        // 柱状图模块
+        // MpChart图表实现模块
         BarChartPage()
       } else if (name === 'imageViewer') {
         ImageViewerView()
@@ -70,6 +79,18 @@ struct EntryView {
       } else if (name === 'friendsBook') {
         // GBK转UTF-8模块
         FriendsBook()
+      } else if (name === 'handletabs') {
+        // 增删tab页签
+        HandleTabs()
+      } else if (name === 'launchAvert') {
+        // 应用广告页模块(模拟器因没有广告kit，无法正确加载首页。)
+        LaunchAdvertView()
+      } else if (name === 'modalWindow') {
+        // 全屏登录页面
+        ModalWindow()
+      } else if (name === 'slideToHideAndDisplace') {
+        // 滑动页面改变顶部个人信息栏显示效果
+        SlideToHideAndDisplace()
       }
     }
     .hideTitleBar(true)

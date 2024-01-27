@@ -1,14 +1,6 @@
 {
   "integer": [
     {
-      "name": "address_exchange_title_top_space",
-      "value": 30
-    },
-    {
-      "name": "address_exchange_address_font_size",
-      "value": 24
-    },
-    {
       "name": "address_exchange_airplane_size",
       "value": 16
     },
@@ -19,6 +11,18 @@
     {
       "name": "address_exchange_content_height",
       "value": 60
+    },
+    {
+      "name": "address_exchange_date_height",
+      "value": 30
+    },
+    {
+      "name": "address_exchange_button_height",
+      "value": 40
+    },
+    {
+      "name": "address_exchange_total_height",
+      "value": 178
     }
   ]
 }

@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "launch_title",
+      "value": "应用开屏广告"
+    },
+    {
+      "name": "launch_detail",
+      "value": "点击按钮加载广告信息"
+    },
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "half_screen_advert_size",
+      "value": "87%"
+    },
+    {
+      "name": "button_size",
+      "value": "94%"
+    },
+    {
+      "name": "permission_internet",
+      "value": "需要使用网络权限"
+    },
+    {
+      "name": "permission_advertisement",
+      "value": "需要使用广告跟踪权限"
+    },
+    {
+      "name": "video_button",
+      "value": "加载视频广告"
+    },
+    {
+      "name": "image_button",
+      "value": "加载图片广告"
+    },
+    {
+      "name": "half_screen_advert_detail",
+      "value": "此处是非全屏的广告底部展示的信息，可展示媒体自定义icon、应用名称、版权信息"
+    },
+    {
+      "name": "advert_close",
+      "value": "广告关闭"
+    }
+  ]
+}

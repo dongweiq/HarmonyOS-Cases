@@ -19,7 +19,7 @@
     "@ohos/custom-tabbar": "file:../../feature/customtabbar",
     // 二级联动方案
     "@ohos/secondarylinkage": "file:../../feature/secondarylinkage",
-    // 柱状图方案
+    // MpChart图表实现案例
     "@ohos/barchart": "file:../../feature/barchart",
     // 地址交换方案
     "@ohos/addressexchange": "file:../../feature/addressexchange",
@@ -28,6 +28,14 @@
     // 列表编辑实现方案
     "@ohos/pendingitems": "file:../../feature/pendingitems",
     // GBK转码UTF-8方案
-    "@ohos/gbktranscoding": 'file:../../feature/gbktranscoding'
+    "@ohos/gbktranscoding": 'file:../../feature/gbktranscoding',
+    // 自定义增删tab页签
+    "@ohos/handtabs": "file:../../feature/handletabs",
+    // 应用广告页实现方案
+    "@ohos/launchscenes": "file:../../feature/launchscenes"
+    // 各种登录页面方案
+    "@ohos/modalwindow": "file:../../feature/modalwindow",
+    // 滑动页面改变顶部个人信息栏显示效果方案
+    "@ohos/slidetohideanddisplace": "file:../../feature/slidetohideanddisplace"
   }
 }
