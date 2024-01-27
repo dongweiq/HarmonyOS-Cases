@@ -30,6 +30,7 @@ import { SlideToHideAndDisplace } from '@ohos/slidetohideanddisplace/Index';
 import { NavigationParameterTransferView, UserBookingInfo } from '@ohos/NavigationParameterTransferView';
 import { AkiView } from '@ohos/akiusepractice';
 import { VariableWatchView } from '@ohos/variablewatch';
+import { DynamicsImportView } from '../view/DynamicsImportView';
 
 @Entry
 @Component
@@ -52,7 +53,8 @@ struct EntryView {
     new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', 'slideToHideAndDisplace', 2, false, '25%'),
     new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', 'NavigationParameterTransfer', 2, false, '30%', this.strUserBooking),
     new ListData($r('app.media.aki_use_practice'), 'AKI使用实践', 'akiUsePractice', 2, false, '25%' ),
-    new ListData($r('app.media.variable_watch'), '多层嵌套类监听', 'variableWatch', 2, false, '25%')
+    new ListData($r('app.media.variable_watch'), '多层嵌套类监听', 'variableWatch', 2, false, '25%'),
+    new ListData($r("app.media.icon"), '动态import', 'dynamicsimport',2,false,'30%')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -106,6 +108,9 @@ struct EntryView {
       } else if (name === 'variableWatch') {
         // 多层嵌套类监听方案
         VariableWatchView()
+      } else if (name === 'dynamicsimport') {
+        // 动态import页面
+        DynamicsImportView();
       }
     }
     .hideTitleBar(true)

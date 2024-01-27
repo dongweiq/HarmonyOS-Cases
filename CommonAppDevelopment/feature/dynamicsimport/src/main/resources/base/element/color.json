@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "product_label_background",
+      "value": "#E92F4F"
+    },
+    {
+      "name": "product_label_font_color",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "product_price_font_color",
+      "value": "#E92F4F"
+    },
+    {
+      "name": "product_page_background",
+      "value": "#EEEEEE"
+    },
+    {
+      "name": "product_item_view_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "product_info_font_color",
+      "value": "#858184"
+    }
+  ]
+}
