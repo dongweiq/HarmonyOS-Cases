@@ -91,10 +91,6 @@
     {
       "name": "slidetohideanddisplace",
       "srcPath": "./feature/slidetohideanddisplace"
-    },
-    {
-      "name": "mediafullscreen",
-      "srcPath": "./feature/mediafullscreen"
     }
   ]
 }
