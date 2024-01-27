@@ -1,0 +1,96 @@
+{
+  "string": [
+    {
+      "name": "phone_number",
+      "value": "18888888888"
+    },
+    {
+      "name": "choose_identity",
+      "value": "选择身份"
+    },
+    {
+      "name": "satisfaction",
+      "value": "满意度调查"
+    },
+    {
+      "name": "back",
+      "value": "返回"
+    },
+    {
+      "name": "description_slide",
+      "value": "上滑页面，用户头像逐渐缩小并移动到返回文字的后方，原本展示的手机号/选择身份/满意度调查的文本渐隐，顶部手机号文本渐显；下滑页面，用户头像逐渐放大并向下移动，顶部手机号文本渐隐，下方手机号/选择身份/满意度调查的文本渐显"
+    },
+    {
+      "name": "icon_and_description_11",
+      "value": "待支付"
+    },
+    {
+      "name": "icon_and_description_12",
+      "value": "待收货"
+    },
+    {
+      "name": "icon_and_description_13",
+      "value": "待评价"
+    },
+    {
+      "name": "icon_and_description_14",
+      "value": "更多"
+    },
+    {
+      "name": "icon_and_description_21",
+      "value": "粉丝"
+    },
+    {
+      "name": "icon_and_description_22",
+      "value": "收藏"
+    },
+    {
+      "name": "icon_and_description_23",
+      "value": "关注"
+    },
+    {
+      "name": "icon_and_description_24",
+      "value": "历史"
+    },
+    {
+      "name": "icon_and_description_31",
+      "value": "主会场"
+    },
+    {
+      "name": "icon_and_description_32",
+      "value": "抢神券"
+    },
+    {
+      "name": "icon_and_description_33",
+      "value": "直播主会场"
+    },
+    {
+      "name": "icon_and_description_34",
+      "value": "一亿补贴"
+    },
+    {
+      "name": "size_ninety_percent",
+      "value": "90%"
+    },
+    {
+      "name": "size_full",
+      "value": "100%"
+    },
+    {
+      "name": "size_one_hundred_and_thirty",
+      "value": "120%"
+    },
+    {
+      "name": "member",
+      "value": "开通会员"
+    },
+    {
+      "name": "get_off_your_purchases",
+      "value": "购物享首单立减"
+    },
+    {
+      "name": "in_the_end",
+      "value": "到底了~"
+    }
+  ]
+}

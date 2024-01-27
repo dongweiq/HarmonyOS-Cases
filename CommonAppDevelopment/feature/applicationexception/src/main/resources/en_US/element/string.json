@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "crash_event",
+      "value": "Click to build application crash event"
+    },
+    {
+      "name": "freeze_event",
+      "value": "Click to build application stuck event"
+    },
+    {
+      "name": "system_kill_event",
+      "value": "Click to build the system to investigate and kill events"
+    },
+    {
+      "name": "application_fault_title",
+      "value": "Application fault message"
+    },
+    {
+      "name": "application_fault_description",
+      "value": "Click to build an abnormal event. After 3 seconds, the system abnormal event will be triggered. You need to restart the application and enter this page to obtain the reason for the last abnormal exit"
+    },
+    {
+      "name": "crash_event_message",
+      "value": "After 3 seconds, the system crash event will be triggered, and the application needs to be restarted to enter this page to obtain the last login exception information"
+    },
+    {
+      "name": "freeze_event_message",
+      "value": "After 3 seconds, if the system freezes, the application needs to be restarted and this page should be accessed to obtain the last login exception information"
+    },
+    {
+      "name": "system_kill_event_message",
+      "value": "The system has not supplemented the killing system enumeration type and it is difficult to build a system killing exception scenario. This scenario is not currently provided"
+    },
+    {
+      "name": "no_message",
+      "value": "no_message"
+    }
+  ]
+}

@@ -19,7 +19,7 @@ import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 // 基础公共工具类base，主要包括日志打印和主页列表数据类型以及控制器
 import { logger } from '@ohos/base';
-import { BusinessError } from '@ohos.base';
+import { eventSubscription } from '@ohos/applicationexception';
 import { Configuration } from '@ohos.app.ability.Configuration';
 
 const TAG = 'EntryAbility'
@@ -27,6 +27,12 @@ const TAG = 'EntryAbility'
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     logger.info(TAG, '%{public}s', 'Ability onCreate');
+    // TODO：需求：待系统查杀类型需求开发，补充查杀系统枚举类型
+    if(launchParam.lastExitReason === 7 ){}
+    // 绑定上下文信息
+    AppStorage.setOrCreate('context', this.context);
+    // 订阅应用事件
+    eventSubscription();
   }
 
   onDestroy(): void {
@@ -38,7 +44,7 @@ export default class EntryAbility extends UIAbility {
     logger.info(TAG, '%{public}s', 'Ability onWindowStageCreate');
 
     // 加载应用入口页面
-    windowStage.loadContent('pages/EntryView', (err:BusinessError, data) => {
+    windowStage.loadContent('pages/EntryView', (err, data) => {
       if (err.code) {
         logger.info(TAG, 'Failed to load the content. Cause:', JSON.stringify(err));
         return;
