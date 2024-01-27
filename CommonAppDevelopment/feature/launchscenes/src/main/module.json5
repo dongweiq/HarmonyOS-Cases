@@ -13,4 +13,24 @@
  * limitations under the License.
  */
 
-export { AddressExchangeView } from './src/main/ets/view/AddressExchangeView';
+{
+  "module": {
+    "name": "launchscenes",
+    "type": "har",
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.APP_TRACKING_CONSENT",
+        "reason": "$string:permission_advertisement"
+      },
+      {
+        "name": "ohos.permission.INTERNET",
+        "reason": "$string:permission_internet"
+      }
+    ],
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1"
+    ]
+  }
+}

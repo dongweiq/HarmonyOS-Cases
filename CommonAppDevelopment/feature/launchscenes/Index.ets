@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export { AddressExchangeView } from './src/main/ets/view/AddressExchangeView';
+export { LaunchAdvertView } from './src/main/ets/view/LaunchAdvertView';

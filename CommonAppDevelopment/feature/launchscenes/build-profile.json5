@@ -13,4 +13,31 @@
  * limitations under the License.
  */
 
-export { AddressExchangeView } from './src/main/ets/view/AddressExchangeView';
+{
+  "apiType": "stageMode",
+  "buildOption": {
+  },
+  "buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": true,
+            "files": [
+              "./obfuscation-rules.txt"
+            ]
+          },
+          "consumerFiles": [
+            "./consumer-rules.txt"
+          ]
+        }
+      },
+    },
+  ],
+  "targets": [
+    {
+      "name": "default"
+    }
+  ]
+}
