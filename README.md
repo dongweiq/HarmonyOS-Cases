@@ -26,7 +26,7 @@
    |   |   |---log                    // 公共能力层-日志打印
    |---feature
    |   |---addressexchange            // 基础特性层-地址交换动画方案
-   |   |---barchart                   // 基础特性层-柱状图方案
+   |   |---barchart                   // 基础特性层-MpChart图表实现案例
    |   |---customtabbar               // 基础特性层-自定义TabBar页签 
    |   |---eventpropagation           // 基础特性层-阻塞事件冒泡方案   
    |   |---functionalscenes           // 基础特性层-主页瀑布流实现 
@@ -81,9 +81,9 @@ TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不�
 
 列表的编辑模式用途十分广泛，常见于待办事项管理、文件管理、备忘录的记录管理等应用场景。列表编辑实现方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/pendingitems/README_zh.md)。
 
-#### 柱状图方案
+#### MpChart图表实现案例
 
-使用三方库mpchart可以实现柱状图UI效果。柱状图方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/barchart/README.md)。
+MpChart是一个包含各种类型图表的图表库，方便开发者快速实现图表UI。使用MpChart可以实现柱状图UI效果，具体方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/barchart/README.md)。
 
 #### 读取Rawfile中文件部分内容方案
 
