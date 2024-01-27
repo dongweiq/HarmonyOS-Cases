@@ -13,3 +13,4 @@
 /hvigor
 /build-profile.json5
 **/BuildProfile.ets
+/dependencies

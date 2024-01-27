@@ -79,6 +79,10 @@
     {
       "name": "launchscenes",
       "srcPath": "./feature/launchscenes"
+    },
+    {
+      "name": "mediafullscreen",
+      "srcPath": "./feature/mediafullscreen"
     }
   ]
 }

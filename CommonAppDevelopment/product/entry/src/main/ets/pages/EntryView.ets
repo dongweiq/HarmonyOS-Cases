@@ -24,6 +24,7 @@ import { ImageViewerView } from '@ohos/imageviewer';
 import { HandleTabs } from '@ohos/handtabs';
 // 模拟器因没有广告kit，无法正确加载首页。
 import { LaunchAdvertView } from '@ohos/launchscenes';
+import { MediaFullscreen } from '@ohos/mediafullscreen';
 
 @Entry
 @Component
@@ -39,7 +40,9 @@ struct EntryView {
     new ListData($r("app.media.image_viewer"), '图片缩放功能实现', 'imageViewer'),
     new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems'),
     new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs'),
-    new ListData($r("app.media.launch_advert"), '应用广告页', 'launchAvert')
+    new ListData($r("app.media.launch_advert"), '应用广告页', 'launchAvert'),
+    new ListData($r("app.media.media_fullscreen"), '媒体全屏', 'mediaFullscreen')
+
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -76,6 +79,9 @@ struct EntryView {
       } else if (name === 'launchAvert') {
         // 应用广告页模块(模拟器因没有广告kit，无法正确加载首页。)
         LaunchAdvertView()
+      } else if (name === 'mediaFullscreen') {
+        // 媒体全屏模块
+        MediaFullscreen()
       }
     }
     .hideTitleBar(true)
@@ -89,6 +95,7 @@ struct EntryView {
       }
       .hideTitleBar(true)
       .navDestination(this.PageMap)
+      .mode(NavigationMode.Stack)
     }
     .height('100%')
     .backgroundColor($r('app.color.main_background_color'))
