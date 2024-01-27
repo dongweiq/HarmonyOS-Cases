@@ -1,4 +1,4 @@
-# 应用通用开发范例App
+# HarmonyOS NEXT应用开发案例集
 
 ## 概述
 
