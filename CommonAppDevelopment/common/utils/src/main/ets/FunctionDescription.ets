@@ -20,17 +20,24 @@
  */
 @Component
 export struct FunctionDescription {
-  @Link title: Resource;
-  @Link content: Resource;
+  private title: ResourceStr = '';
+  private content: ResourceStr = '';
 
   build() {
     Column() {
       Column() {
-        Text(this.title)
-          .fontSize($r('app.string.ohos_id_text_size_headline'))
-          .fontWeight(FontWeight.Medium)
-          .margin({ bottom: $r('app.string.ohos_id_elements_margin_vertical_m') })
-        Text(this.content)
+        Row() {
+          Text(this.title)
+            .fontSize($r('app.string.ohos_id_text_size_headline'))
+            .fontWeight(FontWeight.Medium)
+            .textOverflow({overflow:TextOverflow.Ellipsis})
+            .maxLines(1)
+        }
+        .margin({ bottom: $r('app.string.ohos_id_elements_margin_vertical_m') })
+        Row(){
+          Text(this.content)
+        }
+        .width('100%')
       }
       .backgroundColor($r('app.color.ohos_id_color_sub_background'))
       .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
