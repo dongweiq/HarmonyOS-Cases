@@ -91,6 +91,10 @@
     {
       "name": "slidetohideanddisplace",
       "srcPath": "./feature/slidetohideanddisplace"
+    },
+    {
+      "name": "NavigationParameterTransferView",
+      "srcPath": "./feature/navigationparametertransfer"
     }
   ]
 }

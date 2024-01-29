@@ -36,6 +36,8 @@
     // 各种登录页面方案
     "@ohos/modalwindow": "file:../../feature/modalwindow",
     // 滑动页面改变顶部个人信息栏显示效果方案
-    "@ohos/slidetohideanddisplace": "file:../../feature/slidetohideanddisplace"
+    "@ohos/slidetohideanddisplace": "file:../../feature/slidetohideanddisplace",
+    // Navigation页面跳转对象传递案例
+    "@ohos/NavigationParameterTransferView": "file:../../feature/navigationparametertransfer"
   }
 }
