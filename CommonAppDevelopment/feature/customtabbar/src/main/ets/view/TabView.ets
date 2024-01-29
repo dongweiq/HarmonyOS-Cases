@@ -30,7 +30,7 @@ export struct TabView {
       Tabs({ index: this.selectedIndex, barPosition: BarPosition.End, controller: this.controller }) {
         // 首页模块
         TabContent() {
-          Text($r('app.string.scene_description'))
+          Text($r('app.string.home'))
             .fontSize($r('app.integer.title_font_size'))
             .padding(20)
         }

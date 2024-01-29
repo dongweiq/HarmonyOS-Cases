@@ -1,0 +1,44 @@
+{
+  "color": [
+    {
+      "name": "main_bkg",
+      "value": "#ffa7c8"
+    },
+    {
+      "name": "other_login_bkg",
+      "value": "#ffededed"
+    },
+    {
+      "name": "grey_3",
+      "value": "#333333"
+    },
+    {
+      "name": "transparent_f",
+      "value": "#00ffffff"
+    },
+    {
+      "name": "transparent_7",
+      "value": "#00777777"
+    },
+    {
+      "name": "grey_e",
+      "value": "#eeeeee"
+    },
+    {
+      "name": "grey_6",
+      "value": "#666666"
+    },
+    {
+      "name": "grey_9",
+      "value": "#999999"
+    },
+    {
+      "name": "grey_2",
+      "value": "#222222"
+    },
+    {
+      "name": "grey_7",
+      "value": "#777777"
+    }
+  ]
+}

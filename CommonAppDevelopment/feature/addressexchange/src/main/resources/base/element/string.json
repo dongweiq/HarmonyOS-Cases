@@ -1,12 +1,12 @@
 {
   "string": [
     {
-      "name": "page_show",
-      "value": "page from package"
-    },
-    {
       "name": "full_size",
       "value": "100%"
+    },
+    {
+      "name": "content_size",
+      "value": "94%"
     },
     {
       "name": "address_exchange_title",
@@ -15,6 +15,18 @@
     {
       "name": "address_exchange_detail",
       "value": "点击中间图片，进行地址交换"
+    },
+    {
+      "name": "address_date",
+      "value": "2月8日"
+    },
+    {
+      "name": "address_week",
+      "value": "周四"
+    },
+    {
+      "name": "address_search_ticket",
+      "value": "查询车票"
     },
     {
       "name": "address_exchange_address_left",

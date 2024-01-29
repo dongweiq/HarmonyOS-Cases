@@ -13,4 +13,5 @@
  * limitations under the License.
  */
 
-export { logger } from './src/main/ets/Logger'
+export { logger } from './src/main/ets/log/Logger';
+export { FunctionDescription } from './src/main/ets/component/FunctionDescription';

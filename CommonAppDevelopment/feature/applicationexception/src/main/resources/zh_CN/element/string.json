@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "crash_event",
+      "value": "构建应用崩溃事件"
+    },
+    {
+      "name": "freeze_event",
+      "value": "构建应用卡死事件"
+    },
+    {
+      "name": "system_kill_event",
+      "value": "构建系统查杀事件"
+    },
+    {
+      "name": "application_fault_title",
+      "value": "应用异常信息获取"
+    },
+    {
+      "name": "application_fault_description",
+      "value": "点击构建异常事件，3s之后触发系统异常事件，需要重新启动应用并进入本页面获取上次异常退出原因"
+    },
+    {
+      "name": "crash_event_message",
+      "value": "3s之后触发系统崩溃事件，需要重新启动应用并进入本页面获取上次异常退出原因"
+    },
+    {
+      "name": "freeze_event_message",
+      "value": "3s之后触发系统卡死事件，需要重新启动应用并进入本页面获取上次异常退出原因"
+    },
+    {
+      "name": "system_kill_event_message",
+      "value": "系统没有补充查杀系统枚举类型并且构建系统查杀异常场景很困难，暂时不提供此场景"
+    },
+    {
+      "name": "no_message",
+      "value": "暂无信息"
+    }
+  ]
+}

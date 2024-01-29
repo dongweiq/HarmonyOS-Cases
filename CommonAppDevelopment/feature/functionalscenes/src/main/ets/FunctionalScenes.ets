@@ -47,7 +47,7 @@ export struct FunctionalScenes {
     .margin({ left: 10, right: 10, top: 10 })
     .alignItems(HorizontalAlign.Center)
     .onClick(() => {
-      this.pageStack.pushPath({ name: listData.path });
+      this.pageStack.pushPath({ name: listData.path, param: listData.param });
     })
   }
 
