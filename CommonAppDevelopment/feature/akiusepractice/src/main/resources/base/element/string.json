@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "page_button",
+      "value": "AKI跨线程调用JS函数"
+    },
+    {
+      "name": "common_button_width",
+      "value": "80%"
+    },
+    {
+      "name": "common_size",
+      "value": "100%"
+    },
+    {
+      "name": "common_title",
+      "value": "AKI使用实践"
+    },
+    {
+      "name": "common_content",
+      "value": "本示例使用AKI编写C++跨线程调用JS函数场景。通过点击按钮，调用C++全局函数创建子线程来调用JS函数，实现每次点击后对变量value做加10操作。"
+    }
+  ]
+}

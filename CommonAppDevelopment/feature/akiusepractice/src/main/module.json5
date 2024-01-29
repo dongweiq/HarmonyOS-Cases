@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "akiusepractice",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

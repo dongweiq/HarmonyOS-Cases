@@ -1,0 +1,20 @@
+{
+  "integer": [
+    {
+      "name": "common_fontSize",
+      "value": 50
+    },
+    {
+      "name": "common_margin",
+      "value": 30
+    },
+    {
+      "name": "common_button_height",
+      "value": 60
+    },
+    {
+      "name": "common_button_fontSize",
+      "value": 20
+    }
+  ]
+}
