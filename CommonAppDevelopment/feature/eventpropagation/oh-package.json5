@@ -21,5 +21,8 @@
   "description": "Please describe the basic information.",
   "main": "Index.ets",
   "version": "1.0.0",
-  "dependencies": {}
+  "dependencies": {
+    // 公共特性模块
+    "@ohos/base": "file:../../common/utils"
+  }
 }
