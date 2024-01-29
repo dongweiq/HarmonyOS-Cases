@@ -70,44 +70,43 @@ onConfigurationUpdate(config: Configuration) {
 @StorageProp('currentColorMode') @Watch('onColorModeChange') currentMode: number = 0;
 // @Watch回调函数，监听颜色模式刷新状态变量
 onColorModeChange(): void {
-    if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
-        this.banner = $r("app.media.dark_mode_banner");
-    } else {
-        this.banner = $r("app.media.light_mode_banner");
-    }
+  if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
+    this.banner = $r("app.media.dark_mode_banner");
+  } else {
+    this.banner = $r("app.media.light_mode_banner");
+  }
 }
 ```
 - 第三步在FitForDarKMode.ets生命周期aboutToAppear中根据当前颜色模式刷新banner状态变量，切换不同的图片。
 ```javascript   
 // 在自定义组件生命周期aboutToAppear中，根据当前颜色模式刷新banner状态变量，切换不同的图片。
 aboutToAppear(): void {
-    if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
-        this.banner = $r("app.media.dark_mode_banner");
-    } else {
-        this.banner = $r("app.media.light_mode_banner");
-        // 在当前为浅色模式中，确保界面美观且颜色统一，设置导航栏的背景色。
-        setStatusBar(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
-    }
+  if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
+    this.banner = $r("app.media.dark_mode_banner");
+} else {
+    this.banner = $r("app.media.light_mode_banner");
+    // 在当前为浅色模式中，确保界面美观且颜色统一，设置导航栏的背景色。
+    setStatusBar(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+  }
 }
 ```
 - 第四步在FitForDarKMode.ets生命周期aboutToDisappear中，重置导航栏的背景色避免影响其它页面的导航栏为红色。
 ```javascript   
 // 在自定义组件生命周期aboutToDisappear中，重置导航栏的背景色避免影响其它页面的导航栏为红色。
 aboutToDisappear(): void {
-    setStatusBar(this.currentMode)
+  setStatusBar(this.currentMode)
 }
 ```
 - 第五步在FitForDarKMode.ets生命周期aboutToDisappear中，重置导航栏的背景色避免影响其它页面的导航栏为红色。
 ```javascript  
 // 调用setWindowSystemBarProperties()设置状态栏及导航栏的颜色
 windowClass.setWindowSystemBarProperties(sysBarProps, (err) => {
-    if (err.code) {
-        logger.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
-        return;
-    }
-    logger.info('Succeeded in setting the system bar properties.');
+  if (err.code) {
+    logger.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  logger.info('Succeeded in setting the system bar properties.');
 });
-})
 ```
 
 ### 高性能知识点
@@ -129,4 +128,10 @@ fitfordarkmode                                   // har类型
 
 ### 模块依赖
 
-需要依赖EntryAbility.ets模块，通过注册AbilityStage.onConfigurationUpdate事件监听器，实时捕捉到设备深浅颜色模式的变化，并据此动态调整UI布局结构或逻辑处理，以适应不同模式下的最佳视觉体验。
+本实例依赖common模块来实现[资源](../../common/utils/src/main/resources/base/element)的调用以及[公共组件FunctionDescription](../../common/utils/src/main/ets/component/FunctionDescription.ets)的引用。 还需要依赖[EntryAbility.ets模块](../../common/utils/src/main/ets/component/FunctionDescription.ets)。
+
+### 参考资料
+
+[设置深色模式](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/web-set-dark-mode-0000001630145893-V2)
+
+[@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/js-apis-app-ability-configurationconstant-0000001580185482-V2)

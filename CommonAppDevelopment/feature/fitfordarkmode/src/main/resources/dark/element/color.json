@@ -1,9 +1,9 @@
 {
   "color": [
     {
-    "name": "page_bg_color",
-    "value": "#000000"
-  },
+      "name": "page_bg_color",
+      "value": "#000000"
+    },
     {
       "name": "column_bg_color",
       "value": "#000000"

@@ -1,6 +1,10 @@
 {
   "integer": [
     {
+      "name": "warning_text_height",
+      "value": 60
+    },
+    {
       "name": "image_width",
       "value": 32
     },
@@ -34,7 +38,7 @@
     },
     {
       "name": "column_height",
-      "value": 90
+      "value": 200
     },
     {
       "name": "banner_height",

@@ -35,6 +35,10 @@
    |   |---pendingitems               // 基础特性层-列表编辑实现方案 
    |   |---secondarylinkage           // 基础特性层-二级联动实现方案   
    |   |---launchscenes               // 基础特性层-应用广告页实现方案 
+   |   |---gbktranscoding             // 基础特性层-Axios获取GBK数据转换UTF-8方案
+   |   |---handletabs                 // 基础特性层-Tab组件实现增删Tab标签方案方案
+   |   |---modalwindow                // 基础特性层-全屏登录页面方案
+   |   |---slidetohideanddisplace     // 基础特性层-滑动页面信息隐藏与组件位移效果方案
    |---libs
    |---product 
    |   |---entry                      // 产品定制层-应用入口
@@ -100,6 +104,22 @@ MpChart是一个包含各种类型图表的图表库，方便开发者快速实�
 #### 应用广告页实现方案
 
 在大部分应用软件中，都需要开屏展示广告内容，用户任意时刻可点击跳转查看广告详情，或点击跳过进入首页。应用广告页实现方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/launchscenes/README.md)。
+
+#### Axios获取GBK数据转换UTF-8方案
+
+本示例介绍使用第三方库的Axios获取GBK格式的网络数据时，通过util实现GBK转换UTF-8格式。该场景多用于需要转换编码格式的应用。[详细说明文档](./CommonAppDevelopment/feature/gbktranscoding/README.md)。
+
+#### Tab组件实现增删Tab标签方案方案
+
+本示例介绍使用了Tab组件实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。[详细说明文档](./CommonAppDevelopment/feature/handletabs/README_zh.md)。
+
+#### 全屏登录页面方案
+
+本例介绍各种应用登录页面。在主页面点击跳转到全屏登录页后，显示全屏模态页面，全屏模态页面从下方滑出并覆盖整个屏幕，模态页面内容自定义，此处分为默认一键登录方式和其他登录方式。[详细说明文档](./CommonAppDevelopment/feature/modalwindow/README.md)。
+
+#### 滑动页面信息隐藏与组件位移效果方案
+
+在很多应用中，向上滑动"我的"页面，页面顶部会有如下变化效果：一部分信息逐渐隐藏，另一部分信息逐渐显示，同时一些组件会进行缩放或者位置移动。向下滑动时则相反。[详细说明文档](./CommonAppDevelopment/feature/slidetohideanddisplace/README.md)。
 
 ### 公共能力层
 

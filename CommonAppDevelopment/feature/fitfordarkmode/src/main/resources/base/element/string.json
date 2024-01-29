@@ -38,7 +38,7 @@
     },
     {
       "name": "product_title02",
-      "value": "华为手机"
+      "value": "移动手机"
     },
     {
       "name": "product_title03",
@@ -46,7 +46,7 @@
     },
     {
       "name": "product_title04",
-      "value": "华为折叠屏"
+      "value": "折叠屏"
     },
     {
       "name": "product_title05",
@@ -99,6 +99,22 @@
     {
       "name": "product_view05",
       "value": "1.2W"
+    },
+    {
+      "name": "warning_text_title",
+      "value": "功能描述"
+    },
+    {
+      "name": "warning_text",
+      "value": "通过系统设置界面手动调整颜色模式选项，应用内深浅色适配设计才能得到实际展现。"
+    },
+    {
+      "name": "search_text",
+      "value": "精品好礼"
+    },
+    {
+      "name": "new_product_text",
+      "value": "新品首发"
     }
   ]
 }

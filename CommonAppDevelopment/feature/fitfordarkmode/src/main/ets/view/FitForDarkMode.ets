@@ -15,23 +15,22 @@
 import { GoodsList } from './GoodsList'
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 import window from '@ohos.window';
-import { logger } from '@ohos/base';
+import { logger, FunctionDescription } from '@ohos/base';
 
-/*
+/**
  * 实现步骤：
  * 1.首先构建一个类似商城界面，设计并实现包括Column、Flex、Row、Image、Text等常见组件集合。
- *2.对于深色和浅色模式的适配方案，我们采取了多种策略：
-   - 固定属性适配：对于部分组件的颜色属性，如背景色或字体颜色，直接设定固定色值或引用固定的资源文件。
-   - 双资源目录适配：在resources目录下新增dark子目录，用于存放深色模式下的特定颜色配置（color.json文件）和图片资源（media文件）。在深色模式下，系统会自动加载此目录中的颜色及图片资源，确保与浅色模式下的UI元素色彩差异性。
-   - 利用系统分层参数：对于支持深浅模式切换的系统层级颜色资源，我们可以直接引用这些具有分层特性的参数，使得当用户切换设备主题时，相关组件的颜色能根据系统当前颜色模式自动更新。
-   - 监听当前颜色模式变化：通过注册AbilityStage.onConfigurationUpdate事件监听器，实时捕捉到设备深浅颜色模式的变化，并据此动态调整UI布局结构或逻辑处理，以适应不同模式下的最佳视觉体验。
+ * 2.对于深色和浅色模式的适配方案，我们采取了多种策略：
+ * 固定属性适配：对于部分组件的颜色属性，如背景色或字体颜色，直接设定固定色值或引用固定的资源文件。
+ * 双资源目录适配：在resources目录下新增dark子目录，用于存放深色模式下的特定颜色配置（color.json文件）和图片资源（media文件）。在深色模式下，系统会自动加载此目录中的颜色及图片资源，确保与浅色模式下的UI元素色彩差异性。
+ * 利用系统分层参数：对于支持深浅模式切换的系统层级颜色资源，我们可以直接引用这些具有分层特性的参数，使得当用户切换设备主题时，相关组件的颜色能根据系统当前颜色模式自动更新。
+ * 监听当前颜色模式变化：通过注册AbilityStage.onConfigurationUpdate事件监听器，实时捕捉到设备深浅颜色模式的变化，并据此动态调整UI布局结构或逻辑处理，以适应不同模式下的最佳视觉体验。
  */
 
 const COLUM_SPACE: number = 10; // 各组件间的间隔
 const IMAGE_ASPECT_RATIO: number = 1; // 图片的宽高比
 const LAYOUT_WEIGHT: number = 1; // 自适应占满父容器Column剩余空间
 const OPACITY: number = 0.6; // 字体设置透明度
-0.6
 
 @Preview
 @Component
@@ -39,6 +38,7 @@ export struct FitForDarkMode {
   @State banner: ResourceStr = '';
   // @StorageProp + @Watch 获取并监听当前颜色模式
   @StorageProp('currentColorMode') @Watch('onColorModeChange') currentMode: number = 0;
+
   // @Watch回调函数，监听颜色模式刷新状态变量
   onColorModeChange(): void {
     if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
@@ -47,6 +47,7 @@ export struct FitForDarkMode {
       this.banner = $r("app.media.light_mode_banner");
     }
   }
+
   // 在自定义组件生命周期aboutToAppear中，根据当前颜色模式刷新banner状态变量，切换不同的图片。
   aboutToAppear(): void {
     if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
@@ -57,6 +58,7 @@ export struct FitForDarkMode {
       setStatusBar(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
     }
   }
+
   // 在自定义组件生命周期aboutToDisappear中，重置导航栏的背景色避免影响其它页面的导航栏为红色。
   aboutToDisappear(): void {
     setStatusBar(this.currentMode)
@@ -65,6 +67,11 @@ export struct FitForDarkMode {
   build() {
     Column() {
       Column({ space: COLUM_SPACE }) {
+        FunctionDescription({
+          title: $r('app.string.warning_text_title'),
+          content: $r('app.string.warning_text')
+        }).margin({ top: $r('app.integer.column_padding') })
+
         Flex({ justifyContent: FlexAlign.SpaceBetween }) {
           Image($r('app.media.logo'))
             .width($r('app.integer.image_width'))
@@ -84,7 +91,7 @@ export struct FitForDarkMode {
             .margin({ left: $r('app.integer.search_image_margin_left') })
           // TODO: 知识点：UI组件颜色属性是固定颜色值，深浅模式颜色不变。
           // 将Text直接设置成'#000000'固定色值
-          Text("精品好礼")
+          Text($r('app.string.search_text'))
             .opacity(OPACITY)
             .fontColor($r('app.color.black_font_color'))
             .margin({ left: $r('app.integer.text_margin_left') })
@@ -100,7 +107,7 @@ export struct FitForDarkMode {
       // 用资源ID方式设置Column背景色。（浅色模式色值为'#FA5A3C'、深色模式色值为'#000000'）
       .backgroundColor($r('app.color.column_bg_color'))
       .width('100%')
-      .height( $r('app.integer.column_height'))
+      .height($r('app.integer.column_height'))
 
       Scroll() {
         Column() {
@@ -111,7 +118,7 @@ export struct FitForDarkMode {
               .height($r('app.integer.banner_height'))
               .borderRadius($r('app.integer.banner_border_radius'))
 
-            Text("新品首发")
+            Text($r('app.string.new_product_text'))
               .fontColor($r('app.color.white_font_color'))
               .fontSize($r('app.integer.new_goods_font'))
               .fontWeight(FontWeight.Bold)
@@ -122,7 +129,10 @@ export struct FitForDarkMode {
           }
           .backgroundColor($r('app.color.column_bg_color'))
           .padding({ left: $r('app.integer.column_padding'), right: $r('app.integer.column_padding') })
-          .borderRadius({ bottomLeft: $r('app.integer.column_border_radius'), bottomRight: $r('app.integer.column_border_radius') })
+          .borderRadius({
+            bottomLeft: $r('app.integer.column_border_radius'),
+            bottomRight: $r('app.integer.column_border_radius')
+          })
 
           // 引用产品列表组件
           GoodsList()
