@@ -13,7 +13,14 @@
  * limitations under the License.
  */
 
+/** 实现步骤
+ 1.在native侧通过调用pread系统函数实现GetTotalRawFileContent接口读取rawfile文件全部内容、GetRawFileContent接口读取rawfile文件部分内容接口
+ 2.导入common模块的公共组件FunctionDescription。
+ 3.前端调用GetTotalRawFileContent与GetRawFileContent接口获取rawfile文件内容。
+ */
+
 import testNapi from 'libnativerawfile.so';
+import { FunctionDescription } from '@ohos/base';
 let rawfileTotalContent:string;
 
 @Component
@@ -28,35 +35,40 @@ export struct NativeRawfileDemo {
   }
 
   build() {
-    Row() {
+    Column() {
+      // 功能描述
+      FunctionDescription({
+        title: $r('app.string.navigation_RawFile_title'),
+        content: $r('app.string.navigation_RawFile_description')
+      })
       Column() {
         Row() {
           Text($r('app.string.rawFileContent'))
-            .fontSize(20)
+            .fontSize($r('app.string.rawfile_font_size_20'))
             .width('40%')
             .align(Alignment.End)
             .textAlign(TextAlign.End)
-            .fontWeight(FontWeight.Normal).margin(10)
+            .fontWeight(FontWeight.Normal).margin($r('app.string.rawfile_margin'))
           Text(rawfileTotalContent)
             .width('60%')
-            .fontSize(20)
-            .fontWeight(FontWeight.Normal).margin(10)
+            .fontSize($r('app.string.rawfile_font_size_14'))
+            .fontWeight(FontWeight.Normal).margin($r('app.string.rawfile_margin'))
         }
         Row() {
           Text($r('app.string.ReadStartPos'))
-            .fontSize(20)
+            .fontSize($r('app.string.rawfile_font_size_20'))
             .width('30%')
             .textAlign(TextAlign.End)
-            .fontWeight(FontWeight.Normal).margin(10)
+            .fontWeight(FontWeight.Normal).margin($r('app.string.rawfile_margin'))
             .align(Alignment.End)
           TextInput({ text: this.ReadStartPos.toString() })
             .id('startPos')
             .width('40%')
             .placeholderColor(Color.Grey)
-            .placeholderFont({ size: 14, weight: 20 })
+            .placeholderFont({ size: $r('app.string.rawfile_font_size_14')})
             .caretColor(Color.Blue)
-            .margin(10)
-            .fontSize(14)
+            .margin($r('app.string.rawfile_margin'))
+            .fontSize($r('app.string.rawfile_font_size_14'))
             .fontColor(Color.Black)
             .onChange((value: string) => {
               this.ReadStartPos = Number(value);
@@ -64,19 +76,19 @@ export struct NativeRawfileDemo {
         }
         Row() {
           Text($r('app.string.ReadLength'))
-            .fontSize(20)
+            .fontSize($r('app.string.rawfile_font_size_20'))
             .width('30%')
-            .fontWeight(FontWeight.Normal).margin(10)
+            .fontWeight(FontWeight.Normal).margin($r('app.string.rawfile_margin'))
             .textAlign(TextAlign.End)
             .align(Alignment.End)
           TextInput({text: this.readLength.toString()})
             .id('contentLen')
             .width('40%')
             .placeholderColor(Color.Grey)
-            .placeholderFont({ size: 14})
+            .placeholderFont({ size: $r('app.string.rawfile_font_size_14')})
             .caretColor(Color.Blue)
-            .margin(10)
-            .fontSize(14)
+            .margin($r('app.string.rawfile_margin'))
+            .fontSize($r('app.string.rawfile_font_size_14'))
             .fontColor(Color.Black)
             .onChange((value: string) => {
               this.readLength = Number(value);
@@ -84,24 +96,29 @@ export struct NativeRawfileDemo {
         }
         Row() {
           Text($r('app.string.ReadResult'))
-            .fontSize(20)
+            .fontSize($r('app.string.rawfile_font_size_20'))
             .width('40%')
-            .fontWeight(FontWeight.Normal).margin(10)
+            .fontWeight(FontWeight.Normal).margin($r('app.string.rawfile_margin'))
             .textAlign(TextAlign.End)
             .align(Alignment.Start)
           Text(this.rawfileContent)
             .width('60%')
-            .fontSize(20)
-            .fontWeight(FontWeight.Normal).margin(10)
+            .fontSize($r('app.string.rawfile_font_size_20'))
+            .fontWeight(FontWeight.Normal).margin($r('app.string.rawfile_margin'))
             .align(Alignment.Start)
         }
 
         Button($r('app.string.ReadButton'))
           .onClick(()=> {
             this.rawfileContent = testNapi.getRawFileContent(getContext().resourceManager, 'rawfile.txt', this.ReadStartPos, this.readLength);
-          }).margin(10)
+          }).margin($r('app.string.rawfile_margin'))
       }
-      .width('100%')
+      .backgroundColor('#FFFFFF')
+      .border({ width: 1, color: $r('app.color.border_color'), radius: $r('app.string.rawfile_radius'), style: BorderStyle.Solid })
+      .borderRadius($r('app.string.rawfile_borderRadius'))
+      .padding($r('app.string.rawfile_padding'))
+      .margin($r('app.string.rawfile_margin12'))
+      .width('95%')
     }
     .height('100%')
   }

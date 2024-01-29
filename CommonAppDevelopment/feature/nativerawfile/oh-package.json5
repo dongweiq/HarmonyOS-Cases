@@ -21,6 +21,8 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "libnativerawfile.so": "file:./src/main/cpp/types/libnativerawfile"
+    "libnativerawfile.so": "file:./src/main/cpp/types/libnativerawfile",
+    // 公共特性模块
+    "@ohos/base": "file:../../common/utils"
   }
 }
