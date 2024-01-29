@@ -25,7 +25,7 @@ export struct DefaultLogin {
   /**
    * isPresentInLoginView控制登录页面是否显示
    * 子组件中被@Link装饰的变量与其父组件中@State装饰的对应数据源建立双向数据绑定，详见：
-   * https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-link-0000001630145733-V2
+   * https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-link-0000001820999565
    */
   @Link isPresentInLoginView: boolean;
   // 是否是默认一键登录方式
