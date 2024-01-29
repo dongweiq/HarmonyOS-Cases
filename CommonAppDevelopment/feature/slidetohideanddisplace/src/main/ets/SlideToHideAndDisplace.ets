@@ -20,7 +20,8 @@ const YOffset100 = 100;
 const YOffset60 = 60;
 const YOffset50 = 50;
 const YOffset40 = 40;
-const YOffset20 = 20;
+const YOffset25 = 25;
+const FullSize = 100;
 const Race = 1.70;
 const BorderRadius = 8;
 const CardWidth = 150;
@@ -52,14 +53,14 @@ export struct SlideToHideAndDisplace {
     new IconAndDescription($r('app.media.payment'), $r('app.string.icon_and_description_11')),
     new IconAndDescription($r('app.media.payment'), $r('app.string.icon_and_description_12')),
     new IconAndDescription($r('app.media.payment'), $r('app.string.icon_and_description_13')),
-    new IconAndDescription($r('app.media.more'), $r('app.string.icon_and_description_14'))
+    new IconAndDescription($r('app.media.payment'), $r('app.string.icon_and_description_14'))
   ]
   // 粉丝/收藏/关注/历史相关的栏目的图标和描述的数据列表
   iconsAndDescriptions2: IconAndDescription[] = [
-    new IconAndDescription($r('app.media.order'), $r('app.string.icon_and_description_21')),
-    new IconAndDescription($r('app.media.star'), $r('app.string.icon_and_description_22')),
-    new IconAndDescription($r('app.media.order'), $r('app.string.icon_and_description_23')),
-    new IconAndDescription($r('app.media.star'), $r('app.string.icon_and_description_24'))
+    new IconAndDescription($r('app.media.payment'), $r('app.string.icon_and_description_21')),
+    new IconAndDescription($r('app.media.payment'), $r('app.string.icon_and_description_22')),
+    new IconAndDescription($r('app.media.payment'), $r('app.string.icon_and_description_23')),
+    new IconAndDescription($r('app.media.payment'), $r('app.string.icon_and_description_24'))
   ]
   // 商品会场的图标和描述的数据列表
   merchandiseVenue: IconAndDescription[] = [
@@ -89,11 +90,13 @@ export struct SlideToHideAndDisplace {
   CustomRow(iconsAndDescriptions: IconAndDescription[]) {
     Row() {
       ForEach(iconsAndDescriptions, (item: IconAndDescription) => {
-        this.IconAndDescription(item.icon, item.description)
+        Column() {
+          this.IconAndDescription(item.icon, item.description)
+        }
+        .width((FullSize / iconsAndDescriptions.length).toString() + '%')
       })
     }
     .width($r('app.string.size_full'))
-    .justifyContent(FlexAlign.SpaceAround)
     .padding($r('app.integer.padding_small'))
     .margin({ top: $r('app.integer.margin_small') })
     .backgroundColor($r('app.color.color_transparent_aa'))
@@ -218,7 +221,6 @@ export struct SlideToHideAndDisplace {
               })
             }
             .columnsTemplate('1fr 1fr') // 将父组件均分为2列
-            .columnsGap($r('app.integer.margin_small'))
             .rowsGap($r('app.integer.margin_small'))
             .width($r('app.string.size_full'))
             .height($r('app.integer.grid_height'))
@@ -252,7 +254,7 @@ export struct SlideToHideAndDisplace {
           this.userRowOpacity = yOffset < YOffset60 ? 1 - yOffset / YOffset60 : 0;
           this.userImageHeight = YOffset50 * (1 - (yOffset / YOffset130));
           this.userImageMarginTop = -yOffset * Race;
-          this.userImageMarginLeft = YOffset20 * (1 + (yOffset / YOffset60));
+          this.userImageMarginLeft = YOffset25 * (1 + (yOffset / YOffset60));
           if (yOffset > YOffset40) {
             this.userNameOpacity = (yOffset - YOffset40) / YOffset40;
           } else {

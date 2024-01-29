@@ -41,7 +41,7 @@ export struct ModalWindow {
         .borderRadius($r('app.integer.border_radius'))
          /**
          * ButtonType为Normal时，按钮圆角通过通用属性borderRadius设置。不同ButtonType下borderRadius属性是否生效，详见：
-         * https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-basic-components-button-0000001580026338-V2#ZH-CN_TOPIC_0000001758826769__buttontype枚举说明
+         * https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-button-0000001774121226#ZH-CN_TOPIC_0000001774121226__buttontype枚举说明
          */
         .type(ButtonType.Normal)
         .backgroundColor($r('app.color.grey_2'))

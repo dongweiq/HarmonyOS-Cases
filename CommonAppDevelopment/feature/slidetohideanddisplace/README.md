@@ -30,7 +30,7 @@ Column() {
   Scroll() {...}
 }
 ```
-2. 在第一和第二部分中，使用[@State装饰器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-state-0000001579865942-V2#ZH-CN_TOPIC_0000001758946605__概述)装饰相关的组件属性，使之与自定义组件的渲染绑定起来，状态变量改变时，UI会发生对应的渲染改变。用户头像的缩放通过改变其width和height属性值的大小来刷新，用户头像的位移通过改变其margin属性中的top和left的大小来刷新。其他一些组件的显隐变化通过改变其[opacity](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-universal-attributes-opacity-0000001630306245-V2)属性值的大小来刷新。源码参考[SlideToHideAndDisplace](./src/main/ets/SlideToHideAndDisplace.ets)
+2. 在第一和第二部分中，使用[@State装饰器](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-state-0000001774279614)装饰相关的组件属性，使之与自定义组件的渲染绑定起来，状态变量改变时，UI会发生对应的渲染改变。用户头像的缩放通过改变其width和height属性值的大小来刷新，用户头像的位移通过改变其margin属性中的top和left的大小来刷新。其他一些组件的显隐变化通过改变其[opacity](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-opacity-0000001820880817)属性值的大小来刷新。源码参考[SlideToHideAndDisplace](./src/main/ets/SlideToHideAndDisplace.ets)
 ```typescript
   @State userRowOpacity: number = 1;
   @State userImageHeight: number = 50;
@@ -64,7 +64,7 @@ Column() {
     }
   }
 ```
-3. 第三部分页面滚动通过[Scroll](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-container-scroll-0000001630146357-V2)组件实现，其中第二栏和第三栏相似，使用[@Builder装饰器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-builder-0000001579865938-V2#ZH-CN_TOPIC_0000001758825745__参数传递规则)封装了两个自定义构建函数IconAndDescription和CustomRow，增加代码复用。源码参考[SlideToHideAndDisplace](./src/main/ets/SlideToHideAndDisplace.ets)
+3. 第三部分页面滚动通过[Scroll](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-scroll-0000001821000913)组件实现，其中第二栏和第三栏相似，使用[@Builder装饰器](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-builder-0000001774119930)封装了两个自定义构建函数IconAndDescription和CustomRow，增加代码复用。源码参考[SlideToHideAndDisplace](./src/main/ets/SlideToHideAndDisplace.ets)
 ```typescript
   // 自定义构建函数，将重复使用的UI元素抽象成一个方法。此处样式为：上方图标下方文字
   @Builder
@@ -114,11 +114,11 @@ Column() {
 
 ### 参考资料
 
-[@State装饰器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-state-0000001579865942-V2#ZH-CN_TOPIC_0000001758946605__概述)
+[@State装饰器](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-state-0000001774279614)
 
-[@Builder装饰器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-builder-0000001579865938-V2#ZH-CN_TOPIC_0000001758825745__参数传递规则)
+[@Builder装饰器](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-builder-0000001774119930)
 
-[透明度设置](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-universal-attributes-opacity-0000001630306245-V2)
+[透明度设置](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-opacity-0000001820880817)
 
-[Scroll](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-container-scroll-0000001630146357-V2)
+[Scroll](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-scroll-0000001821000913)
 
