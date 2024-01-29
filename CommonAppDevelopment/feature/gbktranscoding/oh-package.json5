@@ -6,6 +6,7 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "@ohos/base": "file:../../common/utils"
+    "@ohos/base": "file:../../common/utils",
+    "@ohos/axios": "2.2.0-rc.3",
   }
 }
