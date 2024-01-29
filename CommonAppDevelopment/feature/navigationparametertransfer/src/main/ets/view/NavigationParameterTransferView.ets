@@ -15,11 +15,13 @@
 
 /** 实现步骤
  1.在oh-package.json5中添加第三方插件class-transformer的依赖
- 2.导入class-transformer
- 3.在获取到其他页面传过来的参数后通过class-transformer的plainToClass方法转换成类对象
- 4.调用类对象的方法
+ 2.在使用第三方插件class-transformer的页面导入class-transformer库。
+ 3.定义要传递的类UserBookingInfo。
+ 4.在获取到其他页面传过来的参数后通过class-transformer的plainToClass方法转换成类对象
+ 5.调用类对象的方法
  */
 import { UserBookingInfo } from '../components/UserBookingInfo'
+import { FunctionDescription } from '@ohos/base';
 // TODO: 导入第三方插件class-transformer
 import { plainToClass } from "class-transformer";
 @Component
@@ -45,6 +47,12 @@ export struct NavigationParameterTransferView {
 
   build() {
     Column() {
+      // 功能描述
+      FunctionDescription({
+        title: $r('app.string.navigation_transfer_title'),
+        content: $r('app.string.navigation_transfer_description')
+      })
+
       Column() {
         Row() {
           Text($r('app.string.user_name'))
@@ -63,7 +71,8 @@ export struct NavigationParameterTransferView {
           Text($r('app.string.user_id'))
             .fontSize(20)
             .width('30%')
-            .fontWeight(FontWeight.Normal).margin(10)
+            .fontWeight(FontWeight.Normal)
+            .margin(10)
             .textAlign(TextAlign.End)
             .align(Alignment.End)
           Text(this.userID)
@@ -75,7 +84,8 @@ export struct NavigationParameterTransferView {
           Text($r('app.string.user_seatNo'))
             .fontSize(20)
             .width('30%')
-            .fontWeight(FontWeight.Normal).margin(10)
+            .fontWeight(FontWeight.Normal)
+            .margin(10)
             .textAlign(TextAlign.End)
             .align(Alignment.End)
           Text(this.seatNo)
@@ -94,9 +104,12 @@ export struct NavigationParameterTransferView {
               this.pageStack.pop();
             }).margin(10)
         }
-      }.height('50%')
-      .width('100%')
-      .justifyContent(FlexAlign.Center)
+      }
+      .backgroundColor('#FFFFFF')
+      .border({ width: 1, color: $r('app.color.border_color'), radius: 10, style: BorderStyle.Solid })
+      .borderRadius(12)
+      .padding(12)
+      .margin(12)
     }
   }
 }

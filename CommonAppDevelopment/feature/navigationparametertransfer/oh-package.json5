@@ -21,6 +21,8 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "class-transformer": "^0.5.1"
+    "class-transformer": "^0.5.1",
+    // 公共特性模块
+    "@ohos/base": "file:../../common/utils"
   }
 }

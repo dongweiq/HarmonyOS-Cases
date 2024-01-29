@@ -9,29 +9,47 @@
 
 **使用说明**
 
-1. 进入页面点击提交按钮，会弹出一个窗口，该窗口即为其他页面传过来的类对象的方法的实现效果。
+1. 从首页进入本页面时，会传递一个类对象UserBookingInfo。点击“提交”按钮会调用该类对象的getUserInfo()方法，该方法弹出一个窗体显示用户的信息。
 
 ### 实现思路
 
 1. 在oh-package.json5中添加第三方插件class-transformer的依赖
 
    ```typescript
-   // 图表数据初始化
    "dependencies": {
-   "class-transformer": "^0.5.1"
+       "class-transformer": "^0.5.1"
    }
    ```
 
 2. 在使用第三方插件class-transformer的页面导入class-transformer库。
 
    ```typescript
-      import { plainToClass } from "class-transformer";
+   import { plainToClass } from "class-transformer";
    ```
-
-3. 将传递过来的参数通过class-transformer的plainToClass方法转化为类对象。
+   
+3. 定义要传递的类
 
    ```typescript
-   // 图表数据初始化
+   // 定义一个用户类
+   export class UserBookingInfo {
+       userName: string = '张山';                  // 姓名
+       userID: string = '332045199008120045';     // 证件号
+       seatNo: string = '6A';                     // 座位号
+       constructor(name: string, id: string, seatNo: string) {
+           this.userName = name;
+           this.userID = id;
+           this.seatNo = seatNo;
+       }
+       // 类的方法。
+       getUserInfo() {
+           AlertDialog.show({ message: `用户信息为 姓名: ${this.userName}, 身份证号： ${this.userID}, 座位号： ${this.seatNo}`, alignment: DialogAlignment.Center})
+       }
+   }
+   ```
+
+4. 将传递过来的参数通过class-transformer的plainToClass方法转化为类对象。
+
+   ```typescript
    let bookingString:string = this.pageStack.getParamByName('NavigationParameterTransfer')[0] as string;
    // 转化成普通对象
    let userBookingTmp: UserBookingInfo = JSON.parse(bookingString);
@@ -50,7 +68,7 @@
    |---src\main\ets\components
    |   |---UserBookingInfo.ets                        // 要传递的类对象
    |---src\main\ets\view
-   |   |---NavigationParameterTransferView.ets        //  视图层-Navigation主页面
+   |   |---NavigationParameterTransferView.ets        // 视图层-Navigation主页面
    ```
 
 ### 模块依赖

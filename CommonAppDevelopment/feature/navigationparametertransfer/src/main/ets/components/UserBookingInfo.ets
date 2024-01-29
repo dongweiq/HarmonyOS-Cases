@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// TODO: 定义一个用户订票类
+// 定义一个用户类
 export class UserBookingInfo {
   userName: string = '张山';                  // 姓名
   userID: string = '332045199008120045';     // 证件号
@@ -23,7 +23,7 @@ export class UserBookingInfo {
     this.userID = id;
     this.seatNo = seatNo;
   }
-  // TODO: 知识点：类的方法。
+  // 类的方法。
   getUserInfo() {
     AlertDialog.show({ message: `用户信息为 姓名: ${this.userName}, 身份证号： ${this.userID}, 座位号： ${this.seatNo}`, alignment: DialogAlignment.Center})
   }

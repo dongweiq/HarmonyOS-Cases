@@ -27,6 +27,18 @@
     {
       "name": "btn_back",
       "value": "返回"
+    },
+    {
+      "name": "ohos_id_card_padding_start",
+      "value": "12"
+    },
+    {
+      "name": "navigation_transfer_title",
+      "value": "Navigation页面跳转对象传递功能描述"
+    },
+    {
+      "name": "navigation_transfer_description",
+      "value": "使用Navigation从首页进入本页面时，会传递一个类对象UserBookingInfo。点击“提交”按钮会调用该类对象的getUserInfo()方法，该方法弹出一个窗体显示用户的信息。"
     }
   ]
 }
