@@ -103,23 +103,21 @@ export struct ImageContentView {
               this.imageScale.stash();
               this.imagePosition.stash();
             }),
-          // TODO: 知识点：拖动图片进行位移，这里通过设置image组件的position来实现；同时因为当前方案会导致Scroll组件的nestedScroll失效，所以需要在这里进行手动的图片切换
+          // TODO: 知识点：拖动图片进行位移，这里通过设置image组件的position来实现
           PanGesture({ direction: PanDirection.All, fingers: 1 }).onActionUpdate((event: GestureEvent) => { // 拖动
             this.imagePosition.currentX = event.offsetX + this.imagePosition.lastX;
             this.imagePosition.currentY = event.offsetY + this.imagePosition.lastY;
           }).onActionEnd((event: GestureEvent) => {
             this.imagePosition.stash();
-            // 如果图片左右边框离开屏幕边缘，切换显示图片
+            // 避免图片左右边框离开屏幕边缘
             if (this.imagePosition.currentX * -1 > this.windowWidth * (this.imageScale.scaleValue - 1)) { // 图片右边缘的位置<屏幕右边缘的位置，切换下一张
-              this.swiperController!.showNext();
-              // 恢复原始状态
-              this.imagePosition.reset();
-              this.imageScale.reset();
-            }
-            if (this.imagePosition.currentX > 0) { // 左边缘位置<屏幕左边缘位置，切换上一张
-              this.swiperController!.showPrevious();
-              this.imagePosition.reset();
-              this.imageScale.reset();
+              animateTo({ duration: ImageViewerConstants.SCALE_DURATION }, () => {
+                this.imagePosition.currentX = this.windowWidth * (this.imageScale.scaleValue - 1) * (-1);
+              })
+            } else if (this.imagePosition.currentX > 0) {
+              animateTo({ duration: ImageViewerConstants.SCALE_DURATION }, () => {
+                this.imagePosition.currentX = 0;
+              })
             }
           }),
           TapGesture({ fingers: 1 }).onAction(() => {

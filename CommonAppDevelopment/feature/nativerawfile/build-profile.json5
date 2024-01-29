@@ -43,12 +43,12 @@
           ]
         }
       },
-//      "nativeLib": {
-//        "debugSymbol": {
-//          "strip": true,
-//          "exclude": []
-//        }
-//      }
+      "nativeLib": {
+        "debugSymbol": {
+          "strip": true,
+          "exclude": []
+        }
+      }
     },
   ],
   "targets": [
