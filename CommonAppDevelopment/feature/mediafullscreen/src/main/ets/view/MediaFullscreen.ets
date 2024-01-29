@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import window from '@ohos.window'
+import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
+import BasicDataSource from '../model/BasicDataSource'
 
 // window.setWindowSystemBarEnable方法的预设值，设置窗口全屏模式时状态栏和导航栏是否显示
 const windowSystemBar: Array<'status' | 'navigation'> = ['navigation', 'status'];
