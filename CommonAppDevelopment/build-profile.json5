@@ -99,6 +99,10 @@
     {
       "name": "akiusepractice",
       "srcPath": "./feature/akiusepractice"
+    },
+    {
+      "name": "variablewatch",
+      "srcPath": "./feature/variablewatch"
     }
   ]
 }
