@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,19 +13,15 @@
  * limitations under the License.
  */
 
-import taskpool from '@ohos.taskpool';
+import util from '@ohos.util';
 
-
-/**
- * IDataSource处理数据监听的基本实现
- */
 abstract class BasicDataSource<T> implements IDataSource {
-  private listeners: DataChangeListener[] = []
+  private listeners: DataChangeListener[] = [];
 
-  public abstract totalCount(): number
+  public abstract totalCount(): number;
 
   public getData(index: number): T | void {
-  }
+  };
 
   registerDataChangeListener(listener: DataChangeListener): void {
     if (this.listeners.indexOf(listener) < 0) {
@@ -34,10 +30,10 @@ abstract class BasicDataSource<T> implements IDataSource {
   }
 
   unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener)
+    const pos = this.listeners.indexOf(listener);
     if (pos >= 0) {
       this.listeners.splice(pos, 1);
-    }
+    };
   }
 
   notifyDataReload(): void {
@@ -49,47 +45,31 @@ abstract class BasicDataSource<T> implements IDataSource {
   notifyDataAdd(index: number): void {
     this.listeners.forEach((listener: DataChangeListener) => {
       listener.onDataAdd(index);
-    })
+    });
   }
 
   notifyDataChange(index: number): void {
     this.listeners.forEach((listener: DataChangeListener) => {
       listener.onDataChange(index);
-    })
+    });
   }
 
   notifyDataDelete(index: number): void {
     this.listeners.forEach((listener: DataChangeListener) => {
       listener.onDataDelete(index);
-    })
+    });
   }
 
   notifyDataMove(from: number, to: number): void {
     this.listeners.forEach((listener: DataChangeListener) => {
       listener.onDataMove(from, to);
-    })
+    });
   }
 }
 
-// task任务池
-async function getFriendMomentByTaskPool(jsonUrl: string): Promise<void> {
-  // 初始化Task对象，传入待执行的方法和参数
-  let task: taskpool.Task = new taskpool.Task(getWebData, jsonUrl);
-  // 向任务池中添加新对象
-  let friendMomentArray: Array<FriendMoment> = await taskpool.execute(task, taskpool.Priority.MEDIUM) as Array<FriendMoment>;
-  let momentData: FriendMomentsData | undefined = AppStorage.get<FriendMomentsData>('momentData');
-  if (momentData !== undefined) {
-    // 将数组循环写入页面对象中
-    for (let i = 0; i < friendMomentArray.length; i++) {
-      momentData.pushData(friendMomentArray[i]);
-    }
-    AppStorage.setOrCreate('momentData', momentData);
-  }
-}
-
-class FriendMomentsData extends BasicDataSource<FriendMoment> {
-  momentList: Array<FriendMoment> = []
-  getJsonIndex: number = 1
+class FlowItemContentsData extends BasicDataSource<FlowItemContent> {
+  momentList: Array<FlowItemContent> = [];
+  getJsonIndex: number = 1;
 
   // 获取数据列表长度
   public totalCount(): number {
@@ -97,33 +77,31 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
   }
 
   // 根据index获取具体项
-  public getData(index: number): FriendMoment {
-    // 判断组件是否已经缓存到最后一项数据了
-    if (index == this.momentList.length - 1) {
-      // 目前json文件只有3个，所以对3取余后加一实现循环获取3个json
-      getFriendMomentByTaskPool(FriendMomentJsonUrl.FRIEND_MOMENT_JSON_URL[this.getJsonIndex % 3]);
-      this.getJsonIndex++;
-    }
+  public getData(index: number): FlowItemContent {
     return this.momentList[index];
   }
 
   // 向规定位置添加数据
-  public addData(index: number, data: FriendMoment): void {
+  public addData(index: number, data: FlowItemContent): void {
     this.momentList.splice(index, 0, data);
     this.notifyDataAdd(index);
   }
 
   // 向列表追加数据
-  public pushData(data: FriendMoment): void {
-    this.momentList.push(data);
+  public pushData(data: FlowItemContent | FlowItemContent[]): void {
+    if (Array.isArray(data)) {
+      this.momentList.push(...data);
+    } else {
+      this.momentList.push(data);
+    };
     this.notifyDataAdd(this.momentList.length - 1);
   }
 }
 
-class ChatContact {
-  userId: string
-  userName: string | Resource
-  userImage: string | Resource
+class UserItem {
+  userId: string;
+  userName: string | Resource;
+  userImage: string | Resource;
 
   toString(): string {
     return this.userId + '  ' + this.userName + '  ' + this.userImage;
@@ -135,40 +113,66 @@ class ChatContact {
     this.userImage = $r("app.media.profile_photo");
     if (image != null) {
       this.userImage = image;
-    }
+    };
   }
 }
 
-class FriendMoment {
-  id: string
-  user: ChatContact
-  text: string
-  time: string = ''
-  imageList: Array<string> = new Array<string>()
-  media: string = '' // media为需要获取的视频url
-  mediaPreview: string = '' //mediaPreview为需要获取的视频预览图url
+class FlowItemContent {
+  id: string;
+  user: UserItem;
+  text: string;
+  imageList: Array<string> = new Array<string>();
+  media: string = ''; // media为需要获取的视频url
+  mediaPreview: string = ''; // mediaPreview为需要获取的视频预览图url
 
-  constructor(id: string, user: ChatContact, text: string, time?: string, list?: Array<string>, media?: string, mediaPreview?: string) {
+  constructor(id: string, user: UserItem, text: string, media: string, mediaPreview: string) {
     this.id = id;
     this.user = user;
-    if (time !== undefined) {
-      this.time = time;
-    }
+    this.media = media;
+    this.mediaPreview = mediaPreview;
     this.text = text;
-    if (list !== undefined && list.length) {
-      this.imageList = list;
-    }
-    else if (media) {
-      this.media = media;
-      if (mediaPreview !== undefined) {
-        this.mediaPreview = mediaPreview;
-      }
-    }
   }
 
   toString(): string {
-    return this.id + '  ' + this.user.toString() + '  ' + this.text + '  ' + this.time;
+    return this.id + '  ' + this.user.toString() + '  ' + this.text;
   }
 }
 
-export {FriendMoment, ChatContact, FriendMomentsData, BasicDataSource}
+class JsonObjType {
+  friendMoment: Array<FlowItemContent> = new Array<FlowItemContent>();
+}
+
+class JsonObject {
+  private jsonFileDir: string = '';
+
+  constructor(jsonFileDir: string) {
+    this.jsonFileDir = jsonFileDir;
+  }
+
+  async getFlowItemContentObj(): Promise<Array<FlowItemContent>> {
+    let value = await getContext().resourceManager.getRawFileContent(this.jsonFileDir);
+    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer)) as JsonObjType;
+    let friendMomentBuckets: Array<FlowItemContent> = new Array<FlowItemContent>();
+    // 映射json数据为FlowItemContent对象
+    let friendMomentObj = jsonObj.friendMoment;
+    for (let i = 0; i < friendMomentObj.length; i++) {
+      let contactTemp = new UserItem(friendMomentObj[i].user.userId, friendMomentObj[i].user.userName,
+        friendMomentObj[i].user.userImage);
+      let chatModelTemp = new FlowItemContent(friendMomentObj[i].id, contactTemp, friendMomentObj[i].text, friendMomentObj[i].media, friendMomentObj[i].mediaPreview);
+      friendMomentBuckets.push(chatModelTemp);
+    }
+    return friendMomentBuckets;
+  }
+
+  private bufferToString(buffer: ArrayBufferLike): string {
+    let textDecoder = util.TextDecoder.create('utf-8', {
+      ignoreBOM: true
+    });
+    let resultPut = textDecoder.decodeWithStream(new Uint8Array(buffer), {
+      stream: true
+    });
+    return resultPut;
+  }
+}
+
+export {FlowItemContent, UserItem, FlowItemContentsData, BasicDataSource, JsonObject};

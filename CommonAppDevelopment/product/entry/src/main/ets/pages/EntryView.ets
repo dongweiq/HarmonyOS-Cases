@@ -27,10 +27,14 @@ import { HandleTabs } from '@ohos/handtabs';
 import { LaunchAdvertView } from '@ohos/launchscenes';
 import { ModalWindow } from '@ohos/modalwindow/Index';
 import { SlideToHideAndDisplace } from '@ohos/slidetohideanddisplace/Index';
+import { NavigationParameterTransferView, UserBookingInfo } from '@ohos/NavigationParameterTransferView';
+import { AkiView } from '@ohos/akiusepractice';
 
 @Entry
 @Component
 struct EntryView {
+  private userBooking: UserBookingInfo = new UserBookingInfo('张山','332212199507270611','7F');
+  @State strUserBooking :string = JSON.stringify(this.userBooking);
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: ListData[] = [
     new ListData($r("app.media.bar_chart"), 'MpChart图表实现', 'barChartSolution'),
@@ -45,7 +49,9 @@ struct EntryView {
     new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs'),
     new ListData($r("app.media.launch_advert"), '应用广告页', 'launchAvert'),
     new ListData($r("app.media.modal_window"), '全屏登录页面', 'modalWindow'),
-    new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', 'slideToHideAndDisplace')
+    new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', 'slideToHideAndDisplace'),
+    new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', 'NavigationParameterTransfer', this.strUserBooking),
+    new ListData($r('app.media.aki_use_practice'), 'AKI使用实践', 'akiUsePractice')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -91,6 +97,11 @@ struct EntryView {
       } else if (name === 'slideToHideAndDisplace') {
         // 滑动页面改变顶部个人信息栏显示效果
         SlideToHideAndDisplace()
+      } else if (name === 'NavigationParameterTransfer') {
+        NavigationParameterTransferView()
+      } else if (name === 'akiUsePractice') {
+        // AKI使用实践模块
+        AkiView()
       }
     }
     .hideTitleBar(true)

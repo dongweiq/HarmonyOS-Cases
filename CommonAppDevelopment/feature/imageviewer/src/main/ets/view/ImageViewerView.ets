@@ -17,68 +17,49 @@ import { ImageViewerConstants } from '../constants/ImageViewerConstants';
 import { CommonImageDetailModel } from '../model/CommonImageDetailModel';
 import { ImageScaleModel } from '../model/ImageScaleModel';
 import { ImageContentView } from './ImageContentView';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 @Preview
 @Component
 export struct ImageViewerView {
-  imageModel: CommonImageDetailModel = new CommonImageDetailModel(
-    [
-      $r("app.media.test1"), $r("app.media.test2"), $r("app.media.test3"), $r("app.media.test4")
-    ]
-  );
   @State currentIndex: number = 0;
-  @StorageLink("windowHeight") windowHeight: number = 0;
-  @StorageLink("windowWidth") windowWidth: number = 0;
-  @State scaleArray: Array<ImageScaleModel> = [];
+  @State windowHeight: number = 0;
+  @State windowWidth: number = 0;
+  @State scaleInfo: ImageScaleModel = new ImageScaleModel(1, 1);
+  image: Resource = $r("app.media.test1")
   controller: SwiperController = new SwiperController();
 
   aboutToAppear() {
-    this.currentIndex = this.imageModel.currentIndex + 1;
-    for (let index = 0; index < this.imageModel.imageArray.length; index++) {
-      this.scaleArray.push(new ImageScaleModel(1, 1));
-    }
+    window.getLastWindow(getContext(this), (err: BusinessError, data: window.Window) => {
+      let rect: window.Rect = data.getWindowProperties().windowRect;
+      this.windowWidth = px2vp(rect.width);
+      this.windowHeight = px2vp(rect.height);
+      data.on("windowSizeChange", (data: window.Size) => {
+        this.windowWidth = px2vp(data.width);
+        this.windowHeight = px2vp(data.height);
+      })
+    })
   }
 
   build() {
     NavDestination() {
       Stack() { // 如果需要放其他组件，可以使用Stack，让其他组件显示在图片的上方
-        Swiper(this.controller) {
-          ForEach(this.imageModel.imageArray, (image: Resource, index: number) => {
-            Scroll() {
-              ImageContentView({
-                imageScale: this.scaleArray[index],
-                image: image,
-                swiperController: this.controller
-              })
-            }
-            .width(ImageViewerConstants.FULL_SIZE)
-            .height(ImageViewerConstants.FULL_SIZE)
-            .scrollable(ScrollDirection.Horizontal)
-            .scrollBar(BarState.Off)
-            .nestedScroll({
-              scrollForward: NestedScrollMode.SELF_FIRST,
-              scrollBackward: NestedScrollMode.SELF_FIRST
-            })
+        Column() {
+          ImageContentView({
+            imageScale: this.scaleInfo,
+            image: this.image,
+            swiperController: this.controller
           })
         }
-        .loop(false)
-        .autoPlay(false)
-        .indicator(false)
-        .index(this.imageModel.currentIndex)
-        .backgroundColor($r("app.color.image_viewer_bg"))
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.Center)
         .width(ImageViewerConstants.FULL_SIZE)
         .height(ImageViewerConstants.FULL_SIZE)
-        .onChange((index: number) => {
-          this.currentIndex = index + 1;
-        })
-
-        Text($r("app.string.prompt_info"))
-          .hitTestBehavior(HitTestMode.None)
-          .fontColor($r("app.color.prompt_font_color"))
-          .position({ x: 10, y: 10 })
       }
     }
     .hideTitleBar(true)
+    .expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
     .height(ImageViewerConstants.FULL_SIZE)
     .width(ImageViewerConstants.FULL_SIZE)
   }

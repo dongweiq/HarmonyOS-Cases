@@ -1,0 +1,120 @@
+{
+  "string": [
+    {
+      "name": "fixed_color_value",
+      "value": "直接设置固定色值"
+    },
+    {
+      "name": "resource_color_value",
+      "value": "用资源方式设置色值"
+    },
+    {
+      "name": "system_color_value",
+      "value": "用系统方式设置色值"
+    },
+    {
+      "name": "png_format_image",
+      "value": "Png格式图片（WEBG/JEPG）"
+    },
+    {
+      "name": "svg_format_image",
+      "value": "SVG格式图片"
+    },
+    {
+      "name": "listen_mode",
+      "value": "监听方式实现深浅模式布局或逻辑的差异"
+    },
+    {
+      "name": "light_string",
+      "value": "Light"
+    },
+    {
+      "name": "product_title00",
+      "value": "充电宝"
+    },
+    {
+      "name": "product_title01",
+      "value": "笔记本电脑"
+    },
+    {
+      "name": "product_title02",
+      "value": "移动手机"
+    },
+    {
+      "name": "product_title03",
+      "value": "电动按摩椅"
+    },
+    {
+      "name": "product_title04",
+      "value": "折叠屏"
+    },
+    {
+      "name": "product_title05",
+      "value": "极简潮流背包"
+    },
+    {
+      "name": "product_price00",
+      "value": "￥79.9"
+    },
+    {
+      "name": "product_price01",
+      "value": "￥6975.8"
+    },
+    {
+      "name": "product_price02",
+      "value": "￥4279.6"
+    },
+    {
+      "name": "product_price03",
+      "value": "￥5385.4"
+    },
+    {
+      "name": "product_price04",
+      "value": "￥1252.9"
+    },
+    {
+      "name": "product_price05",
+      "value": "￥105.3"
+    },
+    {
+      "name": "product_view00",
+      "value": "3.2W"
+    },
+    {
+      "name": "product_view01",
+      "value": "9.8k"
+    },
+    {
+      "name": "product_view02",
+      "value": "1.8k"
+    },
+    {
+      "name": "product_view03",
+      "value": "859"
+    },
+    {
+      "name": "product_view04",
+      "value": "4.7W"
+    },
+    {
+      "name": "product_view05",
+      "value": "1.2W"
+    },
+    {
+      "name": "warning_text_title",
+      "value": "功能描述"
+    },
+    {
+      "name": "warning_text",
+      "value": "通过系统设置界面手动调整颜色模式选项，应用内深浅色适配设计才能得到实际展现。"
+    },
+    {
+      "name": "search_text",
+      "value": "精品好礼"
+    },
+    {
+      "name": "new_product_text",
+      "value": "新品首发"
+    }
+  ]
+}

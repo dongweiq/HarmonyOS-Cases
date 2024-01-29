@@ -1,8 +1,64 @@
 {
   "integer": [
     {
-      "name": "video_height",
-      "value": 300
+      "name": "friendMomentsPage_row_padding_left",
+      "value": 10
+    },
+    {
+      "name": "friendMomentsPage_row_padding_right",
+      "value": 16
+    },
+    {
+      "name": "friendMomentsPage_icon_play_width",
+      "value": 40
+    },
+    {
+      "name": "friendMomentsPage_icon_play_height",
+      "value": 40
+    },
+    {
+      "name": "friendMomentsPage_useName_line_height",
+      "value": 22
+    },
+    {
+      "name": "friendMomentsPage_userText_fontSize",
+      "value": 14
+    },
+    {
+      "name": "friendMomentsPage_user_image_width",
+      "value": 20
+    },
+    {
+      "name": "friendMomentsPage_user_image_height",
+      "value": 20
+    },
+    {
+      "name": "friendMomentsPage_user_image_border_radius",
+      "value": 10
+    },
+    {
+      "name": "friendMomentsPage_useName_fontSize",
+      "value": 14
+    },
+    {
+      "name": "friendMomentsPage_userText_line_height",
+      "value": 19
+    },
+    {
+      "name": "friendMomentsPage_user_col_margin_left",
+      "value": 8
+    },
+    {
+      "name": "friendMomentsPage_row_padding_top",
+      "value": 2
+    },
+    {
+      "name": "friendMomentsPage_row_padding_bottom",
+      "value": 10
+    },
+    {
+      "name": "stack_shadow_radius",
+      "value": 3
     }
   ]
 }

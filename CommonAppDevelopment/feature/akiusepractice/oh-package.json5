@@ -1,0 +1,15 @@
+{
+  "name": "akiusepractice",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "libaki_use_practice.so": "file:./src/main/cpp/types/libakiusepractice",
+    "@ohos/aki": "^1.2.5",
+    "@ohos/base": "file:../../common/utils"
+  },
+  "devDependencies": {},
+  "dynamicDependencies": {}
+}

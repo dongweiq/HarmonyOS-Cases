@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "user_name",
+      "value": "用户姓名："
+    },
+    {
+      "name": "user_id",
+      "value": "身份证号："
+    },
+    {
+      "name": "user_seatNo",
+      "value": "座位号："
+    },
+    {
+      "name": "next_page",
+      "value": "下一步"
+    },
+    {
+      "name": "btn_submit",
+      "value": "提交"
+    },
+    {
+      "name": "btn_back",
+      "value": "返回"
+    },
+    {
+      "name": "ohos_id_card_padding_start",
+      "value": "12"
+    },
+    {
+      "name": "navigation_font_size_20",
+      "value": "20"
+    },
+    {
+      "name": "navigation_font_size_14",
+      "value": "14"
+    },
+    {
+      "name": "navigation_margin",
+      "value": "10"
+    },
+    {
+      "name": "navigation_radius",
+      "value": "10"
+    },
+    {
+      "name": "navigation_margin12",
+      "value": "12"
+    },
+    {
+      "name": "navigation_padding",
+      "value": "12"
+    },
+    {
+      "name": "navigation_transfer_title",
+      "value": "Navigation页面跳转对象传递"
+    },
+    {
+      "name": "navigation_transfer_description",
+      "value": "使用Navigation从首页进入本页面时，会传递一个类对象UserBookingInfo。点击“提交”按钮会调用该类对象的getUserInfo()方法，该方法弹出一个窗体显示用户的信息。"
+    }
+  ]
+}

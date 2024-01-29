@@ -1,0 +1,108 @@
+{
+  "integer": [
+    {
+      "name": "warning_text_height",
+      "value": 60
+    },
+    {
+      "name": "image_width",
+      "value": 32
+    },
+    {
+      "name": "flex_height",
+      "value": 32
+    },
+    {
+      "name": "search_image_width",
+      "value": 20
+    },
+    {
+      "name": "search_image_margin_left",
+      "value": 20
+    },
+    {
+      "name": "text_margin_left",
+      "value": 20
+    },
+    {
+      "name": "row_height",
+      "value": 40
+    },
+    {
+      "name": "row_border_radius",
+      "value": 20
+    },
+    {
+      "name": "column_padding",
+      "value": 12
+    },
+    {
+      "name": "column_height",
+      "value": 200
+    },
+    {
+      "name": "banner_height",
+      "value": 160
+    },
+    {
+      "name": "banner_border_radius",
+      "value": 20
+    },
+    {
+      "name": "new_goods_font",
+      "value": 18
+    },
+    {
+      "name": "new_goods_height",
+      "value": 45
+    },
+    {
+      "name": "new_goods_padding_top",
+      "value": 5
+    },
+    {
+      "name": "column_border_radius",
+      "value": 20
+    },
+    {
+      "name": "column_padding_bottom",
+      "value": 12
+    },
+    {
+      "name": "goods_image_margin_bottom",
+      "value": 12
+    },
+    {
+      "name": "goods_font",
+      "value": 16
+    },
+    {
+      "name": "grid_row_padding",
+      "value": 12
+    },
+    {
+      "name": "goods_border_radius",
+      "value": 10
+    },
+    {
+      "name": "goods_column_padding_left",
+      "value": 10
+    },
+    {
+      "name": "view_image_width",
+      "value": 20
+    },
+    {
+      "name": "view_font",
+      "value": 16
+    },
+    {
+      "name": "view_margin_left",
+      "value": 5
+    },
+    {
+      "name": "flex_margin_top",
+      "value": 6
+    }
+  ]
+}

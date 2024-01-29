@@ -1,8 +1,16 @@
 {
   "string": [
     {
+      "name": "layout_100",
+      "value": "100%"
+    },
+    {
       "name": "video_width",
       "value": "100%"
+    },
+    {
+      "name": "harmony_hei_ti",
+      "value": "HarmonyHeiTi"
     }
   ]
 }

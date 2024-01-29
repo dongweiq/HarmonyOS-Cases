@@ -20,7 +20,7 @@ import { DefaultLogin } from './model/DefaultLogin';
  * 通过bindContentCover属性为Button组件绑定全屏模态页面，点击Button后显示模态页面，模态页面内容自定义，
  * 包含默认一键登录页面和其他登录方式页面。
  */
-@Entry
+
 @Component
 export struct ModalWindow {
   // 是否显示全屏模态页面

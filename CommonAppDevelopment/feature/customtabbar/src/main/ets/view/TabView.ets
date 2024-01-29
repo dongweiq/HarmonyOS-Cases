@@ -30,7 +30,7 @@ export struct TabView {
       Tabs({ index: this.selectedIndex, barPosition: BarPosition.End, controller: this.controller }) {
         // 首页模块
         TabContent() {
-          Text($r('app.string.scene_description'))
+          Text($r('app.string.home'))
             .fontSize($r('app.integer.title_font_size'))
             .padding(20)
         }
@@ -124,6 +124,8 @@ struct TabItem {
         Column() {
           Image(this.selectedIndex === this.tabBarIndex ? TABINFO[this.tabBarIndex].selectedIcon : TABINFO[this.tabBarIndex].defaultIcon)
             .size({ width: $r('app.integer.community_image_size'), height: $r('app.integer.community_image_size') })
+             // TODO：知识点：使用interpolation属性对图片进行插值，使图片显示得更清晰
+            .interpolation(ImageInterpolation.High)
         }
         .width($r('app.integer.community_image_container_size'))
         .height($r('app.integer.community_image_container_size'))
@@ -136,6 +138,8 @@ struct TabItem {
         Column() {
           // 通过被选中的tabBar下标值和tabBar的默认下标值来改变图片显示
           Image(this.selectedIndex === this.tabBarIndex ? TABINFO[this.tabBarIndex].selectedIcon : TABINFO[this.tabBarIndex].defaultIcon)
+            // TODO：知识点：使用interpolation属性对图片进行插值，使图片显示得更清晰
+            .interpolation(ImageInterpolation.High)
             .size(this.selectedIndex === HOME_TAB_BAR_INDEX && this.selectedIndex === this.tabBarIndex ?
               { width: $r('app.integer.community_image_size'), height: $r('app.integer.community_image_size') } :
               { width: $r('app.integer.tab_bar_image_size'), height: $r('app.integer.tab_bar_image_size') })
@@ -145,7 +149,7 @@ struct TabItem {
             // TODO：知识点：组件的某些通用属性变化时，可以通过属性动画animation实现过渡效果。本示例的动画效果是tabBar的图片向上偏移一小段距离
             .animation({
               duration: 400,
-              curve: Curve.Linear,
+              curve: Curve.Ease,
               iterations: 1,
               playMode: PlayMode.Normal
             })

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { FunctionDescription } from '@ohos/base';
 
 @Component
 export struct EventPropagation {
@@ -20,11 +21,11 @@ export struct EventPropagation {
 
   build() {
     Column() {
+      // 场景描述组件
+      FunctionDescription({ title: $r('app.string.event_propagation'), content: $r('app.string.event_content') })
       Row() {
         // 阻塞事件冒泡使能开关
         Text($r('app.string.control_enable_toggle'))
-          .fontSize($r('app.integer.enable_toggle_text_font_size'))
-          .margin({ left: $r('app.integer.common_space_size') })
 
         Toggle({ type: ToggleType.Switch, isOn: this.isEnabled })
           .selectedColor($r('app.color.toggle_selectedColor'))
@@ -34,13 +35,14 @@ export struct EventPropagation {
           })
       }.width($r('app.string.common_container_width'))
       .height($r('app.integer.enable_toggle_module_height'))
-      .justifyContent(FlexAlign.End)
+      .margin({ top: $r('app.string.ohos_id_elements_margin_vertical_l') })
+      .justifyContent(FlexAlign.SpaceBetween)
 
       // 点击事件组件
       ClickEvent()
       // 触摸事件组件
       TouchEvent()
-    }.padding($r('app.integer.common_space_size'))
+    }.padding($r('app.string.ohos_id_card_padding_start'))
   }
 }
 
@@ -64,27 +66,27 @@ struct ClickEvent {
   build() {
     Column() {
       Text($r('app.string.click_event_title'))
-        .fontSize($r('app.integer.describe_text_font_size'))
-        .width('100%')
-        .margin($r('app.integer.common_space_size'))
+        .width($r('app.string.common_container_width'))
         .textAlign(TextAlign.Start)
       Column() {
         Text($r('app.string.parent_component_text'))
-          .fontSize($r('app.integer.parent_component_text_font_size'))
-          .margin($r('app.integer.common_space_size'))
+          .margin($r('app.string.ohos_id_elements_margin_vertical_m'))
         // 父组件响应次数
         Row() {
           Text($r('app.string.parent_component_response_times_text'))
-            .fontSize($r('app.integer.response_text_font_size'))
           Text(`${this.parentCompResponseTimes}`)
-            .fontSize($r('app.integer.response_text_font_size'))
-        }.margin({ top: $r('app.integer.common_space_size'), bottom: $r('app.integer.common_space_size') })
+        }
+        .margin({
+          top: $r('app.string.ohos_id_elements_margin_vertical_m'),
+          bottom: $r('app.string.ohos_id_elements_margin_vertical_m')
+        })
 
         Column() {
-          Button(this.isEnabled ? $r('app.string.child_component_no_response') : $r('app.string.child_component_response'))
-            .enabled(false)
-            .fontSize($r('app.integer.child_component_font_size'))
+          Button($r('app.string.child_component_response'))
+            .width($r('app.integer.button_width_size'))
             .height($r('app.integer.button_height_size'))
+            .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+            .enabled(false)
             .onClick(() => {
             })
         }
@@ -96,13 +98,15 @@ struct ClickEvent {
       }
       .width($r('app.string.common_container_width'))
       .height($r('app.integer.button_click_event_area_height'))
-      .backgroundColor($r('app.color.click_event_area_background_color'))
+      .backgroundColor($r('app.color.ohos_id_color_sub_background'))
       .alignItems(HorizontalAlign.Center)
       .onClick(() => {
         // 冒泡事件发生时，该回调不会触发
         this.parentCompResponseTimes++;
       })
-    }
+      .margin({ top: $r('app.string.ohos_id_elements_margin_vertical_m') })
+      .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
+    }.margin({ top: $r('app.string.ohos_id_elements_margin_vertical_l') })
   }
 }
 
@@ -123,36 +127,34 @@ struct TouchEvent {
   build() {
     Column() {
       Text($r('app.string.touch_event_title'))
-        .fontSize($r('app.integer.describe_text_font_size'))
-        .width('100%')
-        .margin($r('app.integer.common_space_size'))
+        .width($r('app.string.common_container_width'))
         .textAlign(TextAlign.Start)
       Column() {
         Text($r('app.string.parent_component_text_touch'))
-          .fontSize($r('app.integer.parent_component_text_font_size'))
-          .margin($r('app.integer.common_space_size'))
+          .margin($r('app.string.ohos_id_elements_margin_vertical_m'))
         // 父组件响应次数
         Row() {
           Text($r('app.string.parent_component_response_times_text'))
-            .fontSize($r('app.integer.response_text_font_size'))
           Text(`${this.parentCompResponseTimes}`)
-            .fontSize($r('app.integer.response_text_font_size'))
-        }.margin({ top: $r('app.integer.common_space_size'), bottom: $r('app.integer.common_space_size') })
+        }
+        .margin({
+          top: $r('app.string.ohos_id_elements_margin_vertical_m'),
+          bottom: $r('app.string.ohos_id_elements_margin_vertical_m')
+        })
 
         // 子组件响应次数
         Row() {
           Text($r('app.string.child_component_response_times_text'))
-            .fontSize($r('app.integer.response_text_font_size'))
           Text(`${this.childCompResponseTimes}`)
-            .fontSize($r('app.integer.response_text_font_size'))
-        }.margin({ bottom: $r('app.integer.common_space_size') })
+        }.margin({ bottom: $r('app.string.ohos_id_elements_margin_vertical_m') })
 
-
-        Text(this.isEnabled ? $r('app.string.child_touch_component_no_response') : $r('app.string.child_touch_component_response'))
+        Text($r('app.string.child_touch_component_response'))
+          .width($r('app.integer.button_width_size'))
           .height($r('app.integer.button_height_size'))
+          .borderRadius($r('sys.float.ohos_id_corner_radius_button'))
+          .fontColor(Color.White)
           .textAlign(TextAlign.Center)
-          .backgroundColor(Color.White)
-          .padding($r('app.integer.common_space_size'))
+          .backgroundColor($r('sys.color.ohos_id_color_focused_bg'))
           .onTouch((event) => {
             if (this.isEnabled) {
               event.stopPropagation(); // TODO：知识点：在onTouch事件里，通过调用event.stopPropagation()阻止事件冒泡(子组件向父组件透传Touch事件)
@@ -162,14 +164,15 @@ struct TouchEvent {
       }
       .width($r('app.string.common_container_width'))
       .height($r('app.integer.button_click_event_area_height'))
-      .backgroundColor($r('app.color.click_event_area_background_color'))
-      .margin($r('app.integer.common_space_size'))
+      .margin({ top: $r('app.string.ohos_id_elements_margin_vertical_m') })
+      .backgroundColor($r('app.color.ohos_id_color_sub_background'))
+      .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
       .alignItems(HorizontalAlign.Center)
       .onTouch(() => {
         // 冒泡事件发生时，该回调不会触发
         this.parentCompResponseTimes++;
       })
-    }
+    }.margin({ top: $r('app.string.ohos_id_elements_margin_vertical_l') })
   }
 }
 

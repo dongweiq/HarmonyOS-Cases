@@ -19,7 +19,7 @@ import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 // 基础公共工具类base，主要包括日志打印和主页列表数据类型以及控制器
 import { logger } from '@ohos/base';
-import { eventSubscription } from '@ohos/applicationexception';
+import { Configuration } from '@ohos.app.ability.Configuration';
 
 const TAG = 'EntryAbility'
 
@@ -30,8 +30,6 @@ export default class EntryAbility extends UIAbility {
     if(launchParam.lastExitReason === 7 ){}
     // 绑定上下文信息
     AppStorage.setOrCreate('context', this.context);
-    // 订阅应用事件
-    eventSubscription();
   }
 
   onDestroy(): void {
@@ -50,6 +48,11 @@ export default class EntryAbility extends UIAbility {
       }
       logger.info(TAG, 'Succeeded in loading the content. Data:', JSON.stringify(data));
     });
+
+    // 获取当前的颜色模式并保存
+    AppStorage.setOrCreate('currentColorMode', this.context.config.colorMode);
+    // 保存windowStage供fitfordarkmode的har包中FitForDarkPage.ets中setStatusBar方法修改状态栏颜色。
+    AppStorage.setOrCreate('windowStage', windowStage);
   }
 
   onWindowStageDestroy(): void {
@@ -66,5 +69,12 @@ export default class EntryAbility extends UIAbility {
   onBackground(): void {
     // Ability has back to background
     logger.info(TAG, '%{public}s', 'Ability onBackground');
+  }
+
+  // TODO: 知识点：检测当前的深浅模式是否发生变化，刷新状态栏
+  onConfigurationUpdate(config: Configuration) {
+    // 获取最新的变更颜色并更新到AppStorage
+    AppStorage.setOrCreate('currentColorMode', config.colorMode);
+    logger.info(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
   }
 }

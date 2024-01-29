@@ -6,51 +6,31 @@
     },
     {
       "name": "control_enable_toggle",
-      "value": "控制使能开关"
-    },
-    {
-      "name": "parent_component_dialog_message",
-      "value": "父组件弹窗信息"
+      "value": "阻塞事件冒泡"
     },
     {
       "name": "child_component_response",
-      "value": "子组件:点击时父组件接收冒泡事件"
-    },
-    {
-      "name": "child_component_no_response",
-      "value": "子组件:点击时父组件不接收冒泡事件"
+      "value": "disable的子组件"
     },
     {
       "name": "child_touch_component_response",
-      "value": "子组件:触摸时父组件接收冒泡事件"
-    },
-    {
-      "name": "child_touch_component_no_response",
-      "value": "子组件:触摸时父组件不接收冒泡事件"
+      "value": "子组件"
     },
     {
       "name": "parent_component_text",
-      "value": "灰色区域为父组件区域，点击可触发父组件事件"
+      "value": "父组件"
     },
     {
       "name": "parent_component_text_touch",
-      "value": "灰色区域为父组件区域，触摸可触发父组件事件"
-    },
-    {
-      "name": "click_event_alert_dialog_message",
-      "value": "子组件点击事件触发弹窗"
+      "value": "父组件"
     },
     {
       "name": "common_container_width",
       "value": "100%"
     },
     {
-      "name": "click_event_title",
-      "value": "功能描述：子组件的enabled属性值为false时，关闭使能开关，点击子组件事件冒泡(子组件向父组件透传onClick事件)，打开使能开关，点击子组件事件冒泡被阻止。"
-    },
-    {
-      "name": "touch_event_title",
-      "value": "功能描述：关闭使能开关，点击子组件事件冒泡(子组件向父组件透传onTouch事件)，打开使能开关，点击子组件事件冒泡被阻止。"
+      "name": "event_content",
+      "value": "正常事件冒泡机制，父组件可接收子组件点击/触摸事件。打开阻塞事件冒泡，父组件无法接收子组件点击/触摸事件"
     },
     {
       "name": "parent_component_response_times_text",
@@ -63,6 +43,18 @@
     {
       "name": "position_common_space",
       "value": "100%"
+    },
+    {
+      "name": "event_propagation",
+      "value": "阻塞事件冒泡"
+    },
+    {
+      "name": "click_event_title",
+      "value": "点击事件例子(子组件disable，不响应点击等操作)"
+    },
+    {
+      "name": "touch_event_title",
+      "value": "触摸事件例子"
     }
   ]
 }
