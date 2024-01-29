@@ -49,7 +49,7 @@ struct EntryView {
     new ListData($r("app.media.launch_advert"), '应用广告页', 'launchAvert'),
     new ListData($r("app.media.modal_window"), '全屏登录页面', 'modalWindow'),
     new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', 'slideToHideAndDisplace'),
-    new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递方案', 'NavigationParameterTransfer', this.strUserBooking)
+    new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', 'NavigationParameterTransfer', this.strUserBooking)
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();

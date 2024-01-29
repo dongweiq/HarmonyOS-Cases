@@ -33,8 +33,32 @@
       "value": "12"
     },
     {
+      "name": "navigation_font_size_20",
+      "value": "20"
+    },
+    {
+      "name": "navigation_font_size_14",
+      "value": "14"
+    },
+    {
+      "name": "navigation_margin",
+      "value": "10"
+    },
+    {
+      "name": "navigation_radius",
+      "value": "10"
+    },
+    {
+      "name": "navigation_margin12",
+      "value": "12"
+    },
+    {
+      "name": "navigation_padding",
+      "value": "12"
+    },
+    {
       "name": "navigation_transfer_title",
-      "value": "Navigation页面跳转对象传递功能描述"
+      "value": "Navigation页面跳转对象传递"
     },
     {
       "name": "navigation_transfer_description",

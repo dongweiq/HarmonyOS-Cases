@@ -1,8 +1,9 @@
-# Navigation页面跳转对象传递方案
+# Navigation页面跳转对象传递案例
 
 ### 介绍
 
-本示例主要介绍在使用Navigation实现页面跳转时，如何在跳转页面得到转入页面传的类对象的方法。实现过程中使用了第三方插件class-transformer
+本示例主要介绍在使用Navigation实现页面跳转时，如何在跳转页面得到转入页面传的类对象的方法。实现过程中使用了第三方插件class-transformer，传递对象经过该插件的plainToClass方法转换后可以直接调用对象的方法，
+
 ### 效果图预览
 
 ![](../../screenshots/device/navigationParameterTransfer.gif)
@@ -73,7 +74,9 @@
 
 ### 模块依赖
 
-1. 本模块依赖[class-transformer三方库](https://github.com/pleerock/class-transformer-demo)。
+1. 本实例依赖[class-transformer三方库](https://github.com/pleerock/class-transformer-demo)。
+2. 本实例依赖common模块来实现[公共组件FunctionDescription](../../common/utils/src/main/ets/FunctionDescription.ets)。
 ### 参考资料
 
-[class-transformer三方库](https://github.com/pleerock/class-transformer-demo)
+[class-transformer三方库](https://github.com/pleerock/class-transformer-demo)  
+[公共组件FunctionDescription](../../common/utils/src/main/ets/FunctionDescription.ets)

@@ -56,60 +56,60 @@ export struct NavigationParameterTransferView {
       Column() {
         Row() {
           Text($r('app.string.user_name'))
-            .fontSize(20)
+            .fontSize($r('app.string.navigation_font_size_20'))
             .width('30%')
             .textAlign(TextAlign.End)
             .fontWeight(FontWeight.Normal)
-            .margin(10)
+            .margin($r('app.string.navigation_margin'))
             .align(Alignment.End)
           Text(this.userName)
             .width('60%')
-            .margin(10)
-            .fontSize(14)
+            .margin($r('app.string.navigation_margin'))
+            .fontSize($r('app.string.navigation_font_size_14'))
         }
         Row() {
           Text($r('app.string.user_id'))
-            .fontSize(20)
+            .fontSize($r('app.string.navigation_font_size_20'))
             .width('30%')
             .fontWeight(FontWeight.Normal)
-            .margin(10)
+            .margin($r('app.string.navigation_margin'))
             .textAlign(TextAlign.End)
             .align(Alignment.End)
           Text(this.userID)
             .width('60%')
-            .margin(10)
-            .fontSize(14)
+            .margin($r('app.string.navigation_margin'))
+            .fontSize($r('app.string.navigation_font_size_14'))
         }
         Row() {
           Text($r('app.string.user_seatNo'))
-            .fontSize(20)
+            .fontSize($r('app.string.navigation_font_size_20'))
             .width('30%')
             .fontWeight(FontWeight.Normal)
-            .margin(10)
+            .margin($r('app.string.navigation_margin'))
             .textAlign(TextAlign.End)
             .align(Alignment.End)
           Text(this.seatNo)
             .width('60%')
-            .margin(10)
-            .fontSize(14)
+            .margin($r('app.string.navigation_margin'))
+            .fontSize($r('app.string.navigation_font_size_14'))
         }
         Row() {
           Button($r('app.string.btn_submit'))
             .onClick(() => {
               // 调用主页传过来的类对象的getUserInfo方法
               this.userBooking.getUserInfo();
-            }).margin(10)
+            }).margin($r('app.string.navigation_margin'))
           Button($r('app.string.btn_back'))
             .onClick(() => {
               this.pageStack.pop();
-            }).margin(10)
+            }).margin($r('app.string.navigation_margin'))
         }
       }
       .backgroundColor('#FFFFFF')
-      .border({ width: 1, color: $r('app.color.border_color'), radius: 10, style: BorderStyle.Solid })
-      .borderRadius(12)
-      .padding(12)
-      .margin(12)
+      .border({ width: 1, color: $r('app.color.border_color'), radius: $r('app.string.navigation_radius'), style: BorderStyle.Solid })
+      .borderRadius($r('app.string.navigation_margin'))
+      .padding($r('app.string.navigation_padding'))
+      .margin($r('app.string.navigation_margin12'))
     }
   }
 }
