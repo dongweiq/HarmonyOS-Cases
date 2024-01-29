@@ -13,6 +13,34 @@
       "value": "label"
     },
     {
+      "name": "rawfile_font_size_20",
+      "value": "20"
+    },
+    {
+      "name": "rawfile_font_size_14",
+      "value": "14"
+    },
+    {
+      "name": "rawfile_margin",
+      "value": "10"
+    },
+    {
+      "name": "rawfile_radius",
+      "value": "10"
+    },
+    {
+      "name": "rawfile_borderRadius",
+      "value": "12"
+    },
+    {
+      "name": "rawfile_margin12",
+      "value": "12"
+    },
+    {
+      "name": "rawfile_padding",
+      "value": "12"
+    },
+    {
       "name": "rawFileContent",
       "value": "Rawfile内容:"
     },
@@ -31,6 +59,14 @@
     {
       "name": "ReadButton",
       "value": "开始读取"
+    },
+    {
+      "name": "navigation_RawFile_title",
+      "value": "读取Rawfile文件中部分内容"
+    },
+    {
+      "name": "navigation_RawFile_description",
+      "value": "本示例主要介绍Native如何读取Rawfile中文本文件部分内容。rawfile路径下存在一个有内容的文本文件rawfile.txt，本页面的“Rawfile内容”部分会读取该文件的全部内容。输入要读取的起始位置跟长度，点击“开始读取”，即可读取rawfile.txt文件中指定开始位置、指定长度的内容。"
     }
   ]
 }
