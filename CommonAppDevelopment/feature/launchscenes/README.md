@@ -151,8 +151,10 @@
 
 ### 参考资料
 
-[@ohos.identifier.oaid (广告标识服务)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/js-apis-oaid-0000001717643901-V2)
+[@ohos.identifier.oaid (广告标识服务)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-oaid-0000001774280650)
 
-[@ohos.advertising (广告服务框架)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/js-apis-advertising-0000001795402253-V2)
+[@ohos.advertising (广告服务框架)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-advertising-0000001820880621)
+
+[@ohos.advertising.AdComponent (非全屏广告展示组件)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-adcomponent-0000001821000601)
 
 [申请广告位ID](https://developer.huawei.com/consumer/cn/forum/topic/0204858516053660175)
