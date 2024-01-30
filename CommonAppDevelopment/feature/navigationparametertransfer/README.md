@@ -65,7 +65,7 @@
 ### 工程结构&模块类型
 
    ```
-   pageJumpTransferFunction                           // har类型
+   navigationparametertransfer                        // har类型
    |---src\main\ets\components
    |   |---UserBookingInfo.ets                        // 要传递的类对象
    |---src\main\ets\view

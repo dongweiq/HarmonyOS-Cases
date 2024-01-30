@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "mall",
+      "value": "商城"
+    },
+    {
+      "name": "top_recommend",
+      "value": "热门推荐"
+    },
+    {
+      "name": "refresh_data",
+      "value": "刷新商品和价格（仅演示）"
+    },
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "picture_size",
+      "value": "35%"
+    },
+    {
+      "name": "headline",
+      "value": "功能介绍"
+    },
+    {
+      "name": "function_introduction",
+      "value": "该方案展示了三层类嵌套对象的监听，使用@ObjectLink和@Observed类装饰器进行双向数据同步，其中的图片和价格是第三层的数据，点击按钮更新数据，图片和价格也会刷新显示"
+    }
+  ]
+}

@@ -24,7 +24,7 @@
 
 本例涉及的关键特性和实现方案如下：
 
-1. 通过[bindContentCover](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-universal-attributes-modal-transition-0000001630425641-V2)属性给主页面[Button](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-basic-components-button-0000001580026338-V2)组件绑定全屏模态页面，模态页面内容通过[@Builder装饰器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-builder-0000001579865938-V2#ZH-CN_TOPIC_0000001758825745__builder)自定义。源码参考[ModalWindow](./src/main/ets/ModalWindow.ets)
+1. 通过[bindContentCover](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-modal-transition-0000001821000821)组件绑定全屏模态页面，模态页面内容通过[@Builder装饰器](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-builder-0000001774119930)自定义。源码参考[ModalWindow](./src/main/ets/ModalWindow.ets)
 ```typescript
 Button($r('app.string.full_screen_modal_login_description'))
   .fontColor(Color.White)
@@ -50,7 +50,7 @@ if (this.isDefaultLogin) {
 }
 ```
 
-3. 点击其他登录方式，切换过程涉及到组件的显示和消失，使用[transition](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-transition-animation-component-0000001630425701-V2)属性设置出现或消失转场。源码参考[DefaultLogin](./src/main/ets/model/DefaultLogin.ets)
+3. 点击其他登录方式，切换过程涉及到组件的显示和消失，使用[transition](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-transition-animation-component-0000001774121354)属性设置出现或消失转场。源码参考[DefaultLogin](./src/main/ets/model/DefaultLogin.ets)
 
 ```typescript
   OtherWaysToLogin()
@@ -96,8 +96,8 @@ Stack() {
 
 ### 参考资料
 
-[全屏模态转场(bindContentCover)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-universal-attributes-modal-transition-0000001630425641-V2)
+[全屏模态转场(bindContentCover)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-modal-transition-0000001821000821)
 
-[组件内转场(transition)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-transition-animation-component-0000001630425701-V2)
+[组件内转场(transition)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-transition-animation-component-0000001774121354)
 
-[@Builder装饰器](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V2/arkts-builder-0000001579865938-V2#ZH-CN_TOPIC_0000001758825745__builder)
+[@Builder装饰器](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-builder-0000001774119930)

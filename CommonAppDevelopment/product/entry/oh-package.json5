@@ -38,6 +38,10 @@
     // 滑动页面改变顶部个人信息栏显示效果方案
     "@ohos/slidetohideanddisplace": "file:../../feature/slidetohideanddisplace",
     // Navigation页面跳转对象传递案例
-    "@ohos/NavigationParameterTransferView": "file:../../feature/navigationparametertransfer"
+    "@ohos/NavigationParameterTransferView": "file:../../feature/navigationparametertransfer",
+    // AKI使用实践
+    "@ohos/akiusepractice": "file:../../feature/akiusepractice",
+    // 多层嵌套类对象监听方案
+    "@ohos/variablewatch": "file:../../feature/variablewatch"
   }
 }

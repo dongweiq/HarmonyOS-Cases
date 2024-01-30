@@ -95,6 +95,14 @@
     {
       "name": "NavigationParameterTransferView",
       "srcPath": "./feature/navigationparametertransfer"
+    },
+    {
+      "name": "akiusepractice",
+      "srcPath": "./feature/akiusepractice"
+    },
+    {
+      "name": "variablewatch",
+      "srcPath": "./feature/variablewatch"
     }
   ]
 }
