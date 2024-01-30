@@ -1,0 +1,29 @@
+{
+  "feature/picturemanager/src/main/ets/components/PictureManage.ets": {
+    "version": 3,
+    "file": "PictureManage.ets",
+    "sources": [
+      "feature/picturemanager/src/main/ets/components/PictureManage.ets"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;;;;;;;AAaG;AAEH;AACA;AAIA;AAFA;;;;;;AAF4D;;;;;;;;;;;AAK1D;;;;;;;;;;;;;;AAIQ;;;;;;;;;;;;;;;;;;;;;;;;;AAOA;;;;;;;;;;;;;;;;;;;;;;AAOP;;;;;;;;;"
+  },
+  "feature/picturemanager/src/main/ets/components/SelectPictures.ets": {
+    "version": 3,
+    "file": "SelectPictures.ets",
+    "sources": [
+      "feature/picturemanager/src/main/ets/components/SelectPictures.ets"
+    ],
+    "names": [],
+    "mappings": "AAgBA;AAUA;AADA;;;;;;;AATuC;;;;;;;;;;;;;;;;;;;;;;;AAcrC;;;;AAIE;;AAEA;AACA;AACG;AACC;AACF;AACC;AACC;AACF;;AAGJ;;;;;;;;AAEI;AAAA;AAAA;AAAA;;;;;AACE;AAAA;AAAA;;;;;;;;;;;;AAWF;AAAA;AAAA;;;;;AAAA;;;;AAUH;;;;;"
+  },
+  "feature/picturemanager/src/main/ets/components/SaveNetWorkPictures.ets": {
+    "version": 3,
+    "file": "SaveNetWorkPictures.ets",
+    "sources": [
+      "feature/picturemanager/src/main/ets/components/SaveNetWorkPictures.ets"
+    ],
+    "names": [],
+    "mappings": "AAAA;;;;;;;;;;;;;AAaG;AAEH;AACA;AACA;AAGA;AAEA;AACA;AACA;AACA;AAEA;;;;AAMA;AADA;;;;;;;;;;AAFE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AASA;;AAEG;AACH;;;AAIQ;;;AAGI;AACA;AACD;;AAEF;AACD;;AAEA;AACE;AACD;AACH;;AAIN;;;AAGG;AACH;;AAEI;;;AAIA;AAAA;;;;AAGC;;AAED;AACE;AACA;AACA;AACA;;AAED;;;AAIC;AACA;AACF;AACD;;AAGH;;;;AAIG;;;;AAID;;;;;AAMF;;;;AAIG;;;AAGD;AACA;AACA;AACG;AACC;AACA;;;;;AAKE;AACA;AACD;AACH;;AAGJ;AACE;AACA;;;;AAKF;;;;;;;;;;AAEI;AAAA;AAAA;AAAA;;;;;AACE;AAAA;AAAA;;;;;;;;;;;;AAWF;;;;;;;;;;;AAKE;AAEI;;;AAGI;AACA;AACD;AACF;;;;;;AAEL;AAAA;AAGI;AACE;AACD;;;;;AAEN;;;;AAAA;;;;AAIJ;;;;;"
+  }
+}

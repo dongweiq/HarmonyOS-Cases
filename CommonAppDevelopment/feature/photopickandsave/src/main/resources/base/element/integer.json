@@ -1,0 +1,32 @@
+{
+  "integer": [
+    {
+      "name": "common_padding_top",
+      "value": 5
+    },
+    {
+      "name": "common_margin_left",
+      "value": 10
+    },
+    {
+      "name": "common_radius",
+      "value": 10
+    },
+    {
+      "name": "common_padding",
+      "value": 10
+    },
+    {
+      "name": "button_width",
+      "value": 100
+    },
+    {
+      "name": "button_height",
+      "value": 43
+    },
+    {
+      "name": "module_height",
+      "value":500
+    }
+  ]
+}

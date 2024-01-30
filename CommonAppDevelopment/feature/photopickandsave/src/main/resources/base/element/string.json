@@ -1,0 +1,77 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "image_request_fail",
+      "value": "图片加载失败，请检查网络"
+    },
+    {
+      "name": "image_request_success",
+      "value": "图片下载成功"
+    },
+    {
+      "name": "title",
+      "value": "下载并保存网络图片"
+    },
+    {
+      "name": "content",
+      "value": "本示例介绍使用http、photoAccessHelper、fs接口从网络下载图片的场景。"
+    },
+    {
+      "name": "upload_desc",
+      "value": "本示例介绍使用PhotoViewPicker选择图片预览的场景,点击“+”从图库中选择图片，并在当前当前页面显示选择的图片。"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "图片处理"
+    },
+    {
+      "name": "recently_added",
+      "value": "最近添加"
+    },
+    {
+      "name": "next",
+      "value": "下一步"
+    },
+    {
+      "name": "choice_photo",
+      "value": "选照片"
+    },
+    {
+      "name": "choice_video",
+      "value": "选视频"
+    },
+
+    {
+      "name": "photograph",
+      "value": "拍照"
+    },
+    {
+      "name": "take_video",
+      "value": "拍视频"
+    },
+    {
+      "name": "choice_number",
+      "value": "最多选择六张图片"
+    },
+    {
+      "name": "user_tip",
+      "value": "功能开发中"
+    },
+    {
+      "name": "picker_save",
+      "value": "下载"
+    },
+    {
+      "name": "photo_preview",
+      "value": "选择图片预览"
+    },
+    {
+      "name": "download_photo",
+      "value": "下载保存图片到图库"
+    }
+  ]
+}

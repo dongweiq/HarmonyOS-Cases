@@ -1,0 +1,38 @@
+{
+	"app": {
+		"bundleName": "com.north.commonappdevelopment",
+		"debug": true,
+		"versionCode": 1000000,
+		"versionName": "1.0.0",
+		"minAPIVersion": 40100011,
+		"targetAPIVersion": 40100011,
+		"apiReleaseType": "Beta1",
+		"compileSdkVersion": "4.1.0.52",
+		"compileSdkType": "HarmonyOS",
+		"bundleType": "app"
+	},
+	"module": {
+		"name": "picturemanager",
+		"type": "har",
+		"deviceTypes": [
+			"default",
+			"tablet",
+			"2in1"
+		],
+		"requestPermissions": [
+			{
+				"name": "ohos.permission.INTERNET"
+			},
+			{
+				"name": "ohos.permission.WRITE_MEDIA"
+			},
+			{
+				"name": "ohos.permission.READ_MEDIA"
+			}
+		],
+		"installationFree": false,
+		"virtualMachine": "ark11.0.2.0",
+		"compileMode": "esmodule",
+		"dependencies": []
+	}
+}

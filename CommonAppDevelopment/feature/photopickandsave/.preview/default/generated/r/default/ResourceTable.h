@@ -1,0 +1,86 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#ifndef RESOURCE_TABLE_H
+#define RESOURCE_TABLE_H
+
+#include<stdint.h>
+
+namespace OHOS {
+const int32_t INTEGER_COMMON_MARGIN_LEFT = 0x0d000014;
+const int32_t INTEGER_COMMON_PADDING = 0x0d000015;
+const int32_t INTEGER_COMMON_PADDING_TOP = 0x0d000016;
+const int32_t INTEGER_COMMON_RADIUS = 0x0d000017;
+const int32_t STRING_MAINABILITY_LABEL = 0x0d000000;
+const int32_t STRING_CHOICE_NUMBER = 0x0d000001;
+const int32_t STRING_CHOICE_PHOTO = 0x0d000002;
+const int32_t STRING_CHOICE_VIDEO = 0x0d000003;
+const int32_t STRING_CONTENT = 0x0d000004;
+const int32_t STRING_IMAGE_REQUEST_FAIL = 0x0d000005;
+const int32_t STRING_IMAGE_REQUEST_SUCCESS = 0x0d000006;
+const int32_t STRING_NEXT = 0x0d000007;
+const int32_t STRING_OHOS_ID_CARD_MARGIN_START = 0x0d00001b;
+const int32_t STRING_OHOS_ID_CARD_PADDING_START = 0x0d00001c;
+const int32_t STRING_OHOS_ID_CORNER_RADIUS_DEFAULT_M = 0x0d00001d;
+const int32_t STRING_OHOS_ID_ELEMENTS_MARGIN_VERTICAL_L = 0x0d00001e;
+const int32_t STRING_OHOS_ID_ELEMENTS_MARGIN_VERTICAL_M = 0x0d00001f;
+const int32_t STRING_OHOS_ID_TEXT_FONT_FAMILY_MEDIUM = 0x0d000020;
+const int32_t STRING_OHOS_ID_TEXT_SIZE_BODY1 = 0x0d000021;
+const int32_t STRING_OHOS_ID_TEXT_SIZE_BODY2 = 0x0d000022;
+const int32_t STRING_OHOS_ID_TEXT_SIZE_HEADLINE = 0x0d000023;
+const int32_t STRING_PAGE_SHOW = 0x0d000008;
+const int32_t STRING_PHOTOGRAPH = 0x0d000009;
+const int32_t STRING_PICKER_SAVE = 0x0d00000a;
+const int32_t STRING_RECENTLY_ADDED = 0x0d00000b;
+const int32_t STRING_TAKE_VIDEO = 0x0d00000c;
+const int32_t STRING_TITLE = 0x0d00000d;
+const int32_t STRING_UPLOAD_DESC = 0x0d00000e;
+const int32_t STRING_USER_TIP = 0x0d00000f;
+const int32_t COLOR_OHOS_ID_COLOR_BACKGROUND = 0x0d000024;
+const int32_t COLOR_OHOS_ID_COLOR_EMPHASIZE = 0x0d000025;
+const int32_t COLOR_OHOS_ID_COLOR_LIST_ALERT = 0x0d000026;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE1 = 0x0d000027;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE10 = 0x0d000028;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE11 = 0x0d000029;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE2 = 0x0d00002a;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE3 = 0x0d00002b;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE4 = 0x0d00002c;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE5 = 0x0d00002d;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE6 = 0x0d00002e;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE7 = 0x0d00002f;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE8 = 0x0d000030;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE9 = 0x0d000031;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX1 = 0x0d000032;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX10 = 0x0d000033;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX11 = 0x0d000034;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX2 = 0x0d000035;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX3 = 0x0d000036;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX4 = 0x0d000037;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX5 = 0x0d000038;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX6 = 0x0d000039;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX7 = 0x0d00003a;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX8 = 0x0d00003b;
+const int32_t COLOR_OHOS_ID_COLOR_PALETTE_AUX9 = 0x0d00003c;
+const int32_t COLOR_OHOS_ID_COLOR_SUB_BACKGROUND = 0x0d00003d;
+const int32_t COLOR_OHOS_ID_COLOR_WARNING = 0x0d00003e;
+const int32_t MEDIA_ADD = 0x0d000010;
+const int32_t MEDIA_BACK = 0x0d000018;
+const int32_t MEDIA_DELETE = 0x0d000011;
+const int32_t MEDIA_DROP_DOWN = 0x0d000013;
+const int32_t MEDIA_ICON = 0x0d000012;
+const int32_t MEDIA_PHOTO = 0x0d00001a;
+const int32_t MEDIA_VIDEO = 0x0d000019;
+}
+#endif
