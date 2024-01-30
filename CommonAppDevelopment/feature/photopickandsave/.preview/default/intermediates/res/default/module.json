@@ -1,0 +1,22 @@
+{
+    "app" : 
+    {
+        "apiReleaseType" : "Beta1",
+        "bundleName" : "com.north.commonappdevelopment",
+        "bundleType" : "app",
+        "compileSdkType" : "HarmonyOS",
+        "compileSdkVersion" : "4.1.0.52",
+        "debug" : true,
+        "minAPIVersion" : 40100011,
+        "targetAPIVersion" : 40100011,
+        "versionCode" : 1000000,
+        "versionName" : "1.0.0"
+    },
+    "module" : 
+    {
+        "compileMode" : "esmodule",
+        "name" : "picturemanager",
+        "pages" : "$profile:main_pages",
+        "type" : null
+    }
+}
