@@ -32,19 +32,49 @@ export struct FunctionalScenes {
   @Builder
   MethodPoints(listData: ListData) {
     Column() {
-      Image(listData.imageSrc)
-        .borderRadius(10)
-        .objectFit(ImageFit.Fill)
-        .width('45%')
+      if (listData.isCropping) {
+        Image(listData.imageSrc)
+          .borderRadius(6)
+          .objectFit(ImageFit.Fill)
+          .width('100%')
+      } else {
+        Image(listData.imageSrc)
+          .borderRadius(6)
+          .objectFit(listData.isCropping ? ImageFit.Contain : ImageFit.Cover)
+          .width('100%')
+          .height(listData.imageHeight)
+      }
       Text(listData.name)
+        .padding({ left: 10 })
+        .width('100%')
         .fontColor(Color.Black)
-        .textAlign(TextAlign.Center)
+        .textAlign(TextAlign.Start)
         .maxLines(1)
         .height(16)
-        .fontSize(14)
-        .margin({ top: 10 })
+        .fontSize(16)
+        .margin({ top: 10, bottom: 10 })
+      Row() {
+        Text($r('app.string.difficulty'))
+          .padding({ left: 10 })
+          .fontColor(Color.Black)
+          .textAlign(TextAlign.Start)
+          .maxLines(1)
+          .height(16)
+          .fontSize(14)
+        Rating({
+          rating: listData.ratingNumber,
+          indicator: true
+        })
+          .stars(5)
+      }
+      .width('100%')
+      .margin({ bottom: 10 })
+      .justifyContent(FlexAlign.Start)
     }
-    .margin({ left: 10, right: 10, top: 10 })
+    .shadow(ShadowStyle.OUTER_DEFAULT_XS)
+    .width('49%')
+    .borderRadius(6)
+    .backgroundColor(Color.White)
     .alignItems(HorizontalAlign.Center)
     .onClick(() => {
       this.pageStack.pushPath({ name: listData.path, param: listData.param });
@@ -65,11 +95,13 @@ export struct FunctionalScenes {
           }
         })
       }
+      .padding({ left: 18, right: 18 })
       .columnsTemplate('1fr 1fr')
-      .columnsGap(5)
-      .rowsGap(5)
+      .columnsGap(12)
+      .rowsGap(12)
       .width('100%')
       .height('100%')
     }
+    .backgroundColor("#F1F1F1")
   }
 }
