@@ -160,3 +160,9 @@ export struct SecondaryLinkExample {
     }.backgroundColor($r('app.color.pageContainerBcColor')).padding(12)
   }
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  SecondaryLinkExample();
+}

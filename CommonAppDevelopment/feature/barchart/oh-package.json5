@@ -21,5 +21,7 @@
   "description": "Please describe the basic information.",
   "main": "Index.ets",
   "version": "1.0.0",
-  "dependencies": {"@ohos/mpchart": "3.0.0-rc.1"}
+  "dependencies": {
+    "@ohos/mpchart": "3.0.0-rc.1"
+  }
 }

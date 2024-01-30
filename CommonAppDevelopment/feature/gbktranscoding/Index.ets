@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
-export { FriendsBook } from './src/main/ets/pages/FriendsBook'
+export { FriendsBook } from './src/main/ets/pages/FriendsBook';
+
+export { createDynamicsImportView } from './src/main/ets/pages/FriendsBook';

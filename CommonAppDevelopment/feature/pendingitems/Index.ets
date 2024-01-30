@@ -14,3 +14,5 @@
  */
 
 export { ToDoList } from './src/main/ets/pages/ToDoList';
+
+export { createDynamicsImportView } from './src/main/ets/pages/ToDoList';

@@ -14,3 +14,5 @@
  */
 
 export { SecondaryLinkExample } from './src/main/ets/pages/SecondaryLinkExample';
+
+export { createDynamicsImportView } from './src/main/ets/pages/SecondaryLinkExample';

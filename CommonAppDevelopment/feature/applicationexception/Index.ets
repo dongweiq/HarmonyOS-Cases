@@ -15,6 +15,8 @@
 
 export { ApplicationExceptionView } from './src/main/ets/view/ApplicationException';
 
+export { createDynamicsImportView } from './src/main/ets/view/ApplicationException';
+
 export { eventSubscription } from './src/main/ets/model/EventSubscription';
 
 export { PreferencesManager } from './src/main/ets/model/PreferencesManager';

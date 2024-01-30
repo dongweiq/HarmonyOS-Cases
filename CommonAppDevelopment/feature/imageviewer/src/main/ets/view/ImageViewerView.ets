@@ -64,3 +64,9 @@ export struct ImageViewerView {
     .width(ImageViewerConstants.FULL_SIZE)
   }
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  ImageViewerView();
+}

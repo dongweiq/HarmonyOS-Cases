@@ -103,10 +103,6 @@
     {
       "name": "variablewatch",
       "srcPath": "./feature/variablewatch"
-    },
-    {
-      "name": "dynamicsimport",
-      "srcPath": "./feature/dynamicsimport"
     }
   ]
 }

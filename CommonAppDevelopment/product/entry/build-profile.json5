@@ -16,6 +16,28 @@
 {
   "apiType": "stageMode",
   "buildOption": {
+    "arkOptions": {
+      "runtimeOnly": {
+        "packages": [
+          "@ohos/addressexchange",
+          "@ohos/event-propagation",
+          "@ohos/custom-tabbar",
+          "@ohos/secondarylinkage",
+          "@ohos/barchart",
+          "@ohos/imageviewer",
+          "@ohos/pendingitems",
+          "@ohos/gbktranscoding",
+          "@ohos/handtabs",
+          "@ohos/launchscenes",
+          "@ohos/modalwindow",
+          "@ohos/slidetohideanddisplace",
+          "@ohos/NavigationParameterTransferView",
+          "@ohos/akiusepractice",
+          "@ohos/variablewatch",
+          "@ohos/nativerawfile"
+        ]
+      }
+    }
   },
   "targets": [
     {

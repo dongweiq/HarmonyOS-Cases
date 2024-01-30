@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
-export { NativeRawfileDemo } from './src/main/ets/components/mainpage/MainPage'
+export { NativeRawfileDemo } from './src/main/ets/components/mainpage/MainPage';
+
+export { createDynamicsImportView } from './src/main/ets/components/mainpage/MainPage';

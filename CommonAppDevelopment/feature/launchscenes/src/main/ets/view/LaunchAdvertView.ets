@@ -203,3 +203,9 @@ export struct LaunchAdvertView {
     .height($r('app.string.full_size'))
   }
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  LaunchAdvertView();
+}

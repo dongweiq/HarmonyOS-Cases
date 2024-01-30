@@ -14,3 +14,4 @@
  */
 
 export { SlideToHideAndDisplace } from './src/main/ets/SlideToHideAndDisplace';
+export { createDynamicsImportView } from './src/main/ets/SlideToHideAndDisplace';

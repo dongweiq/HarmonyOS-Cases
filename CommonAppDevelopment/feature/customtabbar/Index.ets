@@ -14,3 +14,5 @@
  */
 
 export { TabView } from './src/main/ets/view/TabView';
+
+export { createDynamicsImportView } from './src/main/ets/view/TabView';

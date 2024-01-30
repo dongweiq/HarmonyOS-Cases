@@ -24,15 +24,16 @@ import { UserBookingInfo } from '../components/UserBookingInfo'
 import { FunctionDescription } from '@ohos/base';
 // TODO: 导入第三方插件class-transformer
 import { plainToClass } from "class-transformer";
+
 @Component
-export struct NavigationParameterTransferView {
+export  struct NavigationParameterTransferView {
   @State userName: string = '';
   @State userID: string = '';
   @State seatNo: string = "";
   private userBooking: UserBookingInfo = new UserBookingInfo('', '', '');
   @Consume('pageStack') pageStack: NavPathStack;
   getParams() {
-    let bookingString:string = this.pageStack.getParamByName('NavigationParameterTransfer')[0] as string;
+    let bookingString:string = this.pageStack.getParamByName('@ohos/NavigationParameterTransferView')[0] as string;
     // 转化成普通对象
     let userBookingTmp: UserBookingInfo = JSON.parse(bookingString);
     // TODO：知识点：通过调用第三方插件class-transformer的plainToClass方法转换成类对象, 不进行转换直接使用userBookingTmp调用getUserInfo方法会造成crash
@@ -114,3 +115,8 @@ export struct NavigationParameterTransferView {
   }
 }
 
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  NavigationParameterTransferView();
+}

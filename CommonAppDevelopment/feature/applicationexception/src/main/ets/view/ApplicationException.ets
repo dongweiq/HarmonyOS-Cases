@@ -165,3 +165,9 @@ struct FaultConstruction {
     }.margin({ top: $r('app.string.ohos_id_elements_margin_vertical_l') })
   }
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  ApplicationExceptionView();
+}

@@ -14,3 +14,5 @@
  */
 
 export { LaunchAdvertView } from './src/main/ets/view/LaunchAdvertView';
+
+export { createDynamicsImportView } from './src/main/ets/view/LaunchAdvertView';

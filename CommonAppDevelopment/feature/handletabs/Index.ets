@@ -14,3 +14,5 @@
  */
 
 export { HandleTabs } from './src/main/ets/pages/HandleTabs';
+
+export { createDynamicsImportView } from './src/main/ets/pages/HandleTabs';

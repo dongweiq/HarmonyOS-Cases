@@ -207,3 +207,9 @@ class FriendListData extends BasicDataSource<FriendData> {
     this.notifyDataAdd(this.friendList.length - 1);
   }
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  FriendsBook();
+}

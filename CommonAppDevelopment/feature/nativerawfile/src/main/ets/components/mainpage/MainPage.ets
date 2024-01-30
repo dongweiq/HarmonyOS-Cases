@@ -123,3 +123,9 @@ export struct NativeRawfileDemo {
     .height('100%')
   }
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  NativeRawfileDemo();
+}

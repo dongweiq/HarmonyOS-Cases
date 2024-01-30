@@ -14,3 +14,5 @@
  */
 
 export { EventPropagation } from './src/main/ets/view/EventPropagation';
+
+export { createDynamicsImportView } from './src/main/ets/view/EventPropagation';

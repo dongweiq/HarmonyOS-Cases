@@ -61,3 +61,9 @@ export struct AkiView {
     .height($r('app.string.common_size'))
   }
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  AkiView();
+}

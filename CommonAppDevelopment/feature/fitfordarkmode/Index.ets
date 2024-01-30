@@ -14,3 +14,5 @@
  */
 
 export { FitForDarkMode } from './src/main/ets/view/FitForDarkMode';
+
+export { createDynamicsImportView } from './src/main/ets/view/FitForDarkMode';

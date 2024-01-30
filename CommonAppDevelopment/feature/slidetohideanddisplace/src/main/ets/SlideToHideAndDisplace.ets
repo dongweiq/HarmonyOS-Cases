@@ -266,3 +266,9 @@ export struct SlideToHideAndDisplace {
     .width($r('app.string.size_full'))
   }
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  SlideToHideAndDisplace();
+}

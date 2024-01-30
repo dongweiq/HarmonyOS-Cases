@@ -13,4 +13,6 @@
  * limitations under the License.
  */
 
-export { AkiView } from './src/main/ets/view/AkiView'
+export { AkiView } from './src/main/ets/view/AkiView';
+
+export { createDynamicsImportView } from './src/main/ets/view/AkiView';

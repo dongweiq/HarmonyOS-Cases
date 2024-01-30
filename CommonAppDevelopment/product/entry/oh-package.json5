@@ -43,7 +43,5 @@
     "@ohos/akiusepractice": "file:../../feature/akiusepractice",
     // 多层嵌套类对象监听方案
     "@ohos/variablewatch": "file:../../feature/variablewatch",
-    // 动态import实现方案
-    "@ohos/dynamicsimport": "file:../../feature/dynamicsimport"
   }
 }

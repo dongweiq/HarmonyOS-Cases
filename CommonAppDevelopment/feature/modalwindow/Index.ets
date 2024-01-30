@@ -14,3 +14,5 @@
  */
 
 export { ModalWindow } from './src/main/ets/ModalWindow';
+
+export { createDynamicsImportView } from './src/main/ets/ModalWindow';

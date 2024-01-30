@@ -87,3 +87,9 @@ export struct VariableWatchView {
     .padding($r('app.string.ohos_id_card_margin_start'))
   }
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  VariableWatchView();
+}

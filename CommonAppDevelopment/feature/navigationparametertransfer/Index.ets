@@ -13,5 +13,8 @@
  * limitations under the License.
  */
 
-export { NavigationParameterTransferView } from './src/main/ets/view/NavigationParameterTransferView'
-export { UserBookingInfo } from './src/main/ets/components/UserBookingInfo'
+export { NavigationParameterTransferView } from './src/main/ets/view/NavigationParameterTransferView';
+
+export { createDynamicsImportView } from './src/main/ets/view/NavigationParameterTransferView';
+
+export { UserBookingInfo } from './src/main/ets/components/UserBookingInfo';

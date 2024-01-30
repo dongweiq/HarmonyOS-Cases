@@ -77,7 +77,7 @@ export struct FunctionalScenes {
     .backgroundColor(Color.White)
     .alignItems(HorizontalAlign.Center)
     .onClick(() => {
-      this.pageStack.pushPath({ name: listData.path, param: listData.param });
+      this.pageStack.pushPath({ name: listData.moduleName, param: listData.param });
     })
   }
 

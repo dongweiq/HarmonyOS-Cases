@@ -14,3 +14,5 @@
  */
 
 export { AddressExchangeView } from './src/main/ets/view/AddressExchangeView';
+
+export { createDynamicsImportView } from './src/main/ets/view/AddressExchangeView';

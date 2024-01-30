@@ -31,8 +31,10 @@ export class ListData {
   isCropping: boolean;
   // 图片高度
   imageHeight: number | string;
+  // 模块名，动态import时使用
+  moduleName: string;
 
-  constructor(imageSrc: ResourceStr, name: string, path: string, ratingNumber: number, isCropping: boolean, imageHeight: number | string, param?: string) {
+  constructor(imageSrc: ResourceStr, name: string, path: string, ratingNumber: number, isCropping: boolean, imageHeight: number | string, moduleName: string, param?: string) {
     this.imageSrc = imageSrc;
     this.name = name;
     this.path = path;
@@ -40,5 +42,6 @@ export class ListData {
     this.imageHeight = imageHeight;
     this.ratingNumber = ratingNumber;
     this.isCropping = isCropping
+    this.moduleName = moduleName;
   }
 }

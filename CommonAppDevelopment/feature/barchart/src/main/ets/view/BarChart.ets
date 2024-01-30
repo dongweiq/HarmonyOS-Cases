@@ -636,3 +636,9 @@ export struct BarChartPage {
     .padding($r('app.integer.common_padding'))
   }
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  BarChartPage();
+}

@@ -187,3 +187,9 @@ async function setStatusBar(currentMode: number) {
     });
   })
 }
+
+// 导出接口，供其他模块使用。
+@Builder
+export function createDynamicsImportView(): void {
+  FitForDarkMode();
+}
