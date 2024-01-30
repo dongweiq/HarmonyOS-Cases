@@ -40,6 +40,8 @@
     // Navigation页面跳转对象传递案例
     "@ohos/NavigationParameterTransferView": "file:../../feature/navigationparametertransfer",
     // AKI使用实践
-    "@ohos/akiusepractice": "file:../../feature/akiusepractice"
+    "@ohos/akiusepractice": "file:../../feature/akiusepractice",
+    // 多层嵌套类对象监听方案
+    "@ohos/variablewatch": "file:../../feature/variablewatch"
   }
 }

@@ -40,6 +40,7 @@
    |   |---modalwindow                // 基础特性层-全屏登录页面方案
    |   |---slidetohideanddisplace     // 基础特性层-滑动页面信息隐藏与组件位移效果方案
    |   |---akiusepractice             // 基础特性层-AKI使用实践
+   |   |---variablewatch              // 基础特性层-多层嵌套类对象监听
    |---libs
    |---product 
    |   |---entry                      // 产品定制层-应用入口
@@ -153,6 +154,11 @@ MpChart是一个包含各种类型图表的图表库，方便开发者快速实�
 AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障碍跨语言互调，使用方便。本模块将介绍使用AKI编写C++跨线程调用JS函数场景，为开发者使用AKI提供参考。AKI使用实践可参考此[详细说明文档](./CommonAppDevelopment/feature/akiusepractice/README.md)。
 
 <img src="./CommonAppDevelopment/screenshots/device/AkiUsePractice.gif" width="200">
+
+对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。@Observed/@ObjectLink装饰器可以解决，
+多层嵌套类对象监听方案可以参考[详细说明文档](./CommonAppDevelopment/feature/variablewatch/README.md)。
+
+<img src="./CommonAppDevelopment/screenshots/device/VariableWatch.gif" width="200">
 
 ### 公共能力层
 
