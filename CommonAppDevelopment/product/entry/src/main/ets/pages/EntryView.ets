@@ -36,20 +36,19 @@ struct EntryView {
   @State strUserBooking :string = JSON.stringify(this.userBooking);
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: ListData[] = [
-    new ListData($r("app.media.bar_chart"), 'MpChart图表实现', 'barChartSolution'),
-    new ListData($r("app.media.address_exchange"), '地址交换动画', 'addressExchange'),
-    new ListData($r("app.media.tab_bar"), '自定义TabBar页签', 'customTabBar'),
-    new ListData($r("app.media.secondary_linkage"), '列表二级联动', 'secondarylinkage'),
-    new ListData($r("app.media.raw_file"), '读取RawFile文件部分内容', 'readRawFile'),
-    new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', 'eventTransmissionSolution'),
-    new ListData($r("app.media.image_viewer"), '图片预览器', 'imageViewer'),
-    new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems'),
-    new ListData($r("app.media.friends_book"), 'GBK转换UTF-8', 'friendsBook'),
-    new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs'),
-    new ListData($r("app.media.launch_advert"), '应用广告页', 'launchAvert'),
-    new ListData($r("app.media.modal_window"), '全屏登录页面', 'modalWindow'),
-    new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', 'slideToHideAndDisplace'),
-    new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', 'NavigationParameterTransfer', this.strUserBooking)
+    new ListData($r("app.media.bar_chart_top"), 'MpChart图表实现', 'barChartSolution', 1, true, '30%'),
+    new ListData($r("app.media.address_exchange"), '地址交换动画', 'addressExchange', 2, true, '25%'),
+    new ListData($r("app.media.tab_bar"), '自定义TabBar页签', 'customTabBar', 2, true, '25%'),
+    new ListData($r("app.media.secondary_linkage"), '列表二级联动', 'secondarylinkage', 1, false, '30%'),
+    new ListData($r("app.media.raw_file"), '读取RawFile文件部分内容', 'readRawFile', 2, false, '25%'),
+    new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', 'eventTransmissionSolution', 1, false, '40%'),
+    new ListData($r("app.media.image_viewer"), '图片缩放功能实现', 'imageViewer', 2, false, '30%'),
+    new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems', 1, false, '40%'),
+    new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs', 2, false, '30%'),
+    new ListData($r("app.media.launch_advert"), '应用广告页', 'launchAvert', 2, false, '25%'),
+    new ListData($r("app.media.modal_window"), '全屏登录页面', 'modalWindow', 2, false, '40%'),
+    new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', 'slideToHideAndDisplace', 2, false, '25%'),
+    new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', 'NavigationParameterTransfer', 2, false, '30%', this.strUserBooking)
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -108,6 +107,7 @@ struct EntryView {
         // 首页列表组件
         FunctionalScenes({ listData: this.listData })
       }
+      .backgroundColor($r('app.color.main_background_color'))
       .hideTitleBar(true)
       .navDestination(this.PageMap)
     }

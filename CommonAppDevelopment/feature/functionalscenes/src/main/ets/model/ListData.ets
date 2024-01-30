@@ -25,11 +25,20 @@ export class ListData {
   path: string;
   // 路由传参数据
   param: string;
+  // 难度星级
+  ratingNumber: number;
+  // 判断ImageFit模式图片是否需要裁剪
+  isCropping: boolean;
+  // 图片高度
+  imageHeight: number | string;
 
-  constructor(imageSrc: ResourceStr, name: string, path: string, param?: string) {
+  constructor(imageSrc: ResourceStr, name: string, path: string, ratingNumber: number, isCropping: boolean, imageHeight: number | string, param?: string) {
     this.imageSrc = imageSrc;
     this.name = name;
     this.path = path;
     this.param = param === undefined ? '' : param;
+    this.imageHeight = imageHeight;
+    this.ratingNumber = ratingNumber;
+    this.isCropping = isCropping
   }
 }
