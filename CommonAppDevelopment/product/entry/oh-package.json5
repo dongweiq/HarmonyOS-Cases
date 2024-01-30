@@ -42,6 +42,8 @@
     // AKI使用实践
     "@ohos/akiusepractice": "file:../../feature/akiusepractice",
     // 多层嵌套类对象监听方案
-    "@ohos/variablewatch": "file:../../feature/variablewatch"
+    "@ohos/variablewatch": "file:../../feature/variablewatch",
+    // 图片选择和下载保存案例
+    "@ohso/photopickandsave": "file:../../feature/photopickandsave"
   }
 }
