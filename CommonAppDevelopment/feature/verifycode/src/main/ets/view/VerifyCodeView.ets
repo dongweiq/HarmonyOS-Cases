@@ -42,7 +42,7 @@ struct VerifyCodeComponentWithoutCursor {
   private verifyCodeLength: number = 6;
 
   /**
-   * 进行绑定并设置监听
+   * TODO 知识点：绑定输入法并订阅输入法相关事件
    */
   async setAttachAndListener() {
     if (this.isAttached) {
@@ -70,7 +70,7 @@ struct VerifyCodeComponentWithoutCursor {
       }
       this.codeText += text;
       if (this.codeText.length === this.verifyCodeLength) {
-        promptAction.showToast({ message: this.codeText });
+        Logger.info("VerifyCode: %{public}s", this.codeText);
       }
       Logger.info("VerifyCode [insert]: %{public}s", this.codeText);
     })
@@ -112,11 +112,11 @@ struct VerifyCodeComponentWithoutCursor {
     Row() {
       this.buildVerifyCodeComponent()
     }
+    // TODO 知识点：在onAppear与onDisAppear回调中对输入法进行绑定与解绑
     .onAppear(() => {
       this.setAttachAndListener()
     })
     .onDisAppear(() => {
-      // 解除绑定
       this.inputController.detach((err: BusinessError) => {
         Logger.error("Failed to detach: %{public}s", err.message);
       })
