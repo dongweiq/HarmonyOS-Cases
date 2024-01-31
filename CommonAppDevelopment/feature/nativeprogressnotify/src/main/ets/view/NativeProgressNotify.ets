@@ -23,6 +23,7 @@ export struct NativeProgressNotify {
   build() {
     Row() {
       Column({ space: 10 }) {
+        // TODO 知识点：进度信息使用Progress组件进行显示
         Progress({ value: this.progress, total: 100, type: ProgressType.Ring })
           .width($r("app.integer.progress_size"))
           .height($r("app.integer.progress_size"))
@@ -31,6 +32,7 @@ export struct NativeProgressNotify {
         Text(`当前下载进度：${this.progress}%`)
         Button("Start Download")
           .onClick(() => {
+            // TODO 知识点：调用native的下载方法，并传入回调函数，在回调函数中接收native侧传递过来的进度信息
             naitiveprogressnotify.startDownload((data: number) => {
               this.progress = data;
               console.log("[NativeProgressNotify]progress:" + this.progress);

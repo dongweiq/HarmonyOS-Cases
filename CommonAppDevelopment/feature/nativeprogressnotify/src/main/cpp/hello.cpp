@@ -23,7 +23,9 @@ typedef struct CallbackContext {
     int progress = 0;
 } CallbackContext;
 
-// 模拟下载任务
+/**
+ * TODO 知识点：模拟下载任务，这里面也可以使用threadsafefunction来实现
+ */
 void downloadTask(CallbackContext *context) {
     uv_loop_s *loop = nullptr;
     // 获取context->env上下文环境的loop（线程池）
@@ -65,7 +67,7 @@ static napi_value startDownload(napi_env env, napi_callback_info info) {
     auto asyncContext = new CallbackContext();
     asyncContext->env = env;
     napi_create_reference(env, args[0], 1, &asyncContext->callbackRef);
-    // 启动下载线程
+    // TODO 知识点：启动下载线程
     std::thread downloadThread(downloadTask, asyncContext);
     downloadThread.detach();
     return nullptr;

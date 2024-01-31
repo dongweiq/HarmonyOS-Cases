@@ -36,9 +36,9 @@
    std::thread downloadThread(downloadTask, asyncContext);
    downloadThread.detach();
    ```
-1. Native侧模拟下载的线程中，每100ms执行一次uv_queue_work；向eventLoop事件堆粘push异步任务after_work_cb
+1. Native侧模拟下载的线程中，每100ms执行一次uv_queue_work；向eventloop事件堆栈push异步任务。
    ```typescript
-   while (context && context - > progress < 100) {
+   while (context && context->progress < 100) {
         uv_queue_work(
            // ...
         );
