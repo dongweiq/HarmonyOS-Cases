@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-<img src="../../screenshots/device/VariableWatch.gif" width="200">
+![](../../screenshots/device/VerifyCode.gif)
 
 **使用说明**
 
