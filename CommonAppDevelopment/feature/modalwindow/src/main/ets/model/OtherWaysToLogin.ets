@@ -20,7 +20,7 @@ const SpaceTwenty = 20;
 const SpaceTen = 10;
 
 /**
- * 其他账号登录：主要提供短信验证码登录方式，以及微信/微博/QQ登录方式
+ * 其他账号登录：主要提供短信验证码登录方式，以及其他三方应用登录方式
  */
 @Component
 export struct OtherWaysToLogin {
@@ -100,23 +100,17 @@ export struct OtherWaysToLogin {
 
       Blank() // 在容器主轴方向上自动填充容器空余部分
 
-      // 微信/微博/QQ登录方式
+      // 其他三方应用登录方式
       Row({ space: SpaceTwenty }) {
-        Image($r('app.media.wechat'))
+        Image($r("app.media.app_logo1"))
           .width($r('app.integer.other_ways_icon_height'))
-          .backgroundColor($r('app.color.other_login_bkg'))
           .borderRadius($r('app.integer.other_ways_border_radius'))
-          .padding($r('app.integer.padding_small'))
-        Image($r('app.media.weibo'))
+        Image($r("app.media.app_logo2"))
           .width($r('app.integer.other_ways_icon_height'))
-          .backgroundColor($r('app.color.other_login_bkg'))
           .borderRadius($r('app.integer.other_ways_border_radius'))
-          .padding($r('app.integer.padding_small'))
-        Image($r('app.media.qq_tencent'))
+        Image($r("app.media.app_logo3"))
           .width($r('app.integer.other_ways_icon_height'))
-          .backgroundColor($r('app.color.other_login_bkg'))
           .borderRadius($r('app.integer.other_ways_border_radius'))
-          .padding($r('app.integer.padding_small'))
       }
     }
     .width($r('app.string.size_full'))
