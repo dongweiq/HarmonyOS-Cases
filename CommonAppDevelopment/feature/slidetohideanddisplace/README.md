@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-![](../../screenshots/device/SlideToHideAndDisplace.gif)
+![](../../product/entry/src/main/resources/base/media/slide_to_hide_and_displace.gif)
 
 ##### 使用说明
 
