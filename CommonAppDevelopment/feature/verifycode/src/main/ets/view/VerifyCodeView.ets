@@ -21,7 +21,7 @@ import { VerifyCodeConstants } from '../constants/VerifyCodeConstants';
 
 @Extend(Text)
 function verifyCodeUnitStyle() {
-  .fontSize($r("app.integer.code_unit_size"))
+  .fontSize($r("sys.float.ohos_id_text_size_body1"))
   .fontWeight(VerifyCodeConstants.VERIFY_CODE_FONTWEIGHT)
   .textAlign(TextAlign.Center)
   .width($r("app.integer.code_unit_with"))
@@ -101,7 +101,7 @@ struct VerifyCodeComponentWithoutCursor {
     }
     .backgroundColor(Color.Transparent)
     .height($r("app.integer.verify_code_height"))
-    .margin({ left: $r("app.integer.verify_code_margin"), right: $r("app.integer.verify_code_margin") })
+    .margin({ left: $r("sys.float.ohos_id_card_margin_start"), right: $r("sys.float.ohos_id_card_margin_start") })
     .defaultFocus(true)
     .onClick(() => {
       this.inputController.showTextInput();
