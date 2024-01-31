@@ -8,7 +8,7 @@
 
 ### 效果图预览
 
-![](../../screenshots/device/ModalWindow.gif)
+![](../../product/entry/src/main/resources/base/media/modal_window.gif)
 
 ##### 使用说明
 

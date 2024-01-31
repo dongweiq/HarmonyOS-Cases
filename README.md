@@ -76,13 +76,13 @@
 
 本例介绍各种应用登录页面。在主页面点击跳转到全屏登录页后，显示全屏模态页面，全屏模态页面从下方滑出并覆盖整个屏幕，模态页面内容自定义，此处分为默认一键登录方式和其他登录方式。[详细说明文档](./CommonAppDevelopment/feature/modalwindow/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/ModalWindow.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/modal_window.gif" width="200">
 
 #### 滑动页面信息隐藏与组件位移效果案例
 
 在很多应用中，向上滑动"我的"页面，页面顶部会有如下变化效果：一部分信息逐渐隐藏，另一部分信息逐渐显示，同时一些组件会进行缩放或者位置移动。向下滑动时则相反。[详细说明文档](./CommonAppDevelopment/feature/slidetohideanddisplace/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/SlideToHideAndDisplace.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/slide_to_hide_and_displace.gif" width="200">
 
 #### 地址交换动画案例
 
