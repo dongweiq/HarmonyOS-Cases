@@ -1,0 +1,28 @@
+{
+  "integer": [
+    {
+      "name": "code_unit_with",
+      "value": 60
+    },
+    {
+      "name": "code_unit_size",
+      "value": 18
+    },
+    {
+      "name": "code_unit_margin",
+      "value": 5
+    },
+    {
+      "name": "code_border_width",
+      "value": 1
+    },
+    {
+      "name": "verify_code_height",
+      "value": 50
+    },
+    {
+      "name": "verify_code_margin",
+      "value": 15
+    }
+  ]
+}
