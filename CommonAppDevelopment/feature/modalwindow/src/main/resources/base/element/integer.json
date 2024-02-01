@@ -41,10 +41,6 @@
       "value": 20
     },
     {
-      "name": "padding_small",
-      "value": 5
-    },
-    {
       "name": "height_fifty",
       "value": 50
     },
@@ -62,7 +58,7 @@
     },
     {
       "name": "other_ways_icon_height",
-      "value": 35
+      "value": 32
     },
     {
       "name": "arrow_right_height",
