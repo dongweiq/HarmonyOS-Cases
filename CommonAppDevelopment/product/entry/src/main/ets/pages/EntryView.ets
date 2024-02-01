@@ -37,6 +37,9 @@ import { PullToRefreshNews } from '@ohos/pulltorefreshnews';
 import { VerifyCodeView } from '@ohos/verifycode';
 import { NativeProgressNotify } from '@ohos/nativeprogressnotify';
 import { VibrateEffectView } from '@ohos/vibrateeffect';
+import { NativeProgressNotify } from '@ohos/nativeprogressnotify';
+import { SwiperSmoothVariation } from '@ohos/swipersmoothvariation';
+
 
 @Entry
 @Component
@@ -67,7 +70,8 @@ struct EntryView {
     new ListData($r('app.media.page_turning_animation'), '翻页动效', 'pageturninganimation', 3, true, '25%', '动效'),
     new ListData($r("app.media.verify_code"), '验证码布局案例', 'verifyCode', 3, true, '25%', 'UI布局'),
     new ListData($r('app.media.native_progress_notify'), 'Native进度通知案例', 'nativeProgressNotify', 2, false, '25%', 'Native'),
-    new ListData($r('app.media.vibrate_effect'), '抖动动画及手机振动效果', 'vibrateEffect', 1, false, '25%', '动效')
+    new ListData($r('app.media.vibrate_effect'), '抖动动画及手机振动效果', 'vibrateEffect', 1, false, '25%', '动效'),
+    new ListData($r("app.media.swiper_smooth_variation"), 'Swiper高度可变化效果实现', 'swiperSmoothVariation', 2, false, '25%', '动效')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -141,6 +145,9 @@ struct EntryView {
       } else if (name === 'vibrateEffect') {
         // 抖动动画及手机振动效果
         VibrateEffectView()
+      } else if (name === 'swiperSmoothVariation') {
+        // Swiper高度可变化效果实现
+        SwiperSmoothVariation()
       }
     }
     .hideTitleBar(true)
