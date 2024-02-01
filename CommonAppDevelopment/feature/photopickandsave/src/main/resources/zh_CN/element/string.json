@@ -63,7 +63,7 @@
     },
     {
       "name": "picker_save",
-      "value": "下载"
+      "value": "下载到指定路径"
     },
     {
       "name": "photo_preview",
@@ -72,6 +72,10 @@
     {
       "name": "download_photo",
       "value": "下载保存图片到图库"
+    },
+    {
+      "name": "save_picture",
+      "value": "下载保存图片到指定路径成功"
     }
   ]
 }

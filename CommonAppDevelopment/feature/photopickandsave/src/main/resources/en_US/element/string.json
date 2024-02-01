@@ -71,6 +71,10 @@
     {
       "name": "download_photo",
       "value": "download save photo"
+    },
+    {
+      "name": "save_picture",
+      "value": "save_picture"
     }
   ]
 }

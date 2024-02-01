@@ -44,6 +44,16 @@
     // 多层嵌套类对象监听方案
     "@ohos/variablewatch": "file:../../feature/variablewatch",
     // 图片选择和下载保存案例
-    "@ohso/photopickandsave": "file:../../feature/photopickandsave"
+    "@ohso/photopickandsave": "file:../../feature/photopickandsave",
+    // 翻页动效案例
+    "@ohos/pageturninganimation": "file:../../feature/pageturninganimation",
+    // 异常处理
+    "@ohos/applicationexception": "file:../../feature/applicationexception",
+    // 深浅模式
+    "@ohos/fitfordarkmode": "file:../../feature/fitfordarkmode",
+    // 跑马灯
+    "@ohos/marquee": "file:../../feature/marquee",
+    // 下拉刷新上滑加载
+    "@ohos/pulltorefreshnews": "file:../../feature/pulltorefreshnews"
   }
 }

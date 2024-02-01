@@ -17,16 +17,8 @@
       "value": 10
     },
     {
-      "name": "button_width",
-      "value": 100
-    },
-    {
-      "name": "button_height",
-      "value": 43
-    },
-    {
-      "name": "module_height",
-      "value":500
+      "name": "image_height",
+      "value":300
     }
   ]
 }

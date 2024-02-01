@@ -17,7 +17,7 @@ import { BusinessError } from '@ohos.base';
 import picker from '@ohos.file.picker';
 
 /**
- * 场景描述：
+ * 实现步骤：
  * 点击首页"+"，通过photoViewPicker.select()接口,通过传入参数PhotoSaveOptions图库对象，返回的用户选择的图片并显示在页面中，
  * 从而实现手机相册并进行图片预览和选择。
  * photoViewPicker参考文档：
@@ -69,9 +69,10 @@ export struct SelectPictures {
             // TODO：知识点：通过调用getFileAssetsFromType()中的photoViewPicker.select()拉起图库界面进行图片选择。
             this.getFileAssetsFromType();
           })
+          .margin({ bottom: $r('app.string.ohos_id_elements_margin_vertical_m') })
 
         Image(this.photoCount > 1 ? this.uris[1] : '')
-          .visibility(this.photoCount >1 ? Visibility.Visible : Visibility.None)
+          .visibility(this.photoCount > 1 ? Visibility.Visible : Visibility.None)
           .objectFit(this.photoCount > 1 ? ImageFit.Contain : ImageFit.None)
           .width('50%')
           .height('30%')
@@ -80,8 +81,8 @@ export struct SelectPictures {
             this.getFileAssetsFromType();
           })
       }
-
       .margin($r('app.string.ohos_id_card_margin_start'))
     }
+    .height('100%')
   }
 }

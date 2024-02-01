@@ -10,7 +10,7 @@
     },
     {
       "name": "image_request_success",
-      "value": "图片下载成功"
+      "value": "图片下载到图库成功"
     },
     {
       "name": "title",
@@ -63,7 +63,7 @@
     },
     {
       "name": "picker_save",
-      "value": "下载"
+      "value": "下载到指定路径"
     },
     {
       "name": "photo_preview",
@@ -72,6 +72,18 @@
     {
       "name": "download_photo",
       "value": "下载保存图片到图库"
+    },
+    {
+      "name": "save_picture",
+      "value": "下载保存图片到指定路径成功"
+    },
+    {
+      "name": "savebutton_width",
+      "value": "143"
+    },
+    {
+      "name": "button_height",
+      "value": "43"
     }
   ]
 }

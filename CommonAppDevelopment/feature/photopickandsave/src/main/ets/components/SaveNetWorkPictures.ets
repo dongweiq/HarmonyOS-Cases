@@ -31,14 +31,15 @@ const PERMISSIONS: Array<Permissions> = [
 ];
 
 /**
- * 场景描述：
- * 点击上部“下载”按钮进入”下载网络图片到手机相册”场景示例；点击下部“下载”按钮进入”下载文件到指定用户目录”场景示例，
+ * 实现步骤：
+ * 点击上部“下载”按钮进入”下载网络图片到手机相册”场景示例；点击下部“下载到指定路径”按钮进入”下载文件到指定用户目录”场景示例，
  * 从而实现手机相册并进行网络图片的下载和保存。
  * photoAccessHelper参考文档：
  * https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-photoaccesshelper
  * saveButton参考文档
  * https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/savebutton-0000001820999677
  */
+
 @Component
 export struct SaveNetWorkPictures {
   @State image: PixelMap | undefined = undefined;
@@ -50,7 +51,7 @@ export struct SaveNetWorkPictures {
    */
   async getPicture() {
     http.createHttp()
-      .request('https://gitee.com/openharmony/applications_app_samples/raw/master/code/Solutions/Shopping/OrangeShopping/feature/navigationHome/src/main/resources/base/media/product002.png',
+      .request('https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/variablewatch/src/main/resources/base/media/grape.png',
         (error: BusinessError, data: http.HttpResponse) => {
           if (error) {
             // 下载失败时弹窗提示检查网络，不执行后续逻辑
@@ -78,13 +79,7 @@ export struct SaveNetWorkPictures {
       let imageData: ArrayBuffer = data.result as ArrayBuffer;
       // 通过ArrayBuffer创建图片源实例。
       let imageSource: image.ImageSource = image.createImageSource(imageData);
-
-      class tmp {
-        height: number = 100;
-        width: number = 100;
-      };
-
-      let options: Record<string, number | boolean | tmp> = {
+      let options: image.InitializationOptions = {
         'alphaType': 0, // 透明度
         'editable': false, // 是否可编辑
         'pixelFormat': 3, // 像素格式
@@ -130,7 +125,7 @@ export struct SaveNetWorkPictures {
         await fs.write(file.fd, buffer);
         await fs.close(file.fd);
         promptAction.showToast({
-          message: $r('app.string.image_request_success'),
+          message: $r('app.string.save_picture'),
           duration: 2000
         })
       })
@@ -155,14 +150,14 @@ export struct SaveNetWorkPictures {
       .backgroundColor($r('app.color.ohos_id_color_sub_background'))
       .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
       .padding($r('app.string.ohos_id_card_padding_start'))
-      .margin($r('app.string.ohos_id_card_margin_start'))
 
       Image(this.image)
         .objectFit(ImageFit.Contain)
         .width('50%')
-        .height('50%')
+        .height($r('app.integer.image_height'))
 
       SaveButton()
+        .width($r('app.string.savebutton_width'))
         .onClick(async () => {
           if (this.imageBuffer !== undefined) {
             await this.saveImage(this.imageBuffer);
@@ -175,16 +170,16 @@ export struct SaveNetWorkPictures {
 
       Button($r("app.string.picker_save"))
         .margin({ top: $r('app.string.ohos_id_elements_margin_vertical_m') })
-        .width($r('app.integer.button_width'))
-        .height($r('app.integer.button_height'))
+        .height($r('app.string.button_height'))
         .onClick(async () => {
           if (this.imageBuffer !== undefined) {
             this.pickerSave(this.imageBuffer);
           }
         })
     }
-    .margin($r('app.integer.button_height'))
-    .width('100%')
-    .height($r('app.integer.module_height'))
+    .height('100%')
+    .margin($r('app.string.ohos_id_card_margin_start'))
   }
 }
+
+;
