@@ -42,6 +42,8 @@
     // AKI使用实践
     "@ohos/akiusepractice": "file:../../feature/akiusepractice",
     // 多层嵌套类对象监听方案
-    "@ohos/variablewatch": "file:../../feature/variablewatch"
+    "@ohos/variablewatch": "file:../../feature/variablewatch",
+    // 翻页动效案例
+    "@ohos/pageturninganimation": "file:../../feature/pageturninganimation"
   }
 }

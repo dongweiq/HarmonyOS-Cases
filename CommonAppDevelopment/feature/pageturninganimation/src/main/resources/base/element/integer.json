@@ -1,0 +1,12 @@
+{
+  "integer": [
+    {
+      "name": "common_font_size",
+      "value": 80
+    },
+    {
+      "name": "common_border_radius",
+      "value": 20
+    }
+  ]
+}
