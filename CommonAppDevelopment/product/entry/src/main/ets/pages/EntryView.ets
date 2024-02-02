@@ -31,12 +31,16 @@ import { NavigationParameterTransferView, UserBookingInfo } from '@ohos/Navigati
 import { AkiView } from '@ohos/akiusepractice';
 import { VariableWatchView } from '@ohos/variablewatch';
 import { PageTurningAnimation } from '@ohos/pageturninganimation';
+import { ApplicationExceptionView } from '@ohos/applicationexception';
+import { FitForDarkMode } from '@ohos/fitfordarkmode';
+import { MarqueeView } from '@ohos/marquee';
+import { PullToRefreshNews } from '@ohos/pulltorefreshnews';
 
 @Entry
 @Component
 struct EntryView {
-  private userBooking: UserBookingInfo = new UserBookingInfo('张山','332212199507270611','7F');
-  @State strUserBooking :string = JSON.stringify(this.userBooking);
+  private userBooking: UserBookingInfo = new UserBookingInfo('张山', '332212199507270611', '7F');
+  @State strUserBooking: string = JSON.stringify(this.userBooking);
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: ListData[] = [
     new ListData($r("app.media.bar_chart_top"), 'MpChart图表实现', 'barChartSolution', 1, true, '30%', '三方库'),
@@ -54,7 +58,11 @@ struct EntryView {
     new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', 'NavigationParameterTransfer', 2, false, '30%', '其他', this.strUserBooking),
     new ListData($r('app.media.aki_use_practice'), 'AKI使用实践', 'akiUsePractice', 2, false, '25%', '其他'),
     new ListData($r('app.media.variable_watch'), '多层嵌套类监听', 'variableWatch', 2, false, '25%', '其他'),
-    new ListData($r('app.media.page_turning_animation'), '翻页动效', 'pageturninganimation', 1, false, '25%', '动效')
+    new ListData($r('app.media.fault'), '异常处理', 'fault', 2, false, '25%', '其他'),
+    new ListData($r('app.media.fit_for_dark_mode'), '深浅模式', 'darkMode', 2, false, '35%', 'UI布局'),
+    new ListData($r('app.media.marquee'), '跑马灯', 'marquee', 3, true, '25%', '动效'),
+    new ListData($r('app.media.pull_to_refresh_news'), '下拉刷新上滑加载', 'pulltorefresh', 2, false, '35%', '动效'),
+    new ListData($r('app.media.page_turning_animation'), '翻页动效', 'pageturninganimation', 3, true, '25%', '动效')
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -111,6 +119,14 @@ struct EntryView {
       } else if (name === 'pageturninganimation') {
         // 翻页动效案例
         PageTurningAnimation()
+      } else if (name === 'fault') {
+        ApplicationExceptionView()
+      } else if (name === 'darkMode') {
+        FitForDarkMode()
+      } else if (name === 'marquee') {
+        MarqueeView()
+      } else if (name === 'pulltorefresh') {
+        PullToRefreshNews()
       }
     }
     .hideTitleBar(true)
