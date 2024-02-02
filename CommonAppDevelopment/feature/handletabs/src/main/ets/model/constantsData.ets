@@ -14,15 +14,20 @@
  */
 
 export const STYLE_CONFIGURATION: Record<string, number> = {
-  'TAB_BAR_GUTTER': 20,
-  'TAB_BAR_MARGIN': 30,
-  'ICON_SIZE': 24,
-  'TAB_CONSTRAINT_SIZE': 35,
-  'TAB_WIDTH': 120,
-  'TAB_HEIGHT': 30,
-  'TAB_BORDER_RADUIS': 10,
-  'ROW_GUTTER': 7,
-  'COLUMN_GUTTER': 12,
-  'TAB_CONTENT_TEXT_PADDING': 6
+  'TAB_BAR_HEIGHT': 48, // 页签高度
+  'ICON_SIZE': 16, // 图标尺寸
+  'TAB_BAR_CONTENT_GUTTER': 6, // 页签内元素间距
+  'TAB_BAR_ITEM_GUTTER': 6, // 页签间距
+  'SEPARATOR_STROKE_WIDTH': 2, // 分割线宽度
+  'CONTENT_GUTTER_M': 12, // 元素间距
+  'CONTENT_GUTTER_S': 8, // 元素间距
+  'GRID_HEIGHT': 170, // 快捷方式高度
+  'GRID_MARGIN': 48, // 快捷方式外边距
+  'TAB_SHEET_PADDING': 6, // 页签内边距
+  'IMAGE_SIZE': 56, // 图片尺寸
+  'IMAGE_RADIUS': 32, // 图片圆角
+  'TEXT_HEIGHT': 12, // 文本高度
+  'TEXT_WIDTH': 48, // 文本宽度
+  'SEARCH_HEIGHT': 28 // 工具栏搜索框高度
 }
 
