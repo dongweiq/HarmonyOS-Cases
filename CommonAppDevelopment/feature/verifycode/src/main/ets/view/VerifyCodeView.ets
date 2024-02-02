@@ -61,7 +61,7 @@ struct VerifyCodeComponentWithoutCursor {
   }
 
   /**
-   * TODO 知识点：订阅输入法代插入、向左删除事件
+   * TODO 知识点：订阅输入法代插入、向左删除事件，从而获得键盘输入内容
    */
   attachListener() {
     this.inputController.on("insertText", (text: string) => {
