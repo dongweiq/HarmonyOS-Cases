@@ -7,6 +7,18 @@
     {
       "name": "tabBarBcColor",
       "value": "#ffb7b7b7"
+    },
+    {
+      "name": "primary_black",
+      "value": "#99000000"
+    },
+    {
+      "name": "second_black",
+      "value": "#66000000"
+    },
+    {
+      "name": "third_black",
+      "value": "#33000000"
     }
   ]
 }
