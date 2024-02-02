@@ -70,5 +70,5 @@
 ### 参考资料
 
 [@ohos/PullToRefresh](https://gitee.com/openharmony-sig/PullToRefresh)
-[@ohos/LazyForEach](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md)
+[@ohos/LazyForEach](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-rendering-control-lazyforeach-0000001820879609)
 [PullToRefresh第三方库](https://ohpm.openharmony.cn/#/cn/detail/@ohos%2Fpulltorefresh)
