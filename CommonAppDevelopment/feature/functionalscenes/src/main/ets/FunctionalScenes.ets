@@ -34,9 +34,9 @@ export struct FunctionalScenes {
   tabDataSource: TabDataSource = new TabDataSource()
   waterFlowScroller: Scroller = new Scroller();
   @State swiperData: SwiperData[] = [
-    new SwiperData($r('app.media.swiper_image1'), '全屏登录页面', 'modalWindow'),
-    new SwiperData($r('app.media.swiper_image2'), 'AKI使用实践', 'akiUsePractice'),
-    new SwiperData($r('app.media.swiper_image3'), '读取RawFile文件部分内容', 'readRawFile'),
+    new SwiperData($r('app.media.bar_chart_top'), 'MpChart图表实现案例', 'barChartSolution'),
+    new SwiperData($r('app.media.address_exchange'), '地址交换动画', 'addressExchange'),
+    new SwiperData($r('app.media.tab_bar'), '自定义TabBar', 'customTabBar'),
   ];
 
   aboutToAppear(): void {
@@ -59,7 +59,7 @@ export struct FunctionalScenes {
       LazyForEach(this.swiperDataSource, (item: SwiperData) => {
         Stack({ alignContent: Alignment.BottomStart }) {
           Image(item.imageSrc)
-            .objectFit(ImageFit.Cover)
+            .objectFit(ImageFit.Auto)
             .width('100%')
             .height('100%')
             .borderRadius($r('app.string.main_page_top_borderRadius'))
@@ -86,7 +86,7 @@ export struct FunctionalScenes {
               .textAlign(TextAlign.Start)
               .padding($r('app.string.main_page_padding5'))
           }
-          .height('12%')
+          .height('17%')
         }
         .onClick(() => {
           this.pageStack.pushPath({ name: item.path, param: item.param });
@@ -155,6 +155,10 @@ export struct FunctionalScenes {
       .width('100%')
       .justifyContent(FlexAlign.End)
     }
+    .linearGradient({
+      angle: 180,
+      colors: [['#CCDFFF', 0], ['#F3F4F7', 1]]
+    })
     .shadow(ShadowStyle.OUTER_DEFAULT_XS)
     .width('49%')
     .borderRadius($r('app.string.main_page_list_borderRadius'))
