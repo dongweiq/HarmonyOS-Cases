@@ -67,7 +67,7 @@ static napi_value startDownload(napi_env env, napi_callback_info info) {
     auto asyncContext = new CallbackContext();
     asyncContext->env = env;
     napi_create_reference(env, args[0], 1, &asyncContext->callbackRef);
-    // TODO 知识点：启动下载线程
+    // TODO 知识点：启动下载线程，在子线程中执行下载任务并实时将进度通知到arkts线程
     std::thread downloadThread(downloadTask, asyncContext);
     downloadThread.detach();
     return nullptr;

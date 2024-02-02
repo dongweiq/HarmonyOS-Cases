@@ -40,7 +40,7 @@
         ```typescript
         this.inputController.attach(true, textConfig);
         ```
-    1. 订阅输入法插入、删除事件
+    1. 订阅输入法插入、删除事件，从而获取输入内容
          ```typescript
          this.inputController.on("insertText", (text: string) => {
            if (this.codeText.length >= this.verifyCodeLength) {
