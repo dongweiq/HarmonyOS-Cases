@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-![](../../screenshots/device/CustomTabBar.gif)
+![](../../product/entry/src/main/resources/base/media/tab_bar.gif)
 
 **使用说明**：
 

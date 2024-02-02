@@ -41,6 +41,7 @@
    |   |---slidetohideanddisplace     // 基础特性层-滑动页面信息隐藏与组件位移效果方案
    |   |---akiusepractice             // 基础特性层-AKI使用实践
    |   |---variablewatch              // 基础特性层-多层嵌套类对象监听
+   |   |---pageturninganimation       // 基础特性层-翻页动效案例
    |---libs
    |---product 
    |   |---entry                      // 产品定制层-应用入口
@@ -159,6 +160,12 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 多层嵌套类对象监听方案可以参考[详细说明文档](./CommonAppDevelopment/feature/variablewatch/README.md)。
 
 <img src="./CommonAppDevelopment/screenshots/device/VariableWatch.gif" width="200">
+
+#### 翻页动效案例
+
+翻页动效是应用开发中常见的动效场景，常见的有书籍翻页，日历翻页等。通过Arkui提供的显示动画接口animateTo可以实现翻页的效果。翻页动效案例可以参考[详细说明文档](./CommonAppDevelopment/feature/pageturninganimation/README.md)。
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/page_turning_animation.gif" width="200">
 
 ### 公共能力层
 

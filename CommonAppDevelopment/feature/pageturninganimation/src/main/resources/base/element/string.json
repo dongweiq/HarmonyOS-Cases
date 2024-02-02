@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "common_bar_chart_height",
+      "value": "30%"
+    },
+    {
+      "name": "common_text_height",
+      "value": "30%"
+    },
+    {
+      "name": "common_text_width",
+      "value": "35%"
+    },
+    {
+      "name": "divider_height",
+      "value": "26%"
+    },
+    {
+      "name": "common_stack_height",
+      "value": "50%"
+    },
+    {
+      "name": "common_stack_width",
+      "value": "100%"
+    }
+  ]
+}
