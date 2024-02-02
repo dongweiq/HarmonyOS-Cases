@@ -1,0 +1,108 @@
+{
+  "string": [
+    {
+      "name": "news_title_image_height",
+      "value": "16vp"
+    },
+    {
+      "name": "news_title_image_width",
+      "value": "9.9%"
+    },
+    {
+      "name": "news_title_text_width",
+      "value": "78.6%"
+    },
+    {
+      "name": "news_title_text_margin_left",
+      "value": "2.4%"
+    },
+    {
+      "name": "news_title_row_height",
+      "value": "20vp"
+    },
+    {
+      "name": "news_title_row_margin_top",
+      "value": "16vp"
+    },
+    {
+      "name": "news_title_image_margin_left",
+      "value": "3.5%"
+    },
+    {
+      "name": "news_content_height",
+      "value": "5.8%"
+    },
+    {
+      "name": "news_content_width",
+      "value": "93%"
+    },
+    {
+      "name": "news_content_margin_left",
+      "value": "3.5%"
+    },
+    {
+      "name": "news_content_margin_top",
+      "value": "1.4%"
+    },
+    {
+      "name": "news_time_height",
+      "value": "3.4%"
+    },
+    {
+      "name": "news_time_width",
+      "value": "93%"
+    },
+    {
+      "name": "news_time_margin_left",
+      "value": "3.5%"
+    },
+    {
+      "name": "news_time_margin_top",
+      "value": "1.4%"
+    },
+    {
+      "name": "news_list_item_height",
+      "value": "200vp"
+    },
+    {
+      "name": "news_list_margin_bottom",
+      "value": "12vp"
+    },
+    {
+      "name": "news_List_width",
+      "value": "100%"
+    },
+    {
+      "name": "news_List_height",
+      "value": "100%"
+    },
+    {
+      "name": "news_page_title",
+      "value": "资讯"
+    },
+    {
+      "name": "news_page_text_margin_left",
+      "value": "3.3%"
+    },
+    {
+      "name": "news_page_text_width",
+      "value": "100%"
+    },
+    {
+      "name": "news_page_text_height",
+      "value": "7%"
+    },
+    {
+      "name": "news_list_item_margin_left",
+      "value": "3.3%"
+    },
+    {
+      "name": "news_page_height",
+      "value": "93.3%"
+    },
+    {
+      "name": "news_list_divider_margin_end",
+      "value": "3.3%"
+    }
+  ]
+}

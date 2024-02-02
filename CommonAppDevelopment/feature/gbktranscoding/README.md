@@ -39,7 +39,7 @@
 
 ### 工程结构&模块类型
    ```
-   gbktranscoding                                  // har类型(默认使用har类型，如果使用hsp类型请说明原因)
+   gbktranscoding                                  // har类型
    |---pages
    |---|---FriendsBook.ets                         // 视图层-场景列表页面
    ```
