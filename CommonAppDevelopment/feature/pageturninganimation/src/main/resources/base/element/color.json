@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "common_color_dark_blue",
+      "value": "#18183C"
+    },
+    {
+      "name": "stack_background_color",
+      "value": "#A4AE77"
+    }
+  ]
+}
