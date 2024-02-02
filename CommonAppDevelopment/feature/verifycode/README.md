@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-// TODO 重新截图
+
 ![](../../product/entry/src/main/resources/base/media/VerifyCode.gif)
 
 **使用说明**
