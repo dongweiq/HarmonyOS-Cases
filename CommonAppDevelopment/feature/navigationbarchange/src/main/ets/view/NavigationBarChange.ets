@@ -235,6 +235,7 @@ export struct NavigationBarChangeView {
       .scrollable(ScrollDirection.Vertical)
       .scrollBar(BarState.Off)
       .edgeEffect(EdgeEffect.None)
+      // 高性能知识点：onScroll属于频繁回调接口，应该避免在内部进行冗余和耗时操作，例如避免打印日志
       .onScroll(() => {
         // TODO 知识点：显隐变化效果，获取Scroll偏移量，计算透明度，实现效果
         this.scrollOffset = this.scroller.currentOffset().yOffset;
@@ -342,19 +343,12 @@ struct  Header{
         .opacity(this.isTop ? this.opacityTopValue : this.opacityUnTopValue)
 
       Row() {
-        Button({ type: ButtonType.Capsule}) {
-          Row() {
-            Image($r('app.media.button_customer_service_line'))
-              .width($r('app.integer.width_and_height_value3'))
-              .height($r('app.integer.width_and_height_value3'))
-            Text($r('app.string.text_customer_service'))
-              .fontSize($r('app.integer.font_size4'))
-              .fontColor(Color.White)
-          }
-          .justifyContent(FlexAlign.SpaceAround)
+        Button({ type: ButtonType.Normal}) {
+          Image($r('app.media.button_customer_service_line'))
+            .width($r('app.integer.width_and_height_value4'))
+            .height($r('app.integer.width_and_height_value4'))
         }
-        .width($r('app.integer.width_and_height_value10'))
-        .height($r('app.integer.width_and_height_value5'))
+        .backgroundColor($r('app.color.transparent_color'))
       }
       .justifyContent(FlexAlign.End)
       .margin({right: $r('app.integer.right_interval_value1')})
