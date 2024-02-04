@@ -194,18 +194,27 @@ export struct FunctionalScenes {
 
     .align(Alignment.Center)
     .onClick(() => {
-      this.tabsIndex = index;
-      this.tabsController.changeIndex(index);
-      if (index !== 0) {
-        let newListData: ListData[] = []
-        for (let i = 0; i < this.listData.length; i++) {
-          if (this.listData[i].category === TAB_DATA[index].navData) {
-            newListData.push(this.listData[i])
-          }
-        }
-        this.dataSource = new WaterFlowDataSource(newListData)
-      }
+      this.changeTabIndex(index);
     })
+  }
+
+  /**
+   * 切换tabs的逻辑，触发更新列表信息
+   *
+   * @param index 当前的列表索引
+   */
+  changeTabIndex(index: number) {
+    this.tabsIndex = index;
+    this.tabsController.changeIndex(index);
+    if (index !== 0) {
+      let newListData: ListData[] = [];
+      for (let i = 0; i < this.listData.length; i++) {
+        if (this.listData[i].category === TAB_DATA[index].navData) {
+          newListData.push(this.listData[i]);
+        }
+      }
+      this.dataSource = new WaterFlowDataSource(newListData);
+    }
   }
 
   /**
@@ -247,7 +256,7 @@ export struct FunctionalScenes {
                   scrollForward: NestedScrollMode.PARENT_FIRST,
                   scrollBackward: NestedScrollMode.SELF_FIRST
                 })
-                .cachedCount(2)
+                .cachedCount(6)
                 .columnsTemplate('1fr 1fr')
                 .columnsGap($r('app.string.main_page_water_flow_gap'))
                 .width('100%')
@@ -261,7 +270,9 @@ export struct FunctionalScenes {
           })
           .barWidth('100%')
           .barHeight('6%')
-          .scrollable(false)
+          .onChange((index: number) => {
+            this.changeTabIndex(index);
+          })
         }
       }
       .scrollBar(BarState.Off)
