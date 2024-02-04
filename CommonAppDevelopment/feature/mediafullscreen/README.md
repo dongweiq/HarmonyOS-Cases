@@ -55,7 +55,7 @@
    ```
    mediafullscreen                                    // har
    |---model                                         
-   |   |---MediaFullscreen.ets                        // 数据类型文件
+   |   |---BasicDataSource.ets                        // 数据类型文件
    |---view
    |   |---MediaFullscreen.ets                        // 媒体全屏实现页面
    ```

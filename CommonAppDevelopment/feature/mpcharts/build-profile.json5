@@ -13,8 +13,31 @@
  * limitations under the License.
  */
 
-// Mock按钮文本数据
-export const BUTTON_TEXT: Array<Resource> = [
-  $r('app.string.crash_event'),
-  $r('app.string.freeze_event')
-]
+{
+  "apiType": "stageMode",
+  "buildOption": {
+  },
+  "buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": true,
+            "files": [
+              "./obfuscation-rules.txt"
+            ]
+          },
+          "consumerFiles": [
+            "./consumer-rules.txt"
+          ]
+        }
+      },
+    },
+  ],
+  "targets": [
+    {
+      "name": "default"
+    }
+  ]
+}

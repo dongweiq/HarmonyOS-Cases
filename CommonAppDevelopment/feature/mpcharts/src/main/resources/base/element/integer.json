@@ -1,0 +1,60 @@
+{
+  "integer": [
+    {
+      "name": "font_size_24",
+      "value": 24
+    },
+    {
+      "name": "font_size_20",
+      "value": 20
+    },
+    {
+      "name": "font_size_18",
+      "value": 18
+    },
+    {
+      "name": "margin_5",
+      "value": 5
+    },
+    {
+      "name": "margin_10",
+      "value": 10
+    },
+    {
+      "name": "margin_20",
+      "value": 20
+    },
+    {
+      "name": "padding_4",
+      "value": 4
+    },
+    {
+      "name": "padding_10",
+      "value": 10
+    },
+    {
+      "name": "padding_20",
+      "value": 20
+    },
+    {
+      "name": "radius_20",
+      "value": 20
+    },
+    {
+      "name": "radius_6",
+      "value": 6
+    },
+    {
+      "name": "radius_10",
+      "value": 10
+    },
+    {
+      "name": "font_size_12",
+      "value": 12
+    },
+    {
+      "name": "border_width_1",
+      "value": 1
+    }
+  ]
+}

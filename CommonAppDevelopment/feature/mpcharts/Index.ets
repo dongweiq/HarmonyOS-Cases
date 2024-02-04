@@ -13,13 +13,6 @@
  * limitations under the License.
  */
 
-{
-  "license": "Apache-2.0",
-  "devDependencies": {},
-  "author": "",
-  "name": "utils",
-  "description": "Please describe the basic information.",
-  "main": "Index.ets",
-  "version": "1.0.0",
-  "dependencies": {}
-}
+export { LineCharts } from './src/main/ets/view/LineCharts';
+
+export { MpCharts } from './src/main/ets/view/Index';

@@ -109,8 +109,7 @@ struct FaultArea {
           // 根据被点击事件的下标响应指定的信息
           Text(this.eventIndex === 0 ? $r('app.string.crash_event_message') :
             (this.eventIndex === 1 ? $r('app.string.freeze_event_message') :
-              (this.eventIndex === 2 ? $r('app.string.system_kill_event_message') :
-              $r('app.string.no_message'))))
+            $r('app.string.no_message')))
         }
       }
     }

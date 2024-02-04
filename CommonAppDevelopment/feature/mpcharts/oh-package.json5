@@ -14,30 +14,13 @@
  */
 
 {
-  "apiType": "stageMode",
-  "buildOption": {
-  },
-  "buildOptionSet": [
-    {
-      "name": "release",
-      "arkOptions": {
-        "obfuscation": {
-          "ruleOptions": {
-            "enable": true,
-            "files": [
-              "./obfuscation-rules.txt"
-            ]
-          },
-          "consumerFiles": [
-            "./consumer-rules.txt"
-          ]
-        }
-      }
-    },
-  ],
-  "targets": [
-    {
-      "name": "default"
-    }
-  ]
+  "name": "mpcharts",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@ohos/mpchart": "3.0.0-rc.1"
+  }
 }

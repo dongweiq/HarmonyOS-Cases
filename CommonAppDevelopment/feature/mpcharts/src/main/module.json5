@@ -1,10 +1,11 @@
 {
   "module": {
-    "name": "utils",
+    "name": "mpcharts",
     "type": "har",
     "deviceTypes": [
       "default",
-      "tablet"
+      "tablet",
+      "2in1"
     ]
   }
 }

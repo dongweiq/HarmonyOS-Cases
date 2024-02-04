@@ -13,5 +13,9 @@
  * limitations under the License.
  */
 
-export { logger } from './src/main/ets/log/Logger';
-export { FunctionDescription } from './src/main/ets/component/FunctionDescription';
+import { harTasks } from '@ohos/hvigor-ohos-plugin';
+
+export default {
+    system: harTasks,  /* Built-in plugin of Hvigor. It cannot be modified. */
+    plugins:[]         /* Custom plugin to extend the functionality of Hvigor. */
+}
