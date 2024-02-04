@@ -1,6 +1,7 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+    ],
     "products": [
       {
         "name": "default",
@@ -109,8 +110,8 @@
       "srcPath": "./feature/pageturninganimation"
     },
     {
-      "name": "marquee",
-      "srcPath": "./feature/marquee"
+      "name": "applicationexception",
+      "srcPath": "./feature/applicationexception"
     },
     {
       "name": "fitfordarkmode",
@@ -121,8 +122,20 @@
       "srcPath": "./feature/pulltorefreshnews"
     },
     {
-      "name": "applicationexception",
-      "srcPath": "./feature/applicationexception"
+      "name": "marquee",
+      "srcPath": "./feature/marquee"
+    },
+    {
+      "name": "nativeprogressnotify",
+      "srcPath": "./feature/nativeprogressnotify"
+    },
+    {
+      "name": "photopickandsave",
+      "srcPath": "./feature/photopickandsave"
+    },
+    {
+      "name": "verifycode",
+      "srcPath": "./feature/verifycode"
     }
   ]
 }
