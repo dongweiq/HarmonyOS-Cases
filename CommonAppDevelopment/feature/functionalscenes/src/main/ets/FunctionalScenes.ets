@@ -54,7 +54,7 @@ export struct FunctionalScenes {
    * 主页轮播图组件
    */
   @Builder
-  SwiperComponent() {
+  swiperComponent() {
     Swiper() {
       LazyForEach(this.swiperDataSource, (item: SwiperData) => {
         Stack({ alignContent: Alignment.BottomStart }) {
@@ -115,7 +115,7 @@ export struct FunctionalScenes {
    * @param listData 组件列表信息
    */
   @Builder
-  MethodPoints(listData: ListData) {
+  methodPoints(listData: ListData) {
     Column() {
       if (listData.isCropping) {
         Image(listData.imageSrc)
@@ -162,6 +162,7 @@ export struct FunctionalScenes {
     .shadow(ShadowStyle.OUTER_DEFAULT_XS)
     .width('49%')
     .borderRadius($r('app.string.main_page_list_borderRadius'))
+    .margin({ top: $r('app.string.item_gap_half'), bottom: $r('app.string.item_gap_half') })
     .backgroundColor(Color.White)
     .onClick(() => {
       this.pageStack.pushPath({ name: listData.path, param: listData.param });
@@ -169,7 +170,7 @@ export struct FunctionalScenes {
   }
 
   @Builder
-  TabBuilder(index: number, name: string | undefined) {
+  tabBuilder(index: number, name: string | undefined) {
     Row() {
       Text(name)
         .fontSize($r('app.string.ohos_id_text_size_body1'))
@@ -180,7 +181,8 @@ export struct FunctionalScenes {
         .border(this.tabsIndex === index ? {
           width: { left: 0, right: 0, top: 0, bottom: $r('app.string.main_page_tab_text_underline') },
           color: { bottom: Color.Black },
-          style: BorderStyle.Solid } :
+          style: BorderStyle.Solid
+        } :
           {
             width: 0
           })
@@ -223,52 +225,43 @@ export struct FunctionalScenes {
         .backgroundColor('#E7E9E8')
         .borderRadius($r('app.string.main_page_top_borderRadius'))
       }
-      //TODO:暂时隐藏待搜索功能完善后放开显示
+      // TODO:需求：暂时隐藏待搜索功能完善后放开显示
       .visibility(Visibility.None)
       .padding({ left: $r('app.string.main_page_padding2'), right: $r('app.string.main_page_padding2') })
 
       Scroll(this.scroller) {
         Column() {
-          Column() {
-            this.SwiperComponent()
-          }
+          this.swiperComponent()
 
-          Column() {
-            Tabs({ controller: this.tabsController }) {
-              LazyForEach(this.tabDataSource, (tabItem: TabDataModel) => {
-                TabContent() {
-                  WaterFlow({ scroller: this.waterFlowScroller }) {
-                    LazyForEach(this.dataSource, (waterFlowItem: ListData) => {
-                      FlowItem() {
-                        this.MethodPoints(waterFlowItem)
-                      }
-                    })
-                  }
-                  .nestedScroll({
-                    scrollForward: NestedScrollMode.PARENT_FIRST,
-                    scrollBackward: NestedScrollMode.SELF_FIRST
+          Tabs({ controller: this.tabsController }) {
+            LazyForEach(this.tabDataSource, (tabItem: TabDataModel) => {
+              TabContent() {
+                WaterFlow({ scroller: this.waterFlowScroller }) {
+                  LazyForEach(this.dataSource, (waterFlowItem: ListData) => {
+                    FlowItem() {
+                      this.methodPoints(waterFlowItem)
+                    }
                   })
-                  .cachedCount(4)
-                  .padding({
-                    top: $r('app.string.main_page_padding2')
-                  })
-                  .rowsGap($r('app.string.main_page_water_flow_gap'))
-                  .columnsTemplate('1fr 1fr')
-                  .columnsGap($r('app.string.main_page_water_flow_gap'))
-                  .width('100%')
                 }
-                .tabBar(this.TabBuilder(tabItem.id, tabItem.navData))
-              })
-            }
-            .padding({
-              left: $r('app.string.main_page_padding2'),
-              right: $r('app.string.main_page_padding2')
+                .nestedScroll({
+                  scrollForward: NestedScrollMode.PARENT_FIRST,
+                  scrollBackward: NestedScrollMode.SELF_FIRST
+                })
+                .cachedCount(2)
+                .columnsTemplate('1fr 1fr')
+                .columnsGap($r('app.string.main_page_water_flow_gap'))
+                .width('100%')
+              }
+              .tabBar(this.tabBuilder(tabItem.id, tabItem.navData))
             })
-            .margin({ top: $r('app.string.main_page_margin2') })
-            .barWidth('100%')
-            .barHeight('6%')
-            .scrollable(false)
           }
+          .padding({
+            left: $r('app.string.main_page_padding2'),
+            right: $r('app.string.main_page_padding2')
+          })
+          .barWidth('100%')
+          .barHeight('6%')
+          .scrollable(false)
         }
       }
       .scrollBar(BarState.Off)

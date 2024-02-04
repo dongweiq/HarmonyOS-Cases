@@ -86,7 +86,11 @@
     },
     {
       "name": "main_page_water_flow_gap",
-      "value": "12"
+      "value": "6"
+    },
+    {
+      "name": "item_gap_half",
+      "value": "3"
     }
   ]
 }
