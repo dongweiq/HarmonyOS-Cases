@@ -37,20 +37,17 @@
    ```
 1. Native侧模拟下载的线程中，每100ms执行一次uv_queue_work；向eventloop事件堆栈push异步任务。
    ```cpp
-   while (context && context->progress < 100) {
-       uv_queue_work();
-       // 睡眠100ms
-       std::this_thread::sleep_for(std::chrono::milliseconds(100));
-   }
+    while (context && context->progress < 100) {
+        context->progress += 1;
+        napi_acquire_threadsafe_function(tsfn);
+        napi_call_threadsafe_function(tsfn, (void *)context, napi_tsfn_blocking);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
    ```
 1. 在模拟下载任务的子线程中，调用napi_call_function来执行Arkts回调，向Arkts侧传递进度信息
    ```cpp
-   napi_value callback;
-   napi_get_reference_value(context->env, context->callbackRef, &callback);
-   napi_value retArg;
-   napi_create_int32(context->env, context->progress, &retArg);
-   napi_value ret;
-   napi_call_function(context->env, nullptr, callback, 1, &retArg, &ret);
+    napi_create_int32(arg->env, arg->progress, &progress);
+    napi_call_function(arg->env, nullptr, jsCb, 1, &progress, nullptr);
    ```
 
 ### 高性能知识点

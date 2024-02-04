@@ -23,41 +23,33 @@ typedef struct CallbackContext {
     int progress = 0;
 } CallbackContext;
 
+// TODO：知识点：回调ts侧函数，将进度信息通知到ts侧
+static void callTS(napi_env env, napi_value jsCb, void *context, void *data) {
+    CallbackContext *arg = (CallbackContext *)data;
+    napi_value progress;
+    napi_create_int32(arg->env, arg->progress, &progress);
+    napi_call_function(arg->env, nullptr, jsCb, 1, &progress, nullptr);
+}
+
 /**
- * TODO 知识点：模拟下载任务，这里面也可以使用threadsafefunction来实现
+ * TODO 知识点：模拟下载任务，这里因为调用了ts侧函数，所以要使用线程安全函数
  */
 void downloadTask(CallbackContext *context) {
-    uv_loop_s *loop = nullptr;
-    // 获取context->env上下文环境的loop（线程池）
-    napi_get_uv_event_loop(context->env, &loop);
-    // uv_work_t是关联loop和线程池回调函数的结构体
-    uv_work_t *work = new uv_work_t;
-    work->data = (CallbackContext *)context;
-
+    // 创建线程安全函数
+    napi_value workName;
+    napi_create_string_utf8(context->env, "download", NAPI_AUTO_LENGTH, &workName);
+    napi_value jsCb;
+    napi_get_reference_value(context->env, context->callbackRef, &jsCb);
+    napi_threadsafe_function tsfn;
+    napi_create_threadsafe_function(context->env, jsCb, nullptr, workName, 0, 1, nullptr, nullptr, nullptr, callTS,
+                                    &tsfn);
     while (context && context->progress < 100) {
-        uv_queue_work(
-            loop, work, [](uv_work_t *) {},
-            [](uv_work_t *work, int status) {
-                CallbackContext *context = (CallbackContext *)work->data;
-                context->progress += 1;
-                napi_handle_scope scope;
-                // 管理napi_value生命周期，防止内存泄漏
-                napi_open_handle_scope(context->env, &scope);
-                napi_value callback;
-                napi_get_reference_value(context->env, context->callbackRef, &callback);
-                napi_value retArg;
-                napi_create_int32(context->env, context->progress, &retArg);
-                napi_value ret;
-                napi_call_function(context->env, nullptr, callback, 1, &retArg, &ret);
-                napi_close_handle_scope(context->env, scope);
-                if (context->progress > 99) {
-                    delete context;
-                    delete work;
-                }
-            });
-        // 睡眠100ms
+        context->progress += 1;
+        napi_acquire_threadsafe_function(tsfn);
+        napi_call_threadsafe_function(tsfn, (void *)context, napi_tsfn_blocking);
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+    delete context;
 };
 
 static napi_value startDownload(napi_env env, napi_callback_info info) {

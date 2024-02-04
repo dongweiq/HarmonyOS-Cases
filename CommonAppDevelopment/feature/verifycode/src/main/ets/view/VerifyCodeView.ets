@@ -42,6 +42,20 @@ struct VerifyCodeComponentWithoutCursor {
   private verifyCodeLength: number = 6;
   private codeIndexArray: Array<number> = Array.from([0, 1, 2, 3, 4, 5]);
 
+  // TODO 知识点：在aboutToAppear与aboutToDisappear回调中对输入法进行绑定与解绑
+  aboutToAppear(): void {
+    this.setAttachAndListener()
+  }
+
+  aboutToDisappear(): void {
+    if (this.isAttached) {
+      return;
+    }
+    this.inputController.detach((err: BusinessError) => {
+      Logger.error("Failed to detach: %{public}s", err.message);
+    })
+  }
+
   /**
    * TODO 知识点：绑定输入法并订阅输入法相关事件
    */
@@ -106,15 +120,6 @@ struct VerifyCodeComponentWithoutCursor {
     Row() {
       this.buildVerifyCodeComponent()
     }
-    // TODO 知识点：在onAppear与onDisAppear回调中对输入法进行绑定与解绑
-    .onAppear(() => {
-      this.setAttachAndListener()
-    })
-    .onDisAppear(() => {
-      this.inputController.detach((err: BusinessError) => {
-        Logger.error("Failed to detach: %{public}s", err.message);
-      })
-    })
   }
 }
 
