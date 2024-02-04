@@ -43,6 +43,8 @@
     "@ohos/akiusepractice": "file:../../feature/akiusepractice",
     // 多层嵌套类对象监听方案
     "@ohos/variablewatch": "file:../../feature/variablewatch",
+    // 图片选择和下载保存案例
+    "@ohso/photopickandsave": "file:../../feature/photopickandsave",
     // 翻页动效案例
     "@ohos/pageturninganimation": "file:../../feature/pageturninganimation",
     // 异常处理

@@ -30,6 +30,7 @@ import { SlideToHideAndDisplace } from '@ohos/slidetohideanddisplace/Index';
 import { NavigationParameterTransferView, UserBookingInfo } from '@ohos/NavigationParameterTransferView';
 import { AkiView } from '@ohos/akiusepractice';
 import { VariableWatchView } from '@ohos/variablewatch';
+import { PictureManager } from '@ohso/photopickandsave'
 import { PageTurningAnimation } from '@ohos/pageturninganimation';
 import { ApplicationExceptionView } from '@ohos/applicationexception';
 import { FitForDarkMode } from '@ohos/fitfordarkmode';
@@ -58,6 +59,7 @@ struct EntryView {
     new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', 'NavigationParameterTransfer', 2, false, '30%', '其他', this.strUserBooking),
     new ListData($r('app.media.aki_use_practice'), 'AKI使用实践', 'akiUsePractice', 2, false, '25%', '其他'),
     new ListData($r('app.media.variable_watch'), '多层嵌套类监听', 'variableWatch', 2, false, '25%', '其他'),
+    new ListData($r('app.media.photopickandsave'), '图片选择和下载保存', 'photopickandsave', 1, false, '25%')
     new ListData($r('app.media.fault'), '异常处理', 'fault', 2, false, '25%', '其他'),
     new ListData($r('app.media.fit_for_dark_mode'), '深浅模式', 'darkMode', 2, false, '35%', 'UI布局'),
     new ListData($r('app.media.marquee'), '跑马灯', 'marquee', 3, true, '25%', '动效'),
@@ -116,6 +118,9 @@ struct EntryView {
       } else if (name === 'variableWatch') {
         // 多层嵌套类监听方案
         VariableWatchView()
+      } else if (name === 'photopickandsave') {
+        // 图片选择和下载保存
+        PictureManager()
       } else if (name === 'pageturninganimation') {
         // 翻页动效案例
         PageTurningAnimation()
