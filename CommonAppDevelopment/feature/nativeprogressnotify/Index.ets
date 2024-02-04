@@ -1,0 +1,1 @@
+export { NativeProgressNotify } from "./src/main/ets/view/NativeProgressNotify";
