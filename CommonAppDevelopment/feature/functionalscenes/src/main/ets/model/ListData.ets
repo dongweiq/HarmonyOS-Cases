@@ -37,11 +37,11 @@ export class ListData {
   constructor(imageSrc: ResourceStr, name: string, path: string, ratingNumber: number, isCropping: boolean, imageHeight: number | string, category: string, param?: string) {
     this.imageSrc = imageSrc;
     this.name = name;
-    this.path = path;
     this.param = param === undefined ? '' : param;
     this.imageHeight = imageHeight;
     this.ratingNumber = ratingNumber;
     this.isCropping = isCropping;
     this.category = category;
+    this.path = path;
   }
 }

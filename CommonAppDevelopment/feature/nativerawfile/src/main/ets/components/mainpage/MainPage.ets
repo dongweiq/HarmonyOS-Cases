@@ -23,19 +23,22 @@
 
 import nativeRawfileApi from 'libnativerawfileapi.so';
 import { FunctionDescription } from '@ohos/base';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 let rawfileTotalContent: string;
+
 
 @Component
 export struct NativeRawfileDemo {
   @State ReadStartPos: number = 2;
   @State readLength: number = 5;
   @State rawfileContent: string = '';
-  private rawfileName:string = 'rawfile.txt';
+  private rawfileName: string = 'rawfile.txt';
 
   async aboutToAppear() {
     // TODO：知识点：通过Native暴露的接口getRawFileContent读取文件部分内容，getTotalRawFileContent接口读取文件全部内容
-    this.rawfileContent = nativeRawfileApi.getRawFileContent(getContext().resourceManager, this.rawfileName, this.ReadStartPos, this.readLength);
+    this.rawfileContent = nativeRawfileApi.getRawFileContent(getContext()
+      .resourceManager, this.rawfileName, this.ReadStartPos, this.readLength);
     rawfileTotalContent = nativeRawfileApi.getTotalRawFileContent(getContext().resourceManager, this.rawfileName);
   }
 
@@ -140,4 +143,17 @@ export struct NativeRawfileDemo {
     .height('100%')
     .padding($r('app.string.rawfile_padding'))
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function createDynamicsImportView(): void {
+  NativeRawfileDemo();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_READ_RAW_FILE;
+if (!DynamicsRouter.getBuilder(builderName)) {
+  let builder: WrappedBuilder<[object]> = wrapBuilder(createDynamicsImportView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

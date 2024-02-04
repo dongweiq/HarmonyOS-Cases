@@ -21,6 +21,8 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "@ohos/base": "file:../../common/utils"
+    "@ohos/base": "file:../../common/utils",
+    // 动态路由模块，用于配置动态路由
+    "@ohos/dynamicsRouter": "file:../../feature/dynamicsrouter"
   }
 }

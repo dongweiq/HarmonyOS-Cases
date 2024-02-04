@@ -19,6 +19,7 @@ import { ImageScaleModel } from '../model/ImageScaleModel';
 import { ImageContentView } from './ImageContentView';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 @Preview
 @Component
@@ -63,4 +64,17 @@ export struct ImageViewerView {
     .height(ImageViewerConstants.FULL_SIZE)
     .width(ImageViewerConstants.FULL_SIZE)
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function createDynamicsImportView(): void {
+  ImageViewerView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_IMAGE_VIEWER;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(createDynamicsImportView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

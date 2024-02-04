@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "dynamicsrouter",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

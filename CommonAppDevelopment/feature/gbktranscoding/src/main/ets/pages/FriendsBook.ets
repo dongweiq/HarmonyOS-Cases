@@ -22,6 +22,7 @@ import util from '@ohos.util';
 import axios, { AxiosResponse } from "@ohos/axios";
 import { BasicDataSource } from '../viewModel/BasicDataSource';
 import { FunctionDescription } from '@ohos/base';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 const LIST_SPACE: number = 0; // 列表默认间隔
 const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间
@@ -206,4 +207,17 @@ class FriendListData extends BasicDataSource<FriendData> {
     this.friendList.push(data);
     this.notifyDataAdd(this.friendList.length - 1);
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function createDynamicsImportView(): void {
+  FriendsBook();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_GBK_TRANSCODING;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(createDynamicsImportView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }
