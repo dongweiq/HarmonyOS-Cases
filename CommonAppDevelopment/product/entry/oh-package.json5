@@ -58,6 +58,8 @@
     // Native进度更新
     "@ohos/nativeprogressnotify": "file:../../feature/nativeprogressnotify",
     // 抖动动画及手机振动效果
-    "@ohos/vibrateeffect": "file:../../feature/vibrateeffect"
+    "@ohos/vibrateeffect": "file:../../feature/vibrateeffect",
+    // 页面随着swiper高度的变化而平滑变化案例
+    "@ohos/swipersmoothvariation": "file:../../feature/swipersmoothvariation",
   }
 }

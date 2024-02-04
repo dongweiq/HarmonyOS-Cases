@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "swiper_jump_bg_color",
+      "value": "#08182431"
+    },
+    {
+      "name": "swiper_selected_color",
+      "value": "#FFEC6553"
+    },
+    {
+      "name": "swiper_unselected_color",
+      "value": "#FFFF8662"
+    },
+    {
+      "name": "color_white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "text_color",
+      "value": "#FFE7EFFC"
+    },
+    {
+      "name": "stack_color",
+      "value": "#FFF5F5F3"
+    },
+    {
+      "name": "badge_color",
+      "value": "#EEFD5217"
+    }
+  ]
+}

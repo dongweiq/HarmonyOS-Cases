@@ -136,6 +136,10 @@
     {
       "name": "vibrateeffect",
       "srcPath": "./feature/vibrateeffect"
+    },
+    {
+      "name": "swipersmoothvariation",
+      "srcPath": "./feature/swipersmoothvariation"
     }
   ]
 }

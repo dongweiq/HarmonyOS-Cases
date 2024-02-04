@@ -1,0 +1,129 @@
+{
+  "float": [
+    {
+      "name": "offset_y",
+      "value": "-180vp"
+    },
+    {
+      "name": "offset_x",
+      "value": "0vp"
+    },
+    {
+      "name": "title_offset_y",
+      "value": "20vp"
+    },
+    {
+      "name": "border_radius",
+      "value": "12vp"
+    },
+    {
+      "name": "text_border_radius",
+      "value": "5vp"
+    },
+    {
+      "name": "tab_border_radius",
+      "value": "19vp"
+    },
+    {
+      "name": "tool_bar_width",
+      "value": "86vp"
+    },
+    {
+      "name": "pad_text",
+      "value": "15vp"
+    },
+    {
+      "name": "button_height",
+      "value": "36vp"
+    },
+    {
+      "name": "title_text_size",
+      "value": "16fp"
+    },
+    {
+      "name": "tab_big_img_with",
+      "value": "43vp"
+    },
+    {
+      "name": "tab_img_size",
+      "value": "28vp"
+    },
+    {
+      "name": "tab_margin",
+      "value": "-15vp"
+    },
+    {
+      "name": "tab_font_size",
+      "value": "10fp"
+    },
+    {
+      "name": "item_text_offset",
+      "value": "8vp"
+    },
+    {
+      "name": "small_font_size",
+      "value": "13vp"
+    },
+    {
+      "name": "blank_height",
+      "value": "20vp"
+    },
+    {
+      "name": "scroll_width",
+      "value": "340vp"
+    },
+    {
+      "name": "swiper_offset",
+      "value": "23vp"
+    },
+    {
+      "name": "normal_margin",
+      "value": "10vp"
+    },
+    {
+      "name": "item_text_height",
+      "value": "90vp"
+    },
+    {
+      "name": "margin_fifteen",
+      "value": "15vp"
+    },
+    {
+      "name": "select_item_width",
+      "value": "18fp"
+    },
+    {
+      "name": "select_item_height",
+      "value": "3vp"
+    },
+    {
+      "name": "default_item_width",
+      "value": "5vp"
+    },
+    {
+      "name": "default_item_height",
+      "value": "-3vp"
+    },
+    {
+      "name": "app_side_length",
+      "value": "30fp"
+    },
+    {
+      "name": "item_image_height",
+      "value": "90vp"
+    },
+    {
+      "name": "badge_font_size",
+      "value": "10vp"
+    },
+    {
+      "name": "item_image_width",
+      "value": "165vp"
+    },
+    {
+      "name": "colum_offset_one",
+      "value": "200vp"
+    }
+
+  ]
+}
