@@ -47,11 +47,9 @@ void downloadTask(CallbackContext *context) {
         context->progress += 1;
         napi_acquire_threadsafe_function(tsfn);
         napi_call_threadsafe_function(tsfn, (void *)context, napi_tsfn_blocking);
-        if (context->progress == 100) {
-            delete context;
-        }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
+    delete context;
 };
 
 static napi_value startDownload(napi_env env, napi_callback_info info) {
