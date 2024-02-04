@@ -2,25 +2,87 @@
 
 ### 介绍
 
-本示例介绍使用了[Tab组件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md)实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。
+本示例介绍使用了[Tab组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-tabs-0000001821000917)实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。
 
 ### 效果图预览
 
-<img src="../../screenshots/device/HandleTabs.gif" width="200">
+<img src="../../product/entry/src/main/resources/base/media/handle_tabs.gif" width="200">
 
 **使用说明**：
 
-1. 通过点击右上角新增按钮，新增Tab页面。
-2. 点击删除按钮，删除当前Tab页面。
+1. 点击新增按钮，新增Tab页面。
+2. 点击删除按钮，删除Tab页面。
 
 ## 实现思路
 
-本例涉及的关键特性以及实现方案如下：
+1. 设置Tab组件的barHeight为0，隐藏组件自带的TabBar。
 
-- 通过@Builder自定义封装一个导航页签栏，并通过ForEach完成对Tabs组件的内容页和导航页签栏的动态渲染。
-- 通过TabsController的changeIndex可实现页面的跳转，传入的index是数组中对应的索引值。
-- 页签的增加通过数组的push方法，增加数组元素。
-- 删除页签通过通过删除页面对应数组的索引值处的数据完成，删除后页面跳转位置根据业务逻辑要求确定跳转页面对应的索引值。
+   ```javascript
+   Tabs() {
+     ...
+   }
+   .barHeight(0) // 隐藏tab组件自带的tabbar
+   ```
+
+2. 使用@Link修饰符，将自定义TabBar组件和Tab组件通过focusIndex和tabArray进行双向绑定。
+
+   ```javascript
+   //TabSheetComponent.ets
+   @Component
+   struct TabSheetComponent {
+     @Link tabArray: Array<number>
+     @Link focusIndex: number
+   
+     build() {
+       ...
+     }
+   }
+       
+   //HandleTabs.ets
+   @Component
+   struct HandleTabs {
+     @State tabArray: Array<number> = [0]; // 控制页签渲染的数组
+     @State focusIndex: number = 0; // Tabs组件当前显示的页签下标
+   
+     build() {
+       ...
+   
+       TabSheetComponent({ tabArray: $tabArray, focusIndex: $focusIndex })
+       Tabs({ index: this.focusIndex }) {
+         ForEach(this.tabArray,()=>{
+           ...
+         })
+       }
+   
+       ...
+     }
+   }
+   ```
+
+   
+
+3. 在自定义TabBar中修改focusIndex和tabArray的值时，Tab组件根据数据变化进行对应UI变更
+
+   ```javascript
+   //TabSheetComponent.ets
+   Image('add') // 新增页签
+     .onClick(() => {
+       this.tabArray.push(item)
+     })
+   
+   ...
+   
+   Image('close') // 关闭指定索引页签
+     .onClick(() => {
+       this.tabArray.splice(index, 1)
+     })
+   
+   ...
+   
+   this.focusIndex = index; // 跳转到指定索引值
+   ```
+
+   
 
 ### 高性能知识点
 
@@ -34,14 +96,17 @@
    |   |---constantsData.ets                       // 定义常量数据
    |---pages                        
    |   |---HandleTabs.ets                          // 增删tab页签功能实现页面
+   |   |---MenuBar.ets                             // 工具栏
+   |   |---TabSheetComponent.ets                   // 自定义TabBar组件
    ```
 
 ### 模块依赖
 
-**不涉及**
+当前场景依赖common模块的FunctionDescription组件，主要用于功能场景文本介绍。详细可参考[FunctionDescription](../../common/utils/src/main/ets/FunctionDescription.ets)文件。
+
 
 ### 参考资料
 
-[ForEach使用说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md)
+[ForEach使用说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-rendering-control-foreach-0000001820999585)
 
-[Tabs组件使用说明](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-tabs.md)
+[Tabs组件使用说明](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-tabs-0000001821000917)

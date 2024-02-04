@@ -15,8 +15,11 @@
 
 export { ApplicationExceptionView } from './src/main/ets/view/ApplicationException';
 
-export { createDynamicsImportView } from './src/main/ets/view/ApplicationException';
-
 export { eventSubscription } from './src/main/ets/model/EventSubscription';
 
 export { PreferencesManager } from './src/main/ets/model/PreferencesManager';
+
+// 动态import时需要调用的接口，接口名请使用harInit，用于动态加载页面
+export function harInit(path: string) {
+  import(path);
+}

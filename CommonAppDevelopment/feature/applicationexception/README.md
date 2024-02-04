@@ -1,4 +1,4 @@
-# 应用异常信息获取
+# 应用异常处理案例
 
 ### 介绍
 
@@ -6,10 +6,7 @@
 
 ### 效果图预览
 
-
-|点击构建崩溃场景|显示出错信息|点击构建卡死场景|点击构建系统查杀场景|
-|--------|----------|--------|----------|
-|![crash](../../screenshots/device/crash.jpeg)|![faultMessage](../../screenshots/device/faultMessage.jpeg)|![appFreeze](../../screenshots/device/appFreeze.jpeg)|![system_kill](../../screenshots/device/system_kill.jpeg)|
+<img src="../../product/entry/src/main/resources/base/media/application_exception.gif" width="300">
 
 **使用说明**：
 

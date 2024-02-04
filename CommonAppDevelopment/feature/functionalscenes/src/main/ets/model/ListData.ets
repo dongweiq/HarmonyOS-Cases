@@ -33,8 +33,10 @@ export class ListData {
   isCropping: boolean;
   // 图片高度
   imageHeight: number | string;
+  // 分类
+  category: string;
 
-  constructor(imageSrc: ResourceStr, name: string, routerName: string, ratingNumber: number, isCropping: boolean, imageHeight: number | string, path: string, param?: string) {
+  constructor(imageSrc: ResourceStr, name: string, routerName: string, ratingNumber: number, isCropping: boolean, imageHeight: number | string, path: string, category: string, param?: string) {
     this.imageSrc = imageSrc;
     this.name = name;
     this.routerName = routerName;
@@ -43,5 +45,6 @@ export class ListData {
     this.ratingNumber = ratingNumber;
     this.isCropping = isCropping;
     this.path = path;
+    this.category = category;
   }
 }

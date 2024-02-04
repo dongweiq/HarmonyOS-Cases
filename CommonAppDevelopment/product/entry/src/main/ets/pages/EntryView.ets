@@ -12,23 +12,71 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { FunctionalScenes, pageMap } from '@ohos/functionalscenes';
+import { DynamicsRouter, RouterNameConstants, RouterPathConstants } from '@ohos/dynamicsRouter/Index';
+
+import { FunctionalScenes, ListData, } from '@ohos/functionalscenes';
+import { UserBookingInfo } from '@ohos/NavigationParameterTransferView/Index';
 
 @Entry
 @Component
 struct EntryView {
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
+  private userBooking: UserBookingInfo = new UserBookingInfo('张山', '332212199507270611', '7F');
+  @State strUserBooking: string = JSON.stringify(this.userBooking);
+  // TODO:需求：路由栈信息，待后续封装路由管理HAR
+  @State listData: ListData[] = [
+    new ListData($r("app.media.bar_chart_top"), 'MpChart图表实现', RouterNameConstants.ROUTER_NAME_BAR_CHAT, 1, true, '30%', RouterPathConstants.ROUTER_PATH_BAR_CHAT, '三方库'),
+    new ListData($r("app.media.address_exchange"), '地址交换动画', RouterNameConstants.ROUTER_NAME_ADDRESS_EXCHANGE, 2, true, '25%', RouterPathConstants.ROUTER_PATH_ADDRESS_EXCHANGE, '动效'),
+    new ListData($r("app.media.tab_bar"), '自定义TabBar页签', RouterNameConstants.ROUTER_NAME_CUSTOM_TAB_BAR, 2, true, '25%', RouterPathConstants.ROUTER_PATH_CUSTOM_TAB_BAR, '动效'),
+    new ListData($r("app.media.secondary_linkage"), '列表二级联动', RouterNameConstants.ROUTER_NAME_SECONDARY_LINKAGE, 1, false, '30%', RouterPathConstants.ROUTER_PATH_SECONDARY_LINKAGE, 'UI布局'),
+    new ListData($r("app.media.raw_file"), '读取RawFile文件部分内容', RouterNameConstants.ROUTER_NAME_READ_RAW_FILE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_READ_RAW_FILE, 'Native'),
+    new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', RouterNameConstants.ROUTER_NAME_EVENT_TRANSMISSION_SOLUTION, 1, false, '40%', RouterPathConstants.ROUTER_PATH_EVENT_TRANSMISSION_SOLUTION, '其他'),
+    new ListData($r("app.media.image_viewer"), '图片缩放功能实现', RouterNameConstants.ROUTER_NAME_IMAGE_VIEWER, 2, false, '30%', RouterPathConstants.ROUTER_PATH_IMAGE_VIEWER, '其他'),
+    new ListData($r("app.media.todo_list"), '列表编辑', RouterNameConstants.ROUTER_NAME_PENDING_ITEMS, 1, false, '40%', RouterPathConstants.ROUTER_PATH_PENDING_ITEMS, 'UI布局'),
+    new ListData($r("app.media.handle_tabs"), '增删tab页签', RouterNameConstants.ROUTER_NAME_HANDLE_TABS, 2, false, '30%', RouterPathConstants.ROUTER_PATH_HANDLE_TABS, 'UI布局'),
+    new ListData($r("app.media.modal_window"), '全屏登录页面', RouterNameConstants.ROUTER_NAME_MODAL_WINDOW, 2, false, '40%', RouterPathConstants.ROUTER_PATH_MODAL_WINDOW, 'UI布局'),
+    new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', RouterNameConstants.ROUTER_NAME_SLIDE_TO_HIDE_AND_DISPLACE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_SLIDE_TO_HIDE_AND_DISPLACE, 'UI布局'),
+    new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', RouterNameConstants.ROUTER_NAME_NAVIGATION_PARAMETER_TRANSFER, 2, false, '30%', RouterPathConstants.ROUTER_PATH_NAVIGATION_PARAMETER_TRANSFER, '其他', this.strUserBooking),
+    new ListData($r('app.media.aki_use_practice'), 'AKI使用实践', RouterNameConstants.ROUTER_NAME_AKI_USE_PRACTICE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_AKI_USE_PRACTICE, '其他'),
+    new ListData($r('app.media.variable_watch'), '多层嵌套类监听', RouterNameConstants.ROUTER_NAME_VARIABLE_WATCH, 2, false, '25%', RouterPathConstants.ROUTER_PATH_VARIABLE_WATCH, '其他'),
+    new ListData($r('app.media.friends_book'), 'GBK文本格式解码', RouterNameConstants.ROUTER_NAME_GBK_TRANSCODING, 2, false, '25%', RouterPathConstants.ROUTER_PATH_GBK_TRANSCODING, '其他'),
+    new ListData($r("app.media.photo_pick_and_save"), '图片选择和下载保存', RouterNameConstants.ROUTER_NAME_PHOTO_PICK_AND_SAVE, 1, false, '25%', RouterPathConstants.ROUTER_PATH_PHOTO_PICK_AND_SAVE, '其他'),
+    new ListData($r('app.media.application_exception'), '异常处理', RouterNameConstants.ROUTER_NAME_FAULT, 2, false, '25%', RouterPathConstants.ROUTER_PATH_FAULT, '其他'),
+    new ListData($r('app.media.fit_for_dark_mode'), '深浅模式', RouterNameConstants.ROUTER_NAME_DARK_MODE, 2, false, '35%', RouterPathConstants.ROUTER_PATH_DARK_MODE, 'UI布局'),
+    new ListData($r('app.media.marquee'), '跑马灯', RouterNameConstants.ROUTER_NAME_MARQUEE, 3, true, '25%', RouterPathConstants.ROUTER_PATH_MARQUEE, '动效'),
+    new ListData($r('app.media.pull_to_refresh_news'), '下拉刷新上滑加载', RouterNameConstants.ROUTER_NAME_PULL_TO_REFRESH, 2, false, '35%', RouterPathConstants.ROUTER_PATH_PULL_TO_REFRESH, '动效'),
+    new ListData($r('app.media.page_turning_animation'), '翻页动效', RouterNameConstants.ROUTER_NAME_PAGE_TURNING_ANIMATION, 3, true, '25%', RouterPathConstants.ROUTER_PATH_PAGE_TURNING_ANIMATION, '动效'),
+    new ListData($r("app.media.verify_code"), '验证码布局案例', RouterNameConstants.ROUTER_NAME_VERIFY_CODE, 3, true, '25%', RouterPathConstants.ROUTER_PATH_VERIFY_CODE, 'UI布局'),
+    new ListData($r('app.media.native_progress_notify'), '在Native侧实现进度通知功能', RouterNameConstants.ROUTER_NAME_NATIVE_PROGRESS_NOTIFY, 2, false, '25%', RouterPathConstants.ROUTER_PATH_NATIVE_PROGRESS_NOTIFY, 'Native'),
+    new ListData($r('app.media.vibrate_effect'), '使用弹簧曲线实现抖动动画及手机振动效果案例', RouterNameConstants.ROUTER_NAME_VIBRATE_EFFECT, 1, false, '25%', RouterPathConstants.ROUTER_PATH_VIBRATE_EFFECT, '动效'),
+    new ListData($r("app.media.swiper_smooth_variation"), 'Swiper高度可变化效果实现', RouterNameConstants.ROUTER_NAME_SWIPER_SMOOTH_VARIATION, 2, false, '25%', RouterPathConstants.ROUTER_PATH_SWIPER_SMOOTH_VARIATION, '动效'),
+    new ListData($r("app.media.navigation_bar_change"), '状态栏显隐变化', RouterNameConstants.ROUTER_NAME_NAVIGATION_BAR_CHANGE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_NAVIGATION_BAR_CHANGE, '动效')
+  ];
+
+  aboutToAppear(): void {
+    // 注册动态router
+    DynamicsRouter.createRouter(this.pageStack);
+  }
+
+  @Builder
+  pageMap(name: string, param: ESObject) {
+    NavDestination() {
+      // 根据模块名，获取WrappedBuilder对象，通过builder接口创建页面
+      DynamicsRouter.getBuilder(name).builder(param);
+    }
+    .hideTitleBar(true)
+  }
 
   build() {
     Column() {
       Navigation(this.pageStack) {
         // 首页列表组件
-        FunctionalScenes()
+        FunctionalScenes({ listData: this.listData })
       }
       .backgroundColor($r('app.color.main_background_color'))
       .hideTitleBar(true)
-      .navDestination(pageMap)
+      .navDestination(this.pageMap)
     }
     .height('100%')
     .backgroundColor($r('app.color.main_background_color'))

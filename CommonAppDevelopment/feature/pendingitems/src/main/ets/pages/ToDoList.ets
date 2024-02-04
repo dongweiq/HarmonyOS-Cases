@@ -121,7 +121,7 @@ export struct ToDoList {
       // TODO：知识点：2.待办数据显示列表组件绑定数据变量toDoData
       List({ initialIndex: 0, space: 10 }) {
         /**
-         * 性能注释：数据量少时使用ForEach进行循环数据渲染，数据量多时使用LazyForEach循环数据渲染
+         * 性能知识点：数据量少时使用ForEach进行循环数据渲染，数据量多时使用LazyForEach循环数据渲染
          * 文档参考链接：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md
          */
         ForEach(this.toDoData, (toDoItem: ToDo, index: number) => {
@@ -174,13 +174,13 @@ export struct ToDoList {
 
 // 创建WrappedBuilder对象，动态路由跳转时构建页面
 @Builder
-export function createDynamicsImportView(): void {
+export function getToDoList(): void {
   ToDoList();
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
 let builderName = RouterNameConstants.ROUTER_NAME_PENDING_ITEMS;
 if(!DynamicsRouter.getBuilder(builderName)){
-  let builder: WrappedBuilder<[object]> = wrapBuilder(createDynamicsImportView);
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getToDoList);
   DynamicsRouter.registerBuilder(builderName, builder);
 }

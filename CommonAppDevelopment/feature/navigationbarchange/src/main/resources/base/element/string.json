@@ -1,0 +1,96 @@
+{
+  "string": [
+    {
+      "name": "width_and_height_value1",
+      "value": "7%"
+    },
+    {
+      "name": "width_and_height_value2",
+      "value": "15%"
+    },
+    {
+      "name": "width_and_height_value3",
+      "value": "17%"
+    },
+    {
+      "name": "width_and_height_value4",
+      "value": "20%"
+    },
+    {
+      "name": "width_and_height_value5",
+      "value": "30%"
+    },
+    {
+      "name": "width_and_height_value6",
+      "value": "32%"
+    },
+    {
+      "name": "width_and_height_value7",
+      "value": "35%"
+    },
+    {
+      "name": "width_and_height_value8",
+      "value": "50%"
+    },
+    {
+      "name": "width_and_height_value9",
+      "value": "65%"
+    },
+    {
+      "name": "width_and_height_value10",
+      "value": "80%"
+    },
+    {
+      "name": "width_and_height_value11",
+      "value": "92%"
+    },
+    {
+      "name": "width_and_height_value12",
+      "value": "100%"
+    },
+    {
+      "name": "width_and_height_value13",
+      "value": "25%"
+    },
+    {
+      "name": "text_welcome",
+      "value": "Hi~欢迎来到航班管家"
+    },
+    {
+      "name": "text_new_user_registration",
+      "value": "新用户注册享特别好礼"
+    },
+    {
+      "name": "text_load",
+      "value": "登录/注册"
+    },
+    {
+      "name": "text_my_order",
+      "value": "我的订单"
+    },
+    {
+      "name": "text_full_order",
+      "value": "全部订单"
+    },
+    {
+      "name": "text_common_function",
+      "value": "常用功能"
+    },
+    {
+      "name": "text_topic_battle",
+      "value": "话题battle"
+    },
+    {
+      "name": "text_more",
+      "value": "更多"
+    },
+    {
+      "name": "text_mine",
+      "value": "我的"
+    },
+    {
+      "name": "text_customer_service",
+      "value": "客服"
+    }
+  ]
+}

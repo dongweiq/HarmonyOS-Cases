@@ -68,13 +68,13 @@ export struct ImageViewerView {
 
 // 创建WrappedBuilder对象，动态路由跳转时构建页面
 @Builder
-export function createDynamicsImportView(): void {
+export function getImageViewerView(): void {
   ImageViewerView();
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
 let builderName = RouterNameConstants.ROUTER_NAME_IMAGE_VIEWER;
 if(!DynamicsRouter.getBuilder(builderName)){
-  let builder: WrappedBuilder<[object]> = wrapBuilder(createDynamicsImportView);
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getImageViewerView);
   DynamicsRouter.registerBuilder(builderName, builder);
 }

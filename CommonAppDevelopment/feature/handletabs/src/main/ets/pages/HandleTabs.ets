@@ -15,145 +15,105 @@
 
 /**
  * 实现步骤：
- *  1. 通过@Builder自定义封装一个导航页签栏，并通过ForEach完成对Tabs组件的内容页和导航页签栏的动态渲染。
- *  2. 通过TabsController的changeIndex可实现页面的跳转，传入的index是数组中对应的索引值。
- *  3. 页签的增加通过数组的push方法，增加数组元素。
- *  4. 删除页签通过通过删除页面对应数组的索引值处的数据完成，删除后页面跳转位置根据业务逻辑要求确定跳转页面对应的索引值。
+ *  1. 设置Tab组件的barHeight为0，隐藏组件自带的TabBar。
+ *  2. 使用@Link修饰符，将自定义TabBar组件和Tab组件通过focusIndex和tabArray进行双向绑定。
+ *  3. 在自定义TabBar中修改focusIndex和tabArray的值时，Tab组件根据数据变化进行对应UI变更。
  */
 import util from '@ohos.util';
 import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { FunctionDescription } from '@ohos/base/Index';
 import { STYLE_CONFIGURATION } from '../model/constantsData';
+import { MenuBar } from './MenuBar';
+import { TabSheets } from './TabSheetComponent';
 
 @Component
 export struct HandleTabs {
   @State tabArray: Array<number> = [0]; // 控制页签渲染的数组
   @State focusIndex: number = 0; // Tabs组件当前显示的页签下标
-  @State preIndex: number = -1; // 创建页签时的页签index
-  private controller: TabsController = new TabsController(); // Tabs组件控制器，根据组件下标控制tab跳转
-
-  // TODO：知识点：1.TabContent组件绑定自定义UIBuilder
-  @Builder
-  Tab(tabNumber: number) {
-    Row({ space: STYLE_CONFIGURATION.TAB_BAR_GUTTER }) {
-      Text("页签 " + tabNumber)
-        .fontSize($r('sys.float.ohos_id_text_size_body1'))
-      Image($r('app.media.ic_public_cancel_filled'))
-        .width(STYLE_CONFIGURATION.ICON_SIZE)
-        .height(STYLE_CONFIGURATION.ICON_SIZE)
-        .onClick(() => {
-          // TODO：知识点3：动态删除ForEach循环的数组变量元素，实现页签删除功能
-          // 获取Tabs组件当前显示的页签中显示的数字
-          let focusNumber = this.tabArray[this.focusIndex];
-          // 被删除的页签是否是当前选中的页签，且是最后一个页签
-          if (this.focusIndex === this.tabArray.indexOf(tabNumber) && this.focusIndex == this.tabArray.length - 1) {
-            // 判断是否需要跳回到创建该页签时的页签，如果不需要直接跳转到前一个页签
-            if (this.preIndex >= 0) {
-              this.focusIndex = this.preIndex;
-            } else {
-              this.focusIndex = this.focusIndex - 1;
-            }
-          }
-          this.tabArray.splice(this.tabArray.indexOf(tabNumber), 1);
-          this.preIndex = -1;
-          // 对应删除页面中的第二种情况
-          if (this.tabArray.indexOf(focusNumber) >= 0) {
-            this.focusIndex = this.tabArray.indexOf(focusNumber);
-          }
-          this.controller.changeIndex(this.focusIndex);
-        })
-    }
-    .justifyContent(FlexAlign.Center)
-    .constraintSize({ minWidth: STYLE_CONFIGURATION.TAB_CONSTRAINT_SIZE })
-    .width(STYLE_CONFIGURATION.TAB_WIDTH)
-    .height(STYLE_CONFIGURATION.TAB_HEIGHT)
-    .borderRadius({ topLeft: STYLE_CONFIGURATION.TAB_BORDER_RADUIS, topRight: STYLE_CONFIGURATION.TAB_BORDER_RADUIS })
-    .backgroundColor(this.tabArray.indexOf(tabNumber) === this.focusIndex ? $r('app.color.white') : $r('app.color.tabBarBcColor'))
-    .onClick(() => {
-      this.focusIndex = this.tabArray.indexOf(tabNumber);
-      this.controller.changeIndex(this.focusIndex);
-    })
-  }
+  private addressList: Array<number> = new Array(8).fill(0) // 快捷方式集合
+  controller: TabsController = new TabsController(); // Tabs控制器
 
   build() {
     Column() {
-      Column() {
-        // 页签
-        Stack() {
-          Row({ space: STYLE_CONFIGURATION.ROW_GUTTER }) {
-            Tabs({ barPosition: BarPosition.Start, controller: this.controller }) {
-              /**
-               * TODO：知识点：2.通过ForEach循环数组动态创建TabContent组件
-               * 性能注释：ForEach的第三个入参keyGenerator唯一时，动态修改ForEach时，可降低渲染开销
-               * 参考文档：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-foreach.md
-               */
-              ForEach(this.tabArray, (item: number, index: number) => {
-                TabContent() {
-                  Column() {
-                    if (index === 0) {
-                      Column({ space: STYLE_CONFIGURATION.COLUMN_GUTTER }) {
-                        Text($r('app.string.HandleTabs'))
-                        Text($r('app.string.HandleTabsDesc'))
-                          .fontColor($r('sys.color.ohos_fa_text_secondary'))
-                      }.backgroundColor($r('app.color.white')).padding(6)
-                    }
+      /**
+       * 自定义TabBar组件
+       * TODO:知识点：1.隐藏系统Tab组件的TabBar，在自定义tabBar组件中，修改focusIndex实现不同页签切换
+       */
+      TabSheets({ tabArray: $tabArray, focusIndex: $focusIndex, controller: this.controller })
 
-                    Text('我是页面 ' + item + " 的内容")
-                      .layoutWeight(1)
-                      .width('100%')
-                      .textAlign(TextAlign.Center)
-                      .backgroundColor($r('app.color.white'))
-                  }
-                }.tabBar(this.Tab(item)) // tabBar自定义UIBuilder
-              }, (item: number) => item.toString() + util.generateRandomUUID())
-            }
-            .barMode(BarMode.Scrollable, { margin: STYLE_CONFIGURATION.TAB_BAR_MARGIN })
-            .onChange((index) => {
-              this.focusIndex = index;
-            })
-            .barHeight(30)
-          }.width("100%")
+      // 工具栏
+      MenuBar()
 
-          Row() {
-            Image($r('app.media.ic_public_add_filled')).onClick(() => {
-              // TODO：知识点4：动态添加ForEach循环的数组变量元素，实现增加页签功能
-              if (this.tabArray.length === 0) {
-                this.tabArray.push(0);
-                this.focusIndex = this.tabArray.length - 1;
-              } else {
-                this.preIndex = this.focusIndex;
-                this.tabArray.push(this.tabArray[this.tabArray.length - 1] + 1);
-                this.focusIndex = this.tabArray.length - 1;
-              }
-              this.controller.changeIndex(this.focusIndex);
-            })
-              .width(STYLE_CONFIGURATION.ICON_SIZE)
-              .height(STYLE_CONFIGURATION.ICON_SIZE)
-          }
-          .height(STYLE_CONFIGURATION.TAB_HEIGHT)
-          .aspectRatio(1)
-          .backgroundColor($r('app.color.tabBarBcColor'))
-          .justifyContent(FlexAlign.Center)
-        }
-        .alignContent(Alignment.TopEnd)
+      Divider()
         .width('100%')
-        .backgroundColor($r('app.color.tabBarBcColor'))
+        .backgroundColor($r('sys.color.ohos_id_color_subheading_separator'))
+
+      Tabs({ barPosition: BarPosition.Start, index: this.focusIndex, controller: this.controller }) {
+        /**
+         * TODO：知识点：2.通过ForEach循环数组动态创建TabContent组件
+         * 性能知识点：ForEach的第三个入参keyGenerator唯一时，动态修改ForEach时，可降低渲染开销
+         * 参考文档：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-rendering-control-foreach-0000001820999585
+         */
+        ForEach(this.tabArray, (item: number, index: number) => {
+          TabContent() {
+            Column() {
+              if (this.tabArray[index] === 0) {
+                FunctionDescription({
+                  title: $r('app.string.HandleTabs'),
+                  content: $r('app.string.HandleTabsDesc')
+                })
+              } else {
+                Column() {
+                  Search().width('90%')
+                  Grid() {
+                    ForEach(this.addressList, () => {
+                      GridItem() {
+                        Column({ space: STYLE_CONFIGURATION.CONTENT_GUTTER_S }) {
+                          Text()
+                            .width(STYLE_CONFIGURATION.IMAGE_SIZE)
+                            .aspectRatio(1)
+                            .backgroundColor($r('app.color.third_black'))
+                            .borderRadius(STYLE_CONFIGURATION.IMAGE_RADIUS)
+                          Text()
+                            .width(STYLE_CONFIGURATION.TEXT_WIDTH)
+                            .height(STYLE_CONFIGURATION.TEXT_HEIGHT)
+                            .backgroundColor($r('app.color.third_black'))
+                        }
+                      }
+                    })
+                  }
+                  .columnsTemplate('1fr 1fr 1fr 1fr')
+                  .rowsGap(STYLE_CONFIGURATION.CONTENT_GUTTER_M)
+                  .rowsTemplate('1fr 1fr')
+                  .height(STYLE_CONFIGURATION.GRID_HEIGHT)
+                  .margin({ top: STYLE_CONFIGURATION.GRID_MARGIN })
+                }
+                .height('100%')
+                .justifyContent(FlexAlign.Center)
+              }
+            }
+            .height('100%')
+          }
+        }, (item: number) => item.toString() + util.generateRandomUUID())
       }
-      .alignItems(HorizontalAlign.Start)
-      .width('100%')
-    }
-    .height('100%')
+      .scrollable(false)
+      .barHeight(0) // 隐藏tab组件自带的tabbar
+      .onChange((index: number) => {
+        this.focusIndex = index;
+      })
+    }.width("100%")
   }
 }
 
 // 创建WrappedBuilder对象，动态路由跳转时构建页面
 @Builder
-export function createDynamicsImportView(): void {
+export function getHandleTabs(): void {
   HandleTabs();
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
 let builderName = RouterNameConstants.ROUTER_NAME_HANDLE_TABS;
 if(!DynamicsRouter.getBuilder(builderName)){
-  let builder: WrappedBuilder<[object]> = wrapBuilder(createDynamicsImportView);
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getHandleTabs);
   DynamicsRouter.registerBuilder(builderName, builder);
 }

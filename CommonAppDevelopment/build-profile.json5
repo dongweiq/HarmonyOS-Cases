@@ -1,25 +1,13 @@
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "material": {
-          "certpath": "C:/Users/Administrator/.ohos/config/openharmony/default_CommonAppDevelopment_Pk9lewEWKkG08km7FRPjBgeFZjGG7xAbXTNu7uLz3O0=.cer",
-          "storePassword": "0000001B4BAF8352ACE80D55674707A4CB2FC2063FE7B289947D2FCEA5B927FECE64C6CE22ADBCA3E39AC9",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B911727F3132841471EE3FE8649635DE2AB4B39C72EC932D24537FAB840BDFAC4E53AE2397D1C46",
-          "profile": "C:/Users/Administrator/.ohos/config/openharmony/default_CommonAppDevelopment_Pk9lewEWKkG08km7FRPjBgeFZjGG7xAbXTNu7uLz3O0=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:/Users/Administrator/.ohos/config/openharmony/default_CommonAppDevelopment_Pk9lewEWKkG08km7FRPjBgeFZjGG7xAbXTNu7uLz3O0=.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": 11,
-        "compatibleSdkVersion": 11
+        "compileSdkVersion": '4.1.0(11)',
+        "compatibleSdkVersion": '4.1.0(11)',
+        "runtimeOS": "HarmonyOS"
       }
     ],
     "buildModeSet": [
@@ -93,10 +81,6 @@
       "srcPath": "./feature/handletabs"
     },
     {
-      "name": "launchscenes",
-      "srcPath": "./feature/launchscenes"
-    },
-    {
       "name": "modalwindow",
       "srcPath": "./feature/modalwindow"
     },
@@ -117,8 +101,52 @@
       "srcPath": "./feature/variablewatch"
     },
     {
-      "name": "dynamicsrouter",
-      "srcPath": "./feature/dynamicsrouter"
+      "name": "routermodule",
+      "srcPath": "./feature/routermodule"
+    },
+    {
+      "name": "pageturninganimation",
+      "srcPath": "./feature/pageturninganimation"
+    },
+    {
+      "name": "applicationexception",
+      "srcPath": "./feature/applicationexception"
+    },
+    {
+      "name": "fitfordarkmode",
+      "srcPath": "./feature/fitfordarkmode"
+    },
+    {
+      "name": "pulltorefreshnews",
+      "srcPath": "./feature/pulltorefreshnews"
+    },
+    {
+      "name": "marquee",
+      "srcPath": "./feature/marquee"
+    },
+    {
+      "name": "nativeprogressnotify",
+      "srcPath": "./feature/nativeprogressnotify"
+    },
+    {
+      "name": "photopickandsave",
+      "srcPath": "./feature/photopickandsave"
+    },
+    {
+      "name": "verifycode",
+      "srcPath": "./feature/verifycode"
+    },
+    {
+      "name": "vibrateeffect",
+      "srcPath": "./feature/vibrateeffect"
+    },
+    {
+      "name": "swipersmoothvariation",
+      "srcPath": "./feature/swipersmoothvariation"
+    },
+    {
+      "name": "navigationbarchange",
+      "srcPath": "./feature/navigationbarchange"
     }
   ]
 }

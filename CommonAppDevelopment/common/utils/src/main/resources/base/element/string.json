@@ -17,8 +17,20 @@
       "value": "14"
     },
     {
+      "name": "ohos_id_text_size_body3",
+      "value": "12"
+    },
+    {
+      "name": "ohos_id_text_size_caption",
+      "value": "10"
+    },
+    {
       "name": "ohos_id_corner_radius_default_m",
       "value": "12"
+    },
+    {
+      "name": "ohos_id_corner_radius_subtab",
+      "value": "4"
     },
     {
       "name": "ohos_id_card_margin_start",

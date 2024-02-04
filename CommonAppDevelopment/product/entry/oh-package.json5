@@ -10,6 +10,60 @@
     // 基础工具类，需要使用日志打印
     "@ohos/base": "file:../../common/utils",
     // 应用首页列表子组件，需要进入应用时加载
-    "@ohos/functionalscenes": "file:../../feature/functionalscenes"
+    "@ohos/functionalscenes": "file:../../feature/functionalscenes",
+    // 阻塞事件冒泡方案
+    "@ohos/event-propagation": "file:../../feature/eventpropagation",
+    // 读取RawFile中文件的一部分
+    "@ohos/nativerawfile": "file:../../feature/nativerawfile",
+    // 自定义tabBar
+    "@ohos/custom-tabbar": "file:../../feature/customtabbar",
+    // 二级联动方案
+    "@ohos/secondarylinkage": "file:../../feature/secondarylinkage",
+    // MpChart图表实现案例
+    "@ohos/barchart": "file:../../feature/barchart",
+    // 地址交换方案
+    "@ohos/addressexchange": "file:../../feature/addressexchange",
+    // 图片预览器方案
+    "@ohos/imageviewer": "file:../../feature/imageviewer",
+    // 列表编辑实现方案
+    "@ohos/pendingitems": "file:../../feature/pendingitems",
+    // GBK转码UTF-8方案
+    "@ohos/gbktranscoding": 'file:../../feature/gbktranscoding',
+    // 自定义增删tab页签
+    "@ohos/handtabs": "file:../../feature/handletabs",
+    // 各种登录页面方案
+    "@ohos/modalwindow": "file:../../feature/modalwindow",
+    // 滑动页面改变顶部个人信息栏显示效果方案
+    "@ohos/slidetohideanddisplace": "file:../../feature/slidetohideanddisplace",
+    // Navigation页面跳转对象传递案例
+    "@ohos/NavigationParameterTransferView": "file:../../feature/navigationparametertransfer",
+    // AKI使用实践
+    "@ohos/akiusepractice": "file:../../feature/akiusepractice",
+    // 多层嵌套类对象监听方案
+    "@ohos/variablewatch": "file:../../feature/variablewatch",
+    // 图片选择和下载保存案例
+    "@ohos/photopickandsave": "file:../../feature/photopickandsave",
+    // 翻页动效案例
+    "@ohos/pageturninganimation": "file:../../feature/pageturninganimation",
+    // 深浅模式
+    "@ohos/fitfordarkmode": "file:../../feature/fitfordarkmode",
+    // 跑马灯
+    "@ohos/marquee": "file:../../feature/marquee",
+    // 下拉刷新上滑加载
+    "@ohos/pulltorefreshnews": "file:../../feature/pulltorefreshnews",
+    // 验证码页面
+    "@ohos/verifycode": "file:../../feature/verifycode",
+    // Native进度更新
+    "@ohos/nativeprogressnotify": "file:../../feature/nativeprogressnotify",
+    // 抖动动画及手机振动效果
+    "@ohos/vibrateeffect": "file:../../feature/vibrateeffect",
+    // 页面随着swiper高度的变化而平滑变化案例
+    "@ohos/swipersmoothvariation": "file:../../feature/swipersmoothvariation",
+    // 异常处理
+    "@ohos/applicationexception": "file:../../feature/applicationexception",
+    // 动态路由模块
+    "@ohos/dynamicsRouter": "file:../../feature/routermodule",
+    // 状态栏显隐变化
+    "@ohos/navigationbarchange": "file:../../feature/navigationbarchange"
   }
 }

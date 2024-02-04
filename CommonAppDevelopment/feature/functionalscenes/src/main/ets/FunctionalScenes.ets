@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { DynamicsRouter, RouterModel, RouterNameConstants, RouterPathConstants } from '@ohos/dynamicsRouter';
-import { UserBookingInfo } from '@ohos/NavigationParameterTransferView/Index';
 import { ListData } from './model/ListData';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
+import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
+import { SwiperData, SwiperDataSource } from './model/SwiperData';
 
 /**
  * 主页瀑布流列表
@@ -23,32 +25,90 @@ import { WaterFlowDataSource } from './model/WaterFlowDataSource';
 @Component
 export struct FunctionalScenes {
   @Consume('pageStack') pageStack: NavPathStack;
-  private userBooking: UserBookingInfo = new UserBookingInfo('张山', '332212199507270611', '7F');
-  @State strUserBooking: string = JSON.stringify(this.userBooking);
-  // TODO:需求：路由栈信息，待后续封装路由管理HAR
-  @State listData: ListData[] = [
-    new ListData($r("app.media.bar_chart_top"), 'MpChart图表实现', RouterNameConstants.ROUTER_NAME_BAR_CHAT, 1, true, '30%', RouterPathConstants.ROUTER_PATH_BAR_CHAT),
-    new ListData($r("app.media.address_exchange"), '地址交换动画', RouterNameConstants.ROUTER_NAME_ADDRESS_EXCHANGE, 2, true, '25%', RouterPathConstants.ROUTER_PATH_ADDRESS_EXCHANGE),
-    new ListData($r("app.media.tab_bar"), '自定义TabBar页签', RouterNameConstants.ROUTER_NAME_CUSTOM_TAB_BAR, 2, true, '25%', RouterPathConstants.ROUTER_PATH_CUSTOM_TAB_BAR),
-    new ListData($r("app.media.secondary_linkage"), '列表二级联动', RouterNameConstants.ROUTER_NAME_SECONDARY_LINKAGE, 1, false, '30%', RouterPathConstants.ROUTER_PATH_SECONDARY_LINKAGE),
-    new ListData($r("app.media.raw_file"), '读取RawFile文件部分内容', RouterNameConstants.ROUTER_NAME_READ_RAW_FILE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_READ_RAW_FILE),
-    new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', RouterNameConstants.ROUTER_NAME_EVENT_TRANSMISSION_SOLUTION, 1, false, '40%', RouterPathConstants.ROUTER_PATH_EVENT_TRANSMISSION_SOLUTION),
-    new ListData($r("app.media.image_viewer"), '图片缩放功能实现', RouterNameConstants.ROUTER_NAME_IMAGE_VIEWER, 2, false, '30%', RouterPathConstants.ROUTER_PATH_IMAGE_VIEWER),
-    new ListData($r("app.media.todo_list"), '列表编辑', RouterNameConstants.ROUTER_NAME_PENDING_ITEMS, 1, false, '40%', RouterPathConstants.ROUTER_PATH_PENDING_ITEMS),
-    new ListData($r("app.media.handle_tabs"), '增删tab页签', RouterNameConstants.ROUTER_NAME_HANDLE_TABS, 2, false, '30%', RouterPathConstants.ROUTER_PATH_HANDLE_TABS),
-    new ListData($r("app.media.launch_advert"), '应用广告页', RouterNameConstants.ROUTER_NAME_LAUNCH_AVERT, 2, false, '25%', RouterPathConstants.ROUTER_PATH_LAUNCH_AVERT),
-    new ListData($r("app.media.modal_window"), '全屏登录页面', RouterNameConstants.ROUTER_NAME_MODAL_WINDOW, 2, false, '40%', RouterPathConstants.ROUTER_PATH_MODAL_WINDOW),
-    new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', RouterNameConstants.ROUTER_NAME_SLIDE_TO_HIDE_AND_DISPLACE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_SLIDE_TO_HIDE_AND_DISPLACE),
-    new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', RouterNameConstants.ROUTER_NAME_NAVIGATION_PARAMETER_TRANSFER, 2, false, '30%', RouterPathConstants.ROUTER_PATH_NAVIGATION_PARAMETER_TRANSFER, this.strUserBooking),
-    new ListData($r('app.media.aki_use_practice'), 'AKI使用实践', RouterNameConstants.ROUTER_NAME_AKI_USE_PRACTICE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_AKI_USE_PRACTICE),
-    new ListData($r('app.media.variable_watch'), '多层嵌套类监听', RouterNameConstants.ROUTER_NAME_VARIABLE_WATCH, 2, false, '25%', RouterPathConstants.ROUTER_PATH_VARIABLE_WATCH),
-    new ListData($r('app.media.friends_book'), 'GBK文本格式解码', RouterNameConstants.ROUTER_NAME_GBK_TRANSCODING, 2, false, '25%', RouterPathConstants.ROUTER_PATH_GBK_TRANSCODING),
-  ];
+  @Link listData: ListData[];
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(this.listData);
+  @State tabsIndex: number = 0;
+  @State isMask: boolean = true
+  scroller: Scroller = new Scroller();
+  tabsController: TabsController = new TabsController();
+  swiperDataSource: SwiperDataSource = new SwiperDataSource();
+  tabDataSource: TabDataSource = new TabDataSource()
+  waterFlowScroller: Scroller = new Scroller();
+  @State swiperData: SwiperData[] = [
+    new SwiperData($r('app.media.bar_chart_top'), 'MpChart图表实现案例', RouterNameConstants.ROUTER_NAME_BAR_CHAT, RouterPathConstants.ROUTER_PATH_BAR_CHAT),
+    new SwiperData($r('app.media.address_exchange'), '地址交换动画', RouterNameConstants.ROUTER_NAME_ADDRESS_EXCHANGE, RouterPathConstants.ROUTER_PATH_ADDRESS_EXCHANGE),
+    new SwiperData($r('app.media.tab_bar'), '自定义TabBar', RouterNameConstants.ROUTER_NAME_CUSTOM_TAB_BAR, RouterPathConstants.ROUTER_PATH_CUSTOM_TAB_BAR),
+  ];
 
   aboutToAppear(): void {
-    // 注册动态router
-    DynamicsRouter.createRouter(this.pageStack);
+    // 主页轮播图初始化数据
+    for (let index = 0; index < this.swiperData.length; index++) {
+      this.swiperDataSource.pushData(this.swiperData[index]);
+    }
+    // 主页tabContent初始化数据
+    for (let index = 0; index < TAB_DATA.length; index++) {
+      this.tabDataSource.pushData(TAB_DATA[index]);
+    }
+  }
+
+  /**
+   * 主页轮播图组件
+   */
+  @Builder
+  swiperComponent() {
+    Swiper() {
+      LazyForEach(this.swiperDataSource, (item: SwiperData) => {
+        Stack({ alignContent: Alignment.BottomStart }) {
+          Image(item.imageSrc)
+            .objectFit(ImageFit.Auto)
+            .width('100%')
+            .height('100%')
+            .borderRadius($r('app.string.main_page_top_borderRadius'))
+          // 轮播图底部蒙层
+          Stack() {
+            Column() {
+            }
+            .width('100%')
+            .height('100%')
+            .backgroundColor(Color.Black)
+            .opacity(0.3)
+            .borderRadius({
+              topLeft: 0,
+              topRight: 0,
+              bottomLeft: $r('app.string.main_page_top_borderRadius'),
+              bottomRight: $r('app.string.main_page_top_borderRadius')
+            })
+
+            Text(item.name)
+              .width('100%')
+              .height('100%')
+              .fontSize($r('app.string.ohos_id_text_size_body1'))
+              .fontColor(Color.White)
+              .textAlign(TextAlign.Start)
+              .padding($r('app.string.main_page_padding5'))
+          }
+          .height('17%')
+        }
+        .onClick(() => {
+          // 点击轮播图Item时，根据点击的模块信息，将页面放入路由栈
+          buildRouterModel(item.path, item.routerName, item.param);
+        })
+      })
+
+    }
+    .padding({
+      left: $r('app.string.main_page_padding2'),
+      right: $r('app.string.main_page_padding2'),
+      top: $r('app.string.main_page_padding2')
+    })
+    .height($r('app.string.main_page_swiper_height'))
+    .autoPlay(true)
+    .indicator(
+      Indicator
+        .dot()
+        .selectedColor('#ed394b')
+        .color(Color.White)
+    )
   }
 
   /**
@@ -57,37 +117,37 @@ export struct FunctionalScenes {
    * @param listData 组件列表信息
    */
   @Builder
-  MethodPoints(listData: ListData) {
+  methodPoints(listData: ListData) {
     Column() {
       if (listData.isCropping) {
         Image(listData.imageSrc)
-          .borderRadius(6)
+          .borderRadius($r('app.string.main_page_list_borderRadius'))
           .objectFit(ImageFit.Fill)
           .width('100%')
       } else {
         Image(listData.imageSrc)
-          .borderRadius(6)
+          .borderRadius($r('app.string.main_page_list_borderRadius'))
           .objectFit(listData.isCropping ? ImageFit.Contain : ImageFit.Cover)
           .width('100%')
           .height(listData.imageHeight)
       }
       Text(listData.name)
-        .padding({ left: 10 })
+        .padding({ left: $r('app.string.main_page_padding1') })
         .width('100%')
         .fontColor(Color.Black)
-        .textAlign(TextAlign.Start)
+        .textAlign(TextAlign.Center)
         .maxLines(1)
-        .height(16)
-        .fontSize(16)
-        .margin({ top: 10, bottom: 10 })
+        .height($r('app.string.main_page_text_height'))
+        .fontSize($r('app.string.ohos_id_text_size_body1'))
+        .margin({ top: $r('app.string.main_page_margin1'), bottom: $r('app.string.main_page_margin1') })
       Row() {
         Text($r('app.string.difficulty'))
-          .padding({ left: 10 })
-          .fontColor(Color.Black)
+          .padding({ left: $r('app.string.main_page_padding1') })
+          .fontColor('#B7B9B8')
           .textAlign(TextAlign.Start)
           .maxLines(1)
-          .height(16)
-          .fontSize(14)
+          .height($r('app.string.main_page_text_height'))
+          .fontSize($r('app.string.main_page_text_font_size'))
         Rating({
           rating: listData.ratingNumber,
           indicator: true
@@ -95,22 +155,68 @@ export struct FunctionalScenes {
           .stars(5)
       }
       .width('100%')
-      .margin({ bottom: 10 })
-      .justifyContent(FlexAlign.Start)
+      .justifyContent(FlexAlign.End)
     }
+    .linearGradient({
+      angle: 180,
+      colors: [['#CCDFFF', 0], ['#F3F4F7', 1]]
+    })
     .shadow(ShadowStyle.OUTER_DEFAULT_XS)
     .width('49%')
-    .borderRadius(6)
+    .borderRadius($r('app.string.main_page_list_borderRadius'))
+    .margin({ top: $r('app.string.item_gap_half'), bottom: $r('app.string.item_gap_half') })
     .backgroundColor(Color.White)
-    .alignItems(HorizontalAlign.Center)
     .onClick(() => {
       // 点击瀑布流Item时，根据点击的模块信息，将页面放入路由栈
-      let router: RouterModel = new RouterModel();
-      router.path = listData.path;
-      router.routerName = listData.routerName;
-      router.param = listData.param;
-      DynamicsRouter.push(router);
+      buildRouterModel(listData.path, listData.routerName, listData.param);
     })
+  }
+
+  @Builder
+  tabBuilder(index: number, name: string | undefined) {
+    Row() {
+      Text(name)
+        .fontSize($r('app.string.ohos_id_text_size_body1'))
+        .fontColor(Color.Black)
+        .opacity(this.tabsIndex === index ? 1 : 0.8)
+        .fontWeight(this.tabsIndex == index ? 600 : 400)
+        .height('100%')
+        .border(this.tabsIndex === index ? {
+          width: { left: 0, right: 0, top: 0, bottom: $r('app.string.main_page_tab_text_underline') },
+          color: { bottom: Color.Black },
+          style: BorderStyle.Solid
+        } :
+          {
+            width: 0
+          })
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .backgroundColor(Color.White)
+    .height('100%')
+    .align(Alignment.Center)
+    .onClick(() => {
+      this.changeTabIndex(index);
+    })
+  }
+
+  /**
+   * 切换tabs的逻辑，触发更新列表信息
+   *
+   * @param index 当前的列表索引
+   */
+  changeTabIndex(index: number) {
+    this.tabsIndex = index;
+    this.tabsController.changeIndex(index);
+    if (index !== 0) {
+      let newListData: ListData[] = [];
+      for (let i = 0; i < this.listData.length; i++) {
+        if (this.listData[i].category === TAB_DATA[index].navData) {
+          newListData.push(this.listData[i]);
+        }
+      }
+      this.dataSource = new WaterFlowDataSource(newListData);
+    }
   }
 
   /**
@@ -119,30 +225,72 @@ export struct FunctionalScenes {
    * https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/waterflow_optimization.md/
    */
   build() {
-    Column({ space: 2 }) {
-      WaterFlow() {
-        LazyForEach(this.dataSource, (item: ListData) => {
-          FlowItem() {
-            this.MethodPoints(item)
-          }
-        })
+    Column() {
+      // 顶部搜索框
+      Column() {
+        Column() {
+          TextInput({ placeholder: '搜索' })
+            .backgroundColor('#E7E9E8')
+            .width('100%')
+        }
+        .backgroundColor('#E7E9E8')
+        .borderRadius($r('app.string.main_page_top_borderRadius'))
       }
-      .padding({ left: 18, right: 18 })
-      .columnsTemplate('1fr 1fr')
-      .columnsGap(12)
-      .rowsGap(12)
-      .width('100%')
+      // TODO:需求：暂时隐藏待搜索功能完善后放开显示
+      .visibility(Visibility.None)
+      .padding({ left: $r('app.string.main_page_padding2'), right: $r('app.string.main_page_padding2') })
+
+      Scroll(this.scroller) {
+        Column() {
+          this.swiperComponent()
+
+          Tabs({ controller: this.tabsController }) {
+            LazyForEach(this.tabDataSource, (tabItem: TabDataModel) => {
+              TabContent() {
+                WaterFlow({ scroller: this.waterFlowScroller }) {
+                  LazyForEach(this.dataSource, (waterFlowItem: ListData) => {
+                    FlowItem() {
+                      this.methodPoints(waterFlowItem)
+                    }
+                  })
+                }
+                .nestedScroll({
+                  scrollForward: NestedScrollMode.PARENT_FIRST,
+                  scrollBackward: NestedScrollMode.SELF_FIRST
+                })
+                .cachedCount(6)
+                .columnsTemplate('1fr 1fr')
+                .columnsGap($r('app.string.main_page_water_flow_gap'))
+                .width('100%')
+              }
+              .tabBar(this.tabBuilder(tabItem.id, tabItem.navData))
+            })
+          }
+          .padding({
+            left: $r('app.string.main_page_padding2'),
+            right: $r('app.string.main_page_padding2')
+          })
+          .barWidth('100%')
+          .barHeight('6%')
+          .onChange((index: number) => {
+            this.changeTabIndex(index);
+          })
+        }
+      }
+      .scrollBar(BarState.Off)
+      .scrollable(ScrollDirection.Vertical)
       .height('100%')
     }
+    .height('100%')
     .backgroundColor("#F1F1F1")
   }
 }
 
-@Builder
-export function pageMap(name: string, param: ESObject) {
-  NavDestination() {
-    // 根据模块名，获取WrappedBuilder对象，通过builder接口创建页面
-    DynamicsRouter.getBuilder(name).builder(param);
-  }
-  .hideTitleBar(true)
+// 创建路由信息，并放到路由栈中
+function buildRouterModel(path: string, routerName: string, param: string) {
+  let router: RouterModel = new RouterModel();
+  router.path = path;
+  router.routerName = routerName;
+  router.param = param;
+  DynamicsRouter.push(router);
 }

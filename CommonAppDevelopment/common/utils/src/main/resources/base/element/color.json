@@ -107,6 +107,14 @@
     {
       "name": "ohos_id_color_palette_aux11",
       "value": "#F5DC62"
+    },
+    {
+      "name": "ohos_id_color_foreground",
+      "value": "#000000"
+    },
+    {
+      "name": "ohos_id_color_text_secondary",
+      "value": "#99000000"
     }
   ]
 }

@@ -1,0 +1,52 @@
+{
+  "string": [
+    {
+      "name": "width_ninety_percent",
+      "value": "90%"
+    },
+    {
+      "name": "width_full",
+      "value": "100%"
+    },
+    {
+      "name": "name_pageone",
+      "value": "拼车"
+    },
+    {
+      "name": "name_pagetwo",
+      "value": "打车"
+    },
+    {
+      "name": "name_pagethree",
+      "value": "赚钱"
+    },
+    {
+      "name": "name_pagefour",
+      "value": "公交车"
+    },
+    {
+      "name": "first_prompt",
+      "value": "6折起"
+    },
+    {
+      "name": "sec_prompt",
+      "value": "8折起"
+    },
+    {
+      "name": "description",
+      "value": "滑动上方swiper，当swiper页面高度变化时，整个页面的高度随着swiper的变化而平滑变化"
+    },
+    {
+      "name": "description_title",
+      "value": "页面的高度随着swiper的变化而平滑变化"
+    },
+    {
+      "name": "five_fr",
+      "value": "1fr 1fr 1fr 1fr 1fr"
+    },
+    {
+      "name": "two_fr",
+      "value": "1fr 1fr"
+    }
+  ]
+}
