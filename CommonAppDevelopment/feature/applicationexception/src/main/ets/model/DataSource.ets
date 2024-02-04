@@ -94,9 +94,9 @@ export class FaultDataSource extends BasicDataSource {
 
   // TODO：知识点：存储数据到懒加载数据源中
   pushData(data: string): void {
-    this.faultMessage.push(data);
+    this.faultMessage.unshift(data);
     // 在数组头部添加数据
-    this.notifyDataAdd(this.faultMessage.length - 1);
+    this.notifyDataAdd(0);
     AppStorage.setOrCreate('faultDataSourceLength', this.totalCount());
   }
 
