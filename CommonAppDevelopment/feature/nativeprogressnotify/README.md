@@ -1,8 +1,8 @@
-# Native侧进度通知到Arkts
+# Native侧进度通知到ArkTS
 
 ### 介绍
 
-本示例通过模拟下载场景介绍如何将Native的进度信息实时同步到Arkts侧。
+本示例通过模拟下载场景介绍如何将Native的进度信息实时同步到ArkTS侧。
 
 ### 效果图预览
 
