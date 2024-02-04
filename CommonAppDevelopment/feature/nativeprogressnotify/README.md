@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-![](../../product/entry/src/main/resources/base/media/NativeProgressNotify.gif)
+![](../../product/entry/src/main/resources/base/media/native_progress_notify.gif)
 
 **使用说明**
 

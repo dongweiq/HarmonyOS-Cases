@@ -7,7 +7,7 @@
 ### 效果图预览
 
 
-![](../../product/entry/src/main/resources/base/media/VerifyCode.gif)
+![](../../product/entry/src/main/resources/base/media/verify_code.gif)
 
 **使用说明**
 
