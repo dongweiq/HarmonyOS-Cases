@@ -228,7 +228,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 公共能力层为上层的基础特性层和产品定制层提供稳定可靠的功能支持，确保整个应用/元服务的稳定性和可维护性。
 
-应用通用开发范例App公共能力层包含一下模块：[**日志打印**](./CommonAppDevelopment/common/utils/src/main/ets/Logger.ets)
+应用通用开发范例App公共能力层包含一下模块：[**日志打印**](./CommonAppDevelopment/common/utils/src/main/ets/log/Logger.ets)
 
 ## 配套平台
 
