@@ -156,7 +156,7 @@ MpChart是一个包含各种类型图表的图表库，方便开发者快速实�
 
 <img src="./CommonAppDevelopment/screenshots/device/HandleTabs.gif" width="200">
 
-#### AKI使用案例
+#### 使用AKI轻松实现跨语言调用
 
 AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障碍跨语言互调，使用方便。本模块将介绍使用AKI编写C++跨线程调用JS函数场景，为开发者使用AKI提供参考。AKI使用实践可参考此[详细说明文档](./CommonAppDevelopment/feature/akiusepractice/README.md)。
 
@@ -205,7 +205,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/page_turning_animation.gif" width="200">
 
-#### Native进度通知案例
+#### 在Native侧实现进度通知功能
 
 本示例通过模拟下载场景介绍如何将Native的进度信息实时同步到ArkTS侧。[详细说明文档](./CommonAppDevelopment/feature/nativeprogressnotify/README.md)。
 
@@ -217,7 +217,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/verify_code.gif" width="200">
 
-#### 抖动动画及手机振动效果案例
+#### 使用弹簧曲线实现抖动动画及手机振动效果案例
 
 抖动动画和手机振动效果是手机使用时常见的效果。抖动动画及手机振动效果案例可以参考[详细说明文档](./CommonAppDevelopment/feature/vibrateeffect/README.md)。
 
