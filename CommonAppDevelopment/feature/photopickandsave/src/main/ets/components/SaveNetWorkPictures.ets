@@ -59,7 +59,7 @@ export struct SaveNetWorkPictures {
               message: $r('app.string.image_request_fail'),
               duration: 2000
             })
-            return
+            return;
           }
           this.transcodePixelMap(data);
           // 判断网络获取到的资源是否为ArrayBuffer类型
@@ -115,7 +115,7 @@ export struct SaveNetWorkPictures {
    */
   async pickerSave(buffer: ArrayBuffer | string): Promise<void> {
     const photoSaveOptions = new picker.PhotoSaveOptions(); // 创建文件管理器保存选项实例
-    photoSaveOptions.newFileNames = ['PhotoViewPicker ' + new Date().getTime() + '.jpg'] // 保存文件名（可选）
+    photoSaveOptions.newFileNames = ['PhotoViewPicker ' + new Date().getTime() + '.jpg'];// 保存文件名（可选）
     const photoViewPicker = new picker.PhotoViewPicker;
     photoViewPicker.save(photoSaveOptions)
       .then(async (photoSvaeResult) => {
@@ -128,7 +128,7 @@ export struct SaveNetWorkPictures {
           message: $r('app.string.save_picture'),
           duration: 2000
         })
-      })
+      });
   }
 
   async aboutToAppear(): Promise<void> {

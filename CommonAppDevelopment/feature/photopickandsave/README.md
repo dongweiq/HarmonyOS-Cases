@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-![](../../product/entry/src/main/resources/base/media/photopickandsave.gif)
+![](../../product/entry/src/main/resources/base/media/photo_pick_and_save.gif)
 
 **使用说明**
 
