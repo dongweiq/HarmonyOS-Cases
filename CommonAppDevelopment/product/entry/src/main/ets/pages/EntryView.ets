@@ -37,7 +37,6 @@ import { PullToRefreshNews } from '@ohos/pulltorefreshnews';
 import { VerifyCodeView } from '@ohos/verifycode';
 import { NativeProgressNotify } from '@ohos/nativeprogressnotify';
 import { VibrateEffectView } from '@ohos/vibrateeffect';
-import { NativeProgressNotify } from '@ohos/nativeprogressnotify';
 import { SwiperSmoothVariation } from '@ohos/swipersmoothvariation';
 
 
@@ -60,7 +59,7 @@ struct EntryView {
     new ListData($r("app.media.modal_window"), '全屏登录页面', 'modalWindow', 2, false, '40%', 'UI布局'),
     new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', 'slideToHideAndDisplace', 2, false, '25%', 'UI布局'),
     new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', 'NavigationParameterTransfer', 2, false, '30%', '其他', this.strUserBooking),
-    new ListData($r('app.media.aki_use_practice'), 'AKI使用实践', 'akiUsePractice', 2, false, '25%', '其他'),
+    new ListData($r('app.media.aki_use_practice'), '使用AKI轻松实现跨语言调用', 'akiUsePractice', 2, false, '25%', '其他'),
     new ListData($r('app.media.variable_watch'), '多层嵌套类监听', 'variableWatch', 2, false, '25%', '其他'),
     new ListData($r("app.media.photo_pick_and_save"), '图片选择和下载保存', 'photopickandsave', 1, false, '25%', '其他'),
     new ListData($r('app.media.application_exception'), '异常处理', 'fault', 2, false, '25%', '其他'),
@@ -69,8 +68,8 @@ struct EntryView {
     new ListData($r('app.media.pull_to_refresh_news'), '下拉刷新上滑加载', 'pulltorefresh', 2, false, '35%', '动效'),
     new ListData($r('app.media.page_turning_animation'), '翻页动效', 'pageturninganimation', 3, true, '25%', '动效'),
     new ListData($r("app.media.verify_code"), '验证码布局案例', 'verifyCode', 3, true, '25%', 'UI布局'),
-    new ListData($r('app.media.native_progress_notify'), 'Native进度通知案例', 'nativeProgressNotify', 2, false, '25%', 'Native'),
-    new ListData($r('app.media.vibrate_effect'), '抖动动画及手机振动效果', 'vibrateEffect', 1, false, '25%', '动效'),
+    new ListData($r('app.media.native_progress_notify'), '在Native侧实现进度通知功能', 'nativeProgressNotify', 2, false, '25%', 'Native'),
+    new ListData($r('app.media.vibrate_effect'), '使用弹簧曲线实现抖动动画及手机振动效果案例', 'vibrateEffect', 1, false, '25%', '动效'),
     new ListData($r("app.media.swiper_smooth_variation"), 'Swiper高度可变化效果实现', 'swiperSmoothVariation', 2, false, '25%', '动效')
   ];
   // Navigation路由栈,控制页面跳转

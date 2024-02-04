@@ -45,6 +45,8 @@
   
   5、默认使用LazyForEach实现列表场景，如果使用ForEach请说明原因；
   
+  6、资源命名使用小写加下划线的规则，例如show_text.png；
+  
   
   
   
