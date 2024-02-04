@@ -82,10 +82,6 @@
       "srcPath": "./feature/handletabs"
     },
     {
-      "name": "launchscenes",
-      "srcPath": "./feature/launchscenes"
-    },
-    {
       "name": "modalwindow",
       "srcPath": "./feature/modalwindow"
     },

@@ -23,8 +23,6 @@ import { ToDoList } from '@ohos/pendingitems';
 import { ImageViewerView } from '@ohos/imageviewer';
 import { FriendsBook } from '@ohos/gbktranscoding';
 import { HandleTabs } from '@ohos/handtabs';
-// 模拟器因没有广告kit，无法正确加载首页。
-import { LaunchAdvertView } from '@ohos/launchscenes';
 import { ModalWindow } from '@ohos/modalwindow/Index';
 import { SlideToHideAndDisplace } from '@ohos/slidetohideanddisplace/Index';
 import { NavigationParameterTransferView, UserBookingInfo } from '@ohos/NavigationParameterTransferView';
@@ -55,7 +53,6 @@ struct EntryView {
     new ListData($r("app.media.image_viewer"), '图片缩放功能实现', 'imageViewer', 2, false, '30%', '其他'),
     new ListData($r("app.media.todo_list"), '列表编辑', 'pendingitems', 1, false, '40%', 'UI布局'),
     new ListData($r("app.media.handle_tabs"), '增删tab页签', 'handletabs', 2, false, '30%', 'UI布局'),
-    new ListData($r("app.media.launch_advert"), '应用广告页', 'launchAvert', 2, false, '25%', 'UI布局'),
     new ListData($r("app.media.modal_window"), '全屏登录页面', 'modalWindow', 2, false, '40%', 'UI布局'),
     new ListData($r("app.media.slide_to_hide_and_displace"), '滑动页面改变顶部个人信息栏显示效果', 'slideToHideAndDisplace', 2, false, '25%', 'UI布局'),
     new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', 'NavigationParameterTransfer', 2, false, '30%', '其他', this.strUserBooking),
@@ -105,9 +102,6 @@ struct EntryView {
       } else if (name === 'handletabs') {
         // 增删tab页签
         HandleTabs()
-      } else if (name === 'launchAvert') {
-        // 应用广告页模块(模拟器因没有广告kit，无法正确加载首页。)
-        LaunchAdvertView()
       } else if (name === 'modalWindow') {
         // 全屏登录页面
         ModalWindow()
