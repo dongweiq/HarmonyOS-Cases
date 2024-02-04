@@ -161,6 +161,7 @@ struct EntryView {
       .backgroundColor($r('app.color.main_background_color'))
       .hideTitleBar(true)
       .navDestination(this.PageMap)
+      .mode(NavigationMode.Stack)
     }
     .height('100%')
     .backgroundColor($r('app.color.main_background_color'))
