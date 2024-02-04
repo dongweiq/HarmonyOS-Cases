@@ -30,12 +30,14 @@ import { SlideToHideAndDisplace } from '@ohos/slidetohideanddisplace/Index';
 import { NavigationParameterTransferView, UserBookingInfo } from '@ohos/NavigationParameterTransferView';
 import { AkiView } from '@ohos/akiusepractice';
 import { VariableWatchView } from '@ohos/variablewatch';
-import { PictureManager } from '@ohso/photopickandsave'
+import { PictureManager } from '@ohos/photopickandsave';
 import { PageTurningAnimation } from '@ohos/pageturninganimation';
 import { ApplicationExceptionView } from '@ohos/applicationexception';
 import { FitForDarkMode } from '@ohos/fitfordarkmode';
 import { MarqueeView } from '@ohos/marquee';
 import { PullToRefreshNews } from '@ohos/pulltorefreshnews';
+import { VerifyCodeView } from '@ohos/verifycode';
+import { NativeProgressNotify } from '@ohos/nativeprogressnotify'
 
 @Entry
 @Component
@@ -59,12 +61,14 @@ struct EntryView {
     new ListData($r("app.media.navigationParameterTransfer"), 'Navigation页面跳转对象传递', 'NavigationParameterTransfer', 2, false, '30%', '其他', this.strUserBooking),
     new ListData($r('app.media.aki_use_practice'), 'AKI使用实践', 'akiUsePractice', 2, false, '25%', '其他'),
     new ListData($r('app.media.variable_watch'), '多层嵌套类监听', 'variableWatch', 2, false, '25%', '其他'),
-    new ListData($r('app.media.photopickandsave'), '图片选择和下载保存', 'photopickandsave', 1, false, '25%')
+    new ListData($r('app.media.photopickandsave'), '图片选择和下载保存', 'photopickandsave', 1, false, '25%', '其他'),
     new ListData($r('app.media.fault'), '异常处理', 'fault', 2, false, '25%', '其他'),
     new ListData($r('app.media.fit_for_dark_mode'), '深浅模式', 'darkMode', 2, false, '35%', 'UI布局'),
     new ListData($r('app.media.marquee'), '跑马灯', 'marquee', 3, true, '25%', '动效'),
     new ListData($r('app.media.pull_to_refresh_news'), '下拉刷新上滑加载', 'pulltorefresh', 2, false, '35%', '动效'),
-    new ListData($r('app.media.page_turning_animation'), '翻页动效', 'pageturninganimation', 3, true, '25%', '动效')
+    new ListData($r('app.media.page_turning_animation'), '翻页动效', 'pageturninganimation', 3, true, '25%', '动效'),
+    new ListData($r("app.media.verify_code"), '验证码布局案例', 'verifyCode', 3, true, '25%', 'UI布局'),
+    new ListData($r('app.media.native_progress_notify'), 'Native进度通知案例', 'nativeProgressNotify', 2, false, '25%', 'Native'),
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
@@ -132,6 +136,12 @@ struct EntryView {
         MarqueeView()
       } else if (name === 'pulltorefresh') {
         PullToRefreshNews()
+      } else if (name === 'darkMode') {
+        FitForDarkMode()
+      } else if (name === 'verifyCode') {
+        VerifyCodeView()
+      } else if (name === 'nativeProgressNotify') {
+        NativeProgressNotify()
       }
     }
     .hideTitleBar(true)

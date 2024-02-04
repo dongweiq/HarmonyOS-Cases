@@ -44,7 +44,7 @@
     // 多层嵌套类对象监听方案
     "@ohos/variablewatch": "file:../../feature/variablewatch",
     // 图片选择和下载保存案例
-    "@ohso/photopickandsave": "file:../../feature/photopickandsave",
+    "@ohos/photopickandsave": "file:../../feature/photopickandsave",
     // 翻页动效案例
     "@ohos/pageturninganimation": "file:../../feature/pageturninganimation",
     // 异常处理
@@ -54,6 +54,10 @@
     // 跑马灯
     "@ohos/marquee": "file:../../feature/marquee",
     // 下拉刷新上滑加载
-    "@ohos/pulltorefreshnews": "file:../../feature/pulltorefreshnews"
+    "@ohos/pulltorefreshnews": "file:../../feature/pulltorefreshnews",
+    // 验证码页面
+    "@ohos/verifycode": "file:../../feature/verifycode",
+    // Native进度更新
+    "@ohos/nativeprogressnotify": "file:../../feature/nativeprogressnotify"
   }
 }
