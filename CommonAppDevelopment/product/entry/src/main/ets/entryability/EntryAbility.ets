@@ -20,16 +20,22 @@ import window from '@ohos.window';
 // 基础公共工具类base，主要包括日志打印和主页列表数据类型以及控制器
 import { logger } from '@ohos/base';
 import { Configuration } from '@ohos.app.ability.Configuration';
+// 引用异常处理模块
+import { eventSubscription } from '@ohos/applicationexception';
 
 const TAG = 'EntryAbility'
+// 资源异常枚举
+const RESOURCE_CONTROL: number = 7;
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     logger.info(TAG, '%{public}s', 'Ability onCreate');
     // TODO：需求：待系统查杀类型需求开发，补充查杀系统枚举类型
-    if(launchParam.lastExitReason === 7 ){}
+    if (launchParam.lastExitReason === RESOURCE_CONTROL) {}
     // 绑定上下文信息
     AppStorage.setOrCreate('context', this.context);
+    // 事件订阅(获取上次异常退出信息)
+    eventSubscription();
   }
 
   onDestroy(): void {

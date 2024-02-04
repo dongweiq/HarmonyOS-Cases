@@ -19,7 +19,6 @@ import { FunctionDescription } from '@ohos/base';
 const TAG_LIST_LENGTH = 12; // TagList长度
 const CONTENT_PER_TAG = 6; // 每个TAG对应多少个元素
 
-@Entry
 @Component
 export struct SecondaryLinkExample {
   @State @Watch('onIndexChange') currentTagIndex: number = 0; // 一级列表焦点索引值
