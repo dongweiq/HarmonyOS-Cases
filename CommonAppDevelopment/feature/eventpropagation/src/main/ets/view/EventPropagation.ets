@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import { FunctionDescription } from '@ohos/base';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 @Component
 export struct EventPropagation {
@@ -176,8 +177,15 @@ struct TouchEvent {
   }
 }
 
-// 导出接口，供其他模块使用。
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
 @Builder
 export function createDynamicsImportView(): void {
   EventPropagation();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_EVENT_TRANSMISSION_SOLUTION;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(createDynamicsImportView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

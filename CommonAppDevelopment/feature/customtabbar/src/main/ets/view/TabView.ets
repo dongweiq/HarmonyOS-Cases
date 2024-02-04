@@ -15,6 +15,7 @@
 
 import { TABINFO } from '../model/TabBarData';
 import { TabBarDataType } from '../model/DataType';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 const HOME_TAB_BAR_INDEX: number = 0; // 初始化社区的tab下标
 const COMMUNITY_TAB_BAR_INDEX: number = 2; // 初始化社区的tab下标
@@ -175,8 +176,15 @@ struct TabItem {
   }
 }
 
-// 导出接口，供其他模块使用。
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
 @Builder
 export function createDynamicsImportView(): void {
   TabView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_CUSTOM_TAB_BAR;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(createDynamicsImportView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

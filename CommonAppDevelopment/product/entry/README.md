@@ -48,12 +48,9 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
 
 ### 实现思路
 
-> 1. 通过this.pageStack.pushPath({ name: url param: item })进行页面之间的跳转，[navpathstack详情](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md/#navpathstack10)。
-> 2. 通过动态import的方式加载页面，减少主页面启动时间和初始化效率，减少内存的占用。动态import需要 DevEco Studio NEXT Developer Preview1 （4.1.3.500） 版本IDE，配合hvigor 4.0.2版本使用。
+> 通过this.pageStack.pushPath({ name: url param: item })进行页面之间的跳转，[navpathstack详情](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md/#navpathstack10)。
 
 ### 开发步骤
-
-**通过NavPathStack实现页面跳转**
 
 通过onclick事件调用NavPathStack.pushPath方法跳转页面。源码参考[MainPage.ets](../../feature/functionalscenes/src/main/ets/FunctionalScenes.ets)
   ```ts
@@ -61,83 +58,6 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
     .onClick(() => {
       this.pageStack.pushPath({ name: listData.moduleName, param: listData.param });
     })
-  ```
-
-**通过动态import方式加载页面**
-
-1. 在需要加载的模块的主页面中，添加@Builder装饰的createDynamicsImportView接口，用于动态import成功后加载页面。可参考[VariableWatchView.ets](../../feature/variablewatch/src/main/ets/view/VariableWatchView.ets)。
-
-  ```ts
-  @Builder
-  export function createDynamicsImportView(): void {
-    VariableWatchView();
-  }
-  ```
-
-2. 在模块根目录的Index.ets文件中，将createDynamicsImportView接口export。可参考[Index.ets](../../feature/variablewatch/Index.ets)。
-
-  ```ts
-  export { createDynamicsImportView } from './src/main/ets/view/VariableWatchView';
-  ```
-
-3. 在oh-package.json5中添加页面所在模块的依赖，可参考[oh-package.json5](./oh-package.json5)。
-
-  ```ts
-  ...
-  "dependencies": {
-    // 基础工具类，需要使用日志打印
-    "@ohos/base": "file:../../common/utils",
-    // 应用首页列表子组件，需要进入应用时加载
-    "@ohos/functionalscenes": "file:../../feature/functionalscenes",
-    // 阻塞事件冒泡方案
-    "@ohos/event-propagation": "file:../../feature/eventpropagation",
-    // 读取RawFile中文件的一部分
-    "@ohos/nativerawfile": "file:../../feature/nativerawfile",
-  ...
-  }
-  ```
-
-4. 在build-profile.json5中添加动态import的模块名，和oh-package.json5中配置的依赖名相同，可参考[build-profile.json5](./build-profile.json5)。
-
-  ```ts
-  {
-  "apiType": "stageMode",
-  "buildOption": {
-    "arkOptions": {
-      "runtimeOnly": {
-        "packages": [
-          "@ohos/addressexchange",
-          ...
-  }
-  ...
-  ```
-
-5. 将需要动态加载的模块名传入DynamicsImportPage组件中，在aboutToAppear()接口中通过import()方法加载模块。详细代码请参考[DynamicsImportPage](./src/main/ets/view/DynamicsImportPage.ets)。
-
-  ```ts
-  ...
-  @State isDynamicsImportSucceed: boolean = false;
-  @BuilderParam dynamicsImportPage: ESObject = this.initComponentMethod;
-  ...
-  aboutToAppear(): void {
-    import(this.moduleName).then((dynamicsImportResult: ESObject) => {
-      this.dynamicsImportPage = dynamicsImportResult.createDynamicsImportView;
-      this.isDynamicsImportSucceed = true;
-    });
-  }
-  ...
-  ```
-
-6. 动态import成功后，通知页面刷新。详细代码请参考[DynamicsImportPage](./src/main/ets/view/DynamicsImportPage.ets)。
-
-  ```ts
-  build() {
-    Column() {
-      if (this.isDynamicsImportSucceed) {
-        this.dynamicsImportPage();
-      }
-    }
-  }
   ```
 
 ## 参考文档
