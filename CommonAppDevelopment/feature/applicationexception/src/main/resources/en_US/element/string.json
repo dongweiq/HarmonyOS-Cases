@@ -13,10 +13,6 @@
       "value": "Click to build application stuck event"
     },
     {
-      "name": "system_kill_event",
-      "value": "Click to build the system to investigate and kill events"
-    },
-    {
       "name": "application_fault_title",
       "value": "Application fault message"
     },
@@ -31,10 +27,6 @@
     {
       "name": "freeze_event_message",
       "value": "After 3 seconds, if the system freezes, the application needs to be restarted and this page should be accessed to obtain the last login exception information"
-    },
-    {
-      "name": "system_kill_event_message",
-      "value": "The system has not supplemented the killing system enumeration type and it is difficult to build a system killing exception scenario. This scenario is not currently provided"
     },
     {
       "name": "no_message",
