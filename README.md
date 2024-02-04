@@ -34,7 +34,6 @@
    |   |---nativerawfile              // 基础特性层-Native读取Rawfile中文件部分内容
    |   |---pendingitems               // 基础特性层-列表编辑实现方案 
    |   |---secondarylinkage           // 基础特性层-二级联动实现方案   
-   |   |---launchscenes               // 基础特性层-应用广告页实现方案 
    |   |---gbktranscoding             // 基础特性层-Axios获取GBK数据转换UTF-8方案
    |   |---handletabs                 // 基础特性层-Tab组件实现增删Tab标签方案方案
    |   |---modalwindow                // 基础特性层-全屏登录页面方案
@@ -133,10 +132,6 @@ MpChart是一个包含各种类型图表的图表库，方便开发者快速实�
 本模块基于Image组件实现了简单的图片预览功能，支持双指捏合等效果。图片预览方案可参考此[详细说明文档](./CommonAppDevelopment/feature/imageviewer/README.md)。
 
 <img src="./CommonAppDevelopment/screenshots/device/ImageViewer.gif" width="200">
-
-#### 应用广告页实现案例
-
-在大部分应用软件中，都需要开屏展示广告内容，用户任意时刻可点击跳转查看广告详情，或点击跳过进入首页。应用广告页实现方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/launchscenes/README.md)。
 
 #### Axios获取解析网络数据案例
 
