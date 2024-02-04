@@ -107,6 +107,22 @@
     {
       "name": "pageturninganimation",
       "srcPath": "./feature/pageturninganimation"
+    },
+    {
+      "name": "marquee",
+      "srcPath": "./feature/marquee"
+    },
+    {
+      "name": "fitfordarkmode",
+      "srcPath": "./feature/fitfordarkmode"
+    },
+    {
+      "name": "pulltorefreshnews",
+      "srcPath": "./feature/pulltorefreshnews"
+    },
+    {
+      "name": "applicationexception",
+      "srcPath": "./feature/applicationexception"
     }
   ]
 }
