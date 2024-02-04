@@ -51,6 +51,7 @@
    |   |---variablewatch               // 多层嵌套类对象监听案例
    |   |---verifycode                  // 验证码布局
    |   |---vibrateeffect               // 基础特性层-抖动动画及手机振动效果
+   |   |---navigationbarchange         // 基础特性层-状态栏显隐变化案例
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -221,6 +222,12 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 抖动动画和手机振动效果是手机使用时常见的效果。抖动动画及手机振动效果案例可以参考[详细说明文档](./CommonAppDevelopment/feature/vibrateeffect/README.md)。
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/vibrate_effect.gif" width="200">
+
+#### 状态栏显隐变化案例
+
+本示例介绍使用Scroll组件的滚动事件 **onScroll** 实现状态栏显隐变化。该场景多用于各种软件的首页、我的等页面中。状态栏显隐变化的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/navigationbarchange/README.md)。
+
+<img src="./CommonAppDevelopment/screenshots/device/NavigationBarChange.gif" width="200">
 
 ### 公共能力层
 
