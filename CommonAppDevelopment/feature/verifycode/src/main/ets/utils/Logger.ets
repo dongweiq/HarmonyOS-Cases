@@ -22,19 +22,19 @@ export class Logger {
   static domain: number = 0x1111;
   static prefix: string = "VerifyCode"
 
-  static debug(format: string, ...args: ESObject[]) {
+  static debug(format: string, ...args: string[]) {
     hilog.debug(Logger.domain, Logger.prefix, format, args);
   }
 
-  static info(format: string, ...args: ESObject[]) {
+  static info(format: string, ...args: string[]) {
     hilog.info(Logger.domain, Logger.prefix, format, args);
   }
 
-  static warn(format: string, ...args: ESObject[]) {
+  static warn(format: string, ...args: string[]) {
     hilog.warn(Logger.domain, Logger.prefix, format, args);
   }
 
-  static error(format: string, ...args: ESObject[]) {
+  static error(format: string, ...args: string[]) {
     hilog.error(Logger.domain, Logger.prefix, format, args);
   }
 }

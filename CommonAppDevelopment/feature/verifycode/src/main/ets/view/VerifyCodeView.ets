@@ -126,7 +126,6 @@ struct VerifyCodeComponentWithoutCursor {
 /**
  * 验证码组件：禁用选中、复制、光标
  */
-@Entry
 @Component
 export struct VerifyCodeView {
   build() {
