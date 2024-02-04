@@ -51,6 +51,7 @@
    |   |---slidetohideanddisplace      // 滑动页面信息隐藏与组件位移效果案例
    |   |---variablewatch               // 多层嵌套类对象监听案例
    |   |---verifycode                  // 验证码布局
+   |   |---vibrateeffect               // 基础特性层-抖动动画及手机振动效果
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -220,6 +221,11 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/verify_code.gif" width="200">
 
+#### 抖动动画及手机振动效果案例
+
+抖动动画和手机振动效果是手机使用时常见的效果。抖动动画及手机振动效果案例可以参考[详细说明文档](./CommonAppDevelopment/feature/vibrateeffect/README.md)。
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/vibrate_effect.gif" width="200">
 
 ### 公共能力层
 

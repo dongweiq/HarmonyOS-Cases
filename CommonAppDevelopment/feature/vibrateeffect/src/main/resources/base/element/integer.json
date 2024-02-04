@@ -1,0 +1,48 @@
+{
+  "integer": [
+    {
+      "name": "vibrate_time",
+      "value": 600
+    },
+    {
+      "name": "elements_height",
+      "value": 100
+    },
+    {
+      "name": "text_width",
+      "value": 100
+    },
+    {
+      "name": "image_size",
+      "value": 80
+    },
+    {
+      "name": "image_size2",
+      "value": 10
+    },
+    {
+      "name": "circle_icon_size",
+      "value": 15
+    },
+    {
+      "name": "circle_elements_width",
+      "value": 20
+    },
+    {
+      "name": "circle_elements_height",
+      "value": 15
+    },
+    {
+      "name": "mark_height",
+      "value": 20
+    },
+    {
+      "name": "total_mark_height",
+      "value": 30
+    },
+    {
+      "name": "flex_shrink",
+      "value": 1
+    }
+  ]
+}
