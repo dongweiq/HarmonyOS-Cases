@@ -40,6 +40,7 @@ struct VerifyCodeComponentWithoutCursor {
   private inputController: inputMethod.InputMethodController = inputMethod.getController();
   private isAttached: boolean = false;
   private verifyCodeLength: number = 6;
+  private codeIndexArray: Array<number> = Array.from([0, 1, 2, 3, 4, 5]);
 
   /**
    * TODO 知识点：绑定输入法并订阅输入法相关事件
@@ -86,24 +87,17 @@ struct VerifyCodeComponentWithoutCursor {
   @Builder
   buildVerifyCodeComponent() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-      Text(this.codeText[0])
-        .verifyCodeUnitStyle()
-      Text(this.codeText[1])
-        .verifyCodeUnitStyle()
-      Text(this.codeText[2])
-        .verifyCodeUnitStyle()
-      Text(this.codeText[3])
-        .verifyCodeUnitStyle()
-      Text(this.codeText[4])
-        .verifyCodeUnitStyle()
-      Text(this.codeText[5])
-        .verifyCodeUnitStyle()
+      ForEach(this.codeIndexArray, (item: number, index: number) => {
+        Text(this.codeText[item])
+          .verifyCodeUnitStyle()
+      }, (item: number, index: number) => item.toString())
     }
     .backgroundColor(Color.Transparent)
     .height($r("app.integer.verify_code_height"))
     .margin({ left: $r("sys.float.ohos_id_card_margin_start"), right: $r("sys.float.ohos_id_card_margin_start") })
     .defaultFocus(true)
     .onClick(() => {
+      // TODO 知识点：点击本组件时弹出输入法
       this.inputController.showTextInput();
     })
   }

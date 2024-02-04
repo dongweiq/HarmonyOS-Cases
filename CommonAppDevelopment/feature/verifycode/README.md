@@ -19,39 +19,29 @@
 1. 因为要禁用复制、选中等功能，这里使用了Text组件，而不是TextInput
 
     ```typescript
-      @Builder
-      buildVerifyCodeComponent() {
-        Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-          Text(this.codeText[0])
-            .verifyCodeUnitStyle()
-          // ...
-          Text(this.codeText[5])
-            .verifyCodeUnitStyle()
-        }
-        .defaultFocus(true)
-        .onClick(() => {
-          this.inputController.showTextInput();
-        })
-      }
+    ForEach(this.codeIndexArray, (item: number, index: number) => {
+      Text(this.codeText[item])
+        .verifyCodeUnitStyle()
+    }, (item: number, index: number) => item.toString())
     ```
 
-1. 使用输入法框架inputMethod，通过订阅insert与delete事件，来获取键盘的输入内容
-    1. 绑定输入法
-        ```typescript
-        this.inputController.attach(true, textConfig);
-        ```
-    1. 订阅输入法插入、删除事件，从而获取输入内容
-         ```typescript
-         this.inputController.on("insertText", (text: string) => {
-           if (this.codeText.length >= this.verifyCodeLength) {
-             return;
-           }
-             this.codeText += text;
-         })
-         this.inputController.on("deleteLeft", (length: number) => {
-           this.codeText = this.codeText.substring(0, this.codeText.length - 1);
-         })
-         ```
+1. 绑定输入法
+    ```typescript
+    this.inputController.attach(true, textConfig);
+    ```
+   
+1. 订阅输入法插入、删除事件，从而获取输入内容
+     ```typescript
+     this.inputController.on("insertText", (text: string) => {
+       if (this.codeText.length >= this.verifyCodeLength) {
+         return;
+       }
+         this.codeText += text;
+     })
+     this.inputController.on("deleteLeft", (length: number) => {
+       this.codeText = this.codeText.substring(0, this.codeText.length - 1);
+     })
+     ```
 
 ### 高性能知识点
 
