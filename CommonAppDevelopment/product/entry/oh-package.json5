@@ -56,6 +56,8 @@
     // 验证码页面
     "@ohos/verifycode": "file:../../feature/verifycode",
     // Native进度更新
-    "@ohos/nativeprogressnotify": "file:../../feature/nativeprogressnotify"
+    "@ohos/nativeprogressnotify": "file:../../feature/nativeprogressnotify",
+    // 抖动动画及手机振动效果
+    "@ohos/vibrateeffect": "file:../../feature/vibrateeffect"
   }
 }

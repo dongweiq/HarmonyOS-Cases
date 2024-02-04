@@ -132,6 +132,10 @@
     {
       "name": "verifycode",
       "srcPath": "./feature/verifycode"
+    },
+    {
+      "name": "vibrateeffect",
+      "srcPath": "./feature/vibrateeffect"
     }
   ]
 }
