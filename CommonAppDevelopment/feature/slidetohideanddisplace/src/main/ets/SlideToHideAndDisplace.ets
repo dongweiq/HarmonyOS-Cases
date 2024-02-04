@@ -20,9 +20,9 @@ const YOffset100 = 100;
 const YOffset60 = 60;
 const YOffset50 = 50;
 const YOffset40 = 40;
-const YOffset25 = 25;
+const YOffset20 = 20;
 const FullSize = 100;
-const Race = 1.70;
+const Race = 1.56;
 const BorderRadius = 8;
 const CardWidth = 150;
 const CardHeight = 200;
@@ -30,15 +30,15 @@ const SettingWidth = 24;
 
 /**
  * 滑动页面改变顶部个人信息栏显示效果
- * 效果：上滑页面，用户头像逐渐缩小并移动到返回文字的后方，原本展示的手机号/选择身份/满意度调查的文本渐隐，顶部手机号文本渐显
- * 下滑页面，用户头像逐渐放大并向下移动，顶部手机号文本渐隐，下方手机号/选择身份/满意度调查的文本渐显
+ * 效果：上滑页面，用户头像逐渐缩小并移动到返回文字的后方，原本展示的用户名/选择身份/设置/客服的文本和图标渐隐，顶部用户名文本渐显
+ * 下滑页面，用户头像逐渐放大并向下移动，顶部用户名文本渐隐，下方用户名/选择身份/设置/客服的文本和图标渐显
  */
 
 @Component
 export struct SlideToHideAndDisplace {
   // 用户头像图片后方个人信息相关组件(用户名/选择身份/满意度调查)的透明度
   @State userRowOpacity: number = 1;
-  // 返回文字后方的用户名(手机号)的透明度(进入页面时处于隐藏状态)
+  // 返回文字后方的用户名的透明度(进入页面时处于隐藏状态)
   @State userNameOpacity: number = 0;
   // 用户头像图片高度
   @State userImageHeight: number = 50;
@@ -47,7 +47,7 @@ export struct SlideToHideAndDisplace {
   // 用户头像图片顶部与父组件Row的上边距
   @State userImageMarginTop: number = 0;
   // 用户头像图片左侧与父组件Row的左边距
-  @State userImageMarginLeft: number = 20;
+  @State userImageMarginLeft: number = 0;
   // 订单相关的图标和描述的数据列表
   iconsAndDescriptions1: IconAndDescription[] = [
     new IconAndDescription($r('app.media.payment'), $r('app.string.icon_and_description_11')),
@@ -111,8 +111,7 @@ export struct SlideToHideAndDisplace {
     Column() {
       Row() {
         Text($r('app.string.back'))
-          .margin({ left: $r('app.integer.margin_between_icon_and_description') })
-        Text($r('app.string.phone_number'))
+        Text($r("app.string.user_name"))
           .margin({ left: $r('app.integer.margin_large') })
           .opacity(this.userNameOpacity) // userNameOpacity控制顶部用户名的透明度
         Blank()
@@ -125,7 +124,6 @@ export struct SlideToHideAndDisplace {
           })
           .opacity(this.userNameOpacity) // 客服的文字透明度与顶部用户名相同
       }
-      .padding($r('app.integer.padding_small'))
       .width($r('app.string.size_full'))
       .alignItems(VerticalAlign.Center)
 
@@ -137,7 +135,7 @@ export struct SlideToHideAndDisplace {
           .margin({ top: this.userImageMarginTop, left: this.userImageMarginLeft })
 
         Column() {
-          Text($r('app.string.phone_number'))
+          Text($r("app.string.user_name"))
           Button($r('app.string.choose_identity'))
             .height($r('app.integer.button_height'))
             .width($r('app.integer.button_width'))
@@ -154,7 +152,6 @@ export struct SlideToHideAndDisplace {
           this.IconAndDescription($r('app.media.setting'), "设置", new Size(SettingWidth, SettingWidth))
           this.IconAndDescription($r('app.media.dialog'), "客服", new Size(SettingWidth, SettingWidth))
         }
-        .margin({ right: $r('app.integer.margin_mid') })
         .width($r('app.integer.height_eighty'))
         .justifyContent(FlexAlign.SpaceBetween)
         .opacity(this.userRowOpacity)
@@ -238,23 +235,18 @@ export struct SlideToHideAndDisplace {
         .width($r('app.string.size_full'))
       }
       .height($r('app.string.size_one_hundred_and_thirty'))
-      .linearGradient({
-        angle: 180, // 渐变方向为从上到下
-        colors: [[0xffffff, 0.0], [0xffeeee, 0.2], [0xffdddd, 1.0]]
-      })
       .margin({ top: this.scrollMarginTop })
-      .padding($r('app.integer.margin_default'))
       .scrollBar(BarState.Off)
       .onScroll(() => {
         // TODO: 知识点: Scroll组件绑定onScroll事件，然后在此方法里改变该组件的margin和opacity属性值的大小实现组件移动和隐显
-        // 性能注释: onScroll属于频繁回调，不建议在onScroll做耗时和冗余操作
+        // 性能知识点: onScroll属于频繁回调，不建议在onScroll做耗时和冗余操作
         let yOffset: number = this.scroller.currentOffset().yOffset;
         if (yOffset < YOffset100) {
           this.scrollMarginTop = -yOffset;
           this.userRowOpacity = yOffset < YOffset60 ? 1 - yOffset / YOffset60 : 0;
           this.userImageHeight = YOffset50 * (1 - (yOffset / YOffset130));
           this.userImageMarginTop = -yOffset * Race;
-          this.userImageMarginLeft = YOffset25 * (1 + (yOffset / YOffset60));
+          this.userImageMarginLeft = YOffset20 * (yOffset / YOffset60) * Race;
           if (yOffset > YOffset40) {
             this.userNameOpacity = (yOffset - YOffset40) / YOffset40;
           } else {
@@ -264,5 +256,10 @@ export struct SlideToHideAndDisplace {
       })
     }
     .width($r('app.string.size_full'))
+    .padding($r('app.integer.margin_default'))
+    .linearGradient({
+      angle: 180, // 渐变方向为从上到下
+      colors: [[0xffffff, 0.0], [0xfff1f1, 0.2], [0xffdddd, 1.0]]
+    })
   }
 }

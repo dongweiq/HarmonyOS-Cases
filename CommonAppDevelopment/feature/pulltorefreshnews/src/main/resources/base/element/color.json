@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "news_title_fontColor",
+      "value": "#000000"
+    },
+    {
+      "name": "news_content_fontColor",
+      "value": "#000000"
+    },
+    {
+      "name": "news_time_fontColor",
+      "value": "#FF989898"
+    },
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "listColor",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "dividerColor",
+      "value": "#E2E2E2"
+    }
+  ]
+}

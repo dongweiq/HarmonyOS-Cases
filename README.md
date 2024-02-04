@@ -41,6 +41,7 @@
    |   |---slidetohideanddisplace     // 基础特性层-滑动页面信息隐藏与组件位移效果方案
    |   |---akiusepractice             // 基础特性层-AKI使用实践
    |   |---variablewatch              // 基础特性层-多层嵌套类对象监听
+   |   |---pageturninganimation       // 基础特性层-翻页动效案例
    |---libs
    |---product 
    |   |---entry                      // 产品定制层-应用入口
@@ -76,13 +77,13 @@
 
 本例介绍各种应用登录页面。在主页面点击跳转到全屏登录页后，显示全屏模态页面，全屏模态页面从下方滑出并覆盖整个屏幕，模态页面内容自定义，此处分为默认一键登录方式和其他登录方式。[详细说明文档](./CommonAppDevelopment/feature/modalwindow/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/ModalWindow.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/modal_window.gif" width="200">
 
 #### 滑动页面信息隐藏与组件位移效果案例
 
 在很多应用中，向上滑动"我的"页面，页面顶部会有如下变化效果：一部分信息逐渐隐藏，另一部分信息逐渐显示，同时一些组件会进行缩放或者位置移动。向下滑动时则相反。[详细说明文档](./CommonAppDevelopment/feature/slidetohideanddisplace/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/SlideToHideAndDisplace.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/slide_to_hide_and_displace.gif" width="200">
 
 #### 地址交换动画案例
 
@@ -159,6 +160,12 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 多层嵌套类对象监听方案可以参考[详细说明文档](./CommonAppDevelopment/feature/variablewatch/README.md)。
 
 <img src="./CommonAppDevelopment/screenshots/device/VariableWatch.gif" width="200">
+
+#### 翻页动效案例
+
+翻页动效是应用开发中常见的动效场景，常见的有书籍翻页，日历翻页等。通过Arkui提供的显示动画接口animateTo可以实现翻页的效果。翻页动效案例可以参考[详细说明文档](./CommonAppDevelopment/feature/pageturninganimation/README.md)。
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/page_turning_animation.gif" width="200">
 
 ### 公共能力层
 

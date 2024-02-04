@@ -103,6 +103,10 @@
     {
       "name": "variablewatch",
       "srcPath": "./feature/variablewatch"
+    },
+    {
+      "name": "pageturninganimation",
+      "srcPath": "./feature/pageturninganimation"
     }
   ]
 }

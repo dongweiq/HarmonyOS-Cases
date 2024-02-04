@@ -26,6 +26,18 @@ export interface CustomDataType {
 }
 
 /**
+ * 一级列表可视区域的起始索引和终点索引。
+ *
+ * @interface
+ * @property {number} start - 可视区域起点索引。
+ * @property {number} end - 可视区域终点索引。
+ */
+export interface ListIndexPosition {
+  start: number,
+  end: number,
+}
+
+/**
  * Basic implementation of IDataSource to handle data listener
  *
  * @class
@@ -167,3 +179,14 @@ export class MyDataSource extends BasicDataSource {
   }
 }
 
+// 常量数据
+export const COMPONENT_STYLE: Record<string, number> = {
+  'ITEM_GUTTER': 12,
+  'TAG_TEXT_HEIGHT': 75,
+  'SUB_ITEM_GUTTER': 7,
+  'SUB_ITEM_HEIGHT': 96,
+  'SUB_ITEM_TEXT_WIDTH_TITLE': 56,
+  'SUB_ITEM_TEXT_HEIGHT': 12,
+  'SUB_ITEM_TEXT_WIDTH_BODY': 120,
+  'BOTTOM_TOAST_TEXT_MAX_HEIGHT': 200
+};

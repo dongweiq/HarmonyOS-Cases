@@ -18,11 +18,15 @@
     },
     {
       "name": "categorySelectedColor",
-      "value": "#66355ac8"
+      "value": "#108ee9"
     },
     {
       "name": "pageContainerBcColor",
       "value": "#f1f3f5"
+    },
+    {
+      "name": "itemBcColor",
+      "value": "#ccc"
     }
   ]
 }

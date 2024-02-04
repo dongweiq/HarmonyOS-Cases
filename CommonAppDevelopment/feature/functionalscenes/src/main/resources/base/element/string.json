@@ -7,6 +7,86 @@
     {
       "name": "difficulty",
       "value": "难度 "
+    },
+    {
+      "name": "tab_title_data_Native",
+      "value": "Native"
+    },
+    {
+      "name": "tab_title_data_arkui",
+      "value": "UI布局"
+    },
+    {
+      "name": "tab_title_data_other",
+      "value": "其他"
+    },
+    {
+      "name": "tab_title_data_tripartite_library",
+      "value": "三方库"
+    },
+    {
+      "name": "tab_title_data_dynamic_effect",
+      "value": "动效"
+    },
+    {
+      "name": "main_page_top_borderRadius",
+      "value": "8"
+    },
+    {
+      "name": "main_page_list_borderRadius",
+      "value": "6"
+    },
+    {
+      "name": "main_page_padding1",
+      "value": "10"
+    },
+    {
+      "name": "main_page_padding2",
+      "value": "12"
+    },
+    {
+      "name": "main_page_padding3",
+      "value": "16"
+    },
+    {
+      "name": "main_page_padding4",
+      "value": "18"
+    },
+    {
+      "name": "main_page_padding5",
+      "value": "8"
+    },
+    {
+      "name": "main_page_padding_list_bottom",
+      "value": "350"
+    },
+    {
+      "name": "main_page_swiper_height",
+      "value": "200"
+    },
+    {
+      "name": "main_page_text_height",
+      "value": "16"
+    },
+    {
+      "name": "main_page_text_font_size",
+      "value": "12"
+    },
+    {
+      "name": "main_page_margin1",
+      "value": "10"
+    },
+    {
+      "name": "main_page_margin2",
+      "value": "12"
+    },
+    {
+      "name": "main_page_tab_text_underline",
+      "value": "2"
+    },
+    {
+      "name": "main_page_water_flow_gap",
+      "value": "12"
     }
   ]
 }

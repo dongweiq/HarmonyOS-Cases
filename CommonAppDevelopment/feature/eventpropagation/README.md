@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-![](../../screenshots/device/EventPropagation.gif)
+![](../../product/entry/src/main/resources/base/media/event_propagation.gif)
 
 **使用说明**：
 
