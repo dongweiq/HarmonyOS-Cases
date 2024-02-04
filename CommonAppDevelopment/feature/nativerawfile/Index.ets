@@ -14,3 +14,4 @@
  */
 
 export { NativeRawfileDemo } from './src/main/ets/components/mainpage/MainPage'
+export { preloadSOByTaskPool } from './src/main/ets/utils/TaskPool'
