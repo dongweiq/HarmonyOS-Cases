@@ -1,0 +1,12 @@
+{
+  "integer": [
+    {
+      "name": "progress_size",
+      "value": 100
+    },
+    {
+      "name": "column_space",
+      "value": 10
+    }
+  ]
+}

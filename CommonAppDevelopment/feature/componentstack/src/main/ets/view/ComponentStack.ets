@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { IconList1, IconList2, IconList3 } from '../view/IconView'
-import { ProductList } from '../view/ProductList'
+import { IconList1, IconList2, IconList3 } from '../view/IconView';
+import { ProductList } from '../view/ProductList';
 import { logger, FunctionDescription } from '@ohos/base';
 
 /**
@@ -58,6 +58,7 @@ export struct ComponentStack {
 
   build() {
     Column() {
+      // 功能描述组件
       FunctionDescription({
         title: $r('app.string.warning_text_title'),
         content: $r('app.string.warning_text')
@@ -79,7 +80,7 @@ export struct ComponentStack {
           right: $r('app.integer.flex_padding_right')
         })
         .width('100%').height($r('app.integer.flex_height'))
-
+        // Scroll滚动父组件
         Scroll(this.scroller) {
           Column() {
             Row() {
@@ -98,7 +99,7 @@ export struct ComponentStack {
             .height(this.searchHeight)
             .backgroundColor(Color.White)
             .borderRadius($r('app.integer.search_border_radius'))
-
+            // Stack堆叠组件
             Stack({ alignContent: Alignment.Top }) {
               if (this.isChange) {
                 Row() {
@@ -118,6 +119,7 @@ export struct ComponentStack {
                 .height($r('app.integer.icon_list_height1'))
                 .opacity(this.Opacity)
               }
+              // Scroll滚动子组件
               Scroll(this.scroller2) {
                 Column() {
                   Row() {
@@ -126,7 +128,7 @@ export struct ComponentStack {
                   .width('100%')
                   .height(this.Height2)
                   .opacity(this.Opacity2)
-
+                  // 商品列表组件
                   ProductList()
                     .width('100%')
                     .height(px2vp(this.screenHeight - this.statusHeight - this.bottomHeight) - this.UsedSapce)
@@ -137,21 +139,25 @@ export struct ComponentStack {
               .scrollBar(BarState.Off)
               // TODO: 知识点：嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
               .nestedScroll({
-                scrollForward: NestedScrollMode.PARENT_FIRST,
-                scrollBackward: NestedScrollMode.SELF_FIRST
+                scrollForward: NestedScrollMode.PARENT_FIRST, // 可滚动组件往末尾端滚动时的嵌套滚动选项,父组件先滚动，父组件滚动到边缘以后自身滚动。
+                scrollBackward: NestedScrollMode.SELF_FIRST // 可滚动组件往起始端滚动时的嵌套滚动选项,自身先滚动，自身滚动到边缘以后父组件滚动。
               })
+              // Scroll滚动子组件函数回调
               .onScroll(() => {
-                const yOffset: number = this.scroller2.currentOffset().yOffset;
-                logger.info(`yOffset: ${yOffset}`);
+                // TODO: 知识点: Scroll组件绑定onScroll事件，然后在此方法里改变该组件的margin和opacity属性值的大小实现组件移动和隐显
+                // 性能知识点: onScroll属于频繁回调，不建议在onScroll做耗时和冗余操作
+                let yOffset: number = this.scroller2.currentOffset().yOffset;
                 this.Height2 = this.Height2_raw - yOffset * 0.5;
 
+                // 根据yOffset的偏移量来设置IconList2的透明度，当偏移量大于等于IconList2原始高度就是透明的。
                 if (1 - yOffset / this.IconList2_raw >= 0) {
                   this.Opacity2 = 1 - yOffset / this.IconList2_raw; // IconList2的透明度
                 } else {
                   this.Opacity2 = 0;
                 }
+                // 巧妙利用IconList2的透明度的值Opacity2来设置IconList2的缩放。
                 this.ratio = this.Opacity2;
-
+                // 根据yOffset的偏移量来设置IconList1的透明度和IconList3的间距，当偏移量大于等于IconList1原始高度就是透明的同时IconList3的间距也是最小的。
                 if (1 - yOffset / this.IconList1_raw > 0) {
                   this.isChange = false;
                   this.Opacity = 1 - yOffset / this.IconList1_raw; // IconList1的透明度
@@ -173,6 +179,7 @@ export struct ComponentStack {
         .width('100%')
         .height('100%')
         .scrollBar(BarState.Off)
+        // Scroll滚动父组件函数回调
         .onScroll(() => {
           // 获取滑动距离
           const yOffset: number = this.scroller.currentOffset().yOffset;

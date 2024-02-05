@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { ICON_DATA1, ICON_DATA2 } from '../mock/IconMock'
-import { IconDataModel } from '../model/IconModel'
+import { ICON_DATA1, ICON_DATA2 } from '../mock/IconMock';
+import { IconDataModel } from '../model/IconModel';
 
 const ICONVIEWSPACE: number = 10; // 图标之间间距
 const ASPECT_RATIO: number = 1; // 图片的宽高比
@@ -37,13 +37,13 @@ struct iconView1 {
 
       Text(this.title)
         .fontSize($r('app.integer.icon_view_title_font_size'))
-        .fontColor('#000000')
+        .fontColor(Color.Black)
         .textAlign(TextAlign.Center)
     }
     .width('100%')
     .height($r('app.integer.icon_view_height'))
     .justifyContent(FlexAlign.Center)
-    .backgroundColor('#EEFFFFFF')
+    .backgroundColor(Color.White)
     .borderRadius($r('app.integer.icon_view_border_radius'))
   }
 }
@@ -69,7 +69,7 @@ struct iconView2 {
     .width('100%')
     .height($r('app.integer.icon_view_height2'))
     .justifyContent(FlexAlign.Center)
-    .backgroundColor('#EEFFFFFF')
+    .backgroundColor(Color.White)
     .borderRadius($r('app.integer.icon_view_border_radius'))
   }
 }
@@ -89,7 +89,7 @@ struct iconView3 {
 
       Text(this.title)
         .fontSize($r('app.integer.icon_view_title_font_size'))
-        .fontColor('#000000')
+        .fontColor(Color.Black)
         .textAlign(TextAlign.Center)
     }
     .width('100%')
@@ -140,6 +140,7 @@ export struct IconList3 {
 
   build() {
     List({ space: this.marginSpace }) {
+      // 当前是固定菜单列表，数量少，不需要使用LazyForEach做性能优化
       ForEach(ICON_DATA1, (item: IconDataModel) => {
         ListItem() {
           iconView1({ icon: item.icon, title: item.title })

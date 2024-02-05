@@ -1,0 +1,12 @@
+{
+  "color": [
+    {
+      "name": "marquee_bg_color1",
+      "value": "#CCDFFF"
+    },
+    {
+      "name": "marquee_bg_color2",
+      "value": "#F3F4F7"
+    }
+  ]
+}

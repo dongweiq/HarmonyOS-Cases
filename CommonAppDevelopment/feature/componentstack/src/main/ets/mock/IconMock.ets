@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { IconDataModel, ProductDataModel } from '../model/IconModel'
+import { IconDataModel, ProductDataModel } from '../model/IconModel';
 
 // 快捷图标数据
 export const ICON_DATA1: Array<IconDataModel> = [

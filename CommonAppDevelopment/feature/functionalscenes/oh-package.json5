@@ -21,5 +21,8 @@
   "description": "Please describe the basic information.",
   "main": "Index.ets",
   "version": "1.0.0",
-  "dependencies": {}
+  "dependencies": {
+    // 基础公共类，需要使用资源
+    "@ohos/base": "file:../../common/utils"
+  }
 }

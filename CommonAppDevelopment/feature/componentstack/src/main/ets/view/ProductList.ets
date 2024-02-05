@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import { PRODUCT_DATA } from '../mock/IconMock'
-import { ProductDataModel } from '../model/IconModel'
-import { ProductDataSource } from '../model/DataSource'
+import { PRODUCT_DATA } from '../mock/IconMock';
+import { ProductDataModel } from '../model/IconModel';
+import { ProductDataSource } from '../model/DataSource';
 
 const COLUMNSPACE: number = 5; // column各子组件间距
 const ASPECT_RATIO: number = 1; // 图片的宽高比

@@ -16,6 +16,5 @@
 // Mock按钮文本数据
 export const BUTTON_TEXT: Array<Resource> = [
   $r('app.string.crash_event'),
-  $r('app.string.freeze_event'),
-  $r('app.string.system_kill_event')
+  $r('app.string.freeze_event')
 ]

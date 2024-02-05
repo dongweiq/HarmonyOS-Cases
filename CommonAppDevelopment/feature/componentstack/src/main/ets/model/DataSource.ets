@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { ProductDataModel } from '../model/IconModel'
+import { ProductDataModel } from '../model/IconModel';
 
 // Basic implementation of IDataSource to handle data listener
 class BasicDataSource <T> implements IDataSource {

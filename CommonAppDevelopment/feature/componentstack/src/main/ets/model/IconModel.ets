@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 
-// 图标的数据类
+/**
+ * 图标的数据类
+*/
 export class IconDataModel {
   id: number;
   span: number;
@@ -28,7 +30,9 @@ export class IconDataModel {
   }
 }
 
-// 商品的数据类
+/**
+ * 商品的数据类
+ */
 export class ProductDataModel {
   id: number;
   uri: ResourceStr;
