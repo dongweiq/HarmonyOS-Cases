@@ -16,7 +16,6 @@
 import { ListData } from './model/ListData';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
 import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
-import { SwiperData, SwiperDataSource } from './model/SwiperData';
 
 /**
  * 主页瀑布流列表
@@ -26,87 +25,16 @@ export struct FunctionalScenes {
   @Link listData: ListData[];
   @Consume('pageStack') pageStack: NavPathStack;
   @State tabsIndex: number = 0;
-  @State isMask: boolean = true
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(this.listData);
-  scroller: Scroller = new Scroller();
   tabsController: TabsController = new TabsController();
-  swiperDataSource: SwiperDataSource = new SwiperDataSource();
-  tabDataSource: TabDataSource = new TabDataSource()
+  tabDataSource: TabDataSource = new TabDataSource();
   waterFlowScroller: Scroller = new Scroller();
-  @State swiperData: SwiperData[] = [
-    new SwiperData($r('app.media.bar_chart_top'), 'MpChart图表实现案例', 'barChartSolution'),
-    new SwiperData($r('app.media.address_exchange'), '地址交换动画', 'addressExchange'),
-    new SwiperData($r('app.media.tab_bar'), '自定义TabBar', 'customTabBar'),
-  ];
 
   aboutToAppear(): void {
-    // 主页轮播图初始化数据
-    for (let index = 0; index < this.swiperData.length; index++) {
-      this.swiperDataSource.pushData(this.swiperData[index]);
-    }
     // 主页tabContent初始化数据
     for (let index = 0; index < TAB_DATA.length; index++) {
       this.tabDataSource.pushData(TAB_DATA[index]);
     }
-  }
-
-  /**
-   * 主页轮播图组件
-   */
-  @Builder
-  swiperComponent() {
-    Swiper() {
-      LazyForEach(this.swiperDataSource, (item: SwiperData) => {
-        Stack({ alignContent: Alignment.BottomStart }) {
-          Image(item.imageSrc)
-            .objectFit(ImageFit.Auto)
-            .width('100%')
-            .height('100%')
-            .borderRadius($r('app.string.main_page_top_borderRadius'))
-          // 轮播图底部蒙层
-          Stack() {
-            Column() {
-            }
-            .width('100%')
-            .height('100%')
-            .backgroundColor(Color.Black)
-            .opacity(0.3)
-            .borderRadius({
-              topLeft: 0,
-              topRight: 0,
-              bottomLeft: $r('app.string.main_page_top_borderRadius'),
-              bottomRight: $r('app.string.main_page_top_borderRadius')
-            })
-
-            Text(item.name)
-              .width('100%')
-              .height('100%')
-              .fontSize($r('app.string.ohos_id_text_size_body1'))
-              .fontColor(Color.White)
-              .textAlign(TextAlign.Start)
-              .padding($r('app.string.main_page_padding5'))
-          }
-          .height('17%')
-        }
-        .onClick(() => {
-          this.pageStack.pushPath({ name: item.path, param: item.param });
-        })
-      })
-
-    }
-    .padding({
-      left: $r('app.string.main_page_padding2'),
-      right: $r('app.string.main_page_padding2'),
-      top: $r('app.string.main_page_padding2')
-    })
-    .height($r('app.string.main_page_swiper_height'))
-    .autoPlay(true)
-    .indicator(
-      Indicator
-        .dot()
-        .selectedColor('#ed394b')
-        .color(Color.White)
-    )
   }
 
   /**
@@ -238,45 +166,41 @@ export struct FunctionalScenes {
       .visibility(Visibility.None)
       .padding({ left: $r('app.string.main_page_padding2'), right: $r('app.string.main_page_padding2') })
 
-      Scroll(this.scroller) {
-        Column() {
-          this.swiperComponent()
-
-          Tabs({ controller: this.tabsController }) {
-            LazyForEach(this.tabDataSource, (tabItem: TabDataModel) => {
-              TabContent() {
-                WaterFlow({ scroller: this.waterFlowScroller }) {
-                  LazyForEach(this.dataSource, (waterFlowItem: ListData) => {
-                    FlowItem() {
-                      this.methodPoints(waterFlowItem)
-                    }
-                  })
-                }
-                .nestedScroll({
-                  scrollForward: NestedScrollMode.PARENT_FIRST,
-                  scrollBackward: NestedScrollMode.SELF_FIRST
+      Column() {
+        Tabs({ controller: this.tabsController }) {
+          LazyForEach(this.tabDataSource, (tabItem: TabDataModel) => {
+            TabContent() {
+              WaterFlow({ scroller: this.waterFlowScroller }) {
+                LazyForEach(this.dataSource, (waterFlowItem: ListData) => {
+                  FlowItem() {
+                    this.methodPoints(waterFlowItem)
+                  }
                 })
-                .cachedCount(6)
-                .columnsTemplate('1fr 1fr')
-                .columnsGap($r('app.string.main_page_water_flow_gap'))
-                .width('100%')
               }
-              .tabBar(this.tabBuilder(tabItem.id, tabItem.navData))
-            })
-          }
-          .padding({
-            left: $r('app.string.main_page_padding2'),
-            right: $r('app.string.main_page_padding2')
-          })
-          .barWidth('100%')
-          .barHeight('6%')
-          .onChange((index: number) => {
-            this.changeTabIndex(index);
+              .margin({ top: $r('app.string.main_page_padding2') })
+              .nestedScroll({
+                scrollForward: NestedScrollMode.PARENT_FIRST,
+                scrollBackward: NestedScrollMode.SELF_FIRST
+              })
+              .cachedCount(6)
+              .columnsTemplate('1fr 1fr')
+              .columnsGap($r('app.string.main_page_water_flow_gap'))
+              .width('100%')
+            }
+            .tabBar(this.tabBuilder(tabItem.id, tabItem.navData))
           })
         }
+        .margin({ top: $r('app.string.main_page_padding2') })
+        .padding({
+          left: $r('app.string.main_page_padding2'),
+          right: $r('app.string.main_page_padding2')
+        })
+        .barWidth('100%')
+        .barHeight('6%')
+        .onChange((index: number) => {
+          this.changeTabIndex(index);
+        })
       }
-      .scrollBar(BarState.Off)
-      .scrollable(ScrollDirection.Vertical)
       .height('100%')
     }
     .height('100%')

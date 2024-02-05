@@ -61,5 +61,7 @@
     "@ohos/vibrateeffect": "file:../../feature/vibrateeffect",
     // 页面随着swiper高度的变化而平滑变化案例
     "@ohos/swipersmoothvariation": "file:../../feature/swipersmoothvariation",
+    // 首页轮播图组件
+    "@ohos/swipercomponent": "file:../../feature/swipercomponent"
   }
 }
