@@ -85,7 +85,7 @@ export struct NavigationBarChangeView {
             Text($r('app.string.text_welcome'))
               .fontSize($r('app.integer.font_size8'))
             Text($r('app.string.text_new_user_registration'))
-              .fontSize($r('app.integer.font_size2'))
+              .fontSize($r('app.integer.font_size4'))
               .margin({top: $r('app.integer.top_interval_value1')})
             Button({ type: ButtonType.Capsule}) {
               Text($r('app.string.text_load'))

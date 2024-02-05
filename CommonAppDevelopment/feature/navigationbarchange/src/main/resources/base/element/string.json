@@ -54,13 +54,12 @@
     },
     {
       "name": "text_welcome",
-      "value": "Hi~欢迎来到航班管家"
+      "value": "欢迎 ！！！"
     },
     {
       "name": "text_new_user_registration",
-      "value": "新用户注册享特别好礼"
+      "value": "新用户享特别大礼包！"
     },
-    ,
     {
       "name": "text_load",
       "value": "登录/注册"
