@@ -152,7 +152,7 @@ MpChart是一个包含各种类型图表的图表库，方便开发者快速实�
 
 #### Tab组件实现增删Tab标签方案案例
 
-本示例介绍使用了Tab组件实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。[详细说明文档](./CommonAppDevelopment/feature/handletabs/README_zh.md)。
+本示例介绍使用了Tab组件实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。[详细说明文档](./CommonAppDevelopment/feature/handletabs/README.md)。
 
 <img src="./CommonAppDevelopment/screenshots/device/HandleTabs.gif" width="200">
 
