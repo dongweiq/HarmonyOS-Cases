@@ -15,7 +15,6 @@
 
 import { IconList1, IconList2, IconList3 } from '../view/IconView';
 import { ProductList } from '../view/ProductList';
-import { logger, FunctionDescription } from '@ohos/base';
 
 /**
  * 实现步骤：
@@ -58,12 +57,6 @@ export struct ComponentStack {
 
   build() {
     Column() {
-      // 功能描述组件
-      FunctionDescription({
-        title: $r('app.string.warning_text_title'),
-        content: $r('app.string.warning_text')
-      }).padding($r('app.integer.function_description_padding'))
-        .margin({ top: $r('app.integer.function_description_margin_top') })
       // TODO: 知识点：堆叠容器，子组件按照顺序依次入栈，后一个子组件覆盖前一个子组件。
       Stack({ alignContent: Alignment.Top }) {
         Flex({ justifyContent: FlexAlign.SpaceBetween }) {

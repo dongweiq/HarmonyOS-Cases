@@ -106,7 +106,7 @@ componentstack                                   // har类型
 
 ### 模块依赖
 
-本实例依赖common模块来实现[资源](../../common/utils/src/main/resources/base/element)的调用以及[公共组件FunctionDescription](../../common/utils/src/main/ets/component/FunctionDescription.ets)的引用。 还需要依赖[EntryAbility.ets模块](../../common/utils/src/main/ets/component/FunctionDescription.ets)。
+本实例依赖common模块来实现[资源](../../common/utils/src/main/resources/base/element)的调用。 还需要依赖[EntryAbility.ets模块](../../product/entry/src/main/ets/entryability/EntryAbility.ets)。
 
 ### 参考资料
 

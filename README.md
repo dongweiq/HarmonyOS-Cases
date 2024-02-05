@@ -152,7 +152,7 @@ MpChart是一个包含各种类型图表的图表库，方便开发者快速实�
 
 #### Tab组件实现增删Tab标签方案案例
 
-本示例介绍使用了Tab组件实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。[详细说明文档](./CommonAppDevelopment/feature/handletabs/README_zh.md)。
+本示例介绍使用了Tab组件实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。[详细说明文档](./CommonAppDevelopment/feature/handletabs/README.md)。
 
 <img src="./CommonAppDevelopment/screenshots/device/HandleTabs.gif" width="200">
 
@@ -179,7 +179,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 本示例介绍了通过应用事件打点hiAppEvent获取上一次应用异常信息的方法，主要分为应用崩溃、应用卡死以及系统查杀三种。[详细说明文档](./CommonAppDevelopment/feature/applicationexception/README.md)。
 
-<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/fault.jpeg" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/application_exception.gif" width="200">
 
 #### 深浅模式案例
 
