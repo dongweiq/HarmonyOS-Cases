@@ -20,6 +20,9 @@ import window from '@ohos.window';
 // 基础公共工具类base，主要包括日志打印和主页列表数据类型以及控制器
 import { logger } from '@ohos/base';
 import { Configuration } from '@ohos.app.ability.Configuration';
+import display from '@ohos.display';
+import { BusinessError } from '@ohos.base';
+
 
 const TAG = 'EntryAbility'
 
@@ -49,9 +52,51 @@ export default class EntryAbility extends UIAbility {
       logger.info(TAG, 'Succeeded in loading the content. Data:', JSON.stringify(data));
     });
 
+    let windowClass: window.Window | undefined = undefined;
+    window.getLastWindow(this.context, (err: BusinessError, data) => {
+      if (err.code) {
+        console.error('Failed to obtain top window. Cause:' + JSON.stringify(err));
+        return;
+      }
+      windowClass = data;
+      console.info('Success to obtain top window. Cause:' + JSON.stringify(data));
+      // 窗口内容规避的顶部状态栏高度
+      let statusHeight = 0;
+      // 窗口内容规避的底部安全区高度
+      let bottomHeight = 0;
+      // 获取窗口内容规避的区域在componentstack里使用
+      let type = window.AvoidAreaType.TYPE_SYSTEM;
+      try {
+        let avoidArea = windowClass.getWindowAvoidArea(type);
+        console.info('Succeeded to obtain the area. Cause:' + JSON.stringify(avoidArea));
+        statusHeight = avoidArea.topRect.height;
+        bottomHeight = avoidArea.bottomRect.height
+      } catch (exception) {
+        console.error('Failed to obtain the area. Cause:' + JSON.stringify(exception));
+      }
+      // 存储窗口内容规避的状态栏高度
+      AppStorage.setOrCreate('statusHeight', statusHeight);
+      // 存储窗口内容规避的底部安全区高度
+      AppStorage.setOrCreate('bottomHeight', bottomHeight);
+
+      // 当前窗口高度
+      let screenHeight = 0;
+      // 获取窗口区域在componentstack里使用
+      let displayClass: display.Display | null = null;
+      try {
+        displayClass = display.getDefaultDisplaySync();
+        screenHeight = displayClass.height;
+      } catch (exception) {
+        console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+      }
+      console.error('Succeeded to obtain the default display object. Code: ' + JSON.stringify(displayClass));
+      // 存储当前窗口高度
+      AppStorage.setOrCreate('screenHeight', screenHeight);
+    });
+
     // 获取当前的颜色模式并保存
     AppStorage.setOrCreate('currentColorMode', this.context.config.colorMode);
-    // 保存windowStage供fitfordarkmode的har包中FitForDarkPage.ets中setStatusBar方法修改状态栏颜色。
+    // 保存windowStage供fitfordarkmode的har包中FitForDarkPage.ets中setStatusBar方法修改状态栏颜色
     AppStorage.setOrCreate('windowStage', windowStage);
   }
 
