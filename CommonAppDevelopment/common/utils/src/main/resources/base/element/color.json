@@ -115,6 +115,10 @@
     {
       "name": "ohos_id_color_text_secondary",
       "value": "#99000000"
+    },
+    {
+      "name": "ohos_id_color_text_primary",
+      "value": "#E5000000"
     }
   ]
 }

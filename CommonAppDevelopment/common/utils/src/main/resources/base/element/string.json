@@ -25,6 +25,10 @@
       "value": "10"
     },
     {
+      "name": "ohos_id_corner_radius_default_l",
+      "value": "16"
+    },
+    {
       "name": "ohos_id_corner_radius_default_m",
       "value": "12"
     },
