@@ -141,8 +141,12 @@
       "srcPath": "./feature/swipersmoothvariation"
     },
     {
-      "name": "swipercomonent",
-      "srcPath": "./feature/swipercomonent"
+      "name": "swipercomponent",
+      "srcPath": "./feature/swipercomponent"
+    },
+    {
+      "name": "searchcomponent",
+      "srcPath": "./feature/searchcomponent"
     }
   ]
 }

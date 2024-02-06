@@ -2,7 +2,8 @@
 
 ### 介绍
 
-本示例介绍使用ArkUI[stack](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V2/ts-container-stack-0000001427584888-V2)组件实现多层级瀑布流。该场景多用于购物、资讯类应用。
+本示例介绍使用ArkUI[stack](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V2/ts-container-stack-0000001427584888-V2)
+组件实现多层级瀑布流。该场景多用于购物、资讯类应用。
 
 ### 效果图预览
 
@@ -14,7 +15,9 @@
 
 ### 实现思路
 
-1. SwiperDataSource，实现IDataSource接口的对象，用于LazyForEach加载数据。源码参考[SwiperData.ets](./src/main/ets/components/model/SwiperData.ets)
+1.
+SwiperDataSource，实现IDataSource接口的对象，用于LazyForEach加载数据。源码参考[SwiperData.ets](./src/main/ets/components/model/SwiperData.ets)
+
 ```ts
 /**
  * 实现IDataSource接口的对象，用于轮播图组件加载数据
@@ -53,7 +56,9 @@ class BasicDataSource implements IDataSource {
   }
   ...
   ```
-2. 通过stack和offsetx实现多层级堆叠。源码参考[SwiperComponent.ets](./src/main/ets/components/mainpage/SwiperComponent.ets)
+
+2.通过stack和offsetx实现多层级堆叠。源码参考[SwiperComponent.ets](./src/main/ets/components/mainpage/SwiperComponent.ets)
+
 ```ts
 Stack() {
   LazyForEach(this.swiperDataSource, (item: SwiperData, index: number) => {
@@ -65,8 +70,43 @@ Stack() {
         .borderRadius($r('app.string.main_page_top_borderRadius'))
   ...
   ```
-3. 通过手势控制调用显式动画同时修改数据中间值currentIndex来修改组件zIndex提示组件层级实现动画切换效果。源码参考[SwiperComponent.ets](./src/main/ets/components/mainpage/SwiperComponent.ets)
+
+3.通过手势控制调用显式动画同时修改数据中间值currentIndex来修改组件zIndex提示组件层级实现动画切换效果。源码参考[SwiperComponent.ets](./src/main/ets/components/mainpage/SwiperComponent.ets)
+
 ```ts
+Stack() {
+  LazyForEach(this.swiperDataSource, (item: SwiperData, index: number) => {
+    Stack({ alignContent: Alignment.BottomStart }) {
+      Image(item.imageSrc)
+        .objectFit(ImageFit.Auto)
+        .width('100%')
+        .height('100%')
+        .borderRadius($r('app.string.main_page_top_borderRadius'))
+      // 轮播图底部蒙层
+       Stack() {
+         Column() {
+         }
+         .width('100%')
+         .height('100%')
+         .backgroundColor(Color.Black)
+         .opacity(0.3)
+         .borderRadius({
+            topLeft: 0,
+            topRight: 0,
+            bottomLeft: $r('app.string.main_page_top_borderRadius'),
+            bottomRight: $r('app.string.main_page_top_borderRadius')
+          })
+
+          Text(item.name)
+            .width('100%')
+            .height('100%')
+            .fontSize(16)
+            .fontColor(Color.White)
+            .textAlign(TextAlign.Start)
+            .padding($r('app.string.main_page_padding5'))
+        }
+        .height('17%')
+}
 .gesture(
    PanGesture({ direction: PanDirection.Horizontal })
      .onActionStart((event: GestureEvent) => {

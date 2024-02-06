@@ -133,7 +133,7 @@ export struct SwiperComponent {
         // TODO: 知识点:通过animateTo实现动画并且同时改变currentIndex数据中间值来判断组件zIndex实现切换动画
         .zIndex(index !== this.currentIndex && this.getImgCoefficients(index) === 0 ?
           0 : 2 - Math.abs(this.getImgCoefficients(index)))
-        .width(280)
+        .width(350)
         .height(index !== this.currentIndex ?
           "65%" : `${100 - 13 * Math.abs(this.getImgCoefficients(index))}%`)
         .opacity(1 - 0.2 * Math.min(2, Math.abs(this.getImgCoefficients(index))))

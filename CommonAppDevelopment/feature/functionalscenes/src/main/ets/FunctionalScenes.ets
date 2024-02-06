@@ -22,7 +22,7 @@ import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
  */
 @Component
 export struct FunctionalScenes {
-  @Link listData: ListData[];
+  @Link @Watch('dataChange') listData: ListData[];
   @Consume('pageStack') pageStack: NavPathStack;
   @State tabsIndex: number = 0;
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(this.listData);
@@ -34,6 +34,38 @@ export struct FunctionalScenes {
     // 主页tabContent初始化数据
     for (let index = 0; index < TAB_DATA.length; index++) {
       this.tabDataSource.pushData(TAB_DATA[index]);
+    }
+  }
+
+  // 监听数据变化
+  dataChange() {
+    this.filterData(this.tabsIndex)
+  }
+
+  /**
+   * 筛选数据逻辑，触发更新列表信息，用于切换tabs和搜索
+   *
+   * @param index 当前的列表索引
+   */
+  filterData(index: number) {
+    let newListData: ListData[] = [];// 用于接收筛选到的数据
+    // index为0时分类为全部，全部类别情况下不需要筛选
+    if (index !== 0) {
+      for (let i = 0; i < this.listData.length; i++) {
+        // 判断类别
+        if (this.listData[i].category === TAB_DATA[this.tabsIndex].navData) {
+          newListData.push(this.listData[i]);
+        }
+      }
+      // 更新数据控制器数据
+      this.dataSource.modifyAllData(newListData);
+      // 通知数据控制器重新加载数据
+      this.dataSource.reload();
+    } else {
+      // 更新数据控制器数据
+      this.dataSource.modifyAllData(this.listData);
+      // 通知数据控制器重新加载数据
+      this.dataSource.reload();
     }
   }
 
@@ -122,27 +154,10 @@ export struct FunctionalScenes {
 
     .align(Alignment.Center)
     .onClick(() => {
-      this.changeTabIndex(index);
+      this.tabsIndex = index;
+      this.tabsController.changeIndex(index);
+      this.filterData(index);
     })
-  }
-
-  /**
-   * 切换tabs的逻辑，触发更新列表信息
-   *
-   * @param index 当前的列表索引
-   */
-  changeTabIndex(index: number) {
-    this.tabsIndex = index;
-    this.tabsController.changeIndex(index);
-    if (index !== 0) {
-      let newListData: ListData[] = [];
-      for (let i = 0; i < this.listData.length; i++) {
-        if (this.listData[i].category === TAB_DATA[index].navData) {
-          newListData.push(this.listData[i]);
-        }
-      }
-      this.dataSource = new WaterFlowDataSource(newListData);
-    }
   }
 
   /**
@@ -152,56 +167,39 @@ export struct FunctionalScenes {
    */
   build() {
     Column() {
-      // 顶部搜索框
-      Column() {
-        Column() {
-          TextInput({ placeholder: '搜索' })
-            .backgroundColor('#E7E9E8')
-            .width('100%')
-        }
-        .backgroundColor('#E7E9E8')
-        .borderRadius($r('app.string.main_page_top_borderRadius'))
-      }
-      // TODO:需求：暂时隐藏待搜索功能完善后放开显示
-      .visibility(Visibility.None)
-      .padding({ left: $r('app.string.main_page_padding2'), right: $r('app.string.main_page_padding2') })
-
-      Column() {
-        Tabs({ controller: this.tabsController }) {
-          LazyForEach(this.tabDataSource, (tabItem: TabDataModel) => {
-            TabContent() {
-              WaterFlow({ scroller: this.waterFlowScroller }) {
-                LazyForEach(this.dataSource, (waterFlowItem: ListData) => {
-                  FlowItem() {
-                    this.methodPoints(waterFlowItem)
-                  }
-                })
-              }
-              .margin({ top: $r('app.string.main_page_padding2') })
-              .nestedScroll({
-                scrollForward: NestedScrollMode.PARENT_FIRST,
-                scrollBackward: NestedScrollMode.SELF_FIRST
-              })
-              .cachedCount(6)
-              .columnsTemplate('1fr 1fr')
-              .columnsGap($r('app.string.main_page_water_flow_gap'))
-              .width('100%')
+      Tabs({ controller: this.tabsController }) {
+        LazyForEach(this.tabDataSource, (tabItem: TabDataModel) => {
+          TabContent() {
+            WaterFlow({ scroller: this.waterFlowScroller }) {
+              LazyForEach(this.dataSource, (waterFlowItem: ListData) => {
+                FlowItem() {
+                  this.methodPoints(waterFlowItem)
+                }
+              }, (waterFlowItem: ListData) => JSON.stringify(waterFlowItem))
             }
-            .tabBar(this.tabBuilder(tabItem.id, tabItem.navData))
-          })
-        }
-        .margin({ top: $r('app.string.main_page_padding2') })
-        .padding({
-          left: $r('app.string.main_page_padding2'),
-          right: $r('app.string.main_page_padding2')
-        })
-        .barWidth('100%')
-        .barHeight('6%')
-        .onChange((index: number) => {
-          this.changeTabIndex(index);
+            .margin({ top: $r('app.string.main_page_padding2') })
+            .nestedScroll({
+              scrollForward: NestedScrollMode.PARENT_FIRST,
+              scrollBackward: NestedScrollMode.SELF_FIRST
+            })
+            .cachedCount(6)
+            .columnsTemplate('1fr 1fr')
+            .columnsGap($r('app.string.main_page_water_flow_gap'))
+            .width('100%')
+          }
+          .tabBar(this.tabBuilder(tabItem.id, tabItem.navData))
         })
       }
-      .height('100%')
+      .margin({ top: $r('app.string.main_page_padding2') })
+      .padding({
+        left: $r('app.string.main_page_padding2'),
+        right: $r('app.string.main_page_padding2')
+      })
+      .barWidth('100%')
+      .barHeight('6%')
+      .onChange((index: number) => {
+        this.filterData(index);
+      })
     }
     .height('100%')
     .backgroundColor("#F1F1F1")

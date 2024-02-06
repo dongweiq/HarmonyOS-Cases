@@ -62,6 +62,8 @@
     // 页面随着swiper高度的变化而平滑变化案例
     "@ohos/swipersmoothvariation": "file:../../feature/swipersmoothvariation",
     // 首页轮播图组件
-    "@ohos/swipercomponent": "file:../../feature/swipercomponent"
+    "@ohos/swipercomponent": "file:../../feature/swipercomponent",
+    // 首页搜索组件
+    "@ohos/searchcomponent": "file:../../feature/searchcomponent"
   }
 }
