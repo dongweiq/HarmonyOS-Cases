@@ -38,6 +38,8 @@ import { VerifyCodeView } from '@ohos/verifycode';
 import { NativeProgressNotify } from '@ohos/nativeprogressnotify';
 import { VibrateEffectView } from '@ohos/vibrateeffect';
 import { SwiperSmoothVariation } from '@ohos/swipersmoothvariation';
+import { SwiperComponent } from '@ohos/swipercomponent';
+import { SearchComponent } from '@ohos/searchcomponent';
 
 
 @Entry
@@ -74,6 +76,11 @@ struct EntryView {
   ];
   // Navigation路由栈,控制页面跳转
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
+
+  aboutToAppear(): void {
+    // 存储初始数据用于搜索筛选
+    AppStorage.setOrCreate('listData', this.listData)
+  }
 
   @Builder
   PageMap(name: string, param: NavPathStack) {
@@ -155,8 +162,20 @@ struct EntryView {
   build() {
     Column() {
       Navigation(this.pageStack) {
-        // 首页列表组件
-        FunctionalScenes({ listData: this.listData })
+        Scroll() {
+          Column() {
+            // 首页搜索组件
+            SearchComponent({ listData: this.listData })
+            // 首页轮播图组件
+            SwiperComponent()
+            // 首页列表组件
+            FunctionalScenes({ listData: this.listData })
+          }
+        }
+        .width('100%')
+        .height('100%')
+        .scrollBar(BarState.Off)
+        .scrollable(ScrollDirection.Vertical)
       }
       .backgroundColor($r('app.color.main_background_color'))
       .hideTitleBar(true)

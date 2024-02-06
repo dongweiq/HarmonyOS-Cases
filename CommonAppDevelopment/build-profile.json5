@@ -1,7 +1,6 @@
 {
   "app": {
-    "signingConfigs": [
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
@@ -140,6 +139,14 @@
     {
       "name": "swipersmoothvariation",
       "srcPath": "./feature/swipersmoothvariation"
+    },
+    {
+      "name": "swipercomponent",
+      "srcPath": "./feature/swipercomponent"
+    },
+    {
+      "name": "searchcomponent",
+      "srcPath": "./feature/searchcomponent"
     }
   ]
 }

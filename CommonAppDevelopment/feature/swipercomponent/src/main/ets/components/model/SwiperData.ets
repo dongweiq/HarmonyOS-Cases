@@ -30,7 +30,9 @@ export class SwiperData {
   }
 }
 
-// Basic implementation of IDataSource to handle data listener
+/**
+ * 实现IDataSource接口的对象，用于轮播图组件加载数据
+ */
 class BasicDataSource implements IDataSource {
   private listeners: DataChangeListener[] = [];
   private originDataArray: SwiperData[] = [];
