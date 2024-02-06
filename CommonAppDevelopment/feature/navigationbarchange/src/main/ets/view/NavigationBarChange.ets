@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+
 // 功能模块结构
 interface ItemInfo {
   name: string
@@ -361,4 +363,17 @@ struct  Header{
     .alignItems(VerticalAlign.Center)
     .backgroundColor(this.titleBackgroundColor)
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getNavigationBarChangeView(): void {
+  NavigationBarChangeView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_NAVIGATION_BAR_CHANGE;
+if (!DynamicsRouter.getBuilder(builderName)) {
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getNavigationBarChangeView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

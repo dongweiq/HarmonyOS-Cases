@@ -16,7 +16,6 @@
 export { AddressExchangeView } from './src/main/ets/view/AddressExchangeView';
 
 // 动态import时需要调用的接口，接口名请使用harInit，用于动态加载页面
-export function harInit() {
-  import('./src/main/ets/view/AddressExchangeView');
+export function harInit(path: string) {
+  import(path);
 }
-

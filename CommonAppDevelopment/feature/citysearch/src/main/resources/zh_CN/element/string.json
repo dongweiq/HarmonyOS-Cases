@@ -9,10 +9,6 @@
       "value": "description"
     },
     {
-      "name": "EntryAbility_label",
-      "value": "label"
-    },
-    {
       "name": "address",
       "value": "请选择您的收获地址"
     }

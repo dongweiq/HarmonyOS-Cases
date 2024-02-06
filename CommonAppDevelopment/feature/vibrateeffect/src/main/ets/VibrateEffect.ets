@@ -18,6 +18,7 @@ import { BusinessError } from '@ohos.base';
 import { logger } from '@ohos/base';
 import curves from '@ohos.curves';
 import { CONFIGURATION } from './components/constantsData';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 /**
  * 抖动动画及手机振动效果
@@ -189,4 +190,17 @@ export struct VibrateEffectView {
     .height($r('app.string.full_size'))
     .padding(12)
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getVibrateEffectView(): void {
+  VibrateEffectView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_VIBRATE_EFFECT;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getVibrateEffectView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

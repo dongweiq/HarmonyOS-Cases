@@ -18,7 +18,6 @@ export { NavigationParameterTransferView } from './src/main/ets/view/NavigationP
 export { UserBookingInfo } from './src/main/ets/components/UserBookingInfo';
 
 // 动态import时需要调用的接口，接口名请使用harInit，用于动态加载页面
-export function harInit() {
-  import('./src/main/ets/view/NavigationParameterTransferView');
+export function harInit(path: string) {
+  import(path);
 }
-

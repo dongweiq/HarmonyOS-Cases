@@ -20,6 +20,7 @@
  */
 
 import util from '@ohos.util';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 import { PullToRefresh } from '@ohos/pulltorefresh/index';
 import { BasicDataSource } from '../viewModel/BasicDataSource';
 
@@ -280,4 +281,17 @@ function getNews(mockFileDir: string): Array<NewsData> {
   let jsonObj: JsonObject = new JsonObject(mockFileDir);
   let newsModelMockData: Array<NewsData> = jsonObj.getNewsData()
   return newsModelMockData
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getPullToRefreshNews(): void {
+  PullToRefreshNews();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_PULL_TO_REFRESH;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getPullToRefreshNews);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

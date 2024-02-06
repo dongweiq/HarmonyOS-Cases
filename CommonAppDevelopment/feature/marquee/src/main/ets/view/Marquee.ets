@@ -17,6 +17,7 @@ import { FunctionDescription, logger } from '@ohos/base';
 import { TripDataType } from '../model/DataType';
 import Constants from '../model/Constants';
 import { TripDataSource } from '../model/DataSource';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 /**
  * 本示例介绍了文本宽度过宽时，则实现跑马灯效果(文本首尾相连循环滚动并且显示在同一可视区，以及每循环一次之后会停滞一段时间后再滚动)。
@@ -216,4 +217,17 @@ struct TripMessage {
       this.scrollAnimation();
     })
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getMarqueeView(): void {
+  MarqueeView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_MARQUEE;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getMarqueeView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

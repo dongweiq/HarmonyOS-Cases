@@ -56,7 +56,7 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
   ```ts
   Column()
     .onClick(() => {
-      this.pageStack.pushPath({ name: listData.path });
+      this.pageStack.pushPath({ name: listData.moduleName, param: listData.param });
     })
   ```
 

@@ -45,8 +45,6 @@
     "@ohos/photopickandsave": "file:../../feature/photopickandsave",
     // 翻页动效案例
     "@ohos/pageturninganimation": "file:../../feature/pageturninganimation",
-    // 异常处理
-    "@ohos/applicationexception": "file:../../feature/applicationexception",
     // 深浅模式
     "@ohos/fitfordarkmode": "file:../../feature/fitfordarkmode",
     // 跑马灯
@@ -64,6 +62,16 @@
     // 首页轮播图组件
     "@ohos/swipercomponent": "file:../../feature/swipercomponent",
     // 首页搜索组件
-    "@ohos/searchcomponent": "file:../../feature/searchcomponent"
+    "@ohos/searchcomponent": "file:../../feature/searchcomponent",
+    // 异常处理
+    "@ohos/applicationexception": "file:../../feature/applicationexception",
+    // 动态路由模块
+    "@ohos/dynamicsRouter": "file:../../feature/routermodule",
+    // 状态栏显隐变化
+    "@ohos/navigationbarchange": "file:../../feature/navigationbarchange",
+    // 视频全屏切换案例
+    "@ohos/mediafullscreen": "file:../../feature/mediafullscreen",
+    // 城市选择案例
+    "@ohos/citysearch": "file:../../feature/citysearch"
   }
 }

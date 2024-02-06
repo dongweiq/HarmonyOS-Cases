@@ -28,14 +28,15 @@ export struct CityView {
     Column() {
       Stack({ alignContent: Alignment.End }) {
         Column() {
-          Row() {
-            Text($r('app.string.hotCity'))
-              .fontSize($r('app.integer.text_font'))
-              .fontColor($r('app.color.text_font_color'))
-              .opacity(0.6)
-              .margin({ left: $r('app.integer.txt_margin_left') })
-          }
-          .margin({ bottom: $r('app.integer.row_margin_bottom') })
+          Text($r('app.string.hotCity'))
+            .fontSize($r('app.integer.text_font'))
+            .fontColor($r('app.color.text_font_color'))
+            .opacity(0.6)
+            .margin({
+              left: $r('app.integer.txt_margin_left'),
+              bottom: $r('app.integer.row_margin_bottom')
+            })
+
 
           Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center, wrap: FlexWrap.Wrap }) {
             ForEach(HOT_CITY, (item: string) => {
@@ -77,8 +78,10 @@ export struct CityView {
           .margin({ left: $r('app.integer.txt_margin_left') })
           .layoutWeight(1)
           .edgeEffect(EdgeEffect.None)
-          .divider({ strokeWidth: $r('app.integer.divider_strokeWidth'), color: $r('app.color.divider_color'),
-            startMargin: $r('app.integer.divider_start'), endMargin: $r('app.integer.divider_end') })
+          .divider({
+            strokeWidth: $r('app.integer.divider_strokeWidth'), color: $r('app.color.divider_color'),
+            startMargin: $r('app.integer.divider_start'), endMargin: $r('app.integer.divider_end')
+          })
           .listDirection(Axis.Vertical)
           .scrollBar(BarState.Off)
           .onScrollIndex((firstIndex: number, lastIndex: number) => {

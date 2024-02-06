@@ -9,10 +9,6 @@
       "value": "description"
     },
     {
-      "name": "EntryAbility_label",
-      "value": "label"
-    },
-    {
       "name": "address",
       "value": "address"
     }

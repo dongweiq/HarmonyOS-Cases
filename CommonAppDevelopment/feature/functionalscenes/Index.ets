@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
-export { FunctionalScenes, pageMap } from './src/main/ets/FunctionalScenes';
+export { FunctionalScenes } from './src/main/ets/FunctionalScenes';
 
 export { ListData } from './src/main/ets/model/ListData';
+
+
