@@ -13,18 +13,5 @@
  * limitations under the License.
  */
 
-{
-  "name": "nativerawfile",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
-  "main": "Index.ets",
-  "author": "",
-  "license": "Apache-2.0",
-  "dependencies": {
-    // 预加载so
-    "libpreloadso.so": "file:./src/main/cpp/types/libpreloadso",
-    "libnativerawfileapi.so": "file:./src/main/cpp/types/libnativerawfileapi",
-    // 公共特性模块
-    "@ohos/base": "file:../../common/utils"
-  }
-}
+// TODO：知识点：将Native接口导出。
+export const preload: (a: string[]) => string[];

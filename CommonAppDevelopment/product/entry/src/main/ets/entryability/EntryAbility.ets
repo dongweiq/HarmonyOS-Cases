@@ -22,6 +22,7 @@ import { logger } from '@ohos/base';
 import { Configuration } from '@ohos.app.ability.Configuration';
 // 引用异常处理模块
 import { eventSubscription } from '@ohos/applicationexception';
+import { preloadSOByTaskPool } from '@ohos/nativerawfile';
 
 const TAG = 'EntryAbility'
 // 资源异常枚举
@@ -36,6 +37,11 @@ export default class EntryAbility extends UIAbility {
     AppStorage.setOrCreate('context', this.context);
     // 事件订阅(获取上次异常退出信息)
     eventSubscription();
+    /**
+     * 在Ability的onCreate周期函数中和后续的应用声明周期函数中可以使用TaskPool子线程预加载so库，后续通过句柄调用库中的native方法。
+     * 此处在Ability的onCreate周期函数中使用TaskPool子线程预加载so库，加载完成后在nativerawfile模块中使用。
+     */
+    preloadSOByTaskPool();
   }
 
   onDestroy(): void {

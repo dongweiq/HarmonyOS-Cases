@@ -13,14 +13,6 @@
  * limitations under the License.
  */
 
-/** 实现步骤
-   1.在cpp文件中引入所用API函数及系统函数的头文件
-   2.在cpp文件的Init函数中描述并定义要实现、暴露的接口
-   3.在cpp文件中实现要暴露的接口
-   4.在.d.ts文件中通过export暴露接口
-   5.在CMakeLists中通过target_link_libraries导入所用的库
-*/
-
 #include <bits/alltypes.h>
 #include <js_native_api.h>
 #include <js_native_api_types.h>
@@ -29,7 +21,6 @@
 #include "napi/native_api.h"
 #include "rawfile/raw_file_manager.h"
 #include "rawfile/raw_file.h"
-// TODO：知识点：导入日志头文件。
 #include "hilog/log.h"
 
 const int GLOBAL_RESMGR = 0xFF00;
@@ -61,7 +52,7 @@ static napi_value GetTotalRawFileContent(napi_env env, napi_callback_info info) 
     OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
     // 获取文件大小
     long len = OH_ResourceManager_GetRawFileSize(rawFile);
-    
+
     char *buf = (char *)malloc(len + 1);
     memset(buf, 0, len + 1);
     int ret;
@@ -69,8 +60,8 @@ static napi_value GetTotalRawFileContent(napi_env env, napi_callback_info info) 
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "GetTotalRawFileContent pread error!");
     } else {
         buf[len] = '\0';
-        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "GetTotalRawFileContent: %{public}ld: %{public}ld: %{public}s\n",
-                     descriptor.start, len, buf);
+        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG,
+                     "GetTotalRawFileContent: %{public}ld: %{public}ld: %{public}s\n", descriptor.start, len, buf);
     }
     napi_value strContent;
     napi_create_string_utf8(env, buf, NAPI_AUTO_LENGTH, &strContent);
@@ -102,7 +93,7 @@ static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
     napi_get_value_int32(env, argv[2], &startPos);
     napi_get_value_int32(env, argv[3], &lenContent);
 
-    // TODO：知识点：通过Rawfile的API接口OH_ResourceManager_OpenRawFile打开文件。 
+    // TODO：知识点：通过Rawfile的API接口OH_ResourceManager_OpenRawFile打开文件。
     RawFile *rawFile = OH_ResourceManager_OpenRawFile(mNativeResMgr, filename.c_str());
     if (rawFile == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "GetRawFileContent OpenRawFile fail!");
@@ -132,7 +123,7 @@ static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
     memset(buf, 0, lenContent + 1);
     int ret;
     // TODO 知识点：通过pread读取文件部分内容。
-    if ((ret = pread(descriptor.fd, buf, lenContent,  descriptor.start + startPos)) == -1) {
+    if ((ret = pread(descriptor.fd, buf, lenContent, descriptor.start + startPos)) == -1) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "GetRawFileContent pread error!");
     } else {
         buf[lenContent] = '\0';
@@ -148,18 +139,21 @@ static napi_value GetRawFileContent(napi_env env, napi_callback_info info) {
     buf = NULL;
     return strContent;
 }
-
+// TODO：知识点：cpp文件打包为so库后需要对外暴露的接口可以在EXTERN_C_START和EXTERN_C_END中导出
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
-    // TODO：知识点：napi_property_descriptor 为结构体，做用是描述扩展暴露的 属性/方法 的描述。
+static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
         {"getTotalRawFileContent", nullptr, GetTotalRawFileContent, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"getRawFileContent", nullptr, GetRawFileContent, nullptr, nullptr, nullptr, napi_default, nullptr}};
-    // TODO: 知识点：定义暴露的方法
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
+// 导出GetTotalRawFileContent的包装函数
+napi_value GetTotalRawFileContentWrapper(napi_env env, napi_callback_info info) {
+    return GetTotalRawFileContent(env, info);
+}
+// 导出GetRawFileContent的包装函数
+napi_value GetRawFileContentWrapper(napi_env env, napi_callback_info info) { return GetRawFileContent(env, info); }
 EXTERN_C_END
 
 static napi_module demoModule = {
@@ -168,11 +162,8 @@ static napi_module demoModule = {
     .nm_filename = nullptr,
     .nm_register_func = Init,
     .nm_modname = "nativerawfile",
-    .nm_priv = ((void*)0),
-    .reserved = { 0 },
+    .nm_priv = ((void *)0),
+    .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterNativerawfileModule(void)
-{
-    napi_module_register(&demoModule);
-}
+extern "C" __attribute__((constructor)) void RegisterNativerawfileModule(void) { napi_module_register(&demoModule); }

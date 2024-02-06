@@ -13,18 +13,6 @@
  * limitations under the License.
  */
 
-{
-  "name": "nativerawfile",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
-  "main": "Index.ets",
-  "author": "",
-  "license": "Apache-2.0",
-  "dependencies": {
-    // 预加载so
-    "libpreloadso.so": "file:./src/main/cpp/types/libpreloadso",
-    "libnativerawfileapi.so": "file:./src/main/cpp/types/libnativerawfileapi",
-    // 公共特性模块
-    "@ohos/base": "file:../../common/utils"
-  }
-}
+#include "global_handlers.h"
+// 定义全局对象global_handlers，用于存储so库和dlopen加载so库所得句柄的映射关系
+std::unordered_map<std::string, void *> global_handlers;

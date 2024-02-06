@@ -14,17 +14,8 @@
  */
 
 {
-  "name": "nativerawfile",
-  "version": "1.0.0",
-  "description": "Please describe the basic information.",
-  "main": "Index.ets",
-  "author": "",
-  "license": "Apache-2.0",
-  "dependencies": {
-    // 预加载so
-    "libpreloadso.so": "file:./src/main/cpp/types/libpreloadso",
-    "libnativerawfileapi.so": "file:./src/main/cpp/types/libnativerawfileapi",
-    // 公共特性模块
-    "@ohos/base": "file:../../common/utils"
-  }
+  "name": "libnativerawfileapi.so",
+  "types": "./index.d.ts",
+  "version": "",
+  "description": "Please describe the basic information."
 }
