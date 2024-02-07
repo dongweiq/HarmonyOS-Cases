@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "file_decompress",
+      "value": "文件解压"
+    },
+    {
+      "name": "sub_title",
+      "value": "使用@ohos.zlib在Worker子线程解压文件"
+    },
+    {
+      "name": "decompress",
+      "value": "解压"
+    },
+    {
+      "name": "decompressed_files",
+      "value": "解压结果"
+    }
+  ]
+}

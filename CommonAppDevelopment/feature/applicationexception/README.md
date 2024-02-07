@@ -6,16 +6,12 @@
 
 ### 效果图预览
 
-
-|点击构建崩溃场景|显示出错信息|点击构建卡死场景|点击构建系统查杀场景|
-|--------|----------|--------|----------|
-|![crash](../../screenshots/device/crash.jpeg)|![faultMessage](../../screenshots/device/faultMessage.jpeg)|![appFreeze](../../screenshots/device/appFreeze.jpeg)|![system_kill](../../screenshots/device/system_kill.jpeg)|
+<img src="../../product/entry/src/main/resources/base/media/application_exception.gif" width="300">
 
 **使用说明**：
 
 1. 点击构建应用崩溃事件，3s之后应用退出，然后打开应用进入应用异常页面，隔一段时间后，显示上次异常退出信息。
 2. 点击构建应用卡死事件，需手动推出，然后打开应用进入应用异常页面，隔一段时间后，显示上次异常退出信息。
-3. 点击构建系统查杀事件，由于系统暂时没有补充查杀系统枚举类型并且构建系统查杀异常场景很困难，因此点击之后，异常信息系统不会出现异常，而是显示背景介绍。
 
 ### 实现思路
 

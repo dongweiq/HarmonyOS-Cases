@@ -1,7 +1,6 @@
 {
   "app": {
-    "signingConfigs": [
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
@@ -82,10 +81,6 @@
       "srcPath": "./feature/handletabs"
     },
     {
-      "name": "launchscenes",
-      "srcPath": "./feature/launchscenes"
-    },
-    {
       "name": "modalwindow",
       "srcPath": "./feature/modalwindow"
     },
@@ -104,6 +99,10 @@
     {
       "name": "variablewatch",
       "srcPath": "./feature/variablewatch"
+    },
+    {
+      "name": "routermodule",
+      "srcPath": "./feature/routermodule"
     },
     {
       "name": "pageturninganimation",
@@ -142,8 +141,20 @@
       "srcPath": "./feature/vibrateeffect"
     },
     {
-      "name": "customcalendarpickerdialog",
-      "srcPath": "./feature/customcalendarpickerdialog"
+      "name": "swipersmoothvariation",
+      "srcPath": "./feature/swipersmoothvariation"
+    },
+    {
+      "name": "swipercomponent",
+      "srcPath": "./feature/swipercomponent"
+    },
+    {
+      "name": "searchcomponent",
+      "srcPath": "./feature/searchcomponent",
+    },
+    {
+      "name": "navigationbarchange",
+      "srcPath": "./feature/navigationbarchange",
     }
   ]
 }

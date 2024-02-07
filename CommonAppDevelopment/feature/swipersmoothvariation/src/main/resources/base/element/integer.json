@@ -1,0 +1,36 @@
+{
+  "integer": [
+    {
+      "name": "height_1",
+      "value": 100
+    },
+    {
+      "name": "default_padding",
+      "value": 12
+    },
+    {
+      "name": "border_radius",
+      "value": 12
+    },
+    {
+      "name": "item_width",
+      "value": 35
+    },
+    {
+      "name": "item_height",
+      "value": 18
+    },
+    {
+      "name": "margin_top",
+      "value": -20
+    },
+    {
+      "name": "margin_left",
+      "value": 30
+    },
+    {
+      "name": "margin_small",
+      "value": 5
+    }
+  ]
+}

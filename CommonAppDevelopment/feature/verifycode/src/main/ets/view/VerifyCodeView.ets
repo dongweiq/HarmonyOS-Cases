@@ -18,6 +18,7 @@ import { inputMethod } from '@kit.IMEKit';
 import { Logger } from '../utils/Logger';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { VerifyCodeConstants } from '../constants/VerifyCodeConstants';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 @Extend(Text)
 function verifyCodeUnitStyle() {
@@ -41,6 +42,20 @@ struct VerifyCodeComponentWithoutCursor {
   private isAttached: boolean = false;
   private verifyCodeLength: number = 6;
   private codeIndexArray: Array<number> = Array.from([0, 1, 2, 3, 4, 5]);
+
+  // TODO 知识点：在aboutToAppear与aboutToDisappear回调中对输入法进行绑定与解绑
+  aboutToAppear(): void {
+    this.setAttachAndListener()
+  }
+
+  aboutToDisappear(): void {
+    if (this.isAttached) {
+      return;
+    }
+    this.inputController.detach((err: BusinessError) => {
+      Logger.error("Failed to detach: %{public}s", err.message);
+    })
+  }
 
   /**
    * TODO 知识点：绑定输入法并订阅输入法相关事件
@@ -106,22 +121,12 @@ struct VerifyCodeComponentWithoutCursor {
     Row() {
       this.buildVerifyCodeComponent()
     }
-    // TODO 知识点：在onAppear与onDisAppear回调中对输入法进行绑定与解绑
-    .onAppear(() => {
-      this.setAttachAndListener()
-    })
-    .onDisAppear(() => {
-      this.inputController.detach((err: BusinessError) => {
-        Logger.error("Failed to detach: %{public}s", err.message);
-      })
-    })
   }
 }
 
 /**
  * 验证码组件：禁用选中、复制、光标
  */
-@Entry
 @Component
 export struct VerifyCodeView {
   build() {
@@ -132,4 +137,17 @@ export struct VerifyCodeView {
     .width('100%')
     .justifyContent(FlexAlign.Center)
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getVerifyCodeView(): void {
+  VerifyCodeView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_VERIFY_CODE;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getVerifyCodeView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

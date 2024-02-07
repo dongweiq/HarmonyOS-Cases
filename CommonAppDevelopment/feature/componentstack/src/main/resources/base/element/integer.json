@@ -1,0 +1,172 @@
+{
+  "integer": [
+    {
+      "name": "user_portrait_width",
+      "value": 40
+    },
+    {
+      "name": "user_portrait_border_radius",
+      "value": 40
+    },
+    {
+      "name": "scan_width",
+      "value": 40
+    },
+    {
+      "name": "search_font_size",
+      "value": 16
+    },
+    {
+      "name": "flex_padding_left",
+      "value": 12
+    },
+    {
+      "name": "flex_padding_right",
+      "value": 12
+    },
+    {
+      "name": "flex_height",
+      "value": 60
+    },
+    {
+      "name": "search_width",
+      "value": 20
+    },
+    {
+      "name": "search_margin_left",
+      "value": 20
+    },
+    {
+      "name": "search_text_margin_left",
+      "value": 10
+    },
+    {
+      "name": "search_border_radius",
+      "value": 20
+    },
+    {
+      "name": "search_border_width",
+      "value": 3
+    },
+    {
+      "name": "icon_list_height3",
+      "value": 110
+    },
+    {
+      "name": "icon_list_height1",
+      "value": 200
+    },
+    {
+      "name": "function_description_margin_top",
+      "value": 12
+    },
+    {
+      "name": "stack_margin_top",
+      "value": 12
+    },
+    {
+      "name": "stack_padding_top",
+      "value": 12
+    },
+    {
+      "name": "function_description_padding",
+      "value": 12
+    },
+    {
+      "name": "margin_search_view",
+      "value": 50
+    },
+    {
+      "name": "scroll_padding",
+      "value": 12
+    },
+    {
+      "name": "icon_view_width",
+      "value": 40
+    },
+    {
+      "name": "icon_view_width2",
+      "value": 50
+    },
+    {
+      "name": "icon_view_title_font_size",
+      "value": 16
+    },
+    {
+      "name": "icon_view_title_font_size2",
+      "value": 18
+    },
+    {
+      "name": "icon_view_height",
+      "value": 90
+    },
+    {
+      "name": "icon_view_height2",
+      "value": 85
+    },
+    {
+      "name": "icon_view_height3",
+      "value": 95
+    },
+    {
+      "name": "icon_view_border_radius",
+      "value": 10
+    },
+    {
+      "name": "icon_view_image_margin_left",
+      "value": 20
+    },
+    {
+      "name": "water_flow_image_margin_top",
+      "value": 5
+    },
+    {
+      "name": "water_flow_title_font_size",
+      "value": 16
+    },
+    {
+      "name": "water_flow_price_font_size",
+      "value": 20
+    },
+    {
+      "name": "water_flow_insurance_font_size",
+      "value": 12
+    },
+    {
+      "name": "water_flow_insurance_border_width",
+      "value": 1
+    },
+    {
+      "name": "water_flow_insurance_border_radius",
+      "value": 4
+    },
+    {
+      "name": "water_flow_insurance_padding_horizontal",
+      "value": 8
+    },
+    {
+      "name": "water_flow_insurance_padding_vertical",
+      "value": 3
+    },
+    {
+      "name": "water_flow_insurance_margin_top",
+      "value": 10
+    },
+    {
+      "name": "water_flow_column_padding_left",
+      "value": 20
+    },
+    {
+      "name": "water_flow_column_height",
+      "value": 250
+    },
+    {
+      "name": "water_flow_column_border_radius",
+      "value": 10
+    },
+    {
+      "name": "water_flow_padding_bottom",
+      "value": 80
+    }
+  ]
+}

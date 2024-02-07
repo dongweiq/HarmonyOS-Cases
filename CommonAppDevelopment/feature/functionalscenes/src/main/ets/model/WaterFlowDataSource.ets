@@ -169,8 +169,15 @@ export class WaterFlowDataSource implements IDataSource {
    * 重新加载数据
    */
   public reload(): void {
-    this.dataArray.splice(1, 1);
-    this.dataArray.splice(3, 2);
+    this.notifyDataReload();
+  }
+
+  /**
+   * 改变数组数据
+   * @param data：新数组
+   */
+  public modifyAllData(data: ListData[]): void {
+    this.dataArray = data;
     this.notifyDataReload();
   }
 }

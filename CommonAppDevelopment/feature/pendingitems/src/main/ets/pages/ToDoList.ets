@@ -16,6 +16,7 @@
 import { ToDo } from '../model/ToDo';
 import { ToDoListItem } from './ToDoListItem';
 import promptAction from '@ohos.promptAction';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 /*
  * 实现步骤：
@@ -169,4 +170,17 @@ export struct ToDoList {
     .width('100%')
     .height('100%')
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getToDoList(): void {
+  ToDoList();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_PENDING_ITEMS;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getToDoList);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "main_page_top_borderRadius",
+      "value": "8"
+    },
+    {
+      "name": "main_page_padding",
+      "value": "12"
+    },
+    {
+      "name": "search_placeholder",
+      "value": "搜索"
+    }
+  ]
+}

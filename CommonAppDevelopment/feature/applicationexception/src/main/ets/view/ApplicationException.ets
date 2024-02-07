@@ -18,6 +18,7 @@ import { PreferencesManager } from '../model/PreferencesManager';
 import { BUTTON_TEXT } from '../model/MockData';
 import { FaultDataSource } from '../model/DataSource';
 import { FunctionDescription, logger } from '@ohos/base';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 const TAG: string = 'FaultLogger'; // 应用异常页面标识
 const DELAY_TIME:number = 3000; // 延时时间
@@ -109,8 +110,7 @@ struct FaultArea {
           // 根据被点击事件的下标响应指定的信息
           Text(this.eventIndex === 0 ? $r('app.string.crash_event_message') :
             (this.eventIndex === 1 ? $r('app.string.freeze_event_message') :
-              (this.eventIndex === 2 ? $r('app.string.system_kill_event_message') :
-              $r('app.string.no_message'))))
+            $r('app.string.no_message')))
         }
       }
     }
@@ -164,4 +164,17 @@ struct FaultConstruction {
       }, (item: string) => JSON.stringify(item))
     }.margin({ top: $r('app.string.ohos_id_elements_margin_vertical_l') })
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getApplicationExceptionView(): void {
+  ApplicationExceptionView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_FAULT;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getApplicationExceptionView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

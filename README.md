@@ -37,7 +37,6 @@
    |   |---gbktranscoding              // Axios获取网络数据案例
    |   |---handletabs                  // Tab组件实现增删Tab标签案例
    |   |---imageviewer                 // 图片预览方案
-   |   |---launchscenes                // 应用广告页实现案例
    |   |---marquee                     // 跑马灯案例
    |   |---modalwindow                 // 全屏登录页面案例
    |   |---nativeprogressnotify        // Native侧进度通知到ArkTS
@@ -53,6 +52,7 @@
    |   |---verifycode                  // 验证码布局
    |   |---vibrateeffect               // 基础特性层-抖动动画及手机振动效果
    |   |---customcalendarpickerdialog  // 基础特性层-自定义日历选择器
+   |   |---navigationbarchange         // 基础特性层-状态栏显隐变化案例
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -145,10 +145,6 @@ MpChart是一个包含各种类型图表的图表库，方便开发者快速实�
 
 <img src="./CommonAppDevelopment/screenshots/device/ImageViewer.gif" width="200">
 
-#### 应用广告页实现案例
-
-在大部分应用软件中，都需要开屏展示广告内容，用户任意时刻可点击跳转查看广告详情，或点击跳过进入首页。应用广告页实现方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/launchscenes/README.md)。
-
 #### Axios获取解析网络数据案例
 
 本示例介绍使用第三方库的Axios获取GBK格式的网络数据时，通过util实现GBK转换UTF-8格式。该场景多用于需要转换编码格式的应用。[详细说明文档](./CommonAppDevelopment/feature/gbktranscoding/README.md)。
@@ -157,11 +153,11 @@ MpChart是一个包含各种类型图表的图表库，方便开发者快速实�
 
 #### Tab组件实现增删Tab标签方案案例
 
-本示例介绍使用了Tab组件实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。[详细说明文档](./CommonAppDevelopment/feature/handletabs/README_zh.md)。
+本示例介绍使用了Tab组件实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。[详细说明文档](./CommonAppDevelopment/feature/handletabs/README.md)。
 
 <img src="./CommonAppDevelopment/screenshots/device/HandleTabs.gif" width="200">
 
-#### AKI使用案例
+#### 使用AKI轻松实现跨语言调用
 
 AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障碍跨语言互调，使用方便。本模块将介绍使用AKI编写C++跨线程调用JS函数场景，为开发者使用AKI提供参考。AKI使用实践可参考此[详细说明文档](./CommonAppDevelopment/feature/akiusepractice/README.md)。
 
@@ -184,7 +180,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 本示例介绍了通过应用事件打点hiAppEvent获取上一次应用异常信息的方法，主要分为应用崩溃、应用卡死以及系统查杀三种。[详细说明文档](./CommonAppDevelopment/feature/applicationexception/README.md)。
 
-<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/fault.jpeg" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/application_exception.gif" width="200">
 
 #### 深浅模式案例
 
@@ -210,7 +206,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/page_turning_animation.gif" width="200">
 
-#### Native进度通知案例
+#### 在Native侧实现进度通知功能
 
 本示例通过模拟下载场景介绍如何将Native的进度信息实时同步到ArkTS侧。[详细说明文档](./CommonAppDevelopment/feature/nativeprogressnotify/README.md)。
 
@@ -222,7 +218,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/verify_code.gif" width="200">
 
-#### 抖动动画及手机振动效果案例
+#### 使用弹簧曲线实现抖动动画及手机振动效果案例
 
 抖动动画和手机振动效果是手机使用时常见的效果。抖动动画及手机振动效果案例可以参考[详细说明文档](./CommonAppDevelopment/feature/vibrateeffect/README.md)。
 
@@ -234,13 +230,19 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/custom_calendar_picker_dialog.gif" width="200">
 
+#### 状态栏显隐变化案例
+
+本示例介绍使用Scroll组件的滚动事件 **onScroll** 实现状态栏显隐变化。该场景多用于各种软件的首页、我的等页面中。状态栏显隐变化的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/navigationbarchange/README.md)。
+
+<img src="./CommonAppDevelopment/screenshots/device/NavigationBarChange.gif" width="200">
+
 ### 公共能力层
 
 公共功能层用于存放公共基础能力，集中了例如公共UI组件、数据管理、外部交互以及工具库等的共享功能。应用与元服务都可以共享和调用这些公共能力。
 
 公共能力层为上层的基础特性层和产品定制层提供稳定可靠的功能支持，确保整个应用/元服务的稳定性和可维护性。
 
-应用通用开发范例App公共能力层包含一下模块：[**日志打印**](./CommonAppDevelopment/common/utils/src/main/ets/Logger.ets)
+应用通用开发范例App公共能力层包含以下模块：[**日志打印**](./CommonAppDevelopment/common/utils/src/main/ets/log/Logger.ets)
 
 ## 配套平台
 
