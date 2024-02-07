@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+import {
+  buildRouterModel,
+  DynamicsRouter, RouterModel, RouterNameConstants, RouterPathConstants } from '@ohos/dynamicsRouter';
 import { ListData } from './model/ListData';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
 import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
@@ -24,18 +27,13 @@ import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
 export struct FunctionalScenes {
   @Link @Watch('dataChange') listData: ListData[];
   @Consume('pageStack') pageStack: NavPathStack;
-  @State tabsIndex: number = 0;
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(this.listData);
+  @State tabsIndex: number = 0;
+  @State isMask: boolean = true
+  scroller: Scroller = new Scroller();
   tabsController: TabsController = new TabsController();
   tabDataSource: TabDataSource = new TabDataSource();
   waterFlowScroller: Scroller = new Scroller();
-
-  aboutToAppear(): void {
-    // 主页tabContent初始化数据
-    for (let index = 0; index < TAB_DATA.length; index++) {
-      this.tabDataSource.pushData(TAB_DATA[index]);
-    }
-  }
 
   // 监听数据变化
   dataChange() {
@@ -48,7 +46,7 @@ export struct FunctionalScenes {
    * @param index 当前的列表索引
    */
   filterData(index: number) {
-    let newListData: ListData[] = [];// 用于接收筛选到的数据
+    let newListData: ListData[] = []; // 用于接收筛选到的数据
     // index为0时分类为全部，全部类别情况下不需要筛选
     if (index !== 0) {
       for (let i = 0; i < this.listData.length; i++) {
@@ -66,6 +64,13 @@ export struct FunctionalScenes {
       this.dataSource.modifyAllData(this.listData);
       // 通知数据控制器重新加载数据
       this.dataSource.reload();
+    }
+  }
+
+  aboutToAppear(): void {
+    // 主页tabContent初始化数据
+    for (let index = 0; index < TAB_DATA.length; index++) {
+      this.tabDataSource.pushData(TAB_DATA[index]);
     }
   }
 
@@ -125,7 +130,8 @@ export struct FunctionalScenes {
     .margin({ top: $r('app.string.item_gap_half'), bottom: $r('app.string.item_gap_half') })
     .backgroundColor(Color.White)
     .onClick(() => {
-      this.pageStack.pushPath({ name: listData.path, param: listData.param });
+      // 点击瀑布流Item时，根据点击的模块信息，将页面放入路由栈
+      buildRouterModel(listData.path, listData.routerName, listData.param);
     })
   }
 
@@ -151,7 +157,6 @@ export struct FunctionalScenes {
     .width('100%')
     .backgroundColor(Color.White)
     .height('100%')
-
     .align(Alignment.Center)
     .onClick(() => {
       this.tabsIndex = index;
@@ -205,3 +210,4 @@ export struct FunctionalScenes {
     .backgroundColor("#F1F1F1")
   }
 }
+

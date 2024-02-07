@@ -101,6 +101,10 @@
       "srcPath": "./feature/variablewatch"
     },
     {
+      "name": "routermodule",
+      "srcPath": "./feature/routermodule"
+    },
+    {
       "name": "pageturninganimation",
       "srcPath": "./feature/pageturninganimation"
     },
@@ -146,7 +150,11 @@
     },
     {
       "name": "searchcomponent",
-      "srcPath": "./feature/searchcomponent"
+      "srcPath": "./feature/searchcomponent",
+    },
+    {
+      "name": "navigationbarchange",
+      "srcPath": "./feature/navigationbarchange",
     }
   ]
 }

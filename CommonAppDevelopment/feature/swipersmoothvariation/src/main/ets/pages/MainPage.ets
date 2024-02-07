@@ -15,6 +15,7 @@
 
 import { CommonConstants as Const } from '../common/CommonConstants';
 import { logger } from '@ohos/base';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 /**
  * 代表自定义类型数据的接口。
@@ -259,4 +260,17 @@ export struct SwiperSmoothVariation {
     .padding($r('app.integer.default_padding'))
     .alignContent(Alignment.TopStart)
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getSwiperSmoothVariation(): void {
+  SwiperSmoothVariation();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_SWIPER_SMOOTH_VARIATION;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getSwiperSmoothVariation);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

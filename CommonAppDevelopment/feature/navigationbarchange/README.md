@@ -6,7 +6,7 @@
 
 ### 效果预览图
 
-![](../../screenshots/device/NavigationBarChange.gif)
+![](../../product/entry/src/main/resources/base/media/navigation_bar_change.gif)
 
 **使用说明**
 1. 加载完成后显示状态栏显隐变化页面，上下拖动屏幕，顶端状态栏出现显隐变化。

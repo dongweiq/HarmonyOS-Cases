@@ -16,6 +16,7 @@
 import { ALL_CITY2, CITY_DATA } from '../model/DetailData';
 import { SearchView } from '../view/SearchView';
 import { CityView } from '../view/CityView';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 const searchButtonText = '搜索';
 
@@ -118,4 +119,17 @@ export struct CitySearch {
     })
     this.SearchList = cityNames;
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getCitySearch(): void {
+  CitySearch();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_CITY_SEARCH;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getCitySearch);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

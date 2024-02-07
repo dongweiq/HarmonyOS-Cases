@@ -19,13 +19,15 @@
 export class SwiperData {
   imageSrc: Resource;
   name: string;
+  routerName: string;
   path: string;
   param: string;
 
-  constructor(imageSrc: Resource, name: string, path: string, param?: string) {
+  constructor(imageSrc: Resource, name: string, routerName: string, path: string, param?: string) {
     this.imageSrc = imageSrc;
     this.name = name;
     this.path = path;
+    this.routerName = routerName;
     this.param = param === undefined ? '' : param;
   }
 }

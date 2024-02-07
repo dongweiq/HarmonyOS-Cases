@@ -15,6 +15,7 @@
 
 import libaki from 'libaki_use_practice.so'; // 导入自定义AKI插件
 import { FunctionDescription } from '@ohos/base';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter';
 
 /**
  * 本示例介绍使用AKI编写的C++函数实现跨线程调用JS函数场景。在ArkTS侧使用AKI的JSBind.bindFunction绑定
@@ -60,4 +61,17 @@ export struct AkiView {
     }
     .height($r('app.string.common_size'))
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getAkiView(): void {
+  AkiView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_AKI_USE_PRACTICE;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getAkiView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }
