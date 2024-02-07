@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "font_selected_state",
+      "value": "#111111"
+    },
+    {
+      "name": "font_unselected_state",
+      "value": "#999999"
+    },
+    {
+      "name": "color_bar",
+      "value": "#3366FF"
+    },
+    {
+      "name": "theme_color",
+      "value": "#EEEEEE"
+    }
+  ]
+}

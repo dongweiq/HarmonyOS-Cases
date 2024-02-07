@@ -1,0 +1,52 @@
+{
+  "integer": [
+    {
+      "name": "positionY",
+      "value": 30
+    },
+    {
+      "name": "font_size_fourteen",
+      "value": 14
+    },
+    {
+      "name": "font_size_eighteen",
+      "value": 18
+    },
+    {
+      "name": "font_size_twenty_five",
+      "value": 25
+    },
+    {
+      "name": "width_and_height_six",
+      "value": 6
+    },
+    {
+      "name": "width_and_height_twenty",
+      "value": 20
+    },
+    {
+      "name": "width_and_height_thirty",
+      "value": 30
+    },
+    {
+      "name": "width_and_height_forty",
+      "value": 40
+    },
+    {
+      "name": "width_and_height_fifty",
+      "value": 50
+    },
+    {
+      "name": "width_and_height_sixty",
+      "value": 60
+    },
+    {
+      "name": "width_and_height_one_hundred",
+      "value": 100
+    },
+    {
+      "name": "borderRadius_value",
+      "value": 3
+    }
+  ]
+}
