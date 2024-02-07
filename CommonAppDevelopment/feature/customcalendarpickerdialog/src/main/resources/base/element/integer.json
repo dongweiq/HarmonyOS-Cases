@@ -1,0 +1,24 @@
+{
+  "integer": [
+    {
+      "name": "train_image_size",
+      "value": 20
+    },
+    {
+      "name": "check_button_height",
+      "value": 40
+    },
+    {
+      "name": "card_padding",
+      "value": 16
+    },
+    {
+      "name": "text_height",
+      "value": 40
+    },
+    {
+      "name": "month_text",
+      "value": 240
+    },
+  ]
+}

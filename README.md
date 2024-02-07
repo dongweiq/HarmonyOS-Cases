@@ -51,6 +51,7 @@
    |   |---variablewatch               // 多层嵌套类对象监听案例
    |   |---verifycode                  // 验证码布局
    |   |---vibrateeffect               // 基础特性层-抖动动画及手机振动效果
+   |   |---customcalendarpickerdialog  // 基础特性层-自定义日历选择器
    |   |---navigationbarchange         // 基础特性层-状态栏显隐变化案例
    |   |---customview                  // 基础特性层-自定义视图实现Tab效果
    |---libs
@@ -223,6 +224,12 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 抖动动画和手机振动效果是手机使用时常见的效果。抖动动画及手机振动效果案例可以参考[详细说明文档](./CommonAppDevelopment/feature/vibrateeffect/README.md)。
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/vibrate_effect.gif" width="200">
+
+#### 自定义日历选择器
+
+日历选择器是出行类应用常见模块。自定义日历选择器案例可以参考[详细说明文档](./CommonAppDevelopment/feature/customcalendarpickerdialog/README.md)。
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/custom_calendar_picker_dialog.gif" width="200">
 
 #### 状态栏显隐变化案例
 
