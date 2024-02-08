@@ -111,6 +111,10 @@
     {
       "name": "search_margin_top",
       "value": 15
+    },
+    {
+      "name": "list_margin_top",
+      "value": 34
     }
   ]
 }

@@ -32,11 +32,7 @@ export struct CityView {
             .fontSize($r('app.integer.text_font'))
             .fontColor($r('app.color.text_font_color'))
             .opacity(0.6)
-            .margin({
-              left: $r('app.integer.txt_margin_left'),
-              bottom: $r('app.integer.row_margin_bottom')
-            })
-
+            .margin({ left: $r('app.integer.txt_margin_left'), bottom: $r('app.integer.row_margin_bottom') })
 
           Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center, wrap: FlexWrap.Wrap }) {
             ForEach(HOT_CITY, (item: string) => {
@@ -78,10 +74,8 @@ export struct CityView {
           .margin({ left: $r('app.integer.txt_margin_left') })
           .layoutWeight(1)
           .edgeEffect(EdgeEffect.None)
-          .divider({
-            strokeWidth: $r('app.integer.divider_strokeWidth'), color: $r('app.color.divider_color'),
-            startMargin: $r('app.integer.divider_start'), endMargin: $r('app.integer.divider_end')
-          })
+          .divider({ strokeWidth: $r('app.integer.divider_strokeWidth'), color: $r('app.color.divider_color'),
+            startMargin: $r('app.integer.divider_start'), endMargin: $r('app.integer.divider_end') })
           .listDirection(Axis.Vertical)
           .scrollBar(BarState.Off)
           .onScrollIndex((firstIndex: number, lastIndex: number) => {
@@ -97,15 +91,15 @@ export struct CityView {
          */
         AlphabetIndexer({ arrayValue: TAB_VALUE, selected: this.stabIndex })
           .height('100%')
-          .selectedColor($r('app.color.alphabet_select_color'))// 选中项文本颜色
-          .popupColor($r('app.color.alphabet_pop_color'))// 弹出框文本颜色
-          .selectedBackgroundColor($r('app.color.alphabet_selected_bgc'))// 选中项背景颜色
-          .popupBackground($r('app.color.alphabet_pop_bgc'))// 弹出框背景颜色
+          .selectedColor($r('app.color.alphabet_select_color')) // 选中项文本颜色
+          .popupColor($r('app.color.alphabet_pop_color')) // 弹出框文本颜色
+          .selectedBackgroundColor($r('app.color.alphabet_selected_bgc')) // 选中项背景颜色
+          .popupBackground($r('app.color.alphabet_pop_bgc')) // 弹出框背景颜色
           .popupPosition({ x: $r('app.integer.pop_position_x'), y: $r('app.integer.pop_position_y') })
-          .usingPopup(true)// 是否显示弹出框
-          .selectedFont({ size: $r('app.integer.select_font'), weight: FontWeight.Bolder })// 选中项字体样式
-          .popupFont({ size: $r('app.integer.pop_font'), weight: FontWeight.Bolder })// 弹出框内容的字体样式
-          .alignStyle(IndexerAlign.Right)// 弹出框在索引条左侧弹出
+          .usingPopup(true) // 是否显示弹出框
+          .selectedFont({ size: $r('app.integer.select_font'), weight: FontWeight.Bolder }) // 选中项字体样式
+          .popupFont({ size: $r('app.integer.pop_font'), weight: FontWeight.Bolder }) // 弹出框内容的字体样式
+          .alignStyle(IndexerAlign.Right) // 弹出框在索引条左侧弹出
           .onSelect((tabIndex: number) => {
             this.scroller.scrollToIndex(tabIndex);
           })

@@ -150,11 +150,23 @@
     },
     {
       "name": "searchcomponent",
-      "srcPath": "./feature/searchcomponent",
+      "srcPath": "./feature/searchcomponent"
     },
     {
       "name": "navigationbarchange",
-      "srcPath": "./feature/navigationbarchange",
+      "srcPath": "./feature/navigationbarchange"
+    },
+    {
+      "name": "mediafullscreen",
+      "srcPath": "./feature/mediafullscreen"
+    },
+    {
+      "name": "citysearch",
+      "srcPath": "./feature/citysearch"
+    },
+    {
+      "name": "imagecomment",
+      "srcPath": "./feature/imagecomment"
     },
     {
       "name": "waterripples",

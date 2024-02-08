@@ -68,7 +68,7 @@ export struct CitySearch {
         .onChange((value: string) => {
           this.changeValue = value;
           // 搜索
-          this.searchCityList(value)
+          this.searchCityList(value);
           if (value.length === 0) {
             // 关闭搜索列表
             this.isSearchState = false;
@@ -84,6 +84,7 @@ export struct CitySearch {
         })
       // 城市列表组件
       CityView({ isSearchState: $isSearchState })
+        .margin({top:$r('app.integer.list_margin_top')})
 
       // 搜索组件，将数据传递到搜索列表
       SearchView({ SearchList: $SearchList, isSearchState: $isSearchState })
