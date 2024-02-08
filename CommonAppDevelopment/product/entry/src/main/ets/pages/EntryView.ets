@@ -55,6 +55,7 @@ struct EntryView {
     new ListData($r("app.media.navigation_bar_change"), '状态栏显隐变化', RouterNameConstants.ROUTER_NAME_NAVIGATION_BAR_CHANGE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_NAVIGATION_BAR_CHANGE, '动效'),
     new ListData($r("app.media.media_fullscreen"), '视频全屏切换', RouterNameConstants.ROUTER_NAME_MEDIA_FULL_SCREEN, 2, false, '25%', RouterPathConstants.ROUTER_PATH_MEDIA_FULL_SCREEN, 'UI布局'),
     new ListData($r("app.media.city_search"), '选择城市', RouterNameConstants.ROUTER_NAME_CITY_SEARCH, 2, false, '25%', RouterPathConstants.ROUTER_PATH_CITY_SEARCH, 'UI布局'),
+    new ListData($r("app.media.water_ripples"), '听歌识曲水波纹案例', RouterNameConstants.ROUTER_NAME_WATER_RIPPLES, 1, false, '25%', RouterPathConstants.ROUTER_PATH_WATER_RIPPLES, '动效'),
     new ListData($r("app.media.music_player"), '折叠屏适配音乐播放器', RouterNameConstants.ROUTER_NAME_FOLDABLE_SCREEN_CASES, 3, false, '25%', RouterPathConstants.ROUTER_PATH_MUSIC_PLAYER, '动效')
   ];
 

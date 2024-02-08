@@ -1,0 +1,64 @@
+{
+  "integer": [
+    {
+      "name": "icon_default_height",
+      "value": 32
+    },
+    {
+      "name": "margin_between_icon_and_description",
+      "value": 5
+    },
+    {
+      "name": "margin_small",
+      "value": 10
+    },
+    {
+      "name": "margin_default",
+      "value": 12
+    },
+    {
+      "name": "margin_mid",
+      "value": 20
+    },
+    {
+      "name": "margin_large",
+      "value": 30
+    },
+    {
+      "name": "padding_small",
+      "value": 10
+    },
+    {
+      "name": "border_radius",
+      "value": 8
+    },
+    {
+      "name": "button_height",
+      "value": 20
+    },
+    {
+      "name": "button_width",
+      "value": 80
+    },
+    {
+      "name": "icon_height_small",
+      "value": 24
+    },
+    {
+      "name": "grid_height",
+      "value": 460
+    },
+    {
+      "name": "height_one_hundred",
+      "value": 100
+    },
+    {
+      "name": "font_size_mid",
+      "value": 20
+    },
+    {
+      "name": "height_eighty",
+      "value": 80
+    }
+  ]
+}

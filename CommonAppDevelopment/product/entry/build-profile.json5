@@ -50,6 +50,7 @@
           "@ohos/navigationbarchange",
           "@ohos/mediafullscreen",
           "@ohos/citysearch",
+          "@ohos/waterripples",
           "@ohos/foldablescreencases"
         ]
       }

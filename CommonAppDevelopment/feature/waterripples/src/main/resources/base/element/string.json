@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "sound_hound",
+      "value": "听歌识曲"
+    },
+    {
+      "name": "is_listening",
+      "value": "正在聆听..."
+    },
+    {
+      "name": "click_to_listen",
+      "value": "点击开始识曲"
+    }
+  ]
+}

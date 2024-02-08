@@ -43,6 +43,7 @@ export class RouterNameConstants {
   static readonly ROUTER_NAME_NAVIGATION_BAR_CHANGE: string = '@ohos/navigationbarchange';
   static readonly ROUTER_NAME_MEDIA_FULL_SCREEN: string = '@ohos/mediafullscreen';
   static readonly ROUTER_NAME_CITY_SEARCH: string = '@ohos/citysearch';
+  static readonly ROUTER_NAME_WATER_RIPPLES: string = '@ohos/waterripples';
   static readonly ROUTER_NAME_FOLDABLE_SCREEN_CASES: string = '@ohos/foldablescreencases';
 }
 
@@ -76,5 +77,6 @@ export class RouterPathConstants {
   static readonly ROUTER_PATH_NAVIGATION_BAR_CHANGE: string = './src/main/ets/view/NavigationBarChange';
   static readonly ROUTER_PATH_MEDIA_FULL_SCREEN: string = './src/main/ets/view/MediaFullScreen';
   static readonly ROUTER_PATH_CITY_SEARCH: string = './src/main/ets/view/CitySearch';
+  static readonly ROUTER_PATH_WATER_RIPPLES: string = './src/main/ets/WaterRipples';
   static readonly ROUTER_PATH_MUSIC_PLAYER: string = './src/main/ets/pages/MusicPlayerPage';
 }

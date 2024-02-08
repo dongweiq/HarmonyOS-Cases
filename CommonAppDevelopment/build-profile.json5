@@ -157,6 +157,10 @@
       "srcPath": "./feature/navigationbarchange",
     },
     {
+      "name": "waterripples",
+      "srcPath": "./feature/waterripples",
+    },
+    {
       "name": "foldablescreencases",
       "srcPath": "./feature/foldablescreencases"
     }

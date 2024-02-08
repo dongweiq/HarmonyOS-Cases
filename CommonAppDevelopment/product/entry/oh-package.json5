@@ -75,7 +75,9 @@
     "@ohos/mediafullscreen": "file:../../feature/mediafullscreen",
     // 城市选择案例
     "@ohos/citysearch": "file:../../feature/citysearch",
+    // 听歌识曲水波纹案例
+    "@ohos/waterripples": "file:../../feature/waterripples",
     // 折叠屏场景方案
-    "@ohos/foldablescreencases": "file:../../feature/foldablescreencases",
+    "@ohos/foldablescreencases": "file:../../feature/foldablescreencases"
   }
 }

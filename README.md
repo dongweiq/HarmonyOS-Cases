@@ -54,6 +54,7 @@
    |   |---customcalendarpickerdialog  // 基础特性层-自定义日历选择器
    |   |---navigationbarchange         // 基础特性层-状态栏显隐变化案例
    |   |---customview                  // 基础特性层-自定义视图实现Tab效果
+   |   |---waterripples                // 基础特性层-听歌识曲水波纹特效案例
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -242,6 +243,12 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 本示例介绍使用Text、List等组件，添加点击、动画等事件 **onClick** **animateTo** 自定义视图实现类似Tab效果。自定义视图实现Tab效果的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/customview/README.md)。
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/custom_view.gif" width="200">
+
+#### 听歌识曲水波纹特效案例
+
+本示例介绍水波纹的特效。该场景多用于各种软件的按钮。听歌识曲水波纹特效案例可以参考此[详细说明文档](./CommonAppDevelopment/feature/waterripples/README.md)。
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/water_ripples.gif" width="200">
 
 ### 公共能力层
 
