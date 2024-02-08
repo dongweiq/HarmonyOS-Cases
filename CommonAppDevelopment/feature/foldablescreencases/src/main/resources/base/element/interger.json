@@ -1,0 +1,16 @@
+{
+  "integer": [
+    {
+      "name": "font_size_music_title",
+      "value": 40
+    },
+    {
+      "name": "font_size_music_singer",
+      "value": 16
+    },
+    {
+      "name": "font_size_music_time",
+      "value": 10
+    }
+  ]
+}

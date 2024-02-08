@@ -115,6 +115,9 @@ export default class EntryAbility extends UIAbility {
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     logger.info(TAG, '%{public}s', 'Ability onWindowStageDestroy');
+
+    // 移除当前windowStage实例缓存
+    AppStorage.delete('windowStage');
   }
 
   onForeground(): void {

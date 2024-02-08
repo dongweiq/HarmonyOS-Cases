@@ -155,6 +155,10 @@
     {
       "name": "navigationbarchange",
       "srcPath": "./feature/navigationbarchange",
+    },
+    {
+      "name": "foldablescreencases",
+      "srcPath": "./feature/foldablescreencases"
     }
   ]
 }

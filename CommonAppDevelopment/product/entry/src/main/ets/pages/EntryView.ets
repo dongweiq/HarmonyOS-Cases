@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import { SwiperComponent } from '@ohos/swipercomponent';
 import { SearchComponent } from '@ohos/searchcomponent';
 import { DynamicsRouter, RouterNameConstants, RouterPathConstants } from '@ohos/dynamicsRouter/Index';
@@ -55,7 +54,8 @@ struct EntryView {
     new ListData($r("app.media.swiper_smooth_variation"), 'Swiper高度可变化效果实现', RouterNameConstants.ROUTER_NAME_SWIPER_SMOOTH_VARIATION, 2, false, '25%', RouterPathConstants.ROUTER_PATH_SWIPER_SMOOTH_VARIATION, '动效'),
     new ListData($r("app.media.navigation_bar_change"), '状态栏显隐变化', RouterNameConstants.ROUTER_NAME_NAVIGATION_BAR_CHANGE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_NAVIGATION_BAR_CHANGE, '动效'),
     new ListData($r("app.media.media_fullscreen"), '视频全屏切换', RouterNameConstants.ROUTER_NAME_MEDIA_FULL_SCREEN, 2, false, '25%', RouterPathConstants.ROUTER_PATH_MEDIA_FULL_SCREEN, 'UI布局'),
-    new ListData($r("app.media.city_search"), '选择城市', RouterNameConstants.ROUTER_NAME_CITY_SEARCH, 2, false, '25%', RouterPathConstants.ROUTER_PATH_CITY_SEARCH, 'UI布局')
+    new ListData($r("app.media.city_search"), '选择城市', RouterNameConstants.ROUTER_NAME_CITY_SEARCH, 2, false, '25%', RouterPathConstants.ROUTER_PATH_CITY_SEARCH, 'UI布局'),
+    new ListData($r("app.media.music_player"), '折叠屏适配音乐播放器', RouterNameConstants.ROUTER_NAME_FOLDABLE_SCREEN_CASES, 3, false, '25%', RouterPathConstants.ROUTER_PATH_MUSIC_PLAYER, '动效')
   ];
 
   aboutToAppear(): void {
