@@ -78,6 +78,8 @@
     // 听歌识曲水波纹案例
     "@ohos/waterripples": "file:../../feature/waterripples",
     // 折叠屏场景方案
-    "@ohos/foldablescreencases": "file:../../feature/foldablescreencases"
+    "@ohos/foldablescreencases": "file:../../feature/foldablescreencases",
+    // 发布图片评论案例
+    "@ohos/imagecomment": "file:../../feature/imagecomment"
   }
 }
