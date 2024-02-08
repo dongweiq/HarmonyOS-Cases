@@ -74,6 +74,8 @@
     // 视频全屏切换案例
     "@ohos/mediafullscreen": "file:../../feature/mediafullscreen",
     // 城市选择案例
-    "@ohos/citysearch": "file:../../feature/citysearch"
+    "@ohos/citysearch": "file:../../feature/citysearch",
+    // 折叠屏场景方案
+    "@ohos/foldablescreencases": "file:../../feature/foldablescreencases",
   }
 }

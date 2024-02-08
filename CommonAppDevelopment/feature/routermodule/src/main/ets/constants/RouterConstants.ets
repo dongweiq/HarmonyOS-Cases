@@ -43,6 +43,7 @@ export class RouterNameConstants {
   static readonly ROUTER_NAME_NAVIGATION_BAR_CHANGE: string = '@ohos/navigationbarchange';
   static readonly ROUTER_NAME_MEDIA_FULL_SCREEN: string = '@ohos/mediafullscreen';
   static readonly ROUTER_NAME_CITY_SEARCH: string = '@ohos/citysearch';
+  static readonly ROUTER_NAME_FOLDABLE_SCREEN_CASES: string = '@ohos/foldablescreencases';
 }
 
 // 动态路由中需要加载的模块路径，和functionalscenes模块的build-profile.json5中dependencies下面配置的模块依赖名相同
@@ -75,4 +76,5 @@ export class RouterPathConstants {
   static readonly ROUTER_PATH_NAVIGATION_BAR_CHANGE: string = './src/main/ets/view/NavigationBarChange';
   static readonly ROUTER_PATH_MEDIA_FULL_SCREEN: string = './src/main/ets/view/MediaFullScreen';
   static readonly ROUTER_PATH_CITY_SEARCH: string = './src/main/ets/view/CitySearch';
+  static readonly ROUTER_PATH_MUSIC_PLAYER: string = './src/main/ets/pages/MusicPlayerPage';
 }
