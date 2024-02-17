@@ -236,7 +236,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 本示例介绍使用Scroll组件的滚动事件 **onScroll** 实现状态栏显隐变化。该场景多用于各种软件的首页、我的等页面中。状态栏显隐变化的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/navigationbarchange/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/NavigationBarChange.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/navigation_bar_change.gif" width="200">
 
 #### 自定义视图实现Tab效果
 
@@ -256,7 +256,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 公共能力层为上层的基础特性层和产品定制层提供稳定可靠的功能支持，确保整个应用/元服务的稳定性和可维护性。
 
-应用通用开发范例App公共能力层包含以下模块：[**日志打印**](./CommonAppDevelopment/common/utils/src/main/ets/log/Logger.ets)
+应用通用开发范例App公共能力层包含以下模块：[**日志打印**](./CommonAppDevelopment/common/utils/src/main/ets/log/Logger.ets)、[**功能介绍布局**](./CommonAppDevelopment/common/utils/src/main/ets/component/FunctionDescription.ets)
 
 ## 配套平台
 
