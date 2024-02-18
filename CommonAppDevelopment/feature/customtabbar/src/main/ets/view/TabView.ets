@@ -19,6 +19,7 @@ import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index'
 
 const HOME_TAB_BAR_INDEX: number = 0; // 初始化社区的tab下标
 const COMMUNITY_TAB_BAR_INDEX: number = 2; // 初始化社区的tab下标
+const ARC_MARGIN_TOP: number = -15; // 圆弧的上外间距为-15
 
 @Preview
 @Component
@@ -131,8 +132,8 @@ struct TabItem {
         .width($r('app.integer.community_image_container_size'))
         .height($r('app.integer.community_image_container_size'))
         // TODO：知识点：通过设置borderRadius以及margin的top值实现圆弧外轮廓效果。
-        .borderRadius(this.tabBarIndex === COMMUNITY_TAB_BAR_INDEX ? $r('app.integer.community_image_container_border_radius_size') : $r('app.integer.common_size_0'))
-        .margin({ top: this.tabBarIndex === COMMUNITY_TAB_BAR_INDEX ? -15 : $r('app.integer.common_size_0') })
+        .borderRadius($r('app.integer.community_image_container_border_radius_size'))
+        .margin({ top: ARC_MARGIN_TOP })
         .backgroundColor(Color.White)
         .justifyContent(FlexAlign.Center)
       } else {
