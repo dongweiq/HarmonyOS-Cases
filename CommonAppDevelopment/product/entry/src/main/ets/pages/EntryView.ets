@@ -82,7 +82,7 @@ struct EntryView {
         Scroll() {
           Column() {
             // 首页搜索组件
-            SearchComponent({ listData: this.listData })
+            SearchComponent()
             // 首页轮播图组件
             SwiperComponent()
             // 首页列表组件
