@@ -175,6 +175,10 @@
     {
       "name": "foldablescreencases",
       "srcPath": "./feature/foldablescreencases"
+    },
+    {
+      "name": "nativesavepictosandbox",
+      "srcPath": "./feature/nativesavepictosandbox"
     }
   ]
 }

@@ -46,6 +46,7 @@ export class RouterNameConstants {
   static readonly ROUTER_NAME_WATER_RIPPLES: string = '@ohos/waterripples';
   static readonly ROUTER_NAME_FOLDABLE_SCREEN_CASES: string = '@ohos/foldablescreencases';
   static readonly ROUTER_NAME_IMAGE_COMMENT: string = '@ohos/imagecomment';
+  static readonly ROUTER_NAME_PIC2SANDBOX: string = '@ohos/nativesavepictosandbox';
 }
 
 // 动态路由中需要加载的模块路径，和functionalscenes模块的build-profile.json5中dependencies下面配置的模块依赖名相同
@@ -81,4 +82,5 @@ export class RouterPathConstants {
   static readonly ROUTER_PATH_WATER_RIPPLES: string = './src/main/ets/WaterRipples';
   static readonly ROUTER_PATH_MUSIC_PLAYER: string = './src/main/ets/pages/MusicPlayerPage';
   static readonly ROUTER_PATH_IMAGE_COMMENT: string = './src/main/ets/components/view/ImageCommentView';
+  static readonly ROUTER_PATH_PIC2SANDBOX: string = './src/main/ets/view/NativePictureToSandboxView';
 }

@@ -57,7 +57,8 @@ struct EntryView {
     new ListData($r("app.media.city_search"), '选择城市', RouterNameConstants.ROUTER_NAME_CITY_SEARCH, 2, false, '25%', RouterPathConstants.ROUTER_PATH_CITY_SEARCH, 'UI布局'),
     new ListData($r("app.media.water_ripples"), '听歌识曲水波纹案例', RouterNameConstants.ROUTER_NAME_WATER_RIPPLES, 1, false, '25%', RouterPathConstants.ROUTER_PATH_WATER_RIPPLES, '动效'),
     new ListData($r("app.media.music_player"), '折叠屏适配音乐播放器', RouterNameConstants.ROUTER_NAME_FOLDABLE_SCREEN_CASES, 3, false, '25%', RouterPathConstants.ROUTER_PATH_MUSIC_PLAYER, '动效'),
-    new ListData($r("app.media.image_comment"), '发布图片评论', RouterNameConstants.ROUTER_NAME_IMAGE_COMMENT, 2, false, '25%', RouterPathConstants.ROUTER_PATH_IMAGE_COMMENT, '其他')
+    new ListData($r("app.media.image_comment"), '发布图片评论', RouterNameConstants.ROUTER_NAME_IMAGE_COMMENT, 2, false, '25%', RouterPathConstants.ROUTER_PATH_IMAGE_COMMENT, '其他'),
+    new ListData($r('app.media.native_image2sandbox'), 'native保存图片到沙箱', RouterNameConstants.ROUTER_NAME_PIC2SANDBOX, 2, false, '25%', RouterPathConstants.ROUTER_PATH_PIC2SANDBOX, 'Native')
   ];
 
   aboutToAppear(): void {
