@@ -51,7 +51,10 @@
    |   |---variablewatch               // 多层嵌套类对象监听案例
    |   |---verifycode                  // 验证码布局
    |   |---vibrateeffect               // 基础特性层-抖动动画及手机振动效果
+   |   |---customcalendarpickerdialog  // 基础特性层-自定义日历选择器
    |   |---navigationbarchange         // 基础特性层-状态栏显隐变化案例
+   |   |---customview                  // 基础特性层-自定义视图实现Tab效果
+   |   |---waterripples                // 基础特性层-听歌识曲水波纹特效案例
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -152,7 +155,7 @@ MpChart是一个包含各种类型图表的图表库，方便开发者快速实�
 
 #### Tab组件实现增删Tab标签方案案例
 
-本示例介绍使用了Tab组件实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。[详细说明文档](./CommonAppDevelopment/feature/handletabs/README_zh.md)。
+本示例介绍使用了Tab组件实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。[详细说明文档](./CommonAppDevelopment/feature/handletabs/README.md)。
 
 <img src="./CommonAppDevelopment/screenshots/device/HandleTabs.gif" width="200">
 
@@ -179,7 +182,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 本示例介绍了通过应用事件打点hiAppEvent获取上一次应用异常信息的方法，主要分为应用崩溃、应用卡死以及系统查杀三种。[详细说明文档](./CommonAppDevelopment/feature/applicationexception/README.md)。
 
-<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/fault.jpeg" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/application_exception.gif" width="200">
 
 #### 深浅模式案例
 
@@ -223,11 +226,29 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/vibrate_effect.gif" width="200">
 
+#### 自定义日历选择器
+
+日历选择器是出行类应用常见模块。自定义日历选择器案例可以参考[详细说明文档](./CommonAppDevelopment/feature/customcalendarpickerdialog/README.md)。
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/custom_calendar_picker_dialog.gif" width="200">
+
 #### 状态栏显隐变化案例
 
 本示例介绍使用Scroll组件的滚动事件 **onScroll** 实现状态栏显隐变化。该场景多用于各种软件的首页、我的等页面中。状态栏显隐变化的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/navigationbarchange/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/NavigationBarChange.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/navigation_bar_change.gif" width="200">
+
+#### 自定义视图实现Tab效果
+
+本示例介绍使用Text、List等组件，添加点击、动画等事件 **onClick** **animateTo** 自定义视图实现类似Tab效果。自定义视图实现Tab效果的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/customview/README.md)。
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/custom_view.gif" width="200">
+
+#### 听歌识曲水波纹特效案例
+
+本示例介绍水波纹的特效。该场景多用于各种软件的按钮。听歌识曲水波纹特效案例可以参考此[详细说明文档](./CommonAppDevelopment/feature/waterripples/README.md)。
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/water_ripples.gif" width="200">
 
 ### 公共能力层
 
@@ -235,7 +256,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 公共能力层为上层的基础特性层和产品定制层提供稳定可靠的功能支持，确保整个应用/元服务的稳定性和可维护性。
 
-应用通用开发范例App公共能力层包含一下模块：[**日志打印**](./CommonAppDevelopment/common/utils/src/main/ets/log/Logger.ets)
+应用通用开发范例App公共能力层包含以下模块：[**日志打印**](./CommonAppDevelopment/common/utils/src/main/ets/log/Logger.ets)、[**功能介绍布局**](./CommonAppDevelopment/common/utils/src/main/ets/component/FunctionDescription.ets)
 
 ## 配套平台
 

@@ -15,6 +15,7 @@
 
 import { SelectPictures } from './SelectPictures';
 import { SaveNetWorkPictures } from './SaveNetWorkPictures';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 @Component
 export struct PictureManager {
@@ -62,4 +63,17 @@ export struct PictureManager {
     .barWidth(200)
     .barHeight(40)
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getPictureManager(): void {
+  PictureManager();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_PHOTO_PICK_AND_SAVE;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getPictureManager);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

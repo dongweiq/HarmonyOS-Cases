@@ -149,4 +149,4 @@ transcodePixelMap(data: http.HttpResponse) {
 
 ### 参考资料
 
-[photoViewPicker参考文档](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-file-picker.md/#photoviewpicker)
+[photoViewPicker参考文档](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-file-picker-0000001774121766)

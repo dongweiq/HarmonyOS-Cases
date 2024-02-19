@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "foldablescreencases",
+    "type": "har",
+    "deviceTypes": [
+      "phone",
+      "tablet"
+    ]
+  }
+}

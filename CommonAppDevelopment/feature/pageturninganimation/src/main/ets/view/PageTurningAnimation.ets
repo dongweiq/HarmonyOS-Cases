@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 /**
  * 实现步骤
@@ -146,4 +147,17 @@ export struct PageTurningAnimation {
     .height($r('app.string.common_stack_height'))
     .backgroundColor($r('app.color.stack_background_color'))
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getPageTurningAnimation(): void {
+  PageTurningAnimation();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_PAGE_TURNING_ANIMATION;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getPageTurningAnimation);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

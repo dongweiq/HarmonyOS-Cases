@@ -95,6 +95,46 @@
     {
       "name": "control_leftYAxis_limitline_location",
       "value": "左Y轴LimitLine位置："
+    },
+    {
+      "name": "fitness_record",
+      "value": "健身记录"
+    },
+    {
+      "name": "font_family",
+      "value": "HarmonyHeiTi"
+    },
+    {
+      "name": "fitness_date",
+      "value": "1/1 - 1/7"
+    },
+    {
+      "name": "fitness_rate",
+      "value": "近7天：达标 71%"
+    },
+    {
+      "name": "layout_100",
+      "value": "100%"
+    },
+    {
+      "name": "layout_40",
+      "value": "40%"
+    },
+    {
+      "name": "health_record",
+      "value": "健康数据"
+    },
+    {
+      "name": "health_date",
+      "value": "1/7"
+    },
+    {
+      "name": "heart_rate",
+      "value": "心率"
+    },
+    {
+      "name": "step_number",
+      "value": "步数"
     }
   ]
 }

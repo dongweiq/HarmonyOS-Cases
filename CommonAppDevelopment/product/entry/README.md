@@ -52,11 +52,11 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
 
 ### 开发步骤
 
-通过onclick事件调用NavPathStack.pushPath方法跳转页面。源码参考[MainPage.ets](../../feature//functionalscenes/src/main/ets/FunctionalScenes.ets)
+通过onclick事件调用NavPathStack.pushPath方法跳转页面。源码参考[MainPage.ets](../../feature/functionalscenes/src/main/ets/FunctionalScenes.ets)
   ```ts
   Column()
     .onClick(() => {
-      this.pageStack.pushPath({ name: listData.path });
+      this.pageStack.pushPath({ name: listData.moduleName, param: listData.param });
     })
   ```
 

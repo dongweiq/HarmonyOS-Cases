@@ -16,6 +16,7 @@ import { GoodsList } from './GoodsList'
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 import window from '@ohos.window';
 import { logger, FunctionDescription } from '@ohos/base';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 /**
  * 实现步骤：
@@ -186,4 +187,17 @@ async function setStatusBar(currentMode: number) {
       logger.info('Succeeded in setting the system bar properties.');
     });
   })
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getFitForDarkMode(): void {
+  FitForDarkMode();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_DARK_MODE;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getFitForDarkMode);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

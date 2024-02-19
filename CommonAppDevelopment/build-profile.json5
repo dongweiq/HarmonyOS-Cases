@@ -1,7 +1,6 @@
 {
   "app": {
-    "signingConfigs": [
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
@@ -102,6 +101,10 @@
       "srcPath": "./feature/variablewatch"
     },
     {
+      "name": "routermodule",
+      "srcPath": "./feature/routermodule"
+    },
+    {
       "name": "pageturninganimation",
       "srcPath": "./feature/pageturninganimation"
     },
@@ -140,6 +143,38 @@
     {
       "name": "swipersmoothvariation",
       "srcPath": "./feature/swipersmoothvariation"
+    },
+    {
+      "name": "swipercomponent",
+      "srcPath": "./feature/swipercomponent"
+    },
+    {
+      "name": "searchcomponent",
+      "srcPath": "./feature/searchcomponent"
+    },
+    {
+      "name": "navigationbarchange",
+      "srcPath": "./feature/navigationbarchange"
+    },
+    {
+      "name": "mediafullscreen",
+      "srcPath": "./feature/mediafullscreen"
+    },
+    {
+      "name": "citysearch",
+      "srcPath": "./feature/citysearch"
+    },
+    {
+      "name": "imagecomment",
+      "srcPath": "./feature/imagecomment"
+    },
+    {
+      "name": "waterripples",
+      "srcPath": "./feature/waterripples",
+    },
+    {
+      "name": "foldablescreencases",
+      "srcPath": "./feature/foldablescreencases"
     }
   ]
 }

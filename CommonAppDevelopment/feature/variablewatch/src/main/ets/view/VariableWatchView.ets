@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
 
 import { FistGoodsModel, SecondGoodsItemList, ThirdGoodsItem } from '../model/GoodsModel'
 import { loadSource, targetItemList, originItemList } from '../model/GoodsModel'
@@ -86,4 +87,17 @@ export struct VariableWatchView {
     .backgroundColor($r('app.color.ohos_id_color_sub_background'))
     .padding($r('app.string.ohos_id_card_margin_start'))
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getVariableWatchView(): void {
+  VariableWatchView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_VARIABLE_WATCH;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getVariableWatchView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

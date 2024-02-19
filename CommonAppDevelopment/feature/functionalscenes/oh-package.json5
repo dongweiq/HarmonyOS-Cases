@@ -23,6 +23,8 @@
   "version": "1.0.0",
   "dependencies": {
     // 基础公共类，需要使用资源
-    "@ohos/base": "file:../../common/utils"
+    "@ohos/base": "file:../../common/utils",
+    // 动态路由模块
+    "@ohos/dynamicsRouter": "file:../../feature/routermodule"
   }
 }

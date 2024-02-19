@@ -7,6 +7,14 @@
     {
       "name": "border_color",
       "value": "#317AF7"
+    },
+    {
+      "name": "divider",
+      "value": "#2c182431"
+    },
+    {
+      "name": "bg_color",
+      "value": "#99000000"
     }
   ]
 }

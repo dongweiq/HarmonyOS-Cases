@@ -1,0 +1,40 @@
+{
+  "integer": [
+    {
+      "name": "title_fontsize",
+      "value": 26
+    },
+    {
+      "name": "title_width",
+      "value": 200
+    },
+    {
+      "name": "top_bar_icon_width",
+      "value": 60
+    },
+    {
+      "name": "top_bar_height",
+      "value": 140
+    },
+    {
+      "name": "top_bar_padding",
+      "value": 20
+    },
+    {
+      "name": "file_icon_width",
+      "value": 20
+    },
+    {
+      "name": "decompress_button_width",
+      "value": 60
+    },
+    {
+      "name": "decompress_button_height",
+      "value": 28
+    },
+    {
+      "name": "stroke_width",
+      "value": 1
+    }
+  ]
+}

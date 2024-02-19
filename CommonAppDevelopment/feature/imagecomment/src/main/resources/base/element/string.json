@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "most_select_image",
+      "value": "最多只能选择9张图片！"
+    },
+    {
+      "name": "publish",
+      "value": "发布"
+    },
+    {
+      "name": "percent_100",
+      "value": "100%"
+    },
+    {
+      "name": "percent_30",
+      "value": "30%"
+    },
+    {
+      "name": "percent_95",
+      "value": "95%"
+    },
+    {
+      "name": "hot_comment",
+      "value": "热门评论"
+    },
+    {
+      "name": "no_comment",
+      "value": "还没有评论，快来添加评论吧"
+    },
+    {
+      "name": "text_input_hint",
+      "value": "请文明发言"
+    }
+  ]
+}

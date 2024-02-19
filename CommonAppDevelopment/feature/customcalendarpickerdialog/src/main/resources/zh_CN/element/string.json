@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "departure",
+      "value": "北京"
+    },
+    {
+      "name": "destination",
+      "value": "上海"
+    },
+    {
+      "name": "check_ticket",
+      "value": "检查车票"
+    },
+    {
+      "name": "departure_date",
+      "value": "出发日期"
+    },
+    {
+      "name": "weekWidth",
+      "value": "14.3%"
+    }
+  ]
+}

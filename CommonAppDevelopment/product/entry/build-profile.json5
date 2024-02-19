@@ -16,11 +16,50 @@
 {
   "apiType": "stageMode",
   "buildOption": {
+    "arkOptions": {
+      // TODO：知识点：动态路由中使用了动态import变量表达式的能力，需要在这里配置模块名，和oh-package.json5中dependencies下面配置的模块名相同。
+      "runtimeOnly": {
+        "sources": [
+        ],
+        "packages": [
+          "@ohos/event-propagation",
+          "@ohos/nativerawfile",
+          "@ohos/custom-tabbar",
+          "@ohos/secondarylinkage",
+          "@ohos/barchart",
+          "@ohos/addressexchange",
+          "@ohos/imageviewer",
+          "@ohos/pendingitems",
+          "@ohos/gbktranscoding",
+          "@ohos/handtabs",
+          "@ohos/modalwindow",
+          "@ohos/slidetohideanddisplace",
+          "@ohos/NavigationParameterTransferView",
+          "@ohos/akiusepractice",
+          "@ohos/variablewatch",
+          "@ohos/photopickandsave",
+          "@ohos/pageturninganimation",
+          "@ohos/fitfordarkmode",
+          "@ohos/marquee",
+          "@ohos/pulltorefreshnews",
+          "@ohos/verifycode",
+          "@ohos/nativeprogressnotify",
+          "@ohos/vibrateeffect",
+          "@ohos/swipersmoothvariation",
+          "@ohos/applicationexception",
+          "@ohos/navigationbarchange",
+          "@ohos/mediafullscreen",
+          "@ohos/citysearch",
+          "@ohos/waterripples",
+          "@ohos/foldablescreencases",
+          "@ohos/imagecomment"
+        ]
+      }
+    }
   },
   "targets": [
     {
-      "name": "default",
-      "runtimeOS": "HarmonyOS"
+      "name": "default"
     },
     {
       "name": "ohosTest",
