@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例介绍城市选择场景的使用：通过[AlphabetIndexer](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/arkui-ts/ts-container-alphabet-indexer.md/)实现首字母快速定位城市的索引条导航。
+本示例介绍城市选择场景的使用：通过[AlphabetIndexer](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-alphabet-indexer-0000001820880865)实现首字母快速定位城市的索引条导航。
 
 ### 效果图预览
 
