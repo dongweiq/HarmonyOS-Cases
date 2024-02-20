@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-![](../../product/entry/src/main/resources/base/media/citySearch.gif)
+![](../../product/entry/src/main/resources/base/media/city_search.gif)
 
 **使用说明**
 
