@@ -54,6 +54,7 @@
           "@ohos/foldablescreencases",
           "@ohos/imagecomment",
           "@ohos/searchcomponent"
+          "@ohos/nativesavepictosandbox",
           "@ohos/componentstack",
           "@ohos/customview",
           "@ohos/dragandexchange",

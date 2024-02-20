@@ -1,0 +1,48 @@
+{
+  "integer": [
+    {
+      "name": "common_padding_top",
+      "value": 5
+    },
+    {
+      "name": "common_margin_left",
+      "value": 10
+    },
+    {
+      "name": "common_radius",
+      "value": 10
+    },
+    {
+      "name": "common_padding",
+      "value": 10
+    },
+    {
+      "name": "sandBox_padding12",
+      "value": 12
+    },
+    {
+      "name": "sandBox_margin",
+      "value": 10
+    },
+    {
+      "name": "sandBox_margin12",
+      "value": 12
+    },
+    {
+      "name": "sandBox_image_width",
+      "value": 96
+    },
+    {
+      "name": "sandBox_image_height",
+      "value": 140
+    },
+    {
+      "name": "sandBox_image_height180",
+      "value": 180
+    },
+    {
+      "name": "sandBox_font_size_14",
+      "value": 14
+    }
+  ]
+}
