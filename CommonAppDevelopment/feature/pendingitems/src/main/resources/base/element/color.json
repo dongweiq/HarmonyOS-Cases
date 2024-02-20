@@ -6,6 +6,10 @@
     },{
       "name": "pageBcColor",
       "value": "#fff1f3f5"
+    },
+    {
+      "name": "borderColor",
+      "value": "#ffdcdfdf"
     }
   ]
 }
