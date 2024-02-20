@@ -15,7 +15,7 @@
 
 import { SelectPictures } from './SelectPictures';
 import { SaveNetWorkPictures } from './SaveNetWorkPictures';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 @Component
 export struct PictureManager {

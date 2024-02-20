@@ -53,7 +53,11 @@
           "@ohos/waterripples",
           "@ohos/foldablescreencases",
           "@ohos/imagecomment",
-          "@ohos/nativesavepictosandbox"
+          "@ohos/nativesavepictosandbox",
+          "@ohos/componentstack",
+          "@ohos/customview",
+          "@ohos/dragandexchange",
+          "@ohos/customcalendarpickerdialog"
         ]
       }
     }

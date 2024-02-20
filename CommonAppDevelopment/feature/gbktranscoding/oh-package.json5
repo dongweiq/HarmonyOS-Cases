@@ -9,6 +9,6 @@
     "@ohos/base": "file:../../common/utils",
     "@ohos/axios": "2.2.0-rc.3",
     // 动态路由模块，用于配置动态路由
-    "@ohos/dynamicsRouter": "file:../../feature/routermodule"
+    "@ohos/dynamicsrouter": "file:../../feature/routermodule"
   }
 }

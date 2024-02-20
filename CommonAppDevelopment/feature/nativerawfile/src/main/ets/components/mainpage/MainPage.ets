@@ -23,7 +23,7 @@
 
 import nativeRawfileApi from 'libnativerawfileapi.so';
 import { FunctionDescription } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 let rawfileTotalContent: string;
 

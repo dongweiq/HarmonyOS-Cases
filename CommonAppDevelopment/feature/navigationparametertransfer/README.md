@@ -75,8 +75,7 @@
 ### 模块依赖
 
 1. 本实例依赖[class-transformer三方库](https://github.com/pleerock/class-transformer-demo)。
-2. 本实例依赖common模块来实现[公共组件FunctionDescription](../../common/utils/src/main/ets/FunctionDescription.ets)。
+2. 本实例依赖common模块来实现[公共组件FunctionDescription](../../common/utils/src/main/ets/component/FunctionDescription.ets)。
 ### 参考资料
 
-[class-transformer三方库](https://github.com/pleerock/class-transformer-demo)  
-[公共组件FunctionDescription](../../common/utils/src/main/ets/FunctionDescription.ets)
+[class-transformer三方库](https://github.com/pleerock/class-transformer-demo)

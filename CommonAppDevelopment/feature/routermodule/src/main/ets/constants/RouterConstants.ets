@@ -47,6 +47,11 @@ export class RouterNameConstants {
   static readonly ROUTER_NAME_FOLDABLE_SCREEN_CASES: string = '@ohos/foldablescreencases';
   static readonly ROUTER_NAME_IMAGE_COMMENT: string = '@ohos/imagecomment';
   static readonly ROUTER_NAME_PIC2SANDBOX: string = '@ohos/nativesavepictosandbox';
+  static readonly ROUTER_NAME_COMPONENT_TACK: string = '@ohos/componentstack';
+  static readonly ROUTER_NAME_CUSTOM_CALENDAR_PICKER_DIALOG: string = '@ohos/customcalendarpickerdialog';
+  static readonly ROUTER_NAME_CUSTOM_VIEW: string = '@ohos/customview';
+  static readonly ROUTER_NAME_DECOMPRESS_FILE: string = '@ohos/decompressfile';
+  static readonly ROUTER_NAME_DRAG_EXCHANGE: string = '@ohos/dragandexchange';
 }
 
 // 动态路由中需要加载的模块路径，和functionalscenes模块的build-profile.json5中dependencies下面配置的模块依赖名相同
@@ -83,4 +88,9 @@ export class RouterPathConstants {
   static readonly ROUTER_PATH_MUSIC_PLAYER: string = './src/main/ets/pages/MusicPlayerPage';
   static readonly ROUTER_PATH_IMAGE_COMMENT: string = './src/main/ets/components/view/ImageCommentView';
   static readonly ROUTER_PATH_PIC2SANDBOX: string = './src/main/ets/view/NativePictureToSandboxView';
+  static readonly ROUTER_PATH_COMPONENT_TACK: string = './src/main/ets/view/ComponentStack.ets';
+  static readonly ROUTER_PATH_CUSTOM_CALENDAR_PICKER_DIALOG: string = './src/main/ets/view/CalendarView.ets';
+  static readonly ROUTER_PATH_CUSTOM_VIEW: string = './src/main/ets/view/CustomView.ets';
+  static readonly ROUTER_PATH_DECOMPRESS_FILE: string = './src/main/ets/view/MainPage.ets';
+  static readonly ROUTER_PATH_DRAG_EXCHANGE: string = './src/main/ets/pages/Launcher.ets';
 }

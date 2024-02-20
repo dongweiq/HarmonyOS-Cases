@@ -18,7 +18,7 @@ import { inputMethod } from '@kit.IMEKit';
 import { Logger } from '../utils/Logger';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { VerifyCodeConstants } from '../constants/VerifyCodeConstants';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 @Extend(Text)
 function verifyCodeUnitStyle() {

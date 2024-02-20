@@ -179,6 +179,22 @@
     {
       "name": "nativesavepictosandbox",
       "srcPath": "./feature/nativesavepictosandbox"
+    },
+    {
+      "name": "componentstack",
+      "srcPath": "./feature/componentstack"
+    },
+    {
+      "name": "customcalendarpickerdialog",
+      "srcPath": "./feature/customcalendarpickerdialog"
+    },
+    {
+      "name": "customview",
+      "srcPath": "./feature/customview"
+    },
+    {
+      "name": "dragandexchange",
+      "srcPath": "./feature/dragandexchange"
     }
   ]
 }

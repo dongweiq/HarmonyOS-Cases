@@ -18,7 +18,7 @@ import { BusinessError } from '@ohos.base';
 import { logger } from '@ohos/base';
 import curves from '@ohos.curves';
 import { CONFIGURATION } from './components/constantsData';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 抖动动画及手机振动效果

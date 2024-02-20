@@ -15,7 +15,7 @@
 
 import libaki from 'libaki_use_practice.so'; // 导入自定义AKI插件
 import { FunctionDescription } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
 
 /**
  * 本示例介绍使用AKI编写的C++函数实现跨线程调用JS函数场景。在ArkTS侧使用AKI的JSBind.bindFunction绑定

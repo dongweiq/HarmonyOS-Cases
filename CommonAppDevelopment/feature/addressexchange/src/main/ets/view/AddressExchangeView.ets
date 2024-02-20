@@ -14,7 +14,7 @@
  */
 
 import curves from '@ohos.curves';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 实现步骤：
