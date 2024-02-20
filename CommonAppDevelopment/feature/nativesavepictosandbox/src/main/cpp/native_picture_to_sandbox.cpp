@@ -38,7 +38,7 @@ const char libCurlDownload[256] = "libcurlDownload.so";   // 下载so文件
  */
 static napi_value SaveImageOfInternet(napi_env env, napi_callback_info info) {
     OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "saveImageOfInternet load libcurlDownload.so begin");
-    // 使用dlopen动态加载so库，返回so库的句柄
+    // TODO：知识点：使用dlopen动态加载so库，返回so库的句柄
     void *handler = dlopen(libCurlDownload, RTLD_LAZY);
     if (handler == nullptr) {
         // 抛出加载库失败的错误

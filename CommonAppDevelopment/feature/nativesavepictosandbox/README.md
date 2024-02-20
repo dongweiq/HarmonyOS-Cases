@@ -22,9 +22,10 @@
 
 
 #### Native保存网络图片到沙箱的实现主要步骤如下：
-1. 参考[libcurl编译](https://gitee.com/openharmony-sig/tpc_c_cplusplus/blob/master/thirdparty/curl/docs/hap_integrate.md)，编译libcurl.so等相关库文件。当前编译后加载libcurl.so时，通过hilog日志发现依赖了libcurl.so libcurl.so.4 libnghttp2.so libnghttp2.so.14 libzstd.so几个so文件。
+1. 参考[libcurl编译](https://gitee.com/openharmony-sig/tpc_c_cplusplus/blob/master/thirdparty/curl/docs/hap_integrate.md)，编译libcurl.so等相关库文件。当前编译后加载libcurl.so时，通过hilog日志发现依赖了libcurl.so libcurl.so.4 libnghttp2.so libnghttp2.so.14 libzstd.so几个so文件。  
+   其中libcurl.so为开源的跨平台网络协议库，支持七层网络模型中应用层的各种协议；libnghttp2.so是一个HTTP/2和SPDY协议的实现，用于客户端，服务器，代理，和服务器推送应用；libzstd.so是一个实现了Zstandard算法的压缩库，常用于数据库、文件系统及网络传输等。
 
-2. 将开源库libcurl相关so文件以及libcurlDownload.so放入模块下的libs相应目录。
+2. 将开源库libcurl相关的so文件以及封装了libcurl下载功能的libcurlDownload.so放入模块下的libs相应目录。
 
 3. 在CMakeLists中导入相关库文件。
 
