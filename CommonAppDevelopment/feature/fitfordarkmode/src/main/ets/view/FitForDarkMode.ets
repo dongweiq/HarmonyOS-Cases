@@ -16,7 +16,7 @@ import { GoodsList } from './GoodsList'
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 import window from '@ohos.window';
 import { logger, FunctionDescription } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 实现步骤：

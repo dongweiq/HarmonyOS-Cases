@@ -18,7 +18,7 @@ import { PreferencesManager } from '../model/PreferencesManager';
 import { BUTTON_TEXT } from '../model/MockData';
 import { FaultDataSource } from '../model/DataSource';
 import { FunctionDescription, logger } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 const TAG: string = 'FaultLogger'; // 应用异常页面标识
 const DELAY_TIME:number = 3000; // 延时时间

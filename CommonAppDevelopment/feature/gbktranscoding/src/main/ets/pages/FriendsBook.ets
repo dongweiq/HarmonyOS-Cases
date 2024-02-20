@@ -22,7 +22,7 @@ import util from '@ohos.util';
 import axios, { AxiosResponse } from "@ohos/axios";
 import { BasicDataSource } from '../viewModel/BasicDataSource';
 import { FunctionDescription } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 const LIST_SPACE: number = 0; // 列表默认间隔
 const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间

@@ -19,7 +19,7 @@ import { ImageScaleModel } from '../model/ImageScaleModel';
 import { ImageContentView } from './ImageContentView';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 @Preview
 @Component

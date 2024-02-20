@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
+
 /**
  * 实现步骤：
  * 1. 页签实现：添加onClick方法，记录点击的index，index变化后，改变页签颜色、字体大小，使用animateTo方法实现页签切换动画
@@ -124,7 +126,7 @@ struct DiscoverTopView {
                     playMode: PlayMode.Normal,
                     onFinish: () => {
                       this.currentIndex = idx;
-                      // 高性能知识点：scrollToIndex方法，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。在使用大量item时，应避免使用此方法
+                      // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
                       this.scroller.scrollToIndex(this.currentIndex, true, ScrollAlign.START);
                     }
                   }, () => {
@@ -140,7 +142,7 @@ struct DiscoverTopView {
 
         Row()
           .width($r('app.integer.width_and_height_twenty'))
-          .height($r('app.integer.one_hundred_percent'))
+          .height($r('app.string.one_hundred_percent'))
           .borderRadius($r('app.integer.borderRadius_value'))
           .backgroundColor($r('app.color.color_bar'))
           .position({x: this.transitionX, y: $r('app.integer.positionY')})
@@ -230,7 +232,7 @@ struct DiscoverTabView {
             if (event.offsetX < this.judgmentValue) {
               if (this.currentIndex < this.titleArray.length - this.currentIndexRadix) {
                 let temIndex: number = this.currentIndex + this.currentIndexRadix;
-                // 高性能知识点：scrollToIndex方法，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。在使用大量item时，应避免使用此方法
+                // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
                 this.scroller.scrollToIndex(temIndex, true, ScrollAlign.START);
                 this.wantGoIndex = temIndex;
                 // 动画效果
@@ -249,7 +251,7 @@ struct DiscoverTabView {
             } else {
               if (this.currentIndex > this.judgmentValue) {
                 let temIndex: number = this.currentIndex - this.currentIndexRadix;
-                // 高性能知识点：scrollToIndex方法，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。在使用大量item时，应避免使用此方法
+                // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
                 this.scroller.scrollToIndex(temIndex, true, ScrollAlign.START);
                 this.wantGoIndex = temIndex;
                 // 动画效果
@@ -276,4 +278,17 @@ struct DiscoverTabView {
     .width($r('app.string.one_hundred_percent'))
     .height($r('app.integer.width_and_height_fifty'))
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getCustomView(): void {
+  CustomView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_CUSTOM_VIEW;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getCustomView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

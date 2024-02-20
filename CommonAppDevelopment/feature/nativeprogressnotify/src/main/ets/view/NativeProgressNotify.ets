@@ -15,7 +15,7 @@
 
 import naitiveprogressnotify from 'libnativeprogressnotify.so';
 import { NativeProgressNotifyConstants } from '../constants/NativeProgressNotifyConstants';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 @Component
 export struct NativeProgressNotify {

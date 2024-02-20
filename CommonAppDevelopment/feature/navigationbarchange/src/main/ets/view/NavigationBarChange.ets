@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 // 功能模块结构
 interface ItemInfo {

@@ -15,6 +15,7 @@
 
 import { IconList1, IconList2, IconList3 } from '../view/IconView';
 import { ProductList } from '../view/ProductList';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
 
 /**
  * 实现步骤：
@@ -187,4 +188,17 @@ export struct ComponentStack {
       .padding({ top: $r('app.integer.stack_padding_top') })
     }
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getComponentStack(): void {
+  ComponentStack();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_COMPONENT_TACK;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getComponentStack);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

@@ -68,7 +68,7 @@
     // 异常处理
     "@ohos/applicationexception": "file:../../feature/applicationexception",
     // 动态路由模块
-    "@ohos/dynamicsRouter": "file:../../feature/routermodule",
+    "@ohos/dynamicsrouter": "file:../../feature/routermodule",
     // 状态栏显隐变化
     "@ohos/navigationbarchange": "file:../../feature/navigationbarchange",
     // 视频全屏切换案例
@@ -80,6 +80,12 @@
     // 折叠屏场景方案
     "@ohos/foldablescreencases": "file:../../feature/foldablescreencases",
     // 发布图片评论案例
-    "@ohos/imagecomment": "file:../../feature/imagecomment"
+    "@ohos/imagecomment": "file:../../feature/imagecomment",
+    // 组件堆叠案例
+    "@ohos/componentstack": "file:../../feature/componentstack",
+    // 自定义视图实现Tab效果案例
+    "@ohos/customview": "file:../../feature/customview",
+    // Grid和List内拖拽交换子组件位置案例
+    "@ohos/dragandexchange": "file:../../feature/dragandexchange"
   }
 }

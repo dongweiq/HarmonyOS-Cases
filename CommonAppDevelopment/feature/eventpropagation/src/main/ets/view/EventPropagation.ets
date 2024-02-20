@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import { FunctionDescription } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 @Component
 export struct EventPropagation {

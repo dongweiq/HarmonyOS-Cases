@@ -37,7 +37,7 @@ import {
   YAxis, // 图表Y轴部件
   YAxisLabelPosition // 图表Y轴标签位置枚举类
 } from '@ohos/mpchart';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
 
 @Component
 export struct BarChartPage {

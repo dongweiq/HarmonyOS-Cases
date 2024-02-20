@@ -20,7 +20,7 @@
  */
 
 import util from '@ohos.util';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 import { PullToRefresh } from '@ohos/pulltorefresh/index';
 import { BasicDataSource } from '../viewModel/BasicDataSource';
 

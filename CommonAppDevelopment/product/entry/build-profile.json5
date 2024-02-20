@@ -54,6 +54,10 @@
           "@ohos/foldablescreencases",
           "@ohos/imagecomment",
           "@ohos/searchcomponent"
+          "@ohos/componentstack",
+          "@ohos/customview",
+          "@ohos/dragandexchange",
+          "@ohos/customcalendarpickerdialog"
         ]
       }
     }

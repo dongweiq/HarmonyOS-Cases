@@ -17,7 +17,7 @@ import { Comment, CommentData } from '../model/CommentModel';
 import { CommentView } from './CommentItemView';
 import { CommentInputDialog } from './CommentInputDialog';
 import { mockData } from '../model/MockCommentData';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 /** 图片评论页面
  * 实现步骤：

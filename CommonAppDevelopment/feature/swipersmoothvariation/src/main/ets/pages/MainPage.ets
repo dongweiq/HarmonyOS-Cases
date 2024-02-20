@@ -15,7 +15,7 @@
 
 import { CommonConstants as Const } from '../common/CommonConstants';
 import { logger } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 代表自定义类型数据的接口。
