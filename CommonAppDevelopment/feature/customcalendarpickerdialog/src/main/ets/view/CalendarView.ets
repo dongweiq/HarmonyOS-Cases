@@ -14,6 +14,7 @@
  */
 
 import { CustomCalendarPickerDialog } from './CustomCalendarPickerDialog';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
 
 /**
  * 自定义日历选择器
@@ -98,4 +99,17 @@ export struct CalendarView {
     .height('100%')
     .padding($r('app.string.ohos_id_corner_radius_default_m'))
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getCalendarView(): void {
+  CalendarView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_CUSTOM_CALENDAR_PICKER_DIALOG;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getCalendarView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

@@ -15,6 +15,7 @@
 
 import { GridSceneView } from '../view/GridSceneView';
 import { ListSceneView } from '../view/ListSceneView';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
 
 /**
  * 模拟桌面背景，模块化Grid与List示图实现
@@ -32,4 +33,17 @@ export struct Launcher {
     .backgroundImage($r('app.media.wallpaper_default'))
     .backgroundImageSize(ImageSize.Cover)
   }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getLauncher(): void {
+  Launcher();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterNameConstants.ROUTER_NAME_DRAG_EXCHANGE;
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getLauncher);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }

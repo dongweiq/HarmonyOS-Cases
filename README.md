@@ -55,6 +55,14 @@
    |   |---navigationbarchange         // 基础特性层-状态栏显隐变化案例
    |   |---customview                  // 基础特性层-自定义视图实现Tab效果
    |   |---waterripples                // 基础特性层-听歌识曲水波纹特效案例
+   |   |---citysearch                  // 城市选择案例
+   |   |---componentstack              // 组件堆叠案例
+   |   |---dragandexchange             // Grid和List内拖拽交换子组件位置案例
+   |   |---foldablescreencases         // 折叠屏音乐播放器案例
+   |   |---imagecomment                // 发布图片评论案例
+   |   |---mediafullscreen             // 视频全屏切换案例
+   |   |---swipercomponent             // 多层级轮播图案例
+   |   |---swipersmoothvariation       // Swiper高度可变化效果案例
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -121,7 +129,7 @@ TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不�
 
 二级联动是指一个列表（一级列表）的选择结果，来更新另一个列表（二级列表）的选项。二级联动的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/secondarylinkage/README.md)。
 
-<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/secondary_linkage.gif" width="200">
+<img src="./CommonAppDevelopment/screenshots/device/SecondaryLinkage.gif" width="200">
 
 #### 列表编辑实现案例
 
@@ -184,7 +192,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/application_exception.gif" width="200">
 
-#### 深色模式案例
+#### 深浅模式案例
 
 本示例介绍在开发应用以适应深色模式时，对于深色和浅色模式的适配方案，采取了多种策略。[详细说明文档](./CommonAppDevelopment/feature/fitfordarkmode/README.md)。
 
@@ -249,6 +257,48 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 本示例介绍水波纹的特效。该场景多用于各种软件的按钮。听歌识曲水波纹特效案例可以参考此[详细说明文档](./CommonAppDevelopment/feature/waterripples/README.md)。
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/water_ripples.gif" width="200">
+
+#### 城市选择案例
+
+本示例介绍城市选择场景的使用：通过AlphabetIndexer实现首字母快速定位城市的索引条导航。[详细说明文档](./CommonAppDevelopment/feature/citysearch/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/city_search.gif" width="200">
+
+#### 组件堆叠案例
+
+本示例介绍运用Stack组件以构建多层次堆叠的视觉效果。通过绑定Scroll组件的onScroll滚动事件回调函数，精准捕获滚动动作的发生。当滚动时，实时地调节组件的透明度、高度等属性，从而成功实现了嵌套滚动效果、透明度动态变化以及平滑的组件切换。[详细说明文档](./CommonAppDevelopment/feature/componentstack/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/component_stack.gif" width="200">
+
+#### Grid和List内拖拽交换子组件位置案例
+
+本示例分别通过onItemDrop()和onDrop()回调，实现子组件在Grid和List中的子组件位置交换。[详细说明文档](./CommonAppDevelopment/feature/dragandexchange/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/drag_and_exchange.gif" width="200">
+
+#### 折叠屏音乐播放器案例
+
+本示例介绍使用ArkUI中的容器组件FolderStack在折叠屏设备中实现音乐播放器场景。[详细说明文档](./CommonAppDevelopment/feature/foldablescreencases/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/music_player.gif" width="200">
+
+#### 折叠屏音乐播放器案例
+
+本示例将通过发布图片评论场景，介绍如何使用startAbilityForResult接口拉起相机拍照，并获取相机返回的数据。[详细说明文档](./CommonAppDevelopment/feature/imagecomment/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_comment.gif" width="200">
+
+#### 视频全屏切换案例
+
+本示例将通过发布图片评论场景，介绍如何使用startAbilityForResult接口拉起相机拍照，并获取相机返回的数据。[详细说明文档](./CommonAppDevelopment/feature/imagecomment/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_comment.gif" width="200">
+
+#### 多层级轮播图案例
+
+本示例介绍使用ArkUIstack组件实现多层级瀑布流。该场景多用于购物、资讯类应用。[详细说明文档](./CommonAppDevelopment/feature/swipercomponent/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/swiper_component.gif" width="200">
 
 ### 公共能力层
 

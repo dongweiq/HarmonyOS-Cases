@@ -17,7 +17,7 @@ import { FunctionDescription, logger } from '@ohos/base';
 import { TripDataType } from '../model/DataType';
 import Constants from '../model/Constants';
 import { TripDataSource } from '../model/DataSource';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 本示例介绍了文本宽度过宽时，则实现跑马灯效果(文本首尾相连循环滚动并且显示在同一可视区，以及每循环一次之后会停滞一段时间后再滚动)。

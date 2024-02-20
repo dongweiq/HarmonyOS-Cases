@@ -16,7 +16,7 @@
 import { ALL_CITY2, CITY_DATA } from '../model/DetailData';
 import { SearchView } from '../view/SearchView';
 import { CityView } from '../view/CityView';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 const searchButtonText = '搜索';
 

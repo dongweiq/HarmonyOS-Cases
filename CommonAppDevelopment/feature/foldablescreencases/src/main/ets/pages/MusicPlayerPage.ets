@@ -24,7 +24,7 @@ import { MusicPlayerCtrlComp } from '../components/MusicPlayerCtrlComp';
 import { MusicPlayerInfoComp } from '../components/MusicPlayerInfoComp';
 
 import { logger } from '@ohos/utils';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 音乐播放器页面
