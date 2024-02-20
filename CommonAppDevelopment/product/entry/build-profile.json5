@@ -52,7 +52,11 @@
           "@ohos/citysearch",
           "@ohos/waterripples",
           "@ohos/foldablescreencases",
-          "@ohos/imagecomment"
+          "@ohos/imagecomment",
+          "@ohos/componentstack",
+          "@ohos/customview",
+          "@ohos/dragandexchange",
+          "@ohos/customcalendarpickerdialog"
         ]
       }
     }

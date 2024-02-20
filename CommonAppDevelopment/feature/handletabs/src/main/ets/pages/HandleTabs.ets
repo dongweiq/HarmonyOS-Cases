@@ -20,7 +20,7 @@
  *  3. 在自定义TabBar中修改focusIndex和tabArray的值时，Tab组件根据数据变化进行对应UI变更。
  */
 import util from '@ohos.util';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 import { FunctionDescription } from '@ohos/base/Index';
 import { STYLE_CONFIGURATION } from '../model/constantsData';
 import { MenuBar } from './MenuBar';

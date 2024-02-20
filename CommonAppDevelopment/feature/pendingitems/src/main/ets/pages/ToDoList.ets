@@ -16,7 +16,7 @@
 import { ToDo } from '../model/ToDo';
 import { ToDoListItem } from './ToDoListItem';
 import promptAction from '@ohos.promptAction';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 /*
  * 实现步骤：

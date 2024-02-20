@@ -15,7 +15,7 @@
 
 import { TABINFO } from '../model/TabBarData';
 import { TabBarDataType } from '../model/DataType';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 const HOME_TAB_BAR_INDEX: number = 0; // 初始化社区的tab下标
 const COMMUNITY_TAB_BAR_INDEX: number = 2; // 初始化社区的tab下标

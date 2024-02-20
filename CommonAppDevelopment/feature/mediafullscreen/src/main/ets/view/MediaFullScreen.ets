@@ -16,7 +16,7 @@
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import { FlowItemContentsData, FlowItemContent, JsonObject } from '../model/BasicDataSource';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
 
 // window.setWindowSystemBarEnable方法的预设值，设置窗口全屏模式时状态栏和导航栏是否显示
 const WINDOW_SYSTEM_BAR: Array<'status' | 'navigation'> = ['navigation', 'status'];
