@@ -93,7 +93,7 @@ PanGesture(this.panOption)
 
 ### 高性能知识点
 
-scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
+scrollToIndex方法，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。在使用大量item时，应避免使用此方法。
 
 ### 工程结构&模块类型
 

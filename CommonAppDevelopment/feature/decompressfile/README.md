@@ -8,7 +8,7 @@
 
 ### 效果图预览
 
-![](../../product/entry/src/main/resources/base/media/decompress_file.gif)
+![](../../product/entry/src/main/resources/base/media/DecompressFile.gif)
 
 **使用说明**
 
@@ -34,13 +34,13 @@ const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
 }
 ```
 
-3. 在主线程创建一个Worker线程，通过new worker.ThreadWorker()创建Worker实例，传入Worker.ets的加载路径。源码参考[MainPage.ets](./src/main/ets/view/MainPage.ets)
+3. 在主线程创建一个Worker线程，通过new worker.ThreadWorker()创建Worker实例，传入Worker.ets的加载路径。源码参考[MainPage.ets](src/main/ets/view/mainpage/MainPage.ets)
 
 ```ts
 let workerInstance: worker.ThreadWorker = new worker.ThreadWorker('@decompressFile/ets/workers/Worker.ets');
 ```
 
-4. 主线程使用postMessage()向worker线程发送应用沙箱路径和压缩文件名称。源码参考[MainPage.ets](./src/main/ets/view/MainPage.ets)
+4. 主线程使用postMessage()向worker线程发送应用沙箱路径和压缩文件名称。源码参考[MainPage.ets](src/main/ets/view/mainpage/MainPage.ets)
 
 ```ts
 workerInstance.postMessage({ pathDir: this.pathDir, rawfileZipName: rawfileZipName });
@@ -54,7 +54,7 @@ workerPort.onmessage = (e: MessageEvents): void => {
   let rawfileZipName: string = e.data.rawfileZipName; // 带.zip后缀的压缩文件名称
 }
 ```
-6. 使用fs.access判断输出目录是否已经存在，如果不存在使用fs.mkdirSync()创建空目录用于放置解压后的文件。空目录创建成功后使用zlib.decompressFile接口解压压缩文件，输出到空目录中。源码参考[Worker.ets](./src/main/ets/workers/Worker.ets)
+6. 使用fs.access判断输出目录是否已经存在，如果不存在使用fs.mkdirSync()创建空目录用于放置解压后的文件。空目录创建成功后使用zlib.decompressFile接口解压压缩文件，输出到空目录中。源码参考[FunctionalScenes.ets](./feature/functionalscenes/src/main/ets/FunctionalScenes.ets)
 
 ```ts
 fs.access(outFileDir).then((res: boolean) => {

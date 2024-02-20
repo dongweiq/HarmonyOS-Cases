@@ -82,5 +82,5 @@ dragandexchange                  // har类型
 
 ### 参考资料
 
-1. [创建网格（Grid/GridItem）](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-layout-development-create-grid-0000001820999753)
-2. [List](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-list-0000001774121286)
+1. [创建网格（Grid/GridItem）](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/ui/arkts-layout-development-create-grid.md/)
+2. [List](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md/)

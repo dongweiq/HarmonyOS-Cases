@@ -124,7 +124,7 @@ struct DiscoverTopView {
                     playMode: PlayMode.Normal,
                     onFinish: () => {
                       this.currentIndex = idx;
-                      // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
+                      // 高性能知识点：scrollToIndex方法，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。在使用大量item时，应避免使用此方法
                       this.scroller.scrollToIndex(this.currentIndex, true, ScrollAlign.START);
                     }
                   }, () => {
@@ -230,7 +230,7 @@ struct DiscoverTabView {
             if (event.offsetX < this.judgmentValue) {
               if (this.currentIndex < this.titleArray.length - this.currentIndexRadix) {
                 let temIndex: number = this.currentIndex + this.currentIndexRadix;
-                // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
+                // 高性能知识点：scrollToIndex方法，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。在使用大量item时，应避免使用此方法
                 this.scroller.scrollToIndex(temIndex, true, ScrollAlign.START);
                 this.wantGoIndex = temIndex;
                 // 动画效果
@@ -249,7 +249,7 @@ struct DiscoverTabView {
             } else {
               if (this.currentIndex > this.judgmentValue) {
                 let temIndex: number = this.currentIndex - this.currentIndexRadix;
-                // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
+                // 高性能知识点：scrollToIndex方法，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。在使用大量item时，应避免使用此方法
                 this.scroller.scrollToIndex(temIndex, true, ScrollAlign.START);
                 this.wantGoIndex = temIndex;
                 // 动画效果
