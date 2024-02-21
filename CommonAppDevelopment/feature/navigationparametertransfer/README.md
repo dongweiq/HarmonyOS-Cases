@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-![](../../screenshots/device/navigationParameterTransfer.gif)
+![](../../product/entry/src/main/resources/base/media/navigationParameterTransfer.gif)
 
 **使用说明**
 

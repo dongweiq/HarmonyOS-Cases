@@ -57,7 +57,7 @@
           "@ohos/componentstack",
           "@ohos/customview",
           "@ohos/dragandexchange",
-          "@ohos/customcalendarpickerdialog"
+          "@ohos/customcalendarpickerdialog",
         ]
       }
     }
