@@ -24,7 +24,7 @@ import { MusicPlayerCtrlComp } from '../components/MusicPlayerCtrlComp';
 import { MusicPlayerInfoComp } from '../components/MusicPlayerInfoComp';
 
 import { logger } from '@ohos/utils';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 音乐播放器页面
@@ -117,7 +117,7 @@ export function getMusicPlayerPage(): void {
 }
 console.log('DynamicsRouter register!!!');
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_FOLDABLE_SCREEN_CASES;
+let builderName = RouterInfo.FOLDABLE_SCREEN_CASES[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getMusicPlayerPage);
   DynamicsRouter.registerBuilder(builderName, builder);

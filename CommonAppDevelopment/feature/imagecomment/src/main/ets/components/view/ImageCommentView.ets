@@ -17,7 +17,7 @@ import { Comment, CommentData } from '../model/CommentModel';
 import { CommentView } from './CommentItemView';
 import { CommentInputDialog } from './CommentInputDialog';
 import { mockData } from '../model/MockCommentData';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /** 图片评论页面
  * 实现步骤：
@@ -198,7 +198,7 @@ export function getImageCommentView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_IMAGE_COMMENT;
+let builderName = RouterInfo.IMAGE_COMMENT[0];
 if (!DynamicsRouter.getBuilder(builderName)) {
   let builder: WrappedBuilder<[object]> = wrapBuilder(getImageCommentView);
   DynamicsRouter.registerBuilder(builderName, builder);

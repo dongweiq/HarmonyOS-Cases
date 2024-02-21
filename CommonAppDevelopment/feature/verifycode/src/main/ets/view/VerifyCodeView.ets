@@ -18,7 +18,7 @@ import { inputMethod } from '@kit.IMEKit';
 import { Logger } from '../utils/Logger';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { VerifyCodeConstants } from '../constants/VerifyCodeConstants';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 @Extend(Text)
 function verifyCodeUnitStyle() {
@@ -146,7 +146,7 @@ export function getVerifyCodeView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_VERIFY_CODE;
+let builderName = RouterInfo.VERIFY_CODE[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getVerifyCodeView);
   DynamicsRouter.registerBuilder(builderName, builder);

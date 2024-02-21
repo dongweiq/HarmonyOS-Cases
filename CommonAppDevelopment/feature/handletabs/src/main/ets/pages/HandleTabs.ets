@@ -20,7 +20,7 @@
  *  3. 在自定义TabBar中修改focusIndex和tabArray的值时，Tab组件根据数据变化进行对应UI变更。
  */
 import util from '@ohos.util';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import { FunctionDescription } from '@ohos/base/Index';
 import { STYLE_CONFIGURATION } from '../model/constantsData';
 import { MenuBar } from './MenuBar';
@@ -112,7 +112,7 @@ export function getHandleTabs(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_HANDLE_TABS;
+let builderName = RouterInfo.HANDLE_TABS[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getHandleTabs);
   DynamicsRouter.registerBuilder(builderName, builder);

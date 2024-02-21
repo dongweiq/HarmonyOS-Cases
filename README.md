@@ -63,6 +63,7 @@
    |   |---mediafullscreen             // 视频全屏切换案例
    |   |---swipercomponent             // 多层级轮播图案例
    |   |---swipersmoothvariation       // Swiper高度可变化效果案例
+   |   |---decompressfile              // Worker子线程中解压文件案例
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -129,7 +130,7 @@ TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不�
 
 二级联动是指一个列表（一级列表）的选择结果，来更新另一个列表（二级列表）的选项。二级联动的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/secondarylinkage/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/SecondaryLinkage.gif" width="200">
+<img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/secondary_linkage.gif" width="200">
 
 #### 列表编辑实现案例
 
@@ -192,7 +193,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/application_exception.gif" width="200">
 
-#### 深浅模式案例
+#### 深色模式案例
 
 本示例介绍在开发应用以适应深色模式时，对于深色和浅色模式的适配方案，采取了多种策略。[详细说明文档](./CommonAppDevelopment/feature/fitfordarkmode/README.md)。
 
@@ -299,6 +300,12 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 本示例介绍使用ArkUIstack组件实现多层级瀑布流。该场景多用于购物、资讯类应用。[详细说明文档](./CommonAppDevelopment/feature/swipercomponent/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/swiper_component.gif" width="200">
+
+#### Worker子线程中解压文件
+
+本示例介绍在Worker子线程使用@ohos.zlib提供的zlib.decompressfile接口对沙箱目录中的压缩文件进行解压操作，解压成功后将解压路径返回主线程，获取解压文件列表。[详细说明文档](./CommonAppDevelopment/feature/decompressfile/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/decompress_file.gif" width="200">
 
 ### 公共能力层
 

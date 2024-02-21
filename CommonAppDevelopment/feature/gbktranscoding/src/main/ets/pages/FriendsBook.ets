@@ -22,7 +22,7 @@ import util from '@ohos.util';
 import axios, { AxiosResponse } from "@ohos/axios";
 import { BasicDataSource } from '../viewModel/BasicDataSource';
 import { FunctionDescription } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 const LIST_SPACE: number = 0; // 列表默认间隔
 const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间
@@ -216,7 +216,7 @@ export function getFriendsBook(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_GBK_TRANSCODING;
+let builderName = RouterInfo.GBK_TRANSCODING[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getFriendsBook);
   DynamicsRouter.registerBuilder(builderName, builder);

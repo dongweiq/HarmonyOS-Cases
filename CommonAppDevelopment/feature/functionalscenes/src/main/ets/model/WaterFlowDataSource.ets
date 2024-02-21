@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import { ListData } from './ListData'
+import { SceneModuleInfo } from './WaterFlowDataModel'
 
 /**
  * 实现IDataSource接口的对象，用于瀑布流组件加载数据
  */
 export class WaterFlowDataSource implements IDataSource {
-  private dataArray: ListData[] = [];
+  private dataArray: SceneModuleInfo[] = [];
   private listeners: DataChangeListener[] = [];
 
-  constructor(dataArray: ListData[]) {
+  constructor(dataArray: SceneModuleInfo[]) {
     for (let i = 0; i < dataArray.length; i++) {
       this.dataArray.push(dataArray[i]);
     }
@@ -33,7 +33,7 @@ export class WaterFlowDataSource implements IDataSource {
    * @param index 数组索引
    * @returns
    */
-  public getData(index: number): ListData {
+  public getData(index: number): SceneModuleInfo {
     return this.dataArray[index];
   }
 
@@ -176,7 +176,7 @@ export class WaterFlowDataSource implements IDataSource {
    * 改变数组数据
    * @param data：新数组
    */
-  public modifyAllData(data: ListData[]): void {
+  public modifyAllData(data: SceneModuleInfo[]): void {
     this.dataArray = data;
     this.notifyDataReload();
   }

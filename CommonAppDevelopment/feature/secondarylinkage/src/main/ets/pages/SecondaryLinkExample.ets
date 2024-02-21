@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 import { CustomDataType, MyDataSource, ListIndexPosition, COMPONENT_STYLE } from './DataType';
 import { FunctionDescription } from '@ohos/base';
@@ -226,7 +226,7 @@ export function getSecondaryLinkExample(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_SECONDARY_LINKAGE;
+let builderName = RouterInfo.SECONDARY_LINKAGE[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getSecondaryLinkExample);
   DynamicsRouter.registerBuilder(builderName, builder);

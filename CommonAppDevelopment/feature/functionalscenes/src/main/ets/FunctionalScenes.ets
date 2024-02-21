@@ -13,10 +13,8 @@
  * limitations under the License.
  */
 
-import {
-  buildRouterModel,
-  DynamicsRouter, RouterModel, RouterNameConstants, RouterPathConstants } from '@ohos/dynamicsRouter';
-import { ListData } from './model/ListData';
+import { buildRouterModel } from '@ohos/dynamicsRouter';
+import { SceneModuleInfo } from './model/WaterFlowDataModel';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
 import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
 
@@ -25,7 +23,7 @@ import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
  */
 @Component
 export struct FunctionalScenes {
-  @Link @Watch('dataChange') listData: ListData[];
+  @Link @Watch('dataChange') listData: SceneModuleInfo[];
   @Consume('pageStack') pageStack: NavPathStack;
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(this.listData);
   @State tabsIndex: number = 0;
@@ -46,7 +44,7 @@ export struct FunctionalScenes {
    * @param index 当前的列表索引
    */
   filterData(index: number) {
-    let newListData: ListData[] = []; // 用于接收筛选到的数据
+    let newListData: SceneModuleInfo[] = []; // 用于接收筛选到的数据
     // index为0时分类为全部，全部类别情况下不需要筛选
     if (index !== 0) {
       for (let i = 0; i < this.listData.length; i++) {
@@ -80,20 +78,12 @@ export struct FunctionalScenes {
    * @param listData 组件列表信息
    */
   @Builder
-  methodPoints(listData: ListData) {
+  methodPoints(listData: SceneModuleInfo) {
     Column() {
-      if (listData.isCropping) {
-        Image(listData.imageSrc)
-          .borderRadius($r('app.string.main_page_list_borderRadius'))
-          .objectFit(ImageFit.Fill)
-          .width('100%')
-      } else {
-        Image(listData.imageSrc)
-          .borderRadius($r('app.string.main_page_list_borderRadius'))
-          .objectFit(listData.isCropping ? ImageFit.Contain : ImageFit.Cover)
-          .width('100%')
-          .height(listData.imageHeight)
-      }
+      Image(listData.imageSrc)
+        .borderRadius($r('app.string.main_page_list_borderRadius'))
+        .objectFit(ImageFit.Contain)
+        .width('100%')
       Text(listData.name)
         .padding({ left: $r('app.string.main_page_padding1') })
         .width('100%')
@@ -131,7 +121,7 @@ export struct FunctionalScenes {
     .backgroundColor(Color.White)
     .onClick(() => {
       // 点击瀑布流Item时，根据点击的模块信息，将页面放入路由栈
-      buildRouterModel(listData.path, listData.routerName, listData.param);
+      buildRouterModel(listData.routerInfo[1], listData.routerInfo[0], listData.param);
     })
   }
 
@@ -176,11 +166,11 @@ export struct FunctionalScenes {
         LazyForEach(this.tabDataSource, (tabItem: TabDataModel) => {
           TabContent() {
             WaterFlow({ scroller: this.waterFlowScroller }) {
-              LazyForEach(this.dataSource, (waterFlowItem: ListData) => {
+              LazyForEach(this.dataSource, (waterFlowItem: SceneModuleInfo) => {
                 FlowItem() {
                   this.methodPoints(waterFlowItem)
                 }
-              }, (waterFlowItem: ListData) => JSON.stringify(waterFlowItem))
+              }, (waterFlowItem: SceneModuleInfo) => JSON.stringify(waterFlowItem))
             }
             .margin({ top: $r('app.string.main_page_padding2') })
             .nestedScroll({
@@ -203,6 +193,7 @@ export struct FunctionalScenes {
       .barWidth('100%')
       .barHeight('6%')
       .onChange((index: number) => {
+        this.tabsIndex = index;
         this.filterData(index);
       })
     }
