@@ -81,6 +81,8 @@
     "@ohos/foldablescreencases": "file:../../feature/foldablescreencases",
     // 发布图片评论案例
     "@ohos/imagecomment": "file:../../feature/imagecomment",
+    // native保存图片到沙箱
+    "@ohos/nativesavepictosandbox": "file:../../feature/nativesavepictosandbox",
     // 组件堆叠案例
     "@ohos/componentstack": "file:../../feature/componentstack",
     // 自定义视图实现Tab效果案例

@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 
-import {
-  buildRouterModel,
-  DynamicsRouter, RouterModel, RouterNameConstants, RouterPathConstants } from '@ohos/dynamicsRouter';
+import { buildRouterModel } from '@ohos/dynamicsRouter';
 import { ListData } from './model/ListData';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
 import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';

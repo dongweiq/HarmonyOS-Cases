@@ -58,6 +58,7 @@ struct EntryView {
     new ListData($r("app.media.water_ripples"), '听歌识曲水波纹案例', RouterNameConstants.ROUTER_NAME_WATER_RIPPLES, 1, false, '25%', RouterPathConstants.ROUTER_PATH_WATER_RIPPLES, '动效'),
     new ListData($r("app.media.music_player"), '折叠屏适配音乐播放器', RouterNameConstants.ROUTER_NAME_FOLDABLE_SCREEN_CASES, 3, false, '25%', RouterPathConstants.ROUTER_PATH_MUSIC_PLAYER, '动效'),
     new ListData($r("app.media.image_comment"), '发布图片评论', RouterNameConstants.ROUTER_NAME_IMAGE_COMMENT, 2, false, '25%', RouterPathConstants.ROUTER_PATH_IMAGE_COMMENT, '其他'),
+    new ListData($r('app.media.native_image2sandbox'), 'native保存图片到沙箱', RouterNameConstants.ROUTER_NAME_PIC2SANDBOX, 2, false, '25%', RouterPathConstants.ROUTER_PATH_PIC2SANDBOX, 'Native'),
     new ListData($r("app.media.component_stack"), '组件堆叠', RouterNameConstants.ROUTER_NAME_COMPONENT_TACK, 2, false, '25%', RouterPathConstants.ROUTER_PATH_COMPONENT_TACK, 'UI布局'),
     new ListData($r("app.media.custom_view"), '自定义视图实现Tab效果', RouterNameConstants.ROUTER_NAME_CUSTOM_VIEW, 2, false, '25%', RouterPathConstants.ROUTER_PATH_CUSTOM_VIEW, 'UI布局'),
     new ListData($r("app.media.drag_and_exchange"), 'Grid和List内拖拽交换子组件位置', RouterNameConstants.ROUTER_NAME_DRAG_EXCHANGE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_DRAG_EXCHANGE, 'UI布局'),
@@ -87,7 +88,7 @@ struct EntryView {
         Scroll() {
           Column() {
             // 首页搜索组件
-            SearchComponent({ listData: this.listData })
+            SearchComponent()
             // 首页轮播图组件
             SwiperComponent()
             // 首页列表组件

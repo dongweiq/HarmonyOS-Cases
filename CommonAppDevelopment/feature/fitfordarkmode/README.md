@@ -10,7 +10,7 @@
 
 ### 效果图预览
 
-![](../../screenshots/device/FitForDarkMode.gif)
+![](../../product/entry/src/main/resources/base/media/fit_for_dark_mode.gif)
 
 **使用说明**
 

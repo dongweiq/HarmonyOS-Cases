@@ -7,7 +7,7 @@
 
 ### 效果图预览
 
-<img src="../../screenshots/device/TodoList.gif" width="300">
+<img src="../../product/entry/src/main/resources/base/media/todo_list.gif" width="300">
 
 **使用说明**：
 

@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-<img src="../../screenshots/device/VariableWatch.gif" width="200">
+<img src="../../product/entry/src/main/resources/base/media/variable_watch.gif" width="200">
 
 **使用说明**
 
@@ -55,7 +55,7 @@ export class FistGoodsModel {
     this.itemList = itemList;
   }
 }
-  ```
+```
 2. 自定义组件中用@ObjectLink修饰对应class实例。源码参考[ProductView.ets](./src/main/ets/view/ProductView.ets)
 ```ts
 @Component
@@ -86,14 +86,14 @@ struct ThirdView {
     Column() { ... }
   }
 }
-  ```
+```
 3. 更新第三层嵌套class ThirdGoodsItem的数据，UI刷新。源码参考[VariableWatchView.ets](./src/main/ets/view/VariableWatchView.ets)
 ```ts
 this.itemList.forEach((item, index) => {
   item.imgSrc = originItemList[index].imgSrc;
   item.price = originItemList[index].price;
 }
-  ```
+```
 
 ### 高性能知识点
 
