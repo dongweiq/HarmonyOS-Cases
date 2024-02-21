@@ -15,6 +15,50 @@
     {
       "name": "search_placeholder",
       "value": "搜索"
+    },
+    {
+      "name": "search_history",
+      "value": "搜索历史"
+    },
+    {
+      "name": "search_history_font_size1",
+      "value": "12"
+    },
+    {
+      "name": "search_history_font_size2",
+      "value": "16"
+    },
+    {
+      "name": "search_history_text_padding_margin1",
+      "value": "16"
+    },
+    {
+      "name": "search_history_text_padding_margin2",
+      "value": "12"
+    },
+    {
+      "name": "search_history_text_padding_margin3",
+      "value": "6"
+    },
+    {
+      "name": "search_history_text_padding_margin4",
+      "value": "10"
+    },
+    {
+      "name": "search_list_image_width",
+      "value": "16"
+    },
+    {
+      "name": "search_background_color",
+      "value": "#E7E9E8"
+    },
+    {
+      "name": "search_history_text_color",
+      "value": "#AAB3B8"
+    },
+    {
+      "name": "search_list_text_color",
+      "value": "#F5F6F8"
     }
   ]
 }
