@@ -129,7 +129,7 @@ TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不�
 
 二级联动是指一个列表（一级列表）的选择结果，来更新另一个列表（二级列表）的选项。二级联动的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/secondarylinkage/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/SecondaryLinkage.gif" width="200">
+<img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/secondary_linkage.gif" width="200">
 
 #### 列表编辑实现案例
 
