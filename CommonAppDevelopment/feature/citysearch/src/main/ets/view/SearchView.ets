@@ -16,14 +16,14 @@
 @Component
 export struct SearchView {
   private scroller: Scroller = new Scroller(); // List组件里可以绑定的可滚动组件的控制器
-  @Link SearchList: string[];
+  @Link searchList: string[];
   @Link isSearchState: boolean;
 
   build() {
     Stack({ alignContent: Alignment.TopEnd }) {
       Column() {
         List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
-          ForEach(this.SearchList, (index: string) => {
+          ForEach(this.searchList, (index: string) => {
             ListItem() {
               Column() {
                 Text(index)

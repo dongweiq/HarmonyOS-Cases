@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例介绍城市选择场景的使用：通过[AlphabetIndexer](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/arkui-ts/ts-container-alphabet-indexer.md/)实现首字母快速定位城市的索引条导航。
+本示例介绍城市选择场景的使用：通过[AlphabetIndexer](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-alphabet-indexer-0000001820880865)实现首字母快速定位城市的索引条导航。
 
 ### 效果图预览
 
@@ -37,8 +37,8 @@ AlphabetIndexer({ arrayValue: TAB_VALUE, selected: this.stabIndex })
     this.scroller.scrollToIndex(tabIndex);
   })
 ```
-- 当用户划入或划出List组件显示区域时触发，通过将onScrollIndex拿到的首字母firstIndex绑定赋值给AlphabetIndexer的selected属性，
-从而实现List列表与AlphabetIndexer组件首字母联动吸顶展示，[源码参考](src/main/ets/view/CityView.ets)。
+- 当用户滑动List组件，list组件onScrollIndex监听到firstIndex的改变，绑定赋值给AlphabetIndexer的selected属性，从而定位到字母索引。
+- 当点击AlphabetIndexer的字母索引时，通过scrollToIndex触发list组件滑动并指定firstIndex，从而实现List列表与AlphabetIndexer组件首字母联动吸顶展示，[源码参考](src/main/ets/view/CityView.ets)。
 ```
 List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
   .onScrollIndex((firstIndex: number, lastIndex: number) => {
@@ -71,4 +71,4 @@ List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
 
 ### 参考资料
 
-[AlphabetIndexer参考文档](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/arkui-ts/ts-container-alphabet-indexer.md/)
+[AlphabetIndexer参考文档](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-alphabet-indexer-0000001820880865)
