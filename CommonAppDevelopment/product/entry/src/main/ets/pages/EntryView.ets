@@ -62,6 +62,8 @@ struct EntryView {
     new ListData($r("app.media.component_stack"), '组件堆叠', RouterNameConstants.ROUTER_NAME_COMPONENT_TACK, 2, false, '25%', RouterPathConstants.ROUTER_PATH_COMPONENT_TACK, 'UI布局'),
     new ListData($r("app.media.custom_view"), '自定义视图实现Tab效果', RouterNameConstants.ROUTER_NAME_CUSTOM_VIEW, 2, false, '25%', RouterPathConstants.ROUTER_PATH_CUSTOM_VIEW, 'UI布局'),
     new ListData($r("app.media.drag_and_exchange"), 'Grid和List内拖拽交换子组件位置', RouterNameConstants.ROUTER_NAME_DRAG_EXCHANGE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_DRAG_EXCHANGE, 'UI布局'),
+    new ListData($r("app.media.custom_calendar_picker_dialog"), '自定义日历选择器', RouterNameConstants.ROUTER_NAME_CUSTOM_CALENDAR_PICKER_DIALOG, 2, false, '25%', RouterPathConstants.ROUTER_PATH_CUSTOM_CALENDAR_PICKER_DIALOG, 'UI布局'),
+    new ListData($r("app.media.decompress_file"), 'Worker子线程中解压文件', RouterNameConstants.ROUTER_NAME_DECOMPRESS_FILE, 2, false, '25%', RouterPathConstants.ROUTER_PATH_DECOMPRESS_FILE, '其他'),
   ];
 
   aboutToAppear(): void {

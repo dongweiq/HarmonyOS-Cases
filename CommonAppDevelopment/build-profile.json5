@@ -195,6 +195,10 @@
     {
       "name": "dragandexchange",
       "srcPath": "./feature/dragandexchange"
+    },
+    {
+      "name": "decompressfile",
+      "srcPath": "./feature/decompressfile"
     }
   ]
 }

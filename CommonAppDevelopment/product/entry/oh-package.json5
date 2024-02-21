@@ -89,5 +89,7 @@
     "@ohos/customview": "file:../../feature/customview",
     // Grid和List内拖拽交换子组件位置案例
     "@ohos/dragandexchange": "file:../../feature/dragandexchange",
+    // Worker子线程中解压文件
+    "@ohos/decompressfile": "file:../../feature/decompressfile"
   }
 }
