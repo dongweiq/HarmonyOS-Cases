@@ -282,7 +282,7 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/music_player.gif" width="200">
 
-#### 折叠屏音乐播放器案例
+#### 发布图片评论案例
 
 本示例将通过发布图片评论场景，介绍如何使用startAbilityForResult接口拉起相机拍照，并获取相机返回的数据。[详细说明文档](./CommonAppDevelopment/feature/imagecomment/README.md)
 
@@ -290,9 +290,9 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 #### 视频全屏切换案例
 
-本示例将通过发布图片评论场景，介绍如何使用startAbilityForResult接口拉起相机拍照，并获取相机返回的数据。[详细说明文档](./CommonAppDevelopment/feature/imagecomment/README.md)
+本示例介绍了Video组件和@ohos.window接口实现媒体全屏的功能。该场景多用于首页瀑布流媒体播放等。。[详细说明文档](./CommonAppDevelopment/feature/mediafullscreen/README.md)
 
-<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_comment.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/media_fullscreen.gif" width="200">
 
 #### 多层级轮播图案例
 
