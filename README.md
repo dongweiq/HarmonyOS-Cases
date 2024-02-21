@@ -92,7 +92,7 @@
 
 本示例使用WaterFlow+LazyForeEach实现了瀑布流场景。具体方案可以参考[详细说明文档](./CommonAppDevelopment/feature/functionalscenes/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/FunctionalScenes.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/functional_scenes.gif" width="200">
 
 #### 全屏登录页面案例
 
@@ -110,20 +110,20 @@
 
 在出行类订票软件中，一般都有此动画效果，点击交换后，起点和终点互换。地址交换动画的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/addressexchange/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/AddressExchange.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/address_exchange.gif" width="200">
 
 #### 阻塞事件冒泡案例
 
 事件冒泡是指触发子组件事件的时候，事件会传递到父组件，这样会导致父组件的事件也会触发。阻塞事件冒泡的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/eventpropagation/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/EventPropagation.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/event_propagation.gif" width="200">
 
 #### 自定义TabBar页签案例
 
 TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不一样的TabBar样式，Tab组件自带的TabBar属性对于部分效果无法满足，如页签中间显示一圈圆弧外轮廓等，
 因此我们需要去自己定义一个TabBar页签来满足开发的需要。自定义TabBar页签的方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/customtabbar/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/CustomTabBar.gif" width="200">
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/custom_tabbar.gif" width="200">
 
 #### 二级联动实现案例
 
@@ -135,50 +135,50 @@ TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不�
 
 列表的编辑模式用途十分广泛，常见于待办事项管理、文件管理、备忘录的记录管理等应用场景。列表编辑实现方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/pendingitems/README_zh.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/TodoList.gif" width="200">
+<img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/todo_list.gif" width="200">
 
 #### MpChart图表实现案例
 
 MpChart是一个包含各种类型图表的图表库，方便开发者快速实现图表UI。使用MpChart可以实现柱状图UI效果，具体方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/barchart/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/BarChart.gif" width="200">
+<img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/bar_chart.gif" width="200">
 
 #### 读取Rawfile中文件部分内容案例
 
 使用native从rawfile中文件读取部分内容。具体方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/nativerawfile/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/raw_file.gif" width="200">
+<img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/raw_file.gif" width="200">
 
 #### 图片缩放效果实现案例
 
 本模块基于Image组件实现了简单的图片预览功能，支持双指捏合等效果。图片预览方案可参考此[详细说明文档](./CommonAppDevelopment/feature/imageviewer/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/ImageViewer.gif" width="200">
+<img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/image_viewer.gif" width="200">
 
 #### Axios获取解析网络数据案例
 
 本示例介绍使用第三方库的Axios获取GBK格式的网络数据时，通过util实现GBK转换UTF-8格式。该场景多用于需要转换编码格式的应用。[详细说明文档](./CommonAppDevelopment/feature/gbktranscoding/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/FriendsBook.jpeg" width="200">
+<img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/friends_book.jpeg" width="200">
 
 #### Tab组件实现增删Tab标签方案案例
 
 本示例介绍使用了Tab组件实现自定义增删Tab页签的功能。该场景多用于浏览器等场景。[详细说明文档](./CommonAppDevelopment/feature/handletabs/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/HandleTabs.gif" width="200">
+<img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/handle_tabs.gif" width="200">
 
 #### 使用AKI轻松实现跨语言调用
 
 AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障碍跨语言互调，使用方便。本模块将介绍使用AKI编写C++跨线程调用JS函数场景，为开发者使用AKI提供参考。AKI使用实践可参考此[详细说明文档](./CommonAppDevelopment/feature/akiusepractice/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/AkiUsePractice.gif" width="200">
+<img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/aki_use_practice.gif" width="200">
 
 #### 多层嵌套类监听案例
 
 对于多层嵌套的情况，比如二维数组，或者数组项class，或者class的属性是class，他们的第二层的属性变化是无法观察到的。@Observed/@ObjectLink装饰器可以解决，
 多层嵌套类对象监听方案可以参考[详细说明文档](./CommonAppDevelopment/feature/variablewatch/README.md)。
 
-<img src="./CommonAppDevelopment/screenshots/device/VariableWatch.gif" width="200">
+<img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/variable_watch.gif" width="200">
 
 #### 图片选择和下载保存案例
 
