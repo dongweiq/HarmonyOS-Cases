@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-<img src="../../screenshots/device/FunctionalScenes.gif" width="200">
+<img src="../../product/entry/src/main/resources/base/media/functional_scenes.gif" width="200">
 
 **使用说明**
 

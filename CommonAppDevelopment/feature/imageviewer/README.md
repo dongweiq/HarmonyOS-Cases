@@ -12,7 +12,7 @@
 
 ### 效果图预览
 
-![demo](../../screenshots/device/ImageViewer.gif)
+![demo](../../product/entry/src/main/resources/base/media/image_viewer.gif)
 
 ### 实现思路
 

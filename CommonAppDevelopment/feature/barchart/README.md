@@ -6,7 +6,7 @@ MpChart是一个包含各种类型图表的图表库，主要用于业务数据�
 
 ### 效果图预览
 
-<img src="../../screenshots/device/BarChart.gif">
+<img src="../../product/entry/src/main/resources/base/media/bar_chart.gif">
 
 **使用说明**
 
