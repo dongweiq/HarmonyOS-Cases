@@ -85,9 +85,9 @@ export struct CityView {
         .alignItems(HorizontalAlign.Start)
 
         /* TODO：知识点：可以与容器组件联动用于按逻辑结构快速定位容器显示区域的组件，arrayValue为字母索引字符串数组，selected为初始选中项索引值。
-         * 1. 通过AlphabetIndexer的selected属性与城市列表中List组件onScrollIndex事件绑定，
-         * 2. 当用户划入或划出List显示区域时触发，通过将onScrollIndex拿到的首字母firstIndex绑定赋值给AlphabetIndexer的selected属性，
-         * 从而实现List列表与AlphabetIndexer组件首字母联动吸顶展示。
+         * 1. 当用户滑动List组件，list组件onScrollIndex监听到firstIndex的改变，绑定赋值给AlphabetIndexer的selected属性，从而定位到字母索引。
+         * 2. 当点击AlphabetIndexer的字母索引时，通过scrollToIndex触发list组件滑动并指定firstIndex，从而实现List列表与AlphabetIndexer组件
+         * 首字母联动吸顶展示。
          */
         AlphabetIndexer({ arrayValue: TAB_VALUE, selected: this.stabIndex })
           .height('100%')
