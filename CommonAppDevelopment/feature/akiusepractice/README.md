@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-<img src="../../screenshots/device/AkiUsePractice.gif">
+![](../../product/entry/src/main/resources/base/media/aki_use_practice.gif)
 
 **使用说明**
 
@@ -62,7 +62,8 @@
 
 2. AKI和NAPI在native侧的业务函数实现。
 
-   AKI在native侧业务函数实现是在AkiThreadsCallJs中创建子线程，子线程中使用aki::JSBind::GetJSFunction获取指定JavaScript函数akiAccumulate的句柄后，使用Invoke触发调用。源码参考[akiusepractice.cpp](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/akiusepractice/src/main/cpp/akiusepractice.cpp)。
+   AKI在native侧业务函数实现是在AkiThreadsCallJs中创建子线程，子线程中使用aki::JSBind::
+   GetJSFunction获取指定JavaScript函数akiAccumulate的句柄后，使用Invoke触发调用。源码参考[akiusepractice.cpp](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/akiusepractice/src/main/cpp/akiusepractice.cpp)。
 
    ```c++
    // 定义C++函数AkiThreadsCallJs。从native主线程中创建子线程subThread调用JavaScript函数。

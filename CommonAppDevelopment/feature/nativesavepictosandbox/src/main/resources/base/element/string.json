@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "sandBox_font_size_20",
+      "value": "20"
+    },
+    {
+      "name": "sandBox_font_size_14",
+      "value": "14"
+    },
+    {
+      "name": "sandBox_margin",
+      "value": "10"
+    },
+    {
+      "name": "sandBox_radius",
+      "value": "10"
+    },
+    {
+      "name": "sandBox_borderRadius",
+      "value": "12"
+    },
+    {
+      "name": "sandBox_margin12",
+      "value": "12"
+    },
+    {
+      "name": "sandBox_padding",
+      "value": "12"
+    },
+    {
+      "name": "txt_sandBox_path",
+      "value": "沙箱路径:"
+    },
+    {
+      "name": "tbn_RawFilePicture",
+      "value": "保存Rawfile图片"
+    },
+    {
+      "name": "tbn_InternetPicture",
+      "value": "保存网络图片"
+    },
+    {
+      "name": "native_sandbox_title",
+      "value": "Native保存图片到应用沙箱"
+    },
+    {
+      "name": "internet_file_write_fail",
+      "value": "网络图片写入失败"
+    },
+    {
+      "name": "rawfile_write_fail",
+      "value": "Rawfile图片写入失败"
+    },
+    {
+      "name": "native_sandbox_description",
+      "value": "本示例主要介绍Native如何将网络上的图片及Rawfile中的图片保存到应用沙箱中。点击按钮，前端将调用native侧的相应的接口，将网络上或Rawfile中的图片保存到应用沙箱中并将该图片的沙箱路径返回到前端显示。"
+    }
+  ]
+}

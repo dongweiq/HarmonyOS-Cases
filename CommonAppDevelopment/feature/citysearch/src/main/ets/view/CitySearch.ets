@@ -23,9 +23,9 @@ const searchButtonText = '搜索';
 /**
  * 实现步骤：
  * 通过AlphabetIndexer组件实现通过城市首字母快速定位城市的索引条导航：
- * 1. 通过AlphabetIndexer的selected属性与城市列表中List组件onScrollIndex事件绑定，
- * 2. 当用户划入或划出List显示区域时触发，通过将onScrollIndex拿到的首字母firstIndex绑定赋值给AlphabetIndexer的selected属性，
- * 从而实现List列表与AlphabetIndexer组件首字母联动吸顶展示。
+ * 1. 当用户滑动List组件，list组件onScrollIndex监听到firstIndex的改变，绑定赋值给AlphabetIndexer的selected属性，从而定位到字母索引。
+ * 2. 当点击AlphabetIndexer的字母索引时，通过scrollToIndex触发list组件滑动并指定firstIndex，从而实现List列表与AlphabetIndexer组件
+ * 首字母联动吸顶展示。
  * AlphabetIndexer参考文档：
  * https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/arkui-ts/ts-container-alphabet-indexer.md/
  */
@@ -40,7 +40,7 @@ export struct CitySearch {
   // 是否展示搜索结果列表
   @State isSearchState: boolean = false;
   // 搜索结果
-  @State SearchList: string[] = [];
+  @State searchList: string[] = [];
 
   build() {
     Column() {
@@ -73,21 +73,16 @@ export struct CitySearch {
             // 关闭搜索列表
             this.isSearchState = false;
             // 清空数据
-            this.SearchList.splice(0, this.SearchList.length);
+            this.searchList.splice(0, this.searchList.length);
           }
         })
-        .onClick(() => {
-          // 打开搜索列表
-          this.isSearchState = true;
-          // 清空数据
-          this.SearchList.splice(0, this.SearchList.length);
-        })
+
       // 城市列表组件
       CityView({ isSearchState: $isSearchState })
         .margin({top:$r('app.integer.list_margin_top')})
 
       // 搜索组件，将数据传递到搜索列表
-      SearchView({ SearchList: $SearchList, isSearchState: $isSearchState })
+      SearchView({ searchList: $searchList, isSearchState: $isSearchState })
         .width("100%")
         .layoutWeight(1)
     }
@@ -108,7 +103,7 @@ export struct CitySearch {
           cityNames.push(city); // 当搜索关键字，将相关城市信息展示。例如搜索"an"：展示"安庆"，"安阳"。
         })
       }
-      this.SearchList = cityNames;
+      this.searchList = cityNames;
       return;
     })
     CITY_DATA.forEach(item => {
@@ -118,7 +113,7 @@ export struct CitySearch {
         }
       })
     })
-    this.SearchList = cityNames;
+    this.searchList = cityNames;
   }
 }
 
