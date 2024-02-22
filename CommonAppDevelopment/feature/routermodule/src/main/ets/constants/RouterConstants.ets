@@ -52,4 +52,5 @@ export class RouterInfo {
   static readonly DECOMPRESS_FILE: string[] = ['@ohos/decompressfile', './src/main/ets/view/MainPage.ets'];
   static readonly DRAG_EXCHANGE: string[] = ['@ohos/dragandexchange', './src/main/ets/pages/Launcher.ets'];
   static readonly NATIVE_PICTURE_SANDBOX: string[] = ['@ohos/nativesavepictosandbox', './src/main/ets/view/NativePictureToSandboxView.ets']
+  static readonly PAINT_COMPONENT: string[] = ['@ohos/paintcomponent', './src/main/ets/view/PaintComponent'];
 }

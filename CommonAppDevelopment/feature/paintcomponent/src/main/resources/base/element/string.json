@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "increase_button_name",
+      "value": "充电"
+    },
+    {
+      "name": "decrease_button_name",
+      "value": "耗电"
+    },
+    {
+      "name": "title_font_size",
+      "value": "120px"
+    },
+    {
+      "name": "title_name",
+      "value": "电池电量"
+    },
+    {
+      "name": "column_children_width",
+      "value": "100%"
+    },
+    {
+      "name": "column_parent_height",
+      "value": "100%"
+    },
+    {
+      "name": "progress_percentage_symbol_name",
+      "value": "⚡"
+    }
+  ]
+}

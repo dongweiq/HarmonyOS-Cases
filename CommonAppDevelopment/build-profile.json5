@@ -199,6 +199,10 @@
     {
       "name": "decompressfile",
       "srcPath": "./feature/decompressfile"
+    },
+    {
+      "name": "paintcomponent",
+      "srcPath": "./feature/paintcomponent"
     }
   ]
 }
