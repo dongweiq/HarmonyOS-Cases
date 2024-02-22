@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "color_transparent_aa",
+      "value": "#aaffffff"
+    },
+    {
+      "name": "color_transparent_55",
+      "value": "#55ffffff"
+    },
+    {
+      "name": "list_backgroundcolor",
+      "value": "#ffd7d7e3"
+    },
+    {
+      "name": "listhead_backgroundcolor",
+      "value": "#FF3683CA"
+    }
+  ]
+}

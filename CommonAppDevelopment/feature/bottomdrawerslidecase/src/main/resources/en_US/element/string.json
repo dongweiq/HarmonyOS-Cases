@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "fontsize_15",
+      "value": "15"
+    },
+    {
+      "name": "margin_10",
+      "value": "10"
+    },
+    {
+      "name": "fontsize_10",
+      "value": "10"
+    },
+    {
+      "name": "homeTop",
+      "value": "callcar"
+    },
+    {
+      "name": "choose_your_location",
+      "value": "chooseyourlocation"
+    },
+    {
+      "name": "list_item_id_first",
+      "value": "list_item_id_first"
+    },
+    {
+      "name": "list_item_id_second",
+      "value": "list_item_id_second"
+    },
+    {
+      "name": "list_item_id_third",
+      "value": "list_item_id_third"
+    },
+    {
+      "name": "list_item_id_fifth",
+      "value": "list_item_id_fifth"
+    },
+    {
+      "name": "list_item_id_sixth",
+      "value": "list_item_id_sixth"
+    },
+    {
+      "name": "list_item_id_seventh",
+      "value": "list_item_id_seventh"
+    },
+    {
+      "name": "list_item_id_eighth",
+      "value": "list_item_id_eighth"
+    },
+    {
+      "name": "list_item_id_fourth",
+      "value": "list_item_id_fourth"
+    },
+    {
+      "name": "please_destination",
+      "value": "please input your destination"
+    },
+    {
+      "name": "destination_new",
+      "value": "destination"
+    },
+    {
+      "name": "get_on_the_car",
+      "value": "getonthecar"
+    },
+    {
+      "name": "set_out",
+      "value": "set_out"
+    }
+  ]
+}
