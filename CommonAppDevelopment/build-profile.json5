@@ -203,6 +203,10 @@
     {
       "name": "paintcomponent",
       "srcPath": "./feature/paintcomponent"
+    },
+    {
+      "name": "shortvideo",
+      "srcPath": "./feature/shortvideo"
     }
   ]
 }

@@ -64,6 +64,7 @@
    |   |---swipercomponent             // 多层级轮播图案例
    |   |---swipersmoothvariation       // Swiper高度可变化效果案例
    |   |---decompressfile              // Worker子线程中解压文件案例
+   |   |---paintcomponent              // 使用绘制组件实现自定义进度动画案例
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -301,11 +302,17 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/swiper_component.gif" width="200">
 
-#### Worker子线程中解压文件
+#### Worker子线程中解压文件案例
 
 本示例介绍在Worker子线程使用@ohos.zlib提供的zlib.decompressfile接口对沙箱目录中的压缩文件进行解压操作，解压成功后将解压路径返回主线程，获取解压文件列表。[详细说明文档](./CommonAppDevelopment/feature/decompressfile/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/decompress_file.gif" width="200">
+
+#### 使用绘制组件实现自定义进度动画
+
+本示例介绍使用绘制组件中的Circle组件以及Path组件实现实时进度效果。该场景多用于手机电池电量、汽车油量、水位变化等动态变化中。[详细说明文档](./CommonAppDevelopment/feature/paintcomponent/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/paint_component.gif" width="200">
 
 ### 公共能力层
 
