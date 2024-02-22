@@ -57,4 +57,5 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.drag_and_exchange"), 'Grid和List内拖拽交换子组件位置', RouterInfo.DRAG_EXCHANGE, 'UI布局'),
   new SceneModuleInfo($r("app.media.custom_calendar_picker_dialog"), '自定义日历选择器', RouterInfo.CUSTOM_CALENDAR_PICKER_DIALOG, 'UI布局'),
   new SceneModuleInfo($r("app.media.decompress_file"), 'Worker子线程中解压文件', RouterInfo.DECOMPRESS_FILE, '其他'),
+  new SceneModuleInfo($r("app.media.paint_component"), '绘制组件', RouterInfo.PAINT_COMPONENT, '动效', 1),
 ]

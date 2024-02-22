@@ -1,0 +1,32 @@
+{
+  "integer": [
+    {
+      "name": "title_margin_bottom",
+      "value": 100
+    },
+    {
+      "name": "outer_circle_stroke_width",
+      "value": 5
+    },
+    {
+      "name": "path_stroke_width",
+      "value": 1
+    },
+    {
+      "name": "stack_margin_bottom",
+      "value": 120
+    },
+    {
+      "name": "decrease_button_margin_right",
+      "value": 50
+    },
+    {
+      "name": "progress_percentage_symbol_font_size",
+      "value": 30
+    },
+    {
+      "name": "progress_percentage_font_size",
+      "value": 60
+    }
+  ]
+}

@@ -59,7 +59,8 @@
           "@ohos/customview",
           "@ohos/dragandexchange",
           "@ohos/customcalendarpickerdialog",
-          "@ohos/decompressfile"
+          "@ohos/decompressfile",
+          "@ohos/paintcomponent"
         ]
       }
     }
