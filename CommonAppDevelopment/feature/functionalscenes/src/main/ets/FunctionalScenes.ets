@@ -14,7 +14,7 @@
  */
 
 import { buildRouterModel } from '@ohos/dynamicsRouter';
-import { SceneModuleInfo } from './model/WaterFlowDataModel';
+import { SceneModuleInfo } from './model/SceneModuleInfo';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
 import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
 

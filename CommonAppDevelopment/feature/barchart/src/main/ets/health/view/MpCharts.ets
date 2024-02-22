@@ -15,7 +15,7 @@
 
 import { LineCharts } from './LineCharts';
 import { BarCharts } from './BarCharts';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
 const HEART_RATE: string = 'heartRate';
 const STEP_NUMBER: string = 'stepNumber';
@@ -159,7 +159,7 @@ export function getMpCharts(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-const builderName = RouterNameConstants.ROUTER_NAME_MPCHART;
+const builderName = RouterInfo.BAR_CHAT[0];
 if (!DynamicsRouter.getBuilder(builderName)) {
   let builder: WrappedBuilder<[object]> = wrapBuilder(getMpCharts);
   DynamicsRouter.registerBuilder(builderName, builder);

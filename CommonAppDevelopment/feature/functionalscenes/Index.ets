@@ -15,6 +15,6 @@
 
 export { FunctionalScenes } from './src/main/ets/FunctionalScenes';
 
-export { SceneModuleInfo } from './src/main/ets/model/WaterFlowDataModel';
+export { SceneModuleInfo } from './src/main/ets/model/SceneModuleInfo';
 
 

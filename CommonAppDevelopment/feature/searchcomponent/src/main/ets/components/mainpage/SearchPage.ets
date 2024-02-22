@@ -138,7 +138,7 @@ export struct SearchPage {
             // 更新搜索历史数据
             this.searchHistoryData.push(item);
             // 调用动态路由相关方法实现页面跳转
-            buildRouterModel(item.path, item.routerName, item.param);
+            buildRouterModel(item.routerInfo[1], item.routerInfo[0], item.param);
           })
         }, (item: ListData) => JSON.stringify(item))
       }

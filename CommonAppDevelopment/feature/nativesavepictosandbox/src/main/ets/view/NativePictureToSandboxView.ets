@@ -21,7 +21,7 @@
 import fileUri from "@ohos.file.fileuri";
 import testNapi from 'libnativesavepictosandbox.so';
 import { FunctionDescription } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
 @Component
 export struct NativePictureToSandboxView {
@@ -145,7 +145,7 @@ export function pic2sandboxView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_PIC2SANDBOX;
+let builderName = RouterInfo.NATIVE_PROGRESS_NOTIFY[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(pic2sandboxView);
   DynamicsRouter.registerBuilder(builderName, builder);
