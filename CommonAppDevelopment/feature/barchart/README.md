@@ -80,7 +80,7 @@ MpChart是一个包含各种类型图表的图表库，主要用于业务数据�
 
 ### 模块依赖
 
-1. 本模块依赖[MpChart三方库](https://gitee.com/openharmony-sig/ohos-MPChart)。
+[@ohos/routermodule(动态路由)](../../feature/routermodule)
 
 ### 参考资料
 
