@@ -60,7 +60,8 @@
           "@ohos/dragandexchange",
           "@ohos/customcalendarpickerdialog",
           "@ohos/decompressfile",
-          "@ohos/paintcomponent"
+          "@ohos/paintcomponent",
+          "@ohos/shortvideo"
         ]
       }
     }

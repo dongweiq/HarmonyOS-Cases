@@ -159,8 +159,6 @@ export function getMpCharts(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-const builderName = RouterInfo.BAR_CHAT[0];
-if (!DynamicsRouter.getBuilder(builderName)) {
+const builderName = RouterInfo.MP_CHAT[0];
   let builder: WrappedBuilder<[object]> = wrapBuilder(getMpCharts);
   DynamicsRouter.registerBuilder(builderName, builder);
-}

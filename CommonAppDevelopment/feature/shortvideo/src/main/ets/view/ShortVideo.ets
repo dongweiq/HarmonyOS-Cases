@@ -14,7 +14,7 @@
  */
 import { TopTabContent } from '../model/DataModel';
 import { VideoSwiper } from './VideoSwiper';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
 /**
  * 实现步骤：
@@ -89,7 +89,7 @@ export function getShortVideo(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-const builderName = RouterNameConstants.ROUTER_NAME_SHORT_VIDEO;
+const builderName = RouterInfo.SHORT_VIDEO[0];
 if (!DynamicsRouter.getBuilder(builderName)) {
   const builder: WrappedBuilder<[object]> = wrapBuilder(getShortVideo);
   DynamicsRouter.registerBuilder(builderName, builder);
