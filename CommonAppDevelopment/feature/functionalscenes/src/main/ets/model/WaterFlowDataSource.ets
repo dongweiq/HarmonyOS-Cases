@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { SceneModuleInfo } from './WaterFlowDataModel'
+import { SceneModuleInfo } from './SceneModuleInfo'
 
 /**
  * 实现IDataSource接口的对象，用于瀑布流组件加载数据
