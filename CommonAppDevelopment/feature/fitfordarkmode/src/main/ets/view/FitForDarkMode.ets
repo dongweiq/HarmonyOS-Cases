@@ -16,7 +16,7 @@ import { GoodsList } from './GoodsList'
 import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 import window from '@ohos.window';
 import { logger, FunctionDescription } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 实现步骤：
@@ -196,7 +196,7 @@ export function getFitForDarkMode(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_DARK_MODE;
+let builderName = RouterInfo.DARK_MODE[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getFitForDarkMode);
   DynamicsRouter.registerBuilder(builderName, builder);

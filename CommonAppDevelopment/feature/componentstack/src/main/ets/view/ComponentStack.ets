@@ -15,7 +15,7 @@
 
 import { IconList1, IconList2, IconList3 } from '../view/IconView';
 import { ProductList } from '../view/ProductList';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 
 /**
  * 实现步骤：
@@ -197,7 +197,7 @@ export function getComponentStack(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_COMPONENT_TACK;
+let builderName = RouterInfo.COMPONENT_TACK[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getComponentStack);
   DynamicsRouter.registerBuilder(builderName, builder);

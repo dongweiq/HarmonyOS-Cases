@@ -19,7 +19,7 @@ import { ImageScaleModel } from '../model/ImageScaleModel';
 import { ImageContentView } from './ImageContentView';
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 @Preview
 @Component
@@ -73,7 +73,7 @@ export function getImageViewerView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_IMAGE_VIEWER;
+let builderName = RouterInfo.IMAGE_VIEWER[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getImageViewerView);
   DynamicsRouter.registerBuilder(builderName, builder);

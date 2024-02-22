@@ -19,7 +19,7 @@ import worker, { MessageEvents } from '@ohos.worker'; // 引入worker模块
 import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs'; // 引入文件管理模块
 import { logger } from '@ohos/base';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 
 const TAG = 'DecompressFileMainPage';
 const LayoutWeight = 1;
@@ -226,8 +226,8 @@ export function getDecompressFileView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-const builderName = RouterNameConstants.ROUTER_NAME_DECOMPRESS_FILE;
-if (!DynamicsRouter.getBuilder(builderName)) {
+let builderName = RouterInfo.DECOMPRESS_FILE[0];
+if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getDecompressFileView);
   DynamicsRouter.registerBuilder(builderName, builder);
 }

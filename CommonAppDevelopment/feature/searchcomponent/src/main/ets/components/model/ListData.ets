@@ -21,30 +21,21 @@ export class ListData {
   imageSrc: ResourceStr;
   // 首页列表名称
   name: string;
-  // 首页路由跳转信息
-  path: string;
-  // 路由的注册名，在路由表中注册动态加载模块时使用
-  routerName: string;
+  // 路由信息
+  routerInfo: string[];
   // 路由传参数据
   param: string;
   // 难度星级
   ratingNumber: number;
-  // 判断ImageFit模式图片是否需要裁剪
-  isCropping: boolean;
-  // 图片高度
-  imageHeight: number | string;
   // 分类
   category: string;
 
-  constructor(imageSrc: ResourceStr, name: string, routerName: string, ratingNumber: number, isCropping: boolean, imageHeight: number | string, path: string, category: string, param?: string) {
+  constructor(imageSrc: ResourceStr, name: string, routerInfo: string[], category: string, ratingNumber?: number, param?: string) {
     this.imageSrc = imageSrc;
     this.name = name;
-    this.routerName = routerName;
+    this.routerInfo = routerInfo
     this.param = param === undefined ? '' : param;
-    this.imageHeight = imageHeight;
-    this.ratingNumber = ratingNumber;
-    this.isCropping = isCropping;
-    this.path = path;
+    this.ratingNumber = ratingNumber === undefined ? 2 : ratingNumber;
     this.category = category;
   }
 }

@@ -15,7 +15,7 @@
 
 import naitiveprogressnotify from 'libnativeprogressnotify.so';
 import { NativeProgressNotifyConstants } from '../constants/NativeProgressNotifyConstants';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 @Component
 export struct NativeProgressNotify {
@@ -53,7 +53,7 @@ export function getNativeProgressNotify(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_NATIVE_PROGRESS_NOTIFY;
+let builderName = RouterInfo.NATIVE_PROGRESS_NOTIFY[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getNativeProgressNotify);
   DynamicsRouter.registerBuilder(builderName, builder);

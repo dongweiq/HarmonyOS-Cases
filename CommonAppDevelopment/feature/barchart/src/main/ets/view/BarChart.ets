@@ -37,7 +37,7 @@ import {
   YAxis, // 图表Y轴部件
   YAxisLabelPosition // 图表Y轴标签位置枚举类
 } from '@ohos/mpchart';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 
 @Component
 export struct BarChartPage {
@@ -645,7 +645,7 @@ export function getBarChartPage(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_BAR_CHAT;
+let builderName = RouterInfo.BAR_CHAT[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getBarChartPage);
   DynamicsRouter.registerBuilder(builderName, builder);

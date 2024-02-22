@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 
 /**
  * 实现步骤：
@@ -287,7 +287,7 @@ export function getCustomView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_CUSTOM_VIEW;
+let builderName = RouterInfo.CUSTOM_VIEW[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getCustomView);
   DynamicsRouter.registerBuilder(builderName, builder);

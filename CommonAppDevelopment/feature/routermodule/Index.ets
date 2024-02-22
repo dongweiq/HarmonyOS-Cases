@@ -17,4 +17,4 @@ export { DynamicsRouter } from './src/main/ets/router/DynamicsRouter';
 
 export { RouterModel, buildRouterModel } from './src/main/ets/model/RouterModel';
 
-export { RouterNameConstants, RouterPathConstants } from './src/main/ets/constants/RouterConstants';
+export { RouterInfo } from './src/main/ets/constants/RouterConstants';

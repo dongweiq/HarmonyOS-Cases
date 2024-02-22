@@ -16,7 +16,7 @@
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 import { FlowItemContentsData, FlowItemContent, JsonObject } from '../model/BasicDataSource';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 // window.setWindowSystemBarEnable方法的预设值，设置窗口全屏模式时状态栏和导航栏是否显示
 const WINDOW_SYSTEM_BAR: Array<'status' | 'navigation'> = ['navigation', 'status'];
@@ -182,7 +182,7 @@ export function getMediaFullScreen(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_MEDIA_FULL_SCREEN;
+let builderName = RouterInfo.MEDIA_FULL_SCREEN[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getMediaFullScreen);
   DynamicsRouter.registerBuilder(builderName, builder);

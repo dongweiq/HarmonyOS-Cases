@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 import { DefaultLogin } from './model/DefaultLogin';
 
@@ -70,7 +70,7 @@ export function getModalWindow(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_MODAL_WINDOW;
+let builderName = RouterInfo.MODAL_WINDOW[0];
 if(!DynamicsRouter.getBuilder(builderName)){
   let builder: WrappedBuilder<[object]> = wrapBuilder(getModalWindow);
   DynamicsRouter.registerBuilder(builderName, builder);

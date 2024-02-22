@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { buildRouterModel, RouterNameConstants, RouterPathConstants } from '@ohos/dynamicsRouter/Index';
+import { buildRouterModel, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
 import { SwiperData, SwiperDataSource } from '../model/SwiperData';
 
@@ -25,9 +25,9 @@ export struct SwiperComponent {
   @Consume('pageStack') pageStack: NavPathStack;
   @State currentIndex: number = 0;
   @State swiperData: SwiperData[] = [
-    new SwiperData($r('app.media.bar_chart_top'), 'MpChart图表实现案例', RouterNameConstants.ROUTER_NAME_BAR_CHAT,RouterPathConstants.ROUTER_PATH_BAR_CHAT),
-    new SwiperData($r('app.media.address_exchange'), '地址交换动画', RouterNameConstants.ROUTER_NAME_ADDRESS_EXCHANGE,RouterPathConstants.ROUTER_PATH_ADDRESS_EXCHANGE),
-    new SwiperData($r('app.media.tab_bar'), '自定义TabBar',RouterNameConstants.ROUTER_NAME_CUSTOM_TAB_BAR,RouterPathConstants.ROUTER_PATH_CUSTOM_TAB_BAR),
+    new SwiperData($r('app.media.bar_chart_top'), 'MpChart图表实现案例', RouterInfo.BAR_CHAT),
+    new SwiperData($r('app.media.address_exchange'), '地址交换动画', RouterInfo.ADDRESS_EXCHANGE),
+    new SwiperData($r('app.media.tab_bar'), '自定义TabBar', RouterInfo.CUSTOM_TAB_BAR),
   ];
   swiperDataSource: SwiperDataSource = new SwiperDataSource();
   private halfCount: number = Math.floor(3 / 2);
@@ -140,7 +140,7 @@ export struct SwiperComponent {
         .opacity(1 - 0.2 * Math.min(2, Math.abs(this.getImgCoefficients(index))))
         .onClick(() => {
           // 点击轮播图Item时，根据点击的模块信息，将页面放入路由栈
-          buildRouterModel(item.path, item.routerName, item.param);
+          buildRouterModel(item.routerInfo[1], item.routerInfo[0], item.param);
         })
       })
     }
