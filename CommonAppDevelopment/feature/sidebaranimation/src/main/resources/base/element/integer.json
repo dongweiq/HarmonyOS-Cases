@@ -1,0 +1,16 @@
+{
+  "integer": [
+    {
+      "name": "sidebar_button_height",
+      "value": 40
+    },
+    {
+      "name": "sidebar_button_width",
+      "value": 20
+    },
+    {
+      "name": "sidebar_button_radius",
+      "value": 6
+    }
+  ]
+}

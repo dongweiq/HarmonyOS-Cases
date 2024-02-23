@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "case_description",
+      "value": "本例主要用于PC场景，如群聊侧边栏显示群成员。主要通过显式动画来实现SideBarContainer侧边栏的淡入淡出。\n1. 请点击右侧三角进行侧边栏的显示或隐藏\n2. 请将鼠标置于侧边栏边缘，待鼠标变为双向箭头样式，长按鼠标左键并左右拖动以变化侧边栏大小"
+    },
+    {
+      "name": "case_name",
+      "value": "PC聊天侧边栏淡出淡出"
+    },
+    {
+      "name": "sidebar_message",
+      "value": "请再次点击三角按钮收起侧边栏"
+    }
+  ]
+}
