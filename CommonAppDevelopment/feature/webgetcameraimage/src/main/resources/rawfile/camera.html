@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif, sans-serif;
+      text-align: center;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    #image {
+      display: none;
+      max-width: 100%;
+      height: auto;
+      margin-top: 15px;
+    }
+    #image_preview {
+      display: none;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    // 显示ArkTS返回的图片
+    function showPic() {
+      // input标签的onchange事件触发时，返回的的描述事件所有相关信息的对象，此处接收ArkTS中onShowFileSelector接口的返回结果
+      let event = this.event;
+      let tFile = event ? event.target.files : [];
+      // 如果返回的图片列表是空的，则不显示
+      if (tFile === 0) {
+        document.getElementById('image_preview').style.display = 'block';
+        document.getElementById('image_preview').innerHTML = "未选择图片";
+        return;
+      }
+      document.getElementById('image').setAttribute('src', URL.createObjectURL(tFile[0]));
+      document.getElementById('image_preview').style.display = 'block';
+      document.getElementById('image').style.display = 'block';
+    }
+  </script>
+  <input ref="camera" type="file" id="upload" name="upload" accept="image/*" capture="upload" onchange="showPic()" />
+  <p id="image_preview">图片预览</p>
+  <img id="image">
+</body>
+
+</html>

@@ -17,7 +17,7 @@
 @Component
 export struct ImageListView {
   // 图片列表
-  selectedImages: ResourceStr[] = [];
+  @Prop selectedImages: ResourceStr[] = [];
 
   build() {
     List({ space: 10 }) {

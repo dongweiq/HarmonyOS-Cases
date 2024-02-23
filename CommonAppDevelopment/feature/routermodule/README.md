@@ -214,4 +214,4 @@ export function getNavigationParameterTransferView(param: ESObject): void {
 
 ### 参考资料
 
-[动态路由Sample](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Navigation/DynamicRouter)
+[动态路由Sample](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/DynamicRouter)
