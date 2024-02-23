@@ -1,0 +1,12 @@
+{
+  "integer": [
+    {
+      "name": "font_size_25",
+      "value": 25
+    },
+    {
+      "name": "column_padding",
+      "value": 20
+    }
+  ]
+}
