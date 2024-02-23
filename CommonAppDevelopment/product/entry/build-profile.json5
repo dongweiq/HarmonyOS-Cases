@@ -61,7 +61,9 @@
           "@ohos/customcalendarpickerdialog",
           "@ohos/decompressfile",
           "@ohos/paintcomponent",
-          "@ohos/shortvideo"
+          "@ohos/shortvideo",
+          "@ohos/digitalscrollanimation",
+          "@ohos/lottieview"
         ]
       }
     }

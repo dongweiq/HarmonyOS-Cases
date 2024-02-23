@@ -211,6 +211,10 @@
     {
       "name": "digitalscrollanimation",
       "srcPath": "./feature/digitalscrollanimation"
+    },
+    {
+      "name": "lottieview",
+      "srcPath": "./feature/lottieview"
     }
   ]
 }

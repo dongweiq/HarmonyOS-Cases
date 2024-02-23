@@ -60,4 +60,5 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.paint_component"), '使用绘制组件实现自定义进度动画', RouterInfo.PAINT_COMPONENT, '动效', 1),
   new SceneModuleInfo($r("app.media.short_video"), '短视频切换', RouterInfo.SHORT_VIDEO, 'UI布局'),
   new SceneModuleInfo($r("app.media.mp_charts"), 'MpChart运动健康', RouterInfo.MP_CHAT, '三方库', 3),
+  new SceneModuleInfo($r("app.media.lottie_animation"), 'Lottie', RouterInfo.LOTTIE_VIEW, '其他'),
 ]
