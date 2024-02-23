@@ -1,0 +1,32 @@
+{
+  "string": [
+    {
+      "name": "ticket",
+      "value": "抢火车票"
+    },
+    {
+      "name": "today",
+      "value": "今日为"
+    },
+    {
+      "name": "getTicket",
+      "value": "人提供抢票服务"
+    },
+    {
+      "name": "title",
+      "value": "数字滚动"
+    },
+    {
+      "name": "description",
+      "value": "当前界面主要展示数字滚动的实现效果"
+    },
+    {
+      "name": "comma",
+      "value": ","
+    },
+    {
+      "name": "max_size",
+      "value": "100%"
+    }
+  ]
+}

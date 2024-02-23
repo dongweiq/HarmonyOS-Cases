@@ -207,6 +207,10 @@
     {
       "name": "shortvideo",
       "srcPath": "./feature/shortvideo"
+    },
+    {
+      "name": "digitalscrollanimation",
+      "srcPath": "./feature/digitalscrollanimation"
     }
   ]
 }
