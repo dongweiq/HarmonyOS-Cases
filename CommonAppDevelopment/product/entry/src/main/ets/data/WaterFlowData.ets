@@ -53,6 +53,7 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.music_player"), '折叠屏适配音乐播放器', RouterInfo.MEDIA_FULL_SCREEN, '动效', 3),
   new SceneModuleInfo($r("app.media.image_comment"), '发布图片评论', RouterInfo.IMAGE_COMMENT, '其他'),
   new SceneModuleInfo($r("app.media.component_stack"), '组件堆叠', RouterInfo.COMPONENT_TACK, 'UI布局'),
+  new SceneModuleInfo($r("app.media.native_image2sandbox"), 'native保存图片到沙箱', RouterInfo.NATIVE_PICTURE_SANDBOX, 'Native'),
   new SceneModuleInfo($r("app.media.custom_view"), '自定义视图实现Tab效果', RouterInfo.CUSTOM_VIEW, 'UI布局'),
   new SceneModuleInfo($r("app.media.drag_and_exchange"), 'Grid和List内拖拽交换子组件位置', RouterInfo.DRAG_EXCHANGE, 'UI布局'),
   new SceneModuleInfo($r("app.media.custom_calendar_picker_dialog"), '自定义日历选择器', RouterInfo.CUSTOM_CALENDAR_PICKER_DIALOG, 'UI布局'),
