@@ -11,6 +11,30 @@
     {
       "name": "sidebar_button_radius",
       "value": 6
+    },
+    {
+      "name": "headIconSize",
+      "value": 50
+    },
+    {
+      "name": "headIconRadius",
+      "value": 25
+    },
+    {
+      "name": "input_box_height",
+      "value": 200
+    },
+    {
+      "name": "sidebar_member_list_head_icon_size",
+      "value": 40
+    },
+    {
+      "name": "sidebar_member_list_head_icon_radius",
+      "value": 20
+    },
+    {
+      "name": "sidebar_member_list_name_height",
+      "value": 20
     }
   ]
 }

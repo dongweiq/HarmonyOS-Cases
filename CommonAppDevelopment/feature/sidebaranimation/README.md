@@ -13,7 +13,7 @@
 1. 点击右侧三角按钮进行侧边栏的显示与隐藏
 1. 当前动效过渡时间较短，如果要更清晰地观察动画效果，可以将[动效的持续时间SIDEBAR_ANIMATION_DURATION](./src/main/ets/constants/SideBarAnimationViewConstants.ets)
 更改长一点，如1000
-1. 注意，虽然手机上也可进行测试体验，但是手机边缘较难响应事件
+1. 注意，由于手机屏幕边缘较难响应事件，请用PC或平板进行测试
 
 ## 实现思路
 
@@ -62,3 +62,4 @@
 
 1. [SideBarContainer](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-sidebarcontainer-0000001820880937#ZH-CN_TOPIC_0000001820880937__buttonstyle%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
 2. [显式动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-explicit-animation-0000001774121350)
+3. [计算特性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-size-0000001774280842#ZH-CN_TOPIC_0000001774280842__示例)

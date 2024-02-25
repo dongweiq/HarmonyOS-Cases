@@ -27,25 +27,33 @@ import deviceInfo from '@ohos.deviceInfo';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
 
-@Preview
 @Component
 export struct SideBarAnimationView {
   @State isShowSideBar: boolean = false;
   sidebarType: SideBarContainerType = SideBarContainerType.Embed;
 
-  aboutToAppear(): void {
+  setPhoneWindowOrientation(orientation: window.Orientation): void {
     window.getLastWindow(getContext(this), (err: BusinessError, data: window.Window) => {
       if (deviceInfo.deviceType === "phone") {
-        data.setPreferredOrientation(window.Orientation.LANDSCAPE_INVERTED)
+        data.setPreferredOrientation(orientation);
       }
     })
+  }
+
+  aboutToAppear(): void {
+    this.setPhoneWindowOrientation(window.Orientation.LANDSCAPE_INVERTED);
+  }
+
+  aboutToDisappear(): void {
+    this.setPhoneWindowOrientation(window.Orientation.PORTRAIT);
   }
 
   build() {
     SideBarContainer(this.sidebarType) {
       /**
        * TODO：知识点：这里自定义了Opacity的动画，注意，因为本方案使用的是显式动画，
-       * 且通过显式动画对this.isShowSideBar进行了变化，因此相关动画属性均需要与this.isShowSideBar进行关联
+       * 且通过显式动画对this.isShowSideBar进行了变化，因此相关动画属性均需要与this.isShowSideBar进行关联，
+       * 动画的实现见SideBarContentView中的switchTabBar方法
        */
       SideBarView()
         .opacity(this.isShowSideBar ? SideBarAnimationViewConstants.SIDEBAR_OPACITY_SHOW : SideBarAnimationViewConstants.SIDEBAR_OPACITY_HIDDEN)

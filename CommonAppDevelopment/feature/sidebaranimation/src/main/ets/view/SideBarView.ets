@@ -13,13 +13,47 @@
  * limitations under the License.
  */
 import { FunctionDescription } from '@ohos/common/Index';
+import { SideBarAnimationViewConstants } from '../constants/SideBarAnimationViewConstants';
 
-@Preview
 @Component
 export struct SideBarView {
+  memberArray: string[] = [];
+
+  aboutToAppear(): void {
+    for (let i = 0; i < SideBarAnimationViewConstants.MEMBER_COUNT; i++) {
+      this.memberArray.push("成员" + i);
+    }
+  }
+
+  @Builder
+  buildList() {
+    List() {
+      ForEach(this.memberArray, (item: string, index: number) => {
+        ListItem() {
+          Row() {
+            Image(null)
+              .backgroundColor($r("app.color.help_color"))
+              .width($r("app.integer.sidebar_member_list_head_icon_size"))
+              .height($r("app.integer.sidebar_member_list_head_icon_size"))
+              .borderRadius($r("app.integer.sidebar_member_list_head_icon_radius"))
+            Row()
+              .margin($r("sys.float.ohos_id_card_margin_start"))
+              .height($r("app.integer.sidebar_member_list_name_height"))
+              .width("100%")
+              .backgroundColor($r("app.color.help_color"))
+          }
+        }
+      })
+    }
+    .padding($r('sys.float.ohos_id_card_margin_start'))
+  }
+
   build() {
     Column() {
       FunctionDescription({ content: $r("app.string.sidebar_message") })
+      Divider()
+        .padding($r("sys.float.ohos_id_card_margin_start"))
+      this.buildList()
     }
     .backgroundColor($r("app.color.ohos_id_color_sub_background"))
     .width($r("app.string.full_size"))

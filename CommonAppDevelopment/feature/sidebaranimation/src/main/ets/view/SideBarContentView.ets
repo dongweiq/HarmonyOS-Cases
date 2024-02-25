@@ -22,18 +22,65 @@ export struct SideBarContentView {
 
   switchTabBar() {
     // TODO：知识点：本例核心，点击Button的时候通过显式动画来控制sidebar的显示与隐藏，因为这里只对this.isShowSideBar进行了变化，因此所有相关动画均需与其关联
-    animateTo({ duration: SideBarAnimationViewConstants.SIDEBAR_ANIMATION_DURATION }, () => {
+    animateTo({ duration: SideBarAnimationViewConstants.SIDEBAR_ANIMATION_DURATION, curve: Curve.Friction }, () => {
       this.isShowSideBar = !this.isShowSideBar;
     })
+  }
+
+  @Builder
+  buildChatInfo() {
+    Row() {
+      Image(null)
+        .width($r("app.integer.headIconSize"))
+        .height($r("app.integer.headIconSize"))
+        .borderRadius($r("app.integer.headIconRadius"))
+        .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+      Column() {
+        Text($r("app.string.sender_info"))
+        Text($r("app.string.case_description"))
+          .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+          .padding($r("sys.float.ohos_id_card_margin_start"))
+          .borderRadius($r("sys.float.ohos_id_corner_radius_default_m"))
+          .constraintSize({
+            maxWidth: $r("app.string.message_max_width")
+          }) // TODO：知识点：这里使用了计算特性对组件的最大宽度进行了限制，以避免组件尺寸超出父组件
+      }
+      .alignItems(HorizontalAlign.Start)
+      .margin({
+        left: $r("sys.float.ohos_id_card_margin_start"),
+      })
+    }
+    .width($r("app.string.full_size"))
+    .alignItems(VerticalAlign.Top)
   }
 
   build() {
     Stack() {
       Column() {
-        FunctionDescription({
-          title: $r("app.string.case_name"),
-          content: $r("app.string.case_description")
-        })
+        Column() {
+          Text("侧边栏淡入淡出动画案例群")
+            .fontSize($r("sys.float.ohos_id_text_size_headline8"))
+            .fontWeight(SideBarAnimationViewConstants.GROUP_NAME_FONT_WEIGHT)
+            .margin($r("sys.float.ohos_id_card_margin_start"))
+          Divider()
+          Column() {
+            this.buildChatInfo()
+          }
+          .width($r("app.string.full_size"))
+          .padding({ top: $r("sys.float.ohos_id_card_margin_start") })
+        }
+        .alignItems(HorizontalAlign.Start)
+        .width($r("app.string.full_size"))
+
+        Blank()
+        Stack() {
+          TextArea()
+            .borderRadius($r("sys.float.ohos_id_corner_radius_default_m"))
+            .height($r("app.integer.input_box_height"))
+          Button("发送")
+            .margin($r("sys.float.ohos_id_card_margin_end"))
+        }
+        .align(Alignment.BottomEnd)
       }
       .alignItems(HorizontalAlign.End)
       .width($r("app.string.full_size"))

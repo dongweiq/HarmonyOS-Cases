@@ -16,6 +16,8 @@
 export class SideBarAnimationViewConstants {
   static readonly SIDEBAR_ANIMATION_DURATION: number = 500;
   static readonly SIDEBAR_WIDTH: number = 200;
+  static readonly GROUP_NAME_FONT_WEIGHT: number = 16;
+  static readonly MEMBER_COUNT: number = 10;
   static readonly SIDEBAR_OPACITY_SHOW: number = 1;
   static readonly SIDEBAR_OPACITY_HIDDEN: number = 0;
   static readonly SIDEBAR_IS_SHOW_BUTTON: boolean = false;
