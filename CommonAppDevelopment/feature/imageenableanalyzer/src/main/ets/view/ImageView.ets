@@ -14,6 +14,7 @@
  */
 
 import image from '@ohos.multimedia.image';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 
 /**
  * 实现步骤：
@@ -164,4 +165,16 @@ struct Content {
     .backgroundColor($r('app.color.white'))
     .borderRadius($r('app.integer.view_borderRadius'))
   }
+}
+
+@Builder
+export function getImageView(): void {
+  ImageView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterInfo.IMAGE_ENABLE_ANALYZER[0];
+if (!DynamicsRouter.getBuilder(builderName)) {
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getImageView);
+  DynamicsRouter.registerBuilder(builderName, builder);
 }
