@@ -23,4 +23,5 @@ export const STYLE_CONFIG: Record<string, number> = {
   'ITEM_GUTTER': 12, // 元素间距
   'ITEM_HEIGHT': 26, // 数字元素高度
   'TEXT_MARGIN': 2, // 文本间距
+  'PADDING_TOP': 32  // 顶部边距
 }

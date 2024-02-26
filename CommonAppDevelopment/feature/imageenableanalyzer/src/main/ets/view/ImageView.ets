@@ -173,7 +173,7 @@ export function getImageView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterInfo.IMAGE_ENABLE_ANALYZER[0];
+const builderName = RouterInfo.IMAGE_ENABLE_ANALYZER[0];
 if (!DynamicsRouter.getBuilder(builderName)) {
   let builder: WrappedBuilder<[object]> = wrapBuilder(getImageView);
   DynamicsRouter.registerBuilder(builderName, builder);

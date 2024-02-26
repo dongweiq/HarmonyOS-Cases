@@ -346,13 +346,13 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 
 #### SideBarContainer侧边栏淡入淡出动效实现案例
 
-在pc或平板上，群聊侧边栏是一种较为常用的功能，虽然HarmonyOS已经具备了基本的动效，但是部分情况下开发者可能有定制侧边栏动效的需求，本例主要介绍了如何基于显式动化实现侧边栏的淡入淡出动效。[详细说明文档](./CommonAppDevelopment/feature/sidebaranimation/README.md)
+在pc或平板上，群聊侧边栏是一种较为常用的功能，虽然HarmonyOS已经具备了基本的动效，但是部分情况下开发者可能有定制侧边栏动效的需求，本例主要介绍了如何基于显式动画实现侧边栏的淡入淡出动效。[详细说明文档](./CommonAppDevelopment/feature/sidebaranimation/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/side_bar_animation.gif" width="200">
 
 #### 图片拖拽AI抠图案例
 
-本示例介绍图片AI抠图案例的使用：通过Image.enableAnalyzer(true)实现长按图片抠图并拖拽/复制到其他应用中。[详细说明文档](./CommonAppDevelopment/feature/imageenableanalyzer//README.md)
+本示例介绍图片AI抠图案例的使用：通过Image.enableAnalyzer(true)实现长按图片抠图并拖拽/复制到其他应用中。[详细说明文档](./CommonAppDevelopment/feature/imageenableanalyzer/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_enableanalyzer.gif" width="200">
 

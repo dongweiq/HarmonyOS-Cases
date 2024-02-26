@@ -13,9 +13,17 @@
  * limitations under the License.
  */
 
-export { DigitalScrollExample } from './src/main/ets/pages/DigitalScrollExample';
-
-// 动态import时需要调用的接口，接口名请使用harInit，用于动态加载页面
-export function harInit(path: string) {
-  import(path);
+export const STYLE_CONFIG: Record<string, number> = {
+  'IMAGE_SIZE': 32,
+  'IMAGE_MARGIN': 4,
+  'ICON_GUTTER': 4,
+  'OPERATION_BUTTON_PADDING': 4,
+  'MENU_IMAGE_SIZE': 24,
+  'MENU_HEIGHT': 56,
+  'TEXT_MARGIN_LEFT': 40,
+  'IMAGE_MARGIN_RIGHT': 30,
+  'LIST_ITEM_GUTTER': 12,
+  'BORDER_WIDTH': 3,
+  'TODO_ITEM_HEIGHT': 80,
+  'TODO_ITEM_PADDING_VERTICAL': 4
 }
