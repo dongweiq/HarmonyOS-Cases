@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "imagedrag",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1"
+    ]
+  }
+}
