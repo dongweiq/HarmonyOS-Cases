@@ -219,6 +219,11 @@
     {
       "name": "votingcomponent",
       "srcPath": "./feature/votingcomponent"
+    },
+    {
+      "name": "webgetcameraimage",
+      "srcPath": "./feature/webgetcameraimage"
+
     }
   ]
 }

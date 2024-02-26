@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "webgetcameraimage",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

@@ -100,6 +100,8 @@
     // Lottie
     "@ohos/lottieview": "file:../../feature/lottieview",
     // 投票组件
-    "@ohos/votingcomponent": "file:../../feature/votingcomponent"
+    "@ohos/votingcomponent": "file:../../feature/votingcomponent",
+    // WebView拉起原生相机案例
+    "@ohos/webgetcameraimage": "file:../../feature/webgetcameraimage"
   }
 }

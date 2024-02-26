@@ -64,7 +64,8 @@
           "@ohos/shortvideo",
           "@ohos/digitalscrollanimation",
           "@ohos/lottieview",
-          "@ohos/votingcomponent"
+          "@ohos/votingcomponent",
+          "@ohos/webgetcameraimage"
         ]
       }
     }
