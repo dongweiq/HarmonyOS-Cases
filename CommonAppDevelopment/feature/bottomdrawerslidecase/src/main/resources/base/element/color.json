@@ -15,6 +15,26 @@
     {
       "name": "listhead_backgroundcolor",
       "value": "#FF3683CA"
+    },
+    {
+      "name": "list_first_backgroundcolor",
+      "value": "#f1f2f6"
+    },
+    {
+      "name": "list_header_text",
+      "value": "#4c69b9"
+    },
+    {
+      "name": "list_header_shadow",
+      "value": "#c6daf5"
+    },
+    {
+      "name": "list_header_backgroundcolor",
+      "value": "#e9f3ff"
+    },
+    {
+      "name": "setting_item_view_backgroundcolor",
+      "value": "#e5e5e5"
     }
   ]
 }

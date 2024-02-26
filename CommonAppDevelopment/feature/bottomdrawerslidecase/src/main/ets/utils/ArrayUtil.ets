@@ -25,7 +25,7 @@ export default class ArrayUtil {
    * @returns Array
    */
   static listNoRepeatDate<T>(list: T[]) {
-    if (null == list || undefined == list || list.length == 0) {
+    if (null === list || undefined === list || list.length === 0) {
       return;
     }
     return Array.from(new Set(list));
@@ -37,7 +37,7 @@ export default class ArrayUtil {
    * @returns boolean
    */
   static isNotNullEmpty(list: Array<Object> | undefined): boolean {
-    return null != list && undefined != list && list.length >= 1;
+    return null !== list && undefined !== list && list.length >= 1;
   }
 
   /**

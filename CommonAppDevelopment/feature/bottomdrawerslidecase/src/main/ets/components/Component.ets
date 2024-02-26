@@ -18,7 +18,7 @@ import { CommonConstants } from '../constants/CommonConstants';
 // 地图顶部标题栏
 @Component
 export struct HomeTop {
-  @Link statusBarHeight: number // 状态栏高度
+  @Link statusBarHeight: number; // 状态栏高度
 
   build() {
     Row() {
@@ -39,13 +39,12 @@ export struct HomeTop {
 // listItem布局样式
 @Component
 export struct SettingItemView {
-  private image: Resource | string = ''; // 图片
   @Link bottomAvoidHeight: number; // 底部导航条避让高度
 
   build() {
     Column() {
-      Image(this.image)
-        .backgroundColor(Color.White)
+      Row()
+        .backgroundColor($r('app.color.setting_item_view_backgroundcolor'))
         .height($r('app.integer.other_itemheight'))
         .width('98%')
         .borderRadius($r('app.integer.number_10'))
@@ -65,7 +64,7 @@ export struct StatusHead {
   build() {
     Column() {
       Blank()
-        .width('100%')
+        .width(CommonConstants.FULL_SIZE)
         .backgroundColor(Color.White)
         .height(this.statusBarHeight)
       Row() {

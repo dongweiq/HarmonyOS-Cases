@@ -10,7 +10,7 @@
 
 **使用说明**
 
-1. 向上滑动底部列表，支持根据滑动距离进行分阶抽屉式段滑动，及列表内容的滚动控制。
+1. 向上滑动底部列表，支持根据滑动距离进行分阶抽屉式段滑动。
 
 ### 实现思路
 
@@ -18,7 +18,7 @@
 
 1. 使用RelativeContainer和Stack布局，实现可滑动列表在页面在底部，且在列表滑动到页面顶部时，显示页面顶部标题栏。
 
-```
+```typescript
 Stack({ alignContent: Alignment.TopStart }) {
   RelativeContainer() {
     // 地图背景
@@ -40,78 +40,79 @@ Stack({ alignContent: Alignment.TopStart }) {
 
 2. 通过对List设置onTouch属性，记录手指按下和离开屏幕纵坐标，判断手势是上/下滑。
 
-```
+```typescript
 List({ scroller: this.listScroller }) {
   ListItemGroup({ header: this.itemHead("安全出行季") }){
   ...
   }
 }
 .onTouch((event) => {
-   switch (event.type) {
-      // 手指按下触摸屏幕
-      case TouchType.Down: {
-         this.yStart = event.touches[0].y;  // 手指按压屏幕的纵坐标
-         break;
+  switch (event.type) {
+    // 手指按下触摸屏幕
+    case TouchType.Down: {
+      this.yStart = event.touches[0].y;  // 手指按压屏幕的纵坐标
+      break;
+    }
+    // 手指在屏幕移动      
+    case TouchType.Move: {
+      let yEnd = event.touches[0].y; // 手指离开屏幕的纵坐标
+      let height = Math.abs(Math.abs(yEnd) - Math.abs(this.yStart)); // 手指在屏幕上的滑动距离
+      let maxHeight = this.windowHeight - this.statusBarHeight; // list列表的最大高度
+      // 判断上滑，且list跟随手势滑动
+      if (yEnd < this.yStart) {
+        this.isUp = true;
+        ...
       }
-      case TouchType.Move: {
-         let yEnd = event.touches[0].y; // 手指离开屏幕的纵坐标
-         let height = Math.abs(Math.abs(yEnd) - Math.abs(this.yStart)); // 手指在屏幕上的滑动距离
-         let maxHeight = this.windowHeight - this.statusBarHeight; // list列表的最大高度
-         // 判断上滑，且list跟随手势滑动
-         if (yEnd < this.yStart) {
-           this.isUp = true;
-           ...
-         }
-         else {
-           this.isUp = false;
-           ...
-         }
+      else {
+        this.isUp = false;
+        ...
       }
-   }
+    }
+  }
 })
 ```
 
-3. 根据手指滑动的长度对列表高度进行改变。
+3. 根据手指滑动的长度对列表高度进行改变（以上滑为例）。
 
-```
-// 以上滑为例
-
+```typescript
 let temHeight = this.listHeight + height;
-  if (temHeight >= maxHeight) {
-    this.listHeight = maxHeight;
-    this.isScroll = true;
-  } else {
-     this.listHeight = temHeight; // listHeight为列表高度
-     this.isScroll = false;
-  }
+if (temHeight >= maxHeight) {
+  this.listHeight = maxHeight;
+  this.isScroll = true; // 列表内的内容是否可以滑动
+} else {
+  this.listHeight = temHeight; // listHeight为列表高度
+  this.isScroll = false;
+}
 ```
 
-4. 在手指滑动结束离开屏幕后，通过判断此时列表高度处于哪个区间，并为列表赋予相应的高度。
+4. 在手指滑动结束离开屏幕后，通过判断此时列表高度处于哪个区间，为列表赋予相应的高度（以上滑为例）。
 
-```
-// 以上滑为例
+```typescript
 switch (event.type) {
-   case TouchType.Up: {         
-      this.yStart = event.touches[0].y;        
-      let maxHeight = this.windowHeight - this.statusBarHeight; // 设置list最大高度
-      // 列表上滑时，分阶段滑动
-      if (this.isUp) {
+  case TouchType.Up: {
+    this.yStart = event.touches[0].y;
+    let maxHeight = this.windowHeight - this.statusBarHeight; // 设置list最大高度
+    // 列表上滑时，分阶段滑动
+    if (this.isUp) {
       // 分阶段滑动，滑动到第二个item
-      if (this.listHeight > CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight && this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight) {
-         this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight;
-         this.isShow = false;
-         return;
+      if (this.listHeight > CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight && this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight) {
+        this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight;
+        this.isShow = false;
+        return;
       }
       // 分阶段滑动，滑动到页面顶部
       if (CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight < this.listHeight && this.listHeight <= maxHeight) {
-         this.listHeight = maxHeight;
-         this.isShow = false;
-         return;
+        this.listHeight = maxHeight;
+        this.isShow = false;
+        return;
       }
-   }else{
-   // 下滑阶段
-   ...
-   }
+    }
+    else {
+      // 下滑阶段
+      ...
+    }
+    break;
+  }
 }
 ```
 

@@ -15,10 +15,10 @@
 
 import { window, display } from '@kit.ArkUI';
 import { logger } from '@ohos/utils';
-import ArrayUtil from './ArrayUtil'
+import ArrayUtil from './ArrayUtil';
 
 
-declare type DisplayType = display.Display
+declare type DisplayType = display.Display;
 
 
 /**
@@ -26,16 +26,16 @@ declare type DisplayType = display.Display
  */
 export default class WindowModel {
   // 默认的顶部导航栏高度
-  public static readonly STATUS_BAR_HEIGHT = 38.8
+  public static readonly STATUS_BAR_HEIGHT = 38.8;
   // 默认的底部导航条高度
-  public static readonly BOTTOM_AVOID_HEIGHT = 10
+  public static readonly BOTTOM_AVOID_HEIGHT = 10;
 
   private constructor() {
   }
 
   // WindowModel 单例
   private static instance?: WindowModel;
-  //
+  // 键值对
   private objects = new Map<string, Object>();
 
   /**
@@ -100,7 +100,7 @@ export default class WindowModel {
         return;
       }
       try {
-        let type = window.AvoidAreaType.TYPE_SYSTEM;
+        const type = window.AvoidAreaType.TYPE_SYSTEM;
         let avoidArea = windowClass.getWindowAvoidArea(type);
         let height = avoidArea.topRect.height;
         logger.info("Successful get statusHeight" + height);
@@ -142,9 +142,9 @@ export default class WindowModel {
 
   /**
    * 获取手机物理逻辑密度
-   * @returns
+   * @returns {Promise<number>}
    */
-  async getDisplay() {
+  async getDisplay(): Promise<number> {
     let globalDisplays = WindowModel.getInstance().getObject('display') as Array<DisplayType>
     if (ArrayUtil.isNotNullEmpty(globalDisplays)) {
       return globalDisplays[0].densityPixels;
@@ -156,9 +156,9 @@ export default class WindowModel {
 
   /**
    * 获取主窗口高度
-   * @returns
+   * @returns {Promise<number>}
    */
-  async getWindowHeight() {
+  async getWindowHeight(): Promise<number> {
     let globalDisplays = WindowModel.getInstance().getObject('display') as Array<DisplayType>;
     if (ArrayUtil.isNotNullEmpty(globalDisplays)) {
       return globalDisplays[0].height / globalDisplays[0].densityPixels;

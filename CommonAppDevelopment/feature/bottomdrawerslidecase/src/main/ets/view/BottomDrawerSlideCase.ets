@@ -104,9 +104,8 @@ export struct BottomDrawerSlideCase {
           .id("bg_img")
           .height(2000)
           .width(2000)
-          .translate({ x: this.offsetX, y: this.offsetY})// 以组件左上角为坐标原点进行移动
-          .draggable(false)
-            // 单指操作拖动背景地图
+          .translate({ x: this.offsetX, y: this.offsetY })// 以组件左上角为坐标原点进行移动
+          .draggable(false)// 单指操作拖动背景地图
           .gesture(
             PanGesture({ direction: PanDirection.All, fingers: 1 })
               .onActionUpdate((event: GestureEvent) => {
@@ -150,17 +149,22 @@ export struct BottomDrawerSlideCase {
                   .fontSize($r('app.integer.number_22'))
                   .fontWeight(2)
                   .height($r('app.integer.number_60'))
-                  .backgroundColor(Color.Gray)
+                  .backgroundColor($r('app.color.list_first_backgroundcolor'))
                   .borderRadius($r('app.integer.number_10'))
                   .width('80%')
               }
               .height('80%')
-              .width('90%')
+              .width('98%')
               .padding({ left: $r('app.integer.number_15'), right: $r('app.integer.number_15') })
               .justifyContent(FlexAlign.Center)
               .borderRadius($r('app.integer.number_10'))
-              .shadow({ radius: $r('app.integer.number_10'), color: Color.Gray })
+              .shadow({
+                radius: $r('app.integer.number_30'), // 阴影模糊半径
+                color: $r('app.color.list_first_backgroundcolor'),
+                offsetY: $r('app.integer.number_5') // Y轴偏移量
+              })
             }
+            .borderRadius({ topLeft: 15, topRight: 15 })
             .width(CommonConstants.FULL_SIZE)
             .onAreaChange((oldValue: Area, newValue: Area) => {
               this.firstListItemHeight = (newValue.height) as number;
@@ -170,7 +174,7 @@ export struct BottomDrawerSlideCase {
 
             ForEach(this.listItem, (item: SettingItem) => {
               ListItem() {
-                SettingItemView({ image: item.image, bottomAvoidHeight: this.bottomAvoidHeight })
+                SettingItemView({ bottomAvoidHeight: this.bottomAvoidHeight })
               }
               .onAreaChange((oldValue: Area, newValue: Area) => {
                 this.secondListItemHeight = (newValue.height) as number;
@@ -179,7 +183,6 @@ export struct BottomDrawerSlideCase {
               .width(CommonConstants.FULL_SIZE)
             }, (item: SettingItem) => item.id.toString())
           }
-
         }
         .borderRadius($r('app.integer.number_10'))
         .scrollBar(BarState.Off) // 滚动条不显示
@@ -210,7 +213,7 @@ export struct BottomDrawerSlideCase {
             return;
           }
 
-          // 当底部列表滑动到页面的顶部吸顶时，显示顶部导航栏遮盖部分
+          // 当底部列表滑动到页面的顶部时，显示顶部导航栏遮盖部分
           if (this.isScroll) {
             this.isShow = true;
             return;
@@ -229,8 +232,9 @@ export struct BottomDrawerSlideCase {
               let maxHeight = this.windowHeight - this.statusBarHeight; // 设置list最大高度
               // 列表上滑时，分阶段滑动
               if (this.isUp) {
+                this.listScroller.scrollToIndex(0, true)
                 // 分阶段滑动，滑动到第二个item
-                if (this.listHeight > CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight && this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight) {
+                if (this.listHeight > CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight && this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight) {
                   this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight;
                   this.isShow = false;
                   return;
@@ -247,13 +251,13 @@ export struct BottomDrawerSlideCase {
                 //存在onReachStart不准确的情况，规避一下
                 this.listScroller.scrollToIndex(0, true)
                 // 分阶段滑动，滑动到第三阶段
-                if (this.listHeight >= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight && this.listHeight <= maxHeight) {
+                if (this.listHeight >= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight) {
                   this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight;
                   this.isShow = false;
                   return;
                 }
                 // 分阶段滑动，滑动到第二阶段
-                if (this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight) {
+                if (this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight + this.bottomAvoidHeight) {
                   this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight;
                   this.isShow = false;
                   return;
@@ -268,6 +272,8 @@ export struct BottomDrawerSlideCase {
               let maxHeight = this.windowHeight - this.statusBarHeight; // list列表的最大高度
               // 判断上滑，且list跟随手势滑动
               if (yEnd < this.yStart) {
+                //存在onReachStart不准确的情况，规避一下
+                this.listScroller.scrollToIndex(0, true);
                 this.isUp = true;
                 let temHeight = this.listHeight + height;
                 if (temHeight >= maxHeight) {
@@ -300,10 +306,8 @@ export struct BottomDrawerSlideCase {
           }
         })
       }
-      .backgroundColor(Color.White)
 
-      // 当列表吸顶后，顶部导航栏遮蔽区域
-
+      // 当列表滑动到第三阶段再向上划，出现的顶部导航栏遮蔽区域
       StatusHead({ statusBarHeight: this.statusBarHeight, topHeaderHeight: CommonConstants.PAGE_HEADER_HEIGHT })
         .visibility(this.isShow ? Visibility.Visible : Visibility.None)
 
@@ -320,12 +324,16 @@ export struct BottomDrawerSlideCase {
       Row() {
         Text(text)
           .fontSize($r('app.string.fontsize_15'))
-          .fontColor('#4c69b9')
+          .fontColor($r('app.color.list_header_text'))
       }
+      .shadow({
+        radius: $r('app.integer.number_10'), // 阴影模糊半径
+        color: $r('app.color.list_header_shadow'),
+      })
       .height($r('app.integer.height_50'))
       .width('40%')
       .margin({ left: $r('app.integer.number_30') })
-      .backgroundColor('#e9f3ff')
+      .backgroundColor($r('app.color.list_header_backgroundcolor'))
       .borderRadius($r('app.integer.number_10'))
       .padding({ left: $r('app.integer.number_15') })
 
@@ -337,6 +345,7 @@ export struct BottomDrawerSlideCase {
     .borderRadius($r('app.integer.number_10'))
   }
 }
+
 
 /**
  * 创建WrappedBuilder对象，动态路由跳转时构建页面
