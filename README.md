@@ -66,6 +66,7 @@
    |   |---decompressfile              // Worker子线程中解压文件案例
    |   |---paintcomponent              // 使用绘制组件实现自定义进度动画案例
    |   |---lottieview                  // Lottie
+   |   |---imagecompression            // 图片压缩方案
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -320,6 +321,12 @@ AKI提供了极简语法糖使用方式，一行代码完成JS与C/C++的无障�
 Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Effects软件通过Bodymovin插件导出的json格式的动画，并在移动设备上进行本地渲染，可以在各种屏幕尺寸和分辨率上呈现，并且支持动画的交互性，通过添加触摸事件或其他用户交互操作，使动画更加生动和具有响应性。[详细说明文档](./CommonAppDevelopment/feature/lottieview/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/lottie_animation.gif" width="200">
+
+#### 图片压缩方案
+
+本示例介绍如何通过packing和scale实现图片压缩到指定大小以内。[详细说明文档](./CommonAppDevelopment/feature/imagecompression/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_compression.gif" width="200">
 
 ### 公共能力层
 
