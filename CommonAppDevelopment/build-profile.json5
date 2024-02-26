@@ -215,6 +215,10 @@
     {
       "name": "lottieview",
       "srcPath": "./feature/lottieview"
+    },
+    {
+      "name": "votingcomponent",
+      "srcPath": "./feature/votingcomponent"
     }
   ]
 }
