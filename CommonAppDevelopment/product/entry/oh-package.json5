@@ -98,6 +98,8 @@
     // 数字滚动动效
     "@ohos/digitalscrollanimation": "file:../../feature/digitalscrollanimation",
     // Lottie
-    "@ohos/lottieview": "file:../../feature/lottieview"
+    "@ohos/lottieview": "file:../../feature/lottieview",
+    // 投票组件
+    "@ohos/votingcomponent": "file:../../feature/votingcomponent"
   }
 }

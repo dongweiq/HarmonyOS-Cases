@@ -62,4 +62,5 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.short_video"), '短视频切换', RouterInfo.SHORT_VIDEO, 'UI布局'),
   new SceneModuleInfo($r("app.media.mp_charts"), 'MpChart运动健康', RouterInfo.MP_CHAT, '三方库', 3),
   new SceneModuleInfo($r("app.media.lottie_animation"), 'Lottie', RouterInfo.LOTTIE_VIEW, '其他'),
+  new SceneModuleInfo($r("app.media.voting_component"), '投票组件', RouterInfo.VOTING_COMPONENT, '动效', 2),
 ]

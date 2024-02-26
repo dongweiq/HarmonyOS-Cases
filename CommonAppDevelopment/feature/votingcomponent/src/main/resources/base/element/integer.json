@@ -1,0 +1,72 @@
+{
+  "integer": [
+    {
+      "name": "voting_theme_image_width",
+      "value": 20
+    },
+    {
+      "name": "voting_theme_image_height",
+      "value": 20
+    },
+    {
+      "name": "voting_theme_image_margin_left",
+      "value": 10
+    },
+    {
+      "name": "voting_theme_image_margin_right",
+      "value": 3
+    },
+    {
+      "name": "voting_theme_image_text_font_size",
+      "value": 17
+    },
+    {
+      "name": "left_rect_height",
+      "value": 50
+    },
+    {
+      "name": "fillet_radius",
+      "value": 40
+    },
+    {
+      "name": "right_angle_radius",
+      "value": 0
+    },
+    {
+      "name": "option_background_height",
+      "value": 40
+    },
+    {
+      "name": "text_center_margin",
+      "value": 25
+    },
+    {
+      "name": "upper_text_font_size",
+      "value": 11
+    },
+    {
+      "name": "under_text_font_size",
+      "value": 9
+    },
+    {
+      "name": "polygon_width",
+      "value": 100
+    },
+    {
+      "name": "polygon_height",
+      "value": 80
+    },
+    {
+      "name": "mid_text_font_size",
+      "value": 35
+    },
+    {
+      "name": "bottom_text_font_size",
+      "value": 10
+    },
+    {
+      "name": "bottom_text_margin",
+      "value": 15
+    }
+  ]
+}

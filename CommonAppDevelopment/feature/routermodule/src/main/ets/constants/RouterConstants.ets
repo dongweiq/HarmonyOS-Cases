@@ -57,4 +57,5 @@ export class RouterInfo {
   static readonly MP_CHAT: string[] = ['@ohos/barchart', './src/main/ets/view/MpCharts.ets'];
   static readonly DIGITAL_SCROLL_ANIMATION: string[] = ['@ohos/digitalscrollanimation', './src/main/ets/pages/DigitalScrollDetail.ets'];
   static readonly LOTTIE_VIEW: string[] = ['@ohos/lottieview', './src/main/ets/view/LottieView.ets'];
+  static readonly VOTING_COMPONENT: string[] = ['@ohos/votingcomponent', './src/main/ets/view/VotingComponent.ets'];
 }
