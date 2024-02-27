@@ -67,6 +67,10 @@
    |   |---paintcomponent              // 使用绘制组件实现自定义进度动画案例
    |   |---lottieview                  // Lottie
    |   |---imagecompression            // 图片压缩方案
+   |   |---votingcomponent             // 投票组件
+   |   |---webgetcameraimage           // WebView拉起原生相机案例
+   |   |---sidebaranimation            // SideBarContainer侧边栏淡入淡出动效实现案例
+   |   |---imageenableanalyzer         // 图片拖拽AI抠图案例
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -327,6 +331,31 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 本示例介绍如何通过packing和scale实现图片压缩到指定大小以内。[详细说明文档](./CommonAppDevelopment/feature/imagecompression/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_compression.gif" width="200">
+
+#### 投票动效实现案例
+
+本示例介绍使用绘制组件中的Polygon组件配合使用显式动画以及borderRadius实现投票pk组件。[详细说明文档](./CommonAppDevelopment/feature/votingcomponent/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/voting_component.gif" width="200">
+
+#### Web获取相机拍照图片案例
+
+本示例介绍如何在HTML页面中拉起原生相机进行拍照，并获取返回的图片。[详细说明文档](./CommonAppDevelopment/feature/webgetcameraimage/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/web_get_camera_image.gif" width="200">
+
+#### SideBarContainer侧边栏淡入淡出动效实现案例
+
+在pc或平板上，群聊侧边栏是一种较为常用的功能，虽然HarmonyOS已经具备了基本的动效，但是部分情况下开发者可能有定制侧边栏动效的需求，本例主要介绍了如何基于显式动画实现侧边栏的淡入淡出动效。[详细说明文档](./CommonAppDevelopment/feature/sidebaranimation/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/side_bar_animation.gif" width="200">
+
+#### 图片拖拽AI抠图案例
+
+本示例介绍图片AI抠图案例的使用：通过Image.enableAnalyzer(true)实现长按图片抠图并拖拽/复制到其他应用中。[详细说明文档](./CommonAppDevelopment/feature/imageenableanalyzer/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_enableanalyzer.gif" width="200">
+
 
 ### 公共能力层
 

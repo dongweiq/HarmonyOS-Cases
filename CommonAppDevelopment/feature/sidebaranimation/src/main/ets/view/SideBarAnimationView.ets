@@ -22,7 +22,7 @@
 import { SideBarView } from './SideBarView';
 import { SideBarContentView } from './SideBarContentView';
 import { SideBarAnimationViewConstants } from '../constants/SideBarAnimationViewConstants';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsrouter';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 import deviceInfo from '@ohos.deviceInfo';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -83,7 +83,7 @@ export function getSideBarAnimationView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterNameConstants.ROUTER_NAME_SIDEBAR_ANIMATION;
+let builderName = RouterInfo.SIDE_BAR_ANIMATION[0];
 if (!DynamicsRouter.getBuilder(builderName)) {
   let builder: WrappedBuilder<[object]> = wrapBuilder(getSideBarAnimationView);
   DynamicsRouter.registerBuilder(builderName, builder);

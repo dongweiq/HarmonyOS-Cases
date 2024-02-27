@@ -59,4 +59,7 @@ export class RouterInfo {
   static readonly DIGITAL_SCROLL_ANIMATION: string[] = ['@ohos/digitalscrollanimation', './src/main/ets/pages/DigitalScrollDetail.ets'];
   static readonly LOTTIE_VIEW: string[] = ['@ohos/lottieview', './src/main/ets/view/LottieView.ets'];
   static readonly VOTING_COMPONENT: string[] = ['@ohos/votingcomponent', './src/main/ets/view/VotingComponent.ets'];
+  static readonly SIDE_BAR_ANIMATION: string[] = ['@ohos/sidebaranimation', '.src/main/ets/view/SideBarAnimationView.ets'];
+  static readonly IMAGE_COMPRESSION: string[] = ['@ohos/imagecompression', './src/main/ets/view/ImageCompression.ets'];
+  static readonly IMAGE_ENABLE_ANALYZER: string[] = ['@ohos/imageenableanalyzer', './src/main/ets/view/ImageView.ets'];
 }
