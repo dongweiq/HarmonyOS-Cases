@@ -108,6 +108,8 @@
     // 图片压缩方案
     "@ohos/imagecompression": "file:../../feature/imagecompression",
     // 图片拖拽AI抠图案例
-    "@ohos/imageenableanalyzer": "file:../../feature/imageenableanalyzer"
+    "@ohos/imageenableanalyzer": "file:../../feature/imageenableanalyzer",
+    // 汉字转拼音案例
+    "@ohos/Chinesetopinyin": "file:../../feature/chinesetopinyin"
   }
 }
