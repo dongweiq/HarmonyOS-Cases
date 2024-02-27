@@ -1,0 +1,24 @@
+{
+  "float": [
+    {
+      "name": "max_text_lines",
+      "value": "1"
+    },
+    {
+      "name": "font_size_normal",
+      "value": "17fp"
+    },
+    {
+      "name": "font_size_smaller",
+      "value": "14fp"
+    },
+    {
+      "name": "list_item_border_radius",
+      "value": "24vp"
+    },
+    {
+      "name": "list_item_padding",
+      "value": "12vp"
+    }
+  ]
+}
