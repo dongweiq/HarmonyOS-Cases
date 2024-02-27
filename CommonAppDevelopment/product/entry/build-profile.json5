@@ -34,7 +34,7 @@
           "@ohos/handtabs",
           "@ohos/modalwindow",
           "@ohos/slidetohideanddisplace",
-          "@ohos/NavigationParameterTransferView",
+          "@ohos/navigationparametertransfer",
           "@ohos/akiusepractice",
           "@ohos/variablewatch",
           "@ohos/photopickandsave",
@@ -65,7 +65,9 @@
           "@ohos/digitalscrollanimation",
           "@ohos/lottieview",
           "@ohos/votingcomponent",
-          "@ohos/webgetcameraimage"
+          "@ohos/webgetcameraimage",
+          "@ohos/imagecompression",
+          "@ohos/imageenableanalyzer"
         ]
       }
     }

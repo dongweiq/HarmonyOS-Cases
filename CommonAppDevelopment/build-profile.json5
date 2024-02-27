@@ -223,7 +223,14 @@
     {
       "name": "webgetcameraimage",
       "srcPath": "./feature/webgetcameraimage"
-
+    },
+    {
+      "name": "imagecompression",
+      "srcPath": "./feature/imagecompression"
+    },
+    {
+      "name": "imagedrag",
+      "srcPath": "./feature/imageenableanalyzer"
     }
   ]
 }

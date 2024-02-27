@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /**
  *  首页瀑布流列表信息
@@ -22,7 +23,7 @@ export class SceneModuleInfo {
   // 首页列表名称
   name: string;
   // 路由信息
-  routerInfo: string[];
+  routerInfo: RouterInfo;
   // 路由传参数据
   param: string;
   // 难度星级
@@ -30,7 +31,7 @@ export class SceneModuleInfo {
   // 分类
   category: string;
 
-  constructor(imageSrc: ResourceStr, name: string, routerInfo: string[], category: string, ratingNumber?: number, param?: string) {
+  constructor(imageSrc: ResourceStr, name: string, routerInfo: RouterInfo, category: string, ratingNumber?: number, param?: string) {
     this.imageSrc = imageSrc;
     this.name = name;
     this.routerInfo = routerInfo

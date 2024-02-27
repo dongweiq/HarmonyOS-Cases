@@ -15,7 +15,7 @@
 
 import { SceneModuleInfo } from '@ohos/functionalscenes';
 import { RouterInfo } from '@ohos/dynamicsRouter/Index';
-import { UserBookingInfo } from '@ohos/NavigationParameterTransferView/Index';
+import { UserBookingInfo } from '@ohos/navigationparametertransfer/Index';
 
 const userBooking: UserBookingInfo = new UserBookingInfo('张山', '332212199507270611', '7F');
 const strUserBooking: string = JSON.stringify(userBooking);
@@ -65,4 +65,6 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.voting_component"), '投票组件', RouterInfo.VOTING_COMPONENT, '动效', 2),
   new SceneModuleInfo($r("app.media.web_get_camera_image"), 'Web获取相机拍照图片案例', RouterInfo.WEB_GET_CAMERA_IMAGE, '其他'),
   new SceneModuleInfo($r("app.media.number_scroll"), '数字滚动', RouterInfo.DIGITAL_SCROLL_ANIMATION, '动效'),
+  new SceneModuleInfo($r("app.media.image_compression"), '图片压缩方案', RouterInfo.IMAGE_COMPRESSION, '其他'),
+  new SceneModuleInfo($r("app.media.image_enableanalyzer"), '图片拖拽AI抠图案例', RouterInfo.IMAGE_ENABLE_ANALYZER, '其他')
 ]

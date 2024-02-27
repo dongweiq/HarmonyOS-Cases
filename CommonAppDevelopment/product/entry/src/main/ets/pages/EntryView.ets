@@ -28,7 +28,7 @@ struct EntryView {
 
   aboutToAppear(): void {
     // 注册动态router
-    DynamicsRouter.createRouter(this.pageStack);
+    DynamicsRouter.createNavPathStack(this.pageStack);
     // 存储初始数据用于搜索筛选
     AppStorage.setOrCreate('listData', this.listData)
   }
