@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "滑动列表到上次浏览历史记录"
+    },
+    {
+      "name": "near_message",
+      "value": "附近的人"
+    },
+    {
+      "name": "harmony_hei_ti",
+      "value": "HarmonyHeiTi"
+    },
+    {
+      "name": "friendMomentsPage_share",
+      "value": "分享"
+    },
+    {
+      "name": "friendMomentsPage_thumbsup",
+      "value": "点赞"
+    },
+    {
+      "name": "friendMomentsPage_message",
+      "value": "评论"
+    },
+    {
+      "name": "layout_100",
+      "value": "100%"
+    },
+    {
+      "name": "jump_to_history",
+      "value": "跳转到上次浏览历史"
+    },
+    {
+      "name": "jump_to_top",
+      "value": "跳转到顶部"
+    },
+    {
+      "name": "jump_position_x",
+      "value": "50%"
+    },
+    {
+      "name": "jump_position_y",
+      "value": "90%"
+    },
+    {
+      "name": "jump_markAnchor_x",
+      "value": "50%"
+    },
+    {
+      "name": "jump_text_one",
+      "value": "这是第%d条消息："
+    }
+  ]
+}
