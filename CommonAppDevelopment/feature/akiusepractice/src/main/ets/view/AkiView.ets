@@ -57,6 +57,7 @@ export struct AkiView {
             libaki.AkiThreadsCallJs(this.value);
           })
       }
+      .padding($r('app.string.ohos_id_card_padding_start'))
       .width($r('app.string.common_size'))
     }
     .height($r('app.string.common_size'))
