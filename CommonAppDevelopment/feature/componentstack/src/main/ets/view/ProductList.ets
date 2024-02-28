@@ -55,22 +55,22 @@ export struct ProductList {
               .offset({ x: OFFSET })// 因为￥是中文字符，上面的是中文字符，占的宽度不一样，所以需要对齐，添加offset
               .fontWeight(FontWeight.Bold)
               .fontColor($r('app.color.ohos_id_color_warning'))
-            Row() {
-              Text(item.insurance)
-                .fontSize($r('app.integer.water_flow_insurance_font_size'))
-                .fontColor($r('app.color.ohos_id_color_list_alert'))
-                .borderColor($r('app.color.ohos_id_color_list_alert'))
-                .borderWidth($r('app.integer.water_flow_insurance_border_width'))
-                .borderRadius($r('app.integer.water_flow_insurance_border_radius'))
-                .padding({ left: $r('app.integer.water_flow_insurance_padding_horizontal'),
-                  right: $r('app.integer.water_flow_insurance_padding_horizontal'),
-                  top: $r('app.integer.water_flow_insurance_padding_vertical'),
-                  bottom: $r('app.integer.water_flow_insurance_padding_vertical') })
-                .margin({ top: $r('app.integer.water_flow_insurance_margin_top') })
-            }
-            .width("100%")
-            .justifyContent(FlexAlign.Start)
+
+            Text(item.insurance)
+              .fontSize($r('app.integer.water_flow_insurance_font_size'))
+              .fontColor($r('app.color.ohos_id_color_list_alert'))
+              .borderColor($r('app.color.ohos_id_color_list_alert'))
+              .borderWidth($r('app.integer.water_flow_insurance_border_width'))
+              .borderRadius($r('app.integer.water_flow_insurance_border_radius'))
+              .padding({
+                left: $r('app.integer.water_flow_insurance_padding_horizontal'),
+                right: $r('app.integer.water_flow_insurance_padding_horizontal'),
+                top: $r('app.integer.water_flow_insurance_padding_vertical'),
+                bottom: $r('app.integer.water_flow_insurance_padding_vertical')
+              })
+              .margin({ top: $r('app.integer.water_flow_insurance_margin_top') })
           }
+          .alignItems(HorizontalAlign.Start)
           .padding({ left: $r('app.integer.water_flow_column_padding_left') })
           .width('100%')
           .height($r('app.integer.water_flow_column_height'))
