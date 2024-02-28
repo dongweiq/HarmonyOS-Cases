@@ -16,6 +16,7 @@
 import { AppInfo } from '../model/AppInfo';
 
 const ICON_NUM_IN_LIST: number = 4; // 示例List中子组件数目
+const LIST_SPACE: number = 30; // 列表默认间隔
 
 /**
  * 实现List场景，拖拽交换子组件位置: 通过ListItem的onDragStart()方法指定拖拽开始时的行为，通过List的onTouch()指定拖拽释放时的行为。
@@ -44,14 +45,13 @@ export struct ListSceneView {
         .textAlign(TextAlign.Center)
         .fontSize($r('app.string.opt_title_font_size'))
       Row() { // 仅靠List实现背景框，padding调整样式后，互换时可能错位
-        List({ space: 20 }) {
+        List({ space: LIST_SPACE }) {
           ForEach(this.appInfoList, (item: AppInfo, index) => { // TODO: 性能知识点：图标一次性完全显示，且禁用滑动，无需懒加载（LazyForEach可以适用在动态添加数据的场景中，参考资料：https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/lazyforeach_optimization.md/）
             ListItem() {
               Column() {
                 IconNoNameView({ app: item })
               }
             }
-            .margin({ right: $r('app.string.layout_10') })
             .onDragStart(() => { // TODO：知识点：在ListItem层，通过onDragStart实现拖拽开始时的回调行为
               item.visible = false; // 拖拽时，设置子组件原位置图标不可见
             })
@@ -62,9 +62,10 @@ export struct ListSceneView {
             })
           })
         }
+        .scrollBar(BarState.Off)
         .height($r('app.string.layout_70'))
-        .width($r('app.string.layout_330'))
         .listDirection(Axis.Horizontal)
+        .alignListItem(ListItemAlign.Center)
         .onDrop((event: DragEvent, extraParams: string) => { // TODO：知识点：在List层，通过onDrop实现拖拽结束后的回调行为
           let jsonString: JsonObjType = JSON.parse(extraParams) as JsonObjType; // 通过参数extraParams获取原位置子组件index值
           this.changeIndex(this.dragIndex, jsonString.insertIndex); // 互换子组件index值
@@ -76,12 +77,12 @@ export struct ListSceneView {
       }
       .justifyContent(FlexAlign.Center)
       .height($r('app.string.layout_70'))
-      .width($r('app.string.layout_420'))
+      .width($r('app.string.layout_90_percent'))
       .borderRadius($r('app.string.layout_20'))
       .opacity($r('app.string.background_opacity'))
       .backgroundColor($r('app.color.background_color'))
     }
-    .margin($r('app.string.layout_30'))
+    .margin({top: $r('app.string.layout_20')})
   }
 }
 
