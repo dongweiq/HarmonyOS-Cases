@@ -123,7 +123,7 @@
 
    ```
    paintcomponent                                        // har类型
-   |---components
+   |---constants
    |   |---Constants.ets                                 // 常量类
    |---view
    |   |---PaintComponent.ets                            // 视图层-绘制组件页面 

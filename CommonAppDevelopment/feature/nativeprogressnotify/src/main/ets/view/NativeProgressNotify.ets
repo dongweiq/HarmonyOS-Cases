@@ -19,7 +19,13 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 @Component
 export struct NativeProgressNotify {
+  private START_DOWNLOAD: string = "Start Download";
+  private DOWNING: string = "Downloading";
+  private PROGRESS_START: number = 0;
+  private PROGRESS_END: number = 100;
   @State progress: number = 0;
+  @State buttonEnabled: boolean = true;
+  @State buttonText: string = this.START_DOWNLOAD;
 
   build() {
     Row() {
@@ -31,14 +37,27 @@ export struct NativeProgressNotify {
           .animation({ duration: NativeProgressNotifyConstants.PROGRESS_ANIMATION_DURATION, curve: Curve.Ease })
           .style({ strokeWidth: 15 })
         Text(`当前下载进度：${this.progress}%`)
-        Button("Start Download")
+        Button(this.buttonText)
           .onClick(() => {
             // TODO 知识点：调用native的下载方法，并传入回调函数，在回调函数中接收native侧传递过来的进度信息
             naitiveprogressnotify.startDownload((data: number) => {
+              if (data === this.PROGRESS_START || data === this.PROGRESS_END) {
+                this.buttonEnabled = true;
+                this.buttonText = this.START_DOWNLOAD;
+              }
+              else {
+                if (this.buttonEnabled) {
+                  this.buttonEnabled = false;
+                }
+                if (this.buttonText == this.START_DOWNLOAD) {
+                  this.buttonText = this.DOWNING;
+                }
+              }
               this.progress = data;
               console.log("[NativeProgressNotify]progress:" + this.progress);
             })
           })
+          .enabled(this.buttonEnabled)
       }
       .width('100%')
     }
@@ -53,8 +72,8 @@ export function getNativeProgressNotify(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterInfo.NATIVE_PROGRESS_NOTIFY[0];
-if(!DynamicsRouter.getBuilder(builderName)){
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getNativeProgressNotify);
+const builderName = RouterInfo.NATIVE_PROGRESS_NOTIFY[0];
+if (!DynamicsRouter.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(getNativeProgressNotify);
   DynamicsRouter.registerBuilder(builderName, builder);
 }

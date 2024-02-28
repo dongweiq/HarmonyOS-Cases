@@ -15,6 +15,7 @@
 
 // 动态路由中需要加载的模块名和模块路径，和functionalscenes模块的build-profile.json5中dependencies下面配置的模块依赖名相同
 export class RouterInfo {
+  static readonly HOME_PAGE: string[] = ['@ohos/entry', 'product/entry/src/main/ets/pages/EntryView'];
   static readonly ADDRESS_EXCHANGE: string[] = ['@ohos/addressexchange', './src/main/ets/view/AddressExchangeView'];
   static readonly BAR_CHAT: string[] = ['@ohos/barchart', './src/main/ets/view/BarChart'];
   static readonly CUSTOM_TAB_BAR: string[] = ['@ohos/custom-tabbar', './src/main/ets/view/TabView'];
@@ -51,10 +52,15 @@ export class RouterInfo {
   static readonly CUSTOM_VIEW: string[] = ['@ohos/customview', './src/main/ets/view/CustomView.ets'];
   static readonly DECOMPRESS_FILE: string[] = ['@ohos/decompressfile', './src/main/ets/view/MainPage.ets'];
   static readonly DRAG_EXCHANGE: string[] = ['@ohos/dragandexchange', './src/main/ets/pages/Launcher.ets'];
+  static readonly WEB_GET_CAMERA_IMAGE: string[] = ['@ohos/webgetcameraimage','./src/main/ets/components/mainpage/MainPage'];
   static readonly NATIVE_PICTURE_SANDBOX: string[] = ['@ohos/nativesavepictosandbox', './src/main/ets/view/NativePictureToSandboxView.ets'];
   static readonly PAINT_COMPONENT: string[] = ['@ohos/paintcomponent', './src/main/ets/view/PaintComponent'];
   static readonly SHORT_VIDEO: string[] = ['@ohos/shortvideo', './src/main/ets/view/ShortVideo.ets'];
   static readonly MP_CHAT: string[] = ['@ohos/barchart', './src/main/ets/view/MpCharts.ets'];
   static readonly DIGITAL_SCROLL_ANIMATION: string[] = ['@ohos/digitalscrollanimation', './src/main/ets/pages/DigitalScrollDetail.ets'];
   static readonly LOTTIE_VIEW: string[] = ['@ohos/lottieview', './src/main/ets/view/LottieView.ets'];
+  static readonly VOTING_COMPONENT: string[] = ['@ohos/votingcomponent', './src/main/ets/view/VotingComponent.ets'];
+  static readonly SIDE_BAR_ANIMATION: string[] = ['@ohos/sidebaranimation', '.src/main/ets/view/SideBarAnimationView.ets'];
+  static readonly IMAGE_COMPRESSION: string[] = ['@ohos/imagecompression', './src/main/ets/view/ImageCompression.ets'];
+  static readonly IMAGE_ENABLE_ANALYZER: string[] = ['@ohos/imageenableanalyzer', './src/main/ets/view/ImageView.ets'];
 }

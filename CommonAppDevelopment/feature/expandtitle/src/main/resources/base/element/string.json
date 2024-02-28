@@ -1,0 +1,80 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "layout_8",
+      "value": "8"
+    },
+    {
+      "name": "layout_10",
+      "value": "10"
+    },
+    {
+      "name": "layout_25",
+      "value": "25"
+    },
+    {
+      "name": "layout_40",
+      "value": "40"
+    },
+    {
+      "name": "layout_90",
+      "value": "90"
+    },
+    {
+      "name": "layout_110",
+      "value": "110"
+    },
+    {
+      "name": "layout_100_percent",
+      "value": "100%"
+    },
+    {
+      "name": "layout_90_percent",
+      "value": "90%"
+    },
+    {
+      "name": "layout_70_percent",
+      "value": "70%"
+    },
+    {
+      "name": "menu_pic_layout",
+      "value": "25"
+    },
+    {
+      "name": "init_title_font_size",
+      "value": "25"
+    },
+    {
+      "name": "expanded_title_font_size",
+      "value": "30"
+    },
+    {
+      "name": "memo_counts_font_size",
+      "value": "16"
+    },
+    {
+      "name": "memo_area_height_before",
+      "value": "88%"
+    },
+    {
+      "name": "memo_area_height_after",
+      "value": "75%"
+    },
+    {
+      "name": "search_placeholder",
+      "value": "Type to search..."
+    },
+    {
+      "name": "memo_counts",
+      "value": "8 notes"
+    },
+    {
+      "name": "memo_title",
+      "value": "All notes"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "voting_theme_image_text",
+      "value": "大家冬天喜欢早起还是晚起呀"
+    },
+    {
+      "name": "mid_text_left",
+      "value": "P"
+    },
+    {
+      "name": "mid_text_right",
+      "value": "K"
+    },
+    {
+      "name": "first_stack_width",
+      "value": "80%"
+    },
+    {
+      "name": "parent_column_height",
+      "value": "100%"
+    },
+    {
+      "name": "parent_column_width",
+      "value": "100%"
+    },
+    {
+      "name": "bottom_text_suffix",
+      "value": "人参与"
+    },
+    {
+      "name": "mid_gap_mark_anchor",
+      "value": "50vp"
+    }
+  ]
+}

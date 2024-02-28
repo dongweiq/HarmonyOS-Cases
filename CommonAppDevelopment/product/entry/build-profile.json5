@@ -63,7 +63,12 @@
           "@ohos/paintcomponent",
           "@ohos/shortvideo",
           "@ohos/digitalscrollanimation",
-          "@ohos/lottieview"
+          "@ohos/lottieview",
+          "@ohos/votingcomponent",
+          "@ohos/webgetcameraimage",
+          "@ohos/sidebaranimation",
+          "@ohos/imagecompression",
+          "@ohos/imageenableanalyzer"
         ]
       }
     }

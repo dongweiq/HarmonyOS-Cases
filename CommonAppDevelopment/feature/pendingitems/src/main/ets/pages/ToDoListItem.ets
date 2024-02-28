@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { STYLE_CONFIG } from '../model/ConstData';
 
 import { ToDo } from '../model/ToDo';
 
@@ -28,22 +29,22 @@ export struct ToDoListItem {
 
   build() {
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-      Row({ space: 4 }) {
+      Row({ space: STYLE_CONFIG.ICON_GUTTER }) {
         Circle()
-          .width(24)
-          .height(24)
+          .width(STYLE_CONFIG.MENU_IMAGE_SIZE)
+          .aspectRatio(1)
           .fill(Color.White)
-          .borderWidth(3)
-          .borderRadius(30)
-          .borderColor('#ffdcdfdf')
-          .margin({ right: 10 })
+          .borderWidth(STYLE_CONFIG.BORDER_WIDTH)
+          .borderRadius(STYLE_CONFIG.MENU_IMAGE_SIZE)
+          .borderColor($r('app.color.borderColor'))
+          .margin({ right: $r('sys.float.ohos_id_dialog_margin_end') })
 
         Text(`${this.toDoItem.name}`)
           .maxLines(1)
-          .fontSize(24)
+          .fontSize($r('sys.float.ohos_id_text_size_headline7'))
           .textOverflow({ overflow: TextOverflow.Ellipsis })
       }
-      .padding({ left: 12 })
+      .padding({ left: $r('sys.float.ohos_id_default_padding_start') })
 
       if (this.isEditMode) {
         Checkbox()
@@ -59,19 +60,19 @@ export struct ToDoListItem {
               }
             }
           })
-          .width(24)
-          .height(24)
+          .width(STYLE_CONFIG.MENU_IMAGE_SIZE)
+          .aspectRatio(1)
       }
     }
     .width('100%')
-    .height(80)
+    .height(STYLE_CONFIG.TODO_ITEM_HEIGHT)
     .padding({
-      left: 16,
-      right: 12,
-      top: 4,
-      bottom: 4
+      left: $r('sys.float.ohos_id_default_padding_start'),
+      right: $r('sys.float.ohos_id_default_padding_end'),
+      top: STYLE_CONFIG.TODO_ITEM_PADDING_VERTICAL,
+      bottom: STYLE_CONFIG.TODO_ITEM_PADDING_VERTICAL
     })
-    .borderRadius(24)
+    .borderRadius($r('sys.float.ohos_id_corner_radius_default_xl'))
     .linearGradient({
       direction: GradientDirection.Right,
       colors: this.hasBeenSelected() ? [[0xffcdae, 0.0], [0xFfece2, 1.0]] : [[0xffffff, 0.0], [0xffffff, 1.0]]

@@ -1,0 +1,116 @@
+{
+  "integer": [
+    {
+      "name": "swiper_height",
+      "value": 450
+    },
+    {
+      "name": "indicator_itemWidth",
+      "value": 10
+    },
+    {
+      "name": "contain_line_height",
+      "value": 23
+    },
+    {
+      "name": "indicator_selectedItemWidth",
+      "value": 10
+    },
+    {
+      "name": "indicator_selectedItemHeight",
+      "value": 10
+    },
+    {
+      "name": "bubble_text_fontSize",
+      "value": 12
+    },
+    {
+      "name": "row_text_width",
+      "value": 46
+    },
+    {
+      "name": "row_text_height",
+      "value": 24
+    },
+    {
+      "name": "row_borderRadius",
+      "value": 12
+    },
+    {
+      "name": "indicator_itemHeight",
+      "value": 10
+    },
+    {
+      "name": "row_margin_right",
+      "value": 16
+    },
+    {
+      "name": "row_margin_bottom",
+      "value": 16
+    },
+    {
+      "name": "view_margin_top",
+      "value": 50
+    },
+    {
+      "name": "content_margin_top",
+      "value": 12
+    },
+    {
+      "name": "column_padding_left",
+      "value": 12
+    },
+    {
+      "name": "column_padding_right",
+      "value": 12
+    },
+    {
+      "name": "column_margin_top",
+      "value": 8
+    },
+    {
+      "name": "icon_width",
+      "value": 32
+    },
+    {
+      "name": "text_title_fontSize",
+      "value": 19
+    },
+    {
+      "name": "text_content_fontSize",
+      "value": 17
+    },
+    {
+      "name": "text_padding_left",
+      "value": 12
+    },
+    {
+      "name": "text_padding_right",
+      "value": 12
+    },
+    {
+      "name": "text_padding_top",
+      "value": 5
+    },
+    {
+      "name": "view_padding_top",
+      "value": 12
+    },
+    {
+      "name": "view_padding_left",
+      "value": 12
+    },
+    {
+      "name": "view_padding_right",
+      "value": 12
+    },
+    {
+      "name": "view_padding_bottom",
+      "value": 18
+    },
+    {
+      "name": "view_borderRadius",
+      "value": 16
+    }
+  ]
+}

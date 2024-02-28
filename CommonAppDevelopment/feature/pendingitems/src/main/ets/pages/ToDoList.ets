@@ -17,6 +17,7 @@ import { ToDo } from '../model/ToDo';
 import { ToDoListItem } from './ToDoListItem';
 import promptAction from '@ohos.promptAction';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
+import { STYLE_CONFIG } from '../model/ConstData';
 
 /*
  * 实现步骤：
@@ -27,12 +28,11 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 @Extend(Image)
 function ImageStyle() {
-  .width(32)
-  .height(32)
-  .margin(4)
+  .width(STYLE_CONFIG.IMAGE_SIZE)
+  .aspectRatio(1)
+  .margin(STYLE_CONFIG.IMAGE_MARGIN)
 }
 
-@Preview
 @Component
 export struct ToDoList {
   @State toDoData: ToDo[] = []; // 待办事项数据
@@ -59,7 +59,7 @@ export struct ToDoList {
     if (this.isEditMode) {
       Row()
     } else {
-      Row({ space: 4 }) {
+      Row({ space: STYLE_CONFIG.ICON_GUTTER }) {
         Image($r('app.media.ic_public_settings_filled')).ImageStyle()
         Image($r('app.media.ic_public_detail_filled')).ImageStyle()
         Image($r('app.media.ic_public_delete_filled')).ImageStyle()
@@ -68,42 +68,36 @@ export struct ToDoList {
             promptAction.showToast({ message: 'delete success!' });
           })
       }
-      .padding(4)
+      .padding(STYLE_CONFIG.OPERATION_BUTTON_PADDING)
       .justifyContent(FlexAlign.SpaceEvenly)
     }
   }
 
   build() {
     Column() {
-      Column({ space: 12 }) {
-        Text($r('app.string.todo'))
-          .fontSize(24)
-        Text($r('app.string.todoListDesc'))
-          .fontColor($r('sys.color.ohos_fa_text_secondary'))
-      }
-      .backgroundColor($r('app.color.white'))
-      .padding(6)
-
       Row() {
         if (this.isEditMode) {
           Text('X')
-            .fontSize(20)
+            .fontSize($r('sys.float.ohos_id_text_size_headline8'))
             .onClick(() => {
               this.isEditMode = false; // 退出编辑模式
             })
-            .margin({ left: 20, right: 20 })
+            .margin({
+              left: $r('sys.float.ohos_id_max_padding_start'),
+              right: $r('sys.float.ohos_id_max_padding_end')
+            })
 
           Text(`已选择${this.selectedItems.length}项`)
-            .fontSize(24)
+            .fontSize($r('sys.float.ohos_id_text_size_headline7'))
         } else {
           Text($r('app.string.todo'))
-            .fontSize(36)
-            .margin({ left: 40 })
+            .fontSize($r('sys.float.ohos_id_text_size_headline6'))
+            .margin({ left: STYLE_CONFIG.TEXT_MARGIN_LEFT })
           Blank()
           Image($r('app.media.ic_public_add_filled'))
-            .width(32)
+            .width(STYLE_CONFIG.IMAGE_SIZE)
             .aspectRatio(1)
-            .margin({ right: 30 })
+            .margin({ right: STYLE_CONFIG.IMAGE_MARGIN_RIGHT })
             .onClick(() => {
               // TODO：知识点：1.根据文本选择的选择结果，向待办事项数组中添加数据
               TextPickerDialog.show({
@@ -119,10 +113,10 @@ export struct ToDoList {
       .width('100%')
 
       // TODO：知识点：2.待办数据显示列表组件绑定数据变量toDoData
-      List({ initialIndex: 0, space: 10 }) {
+      List({ initialIndex: 0, space: STYLE_CONFIG.LIST_ITEM_GUTTER }) {
         /**
          * 性能知识点：数据量少时使用ForEach进行循环数据渲染，数据量多时使用LazyForEach循环数据渲染
-         * 文档参考链接：https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md
+         * 文档参考链接：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-rendering-control-lazyforeach-0000001820879609
          */
         ForEach(this.toDoData, (toDoItem: ToDo, index: number) => {
           ListItem() {
@@ -132,7 +126,11 @@ export struct ToDoList {
               selectedItems: $selectedItems
             })
           }
-          .padding({ left: 24, right: 24, bottom: 12 })
+          .padding({
+            left: $r('sys.float.ohos_id_max_padding_start'),
+            right: $r('sys.float.ohos_id_max_padding_end'),
+            bottom: $r('sys.float.ohos_id_dialog_button_padding_bottom')
+          })
           // TODO：知识点：3.设置ListItem的swipeAction属性，左滑时，显示自定义UI视图
           .swipeAction({ end: this.ItemEnd(index), edgeEffect: SwipeEdgeEffect.Spring })
         }, (toDoItem: ToDo) => toDoItem.key)
@@ -146,7 +144,7 @@ export struct ToDoList {
         Row() {
           ForEach(this.menuList, (item: Resource, index: number) => {
             Image(item)
-              .width(24)
+              .width(STYLE_CONFIG.MENU_IMAGE_SIZE)
               .aspectRatio(1)
               .onClick(() => {
                 // 在待办事项数组中删除已被选中的事项
@@ -161,7 +159,7 @@ export struct ToDoList {
               })
           })
         }
-        .height(56)
+        .height(STYLE_CONFIG.MENU_HEIGHT)
         .justifyContent(FlexAlign.SpaceEvenly)
         .width('100%')
       }
@@ -180,7 +178,7 @@ export function getToDoList(): void {
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
 let builderName = RouterInfo.PENDING_ITEMS[0];
-if(!DynamicsRouter.getBuilder(builderName)){
+if (!DynamicsRouter.getBuilder(builderName)) {
   let builder: WrappedBuilder<[object]> = wrapBuilder(getToDoList);
   DynamicsRouter.registerBuilder(builderName, builder);
 }
