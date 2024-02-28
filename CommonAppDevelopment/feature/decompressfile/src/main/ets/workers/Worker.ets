@@ -32,10 +32,10 @@ const workerPort: ThreadWorkerGlobalScope = worker.workerPort;
  */
 workerPort.onmessage = (e: MessageEvents): void => {
   logger.info(TAG, `Worker onmessage：${JSON.stringify(e.data)}`);
-  let pathDir: string = e.data.pathDir; // 沙箱目录
-  let rawfileZipName: string = e.data.rawfileZipName; // 带.zip后缀的压缩文件名称
+  const pathDir: string = e.data.pathDir; // 沙箱目录
+  const rawfileZipName: string = e.data.rawfileZipName; // 带.zip后缀的压缩文件名称
   // 沙箱目录和去掉文件名后缀的压缩文件名称拼接成解压输出目录
-  let outFileDir: string = `${pathDir}/${rawfileZipName.split('.')[0]}`;
+  const outFileDir: string = `${pathDir}/${rawfileZipName.split('.')[0]}`;
   // TODO：知识点：使用fs.access判断目录是否已经存在。
   fs.access(outFileDir).then((res: boolean) => {
     if (!res) {
