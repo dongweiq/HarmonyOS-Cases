@@ -1,0 +1,107 @@
+{
+  "string": [
+    {
+      "name": "loading_progress_text",
+      "value": "努力加载中..."
+    },{
+      "name": "goods_title_text",
+      "value": "商品精选"
+    },
+    {
+      "name": "commodity_title00",
+      "value": "大容量充电宝智能安全保护"
+    },
+    {
+      "name": "commodity_title01",
+      "value": "高性能轻薄便携笔记本电脑"
+    },
+    {
+      "name": "commodity_title02",
+      "value": "时尚轻巧智能手机高清大屏"
+    },
+    {
+      "name": "commodity_title03",
+      "value": "豪华智能电动按摩椅尽享舒适生活"
+    },
+    {
+      "name": "commodity_title04",
+      "value": "超窄边框设计沉浸式视觉体验"
+    },
+    {
+      "name": "commodity_title05",
+      "value": "时尚简约设计潮流双肩背包"
+    },
+    {
+      "name": "commodity_price00",
+      "value": "￥79.9"
+    },
+    {
+      "name": "commodity_price01",
+      "value": "￥6975.8"
+    },
+    {
+      "name": "commodity_price02",
+      "value": "￥4279.6"
+    },
+    {
+      "name": "commodity_price03",
+      "value": "￥5385.4"
+    },
+    {
+      "name": "commodity_price04",
+      "value": "￥12500"
+    },
+    {
+      "name": "commodity_price05",
+      "value": "￥105.3"
+    },
+    {
+      "name": "commodity_view00",
+      "value": "3.2W"
+    },
+    {
+      "name": "commodity_view01",
+      "value": "9.8k"
+    },
+    {
+      "name": "commodity_view02",
+      "value": "1.8k"
+    },
+    {
+      "name": "commodity_view03",
+      "value": "859"
+    },
+    {
+      "name": "commodity_view04",
+      "value": "4.7W"
+    },
+    {
+      "name": "commodity_view05",
+      "value": "1.2W"
+    },
+    {
+      "name": "commodity_insurance00",
+      "value": "7天保价"
+    },
+    {
+      "name": "commodity_insurance01",
+      "value": "15天保价"
+    },
+    {
+      "name": "commodity_insurance02",
+      "value": "30天保价"
+    },
+    {
+      "name": "commodity_insurance03",
+      "value": "7天保价"
+    },
+    {
+      "name": "commodity_insurance04",
+      "value": "30天保价"
+    },
+    {
+      "name": "commodity_insurance05",
+      "value": "30天保价"
+    }
+  ]
+}

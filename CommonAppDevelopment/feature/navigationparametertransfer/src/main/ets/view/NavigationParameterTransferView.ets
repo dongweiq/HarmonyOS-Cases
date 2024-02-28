@@ -119,10 +119,10 @@ export struct NavigationParameterTransferView {
         radius: $r('app.string.navigation_radius'),
         style: BorderStyle.Solid
       })
-      .borderRadius($r('app.string.navigation_margin'))
-      .padding($r('app.string.navigation_padding'))
-      .margin($r('app.string.navigation_margin12'))
+      .width('100%')
+      .margin($r('app.string.ohos_id_card_margin_start'))
     }
+    .padding($r('app.string.ohos_id_card_padding_start'))
   }
 }
 

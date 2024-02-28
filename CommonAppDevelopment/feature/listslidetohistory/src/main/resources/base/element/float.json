@@ -1,0 +1,11 @@
+{
+  "float": [
+    {
+      "name": "opacity_zero_point_six",
+      "value": "0.6"
+    },{
+      "name": "jump_button_opacity",
+      "value": "0.8"
+    }
+  ]
+}

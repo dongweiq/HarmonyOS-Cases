@@ -12,6 +12,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+
 import { RouterInfo } from '../constants/RouterInfo';
 import { logger } from '@ohos/base';
 
@@ -30,6 +31,9 @@ export class DynamicsRouter {
   // 管理需要动态导入的模块，key是模块名，value是WrappedBuilder对象，动态调用创建页面的接口
   static builderMap: Map<string, WrappedBuilder<[object]>> = new Map<string, WrappedBuilder<[object]>>();
   static navPathStack: NavPathStack = new NavPathStack();
+  // 通过数组实现自定义栈的管理
+  static routerStack: Array<RouterInfo> = new Array();
+  static referrer: string[] = [];
 
   // 通过名称注册builder
   private static registerBuilder(builderName: string, builder: WrappedBuilder<[object]>): void {
@@ -41,7 +45,7 @@ export class DynamicsRouter {
     let builder = DynamicsRouter.builderMap.get(builderName);
     if (!builder) {
       let msg = "not found builder";
-      console.info(msg + builderName);
+      logger.info(msg + builderName);
     }
     return builder as WrappedBuilder<[object]>;
   }
@@ -49,11 +53,19 @@ export class DynamicsRouter {
   // 注册router
   public static createNavPathStack(navPathStack: NavPathStack): void {
     DynamicsRouter.navPathStack = navPathStack;
+    // 初始化时来源页为未定义
+    DynamicsRouter.routerStack.push(RouterInfo.HOME_PAGE)
+    logger.info(`DynamicsRouter create routerStack Home is: ${RouterInfo.HOME_PAGE.moduleName} + ${RouterInfo.HOME_PAGE.pageName}`);
   }
 
   // 通过名称获取router
   private static getNavPathStack(): NavPathStack {
     return DynamicsRouter.navPathStack;
+  }
+
+  // 获取路由来源页面栈
+  public static getRouterReferrer(): string[] {
+    return DynamicsRouter.referrer;
   }
 
   // 通过获取页面栈跳转到指定页面
@@ -76,11 +88,27 @@ export class DynamicsRouter {
       const builderName: string = moduleName + "/" + pageName;
       // 查找到对应的路由栈进行跳转
       DynamicsRouter.getNavPathStack().pushPath({ name: builderName, param: param });
+      // 自定义栈也加入指定页面
+      DynamicsRouter.routerStack.push(routerInfo);
+      let referrerModel: RouterInfo = DynamicsRouter.routerStack[DynamicsRouter.routerStack.length - 2];
+      DynamicsRouter.referrer[0] = referrerModel.moduleName;
+      DynamicsRouter.referrer[1] = referrerModel.pageName;
+      logger.info(`From DynamicsRouter.routerStack push preview module name is + ${DynamicsRouter.referrer[0]}, path is ${DynamicsRouter.referrer[1]}`);
     }
   }
 
   // 通过获取页面栈并pop
   public static pop(): void {
+    // pop前记录的来源页为当前栈顶
+    let referrerModel: RouterInfo = DynamicsRouter.routerStack[DynamicsRouter.routerStack.length - 1];
+    DynamicsRouter.referrer[0] = referrerModel.moduleName;
+    DynamicsRouter.referrer[1] = referrerModel.pageName;
+    logger.info(`From DynamicsRouter.routerStack pop preview module name is + ${DynamicsRouter.referrer[0]}, path is ${DynamicsRouter.referrer[1]}`);
+    if (DynamicsRouter.routerStack.length > 1) {
+      DynamicsRouter.routerStack.pop();
+    } else {
+      logger.info("DynamicsRouter.routerStack is only Home.");
+    }
     // 查找到对应的路由栈进行pop
     DynamicsRouter.getNavPathStack().pop();
   }

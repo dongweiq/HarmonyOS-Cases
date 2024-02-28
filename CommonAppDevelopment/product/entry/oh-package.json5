@@ -103,9 +103,21 @@
     "@ohos/votingcomponent": "file:../../feature/votingcomponent",
     // WebView拉起原生相机案例
     "@ohos/webgetcameraimage": "file:../../feature/webgetcameraimage",
+    // SideBarContainer侧边栏淡入淡出动效实现案例
+    "@ohos/sidebaranimation": "file:../../feature/sidebaranimation",
     // 图片压缩方案
     "@ohos/imagecompression": "file:../../feature/imagecompression",
     // 图片拖拽AI抠图案例
-    "@ohos/imageenableanalyzer": "file:../../feature/imageenableanalyzer"
+    "@ohos/imageenableanalyzer": "file:../../feature/imageenableanalyzer",
+    // 汉字转拼音案例
+    "@ohos/chinesetopinyin": "file:../../feature/ChineseToPinyin",
+    // 底部抽屉滑动效果案例
+    "@ohos/bottomdrawerslidecase": "file:../../feature/bottomdrawerslidecase",
+    // 标题下拉缩放案例
+    "@ohos/expandtitle": "file:../../feature/expandtitle",
+    // 长列表滑动到指定列表项动效实现案例
+    "@ohos/listslidetohistory": "file:../../feature/listslidetohistory",
+    // 页面加载效果实现案例
+    "@ohos/pageloading": "file:../../feature/pageloading"
   }
 }

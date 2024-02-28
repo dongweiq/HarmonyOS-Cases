@@ -17,12 +17,8 @@
       "value": "100%"
     },
     {
-      "name": "layout_420",
-      "value": "420"
-    },
-    {
-      "name": "layout_330",
-      "value": "330"
+      "name": "layout_90_percent",
+      "value": "90%"
     },
     {
       "name": "layout_250",
@@ -35,10 +31,6 @@
     {
       "name": "icon_square_size",
       "value": "50"
-    },
-    {
-      "name": "layout_30",
-      "value": "30"
     },
     {
       "name": "layout_20",

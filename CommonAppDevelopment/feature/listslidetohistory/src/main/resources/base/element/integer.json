@@ -1,0 +1,308 @@
+{
+  "integer": [
+    {
+      "name": "friends_page_padding_left",
+      "value": 24
+    },
+    {
+      "name": "friends_page_title_font_size",
+      "value": 24
+    },
+    {
+      "name": "friends_page_title_height",
+      "value": 33
+    },
+    {
+      "name": "friends_page_title_bar_height",
+      "value": 56
+    },
+    {
+      "name": "friends_page_search_divider_start_margin",
+      "value": 56
+    },
+    {
+      "name": "friends_page_divider_width",
+      "value": 1
+    },
+    {
+      "name": "friends_page_contact_image_width",
+      "value": 40
+    },
+    {
+      "name": "friends_page_contact_image_height",
+      "value": 40
+    },
+    {
+      "name": "friends_page_contact_image_border_radius",
+      "value": 20
+    },
+    {
+      "name": "friends_page_contact_text_width",
+      "value": 248
+    },
+    {
+      "name": "friends_page_contact_text_height",
+      "value": 22
+    },
+    {
+      "name": "friends_page_contact_text_font_size",
+      "value": 16
+    },
+    {
+      "name": "friends_page_contact_text_margin_left",
+      "value": 16
+    },
+    {
+      "name": "friends_page_contact_row_height",
+      "value": 64
+    },
+    {
+      "name": "list_history_title_icon_width",
+      "value": 24
+    },
+    {
+      "name": "list_history_title_icon_height",
+      "value": 24
+    },
+    {
+      "name": "list_history_title_fontSize",
+      "value": 20
+    },
+    {
+      "name": "list_history_title_height",
+      "value": 50
+    },
+    {
+      "name": "list_history_title_margin_left",
+      "value": 16
+    },
+    {
+      "name": "list_history_title_line_height",
+      "value": 24
+    },
+    {
+      "name": "list_history_title_padding_left",
+      "value": 24
+    },
+    {
+      "name": "list_history_title_padding_right",
+      "value": 24
+    },
+    {
+      "name": "list_history_title_padding_top",
+      "value": 13
+    },
+    {
+      "name": "list_history_title_padding_bottom",
+      "value": 9
+    },
+    {
+      "name": "list_history_name_fontSize",
+      "value": 20
+    },
+    {
+      "name": "list_history_list_divider_margin",
+      "value": 12
+    },
+    {
+      "name": "list_history_name_margin_left",
+      "value": -15
+    },
+    {
+      "name": "list_history_name_margin_right",
+      "value": 15
+    },
+    {
+      "name": "list_history_image_group_padding_left",
+      "value": 60
+    },
+    {
+      "name": "list_history_image_group_padding_right",
+      "value": 60
+    },
+    {
+      "name": "list_history_thumbsup_margin_left",
+      "value": 111
+    },
+    {
+      "name": "list_history_message_margin_left",
+      "value": 24
+    },
+    {
+      "name": "list_history_single_image_width",
+      "value": 184
+    },
+    {
+      "name": "list_history_single_image_height",
+      "value": 112
+    },
+    {
+      "name": "list_history_single_image_radius",
+      "value": 16
+    },
+    {
+      "name": "list_history_icon_play_width",
+      "value": 40
+    },
+    {
+      "name": "list_history_icon_play_height",
+      "value": 40
+    },
+    {
+      "name": "list_history_image_borderRadius",
+      "value": 5
+    },
+    {
+      "name": "list_history_image_margin_right",
+      "value": 15
+    },
+    {
+      "name": "list_history_image_margin_top",
+      "value": -55
+    },
+    {
+      "name": "list_history_owner_margin_bottom",
+      "value": 20
+    },
+    {
+      "name": "list_history_owner_margin_height",
+      "value": 20
+    },
+    {
+      "name": "list_history_layout_padding_bottom",
+      "value": 50
+    },
+    {
+      "name": "list_history_oneMoment_width",
+      "value": 50
+    },
+    {
+      "name": "list_history_oneMoment_height",
+      "value": 38
+    },
+    {
+      "name": "list_history_useImage_radius",
+      "value": 50
+    },
+    {
+      "name": "list_history_useName_fontSize",
+      "value": 16
+    },
+    {
+      "name": "list_history_useName_line_height",
+      "value": 22
+    },
+    {
+      "name": "list_history_user_image_width",
+      "value": 40
+    },
+    {
+      "name": "list_history_user_image_height",
+      "value": 40
+    },
+    {
+      "name": "list_history_user_image_border_radius",
+      "value": 20
+    },
+    {
+      "name": "list_history_userText_fontSize",
+      "value": 14
+    },
+    {
+      "name": "list_history_userText_line_height",
+      "value": 19
+    },
+    {
+      "name": "list_history_userText_margin_top",
+      "value": 1
+    },
+    {
+      "name": "list_history_user_col_margin_left",
+      "value": 8
+    },
+    {
+      "name": "list_history_row_padding_left",
+      "value": 12
+    },
+    {
+      "name": "list_history_row_padding_right",
+      "value": 16
+    },
+    {
+      "name": "list_history_row_padding_top",
+      "value": 10
+    },
+    {
+      "name": "list_history_row_padding_bottom",
+      "value": 11
+    },
+    {
+      "name": "list_history_grid_gap",
+      "value": 4
+    },
+    {
+      "name": "list_history_grid_width",
+      "value": 248
+    },
+    {
+      "name": "list_history_grid_height",
+      "value": 248
+    },
+    {
+      "name": "list_history_time_fontSize",
+      "value": 12
+    },
+    {
+      "name": "list_history_time_height",
+      "value": 15
+    },
+    {
+      "name": "list_history_time_width",
+      "value": 20
+    },
+    {
+      "name": "list_history_handler_icon_width",
+      "value": 20
+    },
+    {
+      "name": "list_history_handler_icon_height",
+      "value": 20
+    },
+    {
+      "name": "list_history_handler_text_font_size",
+      "value": 12
+    },
+    {
+      "name": "list_history_handler_padding_left",
+      "value": 60
+    },
+    {
+      "name": "list_history_handler_padding_right",
+      "value": 16
+    },
+    {
+      "name": "list_history_handler_margin_top",
+      "value": 14
+    },
+    {
+      "name": "list_history_handler_margin_bottom",
+      "value": 13
+    },
+    {
+      "name": "layout_5",
+      "value": 5
+    },
+    {
+      "name": "jump_button_radius",
+      "value": 20
+    },
+    {
+      "name": "jump_button_height",
+      "value": 40
+    },
+    {
+      "name": "jump_button_width",
+      "value": 200
+    }
+  ]
+}

@@ -23,6 +23,7 @@ export class RouterInfo {
     this.pageName = pageName;
   }
 
+  static readonly HOME_PAGE: RouterInfo = new RouterInfo('@ohos/entry', 'EntryView');
   static readonly ADDRESS_EXCHANGE: RouterInfo = new RouterInfo('@ohos/addressexchange', 'AddressExchangeView');
   static readonly BAR_CHAT: RouterInfo = new RouterInfo('@ohos/barchart', 'BarChart');
   static readonly CUSTOM_TAB_BAR: RouterInfo = new RouterInfo('@ohos/custom-tabbar', 'TabView');
@@ -67,7 +68,12 @@ export class RouterInfo {
   static readonly DIGITAL_SCROLL_ANIMATION: RouterInfo = new RouterInfo('@ohos/digitalscrollanimation', 'DigitalScrollDetail');
   static readonly LOTTIE_VIEW: RouterInfo = new RouterInfo('@ohos/lottieview', 'LottieView');
   static readonly VOTING_COMPONENT: RouterInfo = new RouterInfo('@ohos/votingcomponent', 'VotingComponent');
+  static readonly SIDE_BAR_ANIMATION: RouterInfo = new RouterInfo('@ohos/sidebaranimation', 'SideBarAnimationView');
   static readonly IMAGE_COMPRESSION: RouterInfo = new RouterInfo('@ohos/imagecompression', 'ImageCompression');
-  static readonly IMAGE_ENABLE_ANALYZER: RouterInfo = new RouterInfo('"@ohos/imageenableanalyzer"', 'ImageView');
-
+  static readonly IMAGE_ENABLE_ANALYZER: RouterInfo = new RouterInfo('@ohos/imageenableanalyzer', 'ImageView');
+  static readonly CHINESE_TO_PINYIN: RouterInfo = new RouterInfo('@ohos/chinesetopinyin', 'ChineseToPinyin');
+  static readonly BOTTOM_DRAWER_SLIDE_CASE: RouterInfo = new RouterInfo('@ohos/bottomdrawerslidecase', 'BottomDrawerSlideCase');
+  static readonly EXPAND_TITLE: RouterInfo = new RouterInfo('@ohos/expandtitle', 'TitleExpansion');
+  static readonly LIST_SLIDE_TO_HISTORY: RouterInfo = new RouterInfo('@ohos/listslidetohistory', 'ListSlideToHistory');
+  static readonly PAGE_LOADING: RouterInfo = new RouterInfo('@ohos/pageloading', 'PageLoading');
 }

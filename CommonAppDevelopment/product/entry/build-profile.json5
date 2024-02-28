@@ -66,8 +66,14 @@
           "@ohos/lottieview",
           "@ohos/votingcomponent",
           "@ohos/webgetcameraimage",
+          "@ohos/sidebaranimation",
           "@ohos/imagecompression",
-          "@ohos/imageenableanalyzer"
+          "@ohos/imageenableanalyzer",
+          "@ohos/chinesetopinyin",
+          "@ohos/bottomdrawerslidecase",
+          "@ohos/expandtitle",
+          "@ohos/listslidetohistory",
+          "@ohos/pageloading"
         ]
       }
     }

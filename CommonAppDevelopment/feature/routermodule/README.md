@@ -9,6 +9,7 @@
 1. 通过动态import的方式，在需要进入页面时加载对应的模块。
 2. 配置动态路由，通过WrapBuilder接口，动态创建页面并跳转。
 3. 动态import变量表达式，需要DevEco Studio NEXT Developer Preview1 （4.1.3.500）版本IDE，配合hvigor 4.0.2版本使用。
+4. 支持自定义路由栈管理，相关内容请参考[路由来源页的相关说明](./README_ROUTER_REFERRER.md)
 
 ### 实现思路
 
@@ -202,7 +203,8 @@ methodPoints(listData: ListData) {
 }
 ```
 
-9. 在子模块中添加动态加载页面组件的接口harInit，其中pageName和RouterInfo中配置的pageName相同，import()接口中传入的参数，是页面的相对路径，详细代码可参考[Index.ets](../eventpropagation/Index.ets)。
+9. 在子模块中添加动态加载页面组件的接口harInit，其中pageName和RouterInfo中配置的pageName相同，import()接口中传入的参数，是页面的相对路径。详细代码可参考[Index.ets](../eventpropagation/Index.ets)。
+如果模块中有多个页面需要跳转，则需要配置多个pageName和页面路径，并且pageName和页面路径需要一一对应，否则无法跳转到预期中的页面，可参考[barchart模块中的Index.ets](../barchart/Index.ets)文件。
 
 ```typescript
 export function harInit(pageName: string) {

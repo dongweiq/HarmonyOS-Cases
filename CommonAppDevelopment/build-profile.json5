@@ -225,12 +225,36 @@
       "srcPath": "./feature/webgetcameraimage"
     },
     {
+      "name": "sidebaranimation",
+      "srcPath": "./feature/sidebaranimation"
+    },
+    {
       "name": "imagecompression",
       "srcPath": "./feature/imagecompression"
     },
     {
       "name": "imagedrag",
       "srcPath": "./feature/imageenableanalyzer"
+    },
+    {
+      "name": "chinesetopinyin",
+      "srcPath": "./feature/ChineseToPinyin"
+    },
+    {
+      "name": "bottomdrawerslidecase",
+      "srcPath": "./feature/bottomdrawerslidecase"
+    },
+    {
+      "name": "expandtitle",
+      "srcPath": "./feature/expandtitle"
+    },
+    {
+      "name": "listslidetohistory",
+      "srcPath": "./feature/listslidetohistory"
+    },
+    {
+      "name": "pageloading",
+      "srcPath": "./feature/pageloading"
     }
   ]
 }

@@ -1,0 +1,144 @@
+{
+  "integer": [
+    {
+      "name": "icon_default_height",
+      "value": 32
+    },
+    {
+      "name": "margin_between_icon_and_description",
+      "value": 5
+    },
+    {
+      "name": "margin_small",
+      "value": 10
+    },
+    {
+      "name": "margin_default",
+      "value": 12
+    },
+    {
+      "name": "margin_mid",
+      "value": 20
+    },
+    {
+      "name": "margin_large",
+      "value": 30
+    },
+    {
+      "name": "padding_small",
+      "value": 10
+    },
+    {
+      "name": "border_radius",
+      "value": 8
+    },
+    {
+      "name": "button_height",
+      "value": 20
+    },
+    {
+      "name": "button_width",
+      "value": 80
+    },
+    {
+      "name": "icon_height_small",
+      "value": 24
+    },
+    {
+      "name": "grid_height",
+      "value": 460
+    },
+    {
+      "name": "height_one_hundred",
+      "value": 100
+    },
+    {
+      "name": "font_size_mid",
+      "value": 20
+    },
+    {
+      "name": "height_eighty",
+      "value": 80
+    },
+    {
+      "name": "first_itemheight",
+      "value": 185
+    },
+    {
+      "name": "other_itemheight",
+      "value": 150
+    },
+    {
+      "name": "default_itemheight",
+      "value": 155
+    },
+    {
+      "name": "height_40",
+      "value": 40
+    },
+    {
+      "name": "width_1",
+      "value": 1
+    },
+    {
+      "name": "height_50",
+      "value": 50
+    },
+    {
+      "name": "height_5",
+      "value": 5
+    },
+    {
+      "name": "height_10",
+      "value": 10
+    },
+    {
+      "name": "height_22",
+      "value": 22
+    },
+    {
+      "name": "height_48",
+      "value": 48
+    },
+    {
+      "name": "number_18",
+      "value": 18
+    },
+    {
+      "name": "number_25",
+      "value": 25
+    },
+    {
+      "name": "number_15",
+      "value": 15
+    },
+    {
+      "name": "number_5",
+      "value": 5
+    },
+    {
+      "name": "number_10",
+      "value": 10
+    },
+    {
+      "name": "number_60",
+      "value": 60
+    },
+    {
+      "name": "number_30",
+      "value": 30
+    },
+    {
+      "name": "number_20",
+      "value": 20
+    },
+    {
+      "name": "number_22",
+      "value": 22
+    },
+    {
+      "name": "number_2",
+      "value": 2
+    }
+  ]
+}

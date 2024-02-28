@@ -167,6 +167,7 @@ struct Content {
   }
 }
 
+
 // 创建WrappedBuilder对象，动态路由跳转时构建页面
 @Builder
 export function getImageView(): void {
@@ -174,4 +175,4 @@ export function getImageView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.IMAGE_COMPRESSION, wrapBuilder(getImageView));
+DynamicsRouter.registerRouterPage(RouterInfo.IMAGE_ENABLE_ANALYZER, wrapBuilder(getImageView));
