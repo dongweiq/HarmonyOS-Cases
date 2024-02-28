@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "fontsize_15",
+      "value": "15"
+    },
+    {
+      "name": "margin_10",
+      "value": "10"
+    },
+    {
+      "name": "fontsize_10",
+      "value": "10"
+    },
+    {
+      "name": "homeTop",
+      "value": "打车"
+    },
+    {
+      "name": "choose_your_location",
+      "value": "请选择您的出发地"
+    },
+    {
+      "name": "list_item_id_first",
+      "value": "one"
+    },
+    {
+      "name": "list_item_id_second",
+      "value": "two"
+    },
+    {
+      "name": "list_item_id_third",
+      "value": "three"
+    },
+    {
+      "name": "list_item_id_fifth",
+      "value": "five"
+    },
+    {
+      "name": "list_item_id_sixth",
+      "value": "six"
+    },
+    {
+      "name": "list_item_id_seventh",
+      "value": "seven"
+    },
+    {
+      "name": "list_item_id_eighth",
+      "value": "eight"
+    },
+    {
+      "name": "list_item_id_fourth",
+      "value": "four"
+    },
+    {
+      "name": "please_destination",
+      "value": "请输入你的目的地"
+    },
+    {
+      "name": "destination_new",
+      "value": " 海威中心"
+    },
+    {
+      "name": "get_on_the_car",
+      "value": " 上车"
+    },
+    {
+      "name": "set_out",
+      "value": "你将从 "
+    }
+  ]
+}
