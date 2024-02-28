@@ -64,7 +64,7 @@ export struct GridSceneView {
         })
         .padding({ top: $r('app.string.layout_10'), bottom: $r('app.string.layout_10'), left: $r('app.string.layout_5'), right: $r('app.string.layout_5') })
       }
-      .width($r('app.string.layout_420'))
+      .width($r('app.string.layout_90_percent'))
       .height($r('app.string.layout_250'))
       .borderRadius($r('app.string.layout_20'))
       .opacity($r('app.string.background_opacity'))
