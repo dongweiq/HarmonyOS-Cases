@@ -15,6 +15,7 @@
 
 // 动态路由中需要加载的模块名和模块路径，和functionalscenes模块的build-profile.json5中dependencies下面配置的模块依赖名相同
 export class RouterInfo {
+  static readonly HOME_PAGE: string[] = ['@ohos/entry', 'product/entry/src/main/ets/pages/EntryView'];
   static readonly ADDRESS_EXCHANGE: string[] = ['@ohos/addressexchange', './src/main/ets/view/AddressExchangeView'];
   static readonly BAR_CHAT: string[] = ['@ohos/barchart', './src/main/ets/view/BarChart'];
   static readonly CUSTOM_TAB_BAR: string[] = ['@ohos/custom-tabbar', './src/main/ets/view/TabView'];
