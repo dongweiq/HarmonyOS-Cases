@@ -95,7 +95,7 @@ WaterFlow() {
 componentstack                                   // har类型
 |---mock
 |   |---IconMock.ets                             // 本地数据源 
-|---mode
+|---model
 |   |---DataSource.ets                           // 列表数据模型
 |   |---IconModel.ets                            // 数据类型定义 
 |---view
