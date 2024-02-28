@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "keyboard_title",
+      "value": "安全输入法"
+    },
+    {
+      "name": "keyboard_submit",
+      "value": "完成"
+    },
+    {
+      "name": "account_name",
+      "value": "198*****798"
+    },
+    {
+      "name": "login_button_label",
+      "value": "登录"
+    },
+    {
+      "name": "placeholder",
+      "value": "请输入密码"
+    },
+    {
+      "name": "one_hundred_percent",
+      "value": "100%"
+    }
+  ]
+}
