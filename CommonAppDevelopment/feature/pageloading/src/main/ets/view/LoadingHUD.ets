@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+/**
+ * HUD全称Heads-Up Display（抬头显示）
+ */
 @Component
 export struct LoadingHUD {
   build() {

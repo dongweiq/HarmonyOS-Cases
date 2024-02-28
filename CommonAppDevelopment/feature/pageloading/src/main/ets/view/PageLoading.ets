@@ -24,7 +24,7 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
  */
 
 const MILLISECONDS: number = 3000; // 毫秒数
-@Entry
+
 @Component
 export struct PageLoading {
   @State isLoading: Boolean = true;
@@ -39,7 +39,7 @@ export struct PageLoading {
   build() {
     Stack() {
       if (this.isLoading) {
-        // 加载页
+        // 加载页-HUD全称Heads-Up Display（抬头显示）
         LoadingHUD();
       } else {
         // 商品页
