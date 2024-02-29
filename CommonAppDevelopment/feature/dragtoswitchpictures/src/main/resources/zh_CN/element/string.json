@@ -1,0 +1,128 @@
+{
+  "string": [
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "home_page",
+      "value": "首页"
+    },
+    {
+      "name": "look_at",
+      "value": "看看"
+    },
+    {
+      "name": "my_home",
+      "value": "我家"
+    },
+    {
+      "name": "message",
+      "value": "消息"
+    },
+    {
+      "name": "personal_center",
+      "value": "个人中心"
+    },
+    {
+      "name": "before_decoration",
+      "value": "装修前"
+    },
+    {
+      "name": "after_decoration",
+      "value": "装修后"
+    },
+    {
+      "name": "design_cattle",
+      "value": "设计狮"
+    },
+    {
+      "name": "ai_design",
+      "value": "AI设计"
+    },
+    {
+      "name": "10s_text",
+      "value": "10s生成装修方案"
+    },
+    {
+      "name": "95_size",
+      "value": "95%"
+    },
+    {
+      "name": "83_size",
+      "value": "83%"
+    },
+    {
+      "name": "search_placeholder",
+      "value": "请输入小区/楼盘/地点"
+    },
+    {
+      "name": "map_text",
+      "value": "地图"
+    },
+    {
+      "name": "10_size",
+      "value": "10%"
+    },
+    {
+      "name": "46_size",
+      "value": "46%"
+    },
+    {
+      "name": "average_price",
+      "value": "31153元/平"
+    },
+    {
+      "name": "second_hand_house",
+      "value": "二手房"
+    },
+    {
+      "name": "1_4_size",
+      "value": "1.4%"
+    },
+    {
+      "name": "sales_count",
+      "value": "104套"
+    },
+    {
+      "name": "traded_yesterday",
+      "value": "昨日成交"
+    },
+    {
+      "name": "90_size",
+      "value": "90%"
+    },
+    {
+      "name": "49_size",
+      "value": "49%"
+    },
+    {
+      "name": "6_size",
+      "value": "6%"
+    },
+    {
+      "name": "columnstemplate",
+      "value": "1fr 1fr"
+    },
+    {
+      "name": "recommendation",
+      "value": "推荐"
+    },
+    {
+      "name": "new_house",
+      "value": "新房"
+    },
+    {
+      "name": "renting",
+      "value": "租房"
+    },
+    {
+      "name": "decoration",
+      "value": "装修"
+    },
+    {
+      "name": "go_to_try",
+      "value": "试一试"
+    }
+  ]
+}

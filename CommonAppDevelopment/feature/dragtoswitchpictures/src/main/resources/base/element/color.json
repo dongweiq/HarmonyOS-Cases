@@ -1,0 +1,88 @@
+{
+  "color": [
+    {
+      "name": "before_text_backgroundcolor",
+      "value": "#512D5435"
+    },
+    {
+      "name": "after_text_backgroundcolor",
+      "value": "#60ffffff"
+    },
+    {
+      "name": "before_text_fontcolor",
+      "value": "#ffffffff"
+    },
+    {
+      "name": "after_text_fontcolor",
+      "value": "#ff0a0a0a"
+    },
+    {
+      "name": "home_page_backgroundcolor",
+      "value": "#fcd7d5d5"
+    },
+    {
+      "name": "tabbar_divider_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "bottom_tabs_backgroundcolor",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "bottomtabsview_row_backgroundcolor",
+      "value": "#fcd7d5d5"
+    },
+    {
+      "name": "designcattleview_column_row_text_backgroundcolor",
+      "value": "#ff2fb72f"
+    },
+    {
+      "name": "designcattleview_column_designcattle_fontcolor",
+      "value": "#000000"
+    },
+    {
+      "name": "ai_design_fontcolor",
+      "value": "#ffffff"
+    },
+    {
+      "name": "ai_design_backgroundcolor",
+      "value": "#74025602"
+    },
+    {
+      "name": "go_to_try_button_backgroundcolor",
+      "value": "#000000"
+    },
+    {
+      "name": "designcattleview_backgroundcolor",
+      "value": "#ffe2eee5"
+    },
+    {
+      "name": "search_backgroundcolor",
+      "value": "#ffffff"
+    },
+    {
+      "name": "swipercontentview_row_column_backgroundcolor",
+      "value": "#ffffffff"
+    },
+    {
+      "name": "average_price_fontcolor",
+      "value": "#000000"
+    },
+    {
+      "name": "1_4_fontcolor",
+      "value": "#ff00B050"
+    },
+    {
+      "name": "tabbar_lineargradient_color0",
+      "value": "#CCDFFF"
+    },
+    {
+      "name": "tabbar_lineargradient_color1",
+      "value": "#F3F4F7"
+    },
+    {
+      "name": "waterflow_column_backgroundcolor",
+      "value": "#fcd7d5d5"
+    }
+  ]
+}
