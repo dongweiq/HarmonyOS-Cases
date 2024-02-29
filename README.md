@@ -71,6 +71,7 @@
    |   |---webgetcameraimage           // WebView拉起原生相机案例
    |   |---sidebaranimation            // SideBarContainer侧边栏淡入淡出动效实现案例
    |   |---imageenableanalyzer         // 图片拖拽AI抠图案例
+   |   |---indicatorbelowswiper        // swiper指示器导航点位于swiper下方
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -356,6 +357,11 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_enableanalyzer.gif" width="200">
 
+#### swiper指示器导航点位于swiper下方
+
+本示例介绍通过分割swiper区域，实现指示器导航点位于swiper下方的效果。[详细说明文档](./CommonAppDevelopment/feature/indicatorbelowswiper/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/indicator_below_swiper.gif" width="200">
 
 ### 公共能力层
 
