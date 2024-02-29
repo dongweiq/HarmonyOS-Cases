@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "demo_title",
+      "value": "Component Instance Shared In Pages"
+    },
+    {
+      "name": "demo_description",
+      "value": "This demo implements the sharing of map component instances between the homepage and the taxi page, and jumps to each other between pages, and the map component will not be re-rendered"
+    },
+    {
+      "name": "goto_page_tips",
+      "value": "Click, go to next page"
+    },
+    {
+      "name": "take_taxi_detail_page",
+      "value": "Take Taxi Detail Page"
+    }
+  ]
+}
