@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import { DynamicsRouter } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 import { ListData } from '../model/ListData';
 import { SearchResultDataSource } from '../model/SearchListDataSource';
-import { buildRouterModel } from '@ohos/dynamicsRouter';
 
 /**
  * 实现步骤：
@@ -138,7 +137,7 @@ export struct SearchPage {
             // 更新搜索历史数据
             this.searchHistoryData.push(item);
             // 调用动态路由相关方法实现页面跳转
-            buildRouterModel(item.routerInfo[1], item.routerInfo[0], item.param);
+            DynamicsRouter.push(item.routerInfo,item.param);
           })
         }, (item: ListData) => JSON.stringify(item))
       }
@@ -157,8 +156,4 @@ export function getSearchPage(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = '@ohos/searchcomponent';
-if (!DynamicsRouter.getBuilder(builderName)) {
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getSearchPage);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(new RouterInfo('@ohos/searchcomponent','SearchPage'),wrapBuilder(getSearchPage));

@@ -203,13 +203,9 @@ export struct UserItemView {
 
 // 创建WrappedBuilder对象，动态路由跳转时构建页面
 @Builder
-export function getMapCharts(): void {
+export function getChineseToPinyin(): void {
   ChineseToPinyin();
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-const builderName = RouterInfo.CHINESE_TO_PINYIN[0];
-if (!DynamicsRouter.getBuilder(builderName)) {
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getMapCharts);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.CHINESE_TO_PINYIN, wrapBuilder(getChineseToPinyin));

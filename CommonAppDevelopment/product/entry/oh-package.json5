@@ -36,7 +36,7 @@
     // 滑动页面改变顶部个人信息栏显示效果方案
     "@ohos/slidetohideanddisplace": "file:../../feature/slidetohideanddisplace",
     // Navigation页面跳转对象传递案例
-    "@ohos/NavigationParameterTransferView": "file:../../feature/navigationparametertransfer",
+    "@ohos/navigationparametertransfer": "file:../../feature/navigationparametertransfer",
     // AKI使用实践
     "@ohos/akiusepractice": "file:../../feature/akiusepractice",
     // 多层嵌套类对象监听方案
@@ -110,6 +110,14 @@
     // 图片拖拽AI抠图案例
     "@ohos/imageenableanalyzer": "file:../../feature/imageenableanalyzer",
     // 汉字转拼音案例
-    "@ohos/Chinesetopinyin": "file:../../feature/chinesetopinyin"
+    "@ohos/chinesetopinyin": "file:../../feature/ChineseToPinyin",
+    // 底部抽屉滑动效果案例
+    "@ohos/bottomdrawerslidecase": "file:../../feature/bottomdrawerslidecase",
+    // 标题下拉缩放案例
+    "@ohos/expandtitle": "file:../../feature/expandtitle",
+    // 长列表滑动到指定列表项动效实现案例
+    "@ohos/listslidetohistory": "file:../../feature/listslidetohistory",
+    // 页面加载效果实现案例
+    "@ohos/pageloading": "file:../../feature/pageloading"
   }
 }

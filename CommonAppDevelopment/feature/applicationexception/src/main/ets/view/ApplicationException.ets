@@ -173,8 +173,4 @@ export function getApplicationExceptionView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterInfo.FAULT[0];
-if(!DynamicsRouter.getBuilder(builderName)){
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getApplicationExceptionView);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.FAULT,wrapBuilder(getApplicationExceptionView));

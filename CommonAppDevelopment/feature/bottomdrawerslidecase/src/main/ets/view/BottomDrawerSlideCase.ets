@@ -15,7 +15,7 @@
 
 import { HomeTop, SettingItemView, StatusHead } from "../components/Component"
 import window from '@ohos.window';
-import { DynamicsRouter, RouterNameConstants } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 import WindowModel from '../utils/WindowModel';
 import { logger } from '@ohos/utils/src/main/ets/log/Logger';
 import { SettingItem } from '../utils/dataSource'
@@ -356,9 +356,5 @@ export function getBottomDrawerSlideCase(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-const builderName = RouterNameConstants.ROUTER_NAME_STICKY_TOP;
-if (!DynamicsRouter.getBuilder(builderName)) {
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getBottomDrawerSlideCase);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.BOTTOM_DRAWER_SLIDE_CASE, wrapBuilder(getBottomDrawerSlideCase));
 
