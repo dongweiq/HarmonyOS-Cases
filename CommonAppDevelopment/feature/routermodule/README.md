@@ -18,7 +18,7 @@
 1. 注册路由
 
 ```typescript
-public static createRouter(router: NavPathStack): void {
+public static createNavPathStack(router: NavPathStack): void {
   DynamicsRouter.navPathStack = router;
 }
 ```
@@ -26,16 +26,15 @@ public static createRouter(router: NavPathStack): void {
 2. 获取路由
 
 ```typescript
-public static getRouter(): NavPathStack {
-  let router = DynamicsRouter.navPathStack;
-  return router as NavPathStack;
+private static getNavPathStack(): NavPathStack {
+  return DynamicsRouter.navPathStack;
 }
 ```
 
 3. 通过builderName，注册WrappedBuilder对象，用于动态创建页面
 
 ```typescript
-public static registerBuilder(builderName: string, builder: WrappedBuilder<[object]>): void {
+private static registerBuilder(builderName: string, builder: WrappedBuilder<[object]>): void {
   DynamicsRouter.builderMap.set(builderName, builder);
 }
 ```
@@ -46,28 +45,71 @@ public static registerBuilder(builderName: string, builder: WrappedBuilder<[obje
 public static getBuilder(builderName: string): WrappedBuilder<[object]> {
   let builder = DynamicsRouter.builderMap.get(builderName);
   if (!builder) {
-    let msg = "not found builder";
-    console.info(msg + builderName);
-  }
-  return builder as WrappedBuilder<[object]>;
+  let msg = "not found builder";
+  console.info(msg + builderName);
+}
+return builder as WrappedBuilder<[object]>;
 }
 ```
 
 5. 通过页面栈跳转到指定页面
 
 ```typescript
-public static async push(router: RouterModel): Promise<void> {
-  const path: string = router.path;
-  const routerName: string = router.routerName;
-  let param: string = router.param;
-  await import(routerName).then((ns: ESObject): Promise<void> => ns.harInit(path));
-  DynamicsRouter.getRouter().pushPath({ name: routerName, param: param });
+public static async push(routerInfo: RouterInfo, param?: string): Promise<void> {
+  const pageName: string = routerInfo.pageName;
+  const moduleName: string = routerInfo.moduleName;
+  let isImportSucceed: boolean = false;
+  await import(moduleName).then((result: ESObject) => {
+    result.harInit(pageName);
+    isImportSucceed = true;
+  }, (error: ESObject) => {
+    logger.error(LOGGER_TAG, error);
+  });
+  if (isImportSucceed) {
+    const builderName: string = moduleName + "/" + pageName;
+    DynamicsRouter.getNavPathStack().pushPath({ name: builderName, param: param });
+  }
+}
+```
+
+6. 注册动态路由跳转的页面信息
+
+```typescript
+public static registerRouterPage(routerInfo: RouterInfo, wrapBuilder: WrappedBuilder<[object]>) {
+  let builderName: string = routerInfo.moduleName + "/" + routerInfo.pageName;
+  if (!DynamicsRouter.getBuilder(builderName)) {
+    DynamicsRouter.registerBuilder(builderName, wrapBuilder);
+  }
 }
 ```
 
 **动态路由的使用**
 
-1. 在主模块中添加动态路由和需要加载的子模块的依赖，详细代码请参考[oh-package.json](../../product/entry/oh-package.json5)。
+下面以eventpropagation模块举例说明如何使用动态路由加载子模块页面。
+
+1. 在工程的根目录的build-profile.json5中添加动态路由模块和需要加载的子模块的依赖，详细代码参考[build-profile.json5](../../build-profile.json5)。
+
+```json5
+{
+  "app":{
+    ...
+  }
+  "modules":{
+    ...
+    {
+      "name": "eventpropagation",
+      "srcPath": "./feature/eventpropagation"
+    },
+    {
+      "name": "routermodule",
+      "srcPath": "./feature/routermodule"
+    }
+    ...
+  }
+}
+```
+
+2. 在主模块中添加动态路由和需要加载的子模块的依赖，详细代码请参考[oh-package.json](../../product/entry/oh-package.json5)。
 
 ```
 ...
@@ -79,7 +121,7 @@ public static async push(router: RouterModel): Promise<void> {
 ...
 ```
 
-2. 在主模块中添加动态import变量表达式需要的参数，此处在packages中配置的模块名必须和[oh-package.json](../../product/entry/oh-package.json5)中配置的名称相同，详细代码请参考[build-profile.json5](../../product/entry/build-profile.json5)。
+3. 在主模块中添加动态import变量表达式需要的参数，此处在packages中配置的模块名必须和[oh-package.json](../../product/entry/oh-package.json5)中配置的名称相同，详细代码请参考[build-profile.json5](../../product/entry/build-profile.json5)。
 
 ```
 ...
@@ -95,38 +137,49 @@ public static async push(router: RouterModel): Promise<void> {
 }
 ```
 
-3. 在routermodule模块中添加动态路由跳转的模块名称和页面路径，RouterNameConstants中配置的模块名必须和[oh-package.json](../../product/entry/oh-package.json5)中配置的名称相同，RouterPathConstants中添加的路径是子模块中需要加载的页面的路径，详细代码请参考[RouterConstants.ets](./src/main/ets/constants/RouterConstants.ets)。
+4. 在routermodule模块中添加动态路由跳转的moduleName（模块名）和pageName（页面名），RouterInfo中配置的moduleName必须和[oh-package.json](../../product/entry/oh-package.json5)中配置的名称相同，RouterInfo中添加的pageName是子模块中需要加载的页面，详细代码请参考[RouterInfo.ets](./src/main/ets/constants/RouterInfo.ets)。
 
 ```typescript
-export class RouterNameConstants {
+export class RouterInfo {
+  moduleName: string = '';
+  pageName: string = '';
+
+  constructor(moduleName: string, pageName: string) {
+    this.moduleName = moduleName;
+    this.pageName = pageName;
+  }
+
   ...
-  static readonly ROUTER_NAME_EVENT_TRANSMISSION_SOLUTION: string = '@ohos/event-propagation';
-  ...
-}
-export class RouterPathConstants {
-  ...
-  static readonly ROUTER_PATH_EVENT_TRANSMISSION_SOLUTION: string = './src/main/ets/view/EventPropagation';
+  static readonly EVENT_TRANSMISSION_SOLUTION: RouterInfo = new RouterInfo('@ohos/event-propagation', 'EventPropagation');
   ...
 }
 ```
 
-4. 在主模块中注册路由，并添加页面信息，详细代码请参考[EntryView.ets](../../product/entry/src/main/ets/pages/EntryView.ets)。
+5. 在主模块中注册路由，并添加页面信息，详细代码请参考[EntryView.ets](../../product/entry/src/main/ets/pages/EntryView.ets)。
 
 ```typescript
 ...
 @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
-@State listData: ListData[] = [
-  ...
-  new ListData($r("app.media.event_propagation"), '阻塞事件冒泡', RouterNameConstants.ROUTER_NAME_EVENT_TRANSMISSION_SOLUTION, 1, false, '40%', RouterPathConstants.ROUTER_PATH_EVENT_TRANSMISSION_SOLUTION, '其他'),
-  ...
-]
+@State listData: SceneModuleInfo[] = waterFlowData;
 ...
 aboutToAppear(): void {
-  DynamicsRouter.createRouter(this.pageStack);
+  DynamicsRouter.createNavPathStack(this.pageStack);
+  ...
+}
+...
+```
+
+6. 在主模块的WaterFlowData.ets中，将子模块要加载的页面，添加到列表中，详细代码请参考[WaterFlowData.ets](../../product/entry/src/main/ets/data/WaterFlowData.ets)。
+
+```typescript
+export const waterFlowData: SceneModuleInfo[] = [
+  ...
+  new SceneModuleInfo($r("app.media.event_propagation"), '阻塞事件冒泡', RouterInfo.EVENT_TRANSMISSION_SOLUTION, '其他', 1),
+  ...
 }
 ```
 
-5. 在需要加载时将页面放入路由栈，详细代码请参考[FunctionalScenes.ets](../functionalscenes/src/main/ets/FunctionalScenes.ets)和[RouterModel](./src/main/ets/model/RouterModel.ets)。
+7. 在需要加载时将页面放入路由栈，详细代码请参考[FunctionalScenes.ets](../functionalscenes/src/main/ets/FunctionalScenes.ets)。
 
 ```typescript
 @Builder
@@ -134,21 +187,13 @@ methodPoints(listData: ListData) {
    Column() {
    ...
   .onClick(() => {
-    buildRouterModel(listData.path, listData.routerName, listData.param);
+    DynamicsRouter.push(listData.routerInfo, listData.param);
   })
-}
-...
-function buildRouterModel(path: string, routerName: string, param: string) {
-  let router: RouterModel = new RouterModel();
-  router.path = path;
-  router.routerName = routerName;
-  router.param = param;
-  DynamicsRouter.push(router);
 }
 
 ```
 
-6. 在子模块中添加动态路由的依赖，详细代码可参考[oh-package.json](../eventpropagation/oh-package.json5)。
+8. 在子模块中添加动态路由的依赖，详细代码可参考[oh-package.json](../eventpropagation/oh-package.json5)。
 
 ```
 ...
@@ -158,15 +203,20 @@ function buildRouterModel(path: string, routerName: string, param: string) {
 }
 ```
 
-7. 在子模块中添加动态加载页面组件的接口harInit，详细代码可参考[Index.ets](../eventpropagation/Index.ets)。
+9. 在子模块中添加动态加载页面组件的接口harInit，其中pageName和RouterInfo中配置的pageName相同，import()接口中传入的参数，是页面的相对路径。详细代码可参考[Index.ets](../eventpropagation/Index.ets)。
+如果模块中有多个页面需要跳转，则需要配置多个pageName和页面路径，并且pageName和页面路径需要一一对应，否则无法跳转到预期中的页面，可参考[barchart模块中的Index.ets](../barchart/Index.ets)文件。
 
 ```typescript
-export function harInit(path: string) {
-  import(path);
+export function harInit(pageName: string) {
+  switch (pageName) {
+    case RouterInfo.EVENT_TRANSMISSION_SOLUTION.pageName:
+      import('./src/main/ets/view/EventPropagation');
+      break;
+  }
 }
 ```
 
-8. 在子模块中添加动态创建组件的方法，并注册到动态路由中，详细代码可参考[EventPropagation.ets](../eventpropagation/src/main/ets/view/EventPropagation.ets)。
+10. 在子模块中添加动态创建组件的方法，并注册到动态路由中，详细代码可参考[EventPropagation.ets](../eventpropagation/src/main/ets/view/EventPropagation.ets)。
 
 ```typescript
 ...
@@ -174,15 +224,11 @@ export function harInit(path: string) {
 export function getEventPropagation(): void {
   EventPropagation();
 }
-        
-let builderName = RouterNameConstants.ROUTER_NAME_EVENT_TRANSMISSION_SOLUTION;
-if(!DynamicsRouter.getBuilder(builderName)){
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getEventPropagation);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+
+DynamicsRouter.registerRouterPage(RouterInfo.EVENT_TRANSMISSION_SOLUTION,wrapBuilder(getEventPropagation));
 ```
 
-9. 如果5中设置的router.param是非空的，需要给8中的@Buidler接口添加参数，否则会报错，详细代码请参考[NavigationParameterTransferView](../navigationparametertransfer/src/main/ets/view/NavigationParameterTransferView.ets)。
+11. 如果**7**中设置的router.param是非空的，需要给**10**中的@Buidler接口添加参数，否则会报错，详细代码请参考[NavigationParameterTransferView](../navigationparametertransfer/src/main/ets/view/NavigationParameterTransferView.ets)。
 
 ```typescript
 ...
@@ -193,6 +239,8 @@ export function getNavigationParameterTransferView(param: ESObject): void {
 ...
 ```
 
+12. 子模块中的两个页面需要使用动态路由进行跳转时，则不需要执行**6**，即不需要将页面添加到首页数据中。
+
 ### 高性能知识点
 
 本示例使用动态import的方式加载模块，只有需要进入页面时才加载对应的模块，减少主页面启动时间和初始化效率，减少内存的占用。
@@ -202,11 +250,9 @@ export function getNavigationParameterTransferView(param: ESObject): void {
    ```
    routermodule                                  // har类型
    |---constants
-   |   |---RouterConstants.ets                     // 常量类，用于配置动态路由跳转页面的名称和模块路径
-   |---model
-   |   |---RouterModel.ets                         // 路由信息类，用于存储路由的相关信息
+   |   |---RouterInfo.ets                        // 路由信息类，用于配置动态路由跳转页面的名称和模块名
    |---router
-   |   |---DynamicsRouter.ets                      // 动态路由实现类
+   |   |---DynamicsRouter.ets                    // 动态路由实现类
    ```
 
 ### 模块依赖

@@ -372,8 +372,4 @@ export function getNavigationBarChangeView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterInfo.NAVIGATION_BAR_CHANGE[0];
-if (!DynamicsRouter.getBuilder(builderName)) {
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getNavigationBarChangeView);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.NAVIGATION_BAR_CHANGE,wrapBuilder(getNavigationBarChangeView));

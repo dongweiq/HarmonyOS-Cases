@@ -12,11 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 export { BarChartPage } from './src/main/ets/view/BarChart';
+
 export { MpCharts } from './src/main/ets/health/view/MpCharts';
 
 // 动态import时需要调用的接口，接口名请使用harInit，用于动态加载页面
-export function harInit(path: string) {
-  import(path);
+export function harInit(pageName: string) {
+  switch (pageName) {
+    case RouterInfo.BAR_CHAT.pageName:
+      import('./src/main/ets/view/BarChart');
+      break;
+    case RouterInfo.MP_CHAT.pageName:
+      import('./src/main/ets/health/view/MpCharts');
+      break;
+  }
 }

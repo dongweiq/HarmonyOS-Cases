@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { buildRouterModel, RouterInfo } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
 import { SwiperData, SwiperDataSource } from '../model/SwiperData';
 
@@ -140,7 +140,7 @@ export struct SwiperComponent {
         .opacity(1 - 0.2 * Math.min(2, Math.abs(this.getImgCoefficients(index))))
         .onClick(() => {
           // 点击轮播图Item时，根据点击的模块信息，将页面放入路由栈
-          buildRouterModel(item.routerInfo[1], item.routerInfo[0], item.param);
+          DynamicsRouter.push(item.routerInfo, item.param);
         })
       })
     }

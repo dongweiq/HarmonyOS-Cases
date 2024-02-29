@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 首页轮播图信息
@@ -19,10 +20,10 @@
 export class SwiperData {
   imageSrc: Resource;
   name: string;
-  routerInfo: string[];
+  routerInfo: RouterInfo;
   param: string;
 
-  constructor(imageSrc: Resource, name: string, routerInfo: string[], param?: string) {
+  constructor(imageSrc: Resource, name: string, routerInfo: RouterInfo, param?: string) {
     this.imageSrc = imageSrc;
     this.name = name;
     this.routerInfo = routerInfo;

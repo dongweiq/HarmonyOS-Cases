@@ -253,11 +253,17 @@ export struct ImageCompression {
 
       Button($r('app.string.image_compression')).onClick(() => {
         if (this.maxCompressedImageSize === 0) {
-          AlertDialog.show({ message: $r('app.string.prompt_enter_value_greater_than_0'), alignment: DialogAlignment.Center });
+          AlertDialog.show({
+            message: $r('app.string.prompt_enter_value_greater_than_0'),
+            alignment: DialogAlignment.Center
+          });
           return;
         }
         if (this.maxCompressedImageSize * BYTE_CONVERSION > this.sourceImageByteLength) {
-          AlertDialog.show({ message: $r('app.string.prompt_not_require_compression'), alignment: DialogAlignment.Center });
+          AlertDialog.show({
+            message: $r('app.string.prompt_not_require_compression'),
+            alignment: DialogAlignment.Center
+          });
           return;
         }
         // 重置压缩后的图片路径
@@ -298,8 +304,4 @@ export function getImageCompression(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-const builderName = RouterInfo.IMAGE_COMPRESSION[0];
-if (!DynamicsRouter.getBuilder(builderName)) {
-  const builder: WrappedBuilder<[object]> = wrapBuilder(getImageCompression);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.IMAGE_COMPRESSION, wrapBuilder(getImageCompression));

@@ -18,6 +18,7 @@ import { MemoDataSource } from '../model/DataSource';
 import { MemoInfo } from '../model/MemoInfo';
 import MemoItem from '../view/MemoItem';
 import Constants from '../model/Constants';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 本示例以备忘录应用为示例，介绍如何在实现标题展开时继续下拉的动效。
@@ -211,3 +212,12 @@ export struct TitleExpansion {
     }
   }
 }
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getTitleExpansion(): void {
+  TitleExpansion();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+DynamicsRouter.registerRouterPage(RouterInfo.EXPAND_TITLE, wrapBuilder(getTitleExpansion));
