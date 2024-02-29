@@ -15,7 +15,7 @@
 
 import { SceneModuleInfo } from '@ohos/functionalscenes';
 import { RouterInfo } from '@ohos/dynamicsRouter/Index';
-import { UserBookingInfo } from '@ohos/NavigationParameterTransferView/Index';
+import { UserBookingInfo } from '@ohos/navigationparametertransfer/Index'
 
 const userBooking: UserBookingInfo = new UserBookingInfo('张山', '332212199507270611', '7F');
 const strUserBooking: string = JSON.stringify(userBooking);
@@ -67,6 +67,12 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.number_scroll"), '数字滚动', RouterInfo.DIGITAL_SCROLL_ANIMATION, '动效'),
   new SceneModuleInfo($r("app.media.image_compression"), '图片压缩方案', RouterInfo.IMAGE_COMPRESSION, '其他', 3),
   new SceneModuleInfo($r("app.media.side_bar_animation"), 'SideBarContainer侧边栏淡入淡出动效实现案例', RouterInfo.SIDE_BAR_ANIMATION, '动效'),
+  new SceneModuleInfo($r("app.media.image_enableanalyzer"), '图片拖拽AI抠图案例', RouterInfo.IMAGE_ENABLE_ANALYZER, '其他', 1),
+  new SceneModuleInfo($r("app.media.Chinese_to_pinyin"), '汉字转拼音案例', RouterInfo.CHINESE_TO_PINYIN, '其他', 1),
+  new SceneModuleInfo($r("app.media.bottom_drawer_slide"), '底部抽屉滑动效果案例', RouterInfo.BOTTOM_DRAWER_SLIDE_CASE, '动效', 1),
+  new SceneModuleInfo($r("app.media.expand_title"), '标题下拉缩放案例', RouterInfo.EXPAND_TITLE, '动效', 1),
+  new SceneModuleInfo($r("app.media.list_slide_to_history"), '长列表滑动到指定列表项动效实现案例', RouterInfo.LIST_SLIDE_TO_HISTORY, '动效', 1),
+  new SceneModuleInfo($r("app.media.page_loading"), '页面加载效果实现案例', RouterInfo.PAGE_LOADING, '动效', 1),
   new SceneModuleInfo($r("app.media.image_enableanalyzer"), '图片拖拽AI抠图案例', RouterInfo.IMAGE_ENABLE_ANALYZER, '其他', 1),
   new SceneModuleInfo($r("app.media.transition_animation"), '一镜到底“页面转场”动画', RouterInfo.TRANSITION_ANIMATION, '动效', 2)
 ]

@@ -34,7 +34,7 @@
           "@ohos/handtabs",
           "@ohos/modalwindow",
           "@ohos/slidetohideanddisplace",
-          "@ohos/NavigationParameterTransferView",
+          "@ohos/navigationparametertransfer",
           "@ohos/akiusepractice",
           "@ohos/variablewatch",
           "@ohos/photopickandsave",
@@ -68,6 +68,12 @@
           "@ohos/webgetcameraimage",
           "@ohos/sidebaranimation",
           "@ohos/imagecompression",
+          "@ohos/imageenableanalyzer",
+          "@ohos/chinesetopinyin",
+          "@ohos/bottomdrawerslidecase",
+          "@ohos/expandtitle",
+          "@ohos/listslidetohistory",
+          "@ohos/pageloading",
           "@ohos/imageenableanalyzer",
           "@ohos/transitionanimation"
         ]
