@@ -1,0 +1,12 @@
+{
+  "name": "dragtoswitchpictures",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    // 动态路由模块，用于配置动态路由
+    "@ohos/dynamicsrouter": "file:../../feature/routermodule"
+  }
+}
