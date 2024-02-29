@@ -237,6 +237,26 @@
       "srcPath": "./feature/imageenableanalyzer"
     },
     {
+      "name": "chinesetopinyin",
+      "srcPath": "./feature/chinesetopinyin"
+    },
+    {
+      "name": "bottomdrawerslidecase",
+      "srcPath": "./feature/bottomdrawerslidecase"
+    },
+    {
+      "name": "expandtitle",
+      "srcPath": "./feature/expandtitle"
+    },
+    {
+      "name": "listslidetohistory",
+      "srcPath": "./feature/listslidetohistory"
+    },
+    {
+      "name": "pageloading",
+      "srcPath": "./feature/pageloading"
+    },
+    {
       "name": "transitionanimation",
       "srcPath": "./feature/transitionanimation"
     }
