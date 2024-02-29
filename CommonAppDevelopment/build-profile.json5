@@ -238,7 +238,7 @@
     },
     {
       "name": "chinesetopinyin",
-      "srcPath": "./feature/ChineseToPinyin"
+      "srcPath": "./feature/chinesetopinyin"
     },
     {
       "name": "bottomdrawerslidecase",
