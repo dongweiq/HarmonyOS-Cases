@@ -26,13 +26,13 @@ export struct DragToSwitchPictures {
     Stack({ alignContent: Alignment.BottomEnd }) {
       Scroll() {
         Column() {
-          //搜索和地图视图
+          // 搜索和地图视图
           SearchMapView()
-          //轮播图和房价视图
+          // 轮播图和房价视图
           SwiperContentView()
-          //设牛视图
+          // AI设计视图
           DesignCattleView()
-          //瀑布流视图
+          // 瀑布流视图
           TabsWaterFlowView()
         }
         .justifyContent(FlexAlign.Center)
