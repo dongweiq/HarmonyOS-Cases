@@ -1,0 +1,20 @@
+{
+  "integer": [
+    {
+      "name": "title_font_size",
+      "value": 16
+    },
+    {
+      "name": "text_padding_left",
+      "value": 12
+    },
+    {
+      "name": "text_padding_right",
+      "value": 16
+    },
+    {
+      "name": "text_margin_top",
+      "value": 14
+    }
+  ]
+}
