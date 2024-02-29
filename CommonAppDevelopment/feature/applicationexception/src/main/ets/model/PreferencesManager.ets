@@ -23,7 +23,7 @@ let dataPreferencesManager: dataPreferences.Preferences = {} as dataPreferences.
 
 export class PreferencesManager {
   // 获取Preferences实例
-  public static getPreferences(faultDataSource:FaultDataSource) {
+  public static getPreferences(faultDataSource: FaultDataSource) {
     logger.info('getPreferences start.');
     try {
       dataPreferences.getPreferences(AppStorage.get('context'), 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
@@ -34,6 +34,7 @@ export class PreferencesManager {
         logger.info('Succeeded in getting preferences.');
         // 获取异常信息
         PreferencesManager.getFaultMessage(faultDataSource);
+        PreferencesManager.getFaultSign();
       })
     } catch (err) {
       logger.error("Failed to get preferences");
@@ -67,7 +68,7 @@ export class PreferencesManager {
    * 获取数据异常信息
    * @param faultMessage 异常信息集合
    */
-  public static getFaultMessage(faultDataSource:FaultDataSource) {
+  public static getFaultMessage(faultDataSource: FaultDataSource) {
     logger.info(`getFaultMessage start`);
     try {
       // TODO：知识点：通过dataPreferencesManager.get方法获取异常信息数据
@@ -80,12 +81,52 @@ export class PreferencesManager {
             faultDataSource.pushData(item);
           })
           // 双向数据绑定懒加载数据源长度，更新数据源长度
-          AppStorage.setOrCreate('faultDataSourceLength',faultDataSource.totalCount())
+          AppStorage.setOrCreate('faultDataSourceLength', faultDataSource.totalCount())
           logger.info('Succeeded in getting value of faultMessage.');
         }
       })
     } catch (err) {
       logger.error("Failed to get value of 'catch err'. code =" + err.code + ", message =" + err.message);
+    }
+  }
+
+  /**
+   * 存储数据标识
+   */
+  public static putFaultSign() {
+    logger.info(`putMessage start`);
+    try {
+      // TODO：知识点：通过 dataPreferencesManager.put方法存储数据
+      dataPreferencesManager.put('faultSign', JSON.stringify(true), async (err: BusinessError) => {
+        if (err) {
+          logger.error("Failed to put value of 'faultSign'. code =" + err.code + ", message =" + err.message);
+          return;
+        }
+        logger.info('Succeeded in putting value of faultSign.');
+        dataPreferencesManager.flush();
+      })
+    } catch (err) {
+      logger.error("putFaultSign Failed to put value of 'catch err'. code =" + err.code + ", message =" + err.message);
+    }
+  }
+
+  /**
+   * 获取数据异常信息
+   */
+  public static getFaultSign() {
+    logger.info(`getFaultMessage start`);
+    let faultSign: boolean = false;
+    try {
+      // TODO：知识点：通过dataPreferencesManager.get方法获取异常标识
+      let promise = dataPreferencesManager.get('faultSign', faultSign);
+      promise.then((data: dataPreferences.ValueType) => {
+        if (typeof data === 'string') {
+          faultSign = JSON.parse(data);
+          AppStorage.setOrCreate('faultSign', faultSign);
+        }
+      })
+    } catch (err) {
+      logger.error("getFaultSign Failed to get value of 'catch err'. code =" + err.code + ", message =" + err.message);
     }
   }
 }

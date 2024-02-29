@@ -10,8 +10,8 @@
 
 **使用说明**：
 
-1. 点击构建应用崩溃事件，3s之后应用退出，然后打开应用进入应用异常页面，隔一段时间后，显示上次异常退出信息。
-2. 点击构建应用卡死事件，需手动推出，然后打开应用进入应用异常页面，隔一段时间后，显示上次异常退出信息。
+1. 点击构建应用崩溃事件，3s之后应用退出，然后打开应用进入应用异常页面，隔1min左右后，显示上次异常退出信息。
+2. 点击构建应用卡死事件，需手动退出，然后打开应用进入应用异常页面，隔1min左右后，显示上次异常退出信息。
 
 ### 实现思路
 
@@ -120,9 +120,10 @@ struct FaultArea {
         }, (item: string) => item)
       } else {
         ListItem() {
+          // 根据被点击事件的下标响应指定的信息
           Text(this.eventIndex === 0 ? $r('app.string.crash_event_message') :
             (this.eventIndex === 1 ? $r('app.string.freeze_event_message') :
-              (this.eventIndex === 2 ? $r('app.string.system_kill_event_message') :
+              (this.faultSign ? $r('app.string.data_delay_toast') :
               $r('app.string.no_message'))))
         }
       }

@@ -112,7 +112,7 @@ marquee                                         // har类型
 
 ### 模块依赖
 
-本实例依赖common模块来实现[日志](../../common/utils/src/main/ets/Logger.ets)的打印、[资源](../../common/utils/src/main/resources/base/element)
+本实例依赖common模块来实现[日志](../../common/utils/src/main/ets/log/Logger.ets)的打印、[资源](../../common/utils/src/main/resources/base/element)
 的调用。
 
 ### 参考资料
