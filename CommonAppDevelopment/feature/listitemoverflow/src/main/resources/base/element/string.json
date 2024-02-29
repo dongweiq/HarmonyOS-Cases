@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "description"
+    },
+    {
+      "name": "listitem_overflow_nickname",
+      "value": "请设置昵称"
+    },
+    {
+      "name": "listitem_overflow_signature",
+      "value": "这个人很懒，没有设置签名"
+    },
+    {
+      "name": "listitem_overflow_purse",
+      "value": "前包"
+    },
+    {
+      "name": "listitem_overflow_favorite",
+      "value": "收藏"
+    },
+    {
+      "name": "listitem_overflow_settings",
+      "value": "设置"
+    },
+    {
+      "name": "listitem_overflow_about",
+      "value": "关于"
+    },
+    {
+      "name": "listitem_overflow_logout",
+      "value": "退出登录"
+    }
+  ]
+}
