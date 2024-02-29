@@ -1,0 +1,133 @@
+import { CardData } from '../../model/CardData';
+import { MyCard } from './MyCard';
+import { display } from '@kit.ArkUI';
+import { WaterFlowDataSource } from '../../model/WaterFlowDataSource';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
+import { NewNavPage } from './NewNavPage';
+
+
+@Component
+export struct TransitionAnimationPage {
+  @State currentDiaplayHeight: Length = 0;
+  @State isDetailPageShow: boolean = false;
+  @State myOpacity: number = 1;
+  @State myZIndex: number = 1;
+  @State clickedCardIndex: number = -1;
+  @State expandCardId: number = -1;
+  dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
+
+  aboutToAppear() {
+    this.currentDiaplayHeight = display.getDefaultDisplaySync().height;
+  }
+
+  @Builder
+  PageMap(name: string) {
+    if (name === 'NewNavPage') {
+      NewNavPage()
+    }
+  }
+
+  @Builder
+  CardList() {
+    Column({ space: 2 }) {
+      WaterFlow() {
+        LazyForEach(this.dataSource, (item: CardData, index) => {
+          FlowItem() {
+            MyCard({cardData: item})
+              .onClick(() => {
+                this.clickedCardIndex = index;
+              })
+          }
+          .onAppear(() => {
+            // 即将触底时提前增加数据
+            for (let i = 0; i < 8; i++) {
+              let cardData = JSON.parse(JSON.stringify(this.dataSource.getData(Math.floor(Math.random()*6)))) as CardData;
+              cardData.id = Date.now();
+              this.dataSource.addLastItem(cardData)
+            }
+          })
+          .onAreaChange((oldValue, newValue) => {
+            this.dataSource.getData(index).cardArea = newValue;
+          })
+          .width('100%')
+        })
+      }
+      .columnsTemplate("1fr 1fr")
+      .columnsGap(8)
+      .rowsGap(8)
+      .backgroundColor(Color.Grey)
+      .width('100%')
+      .height('100%')
+      .padding(8)
+    }
+    .zIndex(1)
+  }
+
+  @Builder
+  DetailPage() {
+    Column() {
+      if (this.clickedCardIndex > -1) {
+        MyCard({
+          cardData: this.dataSource.getData(this.clickedCardIndex),
+          expandCardId: this.expandCardId,
+          onCardReadyExpand: () => {
+            if (!this.isDetailPageShow) {
+              animateTo({duration: 5,onFinish: ()=>{
+                this.expandCardId = this.dataSource.getData(this.clickedCardIndex).id;
+              }}, ()=> {
+                this.isDetailPageShow = true
+              })
+            }
+          },
+          onBack: () => {
+            this.expandCardId = -1;
+          },
+          onAnimationFinish: () => {
+            if (this.expandCardId < 0) {
+              this.clickedCardIndex = -1;
+              this.isDetailPageShow = false;
+            }
+          }
+        })
+          .width(this.expandCardId > -1 ? '100%' : this.dataSource.getData(this.clickedCardIndex).cardArea.width)
+          .height(this.expandCardId > -1 ? px2vp( this.currentDiaplayHeight as number) : this.dataSource.getData(this.clickedCardIndex).cardArea.height)
+          .position({
+            x: this.expandCardId > -1 ? 0 : this.dataSource.getData(this.clickedCardIndex).cardArea.position.x,
+            y: this.expandCardId > -1 ? 0 : this.dataSource.getData(this.clickedCardIndex).cardArea.position.y
+          })
+          .animation({duration: 200})
+          .backgroundColor(Color.White)
+      }
+    }
+    .width('100%')
+    .height('100%')
+    .zIndex(this.isDetailPageShow ? 2 : 0)
+    .animation({duration:100})
+    .backgroundColor(Color.Transparent)
+  }
+
+  build() {
+    Navigation(this.pageInfos) {
+      Stack() {
+        this.CardList();
+        this.DetailPage();
+      }
+    }
+    .hideTitleBar(true)
+    .navDestination(this.PageMap)
+  }
+}
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getTransitionAnimationPageView(): void {
+  TransitionAnimationPage()
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+let builderName = RouterInfo.TRANSITION_ANIMATION[0];
+if(!DynamicsRouter.getBuilder(builderName)){
+  let builder: WrappedBuilder<[object]> = wrapBuilder(getTransitionAnimationPageView);
+  DynamicsRouter.registerBuilder(builderName, builder);
+}

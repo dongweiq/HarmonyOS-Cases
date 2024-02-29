@@ -68,7 +68,8 @@
           "@ohos/webgetcameraimage",
           "@ohos/sidebaranimation",
           "@ohos/imagecompression",
-          "@ohos/imageenableanalyzer"
+          "@ohos/imageenableanalyzer",
+          "@ohos/transitionanimation"
         ]
       }
     }

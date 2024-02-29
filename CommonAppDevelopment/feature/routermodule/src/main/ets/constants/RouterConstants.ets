@@ -63,4 +63,5 @@ export class RouterInfo {
   static readonly SIDE_BAR_ANIMATION: string[] = ['@ohos/sidebaranimation', '.src/main/ets/view/SideBarAnimationView.ets'];
   static readonly IMAGE_COMPRESSION: string[] = ['@ohos/imagecompression', './src/main/ets/view/ImageCompression.ets'];
   static readonly IMAGE_ENABLE_ANALYZER: string[] = ['@ohos/imageenableanalyzer', './src/main/ets/view/ImageView.ets'];
+  static readonly TRANSITION_ANIMATION: string[] = ['@ohos/transitionanimation', './src/main/ets/components/pages/TransitionAnimationPage.ets'];
 }

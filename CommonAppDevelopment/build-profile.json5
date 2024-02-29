@@ -170,7 +170,7 @@
     },
     {
       "name": "waterripples",
-      "srcPath": "./feature/waterripples",
+      "srcPath": "./feature/waterripples"
     },
     {
       "name": "foldablescreencases",
@@ -235,6 +235,10 @@
     {
       "name": "imagedrag",
       "srcPath": "./feature/imageenableanalyzer"
+    },
+    {
+      "name": "transitionanimation",
+      "srcPath": "./feature/transitionanimation"
     }
   ]
 }

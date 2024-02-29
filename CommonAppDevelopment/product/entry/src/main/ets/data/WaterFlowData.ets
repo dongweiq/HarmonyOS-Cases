@@ -67,5 +67,6 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.number_scroll"), '数字滚动', RouterInfo.DIGITAL_SCROLL_ANIMATION, '动效'),
   new SceneModuleInfo($r("app.media.image_compression"), '图片压缩方案', RouterInfo.IMAGE_COMPRESSION, '其他', 3),
   new SceneModuleInfo($r("app.media.side_bar_animation"), 'SideBarContainer侧边栏淡入淡出动效实现案例', RouterInfo.SIDE_BAR_ANIMATION, '动效'),
-  new SceneModuleInfo($r("app.media.image_enableanalyzer"), '图片拖拽AI抠图案例', RouterInfo.IMAGE_ENABLE_ANALYZER, '其他', 1)
+  new SceneModuleInfo($r("app.media.image_enableanalyzer"), '图片拖拽AI抠图案例', RouterInfo.IMAGE_ENABLE_ANALYZER, '其他', 1),
+  new SceneModuleInfo($r("app.media.transition_animation"), '一镜到底“页面转场”动画', RouterInfo.TRANSITION_ANIMATION, '动效', 2)
 ]
