@@ -1,20 +1,6 @@
 {
   "app": {
-    "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\15757\\.ohos\\config\\default_CommonAppDevelopment_vg1aZO9See7qJa54Mmg5_5Xe8p60o4XIQ3rIZECB3EA=.cer",
-          "storePassword": "0000001B4653897CAC9BBF2FA005CD37F98626308D3BD156657F2A6D7A578B274EDEEBC6C38AD3A08A8C6D",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B5B94CE9E0B7950F8BB424B79E8D8DF28DEBFB9D657F91B63890FB757CB79F7C390EFADB4A37C09",
-          "profile": "C:\\Users\\15757\\.ohos\\config\\default_CommonAppDevelopment_vg1aZO9See7qJa54Mmg5_5Xe8p60o4XIQ3rIZECB3EA=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\15757\\.ohos\\config\\default_CommonAppDevelopment_vg1aZO9See7qJa54Mmg5_5Xe8p60o4XIQ3rIZECB3EA=.p12"
-        }
-      }
-    ],
+    "signingConfigs": [],
     "products": [
       {
         "name": "default",
@@ -269,10 +255,6 @@
     {
       "name": "pageloading",
       "srcPath": "./feature/pageloading"
-    },
-    {
-      "name": "dragtoswitchpictures",
-      "srcPath": "./feature/dragtoswitchpictures"
     }
   ]
 }
