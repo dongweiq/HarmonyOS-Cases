@@ -154,6 +154,10 @@ Image($r('app.media.drag_button'))
 
 本例使用了onActionUpdate函数。该函数是系统高频回调函数，避免在函数中进行冗余或耗时操作，例如应该减少或避免在函数打印日志，会有较大的性能损耗。
 
+本示例使用了LazyForEach进行数据懒加载，WaterFlow布局时会根据可视区域按需创建FlowItem组件，并在FlowItem滑出可视区域外时销毁以降低内存占用。
+
+本示例使用了cachedCount设置预加载的FlowItem的数量，只在LazyForEach中生效，设置该属性后会缓存cachedCount个FlowItem，LazyForEach超出显示和缓存范围的FlowItem会被释放。
+
 ### 参考资料
 
 [swiper](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-swiper-0000001774121298)
