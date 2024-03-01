@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例介绍Stack堆叠组件和LoadingProgress加载组件模拟首次进入页面实现页面加载的效果。持续3秒后，LoadingProgress组件会消失并展示加载结果页（即商品页）。
+本示例介绍Stack堆叠组件和LoadingProgress加载组件模拟首次进入页面实现页面加载的效果。加载完成后，LoadingProgress组件会消失并展示加载结果页（即商品页）。
 
 ### 效果图预览
 
