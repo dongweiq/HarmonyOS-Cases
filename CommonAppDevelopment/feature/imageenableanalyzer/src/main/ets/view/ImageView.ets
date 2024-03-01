@@ -53,6 +53,7 @@ export struct ImageView {
                 .objectFit(ImageFit.Fill)
                 .width('100%')
                 .aspectRatio(0.8)
+                .draggable(false) // 禁止整张图片拖动
             })
           }
           .height($r('app.integer.swiper_height'))
