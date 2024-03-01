@@ -56,7 +56,7 @@ export struct TransitionAnimationPage {
       .columnsTemplate("1fr 1fr")
       .columnsGap(8)
       .rowsGap(8)
-      .backgroundColor(Color.Grey)
+      .backgroundColor('#cccccc')
       .width('100%')
       .height('100%')
       .padding(8)

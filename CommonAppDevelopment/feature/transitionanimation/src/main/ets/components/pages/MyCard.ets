@@ -98,9 +98,11 @@ export struct MyCard {
       else {
         Column(){
           Text(this.cardData.content)
+            .textAlign(TextAlign.Start)
         }
+        .padding({left:7, right:7})
         .width('100%')
-        Button('进入父子转场',{ type: ButtonType.Normal })
+        Button('父页面（点击进入子页面）')
           .onClick(() => {
             this.pageInfos.pushPath({name: 'NewNavPage'}, true)
           })
