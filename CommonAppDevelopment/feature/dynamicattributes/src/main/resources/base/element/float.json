@@ -1,0 +1,44 @@
+{
+  "float": [
+    {
+      "name": "float_5",
+      "value": "5vp"
+    },
+    {
+      "name": "float_10",
+      "value": "10vp"
+    },
+    {
+      "name": "float_15",
+      "value": "15vp"
+    },
+    {
+      "name": "float_20",
+      "value": "20vp"
+    },
+    {
+      "name": "float_25",
+      "value": "25vp"
+    },
+    {
+      "name":  "float_30",
+      "value": "30vp"
+    },
+    {
+      "name":"float_50",
+      "value": "50vp"
+    },
+    {
+      "name":"float_60",
+      "value": "60vp"
+    },
+    {
+      "name": "float_100",
+      "value": "100vp"
+    },
+    {
+      "name": "float_160",
+      "value": "160vp"
+    }
+  ]
+}

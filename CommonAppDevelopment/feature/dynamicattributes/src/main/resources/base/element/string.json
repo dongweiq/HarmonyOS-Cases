@@ -1,0 +1,76 @@
+{
+  "string": [
+    {
+      "name": "shared_desc",
+      "value": "description"
+    },
+    {
+      "name": "shopping_cart",
+      "value": "购物车"
+    },
+    {
+      "name": "store_name",
+      "value": "xxx旗舰店"
+    },
+    {
+      "name": "commodity_name",
+      "value": "商品"
+    },
+    {
+      "name": "commodity_model",
+      "value": "商品型号"
+    },
+    {
+      "name": "commodity_price",
+      "value": "¥300"
+    },
+    {
+      "name": "text_one",
+      "value": "文本1"
+    },
+    {
+      "name": "text_two",
+      "value": "文本2"
+    },
+    {
+      "name": "text_three",
+      "value": "文本3"
+    },
+    {
+      "name": "full_reduction",
+      "value": "每满300减40"
+    },
+    {
+      "name": "sold",
+      "value": "已售88"
+    },
+    {
+      "name": "coupon_collection",
+      "value": "领券"
+    },
+    {
+      "name": "buy_now",
+      "value": "立即购买"
+    },
+    {
+      "name": "add_cart",
+      "value": "加入购物车"
+    },
+    {
+      "name": "settlement",
+      "value": "结算"
+    },
+    {
+      "name": "max_size",
+      "value": "100%"
+    },
+    {
+      "name": "image_proportion",
+      "value": "60%"
+    },
+    {
+      "name": "text_proportion",
+      "value": "40%"
+    }
+  ]
+}
