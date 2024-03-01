@@ -97,7 +97,7 @@ build() {
    ```
 
 ### 模块依赖
-当前场景依赖common模块的FunctionDescription组件，主要用于功能场景文本介绍。详细可参考[FunctionDescription](../../common/utils/src/main/ets/FunctionDescription.ets)文件。
+当前场景依赖common模块的FunctionDescription组件，主要用于功能场景文本介绍。详细可参考[FunctionDescription](../../common/utils/src/main/ets/component/FunctionDescription.ets)文件。
 
 ### 参考资料
 

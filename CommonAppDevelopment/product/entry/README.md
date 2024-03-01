@@ -1,5 +1,3 @@
-&nbsp;:book: [查看本文案例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/common/CommonAppDevelopment)
-
 <p align="center">
   <h1 align="center">Navigation开发 页面切换场景范例</h1>
 </p>
