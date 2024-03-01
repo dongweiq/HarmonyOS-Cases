@@ -75,6 +75,10 @@
     {
       "name": "save_picture",
       "value": "save_picture"
+    },
+    {
+      "name": "request_permissions_reason",
+      "value": "user_grant"
     }
   ]
 }

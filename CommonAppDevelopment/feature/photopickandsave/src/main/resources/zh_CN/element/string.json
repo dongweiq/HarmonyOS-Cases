@@ -76,6 +76,10 @@
     {
       "name": "save_picture",
       "value": "下载保存图片到指定路径成功"
+    },
+    {
+      "name": "request_permissions_reason",
+      "value": "user_grant"
     }
   ]
 }
