@@ -91,7 +91,7 @@ lottieview                                         // har类型
 
 ### 模块依赖
 
-本实例依赖common模块来实现[日志](../../common/utils/src/main/ets/Logger.ets)的打印、[资源](../../common/utils/src/main/resources/base/element)
+本实例依赖common模块来实现[日志](../../common/utils/src/main/ets/log/Logger.ets)的打印、[资源](../../common/utils/src/main/resources/base/element)
 的调用、[动态路由模块](../../feature/routermodule/src/main/ets/router/DynamicsRouter.ets)来实现页面的动态加载以及[Lottie模块](oh-package.json5)，版本为2.0.0。
 
 ### 参考资料
