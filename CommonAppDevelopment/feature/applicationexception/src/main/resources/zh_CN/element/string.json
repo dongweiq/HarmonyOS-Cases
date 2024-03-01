@@ -18,7 +18,7 @@
     },
     {
       "name": "application_fault_description",
-      "value": "点击构建异常事件，3s之后触发系统异常事件，需要重新启动应用并进入本页面获取上次异常退出原因"
+      "value": "点击构建异常事件，3s之后触发系统异常事件，需要重新启动应用并进入本页面，由于规格原因需等待1min左右才能获取异常数据"
     },
     {
       "name": "crash_event_message",
@@ -31,6 +31,10 @@
     {
       "name": "no_message",
       "value": "暂无信息"
+    },
+    {
+      "name": "data_delay_toast",
+      "value": "由于规格原因，当前异常事件接收有延迟，数据大约在1min左右会进行更新"
     }
   ]
 }
