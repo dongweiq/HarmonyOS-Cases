@@ -14,7 +14,7 @@
  */
 import { CardData } from '../../model/CardData'
 @Component
-export struct MyCard {
+export struct CardPage {
   @Consume('pageInfos') pageInfos: NavPathStack;
   @Prop cardData: CardData;
   onCardReadyExpand?: Function;
@@ -25,7 +25,7 @@ export struct MyCard {
 
   onExpandCardIdChange() {
     animateTo({duration:200, onFinish: this.onAnimationFinish}, ()=>{
-      this.isCardExpand = this.expandCardId == this.cardData.id
+      this.isCardExpand = this.expandCardId === this.cardData.id
     })
   }
 
@@ -78,7 +78,7 @@ export struct MyCard {
   @Builder
   Title() {
     Text(this.cardData.title).textAlign(TextAlign.Start)
-      .fontWeight(FontWeight.Bold)
+      .fontWeight(this.isCardExpand ? FontWeight.Bold : FontWeight.Normal)
       .margin({
         left: 10,
         top: 10,
@@ -114,6 +114,7 @@ export struct MyCard {
         Column(){
           Text(this.cardData.content)
             .textAlign(TextAlign.Start)
+            .width('100%')
         }
         .padding({left:7, right:7})
         .width('100%')

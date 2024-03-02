@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import { CardData } from '../../model/CardData';
-import { MyCard } from './MyCard';
+import { CardPage } from './CardPage';
 import { display } from '@kit.ArkUI';
 import { WaterFlowDataSource } from '../../model/WaterFlowDataSource';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
@@ -48,7 +48,7 @@ export struct TransitionAnimationPage {
       WaterFlow() {
         LazyForEach(this.dataSource, (item: CardData, index) => {
           FlowItem() {
-            MyCard({cardData: item})
+            CardPage({cardData: item})
               .onClick(() => {
                 this.clickedCardIndex = index;
               })
@@ -82,7 +82,7 @@ export struct TransitionAnimationPage {
   DetailPage() {
     Column() {
       if (this.clickedCardIndex > -1) {
-        MyCard({
+        CardPage({
           cardData: this.dataSource.getData(this.clickedCardIndex),
           expandCardId: this.expandCardId,
           onCardReadyExpand: () => {

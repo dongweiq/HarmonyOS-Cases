@@ -26,7 +26,7 @@ build() {
 ```ts
 LazyForEach(this.dataSource, (item: CardData, index) => {
           FlowItem() {
-            MyCard({cardData: item})
+            CardPage({cardData: item})
               .onClick(() => {
                 this.clickedCardIndex = index;
               })
@@ -39,9 +39,9 @@ LazyForEach(this.dataSource, (item: CardData, index) => {
 ```
 3、onCardReadyExpand回调在DetailPage内部Image渲染结束时触发；
 使用Stack布局，设置this.isDetailPageShow = true，动态设置DetailPage zIndex值大于CardList，使DetailPage覆盖到CardList上，方便DetailPage展开覆盖全屏；
-再设置 expandCardId  为被点击的卡片Id，触发CardList.MyCard -> DetailPage.MyCard的属性动画；
+再设置 expandCardId  为被点击的卡片Id，触发CardList.CardPage -> DetailPage.CardPage的属性动画；
 ```ts
-MyCard({
+CardPage({
           cardData: this.dataSource.getData(this.clickedCardIndex),
           expandCardId: this.expandCardId,
           onCardReadyExpand: () => {
@@ -75,13 +75,13 @@ MyCard({
 ```ts
 .zIndex(this.isDetailPageShow ? 2 : 0)
 ```
-4、MyCard内部监听expandCardId值变化，触发expandCardId相关的显示动画，用于CardList.MyCard -> DetailPage.MyCard涉及到的内容结构变化动画
+4、CardPage内部监听expandCardId值变化，触发expandCardId相关的显示动画，用于CardList.CardPage -> DetailPage.CardPage涉及到的内容结构变化动画
     ```ts
     @Prop @Watch('onExpandCardIdChange') expandCardId?: number = -1;
     
       onExpandCardIdChange() {
         animateTo({duration:200, onFinish: this.onAnimationFinish}, ()=>{
-          this.isCardExpand = this.expandCardId == this.cardData.id
+          this.isCardExpand = this.expandCardId === this.cardData.id
         })
       }
     ```
@@ -93,7 +93,7 @@ transitionanimation             // har包
    |   |---WaterFlowDataSource.ets    // 瀑布流列表 model 数据层      
    |---pages
    |   |---TransitionAnimationPage.ets           // 转场动画效果实现页面
-   |   |---MyCard.ets                            // 卡片和卡片详情页面
+   |   |---CardPage.ets                            // 卡片和卡片详情页面
    |   |---NewNavPage.ets                        // 从卡片详情页面使用路由跳转到的页面
 ```
 ### 模块依赖
