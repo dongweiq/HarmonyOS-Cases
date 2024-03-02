@@ -29,7 +29,7 @@ export struct TransitionAnimationPage {
   @State clickedCardIndex: number = -1;
   @State expandCardId: number = -1;
   dataSource: WaterFlowDataSource = new WaterFlowDataSource();
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     this.currentDiaplayHeight = display.getDefaultDisplaySync().height;
