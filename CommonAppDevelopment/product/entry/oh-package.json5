@@ -119,7 +119,6 @@
     "@ohos/listslidetohistory": "file:../../feature/listslidetohistory",
     // 页面加载效果实现案例
     "@ohos/pageloading": "file:../../feature/pageloading",
-    "@ohos/Chinesetopinyin": "file:../../feature/chinesetopinyin",
     // 一镜到底“页面转场”动画案例
     "@ohos/transitionanimation": "file:../../feature/transitionanimation"
   }

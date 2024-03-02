@@ -8,8 +8,8 @@
 ### 实现思路
 小红书的首页使用了一种视觉上看起来像是组件的转场动画，这种转场动画通常是通过组件的动态加载和切换来实现的，而不是简单的页面之间的路由跳转。
 实现方案如下：
-1、首页 TransitionAnimationPage 渲染了两个 Page , 瀑布流卡片列表 CardList 和 卡片详情页 DetailPage
-```arkts
+1、首页TransitionAnimationPage渲染了两个Page, 瀑布流卡片列表CardList和卡片详情页DetailPage
+```ts
 build() {
     Navigation(this.pageInfos) {
       Stack() {
@@ -21,9 +21,9 @@ build() {
     .navDestination(this.PageMap)
   }
 ```
-2、点击卡片后，触发 this.clickedCardIndex = index 记录当前被点击卡片在数组中的索引；
-使用 onAreaChange 存储每个 Card 被点击时的位置、宽高信息，用于设置返回动画组件的状态信息；
-```arkts
+2、点击卡片后，触发this.clickedCardIndex = index记录当前被点击卡片在数组中的索引；
+使用onAreaChange存储每个Card被点击时的位置、宽高信息，用于设置返回动画组件的状态信息；
+```ts
 LazyForEach(this.dataSource, (item: CardData, index) => {
           FlowItem() {
             MyCard({cardData: item})
@@ -37,10 +37,10 @@ LazyForEach(this.dataSource, (item: CardData, index) => {
           .width('100%')
         })
 ```
-3、onCardReadyExpand 回调在 DetailPage 内部 Image 渲染结束时触发；
-使用 Stack 布局，设置 this.isDetailPageShow = true，动态设置 DetailPage zIndex 值大于 CardList，使 DetailPage 覆盖到 CardList上，方便   DetailPage 展开覆盖全屏；
-再设置 expandCardId  为被点击的卡片Id，触发 CardList.MyCard -> DetailPage.MyCard 的属性动画；
-```arkts
+3、onCardReadyExpand回调在DetailPage内部Image渲染结束时触发；
+使用Stack布局，设置this.isDetailPageShow = true，动态设置DetailPage zIndex值大于CardList，使DetailPage覆盖到CardList上，方便DetailPage展开覆盖全屏；
+再设置 expandCardId  为被点击的卡片Id，触发CardList.MyCard -> DetailPage.MyCard的属性动画；
+```ts
 MyCard({
           cardData: this.dataSource.getData(this.clickedCardIndex),
           expandCardId: this.expandCardId,
@@ -72,21 +72,21 @@ MyCard({
           .animation({duration: 200})
           .backgroundColor(Color.White)
 ```
-```arkts
+```ts
 .zIndex(this.isDetailPageShow ? 2 : 0)
 ```
-4、MyCard 内部监听 expandCardId 值变化，触发 expandCardId 相关的显示动画，用于 CardList.MyCard -> DetailPage.MyCard 涉及到的内容结构变化动画
-```arkts
-@Prop @Watch('onExpandCardIdChange') expandCardId?: number = -1;
-
-  onExpandCardIdChange() {
-    animateTo({duration:200, onFinish: this.onAnimationFinish}, ()=>{
-      this.isCardExpand = this.expandCardId == this.cardData.id
-    })
-  }
-```
+4、MyCard内部监听expandCardId值变化，触发expandCardId相关的显示动画，用于CardList.MyCard -> DetailPage.MyCard涉及到的内容结构变化动画
+    ```ts
+    @Prop @Watch('onExpandCardIdChange') expandCardId?: number = -1;
+    
+      onExpandCardIdChange() {
+        animateTo({duration:200, onFinish: this.onAnimationFinish}, ()=>{
+          this.isCardExpand = this.expandCardId == this.cardData.id
+        })
+      }
+    ```
 ### 工程结构&模块类型
-```arkts
+```ts
 transitionanimation             // har包
    |---model
    |   |---CardData.ets          // 卡片页面的model层数据结构

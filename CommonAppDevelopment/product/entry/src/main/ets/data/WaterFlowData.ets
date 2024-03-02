@@ -15,7 +15,7 @@
 
 import { SceneModuleInfo } from '@ohos/functionalscenes';
 import { RouterInfo } from '@ohos/dynamicsRouter/Index';
-import { UserBookingInfo } from '@ohos/navigationparametertransfer/Index'
+import { UserBookingInfo } from '@ohos/navigationparametertransfer/Index';
 
 const userBooking: UserBookingInfo = new UserBookingInfo('张山', '332212199507270611', '7F');
 const strUserBooking: string = JSON.stringify(userBooking);
