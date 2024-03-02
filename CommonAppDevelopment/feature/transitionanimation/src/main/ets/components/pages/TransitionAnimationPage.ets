@@ -36,7 +36,7 @@ export struct TransitionAnimationPage {
   }
 
   @Builder
-  PageMap(name: string) {
+  pageMap(name: string) {
     if (name === 'NewNavPage') {
       NewNavPage()
     }
@@ -129,7 +129,7 @@ export struct TransitionAnimationPage {
       }
     }
     .hideTitleBar(true)
-    .navDestination(this.PageMap)
+    .navDestination(this.pageMap)
   }
 }
 

@@ -30,7 +30,7 @@ export struct CardPage {
   }
 
   @Builder
-  TopBar() {
+  topBar() {
     if (this.isCardExpand) {
       Row() {
         Column(){
@@ -65,7 +65,7 @@ export struct CardPage {
   }
 
   @Builder
-  ContentImage() {
+  contentImage() {
     Image(this.cardData.imageSrc)
       .width('100%')
       .onComplete(() => {
@@ -76,7 +76,7 @@ export struct CardPage {
   }
 
   @Builder
-  Title() {
+  title() {
     Text(this.cardData.title).textAlign(TextAlign.Start)
       .fontWeight(this.isCardExpand ? FontWeight.Bold : FontWeight.Normal)
       .margin({
@@ -87,7 +87,7 @@ export struct CardPage {
   }
 
   @Builder
-  BottomContent() {
+  bottomContent() {
     Column() {
       if (!this.isCardExpand) {
         Row() {
@@ -130,10 +130,10 @@ export struct CardPage {
 
   build() {
     List() {
-      this.TopBar();
-      this.ContentImage();
-      this.Title();
-      this.BottomContent();
+      this.topBar();
+      this.contentImage();
+      this.title();
+      this.bottomContent();
     }
     .scrollBar(BarState.Off)
     .backgroundColor(Color.White)
