@@ -76,5 +76,5 @@ export class RouterInfo {
   static readonly EXPAND_TITLE: RouterInfo = new RouterInfo('@ohos/expandtitle', 'TitleExpansion');
   static readonly LIST_SLIDE_TO_HISTORY: RouterInfo = new RouterInfo('@ohos/listslidetohistory', 'ListSlideToHistory');
   static readonly PAGE_LOADING: RouterInfo = new RouterInfo('@ohos/pageloading', 'PageLoading');
-  static readonly TRANSITION_ANIMATION: RouterInfo = new RouterInfo('@ohos/transitionanimation', 'PageLoading');
+  static readonly TRANSITION_ANIMATION: RouterInfo = new RouterInfo('@ohos/transitionanimation', 'TransitionAnimation');
 }
