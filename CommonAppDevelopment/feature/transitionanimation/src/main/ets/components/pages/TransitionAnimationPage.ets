@@ -70,7 +70,7 @@ export struct TransitionAnimationPage {
       .columnsTemplate("1fr 1fr")
       .columnsGap(8)
       .rowsGap(8)
-      .backgroundColor('#cccccc')
+      .backgroundColor($r('app.color.water_flow_background_color'))
       .width('100%')
       .height('100%')
       .padding(8)
