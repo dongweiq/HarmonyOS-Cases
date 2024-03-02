@@ -36,7 +36,7 @@ napi_ref callbackRef = nullptr;         // ArkTs端回调函数的引用
 static void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain, const char *tag,
                     const char *msg) {
     std::string strMsg(msg, strlen(msg) + 1);    
-    // 过滤要查找的日志
+    // TODO: 知识点： 过滤要查找的日志
     size_t foundIndex = strMsg.find(logToFiter);
     if (foundIndex != -1) {
         napi_value callback = nullptr;
@@ -60,14 +60,14 @@ static napi_value SetLogCallBack(napi_env env, napi_callback_info info) {
     size_t logSize;
     napi_get_value_string_utf8(env, args[0], logToFiter, MAX_LOG_LEN, &logSize);
 
-    // 解析arkts端的回调函数
+    // 解析ArkTS端的回调函数
     napi_valuetype valueType = napi_undefined;
     napi_typeof(env, args[1], &valueType);
     if (valueType != napi_function) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "SetLogCallBack fail，param2 is not a function！");
         return nullptr;
     }
-    // 创建ArkTs端回调函数的引用
+    // 创建ArkTS端回调函数的引用
     napi_create_reference(env, args[1], 1, &callbackRef);
     g_env = env;
     // 注册日志回调接口

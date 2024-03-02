@@ -13,8 +13,15 @@
  * limitations under the License.
  */
 
+/**
+ * 1. 通过调用Native的setLogCallBack接口实现日志回调注册
+ * 2. 定义ArkTS端的回调函数CallBack供Native调用
+ * 3. 通过调用Native的CancelCallBack接口实现关闭日志回调
+ * 4. 通过调用Native的callMyfunction接口以验证接口是否调用成功
+ */
+
 import testNapi from 'liblogcallback.so';
-let functionCallNum : number = 0;    // native中callMyfunction接口被调用的次数
+let functionCallNum : number = 0;    // Native中callMyfunction接口被调用的次数
 
 export class LogCallBack {
   // TODO: 知识点： ArkTS日志回调函数，param参数为callMycunction接口被调用的次数
@@ -37,7 +44,7 @@ export class LogCallBack {
     testNapi.cancelLogCallBack();
   }
 
-  // TODO: 知识点： 调用native的中的接口
+  // TODO: 知识点： 调用Native的中的接口
   CallMyfunction() : void {
     testNapi.callMyfunction();
   }

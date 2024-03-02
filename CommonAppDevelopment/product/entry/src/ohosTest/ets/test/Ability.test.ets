@@ -17,7 +17,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { logger } from '@ohos/base';
-import { LogCallBack } from '@ohos/logcallback'
+import { LogCallBack } from '@ohos/logcallback';
 
 const BUNDLE: string = 'CommonAppDevelopment';
 const TAG: string = '[CommonAppDevelopment_Test]';
