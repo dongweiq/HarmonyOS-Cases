@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import { CardData } from '../../model/CardData'
 @Component
 export struct CardPage {
-  @Consume('pageInfos') pageInfos: NavPathStack;
   @Prop cardData: CardData;
   onCardReadyExpand?: Function;
   onBack?: Function;
@@ -120,7 +120,8 @@ export struct CardPage {
         .width('100%')
         Button('父页面（点击进入子页面）')
           .onClick(() => {
-            this.pageInfos.pushPath({name: 'NewNavPage'}, true)
+            let path = RouterInfo.TRANSITION_ANIMATION_SUB_Detail.moduleName + '/' + RouterInfo.TRANSITION_ANIMATION_SUB_Detail.pageName;
+            DynamicsRouter.navPathStack.pushPath({name: path});
           })
           .width("60%")
           .margin({top:10, bottom: 40})

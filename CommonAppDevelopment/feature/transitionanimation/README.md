@@ -97,6 +97,8 @@
      |   |---NewNavPage.ets                        // 从卡片详情页面使用路由跳转到的页面
   ```
 ### 模块依赖
-不涉及
+
+[**routermodule**](../routermodule)
+
 ### 参考资料
 [动画](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/4_10_u52a8_u753b-0000001820880989)

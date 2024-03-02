@@ -17,7 +17,6 @@ import { CardPage } from './CardPage';
 import { display } from '@kit.ArkUI';
 import { WaterFlowDataSource } from '../../model/WaterFlowDataSource';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
-import { NewNavPage } from './NewNavPage';
 
 
 @Component
@@ -29,18 +28,11 @@ export struct TransitionAnimationPage {
   @State clickedCardIndex: number = -1;
   @State expandCardId: number = -1;
   dataSource: WaterFlowDataSource = new WaterFlowDataSource();
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
 
   aboutToAppear() {
     this.currentDiaplayHeight = display.getDefaultDisplaySync().height;
   }
 
-  @Builder
-  pageMap(name: string) {
-    if (name === 'NewNavPage') {
-      NewNavPage()
-    }
-  }
 
   @Builder
   CardList() {
@@ -122,14 +114,10 @@ export struct TransitionAnimationPage {
   }
 
   build() {
-    Navigation(this.pageInfos) {
-      Stack() {
-        this.CardList();
-        this.DetailPage();
-      }
+    Stack() {
+      this.CardList();
+      this.DetailPage();
     }
-    .hideTitleBar(true)
-    .navDestination(this.pageMap)
   }
 }
 
