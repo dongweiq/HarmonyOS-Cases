@@ -27,10 +27,24 @@
         "name": "ohos.permission.INTERNET"
       },
       {
-        "name": "ohos.permission.WRITE_MEDIA"
+        "name": "ohos.permission.WRITE_MEDIA",
+        "reason": "$string:request_permissions_reason",
+        "usedScene": {
+          "abilities": [
+            "photopickandsave"
+          ],
+          "when": "inuse"
+        }
       },
       {
-        "name": "ohos.permission.READ_MEDIA"
+        "name": "ohos.permission.READ_MEDIA",
+        "reason": "$string:request_permissions_reason",
+        "usedScene": {
+          "abilities": [
+            "photopickandsave"
+          ],
+          "when": "inuse"
+        }
       }
     ]
   }

@@ -30,10 +30,13 @@ export function eventSubscription() {
         names: [hiAppEvent.event.APP_CRASH, hiAppEvent.event.APP_FREEZE]
       }
     ],
-    // TODO：知识点：获取事件组信息。开发者可以自行实现订阅实时回调函数，以便对订阅获取到的事件数据进行自定义处理
+    // TODO：知识点：获取事件组信息。开发者可以自行实现订阅回调函数，崩溃和卡死事件下次应用启动时会回调给开发者
     onReceive: async (domain: string, appEventGroups: Array<hiAppEvent.AppEventGroup>) => {
       logger.info(TAG, `HiAppEvent onReceive: domain=${domain}`);
-      // 获取事件组信息，与ApplicationException文件中的@StorageLink('faultMessage') faultMessage进行双向数据绑定
+      /**
+       * 获取事件组信息，与ApplicationException文件中的@StorageLink('faultMessage') faultMessage进行双向数据绑定
+       * 性能关注：如果开发者有同步的代码需要执行耗时操作，建议起worker或者taskpool线程来处理。但如果开发者使用storage和preferences，直接调用即可。
+       */
       AppStorage.setOrCreate('appEventGroups', appEventGroups);
     }
   });

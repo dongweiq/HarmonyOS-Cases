@@ -31,6 +31,10 @@
     {
       "name": "no_message",
       "value": "no_message"
+    },
+    {
+      "name": "data_delay_toast",
+      "value": "数据大约在1-3min会进行更新"
     }
   ]
 }

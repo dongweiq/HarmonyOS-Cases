@@ -14,7 +14,7 @@
  */
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
-import { SwiperData, SwiperDataSource } from '../model/SwiperData';
+import { SwiperData } from '../model/SwiperData';
 
 /**
  * 主页轮播图组件
@@ -25,19 +25,24 @@ export struct SwiperComponent {
   @Consume('pageStack') pageStack: NavPathStack;
   @State currentIndex: number = 0;
   @State swiperData: SwiperData[] = [
-    new SwiperData($r('app.media.bar_chart_top'), 'MpChart图表实现案例', RouterInfo.BAR_CHAT),
-    new SwiperData($r('app.media.address_exchange'), '地址交换动画', RouterInfo.ADDRESS_EXCHANGE),
-    new SwiperData($r('app.media.tab_bar'), '自定义TabBar', RouterInfo.CUSTOM_TAB_BAR),
+    new SwiperData($r("app.media.mp_chart"), 'MpChart图表实现案例', RouterInfo.BAR_CHAT),
+    new SwiperData($r("app.media.lottie"), 'Lottie动画', RouterInfo.LOTTIE_VIEW),
+    new SwiperData($r("app.media.component_tack"), '组件堆叠', RouterInfo.COMPONENT_TACK),
   ];
-  swiperDataSource: SwiperDataSource = new SwiperDataSource();
   private halfCount: number = Math.floor(3 / 2);
+  private manualSlidingDuration: number = 800;
+  private automaticSlidingDuration: number = 300;
+  private automaticSwitchTime: number = 5000;
 
   aboutToAppear(): void {
     this.currentIndex = this.halfCount;
-    // 主页轮播图初始化数据
-    for (let index = 0; index < this.swiperData.length; index++) {
-      this.swiperDataSource.pushData(this.swiperData[index]);
-    }
+    setInterval(() => {
+      this.startAnimation(true, this.manualSlidingDuration);
+    }, this.automaticSwitchTime)
+  }
+
+  aboutToDisappear(): void {
+    clearInterval()
   }
 
   /**
@@ -73,15 +78,15 @@ export struct SwiperComponent {
     let offsetX: number = 0;
     if (tempOffset === 1) {
       // 根据图片层级系数来决定左右偏移量
-      offsetX = -55 * offsetIndex;
+      offsetX = -35 * offsetIndex;
     }
     return offsetX;
   }
 
   // 性能：显式动画(https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V2/ts-explicit-animation-0000001478341181-V2)
-  startAnimation(isLeft: boolean): void {
+  startAnimation(isLeft: boolean, duration: number): void {
     animateTo({
-      duration: 300,
+      duration: duration,
     }, () => {
       let dataLength: number = this.swiperData.length;
       let tempIndex: number = isLeft ? this.currentIndex + 1 : this.currentIndex - 1 + dataLength;
@@ -90,73 +95,84 @@ export struct SwiperComponent {
   }
 
   build() {
-    Stack() {
-      LazyForEach(this.swiperDataSource, (item: SwiperData, index: number) => {
-        Stack({ alignContent: Alignment.BottomStart }) {
-          Image(item.imageSrc)
-            .objectFit(ImageFit.Auto)
-            .width('100%')
-            .height('100%')
-            .borderRadius($r('app.string.main_page_top_borderRadius'))
-          // 轮播图底部蒙层
-          Stack() {
-            Column() {
-            }
-            .width('100%')
-            .height('100%')
-            .backgroundColor(Color.Black)
-            .opacity(0.3)
-            .borderRadius({
-              topLeft: 0,
-              topRight: 0,
-              bottomLeft: $r('app.string.main_page_top_borderRadius'),
-              bottomRight: $r('app.string.main_page_top_borderRadius')
-            })
-
-            Text(item.name)
+    Column() {
+      Stack() {
+        // LazyForEach必须在容器组件内使用，仅有List、Grid、Swiper以及WaterFlow组件支持数据懒加载，其他组件仍然是一次性加载所有的数据。
+        ForEach(this.swiperData, (item: SwiperData, index: number) => {
+          Stack({ alignContent: Alignment.BottomStart }) {
+            Image(item.imageSrc)
+              .objectFit(ImageFit.Cover)
               .width('100%')
               .height('100%')
-              .fontSize(16)
-              .fontColor(Color.White)
-              .textAlign(TextAlign.Start)
-              .padding($r('app.string.main_page_padding5'))
+              .borderRadius($r('app.string.main_page_top_borderRadius'))
+            // 轮播图底部蒙层
+            Stack() {
+              Column() {
+              }
+              .width('100%')
+              .height('100%')
+              .backgroundColor(Color.Black)
+              .opacity(0.3)
+              .borderRadius({
+                topLeft: 0,
+                topRight: 0,
+                bottomLeft: $r('app.string.main_page_top_borderRadius'),
+                bottomRight: $r('app.string.main_page_top_borderRadius')
+              })
+
+              Text(item.name)
+                .width('100%')
+                .height('100%')
+                .fontSize(16)
+                .fontColor(Color.White)
+                .textAlign(TextAlign.Start)
+                .padding($r('app.string.main_page_padding5'))
+            }
+            .height($r('app.string.bottom_title_height'))
           }
-          .height('17%')
-        }
-        .shadow(ShadowStyle.OUTER_DEFAULT_SM)
-        .backgroundColor(Color.White)
-        .borderRadius(8)
-        .offset({
-          x: this.getOffSetX(index),
-          y: 0
+          .shadow(ShadowStyle.OUTER_DEFAULT_SM)
+          .backgroundColor(Color.White)
+          .borderRadius(8)
+          .offset({
+            x: this.getOffSetX(index),
+            y: 0
+          })
+          .blur(index !== this.currentIndex ? 12 : 0)
+          // TODO: 知识点:通过animateTo实现动画并且同时改变currentIndex数据中间值来判断组件zIndex实现切换动画
+          .zIndex(index !== this.currentIndex && this.getImgCoefficients(index) === 0 ?
+            0 : 2 - Math.abs(this.getImgCoefficients(index)))
+          .width($r('app.string.swiper_stack_width'))
+          .height(index !== this.currentIndex ? $r('app.string.swiper_stack_height1') : $r('app.string.swiper_stack_height2'))
+          .onClick(() => {
+            // 点击轮播图Item时，根据点击的模块信息，将页面放入路由栈
+            DynamicsRouter.push(item.routerInfo, item.param);
+          })
         })
-        .blur(10 * Math.abs(this.getImgCoefficients(index)))
-        // TODO: 知识点:通过animateTo实现动画并且同时改变currentIndex数据中间值来判断组件zIndex实现切换动画
-        .zIndex(index !== this.currentIndex && this.getImgCoefficients(index) === 0 ?
-          0 : 2 - Math.abs(this.getImgCoefficients(index)))
-        .width(350)
-        .height(index !== this.currentIndex ?
-          "65%" : `${100 - 13 * Math.abs(this.getImgCoefficients(index))}%`)
-        .opacity(1 - 0.2 * Math.min(2, Math.abs(this.getImgCoefficients(index))))
-        .onClick(() => {
-          // 点击轮播图Item时，根据点击的模块信息，将页面放入路由栈
-          DynamicsRouter.push(item.routerInfo, item.param);
-        })
+      }
+      .height($r('app.string.main_page_swiper_height'))
+      .width('100%')
+      .gesture(
+        PanGesture({ direction: PanDirection.Horizontal })
+          .onActionStart((event: GestureEvent) => {
+            this.startAnimation(event.offsetX < 0, this.automaticSlidingDuration);
+          })
+      )
+      .alignContent(Alignment.Center)
+      .padding({
+        left: $r('app.string.main_page_padding2'),
+        right: $r('app.string.main_page_padding2'),
+        top: $r('app.string.main_page_padding2')
       })
-    }
-    .height($r('app.string.main_page_swiper_height'))
-    .width('100%')
-    .gesture(
-      PanGesture({ direction: PanDirection.Horizontal })
-        .onActionStart((event: GestureEvent) => {
-          this.startAnimation(event.offsetX < 0);
+
+      Row({ space: 10 }) {
+        ForEach(this.swiperData, (item: SwiperData, index: number) => {
+          Circle({ width: 8, height: 8 })
+            .fill(index !== this.currentIndex ? Color.Black : Color.Red)
+            .fillOpacity(0.6)
         })
-    )
-    .alignContent(Alignment.Center)
-    .padding({
-      left: $r('app.string.main_page_padding2'),
-      right: $r('app.string.main_page_padding2'),
-      top: $r('app.string.main_page_padding2')
-    })
+      }
+      .margin({ top: 12 })
+    }
+    .width('100%')
   }
 }

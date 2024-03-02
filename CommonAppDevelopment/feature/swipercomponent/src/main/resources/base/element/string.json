@@ -83,6 +83,22 @@
     {
       "name": "main_page_water_flow_gap",
       "value": "12"
+    },
+    {
+      "name": "bottom_title_height",
+      "value": "36"
+    },
+    {
+      "name": "swiper_stack_height1",
+      "value": "130"
+    },
+    {
+      "name": "swiper_stack_height2",
+      "value": "180"
+    },
+    {
+      "name": "swiper_stack_width",
+      "value": "310"
     }
   ]
 }

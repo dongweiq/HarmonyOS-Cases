@@ -1,0 +1,128 @@
+{
+  "string": [
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "home_page",
+      "value": "homepage"
+    },
+    {
+      "name": "look_at",
+      "value": "look at"
+    },
+    {
+      "name": "my_home",
+      "value": "my home"
+    },
+    {
+      "name": "message",
+      "value": "message"
+    },
+    {
+      "name": "personal_center",
+      "value": "personal center"
+    },
+    {
+      "name": "before_decoration",
+      "value": "before decoration"
+    },
+    {
+      "name": "after_decoration",
+      "value": "after decoration"
+    },
+    {
+      "name": "design_cattle",
+      "value": "design lion"
+    },
+    {
+      "name": "ai_design",
+      "value": "ai design"
+    },
+    {
+      "name": "10s_text",
+      "value": "decoration solution generation in 10s"
+    },
+    {
+      "name": "95_size",
+      "value": "95%"
+    },
+    {
+      "name": "83_size",
+      "value": "83%"
+    },
+    {
+      "name": "search_placeholder",
+      "value": "Enter the community/building/location"
+    },
+    {
+      "name": "map_text",
+      "value": "map"
+    },
+    {
+      "name": "10_size",
+      "value": "10%"
+    },
+    {
+      "name": "46_size",
+      "value": "46%"
+    },
+    {
+      "name": "average_price",
+      "value": "31153 ¥/sq.m."
+    },
+    {
+      "name": "second_hand_house",
+      "value": "second hand house"
+    },
+    {
+      "name": "1_4_size",
+      "value": "1.4%"
+    },
+    {
+      "name": "sales_count",
+      "value": "104 suite"
+    },
+    {
+      "name": "traded_yesterday",
+      "value": "traded yesterday"
+    },
+    {
+      "name": "90_size",
+      "value": "90%"
+    },
+    {
+      "name": "49_size",
+      "value": "49%"
+    },
+    {
+      "name": "6_size",
+      "value": "6%"
+    },
+    {
+      "name": "columnstemplate",
+      "value": "1fr 1fr"
+    },
+    {
+      "name": "recommendation",
+      "value": "recommendation"
+    },
+    {
+      "name": "new_house",
+      "value": "new house"
+    },
+    {
+      "name": "renting",
+      "value": "renting"
+    },
+    {
+      "name": "decoration",
+      "value": "decoration"
+    },
+    {
+      "name": "go_to_try",
+      "value": "go to try"
+    }
+  ]
+}
