@@ -255,6 +255,10 @@
     {
       "name": "pageloading",
       "srcPath": "./feature/pageloading"
+    },
+    {
+      "name": "logcallback",
+      "srcPath": "./feature/logcallback"
     }
   ]
 }

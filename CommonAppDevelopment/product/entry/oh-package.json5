@@ -118,6 +118,8 @@
     // 长列表滑动到指定列表项动效实现案例
     "@ohos/listslidetohistory": "file:../../feature/listslidetohistory",
     // 页面加载效果实现案例
-    "@ohos/pageloading": "file:../../feature/pageloading"
+    "@ohos/pageloading": "file:../../feature/pageloading",
+    // ArkTs日志回调
+    "@ohos/logcallback": "file:../../feature/logcallback"
   }
 }
