@@ -16,7 +16,7 @@ import { CardData } from '../../model/CardData';
 import { CardPage } from './CardPage';
 import { display } from '@kit.ArkUI';
 import { WaterFlowDataSource } from '../../model/WaterFlowDataSource';
-import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import { NewNavPage } from './NewNavPage';
 
 

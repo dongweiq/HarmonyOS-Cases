@@ -14,7 +14,7 @@
  */
 import { SwiperComponent } from '@ohos/swipercomponent';
 import { SearchComponent } from '@ohos/searchcomponent';
-import { DynamicsRouter } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter } from '@ohos/dynamicsrouter/Index';
 import { FunctionalScenes, SceneModuleInfo } from '@ohos/functionalscenes';
 import { waterFlowData } from '../data/WaterFlowData';
 
