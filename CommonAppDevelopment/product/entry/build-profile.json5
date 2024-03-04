@@ -73,7 +73,11 @@
           "@ohos/bottomdrawerslidecase",
           "@ohos/expandtitle",
           "@ohos/listslidetohistory",
-          "@ohos/pageloading"
+          "@ohos/pageloading",
+          "@ohos/bigfilecopy",
+          "@ohos/diggingholescreen",
+          "@ohos/dragtoswitchpictures",
+          "@ohos/listitemoverflow"
         ]
       }
     }

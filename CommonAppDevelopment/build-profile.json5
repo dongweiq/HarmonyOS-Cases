@@ -255,6 +255,22 @@
     {
       "name": "pageloading",
       "srcPath": "./feature/pageloading"
+    },
+    {
+      "name": "bigfilecopy",
+      "srcPath": "./feature/bigfilecopy"
+    },
+    {
+      "name": "diggingholescreen",
+      "srcPath": "./feature/diggingholescreen"
+    },
+    {
+      "name": "dragtoswitchpictures",
+      "srcPath": "./feature/dragtoswitchpictures"
+    },
+    {
+      "name": "listitemoverflow",
+      "srcPath": "./feature/listitemoverflow"
     }
   ]
 }

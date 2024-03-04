@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 export { DiggingHoleScreen } from './src/main/ets/components/mainpage/DiggingHoleScreen';
 
