@@ -12,18 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { MyButtonModifier, MyTextModifier, TextType } from '../common/AttributeModifier';
-import { CommonText } from '../common/CommonText';
+import { MyButtonModifier, MyRowModifier, MyTextModifier, TextType } from '../common/AttributeModifier';
+import { CommonText, BottomRow, BarType } from '../common/CommonText';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 const COLUMN_SPACE = 20; // column间隙
 const TEXT_SIZE = 15 // 自定义组件中text大小
 
-@Entry
 @Component
 export struct Details {
-  // 实例化自定义的样式类
+  // TODO：知识点：实例化自定义的样式类
   @State buttonModifie: MyButtonModifier = new MyButtonModifier();
+  @State rowModifie: MyRowModifier = new MyRowModifier();
   @State textOne: MyTextModifier = new MyTextModifier(TextType.TYPE_ONE, 30);
   @State textTwo: MyTextModifier = new MyTextModifier(TextType.TYPE_TWO, 20);
   @State textThree: MyTextModifier = new MyTextModifier(TextType.TYPE_Three, 20);
@@ -32,7 +32,7 @@ export struct Details {
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
       Column() {
-        // 商品图片区
+        // 商品图片区（用色块代替）
         Row()
           .width($r('app.string.max_size'))
           .height($r('app.string.image_proportion'))
@@ -40,46 +40,43 @@ export struct Details {
 
         // 商品详情区
         Row() {
-          Flex({
-            direction: FlexDirection.Column,
-            justifyContent: FlexAlign.Start,
-            alignItems: ItemAlign.Start
-          }) {
-            Column({ space: COLUMN_SPACE }) {
-              Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-                Text($r('app.string.commodity_price'))
-                  .attributeModifier(this.textOne)
-
-                Text($r('app.string.sold'))
-                  .attributeModifier(this.textThree)
-                  .fontSize($r('app.float.float_15'))
-                  .width($r('app.float.float_60'))
-              }
-
-              Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-                Text($r('app.string.full_reduction'))
-                  .attributeModifier(this.textFour)
-                  .fontColor($r('app.color.red'))
-
-                Button($r('app.string.coupon_collection'))
-                  .height($r('app.float.float_15'))
-                  .backgroundColor($r('app.color.red'))
-              }
-
-              Text($r('app.string.commodity_name'))
-                .width($r('app.string.max_size'))
-                .attributeModifier(this.textTwo)
-
-              Text($r('app.string.commodity_model'))
+          Column({ space: COLUMN_SPACE }) {
+            Row() {
+              Text($r('app.string.commodity_price'))
+                .attributeModifier(this.textOne)
+                .width($r('app.float.float_100'))
+              Text($r('app.string.sold'))
                 .attributeModifier(this.textThree)
-
-              CommonText({ textFour: new MyTextModifier(TextType.TYPE_FOUR, TEXT_SIZE) })
-
+                .fontSize($r('app.float.float_15'))
+                .width($r('app.float.float_60'))
             }
+            .width($r('app.string.max_size'))
+            .justifyContent(FlexAlign.SpaceBetween)
+
+            Row() {
+              Text($r('app.string.full_reduction'))
+                .attributeModifier(this.textFour)
+                .fontColor($r('app.color.red'))
+
+              Button($r('app.string.coupon_collection'))
+                .height($r('app.float.float_15'))
+                .backgroundColor($r('app.color.red'))
+            }
+            .justifyContent(FlexAlign.SpaceBetween)
+            .width($r('app.string.max_size'))
+
+            Text($r('app.string.commodity_name'))
+              .attributeModifier(this.textTwo)
+
+            Text($r('app.string.commodity_model'))
+              .attributeModifier(this.textThree)
+
+            CommonText({ textFour: new MyTextModifier(TextType.TYPE_FOUR, TEXT_SIZE) })
           }
           .backgroundColor($r('app.color.white'))
           .padding($r('app.float.float_10'))
           .borderRadius($r('app.float.float_10'))
+          .height($r('app.string.max_size'))
         }
         .backgroundColor($r('sys.color.ohos_id_color_component_normal'))
         .padding($r('app.float.float_10'))
@@ -90,22 +87,7 @@ export struct Details {
       .height($r('app.string.max_size'))
 
       // 底部购买区
-      Row() {
-        Button($r('app.string.add_cart'))
-          .attributeModifier(this.buttonModifie)
-          .margin({ right: $r('app.float.float_10') })
-          .onClick(() => {
-            // 动态路由跳转
-            DynamicsRouter.push(RouterInfo.DYNAMIC_ATTRIBUTES);
-          })
-        Button($r('app.string.buy_now'))
-          .attributeModifier(this.buttonModifie)
-      }
-      .height($r('app.float.float_60'))
-      .width($r('app.string.max_size'))
-      .padding($r('app.float.float_15'))
-      .backgroundColor($r('app.color.white'))
-      .justifyContent(FlexAlign.End)
+      BottomRow({ buttonName: $r('app.string.buy_now'), barType: BarType.DETAILS })
     }
   }
 }

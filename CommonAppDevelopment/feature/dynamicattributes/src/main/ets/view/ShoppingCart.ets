@@ -13,40 +13,31 @@
  * limitations under the License.
  */
 import { MyDataSource } from '../common/LazyForEach';
-import { MyButtonModifier, MyTextModifier, TextType } from '../common/AttributeModifier';
+import { MyButtonModifier, MyRowModifier, MyTextModifier, TextType } from '../common/AttributeModifier';
 import { Details } from './Details';
-import { CommonText } from '../common/CommonText';
+import { CommonText, BottomRow } from '../common/CommonText';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
+
+/*
+ * 实现步骤：
+ * 1.自定义class实现Attribution接口和自定义组件，export导出。
+ * 2.import引入Attribution类和自定义组件到页面，实例化Attribution类。
+ * 3.组件使用attributeModifier属性使用Attribution接口中封装的公共样式。
+ * */
 
 const COLUMN_SPACE = 10; // column间隙
 const TEXT_SIZE = 12; // 自定义组件中text大小
 
-@Entry
+
 @Component
 export struct ShoppingCart {
   private data: MyDataSource = new MyDataSource();
-  // 创建组件样式实例
+  // TODO：知识点：实例化自定义的样式类
   @State buttonModifie: MyButtonModifier = new MyButtonModifier();
+  @State rowModifie: MyRowModifier = new MyRowModifier();
   @State textOne: MyTextModifier = new MyTextModifier(TextType.TYPE_ONE, 15);
   @State textTwo: MyTextModifier = new MyTextModifier(TextType.TYPE_TWO, 17);
   @State textThree: MyTextModifier = new MyTextModifier(TextType.TYPE_Three, 15);
-
-  @Builder
-  toolBar() {
-    Row() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
-        Checkbox()
-          .selectedColor($r('app.color.selectColor'))
-          .height($r('app.float.float_20'))
-          .width($r('app.float.float_15'))
-
-        Row() {
-          Button($r('app.string.settlement'))// 引用组件样式
-            .attributeModifier(this.buttonModifie)
-        }
-      }.padding($r('app.float.float_25'))
-    }
-  }
 
   aboutToAppear() {
     for (let i = 1; i <= 20; i++) {
@@ -55,9 +46,24 @@ export struct ShoppingCart {
   }
 
   build() {
-    Navigation() {
+    Stack({ alignContent: Alignment.Bottom }) {
       Column() {
+        Text($r('app.string.shopping_cart'))
+          .fontSize($r('app.float.float_20'))
+          .fontWeight(FontWeight.Bold)
+          .fontColor($r('sys.color.ohos_id_counter_title_font_color'))
+          .width($r('app.string.max_size'))
+          .height($r('app.float.float_50'))
+          .padding({ left: $r('app.float.float_20') })
+          .backgroundColor($r('sys.color.ohos_id_color_component_normal'))
+          .align(Alignment.Bottom)
+          .border({
+            width: { top: $r('app.float.float_1') },
+            color: { top: $r('sys.color.ohos_id_color_component_normal') },
+          })
+
         List() {
+          // TODO：高性能知识点：数据懒加载
           LazyForEach(this.data, (item: string) => {
             ListItem() {
               Column() {
@@ -96,28 +102,21 @@ export struct ShoppingCart {
                   }
                   .margin({ right: $r('app.float.float_10'), bottom: $r('app.float.float_15') })
 
-                  Flex({
-                    direction: FlexDirection.Column,
-                    justifyContent: FlexAlign.Start,
-                    alignItems: ItemAlign.Start
-                  }) {
-                    Column({ space: COLUMN_SPACE }) {
-                      Text(item)
-                        .attributeModifier(this.textTwo)
+                  Column({ space: COLUMN_SPACE }) {
+                    Text(item)// TODO：高性能知识点：动态设置组件的属性
+                      .attributeModifier(this.textTwo)
 
-                      Text($r('app.string.commodity_model'))
-                        .attributeModifier(this.textThree)
+                    Text($r('app.string.commodity_model'))
+                      .attributeModifier(this.textThree)
 
-                      CommonText({ textFour: new MyTextModifier(TextType.TYPE_FOUR, TEXT_SIZE) })
+                    CommonText({ textFour: new MyTextModifier(TextType.TYPE_FOUR, TEXT_SIZE) })
 
-                      Text($r('app.string.commodity_price'))
-                        .attributeModifier(this.textOne)
-                        .fontColor($r('app.color.orange'))
-                    }
+                    Text($r('app.string.commodity_price'))
+                      .attributeModifier(this.textOne)
+                      .fontColor($r('app.color.orange'))
                   }
-                  .height($r('app.string.max_size'))
-                  .padding({ top: $r('app.float.float_10') })
                 }
+                .padding({ top: $r('app.float.float_5') })
                 .width($r('app.string.max_size'))
                 .height($r('app.string.max_size'))
                 .onClick(() => {
@@ -140,9 +139,9 @@ export struct ShoppingCart {
         }
         .backgroundColor($r('sys.color.ohos_id_color_component_normal'))
       }
+
+      BottomRow({ buttonName: $r('app.string.settlement') })
     }
-    .title($r('app.string.shopping_cart'))
-    .toolbarConfiguration(this.toolBar())
   }
 }
 

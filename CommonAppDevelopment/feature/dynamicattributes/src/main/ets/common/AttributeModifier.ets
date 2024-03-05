@@ -13,19 +13,25 @@
  * limitations under the License.
  */
 
-// 动态设置按钮样式
+const LINEAR_ANGLE = 90 // button渐变角度
+
+/*
+  自定义class实现button的AttributeModifier接口
+*/
 export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
   applyNormalAttribute(instance: ButtonAttribute): void {
-    instance.height(30);
-    instance.width(90);
+    instance.height($r('app.float.float_30'));
+    instance.width($r('app.float.float_90'));
     instance.linearGradient({
-      angle: 90,
+      angle: LINEAR_ANGLE,
       colors: [[$r('app.color.buttonColor'), 0.5], [$r('app.color.orange'), 1.0]]
     });
   }
 }
 
-// 动态设置文本样式
+/*
+    自定义class实现Text的AttributeModifier接口
+*/
 export class MyTextModifier implements AttributeModifier<TextAttribute> {
   textType: TextType = TextType.TYPE_ONE;
   textSize: number = 15;
@@ -55,13 +61,32 @@ export class MyTextModifier implements AttributeModifier<TextAttribute> {
       instance.fontSize(this.textSize);
       instance.fontColor($r('app.color.orange'));
       instance.textAlign(TextAlign.Center);
-      instance.border({ width: 1, color: $r('app.color.orange'), radius: 0, style: BorderStyle.Solid });
+      instance.border({ width: $r('app.float.float_1'), color: $r('app.color.orange'), style: BorderStyle.Solid });
       instance.margin({ right: $r('app.float.float_10') });
     }
   }
 }
 
-//枚举文本类型
+/*
+   自定义class实现row组件的AttributeModifier接口
+*/
+export class MyRowModifier implements AttributeModifier<RowAttribute> {
+  applyNormalAttribute(instance: RowAttribute): void {
+    instance.height($r('app.float.float_60'));
+    instance.width($r('app.string.max_size'));
+    instance.padding($r('app.float.float_15'));
+    instance.backgroundColor($r('app.color.barColor'));
+    instance.justifyContent(FlexAlign.End);
+    instance.border({
+      width: { top: $r('app.float.float_1') },
+      color: { top: $r('sys.color.ohos_id_color_component_normal') },
+    });
+  }
+}
+
+/*
+  枚举文本类型
+*/
 export enum TextType {
   TYPE_ONE,
   TYPE_TWO,

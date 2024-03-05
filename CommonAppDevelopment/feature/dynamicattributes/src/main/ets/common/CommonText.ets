@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import { MyTextModifier } from '../common/AttributeModifier';
+import { MyTextModifier, MyRowModifier, MyButtonModifier } from '../common/AttributeModifier';
 
+// 自定义公共组件
 @Component
 export struct CommonText {
   @State textFour: MyTextModifier | null = null;
@@ -32,4 +33,33 @@ export struct CommonText {
     }
     .width($r('app.string.max_size'))
   }
+}
+
+@Component
+export struct BottomRow {
+  @State buttonModifie: MyButtonModifier = new MyButtonModifier();
+  @State rowModifie: MyRowModifier = new MyRowModifier();
+  @State buttonName: Resource = $r('app.string.settlement')
+  @State barType: BarType = BarType.SHOPPING_CART
+
+  build() {
+    Row() {
+      if (this.barType === BarType.DETAILS) {
+        Button($r('app.string.add_cart'))
+          .attributeModifier(this.buttonModifie)
+          .margin({ right: $r('app.float.float_10') })
+      }
+      Button(this.buttonName)
+        .attributeModifier(this.buttonModifie)
+    }
+    .attributeModifier(this.rowModifie)
+  }
+}
+
+/*
+  枚举底部bar类型
+*/
+export enum BarType {
+  SHOPPING_CART, // 购物车
+  DETAILS, // 详情页
 }

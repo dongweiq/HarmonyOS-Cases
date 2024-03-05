@@ -1,8 +1,16 @@
 {
   "float": [
     {
+      "name": "float_1",
+      "value": "1vp"
+    },
+    {
       "name": "float_5",
       "value": "5vp"
+    },
+    {
+      "name": "float_12",
+      "value": "12vp"
     },
     {
       "name": "float_10",
@@ -31,6 +39,10 @@
     {
       "name":"float_60",
       "value": "60vp"
+    },
+    {
+      "name":"float_90",
+      "value": "90vp"
     },
     {
       "name": "float_100",

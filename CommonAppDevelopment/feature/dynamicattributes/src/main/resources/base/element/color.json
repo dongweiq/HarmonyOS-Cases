@@ -27,6 +27,10 @@
     {
       "name": "selectColor",
       "value": "#FF8247"
+    },
+    {
+      "name": "barColor",
+      "value": "#F5F5F5"
     }
   ]
 }
