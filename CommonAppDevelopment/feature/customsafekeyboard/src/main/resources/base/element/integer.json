@@ -1,0 +1,72 @@
+{
+  "integer": [
+    {
+      "name": "integer_1",
+      "value": 100
+    },
+    {
+      "name": "row_height",
+      "value": 80
+    },
+    {
+      "name": "avatar_height",
+      "value": 80
+    },
+    {
+      "name": "avatar_weight",
+      "value": 80
+    },
+    {
+      "name": "common_margin_padding",
+      "value": 24
+    },
+    {
+      "name": "text_font_size",
+      "value": 32
+    },
+    {
+      "name": "text_input_height",
+      "value": 48
+    },
+    {
+      "name": "login_button_font_size",
+      "value": 20
+    },
+    {
+      "name": "login_button_width",
+      "value": 160
+    },
+    {
+      "name": "login_button_height",
+      "value": 48
+    },
+    {
+      "name": "login_button_margin",
+      "value": 48
+    },
+    {
+      "name": "key_image_size",
+      "value": 24
+    },
+    {
+      "name": "title_font_size",
+      "value": 20
+    },
+    {
+      "name": "title_margin_top",
+      "value": 12
+    },
+    {
+      "name": "title_margin_bottom",
+      "value": 10
+    },
+    {
+      "name": "key_border_radius",
+      "value": 4
+    },
+    {
+      "name": "key_board_marin_bottom",
+      "value": 20
+    }
+  ]
+}
