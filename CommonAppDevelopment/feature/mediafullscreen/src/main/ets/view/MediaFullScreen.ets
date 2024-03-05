@@ -95,8 +95,6 @@ struct ReusableComponent {
       })
     } else {
       this.isFullScreen = true;
-      // 设置媒体全屏
-      this.controller.requestFullscreen(true);
       window.getLastWindow(getContext(), (err: BusinessError, data) => {
         const errCode = err.code;
         if (errCode) {
@@ -105,7 +103,6 @@ struct ReusableComponent {
         data.setWindowSystemBarEnable([]);
         // TODO:知识点：设置窗口旋转方向和重力感应：AUTO_ROTATION_LANDSCAPE，表示传感器自动横向旋转模式。
         data.setPreferredOrientation(window.Orientation.AUTO_ROTATION_LANDSCAPE);
-        this.controller.start();
       })
     }
   }
@@ -129,16 +126,18 @@ struct ReusableComponent {
             // 全屏切换
             this.windowChange(this.isFullScreen);
           })
-          .onClick(() => {
-            if (this.isFullScreen) return;
-            this.windowChange(this.isFullScreen);
-          })
 
         Image($r('app.media.play'))
           .visibility(this.isFullScreen ? Visibility.None : Visibility.Visible)
           .width($r('app.integer.friendMomentsPage_icon_play_width'))
           .height($r('app.integer.friendMomentsPage_icon_play_height'))
       }
+      .onClick(() => {
+        if (this.isFullScreen) return;
+        // 设置媒体全屏
+        this.controller.requestFullscreen(true);
+        this.controller.start();
+      })
 
       Text(this.moment.text)
         .lineHeight($r('app.integer.friendMomentsPage_useName_line_height'))
