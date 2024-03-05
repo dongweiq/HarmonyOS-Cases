@@ -46,18 +46,127 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
 
 ### 实现思路
 
-> 通过this.pageStack.pushPath({ name: url param: item })进行页面之间的跳转，[navpathstack详情](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-navigation.md/#navpathstack10)。
+> 以Navigation组件为基础，通过[路由管理](../../feature/routermodule/README.md)实现页面之间的跳转。
 
 ### 开发步骤
 
-通过onclick事件调用NavPathStack.pushPath方法跳转页面。源码参考[MainPage.ets](../../feature/functionalscenes/src/main/ets/FunctionalScenes.ets)
-  ```ts
-  Column()
-    .onClick(() => {
-      this.pageStack.pushPath({ name: listData.moduleName, param: listData.param });
-    })
-  ```
+**Navigation中使用路由跳转页面**
+
+1. 在onClick事件中，调用路由管理中的push方法。源码参考[FunctionalScenes.ets](../../feature/functionalscenes/src/main/ets/FunctionalScenes.ets)
+  
+    ```ts
+    Column()
+      .onClick(() => {
+        DynamicsRouter.push(listData.routerInfo, listData.param);
+      })
+    ```
+
+2. 在DynamicsRouter的push方法中，通过NavPathStack.pushPath方法实现页面的跳转。源码参考[DynamicsRouter](../../feature/routermodule/src/main/ets/router/DynamicsRouter.ets)
+
+    ```ts
+    public static async push(routerInfo: RouterInfo, param?: string): Promise<void> {
+      const pageName: string = routerInfo.pageName;
+      const moduleName: string = routerInfo.moduleName;
+      ...
+      if (isImportSucceed) {
+        const builderName: string = moduleName + "/" + pageName;
+        DynamicsRouter.getNavPathStack().pushPath({ name: builderName, param: param });
+      }
+    }
+    ```
+   
+**新模块中配置路由管理**
+
+1. 添加需要加载的子模块的依赖，详细代码请参考[oh-package.json](../../product/entry/oh-package.json5)。
+
+    ```
+    "dependencies": {
+      "@ohos/event-propagation": "file:../../feature/eventpropagation",
+      ...
+    }
+    ```
+
+2. 添加动态import变量表达式需要的参数，此处在packages中配置的模块名必须和[oh-package.json](../../product/entry/oh-package.json5)中配置的名称相同，详细代码请参考[build-profile.json5](../../product/entry/build-profile.json5)。
+
+    ```
+    ...
+    "buildOption": {
+      "arkOptions": {
+        "runtimeOnly": {
+          "packages": [
+            "@ohos/event-propagation",
+            ...
+          ]
+        }
+      }
+    }
+    ```
+
+3. 在routermodule模块中添加需要跳转的moduleName（模块名）和pageName（页面名），RouterInfo中配置的moduleName必须和[oh-package.json](../../product/entry/oh-package.json5)中配置的名称相同，RouterInfo中添加的pageName是子模块中需要加载的页面，详细代码请参考[RouterInfo.ets](./src/main/ets/constants/RouterInfo.ets)。
+
+    ```ts
+    export class RouterInfo {
+      moduleName: string = '';
+      pageName: string = '';
+    
+      constructor(moduleName: string, pageName: string) {
+        this.moduleName = moduleName;
+        this.pageName = pageName;
+      }
+    
+      ...
+      static readonly EVENT_TRANSMISSION_SOLUTION: RouterInfo = new RouterInfo('@ohos/event-propagation', 'EventPropagation');
+      ...
+    }
+    ```
+
+4. 在WaterFlowData.ets中，将子模块要加载的页面，添加到列表中，详细代码请参考[WaterFlowData.ets](../../product/entry/src/main/ets/data/WaterFlowData.ets)。
+
+    ```ts
+    export const waterFlowData: SceneModuleInfo[] = [
+      ...
+      new SceneModuleInfo($r("app.media.event_propagation"), '阻塞事件冒泡', RouterInfo.EVENT_TRANSMISSION_SOLUTION, '其他', 1),
+      ...
+    }
+    ```
+
+5. 在子模块中添加路由管理的依赖，详细代码可参考[oh-package.json](../eventpropagation/oh-package.json5)。
+
+    ```
+    ...
+    "dependencies": {
+      ...
+      "@ohos/dynamicsRouter": "file:../../feature/routermodule"
+    }
+    ```
+
+6. 在子模块中添加动态加载页面组件的接口harInit，其中pageName和RouterInfo中配置的pageName相同，import()接口中传入的参数，是页面的相对路径。详细代码可参考[Index.ets](../eventpropagation/Index.ets)。
+   如果模块中有多个页面需要跳转，则需要配置多个pageName和页面路径，并且pageName和页面路径需要一一对应，否则无法跳转到预期中的页面，详细代码可参考[barchart模块中的Index.ets](../barchart/Index.ets)。
+
+    ```ts
+    export function harInit(pageName: string) {
+      switch (pageName) {
+        case RouterInfo.EVENT_TRANSMISSION_SOLUTION.pageName:
+          import('./src/main/ets/view/EventPropagation');
+          break;
+      }
+    }
+    ```
+   
+7. 在子模块中添加动态创建组件的方法，并注册到路由管理中，详细代码可参考[EventPropagation.ets](../eventpropagation/src/main/ets/view/EventPropagation.ets)。
+
+    ```ts
+    ...
+    @Builder
+    export function getEventPropagation(): void {
+      EventPropagation();
+    }
+    
+    DynamicsRouter.registerRouterPage(RouterInfo.EVENT_TRANSMISSION_SOLUTION,wrapBuilder(getEventPropagation));
+    ```
 
 ## 参考文档
 
 [1] [桔子购物sample · OpenHarmony - Gitee.com](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Shopping/OrangeShopping)
+
+[2] [路由管理](../../feature/routermodule/README.md)
