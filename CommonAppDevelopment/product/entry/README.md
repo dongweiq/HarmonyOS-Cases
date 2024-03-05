@@ -50,13 +50,27 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
 
 ### 开发步骤
 
-通过onclick事件调用NavPathStack.pushPath方法跳转页面。源码参考[MainPage.ets](../../feature/functionalscenes/src/main/ets/FunctionalScenes.ets)
+1. 在onClick事件中，调用动态路由中的push方法。源码参考[FunctionalScenes.ets](../../feature/functionalscenes/src/main/ets/FunctionalScenes.ets)
   ```ts
   Column()
     .onClick(() => {
-      this.pageStack.pushPath({ name: listData.moduleName, param: listData.param });
+      DynamicsRouter.push(listData.routerInfo, listData.param);
     })
   ```
+
+2. 在DynamicsRouter的push方法中，通过NavPathStack中的pushPath方法实现页面的跳转。源码参考[DynamicsRouter](../../feature/routermodule/src/main/ets/router/DynamicsRouter.ets)
+
+```ts
+  public static async push(routerInfo: RouterInfo, param?: string): Promise<void> {
+    const pageName: string = routerInfo.pageName;
+    const moduleName: string = routerInfo.moduleName;
+    ...
+    if (isImportSucceed) {
+      const builderName: string = moduleName + "/" + pageName;
+      DynamicsRouter.getNavPathStack().pushPath({ name: builderName, param: param });
+    }
+  }
+```
 
 ## 参考文档
 
