@@ -74,7 +74,11 @@
           "@ohos/expandtitle",
           "@ohos/listslidetohistory",
           "@ohos/pageloading",
-          "@ohos/logcallback"
+          "@ohos/logcallback",
+          "@ohos/bigfilecopy",
+          "@ohos/diggingholescreen",
+          "@ohos/dragtoswitchpictures",
+          "@ohos/listitemoverflow"
         ]
       }
     }

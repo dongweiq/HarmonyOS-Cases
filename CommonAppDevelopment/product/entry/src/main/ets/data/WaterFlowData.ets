@@ -72,5 +72,9 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.bottom_drawer_slide"), '底部抽屉滑动效果案例', RouterInfo.BOTTOM_DRAWER_SLIDE_CASE, '动效', 1),
   new SceneModuleInfo($r("app.media.expand_title"), '标题下拉缩放案例', RouterInfo.EXPAND_TITLE, '动效', 1),
   new SceneModuleInfo($r("app.media.list_slide_to_history"), '长列表滑动到指定列表项动效实现案例', RouterInfo.LIST_SLIDE_TO_HISTORY, '动效', 1),
-  new SceneModuleInfo($r("app.media.page_loading"), '页面加载效果实现案例', RouterInfo.PAGE_LOADING, '动效', 1)
+  new SceneModuleInfo($r("app.media.page_loading"), '页面加载效果实现案例', RouterInfo.PAGE_LOADING, '动效', 1),
+  new SceneModuleInfo($r("app.media.big_file_copy"), '大文件拷贝案例', RouterInfo.BIG_FILE_COPY, '其他', 1),
+  new SceneModuleInfo($r("app.media.digging_hole_screen"), '适配挖孔屏案例', RouterInfo.DIGGING_HOLE_SCREEN, 'UI布局'),
+  new SceneModuleInfo($r("app.media.drag_to_switch_pictures"), '左右拖动切换图片效果案例', RouterInfo.DRAG_TO_SWITCH_PICTURES, 'UI布局'),
+  new SceneModuleInfo($r("app.media.listitem_overflow"), '元素超出List区域', RouterInfo.LIST_ITEM_OVERFLOW, 'UI布局'),
 ]
