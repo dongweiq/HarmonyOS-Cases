@@ -18,7 +18,7 @@ import { SearchView } from '../view/SearchView';
 import { CityView } from '../view/CityView';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
-const searchButtonText = '搜索';
+const SEARCH_BUTTON_TEXT = '搜索';
 
 /**
  * 实现步骤：
@@ -46,7 +46,7 @@ export struct CitySearch {
     Column() {
       // 搜索框
       Search({ value: this.changeValue, placeholder: this.placeholder, controller: this.controller })
-        .searchButton(searchButtonText)
+        .searchButton(SEARCH_BUTTON_TEXT)
         .width('100%')
         .height($r('app.integer.search_height'))
         .margin({ top: $r('app.integer.search_margin_top') })
