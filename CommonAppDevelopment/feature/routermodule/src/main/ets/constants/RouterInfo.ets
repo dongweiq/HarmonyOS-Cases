@@ -76,6 +76,10 @@ export class RouterInfo {
   static readonly EXPAND_TITLE: RouterInfo = new RouterInfo('@ohos/expandtitle', 'TitleExpansion');
   static readonly LIST_SLIDE_TO_HISTORY: RouterInfo = new RouterInfo('@ohos/listslidetohistory', 'ListSlideToHistory');
   static readonly PAGE_LOADING: RouterInfo = new RouterInfo('@ohos/pageloading', 'PageLoading');
+  static readonly BIG_FILE_COPY: RouterInfo = new RouterInfo('@ohos/bigfilecopy', 'BigFileCopyView');
+  static readonly DIGGING_HOLE_SCREEN: RouterInfo = new RouterInfo('@ohos/diggingholescreen', 'DiggingHoleScreen');
+  static readonly DRAG_TO_SWITCH_PICTURES: RouterInfo = new RouterInfo('@ohos/dragtoswitchpictures', 'DragToSwitchPictures');
+  static readonly LIST_ITEM_OVERFLOW: RouterInfo = new RouterInfo('@ohos/listitemoverflow', 'AboutMe');
   static readonly TRANSITION_ANIMATION: RouterInfo = new RouterInfo('@ohos/transitionanimation', 'TransitionAnimation');
   static readonly TRANSITION_ANIMATION_SUB_Detail: RouterInfo = new RouterInfo('@ohos/transitionanimation', 'SubDetailPage');
 }

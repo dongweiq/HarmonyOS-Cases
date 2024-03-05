@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "demo_title",
+      "value": "页面间共享组件实例"
+    },
+    {
+      "name": "demo_description",
+      "value": "该demo实现了地图组件实例在主页和打车页之间共享，页面间相互跳转，地图组件不会重新渲染。"
+    },
+    {
+      "name": "goto_page_tips",
+      "value": "点击跳转到打车页面"
+    },
+    {
+      "name": "take_taxi_detail_page",
+      "value": "打车详情页"
+    }
+  ]
+}

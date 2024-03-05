@@ -3,6 +3,10 @@
     {
       "name": "lottie_content",
       "value": "点击卡片，动画执行播放，并且动画文本刷新"
+    },
+    {
+      "name": "lottie_title",
+      "value": "实现Lottie动画"
     }
   ]
 }

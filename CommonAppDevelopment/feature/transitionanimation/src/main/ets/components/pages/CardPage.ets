@@ -24,6 +24,7 @@ export struct CardPage {
   @State isCardExpand:boolean = false;
 
   onExpandCardIdChange() {
+    // expandCardId 发生变化时，意味着展开状态发生变化，从而改变this.isCardExpand值
     animateTo({duration:200, onFinish: this.onAnimationFinish}, ()=>{
       this.isCardExpand = this.expandCardId === this.cardData.id
     })
@@ -70,6 +71,7 @@ export struct CardPage {
       .width('100%')
       .onComplete(() => {
         if (this.onCardReadyExpand) {
+          // Image onComplete在图片渲染后调用，触发外部nCardReadyExpand回调，解决Image还未加载好，就开始动画的闪屏问题
           this.onCardReadyExpand();
         }
       })

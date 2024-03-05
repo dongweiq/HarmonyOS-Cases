@@ -16,11 +16,12 @@
 /**
  * 搜索和地图视图
  */
+
 @Component
 export struct SearchMapView {
   build() {
     Row() {
-      Search({ placeholder: $r('app.string.search_placeholder') })
+      Search({ placeholder: $r('app.string.dragtoswitchpictures_search_placeholder') })
         .focusOnTouch(false)
         .focusable(false)
         .enableKeyboardOnFocus(false)
@@ -31,13 +32,12 @@ export struct SearchMapView {
       Column() {
         Image($r("app.media.drag_picture_map"))
           .width($r('app.integer.map_image_width'))
-          .objectFit(ImageFit.Auto)
+          .objectFit(ImageFit.Fill)
           .height($r('app.integer.map_image_height'))
           .draggable(false)
 
         Text($r('app.string.map_text'))
           .fontSize($r('app.integer.map_text_fontsize'))
-          .margin({ top: $r('app.integer.map_text_margin_length') })
       }
       .width($r('app.string.10_size'))
       .margin({ left: $r('app.integer.margin_length'), right: $r('app.integer.margin_length') })

@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "imagedrag",
+    "name": "imageenableanalyzer",
     "type": "har",
     "deviceTypes": [
       "default",

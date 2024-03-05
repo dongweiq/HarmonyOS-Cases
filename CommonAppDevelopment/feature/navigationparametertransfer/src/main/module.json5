@@ -15,7 +15,7 @@
 
 {
   "module": {
-    "name": "NavigationParameterTransferView",
+    "name": "navigationparametertransfer",
     "type": "har",
     "deviceTypes": [
       "default",

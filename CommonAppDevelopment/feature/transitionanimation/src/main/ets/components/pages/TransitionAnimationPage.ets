@@ -21,11 +21,15 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 @Component
 export struct TransitionAnimationPage {
+  // 存储当前设备高度，用于计算详情页展开后高度
   @State currentDiaplayHeight: Length = 0;
+  // 详情页是否显示标识
   @State isDetailPageShow: boolean = false;
   @State myOpacity: number = 1;
   @State myZIndex: number = 1;
+  // 记录被点击的Card索引
   @State clickedCardIndex: number = -1;
+  // 记录被点击的CardId
   @State expandCardId: number = -1;
   dataSource: WaterFlowDataSource = new WaterFlowDataSource();
 
@@ -54,6 +58,7 @@ export struct TransitionAnimationPage {
             }
           })
           .onAreaChange((oldValue, newValue) => {
+            // 记录每个卡片点击时的位置尺寸数据，用于设置动画前后的数据
             this.dataSource.getData(index).cardArea = newValue;
           })
           .width('100%')
@@ -78,6 +83,7 @@ export struct TransitionAnimationPage {
           cardData: this.dataSource.getData(this.clickedCardIndex),
           expandCardId: this.expandCardId,
           onCardReadyExpand: () => {
+            // Card中Image加载渲染完成时触发
             if (!this.isDetailPageShow) {
               animateTo({duration: 5,onFinish: ()=>{
                 this.expandCardId = this.dataSource.getData(this.clickedCardIndex).id;
@@ -90,6 +96,7 @@ export struct TransitionAnimationPage {
             this.expandCardId = -1;
           },
           onAnimationFinish: () => {
+            // Card内动画结束时调用，用于重置状态
             if (this.expandCardId < 0) {
               this.clickedCardIndex = -1;
               this.isDetailPageShow = false;

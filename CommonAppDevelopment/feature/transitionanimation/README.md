@@ -85,6 +85,11 @@
       })
     }
   ```
+
+### 高性能知识点
+
+本示例使用了LazyForEach进行数据懒加载以降低内存占用。
+
 ### 工程结构&模块类型
   ```ts
   transitionanimation             // har包
