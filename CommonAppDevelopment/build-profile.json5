@@ -89,7 +89,7 @@
       "srcPath": "./feature/slidetohideanddisplace"
     },
     {
-      "name": "NavigationParameterTransferView",
+      "name": "navigationparametertransfer",
       "srcPath": "./feature/navigationparametertransfer"
     },
     {
@@ -233,7 +233,7 @@
       "srcPath": "./feature/imagecompression"
     },
     {
-      "name": "imagedrag",
+      "name": "imageenableanalyzer",
       "srcPath": "./feature/imageenableanalyzer"
     },
     {

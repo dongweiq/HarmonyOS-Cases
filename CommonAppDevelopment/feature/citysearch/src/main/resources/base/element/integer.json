@@ -45,6 +45,10 @@
       "value": 5
     },
     {
+      "name": "txt_margin_bottom",
+      "value": 50
+    },
+    {
       "name": "text_margin_left2",
       "value": 3
     },
