@@ -1,0 +1,96 @@
+{
+  "integer": [
+    {
+      "name": "title_font_size",
+      "value": 20
+    },
+    {
+      "name": "title_text_height",
+      "value": 33
+    },
+    {
+      "name": "title_line_height",
+      "value": 33
+    },
+    {
+      "name": "title_height",
+      "value": 56
+    },
+    {
+      "name": "list_title_size",
+      "value": 16
+    },
+    {
+      "name": "list_line_height",
+      "value": 22
+    },
+    {
+      "name": "list_content_size",
+      "value": 16
+    },
+    {
+      "name": "text_input_margin_right",
+      "value": 0
+    },
+    {
+      "name": "pinyin_height",
+      "value": 60
+    },
+    {
+      "name": "list_radius",
+      "value": 24
+    },
+    {
+      "name": "pinyin_margin_left",
+      "value": 12
+    },
+    {
+      "name": "pinyin_margin_right",
+      "value": 12
+    },
+    {
+      "name": "pinyin_padding_left",
+      "value": 18
+    },
+    {
+      "name": "pinyin_padding_right",
+      "value": 18
+    },
+    {
+      "name": "divider_start_margin",
+      "value": 12
+    },
+    {
+      "name": "divider_end_margin",
+      "value": 12
+    },
+    {
+      "name": "list_item_margin_left",
+      "value": 12
+    },
+    {
+      "name": "list_item_margin_right",
+      "value": 12
+    },
+    {
+      "name": "list_margin_top",
+      "value": 24
+    },
+    {
+      "name": "button_margin_top",
+      "value": 50
+    },
+    {
+      "name": "setting_item_height",
+      "value": 48
+    },
+    {
+      "name": "setting_item_padding_left",
+      "value": 18
+    },
+    {
+      "name": "setting_item_padding_right",
+      "value": 18
+    }
+  ]
+}

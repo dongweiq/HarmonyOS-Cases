@@ -14,7 +14,7 @@
  */
 
 import image from '@ohos.multimedia.image';
-import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
 /**
  * 实现步骤：
@@ -53,6 +53,7 @@ export struct ImageView {
                 .objectFit(ImageFit.Fill)
                 .width('100%')
                 .aspectRatio(0.8)
+                .draggable(false) // 禁止整张图片拖动
             })
           }
           .height($r('app.integer.swiper_height'))
@@ -134,20 +135,20 @@ export struct ImageView {
 
 
 @Component
-// 图片下面的文字内容组件
+  // 图片下面的文字内容组件
 struct Content {
   build() {
     Row() {
       Flex({ justifyContent: FlexAlign.Start, wrap: FlexWrap.Wrap }) {
-        Text($r('app.string.image_drag_title')) // 文字标题
+        Text($r('app.string.image_drag_title'))// 文字标题
           .fontSize($r('app.integer.text_title_fontSize'))
           .fontWeight("bold")
           .padding({ top: $r('app.integer.text_padding_top') })
-        Text($r('app.string.image_drag_content')) // 文字内容
+        Text($r('app.string.image_drag_content'))// 文字内容
           .fontSize($r('app.integer.text_content_fontSize'))
           .padding({ top: $r('app.integer.text_padding_top') })
           .lineHeight($r('app.integer.contain_line_height'))
-        Text($r('app.string.image_drag_ref')) // 文字内容话题
+        Text($r('app.string.image_drag_ref'))// 文字内容话题
           .fontSize($r('app.integer.text_content_fontSize'))
           .fontColor($r('app.color.content_color'))
           .padding({ top: $r('app.integer.text_padding_top') })
@@ -167,14 +168,12 @@ struct Content {
   }
 }
 
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
 @Builder
 export function getImageView(): void {
   ImageView();
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-const builderName = RouterInfo.IMAGE_ENABLE_ANALYZER[0];
-if (!DynamicsRouter.getBuilder(builderName)) {
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getImageView);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.IMAGE_ENABLE_ANALYZER, wrapBuilder(getImageView));

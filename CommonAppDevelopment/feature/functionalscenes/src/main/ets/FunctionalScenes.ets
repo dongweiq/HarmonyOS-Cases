@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { buildRouterModel } from '@ohos/dynamicsRouter';
+import { DynamicsRouter } from '@ohos/dynamicsRouter';
 import { SceneModuleInfo } from './model/SceneModuleInfo';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
 import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
@@ -121,7 +121,7 @@ export struct FunctionalScenes {
     .backgroundColor(Color.White)
     .onClick(() => {
       // 点击瀑布流Item时，根据点击的模块信息，将页面放入路由栈
-      buildRouterModel(listData.routerInfo[1], listData.routerInfo[0], listData.param);
+      DynamicsRouter.push(listData.routerInfo, listData.param);
     })
   }
 

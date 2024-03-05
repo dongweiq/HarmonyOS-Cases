@@ -1,0 +1,44 @@
+{
+  "integer": [
+    {
+      "name": "itemoverflow_default_margin",
+      "value": 15
+    },
+    {
+      "name": "itemoverflow_default_item_height",
+      "value": 60
+    },
+    {
+      "name": "itemoverflow_list_spacing",
+      "value": 20
+    },
+    {
+      "name": "itemoverflow_icon_size",
+      "value": 30
+    },
+    {
+      "name": "itemoverflow_avatar_size",
+      "value": 80
+    },
+    {
+      "name": "itemoverflow_avatar_border_radius",
+      "value": 5
+    },
+    {
+      "name": "itemoverflow_avatar_top_margin",
+      "value": -50
+    },
+    {
+      "name": "itemoverflow_avatar_padding_height",
+      "value": 40
+    },
+    {
+      "name": "itemoverflow_avatar_outer_padding_height",
+      "value": 60
+    },
+    {
+      "name": "itemoverflow_divide_start_margin",
+      "value": 60
+    }
+  ]
+}

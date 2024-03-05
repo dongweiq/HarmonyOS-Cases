@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "title_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "friends_page_divider_color",
+      "value": "#0c000000"
+    },
+    {
+      "name": "jump_button_bgc",
+      "value": "#FFAEAEAE"
+    },
+    {
+      "name": "jump_button_font_color",
+      "value": "#000"
+    }
+  ]
+}

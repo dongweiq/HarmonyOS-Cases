@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent';
 import { PreferencesManager } from '../model/PreferencesManager';
 import { BUTTON_TEXT } from '../model/MockData';
@@ -21,7 +20,7 @@ import { FunctionDescription, logger } from '@ohos/base';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 const TAG: string = 'FaultLogger'; // 应用异常页面标识
-const DELAY_TIME:number = 3000; // 延时时间
+const DELAY_TIME: number = 3000; // 延时时间
 
 /**
  * 依次构建应用异常，应用退出后，进入本页面，等待订阅消息通知，待收到订阅消息后，通过EventSubscription.ets中的onReceive函数，接收到异常信息数据，
@@ -59,6 +58,8 @@ struct FaultArea {
   @StorageLink('appEventGroups') @Watch('getFaultMessage') appEventGroups: Array<hiAppEvent.AppEventGroup> = [];
   // 被点击的异常事件下标
   @Consume eventIndex: number;
+  // 异常触发标识
+  @StorageLink('faultSign') faultSign: boolean = false;
 
   async aboutToAppear() {
     logger.info(TAG, `aboutToAppear start`);
@@ -110,7 +111,8 @@ struct FaultArea {
           // 根据被点击事件的下标响应指定的信息
           Text(this.eventIndex === 0 ? $r('app.string.crash_event_message') :
             (this.eventIndex === 1 ? $r('app.string.freeze_event_message') :
-            $r('app.string.no_message')))
+              (this.faultSign ? $r('app.string.data_delay_toast') :
+              $r('app.string.no_message'))))
         }
       }
     }
@@ -129,6 +131,8 @@ struct FaultConstruction {
   @Consume eventIndex: number;
   // 双向数据绑定懒加载数据源的数组长度
   @StorageLink('faultDataSourceLength') faultDataSourceLength: number = 0;
+  // 异常触发标识
+  @StorageLink('faultSign') faultSign: boolean = false;
 
   handleOperate(index: number) {
     switch (index) {
@@ -152,6 +156,9 @@ struct FaultConstruction {
           .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
           .margin({ top: $r('app.string.ohos_id_elements_margin_vertical_m') })
           .onClick(() => {
+            // 触发异常标识
+            this.faultSign = true;
+            PreferencesManager.putFaultSign();
             // 点击异常的时候，清空页面信息数据，显示异常描述信息。控制页面信息数据的显示需要将此变量设置为0
             this.faultDataSourceLength = 0;
             // 更新被点击的异常事件下标
@@ -173,8 +180,4 @@ export function getApplicationExceptionView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterInfo.FAULT[0];
-if(!DynamicsRouter.getBuilder(builderName)){
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getApplicationExceptionView);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.FAULT,wrapBuilder(getApplicationExceptionView));

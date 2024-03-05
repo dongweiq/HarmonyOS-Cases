@@ -1,0 +1,116 @@
+{
+  "string": [
+    {
+      "name": "name_title",
+      "value": "姓名(中文)"
+    },
+    {
+      "name": "name_content",
+      "value": "王小明"
+    },
+    {
+      "name": "name_pinyin_title",
+      "value": "姓名(拼音)"
+    },
+    {
+      "name": "name_pinyin_content",
+      "value": "WANGXIAOMING"
+    },
+    {
+      "name": "sex_title",
+      "value": "性别"
+    },
+    {
+      "name": "sex_content",
+      "value": "男"
+    },
+    {
+      "name": "country_title",
+      "value": "国籍"
+    },
+    {
+      "name": "country_content",
+      "value": "中国"
+    },
+    {
+      "name": "id_title",
+      "value": "身份证"
+    },
+    {
+      "name": "id_content",
+      "value": "310*************11"
+    },
+    {
+      "name": "id_type_title",
+      "value": "证件类型"
+    },
+    {
+      "name": "id_type_content",
+      "value": "身份证"
+    },
+    {
+      "name": "id_validity_title",
+      "value": "有效期"
+    },
+    {
+      "name": "id_validity_content",
+      "value": "正常"
+    },
+    {
+      "name": "title_width",
+      "value": "100%"
+    },
+    {
+      "name": "name_title_width",
+      "value": "30%"
+    },
+    {
+      "name": "title_content",
+      "value": "个人信息修改"
+    },
+    {
+      "name": "list_width",
+      "value": "100%"
+    },
+    {
+      "name": "body_width",
+      "value": "100%"
+    },
+    {
+      "name": "body_height",
+      "value": "100%"
+    },
+    {
+      "name": "button_content",
+      "value": "提交"
+    },
+    {
+      "name": "button_width",
+      "value": "45%"
+    },
+    {
+      "name": "pinyin_id",
+      "value": "pinyin"
+    },
+    {
+      "name": "sex_id",
+      "value": "sex"
+    },
+    {
+      "name": "country_id",
+      "value": "country"
+    },
+    {
+      "name": "type_id",
+      "value": "idType"
+    },
+    {
+      "name": "card_id",
+      "value": "idCard"
+    },
+    {
+      "name": "validity_id",
+      "value": "idValidity"
+    }
+  ]
+}

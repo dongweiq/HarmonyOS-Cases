@@ -57,6 +57,7 @@ export struct AkiView {
             libaki.AkiThreadsCallJs(this.value);
           })
       }
+      .padding($r('app.string.ohos_id_card_padding_start'))
       .width($r('app.string.common_size'))
     }
     .height($r('app.string.common_size'))
@@ -70,8 +71,4 @@ export function getAkiView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterInfo.AKI_USE_PRACTICE[0];
-if(!DynamicsRouter.getBuilder(builderName)){
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getAkiView);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.AKI_USE_PRACTICE,wrapBuilder(getAkiView));

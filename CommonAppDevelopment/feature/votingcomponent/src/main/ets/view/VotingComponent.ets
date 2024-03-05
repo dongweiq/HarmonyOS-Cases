@@ -220,8 +220,4 @@ export function getVotingComponent(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-const builderName = RouterInfo.VOTING_COMPONENT[0];
-if (!DynamicsRouter.getBuilder(builderName)) {
-  const builder: WrappedBuilder<[object]> = wrapBuilder(getVotingComponent);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.VOTING_COMPONENT,wrapBuilder(getVotingComponent));

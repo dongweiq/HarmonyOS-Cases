@@ -12,10 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 export { EventPropagation } from './src/main/ets/view/EventPropagation';
 
 // 动态import时需要调用的接口，接口名请使用harInit，用于动态加载页面
-export function harInit(path: string) {
-  import(path);
+export function harInit(pageName: string) {
+  switch (pageName) {
+    case RouterInfo.EVENT_TRANSMISSION_SOLUTION.pageName:
+      import('./src/main/ets/view/EventPropagation');
+      break;
+  }
 }

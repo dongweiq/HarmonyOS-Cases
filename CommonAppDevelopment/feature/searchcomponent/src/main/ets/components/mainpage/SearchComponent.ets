@@ -12,8 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { buildRouterModel } from '@ohos/dynamicsRouter';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
 // TODO: 后续修改为单独页面进行搜索，增加列表list，点击listItem可以跳转到相应页面
 @Component
@@ -30,7 +29,7 @@ export struct SearchComponent {
           .backgroundColor('#E7E9E8')
           .width('100%')
           .onClick(() => {
-            buildRouterModel('./src/main/ets/components/mainpage/SearchPage', '@ohos/searchcomponent', '');
+            DynamicsRouter.push(new RouterInfo('@ohos/searchcomponent','SearchPage'),"")
           })
       }
       .backgroundColor('#E7E9E8')

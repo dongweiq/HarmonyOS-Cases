@@ -1,0 +1,16 @@
+{
+  "color": [
+    {
+      "name": "linear_gradient_start",
+      "value": "#8054A1FF"
+    },
+    {
+      "name": "linear_gradient_end",
+      "value": "#B354A1FF"
+    },
+    {
+      "name": "decompress_result_background",
+      "value": "#4CADD8FF"
+    }
+  ]
+}

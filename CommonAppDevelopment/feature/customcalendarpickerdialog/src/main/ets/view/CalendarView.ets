@@ -108,8 +108,4 @@ export function getCalendarView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterInfo.CUSTOM_CALENDAR_PICKER_DIALOG[0];
-if(!DynamicsRouter.getBuilder(builderName)){
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getCalendarView);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.CUSTOM_CALENDAR_PICKER_DIALOG,wrapBuilder(getCalendarView));

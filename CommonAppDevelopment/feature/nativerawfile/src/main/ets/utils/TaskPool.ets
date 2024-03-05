@@ -23,7 +23,7 @@ function preloadSO(): string[] {
  */
 export function preloadSOByTaskPool(): void {
   // TODO: 知识点：使用new taskpool.Task()创建任务项，传入任务执行函数和所需参数
-  let task: taskpool.Task = new taskpool.Task(preloadSO);
+  const task: taskpool.Task = new taskpool.Task(preloadSO);
   try {
     // TODO：知识点：使用taskpool.execute将待执行的函数放入TaskPool内部任务队列等待执行
     taskpool.execute(task, taskpool.Priority.HIGH).then((res: Object) => {

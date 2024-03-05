@@ -72,6 +72,10 @@
    |   |---sidebaranimation            // SideBarContainer侧边栏淡入淡出动效实现案例
    |   |---imageenableanalyzer         // 图片拖拽AI抠图案例
    |   |---indicatorbelowswiper        // swiper指示器导航点位于swiper下方
+   |   |---bigfilecopy                 // 大文件拷贝案例
+   |   |---diggingholescreen           // 适配挖孔屏案例
+   |   |---dragtoswitchpictures        // 左右拖动切换图片效果案例
+   |   |---listitemoverflow            // 元素超出List区域
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -362,6 +366,31 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 本示例介绍通过分割swiper区域，实现指示器导航点位于swiper下方的效果。[详细说明文档](./CommonAppDevelopment/feature/indicatorbelowswiper/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/indicator_below_swiper.gif" width="200">
+
+#### 大文件拷贝案例
+
+文件拷贝是应用开发中的一个常见场景，通常有两种方式，一是直接读写文件的全部内容，二是使用buffer多次读写。前者的优点在于使用简单，但是在大文件场景下，内存占用较高，影响应用性能；后者的优点在于内存占用较小，但是编程稍显复杂。本例将展示如何使用buffer来将大文件的rawfile复制到应用沙箱。[详细说明文档](./CommonAppDevelopment/feature/bigfilecopy/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/big_file_copy.gif" width="200">
+
+#### 适配挖孔屏案例
+
+本示例介绍使用屏幕属性getDefaultDisplaySync、getCutoutInfo接口实现适配挖孔屏。该场景多用于沉浸式场景下。[详细说明文档](./CommonAppDevelopment/feature/diggingholescreen/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/digging_hole_screen.gif" width="200">
+
+#### 左右拖动切换图片效果案例
+
+本示例使用滑动手势监听，实时调整左右两侧内容显示区域大小和效果。通过绑定gesture事件中的PanGesture平移手势，实时获取拖动距离。当拖动时，实时地调节左右两个Image组件的宽度，从而成功实现左右拖动切换图片效果的功能。[详细说明文档](./CommonAppDevelopment/feature/dragtoswitchpictures/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/drag_to_switch_pictures.gif" width="200">
+
+#### 元素超出List区域
+
+本示例介绍在List组件内实现子组件超出容器边缘的布局样式的实现方法。[详细说明文档](./CommonAppDevelopment/feature/listitemoverflow/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/listitem_overflow.jpg" width="200">
+
 
 ### 公共能力层
 

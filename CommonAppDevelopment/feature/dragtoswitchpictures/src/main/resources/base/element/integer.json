@@ -1,0 +1,228 @@
+{
+  "integer": [
+    {
+      "name": "icon_default_height",
+      "value": 32
+    },
+    {
+      "name": "tabbar_text_fontsize",
+      "value": 16
+    },
+    {
+      "name": "tabbar_text_fontweight",
+      "value": 400
+    },
+    {
+      "name": "tabbar_text_lineheight",
+      "value": 22
+    },
+    {
+      "name": "tabbar_divider_opacity1",
+      "value": 1
+    },
+    {
+      "name": "tabbar_divider_opacity0",
+      "value": 0
+    },
+    {
+      "name": "tabbar_divider_margin_top",
+      "value": 5
+    },
+    {
+      "name": "bottom_tabs_barwidth",
+      "value": 360
+    },
+    {
+      "name": "bottom_tabs_barheight",
+      "value": 56
+    },
+    {
+      "name": "bottom_tabs_height",
+      "value": 56
+    },
+    {
+      "name": "borderradius",
+      "value": 10
+    },
+    {
+      "name": "decoration_width",
+      "value": 340
+    },
+    {
+      "name": "decoration_height",
+      "value": 160
+    },
+    {
+      "name": "decoration_text_width",
+      "value": 40
+    },
+    {
+      "name": "decoration_text_height",
+      "value": 15
+    },
+    {
+      "name": "decoration_text_fontsize",
+      "value": 10
+    },
+    {
+      "name": "decoration_text_borderradius",
+      "value": 5
+    },
+    {
+      "name": "margin_length",
+      "value": 10
+    },
+    {
+      "name": "drag_button_image_width",
+      "value": 30
+    },
+    {
+      "name": "drag_button_stack_width",
+      "value": 2
+    },
+    {
+      "name": "designcattleview_column_row_text_width",
+      "value": 50
+    },
+    {
+      "name": "designcattleview_designcattle_text_fontsize",
+      "value": 15
+    },
+    {
+      "name": "ai_design_fontsize",
+      "value": 10
+    },
+    {
+      "name": "ai_design_width",
+      "value": 40
+    },
+    {
+      "name": "ai_design_borderradius",
+      "value": 3
+    },
+    {
+      "name": "ai_design_margin_length",
+      "value": 5
+    },
+    {
+      "name": "10s_fontsize",
+      "value": 12
+    },
+    {
+      "name": "designcattleview_row_column_margin_length",
+      "value": -80
+    },
+    {
+      "name": "go_to_try_image_width",
+      "value": 20
+    },
+    {
+      "name": "go_to_try_image_height",
+      "value": 10
+    },
+    {
+      "name": "go_to_try_button_width",
+      "value": 90
+    },
+    {
+      "name": "go_to_try_button_height",
+      "value": 30
+    },
+    {
+      "name": "designcattleview_column_row_height",
+      "value": 80
+    },
+    {
+      "name": "map_image_width",
+      "value": 20
+    },
+    {
+      "name": "map_image_height",
+      "value": 20
+    },
+    {
+      "name": "map_text_fontsize",
+      "value": 10
+    },
+    {
+      "name": "map_text_margin_length",
+      "value": -5
+    },
+    {
+      "name": "searchmap_row_height",
+      "value": 60
+    },
+    {
+      "name": "swipercontentview_image_width",
+      "value": 50
+    },
+    {
+      "name": "swipercontentview_image_height",
+      "value": 40
+    },
+    {
+      "name": "swipercontentview_swiper_width",
+      "value": 160
+    },
+    {
+      "name": "swipercontentview_swiper_height",
+      "value": 50
+    },
+    {
+      "name": "swiper_displaycount",
+      "value": 3
+    },
+    {
+      "name": "swiper_margin_length",
+      "value": 5
+    },
+    {
+      "name": "swipercontentview_row_column_height",
+      "value": 100
+    },
+    {
+      "name": "swipercontentview_row_column_margin_length",
+      "value": 5
+    },
+    {
+      "name": "average_price_fontsize",
+      "value": 13
+    },
+    {
+      "name": "average_price_width",
+      "value": 70
+    },
+    {
+      "name": "average_price_height",
+      "value": 15
+    },
+    {
+      "name": "down_green_width",
+      "value": 10
+    },
+    {
+      "name": "down_green_height",
+      "value": 10
+    },
+    {
+      "name": "column_price_margin_left",
+      "value": 15
+    },
+    {
+      "name": "waterflow_image_borderradius",
+      "value": 6
+    },
+    {
+      "name": "waterflow_column_margin_length",
+      "value": 3
+    },
+    {
+      "name": "padding_length",
+      "value": 10
+    },
+    {
+      "name": "waterflow_columnsgap",
+      "value": 12
+    }
+  ]
+}

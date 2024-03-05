@@ -35,7 +35,7 @@ export struct NavigationParameterTransferView {
   @Consume('pageStack') pageStack: NavPathStack;
 
   getParams() {
-    let bookingString: string = this.pageStack.getParamByName(RouterInfo.NAVIGATION_PARAMETER_TRANSFER[0])[0] as string;
+    let bookingString: string = this.pageStack.getParamByName(RouterInfo.NAVIGATION_PARAMETER_TRANSFER.moduleName + '/' + RouterInfo.NAVIGATION_PARAMETER_TRANSFER.pageName)[0] as string;
     // 转化成普通对象
     let userBookingTmp: UserBookingInfo = JSON.parse(bookingString);
     // TODO：知识点：通过调用第三方插件class-transformer的plainToClass方法转换成类对象, 不进行转换直接使用userBookingTmp调用getUserInfo方法会造成crash
@@ -119,10 +119,10 @@ export struct NavigationParameterTransferView {
         radius: $r('app.string.navigation_radius'),
         style: BorderStyle.Solid
       })
-      .borderRadius($r('app.string.navigation_margin'))
-      .padding($r('app.string.navigation_padding'))
-      .margin($r('app.string.navigation_margin12'))
+      .width('100%')
+      .margin($r('app.string.ohos_id_card_margin_start'))
     }
+    .padding($r('app.string.ohos_id_card_padding_start'))
   }
 }
 
@@ -134,8 +134,4 @@ export function getNavigationParameterTransferView(param: ESObject): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-let builderName = RouterInfo.NAVIGATION_PARAMETER_TRANSFER[0];
-if (!DynamicsRouter.getBuilder(builderName)) {
-  let builder: WrappedBuilder<[object]> = wrapBuilder(getNavigationParameterTransferView);
-  DynamicsRouter.registerBuilder(builderName, builder);
-}
+DynamicsRouter.registerRouterPage(RouterInfo.NAVIGATION_PARAMETER_TRANSFER, wrapBuilder(getNavigationParameterTransferView));

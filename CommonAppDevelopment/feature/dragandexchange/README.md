@@ -37,7 +37,7 @@
 2. 在List组件中，通过ListItem的onDragStart()方法指定拖拽开始时的行为，通过List的onTouch()指定拖拽释放时的行为。源码参考[ListSceneView.ets](./src/main/ets/view/ListSceneView.ets)。
 
    ```ts
-   List({ space: 20 }) {
+   List({ space: LIST_SPACE }) {
      ForEach(this.appInfoList, (item: AppInfo, index) => {
        ListItem() { ... }
        .onDragStart(() => {
@@ -65,7 +65,7 @@
 
 ### 模块依赖
 
-**不涉及**
+[@ohos/routermodule(动态路由)](../../feature/routermodule)
 
 ### 工程结构&模块类型
 

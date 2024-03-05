@@ -1,0 +1,74 @@
+{
+  "friendMoments": [
+    {
+      "id": "0",
+      "userName": "\u4E3A\u8C01\u70F9\u8FC7\u8336",
+      "avatar": "app.media.list_slide_to_history_photo0",
+      "text": "\u4F24\u5FC3\u5343\u53E4\uFF0C\u6CEA\u75D5\u5982\u6D17\u3002",
+      "image": "app.media.list_slide_to_history_photo10"
+    },
+    {
+      "id": "1",
+      "userName": "\u6709\u98CE\u63A0\u8FC7",
+      "avatar": "app.media.list_slide_to_history_photo1",
+      "text": "\u770B\u7236\u8001\u8885\u82B1\uFF0C\u82E6\u906E\u53BB\u8F99\uFF0C\u513F\u7AE5\u9A91\u7AF9\uFF0C\u4E89\u95EE\u5F52\u671F\u3002",
+      "image": ""
+    },
+    {
+      "id": "2",
+      "userName": "\u70FD\u70DF\u56DB\u8D77",
+      "avatar": "app.media.list_slide_to_history_photo2",
+      "text": "\u6168\u5546\u5973\u4E0D\u77E5\u5174\u5E9F\u3002",
+      "image": "app.media.list_slide_to_history_photo11"
+    },
+    {
+      "id": "3",
+      "userName": "\u672B\u7231\u4E16\u7EAA",
+      "avatar": "app.media.list_slide_to_history_photo3",
+      "text": "\u770B\u7236\u8001\u8885\u82B1\uFF0C\u82E6\u906E\u53BB\u8F99\uFF0C\u513F\u7AE5\u9A91\u7AF9\uFF0C\u4E89\u95EE\u5F52\u671F\u3002",
+      "image": ""
+    },
+    {
+      "id": "4",
+      "userName": "\u6C89\u7720\u7684\u57CE",
+      "avatar": "app.media.list_slide_to_history_photo4",
+      "text": "\u4FBF\u7A33\u5949\u5B89\u8206\uFF0C\u6C5F\u5357\u5411\u6696\uFF0C\u65E9\u4F20\u8A00\u8BED\uFF0C\u6A35\u66F2\u5148\u77E5\u3002",
+      "image": "app.media.list_slide_to_history_photo12"
+    },
+    {
+      "id": "5",
+      "userName": "\u6CEA\u6BD4\u6D77\u6C34\u54B8",
+      "avatar": "app.media.list_slide_to_history_photo5",
+      "text": "\u4E8B\u53BB\u7A7A\u6D41\u4E1C\u6C74\u6C34\uFF0C\u6101\u6765\u4E0D\u89C1\u897F\u6E56\u6708\u3002",
+      "image": ""
+    },
+    {
+      "id": "6",
+      "userName": "\u9634\u5929\u5206\u624B",
+      "avatar": "app.media.list_slide_to_history_photo6",
+      "text": "\u9F99\u864E\u6563\uFF0C\u98CE\u4E91\u706D\u3002",
+      "image": "app.media.list_slide_to_history_photo13"
+    },
+    {
+      "id": "7",
+      "userName": "\u522B\u8DDF\u7740\u6211",
+      "avatar": "app.media.list_slide_to_history_photo7",
+      "text": "\u56E0\u601D\u7574\u6614\uFF0C\u94C1\u7D22\u5343\u5BFB\uFF0C\u8C29\u6C88\u6C5F\u5E95\u3002",
+      "image": "app.media.list_slide_to_history_photo14"
+    },
+    {
+      "id": "8",
+      "userName": "\u672B\u8DEF\u9752\u6625",
+      "avatar": "app.media.list_slide_to_history_photo8",
+      "text": "\u4E00\u4E2A\u5170\u821F\uFF0C\u53CC\u6842\u6868\u3001\u987A\u6D41\u4E1C\u53BB\u3002",
+      "image": "app.media.list_slide_to_history_photo15"
+    },
+    {
+      "id": "9",
+      "userName": "\u4E0E\u964C\u751F\u4EBA\u76F8\u5BF9",
+      "avatar": "app.media.list_slide_to_history_photo9",
+      "text": "\u5BA2\u9986\u591C\u60CA\u5C18\u571F\u68A6\uFF0C\u5BAB\u8F66\u6653\u78BE\u5173\u5C71\u6708\u3002",
+      "image": "app.media.list_slide_to_history_photo16"
+    }
+  ]
+}
