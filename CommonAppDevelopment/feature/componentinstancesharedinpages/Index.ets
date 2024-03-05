@@ -13,14 +13,9 @@
  * limitations under the License.
  */
 
-{
-  "module": {
-    "name": "navigationparametertransfer",
-    "type": "har",
-    "deviceTypes": [
-      "default",
-      "tablet",
-      "2in1"
-    ]
-  }
+export { ComponentSharedInPages } from './src/main/ets/pages/ComponentSharedInPages';
+
+// 动态import时需要调用的接口，接口名请使用harInit，用于动态加载页面
+export function harInit(path: string) {
+  import(path);
 }

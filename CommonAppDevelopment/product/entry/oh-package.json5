@@ -110,7 +110,7 @@
     // 图片拖拽AI抠图案例
     "@ohos/imageenableanalyzer": "file:../../feature/imageenableanalyzer",
     // 汉字转拼音案例
-    "@ohos/chinesetopinyin": "file:../../feature/ChineseToPinyin",
+    "@ohos/chinesetopinyin": "file:../../feature/chinesetopinyin",
     // 底部抽屉滑动效果案例
     "@ohos/bottomdrawerslidecase": "file:../../feature/bottomdrawerslidecase",
     // 标题下拉缩放案例

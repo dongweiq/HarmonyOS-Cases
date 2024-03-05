@@ -249,6 +249,10 @@
       "srcPath": "./feature/expandtitle"
     },
     {
+      "name": "componentinstancesharedinpages",
+      "srcPath": "./feature/componentinstancesharedinpages"
+    },
+    {
       "name": "listslidetohistory",
       "srcPath": "./feature/listslidetohistory"
     },

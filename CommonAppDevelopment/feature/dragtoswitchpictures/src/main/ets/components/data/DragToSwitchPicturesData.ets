@@ -52,5 +52,4 @@ export const waterFlowData: WaterFlowModule[] = [
   new WaterFlowModule($r("app.media.WaterFlow6"), '湘湖地铁口，次新小区，楼幢位置，视野好', '3室2厅 | 88.86㎡ | 南'),
   new WaterFlowModule($r("app.media.WaterFlow7"), '白马湖畔 三千余户的小区 滨江品质 精装地暖 自主中', '3室2厅 | 88.86㎡ | 南'),
   new WaterFlowModule($r("app.media.WaterFlow8"), '开发商精装，面对花园，三房二厅二卫，自住15w软装', '3室2厅 | 89.71㎡ | 南'),
-  new WaterFlowModule($r("app.media.WaterFlow9"), '靠西白马湖，高品质小区 不靠高架 诚心出售随时看房', '3室2厅 | 88.73㎡ | 南'),
 ]
