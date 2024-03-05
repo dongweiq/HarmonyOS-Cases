@@ -31,7 +31,7 @@ export struct LottieView {
   build() {
     Column() {
       FunctionDescription({
-        title: 'Lottie',
+        title: $r('app.string.lottie_title'),
         content: $r('app.string.lottie_content')
       })
       // Lottie动画
