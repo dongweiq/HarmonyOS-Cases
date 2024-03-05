@@ -134,11 +134,11 @@
     },
     {
       "name": "map_image_width",
-      "value": 30
+      "value": 20
     },
     {
       "name": "map_image_height",
-      "value": 30
+      "value": 20
     },
     {
       "name": "map_text_fontsize",

@@ -170,7 +170,7 @@
     },
     {
       "name": "waterripples",
-      "srcPath": "./feature/waterripples"
+      "srcPath": "./feature/waterripples",
     },
     {
       "name": "foldablescreencases",
@@ -249,6 +249,10 @@
       "srcPath": "./feature/expandtitle"
     },
     {
+      "name": "componentinstancesharedinpages",
+      "srcPath": "./feature/componentinstancesharedinpages"
+    },
+    {
       "name": "listslidetohistory",
       "srcPath": "./feature/listslidetohistory"
     },
@@ -257,8 +261,20 @@
       "srcPath": "./feature/pageloading"
     },
     {
-      "name": "transitionanimation",
-      "srcPath": "./feature/transitionanimation"
+      "name": "bigfilecopy",
+      "srcPath": "./feature/bigfilecopy"
+    },
+    {
+      "name": "diggingholescreen",
+      "srcPath": "./feature/diggingholescreen"
+    },
+    {
+      "name": "dragtoswitchpictures",
+      "srcPath": "./feature/dragtoswitchpictures"
+    },
+    {
+      "name": "listitemoverflow",
+      "srcPath": "./feature/listitemoverflow"
     }
   ]
 }
