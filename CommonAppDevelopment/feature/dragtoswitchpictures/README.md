@@ -138,11 +138,8 @@ Image($r('app.media.drag_button'))
    |---model
    |   |---DragToSwitchPicturesModule.ets           // 左右拖动切换图片数据模型
    |---view
-   |   |---BottomTabsView.ets                       // 底部Tabs视图
    |   |---DragToSwitchPicturesView.ets             // 左右拖动切换图片视图
    |   |---DesignCattleView.ets                     // AI设计视图
-   |   |---SearchMapView.ets                        // 搜索和地图视图
-   |   |---SwiperContentView.ets                    // Swiper和每日房价视图
    |   |---TabsWaterFlowView.ets                    // 瀑布流嵌套Tabs视图
 ```
 
@@ -159,8 +156,6 @@ Image($r('app.media.drag_button'))
 本示例使用了cachedCount设置预加载的FlowItem的数量，只在LazyForEach中生效，设置该属性后会缓存cachedCount个FlowItem，LazyForEach超出显示和缓存范围的FlowItem会被释放。
 
 ### 参考资料
-
-[swiper](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-container-swiper-0000001774121298)
 
 [LazyForEach：数据懒加载](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-rendering-control-lazyforeach-0000001820879609)
 

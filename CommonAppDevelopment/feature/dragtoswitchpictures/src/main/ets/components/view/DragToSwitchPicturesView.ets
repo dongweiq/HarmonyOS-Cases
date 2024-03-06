@@ -155,6 +155,7 @@ export struct DecorationComparsionView {
       .zIndex(CONFIGURATION.ZINDEX1) // z序设为1，为了使按钮图片浮在装修图片上。
       .width(this.rightImageWidth)
     }
+    .margin({top: $r('app.integer.margin_length')})
     .justifyContent(FlexAlign.Center)
     .width($r('app.string.full_size'))
   }

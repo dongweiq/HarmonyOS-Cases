@@ -9,38 +9,6 @@
       "value": 16
     },
     {
-      "name": "tabbar_text_fontweight",
-      "value": 400
-    },
-    {
-      "name": "tabbar_text_lineheight",
-      "value": 22
-    },
-    {
-      "name": "tabbar_divider_opacity1",
-      "value": 1
-    },
-    {
-      "name": "tabbar_divider_opacity0",
-      "value": 0
-    },
-    {
-      "name": "tabbar_divider_margin_top",
-      "value": 5
-    },
-    {
-      "name": "bottom_tabs_barwidth",
-      "value": 360
-    },
-    {
-      "name": "bottom_tabs_barheight",
-      "value": 56
-    },
-    {
-      "name": "bottom_tabs_height",
-      "value": 56
-    },
-    {
       "name": "borderradius",
       "value": 10
     },
@@ -133,80 +101,12 @@
       "value": 80
     },
     {
-      "name": "map_image_width",
-      "value": 20
-    },
-    {
-      "name": "map_image_height",
-      "value": 20
-    },
-    {
-      "name": "map_text_fontsize",
-      "value": 10
-    },
-    {
-      "name": "map_text_margin_length",
-      "value": -5
-    },
-    {
-      "name": "searchmap_row_height",
-      "value": 60
-    },
-    {
-      "name": "swipercontentview_image_width",
-      "value": 50
-    },
-    {
-      "name": "swipercontentview_image_height",
-      "value": 40
-    },
-    {
-      "name": "swipercontentview_swiper_width",
-      "value": 160
-    },
-    {
-      "name": "swipercontentview_swiper_height",
-      "value": 50
-    },
-    {
-      "name": "swiper_displaycount",
-      "value": 3
-    },
-    {
-      "name": "swiper_margin_length",
-      "value": 5
-    },
-    {
-      "name": "swipercontentview_row_column_height",
-      "value": 100
-    },
-    {
       "name": "swipercontentview_row_column_margin_length",
       "value": 5
     },
     {
-      "name": "average_price_fontsize",
-      "value": 13
-    },
-    {
-      "name": "average_price_width",
-      "value": 70
-    },
-    {
-      "name": "average_price_height",
-      "value": 15
-    },
-    {
       "name": "down_green_width",
       "value": 10
-    },
-    {
-      "name": "down_green_height",
-      "value": 10
-    },
-    {
-      "name": "column_price_margin_left",
-      "value": 15
     },
     {
       "name": "waterflow_image_borderradius",
