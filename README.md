@@ -71,6 +71,7 @@
    |   |---webgetcameraimage           // WebView拉起原生相机案例
    |   |---sidebaranimation            // SideBarContainer侧边栏淡入淡出动效实现案例
    |   |---imageenableanalyzer         // 图片拖拽AI抠图案例
+   |   |---indicatorbelowswiper        // swiper指示器导航点位于swiper下方
    |   |---bigfilecopy                 // 大文件拷贝案例
    |   |---diggingholescreen           // 适配挖孔屏案例
    |   |---dragtoswitchpictures        // 左右拖动切换图片效果案例
@@ -359,6 +360,12 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 本示例介绍图片AI抠图案例的使用：通过Image.enableAnalyzer(true)实现长按图片抠图并拖拽/复制到其他应用中。[详细说明文档](./CommonAppDevelopment/feature/imageenableanalyzer/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_enableanalyzer.gif" width="200">
+
+#### swiper指示器导航点位于swiper下方
+
+本示例介绍通过分割swiper区域，实现指示器导航点位于swiper下方的效果。[详细说明文档](./CommonAppDevelopment/feature/indicatorbelowswiper/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/indicator_below_swiper.gif" width="200">
 
 #### 大文件拷贝案例
 
