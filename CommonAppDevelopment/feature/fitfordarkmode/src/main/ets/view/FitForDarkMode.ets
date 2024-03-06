@@ -42,27 +42,21 @@ export struct FitForDarkMode {
 
   // @Watch回调函数，监听颜色模式刷新状态变量
   onColorModeChange(): void {
-    if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
-      this.banner = $r("app.media.dark_mode_banner");
-    } else {
-      this.banner = $r("app.media.light_mode_banner");
-    }
+    this.banner = setBanner(this.currentMode);
   }
 
   // 在自定义组件生命周期aboutToAppear中，根据当前颜色模式刷新banner状态变量，切换不同的图片。
   aboutToAppear(): void {
-    if (this.currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
-      this.banner = $r("app.media.dark_mode_banner");
-    } else {
-      this.banner = $r("app.media.light_mode_banner");
-      // 在当前为浅色模式中，确保界面美观且颜色统一，设置导航栏的背景色。
-      setStatusBar(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
-    }
+    let applicationContext = getContext(this).getApplicationContext();
+    applicationContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    this.banner = setBanner(this.currentMode);
   }
 
   // 在自定义组件生命周期aboutToDisappear中，重置导航栏的背景色避免影响其它页面的导航栏为红色。
   aboutToDisappear(): void {
-    setStatusBar(this.currentMode)
+    let applicationContext = getContext(this).getApplicationContext();
+    applicationContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+    setStatusBar(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
   }
 
   build() {
@@ -153,6 +147,23 @@ export struct FitForDarkMode {
   }
 }
 
+/**
+ * 根据不同的颜色模式来设置banner图和statusBar的背景色
+ */
+function setBanner(currentMode: number): ResourceStr {
+  let banner: ResourceStr = '';
+  if (currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
+    banner = $r("app.media.dark_mode_banner");
+    // 在当前为深色模式中，确保界面美观且颜色统一，设置导航栏的背景色。
+    setStatusBar(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
+  } else {
+    banner = $r("app.media.light_mode_banner");
+    // 在当前为浅色模式中，确保界面美观且颜色统一，设置导航栏的背景色。
+    setStatusBar(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+  }
+  return banner;
+}
+
 async function setStatusBar(currentMode: number) {
   // 1.获取应用主窗口。
   let windowClass: window.Window;
@@ -167,9 +178,9 @@ async function setStatusBar(currentMode: number) {
 
     let color = '';
     // 设置窗口为全屏布局，配合设置状态栏的背景颜色，与主窗口显示保持协调一致。
-    if (currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
+    if (currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_DARK) {
       color = '#000000';
-    } else if (currentMode == ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
+    } else if (currentMode === ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT) {
       color = '#FFFFFF';
     } else {
       color = '#FA5a3C';
@@ -196,4 +207,4 @@ export function getFitForDarkMode(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.DARK_MODE,wrapBuilder(getFitForDarkMode));
+DynamicsRouter.registerRouterPage(RouterInfo.DARK_MODE, wrapBuilder(getFitForDarkMode));
