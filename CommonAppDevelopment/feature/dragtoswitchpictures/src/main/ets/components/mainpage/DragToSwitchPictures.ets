@@ -17,7 +17,6 @@ import { TabsWaterFlowView } from '../view/TabsWaterFlowView';
 import { DesignCattleView } from '../view/DesignCattleView';
 import { CONFIGURATION } from '../common/Constants';
 
-@Entry
 @Component
 export struct DragToSwitchPictures {
   build() {

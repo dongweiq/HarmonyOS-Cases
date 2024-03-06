@@ -16,9 +16,9 @@
 /**
  * AI设计视图
  */
-import { DecorationComparsionView } from './DragToSwitchPicturesView'
-import { CONFIGURATION } from '../common/Constants'
-import { promptAction } from '@kit.ArkUI'
+import { DecorationComparsionView } from './DragToSwitchPicturesView';
+import { CONFIGURATION } from '../common/Constants';
+import { promptAction } from '@kit.ArkUI';
 
 @Component
 export struct DesignCattleView {
