@@ -100,6 +100,7 @@ struct IconNoNameView {
         .height($r('app.string.icon_square_size'))
         .objectFit(ImageFit.Cover)
         .borderRadius($r('app.string.layout_10'))
+        .draggable(false) // TODO：知识点：保持默认值true时，图片有默认拖拽效果，会影响List子组件拖拽动效，所以修改为false
     }.visibility(this.app.visible ? Visibility.Visible : Visibility.Hidden) // 消失时需要占位，所以使用显隐控制而非条件渲染。（条件渲染与显隐控制区别，参考资料：https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/proper-choice-between-if-and-visibility.md/）
   }
 }
