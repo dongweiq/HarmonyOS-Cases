@@ -23,6 +23,7 @@ import { CONFIGURATION } from '../common/Constants';
 import { TabDataModel } from '../model/DragToSwitchPicturesModule';
 import { waterFlowData } from '../data/DragToSwitchPicturesData';
 import { TabDataSource } from '../datasource/DragToSwitchPicturesDataSource';
+import { promptAction } from '@kit.ArkUI';
 
 @Component
 export struct TabsWaterFlowView {
@@ -102,6 +103,12 @@ export struct TabsWaterFlowView {
       bottom: $r('app.integer.waterflow_column_margin_length')
     })
     .backgroundColor(Color.White)
+    .onClick((event?: ClickEvent) => {
+      promptAction.showToast({
+        message: $r('app.string.dragtoswitchpictures_toast_one'),
+        duration: CONFIGURATION.DRAGTOSWITCHPICTURES_DURATION
+      })
+    })
   }
 
   @Builder

@@ -5,26 +5,6 @@
       "value": "100%"
     },
     {
-      "name": "home_page",
-      "value": "首页"
-    },
-    {
-      "name": "look_at",
-      "value": "看看"
-    },
-    {
-      "name": "my_home",
-      "value": "我家"
-    },
-    {
-      "name": "message",
-      "value": "消息"
-    },
-    {
-      "name": "personal_center",
-      "value": "个人中心"
-    },
-    {
       "name": "before_decoration",
       "value": "装修前"
     },
@@ -53,40 +33,8 @@
       "value": "83%"
     },
     {
-      "name": "dragtoswitchpictures_search_placeholder",
-      "value": "请输入小区/楼盘/地点"
-    },
-    {
-      "name": "map_text",
-      "value": "地图"
-    },
-    {
       "name": "10_size",
       "value": "10%"
-    },
-    {
-      "name": "46_size",
-      "value": "46%"
-    },
-    {
-      "name": "average_price",
-      "value": "31153元/平"
-    },
-    {
-      "name": "second_hand_house",
-      "value": "二手房"
-    },
-    {
-      "name": "1_4_size",
-      "value": "1.4%"
-    },
-    {
-      "name": "sales_count",
-      "value": "104套"
-    },
-    {
-      "name": "traded_yesterday",
-      "value": "昨日成交"
     },
     {
       "name": "90_size",
@@ -113,6 +61,10 @@
       "value": "新房"
     },
     {
+      "name": "second_hand_house",
+      "value": "二手房"
+    },
+    {
       "name": "renting",
       "value": "租房"
     },
@@ -123,6 +75,18 @@
     {
       "name": "go_to_try",
       "value": "试一试"
+    },
+    {
+      "name": "dragtoswitchpictures_title",
+      "value": "点击下图中间按钮左右拖动切换图片"
+    },
+    {
+      "name": "dragtoswitchpictures_toast_one",
+      "value": "该视图仅供展示使用"
+    },
+    {
+      "name": "dragtoswitchpictures_toast_two",
+      "value": "该按钮仅供展示使用"
     }
   ]
 }
