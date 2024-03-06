@@ -17,6 +17,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
+import ConfigurationConstant from '@ohos.app.ability.ConfigurationConstant';
 // 基础公共工具类base，主要包括日志打印和主页列表数据类型以及控制器
 import { logger } from '@ohos/base';
 import { Configuration } from '@ohos.app.ability.Configuration';
@@ -45,6 +46,9 @@ export default class EntryAbility extends UIAbility {
      * 此处在Ability的onCreate周期函数中使用TaskPool子线程预加载so库，加载完成后在nativerawfile模块中使用。
      */
     preloadSOByTaskPool();
+    // 全局设置为浅色模式
+    let applicationContext = this.context.getApplicationContext();
+    applicationContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
   }
 
   onDestroy(): void {
