@@ -119,7 +119,7 @@ export struct CommentInputDialog {
       .height($r('app.integer.relative_container_input_height'))
 
       if (this.selectedImages.length > 0) {
-        ImageListView({ selectedImages: this.selectedImages })
+        ImageListView({ selectedImages: this.selectedImages, imageEnableDelete: true })
       }
     }
     .padding($r('app.integer.column_input_padding'))

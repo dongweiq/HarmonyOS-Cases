@@ -156,7 +156,7 @@ export struct ImageCommentView {
           })
           .backgroundColor($r('app.color.color_comment_text_background'))
           .onClick(() => {
-            if (this.dialogController != null) {
+            if (this.dialogController !== null) {
               // 打开评论输入弹窗
               this.dialogController.open();
             }
@@ -198,4 +198,4 @@ export function getImageCommentView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.IMAGE_COMMENT,wrapBuilder(getImageCommentView));
+DynamicsRouter.registerRouterPage(RouterInfo.IMAGE_COMMENT, wrapBuilder(getImageCommentView));
