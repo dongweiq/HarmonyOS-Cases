@@ -80,4 +80,6 @@ export class RouterInfo {
   static readonly DIGGING_HOLE_SCREEN: RouterInfo = new RouterInfo('@ohos/diggingholescreen', 'DiggingHoleScreen');
   static readonly DRAG_TO_SWITCH_PICTURES: RouterInfo = new RouterInfo('@ohos/dragtoswitchpictures', 'DragToSwitchPictures');
   static readonly LIST_ITEM_OVERFLOW: RouterInfo = new RouterInfo('@ohos/listitemoverflow', 'AboutMe');
+  static readonly COMPONENT_SHARED_IN_PAGES: RouterInfo = new RouterInfo('@ohos/componentinstancesharedinpages', 'ComponentSharedInPages');
+  static readonly CUSTOM_SAFE_KEYBOARD: RouterInfo = new RouterInfo('@ohos/customsafekeyboard', 'CustomSafeKeyboardView');
 }

@@ -126,6 +126,10 @@
     // 左右拖动切换图片效果案例
     "@ohos/dragtoswitchpictures": "file:../../feature/dragtoswitchpictures",
     // 元素超出List区域
-    "@ohos/listitemoverflow": "file:../../feature/listitemoverflow"
+    "@ohos/listitemoverflow": "file:../../feature/listitemoverflow",
+    // 页面间共享组件实例的案例
+    "@ohos/componentinstancesharedinpages": "file:../../feature/componentinstancesharedinpages",
+    // 自定义安全键盘案例
+    "@ohos/customsafekeyboard": "file:../../feature/customsafekeyboard"
   }
 }

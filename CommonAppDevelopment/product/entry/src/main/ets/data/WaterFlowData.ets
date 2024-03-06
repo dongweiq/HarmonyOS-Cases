@@ -77,4 +77,6 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.digging_hole_screen"), '适配挖孔屏案例', RouterInfo.DIGGING_HOLE_SCREEN, 'UI布局'),
   new SceneModuleInfo($r("app.media.drag_to_switch_pictures"), '左右拖动切换图片效果案例', RouterInfo.DRAG_TO_SWITCH_PICTURES, 'UI布局'),
   new SceneModuleInfo($r("app.media.listitem_overflow"), '元素超出List区域', RouterInfo.LIST_ITEM_OVERFLOW, 'UI布局'),
+  new SceneModuleInfo($r("app.media.componentinstancesharedinpages"), '页面间共享组件实例的案例', RouterInfo.COMPONENT_SHARED_IN_PAGES, 'UI布局'),
+  new SceneModuleInfo($r("app.media.custom_safe_keyboard"), '自定义安全键盘案例', RouterInfo.CUSTOM_SAFE_KEYBOARD, 'UI布局'),
 ]

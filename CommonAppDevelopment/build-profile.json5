@@ -275,6 +275,10 @@
     {
       "name": "listitemoverflow",
       "srcPath": "./feature/listitemoverflow"
+    },
+    {
+      "name": "customsafekeyboard",
+      "srcPath": "./feature/customsafekeyboard"
     }
   ]
 }

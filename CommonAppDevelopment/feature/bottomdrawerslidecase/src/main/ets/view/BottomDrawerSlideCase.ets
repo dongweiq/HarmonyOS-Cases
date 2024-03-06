@@ -15,7 +15,7 @@
 
 import { HomeTop, SettingItemView, StatusHead } from "../components/Component"
 import window from '@ohos.window';
-import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import WindowModel from '../utils/WindowModel';
 import { logger } from '@ohos/utils/src/main/ets/log/Logger';
 import { SettingItem } from '../utils/dataSource'

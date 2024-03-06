@@ -113,7 +113,7 @@
 
     ```
     "dependencies": {
-      "@ohos/dynamicsRouter": "file:../../feature/routermodule",    
+      "@ohos/dynamicsrouter": "file:../../feature/routermodule",    
       "@ohos/event-propagation": "file:../../feature/eventpropagation",
       ...
     }
@@ -196,7 +196,7 @@
     ...
     "dependencies": {
       ...
-      "@ohos/dynamicsRouter": "file:../../feature/routermodule"
+      "@ohos/dynamicsrouter": "file:../../feature/routermodule"
     }
     ```
 
@@ -222,7 +222,7 @@
       EventPropagation();
     }
     
-    DynamicsRouter.registerRouterPage(RouterInfo.EVENT_TRANSMISSION_SOLUTION,wrapBuilder(getEventPropagation));
+    DynamicsRouter.registerRouterPage(RouterInfo.EVENT_TRANSMISSION_SOLUTION, wrapBuilder(getEventPropagation));
     ```
 
 11. 如果**7**中设置的router.param是非空的，需要给**10**中的@Buidler接口添加参数，否则会报错，详细代码请参考[NavigationParameterTransferView](../navigationparametertransfer/src/main/ets/view/NavigationParameterTransferView.ets)。

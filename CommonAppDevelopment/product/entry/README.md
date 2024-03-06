@@ -136,7 +136,7 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
     ...
     "dependencies": {
       ...
-      "@ohos/dynamicsRouter": "file:../../feature/routermodule"
+      "@ohos/dynamicsrouter": "file:../../feature/routermodule"
     }
     ```
 
