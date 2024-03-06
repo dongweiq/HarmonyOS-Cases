@@ -32,6 +32,7 @@ export struct TitleExpansion {
   @State @Watch("isContinuePullDown") isExpanded: boolean = false; // 标题是否展开 列表是否完成第一次下滑
   @State @Watch("isContinuePullDown") isMoving: boolean = false; // 笔记列表是否在被拖动
   @State @Watch("isContinuePullDown") offsetY: number = Constants.INIT_COORDINATE; // 列表y坐标偏移量
+  @State @Watch("isContinuePullDown") atStart: boolean = true; // 笔记列表内容是否在顶部
   @State heightValue: ResourceStr = $r('app.string.memo_area_height_before'); // 笔记列表布局高度
   @State duration: number = Constants.ANIMATE_DURATION_DRAG; // 动画持续时间
   @State memoData: MemoDataSource = new MemoDataSource(); // 懒加载模拟数据源
@@ -89,7 +90,7 @@ export struct TitleExpansion {
           ListItem() {
             Search({ placeholder: $r('app.string.search_placeholder') })
               .width($r('app.string.layout_100_percent'))
-              .height($r('app.string.layout_40'))
+              .height($r('app.string.layout_8_percent'))
               .backgroundColor(Color.White)
           }
           // 性能知识点：动态加载数据场景可以使用LazyForEach遍历数据。参考资料：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-rendering-control-lazyforeach-0000001820879609
@@ -102,6 +103,9 @@ export struct TitleExpansion {
         .scrollBar(BarState.Off)
         .margin({ left: $r('app.string.layout_10'), right: $r('app.string.layout_10') })
         .width($r('app.string.layout_90_percent'))
+        .onReachStart(() => { // TODO：知识点：通过onReachStart回调，更新列表是否位于顶部的状态更新，以控制仅在顶部时才触发标题下移放大动效
+          this.atStart = true;
+        })
       }
       .width($r('app.string.layout_100_percent'))
       .height(this.heightValue) // 通过状态变量heightValue控制内容高度变化
@@ -176,8 +180,9 @@ export struct TitleExpansion {
         if (delta < 0) { // TODO：知识点：手势为上滑时
           this.heightValue = $r('app.string.memo_area_height_before');
           this.isExpanded = false;
+          this.atStart = false;
         }
-        if (delta > 0) { // TODO：知识点：手势为下滑时
+        if (delta > 0 && this.atStart) { // TODO：知识点：手势为下滑，且列表内容位于顶部时
           // 性能知识点：手指滑动的时，直接使用animateTo，会创建大量的animateTo对象，可以通过节流器优化性能
           this.animateToThrottle(() => {
             this.heightValue = $r('app.string.memo_area_height_after');
