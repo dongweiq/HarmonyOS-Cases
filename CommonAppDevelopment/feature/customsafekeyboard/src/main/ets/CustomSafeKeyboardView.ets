@@ -22,6 +22,7 @@
  *  5. 在子组件中，必须定义inputValue且使用@Link装饰器，这样能保证子组件调用时onKeyboardEvent时inputValue不为空，父子组件数据双向更新
  */
 
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import { CustomKeyboard } from './components/CustomKeyboard';
 import { logger } from 'utils';
 import {
@@ -142,3 +143,14 @@ export struct CustomSafeKeyboardView {
     .padding($r("app.integer.common_margin_padding"))
   }
 }
+
+/**
+ * 创建WrappedBuilder对象，动态路由跳转时构建页面
+ */
+@Builder
+export function getCustomSafeKeyboardView(): void {
+  CustomSafeKeyboardView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+DynamicsRouter.registerRouterPage(RouterInfo.CUSTOM_SAFE_KEYBOARD, wrapBuilder(getCustomSafeKeyboardView));

@@ -14,7 +14,7 @@
  */
 
 import image from '@ohos.multimedia.image';
-import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 实现步骤：
