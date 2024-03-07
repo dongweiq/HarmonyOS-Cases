@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-const LINEAR_ANGLE = 90 // button渐变角度
+const LINEAR_ANGLE = 90; // button渐变角度
 
 /*
   自定义class实现button的AttributeModifier接口
 */
-export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
+export class ButtonModifier implements AttributeModifier<ButtonAttribute> {
   applyNormalAttribute(instance: ButtonAttribute): void {
     instance.height($r('app.float.float_30'));
     instance.width($r('app.float.float_90'));
@@ -32,11 +32,13 @@ export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
 /*
     自定义class实现Text的AttributeModifier接口
 */
-export class MyTextModifier implements AttributeModifier<TextAttribute> {
+export class CommodityText implements AttributeModifier<TextAttribute> {
+  textContent: string | Resource = ''
   textType: TextType = TextType.TYPE_ONE;
   textSize: number = 15;
 
-  constructor(textType: TextType, textSize: number) {
+  constructor(textContent: string | Resource, textType: TextType, textSize: number) {
+    this.textContent = textContent;
     this.textType = textType;
     this.textSize = textSize;
   }
@@ -68,9 +70,30 @@ export class MyTextModifier implements AttributeModifier<TextAttribute> {
 }
 
 /*
+   自定义class实现Image组件的AttributeModifier接口
+*/
+export class ImageModifier implements AttributeModifier<ImageAttribute> {
+  width: Length | Resource = 0;
+  height: Length | Resource = 0;
+  src: PixelMap | Resource = $r('app.media.icon');
+
+  constructor(width: Length | Resource, height: Length | Resource, src: PixelMap | Resource) {
+    this.width = width;
+    this.height = height;
+    this.src = src;
+  }
+
+  applyNormalAttribute(instance: ImageAttribute): void {
+    instance.width(this.width);
+    instance.height(this.height);
+    instance.borderRadius($r('app.float.float_10'));
+  }
+}
+
+/*
    自定义class实现row组件的AttributeModifier接口
 */
-export class MyRowModifier implements AttributeModifier<RowAttribute> {
+export class BarModifier implements AttributeModifier<RowAttribute> {
   applyNormalAttribute(instance: RowAttribute): void {
     instance.height($r('app.float.float_60'));
     instance.width($r('app.string.max_size'));
@@ -85,6 +108,18 @@ export class MyRowModifier implements AttributeModifier<RowAttribute> {
 }
 
 /*
+   自定义class实现Checkbox组件的AttributeModifier接口
+*/
+export class CheckboxModifier implements AttributeModifier<CheckboxAttribute> {
+  applyNormalAttribute(instance: CheckboxAttribute): void {
+    instance.selectedColor($r('app.color.selectColor'));
+    instance.width($r('app.float.float_15'));
+    instance.height($r('app.float.float_15'));
+    instance.margin({ right: $r('app.float.float_10') });
+  }
+}
+
+/*
   枚举文本类型
 */
 export enum TextType {
@@ -93,6 +128,3 @@ export enum TextType {
   TYPE_Three,
   TYPE_FOUR
 }
-
-
-

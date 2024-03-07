@@ -13,31 +13,28 @@
  * limitations under the License.
  */
 import { MyDataSource } from '../common/LazyForEach';
-import { MyButtonModifier, MyRowModifier, MyTextModifier, TextType } from '../common/AttributeModifier';
+import { CommodityText, BarModifier, CheckboxModifier, TextType, ImageModifier } from '../common/AttributeModifier';
 import { Details } from './Details';
-import { CommonText, BottomRow } from '../common/CommonText';
+import { BottomBar, ImageText } from '../common/CommonText';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /*
  * 实现步骤：
- * 1.自定义class实现Attribution接口和自定义组件，export导出。
- * 2.import引入Attribution类和自定义组件到页面，实例化Attribution类。
- * 3.组件使用attributeModifier属性使用Attribution接口中封装的公共样式。
+ * 1.提供者自定义class实现Attribution接口和自定义组件，export导出。
+ * 2.使用者import引入Attribution类和自定义组件到页面，实例化Attribution类。
+ * 3.使用者在组件使用attributeModifier属性使用Attribution接口中封装的公共样式。
  * */
-
-const COLUMN_SPACE = 10; // column间隙
-const TEXT_SIZE = 12; // 自定义组件中text大小
-
 
 @Component
 export struct ShoppingCart {
   private data: MyDataSource = new MyDataSource();
   // TODO：知识点：实例化自定义的样式类
-  @State buttonModifie: MyButtonModifier = new MyButtonModifier();
-  @State rowModifie: MyRowModifier = new MyRowModifier();
-  @State textOne: MyTextModifier = new MyTextModifier(TextType.TYPE_ONE, 15);
-  @State textTwo: MyTextModifier = new MyTextModifier(TextType.TYPE_TWO, 17);
-  @State textThree: MyTextModifier = new MyTextModifier(TextType.TYPE_Three, 15);
+  @State rowModifier: BarModifier = new BarModifier();
+  @State textOne: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_ONE, 15);
+  @State textTwo: CommodityText = new CommodityText($r('app.string.commodity_name'), TextType.TYPE_TWO, 17);
+  @State textThree: CommodityText = new CommodityText($r('app.string.commodity_model'), TextType.TYPE_Three, 15);
+  @State imageModifier: ImageModifier = new ImageModifier($r('app.float.float_100'), $r('app.float.float_100'), $r('app.media.icon'));
+  @State checkboxModifier: CheckboxModifier = new CheckboxModifier();
 
   aboutToAppear() {
     for (let i = 1; i <= 20; i++) {
@@ -70,10 +67,8 @@ export struct ShoppingCart {
                 // 店铺信息
                 Row() {
                   Checkbox()
-                    .selectedColor($r('app.color.selectColor'))
-                    .height($r('app.float.float_15'))
-                    .width($r('app.float.float_15'))
-                    .margin({ right: $r('sys.float.ohos_id_card_margin_start') })
+                    .attributeModifier(this.checkboxModifier)
+
                   Row()
                     .borderRadius($r('app.float.float_5'))
                     .width($r('app.float.float_20'))
@@ -88,41 +83,17 @@ export struct ShoppingCart {
                 .height($r('app.float.float_20'))
 
                 // 商品信息
-                Row() {
-                  Row() {
-                    Checkbox()
-                      .selectedColor($r('app.color.selectColor'))
-                      .width($r('app.float.float_15'))
-                      .margin({ right: $r('app.float.float_10') })
-                    Row()
-                      .width($r('app.float.float_100'))
-                      .height($r('app.float.float_100'))
-                      .borderRadius($r('app.float.float_10'))
-                      .backgroundColor($r('sys.color.ohos_id_color_component_normal'))
-                  }
-                  .margin({ right: $r('app.float.float_10'), bottom: $r('app.float.float_15') })
-
-                  Column({ space: COLUMN_SPACE }) {
-                    Text(item)// TODO：高性能知识点：动态设置组件的属性
-                      .attributeModifier(this.textTwo)
-
-                    Text($r('app.string.commodity_model'))
-                      .attributeModifier(this.textThree)
-
-                    CommonText({ textFour: new MyTextModifier(TextType.TYPE_FOUR, TEXT_SIZE) })
-
-                    Text($r('app.string.commodity_price'))
-                      .attributeModifier(this.textOne)
-                      .fontColor($r('app.color.orange'))
-                  }
-                }
-                .padding({ top: $r('app.float.float_5') })
-                .width($r('app.string.max_size'))
-                .height($r('app.string.max_size'))
-                .onClick(() => {
-                  // 动态路由跳转
-                  DynamicsRouter.push(RouterInfo.DYNAMIC_ATTRIBUTES_DETAILS);
+                ImageText({
+                  item: item,
+                  textOne: this.textOne,
+                  textTwo: this.textTwo,
+                  textThree: this.textThree,
+                  imageModifier: this.imageModifier
                 })
+                  .onClick(() => {
+                    // 动态路由跳转
+                    DynamicsRouter.push(RouterInfo.DYNAMIC_ATTRIBUTES_DETAILS);
+                  })
               }
               .padding($r('app.float.float_15'))
               .margin({
@@ -140,7 +111,7 @@ export struct ShoppingCart {
         .backgroundColor($r('sys.color.ohos_id_color_component_normal'))
       }
 
-      BottomRow({ buttonName: $r('app.string.settlement') })
+      BottomBar({ buttonName: $r('app.string.settlement') })
     }
   }
 }

@@ -12,37 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { MyButtonModifier, MyRowModifier, MyTextModifier, TextType } from '../common/AttributeModifier';
-import { CommonText, BottomRow, BarType } from '../common/CommonText';
+import { CommodityText, BarModifier, CheckboxModifier, TextType, ImageModifier } from '../common/AttributeModifier';
+import { CommonText, BottomBar, BarType } from '../common/CommonText';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 const COLUMN_SPACE = 20; // column间隙
-const TEXT_SIZE = 15 // 自定义组件中text大小
+const TEXT_SIZE = 15; // 自定义组件中text大小
 
 @Component
 export struct Details {
   // TODO：知识点：实例化自定义的样式类
-  @State buttonModifie: MyButtonModifier = new MyButtonModifier();
-  @State rowModifie: MyRowModifier = new MyRowModifier();
-  @State textOne: MyTextModifier = new MyTextModifier(TextType.TYPE_ONE, 30);
-  @State textTwo: MyTextModifier = new MyTextModifier(TextType.TYPE_TWO, 20);
-  @State textThree: MyTextModifier = new MyTextModifier(TextType.TYPE_Three, 20);
-  @State textFour: MyTextModifier = new MyTextModifier(TextType.TYPE_FOUR, 15);
+  @State rowModifie: BarModifier = new BarModifier();
+  @State textOne: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_ONE, 30);
+  @State textTwo: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_TWO, 20);
+  @State textThree: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_Three, 20);
+  @State textFour: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_FOUR, 15);
+  @State imageModifier: ImageModifier = new ImageModifier($r('app.string.max_size'), $r('app.string.image_proportion'), $r('app.media.icon'));
 
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
       Column() {
-        // 商品图片区（用色块代替）
-        Row()
-          .width($r('app.string.max_size'))
-          .height($r('app.string.image_proportion'))
-          .backgroundColor($r('app.color.imageColor'))
+        // 商品图片
+        Image(this.imageModifier.src)
+          .attributeModifier(this.imageModifier)
 
         // 商品详情区
         Row() {
           Column({ space: COLUMN_SPACE }) {
             Row() {
-              Text($r('app.string.commodity_price'))
+              Text($r('app.string.commodity_price'))// 动态设置组件样式
                 .attributeModifier(this.textOne)
                 .width($r('app.float.float_100'))
               Text($r('app.string.sold'))
@@ -71,7 +69,7 @@ export struct Details {
             Text($r('app.string.commodity_model'))
               .attributeModifier(this.textThree)
 
-            CommonText({ textFour: new MyTextModifier(TextType.TYPE_FOUR, TEXT_SIZE) })
+            CommonText({ textFour: new CommodityText($r('app.string.commodity_price'), TextType.TYPE_FOUR, TEXT_SIZE) })
           }
           .backgroundColor($r('app.color.white'))
           .padding($r('app.float.float_10'))
@@ -87,7 +85,7 @@ export struct Details {
       .height($r('app.string.max_size'))
 
       // 底部购买区
-      BottomRow({ buttonName: $r('app.string.buy_now'), barType: BarType.DETAILS })
+      BottomBar({ buttonName: $r('app.string.buy_now'), barType: BarType.DETAILS })
     }
   }
 }

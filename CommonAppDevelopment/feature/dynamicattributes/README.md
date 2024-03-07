@@ -11,8 +11,8 @@
 **使用说明**：
 
 1. 点击购物车页面的list列表跳转商品详情页。
-2. 两个页面的button组件、text组件、row组件复用相同的样式。
-3. 两个页面都使用了自定义封装了的底部bar（Row和button的复合组件）。
+2. 两个页面的button组件、text组件、Image等组件复用相同的样式。
+3. 购物车页面使用了自定义封装的Image+Text的图文复合组件。
 
 ### 实现思路
 
@@ -20,7 +20,7 @@
 
    适用场景：当需要向外提供单一组件的样式定制效果时，推荐使用这种方案。使用方在调用接口时，编码量相对方式二更少，仅需几行即可完成调用，使用便捷。
 
-1. 自定义class实现AttributeModifier接口，export导出。
+1. 提供者自定义class实现AttributeModifier接口，export导出。
 
    ```javascript
    // attributeModifier.ets
@@ -28,11 +28,13 @@
    /*
        自定义class实现Text的AttributeModifier接口
    */
-   export class MyTextModifier implements AttributeModifier<TextAttribute> {
+   export class CommodityText implements AttributeModifier<TextAttribute> {
+     textContent: string | Resource = ''
      textType: TextType = TextType.TYPE_ONE;
      textSize: number = 15;
    
-     constructor(textType: TextType, textSize: number) {
+     constructor(textContent: string | Resource, textType: TextType, textSize: number) {
+       this.textContent = textContent;
        this.textType = textType;
        this.textSize = textSize;
      }
@@ -57,7 +59,7 @@
          instance.fontSize(this.textSize);
          instance.fontColor($r('app.color.orange'));
          instance.textAlign(TextAlign.Center);
-         instance.border({ width: 1, color: $r('app.color.orange'), radius: 0, style: BorderStyle.Solid });
+         instance.border({ width: $r('app.float.float_1'), color: $r('app.color.orange'), style: BorderStyle.Solid });
          instance.margin({ right: $r('app.float.float_10') });
        }
      }
@@ -75,43 +77,41 @@
    
    ```
 
-2. import自定义的AttributeModifier类到ets页面，实例化赋值给变量。
+2. 使用者import自定义的AttributeModifier类到ets页面，实例化赋值给变量。
 
    ```javascript
-   // ShoppingCart.ets
-   import { MyTextModifier } from '../common/attributeModifier';
+   // CommonText.ets
+   import { CommodityText } from '../common/attributeModifier';
    
-   @Entry
    @Component
-     struct PageOne {
-     // 实例化AttributeModifie类
-     @State textOne: MyTextModifier = new MyTextModifier(TextType.TYPE_ONE, 15); 
+     struct ImageText {
+     // 自定义组件实例化AttributeModifie类，向外暴露Text的Modifier属性
+     @State textOne: CommodityText = new CommodityText('', TextType.TYPE_ONE, 0);
    }
    
    // Details.ets
    import { MyTextModifier } from '../common/attributeModifier';
    
-   @Entry
    @Component
-     struct PageOne {
+     struct Details {
      // 实例化AttributeModifie类
      @State textOne: MyTextModifier = new MyTextModifier(TextType.TYPE_ONE, 30);
      ...    
    }
    ```
 
-3. 组件设置attributeModifier属性，调用AttributeModifier类中定义的样式。
+3. 使用者给组件设置attributeModifier属性，调用AttributeModifier类中定义的样式。
 
    ```javascript
-   // ShoppingCart.ets
-   Button($r('app.string.settlement'))
+   // CommonText.ets
+   
+    Text(this.textOne.textContent)
    	// 动态设置组件样式
-    Text($r('app.string.store_name'))
    	.attributeModifier(this.textOne)
-   	.fontColor($r('sys.color.ohos_id_counter_title_font_color'))
+   	.fontColor($r('app.color.orange'))
    
    // Details.ets
-     Text($r('app.string.commodity_price'))
+    Text($r('app.string.commodity_price'))
    	// 动态设置组件样式
    	.attributeModifier(this.textOne)
    	.width($r('app.float.float_100'))
@@ -121,110 +121,136 @@
 
 ​	适用场景：适用于多个原生组件结合的场景，如Image+Text等复合自定义组件。
 
-1. 自定义class实现AttributeModifier接口，export导出。
+1. 提供者自定义封装组件，export导出。
 
    ```javascript
-   // attributeModifier.ets
+   // CommonTextr.ets
    
-   /*
-      自定义class实现button的AttributeModifier接口
-   */
-   export class MyButtonModifier implements AttributeModifier<ButtonAttribute> {
-     applyNormalAttribute(instance: ButtonAttribute): void {
-       instance.height($r('app.float.float_30'));
-       instance.width($r('app.float.float_90'));
-       instance.linearGradient({
-         angle: LINEAR_ANGLE,
-         colors: [[$r('app.color.buttonColor'), 0.5], [$r('app.color.orange'), 1.0]]
-       });
-     }
-   }
-   
-   /*
-      自定义class实现row组件的AttributeModifier接口
-   */
-   export class MyRowModifier implements AttributeModifier<RowAttribute> {
-     applyNormalAttribute(instance: RowAttribute): void {
-       instance.height($r('app.float.float_60'));
-       instance.width($r('app.string.max_size'));
-       instance.padding($r('app.float.float_15'));
-       instance.backgroundColor($r('app.color.white'));
-       instance.justifyContent(FlexAlign.End);
-       instance.border({
-         width: { top: $r('app.float.float_1') },
-         color: { top: $r('sys.color.ohos_id_color_component_normal') },
-       });
-     }
-   }
-   ```
-
-2. import自定义的AttributeModifier类到自定义组件页面，实例化赋值给变量。
-
-   ```javascript
-   import { MyRowModifier, MyButtonModifier } from '../common/AttributeModifier';
-   
-   // 自定义公共组件
+   /**
+    * 自定义封装图文组件
+    */
    @Component
-   export struct BottomRow {
-     @State buttonModifie: MyButtonModifier = new MyButtonModifier();
-     @State rowModifie: MyRowModifier = new MyRowModifier();
-     @State buttonName: Resource = $r('app.string.settlement')
-     @State barType: BarType = BarType.SHOPPING_CART
+   export struct ImageText {
+     @Prop item: string
+     @State textOne: CommodityText = new CommodityText('', TextType.TYPE_ONE, 0);
+     @State textTwo: CommodityText = new CommodityText('', TextType.TYPE_TWO, 0);
+     @State textThree: CommodityText = new CommodityText('', TextType.TYPE_Three, 0);
+     @State imageModifier: ImageModifier = new ImageModifier(0,0,$r('app.media.icon'));
+     @State checkboxModifier: CheckboxModifier = new CheckboxModifier();
    
      build() {
        Row() {
-         if(this.barType===BarType.DETAILS){
-           Button($r('app.string.add_cart'))
-             .attributeModifier(this.buttonModifie)
-             .margin({right:$r('app.float.float_10')})
+         Row() {
+           Checkbox()
+             .attributeModifier(this.checkboxModifier)
+   
+          Image(this.imageModifier.src)
+            .attributeModifier(this.imageModifier)
+   
          }
-         Button(this.buttonName)
-           .attributeModifier(this.buttonModifie)
+         .margin({ right: $r('app.float.float_10'), bottom: $r('app.float.float_15') })
+   
+         Column({ space: COLUMN_SPACE }) {
+           // TODO：高性能知识点：动态设置组件的属性
+           Text(this.item)
+             .attributeModifier(this.textTwo)
+   
+           Text(this.textThree.textContent)
+             .attributeModifier(this.textThree)
+   
+           CommonText({ textFour: new CommodityText('', TextType.TYPE_FOUR, TEXT_SIZE) })
+   
+           Text(this.textOne.textContent)
+             .attributeModifier(this.textOne)
+             .fontColor($r('app.color.orange'))
+         }
        }
-       .attributeModifier(this.rowModifie)
+       .padding({ top: $r('app.float.float_5') })
+       .width($r('app.string.max_size'))
+       .height($r('app.string.max_size'))
+     }
+   }
+   ```
+
+2. 提供者实现Image和text的Modifier类，实现宽、高等属性的设置。
+
+   ```javascript
+   // AttributeModifier.ets
+   import { MyRowModifier, MyButtonModifier } from '../common/AttributeModifier';
+   
+   /*
+      自定义class实现Image组件的AttributeModifier接口
+   */
+   export class ImageModifier implements AttributeModifier<ImageAttribute> {
+     width: Length | Resource = 0;
+     height: Length | Resource = 0;
+     src: PixelMap | Resource = $r('app.media.icon');
+   
+     constructor(width: Length | Resource, height: Length | Resource, src: PixelMap | Resource) {
+       this.width = width;
+       this.height = height;
+       this.src = src;
+     }
+   
+     applyNormalAttribute(instance: ImageAttribute): void {
+       instance.width(this.width);
+       instance.height(this.height);
+       instance.borderRadius($r('app.float.float_10'));
      }
    }
    
    /*
-     枚举底部bar类型
+   	自定义class实现Text的AttributeModifier接口
    */
-   export enum BarType {
-     SHOPPING_CART, // 购物车
-     DETAILS,       // 详情页
+   export class CommodityText implements AttributeModifier<TextAttribute> {
+     textContent: string | Resource = ''
+     textType: TextType = TextType.TYPE_ONE;
+     textSize: number = 15;
+   
+     constructor(textContent: string | Resource, textType: TextType, textSize: number) {
+       this.textContent = textContent;
+       this.textType = textType;
+       this.textSize = textSize;
+     }
+   
+     applyNormalAttribute(instance: TextAttribute): void {
+       ...
+     }
    }
    ```
 
-3. 页面引用自定义组件后，实例化使用。
+3. 使用者在页面import自定义组件后，初始化Image和Text的Modifier对象，然后作为参数传入自定义组件中。
 
    ```javascript
    // ShoppingCart.ets
    
-   import { BottomRow } from '../common/CommonText';
+   import { ImageText } from '../common/CommonText';
+   import { CommodityText, ImageModifier } from '../common/AttributeModifier';
    
-   build() {
-   	...
-         BottomRow({buttonName:$r('app.string.settlement')})
-   	...
-   }
-   
-   // Details.ets
-   
-   import { CommonText,BarType } from '../common/CommonText';
-   
-   build() {
-   	...
-         BottomRow({ buttonName: $r('app.string.buy_now'), barType: BarType.DETAILS })
-   	...
+   @Component
+   export struct ShoppingCart {
+     // TODO：知识点：初始化自定义的样式类
+   	@State textOne: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_ONE, 15);
+   	@State textTwo: CommodityText = new CommodityText($r('app.string.commodity_name'), TextType.TYPE_TWO, 17);
+   	@State textThree: CommodityText = new CommodityText($r('app.string.commodity_model'), TextType.TYPE_Three, 15);
+   	@State imageModifier: ImageModifier = new ImageModifier(100, 100,$r('app.media.icon'));
+   	build() {
+     		...
+   		ImageText({
+                     item: item,
+                     textOne: this.textOne,
+                     textTwo: this.textTwo,
+                     textThree: this.textThree,
+                     imageModifier: this.imageModifier
+                   })
+   		...
+   	}
    }
    ```
 
-   
-
-
-
 ### 高性能知识点
 
-本示例使用了动态属性设置，实现了跨文件样式复用，减少了工程很多冗余的代码。
+本示例使用了动态属性设置和自定义封装公共组件，实现了跨文件样式和组件复用，减少了工程很多冗余的代码。
 
 ### 工程结构&模块类型
 

@@ -13,12 +13,17 @@
  * limitations under the License.
  */
 
-import { MyTextModifier, MyRowModifier, MyButtonModifier } from '../common/AttributeModifier';
+import { CommodityText, BarModifier, ButtonModifier, CheckboxModifier,ImageModifier, TextType } from '../common/AttributeModifier';
 
-// 自定义公共组件
+const COLUMN_SPACE = 10; // column间隙
+const TEXT_SIZE = 12 // 自定义组件中text大小
+
+/**
+ * 自定义封装公共文本组件
+ */
 @Component
 export struct CommonText {
-  @State textFour: MyTextModifier | null = null;
+  @State textFour: CommodityText | null = null;
 
   build() {
     Row() {
@@ -35,24 +40,72 @@ export struct CommonText {
   }
 }
 
+/**
+ * 自定义封装底部bar组件
+ */
 @Component
-export struct BottomRow {
-  @State buttonModifie: MyButtonModifier = new MyButtonModifier();
-  @State rowModifie: MyRowModifier = new MyRowModifier();
-  @State buttonName: Resource = $r('app.string.settlement')
-  @State barType: BarType = BarType.SHOPPING_CART
+export struct BottomBar {
+  @State buttonModifier: ButtonModifier = new ButtonModifier();
+  @State barModifier: BarModifier = new BarModifier();
+  @State buttonName: Resource = $r('app.string.settlement');
+  @State barType: BarType = BarType.SHOPPING_CART;
 
   build() {
     Row() {
       if (this.barType === BarType.DETAILS) {
         Button($r('app.string.add_cart'))
-          .attributeModifier(this.buttonModifie)
+          .attributeModifier(this.buttonModifier)
           .margin({ right: $r('app.float.float_10') })
       }
       Button(this.buttonName)
-        .attributeModifier(this.buttonModifie)
+        .attributeModifier(this.buttonModifier)
     }
-    .attributeModifier(this.rowModifie)
+    .attributeModifier(this.barModifier)
+  }
+}
+
+/**
+ * 自定义封装图文组件
+ */
+@Component
+export struct ImageText {
+  @Prop item: string
+  @State textOne: CommodityText = new CommodityText('', TextType.TYPE_ONE, 0);
+  @State textTwo: CommodityText = new CommodityText('', TextType.TYPE_TWO, 0);
+  @State textThree: CommodityText = new CommodityText('', TextType.TYPE_Three, 0);
+  @State imageModifier: ImageModifier = new ImageModifier(0,0,$r('app.media.icon'));
+  @State checkboxModifier: CheckboxModifier = new CheckboxModifier();
+
+  build() {
+    Row() {
+      Row() {
+        Checkbox()
+          .attributeModifier(this.checkboxModifier)
+
+       Image(this.imageModifier.src)
+         .attributeModifier(this.imageModifier)
+
+      }
+      .margin({ right: $r('app.float.float_10'), bottom: $r('app.float.float_15') })
+
+      Column({ space: COLUMN_SPACE }) {
+        // TODO：高性能知识点：动态设置组件的属性
+        Text(this.item)
+          .attributeModifier(this.textTwo)
+
+        Text(this.textThree.textContent)
+          .attributeModifier(this.textThree)
+
+        CommonText({ textFour: new CommodityText('', TextType.TYPE_FOUR, TEXT_SIZE) })
+
+        Text(this.textOne.textContent)
+          .attributeModifier(this.textOne)
+          .fontColor($r('app.color.orange'))
+      }
+    }
+    .padding({ top: $r('app.float.float_5') })
+    .width($r('app.string.max_size'))
+    .height($r('app.string.max_size'))
   }
 }
 
