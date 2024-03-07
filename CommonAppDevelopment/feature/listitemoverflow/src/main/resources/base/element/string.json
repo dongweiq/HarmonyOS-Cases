@@ -14,7 +14,7 @@
     },
     {
       "name": "listitem_overflow_purse",
-      "value": "前包"
+      "value": "钱包"
     },
     {
       "name": "listitem_overflow_favorite",
@@ -31,6 +31,26 @@
     {
       "name": "listitem_overflow_logout",
       "value": "退出登录"
+    },
+    {
+      "name": "listitem_overflow_toast_no_edit",
+      "value": "编辑功能暂未开放"
+    },
+    {
+      "name": "listitem_overflow_toast_no_card",
+      "value": "未绑定银行卡"
+    },
+    {
+      "name": "listitem_overflow_toast_no_favorite",
+      "value": "没有收藏"
+    },
+    {
+      "name": "listitem_overflow_toast_no_settings",
+      "value": "无可设置的项目"
+    },
+    {
+      "name": "listitem_overflow_toast_about",
+      "value": "元素超出List区域案例"
     }
   ]
 }
