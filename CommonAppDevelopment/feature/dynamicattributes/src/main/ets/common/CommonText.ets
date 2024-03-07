@@ -12,8 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { CommodityText, BarModifier, ButtonModifier, CheckboxModifier,ImageModifier, TextType } from '../common/AttributeModifier';
+import { ButtonModifier, BarModifier, CommodityText, TextType } from './AttributeModifier';
 
 const COLUMN_SPACE = 10; // column间隙
 const TEXT_SIZE = 12 // 自定义组件中text大小
@@ -23,7 +22,7 @@ const TEXT_SIZE = 12 // 自定义组件中text大小
  */
 @Component
 export struct CommonText {
-  @State textFour: CommodityText | null = null;
+  @Prop textFour: AttributeModifier<TextAttribute>;
 
   build() {
     Row() {
@@ -45,10 +44,10 @@ export struct CommonText {
  */
 @Component
 export struct BottomBar {
-  @State buttonModifier: ButtonModifier = new ButtonModifier();
-  @State barModifier: BarModifier = new BarModifier();
-  @State buttonName: Resource = $r('app.string.settlement');
-  @State barType: BarType = BarType.SHOPPING_CART;
+  @Prop buttonModifier: AttributeModifier<ButtonAttribute>;
+  @Prop barModifier: AttributeModifier<RowAttribute>;
+  @Prop buttonName: Resource = $r('app.string.settlement');
+  @Prop barType: BarType = BarType.SHOPPING_CART;
 
   build() {
     Row() {
@@ -69,12 +68,17 @@ export struct BottomBar {
  */
 @Component
 export struct ImageText {
-  @Prop item: string
-  @State textOne: CommodityText = new CommodityText('', TextType.TYPE_ONE, 0);
-  @State textTwo: CommodityText = new CommodityText('', TextType.TYPE_TWO, 0);
-  @State textThree: CommodityText = new CommodityText('', TextType.TYPE_Three, 0);
-  @State imageModifier: ImageModifier = new ImageModifier(0,0,$r('app.media.icon'));
-  @State checkboxModifier: CheckboxModifier = new CheckboxModifier();
+  @Prop item: string;
+  // 接受外部传入的AttributeModifier类实例
+  @Prop textOne: AttributeModifier<TextAttribute>;
+  @Prop textTwo: AttributeModifier<TextAttribute>;
+  @Prop textThree: AttributeModifier<TextAttribute>;
+  @Prop imageModifier: AttributeModifier<ImageAttribute>;
+  @Prop checkboxModifier: AttributeModifier<CheckboxAttribute>;
+  @Prop imageSrc: PixelMap | ResourceStr | DrawableDescriptor;
+  @Prop textOneContent: string | Resource;
+  @Prop textTwoContent: string | Resource;
+  @Prop textThreeContent: string | Resource;
 
   build() {
     Row() {
@@ -82,23 +86,24 @@ export struct ImageText {
         Checkbox()
           .attributeModifier(this.checkboxModifier)
 
-       Image(this.imageModifier.src)
-         .attributeModifier(this.imageModifier)
-
+        // TODO：知识点：AttributeModifier不支持入参为CustomBuilder或Lamda表达式的属性，且不支持事件和手势。image和text只能单独通过入参传递使用。
+        Image(this.imageSrc)
+          .attributeModifier(this.imageModifier)
       }
+
       .margin({ right: $r('app.float.float_10'), bottom: $r('app.float.float_15') })
 
       Column({ space: COLUMN_SPACE }) {
-        // TODO：高性能知识点：动态设置组件的属性
+        // TODO：高性能知识点：将入参的AttributeModifier类实例与系统组件绑定
         Text(this.item)
           .attributeModifier(this.textTwo)
 
-        Text(this.textThree.textContent)
+        Text(this.textThreeContent)
           .attributeModifier(this.textThree)
 
-        CommonText({ textFour: new CommodityText('', TextType.TYPE_FOUR, TEXT_SIZE) })
+        CommonText({ textFour: new CommodityText(TextType.TYPE_FOUR, TEXT_SIZE) })
 
-        Text(this.textOne.textContent)
+        Text(this.textOneContent)
           .attributeModifier(this.textOne)
           .fontColor($r('app.color.orange'))
       }

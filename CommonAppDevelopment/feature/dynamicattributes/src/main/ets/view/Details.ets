@@ -12,28 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { CommodityText, BarModifier, CheckboxModifier, TextType, ImageModifier } from '../common/AttributeModifier';
-import { CommonText, BottomBar, BarType } from '../common/CommonText';
+import { CommodityText, BarModifier, TextType, ImageModifier, ButtonModifier } from '../common/AttributeModifier';
+import { BarType, BottomBar, CommonText } from '../common/CommonText';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 const COLUMN_SPACE = 20; // column间隙
 const TEXT_SIZE = 15; // 自定义组件中text大小
 
+@Entry
 @Component
 export struct Details {
   // TODO：知识点：实例化自定义的样式类
   @State rowModifie: BarModifier = new BarModifier();
-  @State textOne: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_ONE, 30);
-  @State textTwo: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_TWO, 20);
-  @State textThree: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_Three, 20);
-  @State textFour: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_FOUR, 15);
-  @State imageModifier: ImageModifier = new ImageModifier($r('app.string.max_size'), $r('app.string.image_proportion'), $r('app.media.icon'));
+  @State textOne: CommodityText = new CommodityText(TextType.TYPE_ONE, 30);
+  @State textTwo: CommodityText = new CommodityText(TextType.TYPE_TWO, 20);
+  @State textThree: CommodityText = new CommodityText(TextType.TYPE_Three, 20);
+  @State textFour: CommodityText = new CommodityText(TextType.TYPE_FOUR, 15);
+  @State imageModifier: ImageModifier = new ImageModifier($r('app.string.max_size'), $r('app.string.image_proportion'));
 
   build() {
     Stack({ alignContent: Alignment.Bottom }) {
       Column() {
         // 商品图片
-        Image(this.imageModifier.src)
+        Image($r('app.media.icon'))
           .attributeModifier(this.imageModifier)
 
         // 商品详情区
@@ -69,7 +70,7 @@ export struct Details {
             Text($r('app.string.commodity_model'))
               .attributeModifier(this.textThree)
 
-            CommonText({ textFour: new CommodityText($r('app.string.commodity_price'), TextType.TYPE_FOUR, TEXT_SIZE) })
+            CommonText({ textFour: new CommodityText(TextType.TYPE_FOUR, TEXT_SIZE) })
           }
           .backgroundColor($r('app.color.white'))
           .padding($r('app.float.float_10'))
@@ -85,7 +86,12 @@ export struct Details {
       .height($r('app.string.max_size'))
 
       // 底部购买区
-      BottomBar({ buttonName: $r('app.string.buy_now'), barType: BarType.DETAILS })
+      BottomBar({
+        buttonModifier: new ButtonModifier(),
+        barModifier: new BarModifier(),
+        buttonName: $r('app.string.settlement'),
+        barType:BarType.DETAILS
+      })
     }
   }
 }

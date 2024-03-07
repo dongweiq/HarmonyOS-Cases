@@ -30,15 +30,13 @@ export class ButtonModifier implements AttributeModifier<ButtonAttribute> {
 }
 
 /*
-    自定义class实现Text的AttributeModifier接口
+  自定义class实现Text的AttributeModifier接口
 */
 export class CommodityText implements AttributeModifier<TextAttribute> {
-  textContent: string | Resource = ''
   textType: TextType = TextType.TYPE_ONE;
   textSize: number = 15;
 
-  constructor(textContent: string | Resource, textType: TextType, textSize: number) {
-    this.textContent = textContent;
+  constructor(textType: TextType, textSize: number) {
     this.textType = textType;
     this.textSize = textSize;
   }
@@ -70,17 +68,15 @@ export class CommodityText implements AttributeModifier<TextAttribute> {
 }
 
 /*
-   自定义class实现Image组件的AttributeModifier接口
+  自定义class实现Image组件的AttributeModifier接口
 */
 export class ImageModifier implements AttributeModifier<ImageAttribute> {
   width: Length | Resource = 0;
   height: Length | Resource = 0;
-  src: PixelMap | Resource = $r('app.media.icon');
 
-  constructor(width: Length | Resource, height: Length | Resource, src: PixelMap | Resource) {
+  constructor(width: Length | Resource, height: Length | Resource) {
     this.width = width;
     this.height = height;
-    this.src = src;
   }
 
   applyNormalAttribute(instance: ImageAttribute): void {

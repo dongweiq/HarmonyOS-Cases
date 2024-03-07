@@ -13,27 +13,30 @@
  * limitations under the License.
  */
 import { MyDataSource } from '../common/LazyForEach';
-import { CommodityText, BarModifier, CheckboxModifier, TextType, ImageModifier } from '../common/AttributeModifier';
-import { Details } from './Details';
+import { CommodityText,BarModifier,CheckboxModifier,TextType,ImageModifier,ButtonModifier } from '../common/AttributeModifier';
 import { BottomBar, ImageText } from '../common/CommonText';
+import { Details } from './Details';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /*
  * 实现步骤：
- * 1.提供者自定义class实现Attribution接口和自定义组件，export导出。
- * 2.使用者import引入Attribution类和自定义组件到页面，实例化Attribution类。
- * 3.使用者在组件使用attributeModifier属性使用Attribution接口中封装的公共样式。
+ * 一、跨文件样式复用
+ * 1.提供方创建AttributeModifier接口的实现类。
+ * 2.使用方创建提供方的AttributeModifier实现类实例，并作为系统组件attributeModifier属性方法的参数传入
+ * 二、跨文件组件复用
+ * 1.提供方在公共组件库中创建公用的自定义组件，该组件支持外部传入attributeModifier属性。
+ * 2.使用方分别实现Image组件和Text组件的AttributeModifier接口实现类。
+ * 3.使用方创建Image组件和Text组件的AttributeModifier接口实现类实例，并作为提供方自定义组件CustomImageText的入参传入。
  * */
 
 @Component
 export struct ShoppingCart {
   private data: MyDataSource = new MyDataSource();
-  // TODO：知识点：实例化自定义的样式类
-  @State rowModifier: BarModifier = new BarModifier();
-  @State textOne: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_ONE, 15);
-  @State textTwo: CommodityText = new CommodityText($r('app.string.commodity_name'), TextType.TYPE_TWO, 17);
-  @State textThree: CommodityText = new CommodityText($r('app.string.commodity_model'), TextType.TYPE_Three, 15);
-  @State imageModifier: ImageModifier = new ImageModifier($r('app.float.float_100'), $r('app.float.float_100'), $r('app.media.icon'));
+  // TODO：知识点：使用方创建提供方的AttributeModifier实现类实例
+  @State textOne: CommodityText = new CommodityText(TextType.TYPE_ONE, 15);
+  @State textTwo: CommodityText = new CommodityText(TextType.TYPE_TWO, 17);
+  @State textThree: CommodityText = new CommodityText(TextType.TYPE_Three, 15);
+  @State imageModifier: ImageModifier = new ImageModifier($r('app.float.float_100'), $r('app.float.float_100'));
   @State checkboxModifier: CheckboxModifier = new CheckboxModifier();
 
   aboutToAppear() {
@@ -83,12 +86,18 @@ export struct ShoppingCart {
                 .height($r('app.float.float_20'))
 
                 // 商品信息
+                // TODO：知识点 AttributeModifier实例作为提供方自定义组件ImageText的入参传入。
                 ImageText({
                   item: item,
                   textOne: this.textOne,
                   textTwo: this.textTwo,
                   textThree: this.textThree,
-                  imageModifier: this.imageModifier
+                  imageModifier: this.imageModifier,
+                  imageSrc: $r('app.media.icon'),
+                  checkboxModifier: this.checkboxModifier,
+                  textOneContent: $r('app.string.commodity_price'),
+                  textTwoContent: $r('app.string.commodity_name'),
+                  textThreeContent: $r('app.string.commodity_model')
                 })
                   .onClick(() => {
                     // 动态路由跳转
@@ -111,7 +120,11 @@ export struct ShoppingCart {
         .backgroundColor($r('sys.color.ohos_id_color_component_normal'))
       }
 
-      BottomBar({ buttonName: $r('app.string.settlement') })
+      BottomBar({
+        buttonModifier: new ButtonModifier(),
+        barModifier: new BarModifier(),
+        buttonName: $r('app.string.settlement')
+      })
     }
   }
 }

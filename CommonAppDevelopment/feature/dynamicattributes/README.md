@@ -20,21 +20,19 @@
 
    适用场景：当需要向外提供单一组件的样式定制效果时，推荐使用这种方案。使用方在调用接口时，编码量相对方式二更少，仅需几行即可完成调用，使用便捷。
 
-1. 提供者自定义class实现AttributeModifier接口，export导出。
+1. 提供方创建AttributeModifier接口的实现类。
 
    ```javascript
    // attributeModifier.ets
    
    /*
-       自定义class实现Text的AttributeModifier接口
+     自定义class实现Text的AttributeModifier接口
    */
    export class CommodityText implements AttributeModifier<TextAttribute> {
-     textContent: string | Resource = ''
      textType: TextType = TextType.TYPE_ONE;
      textSize: number = 15;
    
-     constructor(textContent: string | Resource, textType: TextType, textSize: number) {
-       this.textContent = textContent;
+     constructor( textType: TextType, textSize: number) {
        this.textType = textType;
        this.textSize = textSize;
      }
@@ -64,7 +62,6 @@
        }
      }
    }
-   
    /*
      枚举文本类型
    */
@@ -74,93 +71,98 @@
      TYPE_Three,
      TYPE_FOUR
    }
-   
    ```
 
-2. 使用者import自定义的AttributeModifier类到ets页面，实例化赋值给变量。
+2. 使用方创建提供方的AttributeModifier实现类实例，并作为系统组件attributeModifier属性方法的参数传入。
 
    ```javascript
-   // CommonText.ets
+   // ShoppingCart.ets
    import { CommodityText } from '../common/attributeModifier';
    
    @Component
-     struct ImageText {
-     // 自定义组件实例化AttributeModifie类，向外暴露Text的Modifier属性
-     @State textOne: CommodityText = new CommodityText('', TextType.TYPE_ONE, 0);
+   export struct Details {
+     // 使用方创建提供方的AttributeModifier实现类实例
+     @State textOne: CommodityText = new CommodityText(TextType.TYPE_ONE, 15);
+     ...    
+     build(){
+   	...
+   	Text($r('app.string.store_name'))
+   	 // TODO：高性能知识点：将入参的AttributeModifier类实例与系统组件绑定
+   	 .attributeModifier(this.textOne)
+   	 .fontColor($r('sys.color.ohos_id_counter_title_font_color'))
+   	...
+     }
    }
    
    // Details.ets
-   import { MyTextModifier } from '../common/attributeModifier';
+   import { CommodityText } from '../common/attributeModifier';
    
    @Component
-     struct Details {
-     // 实例化AttributeModifie类
+   export struct Details {
+     // 使用方创建提供方的AttributeModifier实现类实例
      @State textOne: MyTextModifier = new MyTextModifier(TextType.TYPE_ONE, 30);
      ...    
-   }
-   ```
-
-3. 使用者给组件设置attributeModifier属性，调用AttributeModifier类中定义的样式。
-
-   ```javascript
-   // CommonText.ets
-   
-    Text(this.textOne.textContent)
-   	// 动态设置组件样式
-   	.attributeModifier(this.textOne)
-   	.fontColor($r('app.color.orange'))
-   
-   // Details.ets
-    Text($r('app.string.commodity_price'))
-   	// 动态设置组件样式
+     build(){
+   	...
+   	Text($r('app.string.commodity_price'))
+   	 // 动态设置组件样式
    	.attributeModifier(this.textOne)
    	.width($r('app.float.float_100'))
+   	...
+     }
+   }
    ```
 
 #### 二、跨文件组件复用
 
 ​	适用场景：适用于多个原生组件结合的场景，如Image+Text等复合自定义组件。
 
-1. 提供者自定义封装组件，export导出。
+1. 提供方在公共组件库中创建公用的自定义组件，该组件支持外部传入attributeModifier属性。
 
    ```javascript
-   // CommonTextr.ets
+   //CommonText.ets
    
-   /**
+   **
     * 自定义封装图文组件
     */
    @Component
    export struct ImageText {
-     @Prop item: string
-     @State textOne: CommodityText = new CommodityText('', TextType.TYPE_ONE, 0);
-     @State textTwo: CommodityText = new CommodityText('', TextType.TYPE_TWO, 0);
-     @State textThree: CommodityText = new CommodityText('', TextType.TYPE_Three, 0);
-     @State imageModifier: ImageModifier = new ImageModifier(0,0,$r('app.media.icon'));
-     @State checkboxModifier: CheckboxModifier = new CheckboxModifier();
+     @Prop item: string;  
+     // 接受外部传入的AttributeModifier类实例
+     @Prop textOne: AttributeModifier<TextAttribute>;
+     @Prop textTwo: AttributeModifier<TextAttribute>;
+     @Prop textThree: AttributeModifier<TextAttribute>;
+     @Prop imageModifier: AttributeModifier<ImageAttribute>;
+     @Prop checkboxModifier: AttributeModifier<CheckboxAttribute>;
+     @Prop imageSrc: PixelMap | ResourceStr | DrawableDescriptor;
+     @Prop textOneContent: string | Resource;
+     @Prop textTwoContent: string | Resource;
+     @Prop textThreeContent: string | Resource;
    
      build() {
        Row() {
          Row() {
            Checkbox()
+              // TODO：高性能知识点：将入参的AttributeModifier类实例与系统组件绑定
              .attributeModifier(this.checkboxModifier)
-   
-          Image(this.imageModifier.src)
-            .attributeModifier(this.imageModifier)
-   
+             
+           Image(this.imageSrc)
+             .attributeModifier(this.imageModifier)
          }
+   
          .margin({ right: $r('app.float.float_10'), bottom: $r('app.float.float_15') })
    
          Column({ space: COLUMN_SPACE }) {
-           // TODO：高性能知识点：动态设置组件的属性
+           // TODO：知识点：AttributeModifier不支持入参为CustomBuilder或Lamda表达式的属性，且不支持事件和手势。text只能单独通过入参传递使用。
            Text(this.item)
              .attributeModifier(this.textTwo)
    
-           Text(this.textThree.textContent)
+           Text(this.textThreeContent)
              .attributeModifier(this.textThree)
    
-           CommonText({ textFour: new CommodityText('', TextType.TYPE_FOUR, TEXT_SIZE) })
+           CommonText({ textFour: new CommodityText(TextType.TYPE_FOUR, TEXT_SIZE) })
    
-           Text(this.textOne.textContent)
+           Text(this.textOneContent)
              .attributeModifier(this.textOne)
              .fontColor($r('app.color.orange'))
          }
@@ -172,24 +174,21 @@
    }
    ```
 
-2. 提供者实现Image和text的Modifier类，实现宽、高等属性的设置。
+   
+
+2. 使用方分别实现Image组件和Text组件的AttributeModifier接口实现类。
 
    ```javascript
-   // AttributeModifier.ets
-   import { MyRowModifier, MyButtonModifier } from '../common/AttributeModifier';
-   
    /*
-      自定义class实现Image组件的AttributeModifier接口
+     自定义class实现Image组件的AttributeModifier接口
    */
    export class ImageModifier implements AttributeModifier<ImageAttribute> {
      width: Length | Resource = 0;
      height: Length | Resource = 0;
-     src: PixelMap | Resource = $r('app.media.icon');
    
-     constructor(width: Length | Resource, height: Length | Resource, src: PixelMap | Resource) {
+     constructor(width: Length | Resource, height: Length | Resource) {
        this.width = width;
        this.height = height;
-       this.src = src;
      }
    
      applyNormalAttribute(instance: ImageAttribute): void {
@@ -200,53 +199,48 @@
    }
    
    /*
-   	自定义class实现Text的AttributeModifier接口
+     自定义class实现Text的AttributeModifier接口
    */
    export class CommodityText implements AttributeModifier<TextAttribute> {
-     textContent: string | Resource = ''
-     textType: TextType = TextType.TYPE_ONE;
-     textSize: number = 15;
-   
-     constructor(textContent: string | Resource, textType: TextType, textSize: number) {
-       this.textContent = textContent;
-       this.textType = textType;
-       this.textSize = textSize;
-     }
-   
-     applyNormalAttribute(instance: TextAttribute): void {
-       ...
-     }
+     ...
    }
    ```
 
-3. 使用者在页面import自定义组件后，初始化Image和Text的Modifier对象，然后作为参数传入自定义组件中。
+   
+
+3. 使用方创建Image组件和Text组件的AttributeModifier接口实现类实例，并作为提供方自定义组件CustomImageText的入参传入。
 
    ```javascript
-   // ShoppingCart.ets
-   
-   import { ImageText } from '../common/CommonText';
-   import { CommodityText, ImageModifier } from '../common/AttributeModifier';
-   
    @Component
    export struct ShoppingCart {
-     // TODO：知识点：初始化自定义的样式类
-   	@State textOne: CommodityText = new CommodityText($r('app.string.commodity_price'), TextType.TYPE_ONE, 15);
-   	@State textTwo: CommodityText = new CommodityText($r('app.string.commodity_name'), TextType.TYPE_TWO, 17);
-   	@State textThree: CommodityText = new CommodityText($r('app.string.commodity_model'), TextType.TYPE_Three, 15);
-   	@State imageModifier: ImageModifier = new ImageModifier(100, 100,$r('app.media.icon'));
-   	build() {
-     		...
-   		ImageText({
-                     item: item,
-                     textOne: this.textOne,
-                     textTwo: this.textTwo,
-                     textThree: this.textThree,
-                     imageModifier: this.imageModifier
-                   })
-   		...
-   	}
+     // TODO：知识点：使用方创建Image组件和Text组件的AttributeModifier接口实现类实例
+     @State textOne: CommodityText = new CommodityText(TextType.TYPE_ONE, 15);
+     @State textTwo: CommodityText = new CommodityText(TextType.TYPE_TWO, 17);
+     @State textThree: CommodityText = new CommodityText(TextType.TYPE_Three, 15);
+     @State imageModifier: ImageModifier = new ImageModifier($r('app.float.float_100'), $r('app.float.float_100'));
+     @State checkboxModifier: CheckboxModifier = new CheckboxModifier();
+   
+     build() {
+           ...
+           // AttributeModifier实例作为提供方自定义组件ImageText的入参传入。
+           ImageText({
+           item: item,
+           textOne: this.textOne,
+           textTwo: this.textTwo,
+           textThree: this.textThree,
+           imageModifier: this.imageModifier,
+           imageSrc: $r('app.media.icon'),
+           checkboxModifier: this.checkboxModifier,
+           textOneContent: $r('app.string.commodity_price'),
+           textTwoContent: $r('app.string.commodity_name'),
+           textThreeContent: $r('app.string.commodity_model')
+           })
+           ... 
+     }
    }
    ```
+
+   
 
 ### 高性能知识点
 
@@ -271,3 +265,5 @@
 ### 参考资料
 
 [动态属性设置]([动态属性设置-通用属性-组件通用信息-基于ArkTS的声明式开发范式-ArkTS组件-ArkUI API参考-开发 | 华为开发者联盟 (huawei.com)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-attribute-modifier-0000001774280870#ZH-CN_TOPIC_0000001774280870__attributemodifier))
+
+[ArkUI组件封装及复用场景介绍]([ArkUI组件封装及复用场景介绍-更多参考-最佳实践 | 华为开发者联盟 (huawei.com)](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ui-component-encapsulation-and-reuse-0000001814743802))
