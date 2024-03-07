@@ -76,6 +76,8 @@
    |   |---diggingholescreen           // 适配挖孔屏案例
    |   |---dragtoswitchpictures        // 左右拖动切换图片效果案例
    |   |---listitemoverflow            // 元素超出List区域
+   |   |---multiplefilesdownload       // 多文件下载监听案例
+   |   |---searchcomponent             // 搜索页一镜到底案例
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -391,6 +393,17 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/listitem_overflow.jpg" width="200">
 
+#### 多文件下载监听案例
+
+本示例介绍如何使用request上传下载模块实现多文件下载监听，如监听每个文件下载任务的进度，下载暂停，下载完成等文件下载情况。[详细说明文档](./CommonAppDevelopment/feature/multiplefilesdownload/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/multiple_files_download.gif" width="200">
+
+#### 搜索页一镜到底案例
+
+本示例介绍使用bindContentCover、transition、animateTo实现一镜到底转场动画，常用于首页搜索框点击进入搜索页场景。[详细说明文档](./CommonAppDevelopment/feature/searchcomponent/README_transition.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/search_trasition.gif" width="200">
 
 ### 公共能力层
 
