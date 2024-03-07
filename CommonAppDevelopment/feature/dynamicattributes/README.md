@@ -122,7 +122,7 @@
    ```javascript
    //CommonText.ets
    
-   **
+   /**
     * 自定义封装图文组件
     */
    @Component
@@ -149,7 +149,6 @@
            Image(this.imageSrc)
              .attributeModifier(this.imageModifier)
          }
-   
          .margin({ right: $r('app.float.float_10'), bottom: $r('app.float.float_15') })
    
          Column({ space: COLUMN_SPACE }) {
