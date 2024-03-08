@@ -261,6 +261,10 @@
       "srcPath": "./feature/pageloading"
     },
     {
+      "name": "hilogmonitormanagement",
+      "srcPath": "./feature/logcallback"
+    },
+    {
       "name": "bigfilecopy",
       "srcPath": "./feature/bigfilecopy"
     },

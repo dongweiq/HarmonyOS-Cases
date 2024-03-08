@@ -119,6 +119,8 @@
     "@ohos/listslidetohistory": "file:../../feature/listslidetohistory",
     // 页面加载效果实现案例
     "@ohos/pageloading": "file:../../feature/pageloading",
+    // 监听HiLog日志实现测试用例验证
+    "@ohos/hilogmonitormanagement": "file:../../feature/logcallback",
     // 大文件拷贝案例
     "@ohos/bigfilecopy": "file:../../feature/bigfilecopy",
     // 适配挖孔屏案例
