@@ -79,7 +79,8 @@
           "@ohos/dragtoswitchpictures",
           "@ohos/listitemoverflow",
           "@ohos/componentinstancesharedinpages",
-          "@ohos/customsafekeyboard"
+          "@ohos/customsafekeyboard",
+          "@ohos/databaseupgrade"
         ]
       }
     }

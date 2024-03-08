@@ -79,4 +79,5 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.listitem_overflow"), '元素超出List区域', RouterInfo.LIST_ITEM_OVERFLOW, 'UI布局'),
   new SceneModuleInfo($r("app.media.componentinstancesharedinpages"), '页面间共享组件实例的案例', RouterInfo.COMPONENT_SHARED_IN_PAGES, 'UI布局'),
   new SceneModuleInfo($r("app.media.custom_safe_keyboard"), '自定义安全键盘案例', RouterInfo.CUSTOM_SAFE_KEYBOARD, 'UI布局'),
+  new SceneModuleInfo($r("app.media.database_upgrade"), '数据库版本升级案例', RouterInfo.DATABASE_UPGRADE, '其他', 3),
 ]
