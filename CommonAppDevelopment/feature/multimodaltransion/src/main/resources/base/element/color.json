@@ -1,0 +1,52 @@
+{
+  "color": [
+    {
+      "name": "main_bkg",
+      "value": "#ffa7c8"
+    },
+    {
+      "name": "grey_3",
+      "value": "#777777"
+    },
+    {
+      "name": "transparent_f",
+      "value": "#00ffffff"
+    },
+    {
+      "name": "transparent_7",
+      "value": "#00777777"
+    },
+    {
+      "name": "grey_e",
+      "value": "#eeeeee"
+    },
+    {
+      "name": "grey_6",
+      "value": "#666666"
+    },
+    {
+      "name": "grey_9",
+      "value": "#999999"
+    },
+    {
+      "name": "red",
+      "value": "#E72A2B"
+    },
+    {
+      "name": "grey_7",
+      "value": "#777777"
+    },
+    {
+      "name": "btn_bgc",
+      "value": "#FEFEFE"
+    },
+    {
+      "name": "half_modal_btn_bgc",
+      "value": "#A3A3A3"
+    },
+    {
+      "name": "border_color",
+      "value": "#9F9F9F"
+    }
+  ]
+}

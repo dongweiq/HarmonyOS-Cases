@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "multimodaltransion",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1"
+    ]
+  }
+}

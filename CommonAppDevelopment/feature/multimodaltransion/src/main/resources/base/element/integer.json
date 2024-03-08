@@ -1,0 +1,100 @@
+{
+  "integer": [
+    {
+      "name": "border_radius",
+      "value": 1
+    },
+    {
+      "name": "border_radius_mid",
+      "value": 16
+    },
+    {
+      "name": "other_ways_border_radius",
+      "value": 16
+    },
+    {
+      "name": "duration",
+      "value": 800
+    },
+    {
+      "name": "user_image_height",
+      "value": 40
+    },
+    {
+      "name": "font_size_middle",
+      "value": 25
+    },
+    {
+      "name": "font_size_big",
+      "value": 25
+    },
+    {
+      "name": "padding_default",
+      "value": 12
+    },
+    {
+      "name": "padding_to_top",
+      "value": 100
+    },
+    {
+      "name": "padding_mid",
+      "value": 20
+    },
+    {
+      "name": "height_fifty",
+      "value": 50
+    },
+    {
+      "name": "height_twenty_five",
+      "value": 20
+    },
+    {
+      "name": "margin_default",
+      "value": 10
+    },
+    {
+      "name": "margin_close_top",
+      "value": 50
+    },
+    {
+      "name": "margin_close_left",
+      "value": 20
+    },
+    {
+      "name": "margin_left",
+      "value": 20
+    },
+    {
+      "name": "padding_top",
+      "value": 100
+    },
+    {
+      "name": "other_ways_icon_height",
+      "value": 32
+    },
+    {
+      "name": "arrow_right_height",
+      "value": 16
+    },
+    {
+      "name": "row_padding_bottom",
+      "value": 10
+    },
+    {
+      "name": "row_padding_top",
+      "value": 10
+    },
+    {
+      "name": "row_text_font_size",
+      "value": 15
+    },
+    {
+      "name": "check_box_size",
+      "value": 15
+    },
+    {
+      "name": "padding_top_size",
+      "value": 100
+    }
+  ]
+}
