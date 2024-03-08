@@ -15,6 +15,10 @@
     {
       "name": "save_edit",
       "value": "保存"
+    },
+    {
+      "name": "edit_toast",
+      "value": "保存成功"
     }
   ]
 }

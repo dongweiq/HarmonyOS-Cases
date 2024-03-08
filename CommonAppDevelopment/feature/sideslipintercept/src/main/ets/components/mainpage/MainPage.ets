@@ -50,6 +50,7 @@ export struct SideslipIntercept {
 
 
   @Builder textArea(name: string) {
+    // TODO：知识点：功能是以har的形式集成在主工程中，没有@Entry修饰的组件，无法使用@Entry组件的onBackPress生命周期函数；而在NavDestination中实现，原因是有onBackPressed回调。
     NavDestination() {
       Column() {
         TextArea({
@@ -108,6 +109,9 @@ export struct SideslipIntercept {
                   if (err) {
                     return;
                   }
+                  promptAction.showToast({
+                    message: $r('app.string.edit_toast')
+                  })
                 })
               }
             })
@@ -125,7 +129,7 @@ export struct SideslipIntercept {
 
   // 上层navigation用来管理页面,navigation是空的，在onAppear回调时直接跳转到主页面
   build() {
-    Column() {
+      // 应用主页用NavDestination承载，用于显示Navigation的内容区
       Navigation(this.pageStackForComponentSharedPages) {
       }
       .onAppear(() => {
@@ -133,9 +137,6 @@ export struct SideslipIntercept {
       })
       // 创建NavDestination组件，需使用此组件的onBackPressed回调拦截返回事件
       .navDestination(this.textArea)
-    }
-    .width('100%')
-    .height('100%')
   }
 }
 
