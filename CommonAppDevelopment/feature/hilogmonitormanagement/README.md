@@ -26,7 +26,7 @@
        napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
        // 解析要过滤的日志
        size_t logSize;
-       napi_get_value_string_utf8(env, args[0], logToFiter, MAX_LOG_LEN, &logSize);
+       napi_get_value_string_utf8(env, args[0], logToFilter, MAX_LOG_LEN, &logSize);
    
        // 解析ArkTS端的回调函数
        napi_valuetype valueType = napi_undefined;
@@ -52,7 +52,7 @@
                     const char *msg) {
     std::string strMsg(msg, strlen(msg) + 1);    
     // TODO: 知识点： 过滤要查找的日志
-    size_t foundIndex = strMsg.find(logToFiter);
+    size_t foundIndex = strMsg.find(logToFilter);
     if(foundIndex != -1) {
         // ArkTS回调函数
         napi_value callback = nullptr;

@@ -262,7 +262,7 @@
     },
     {
       "name": "hilogmonitormanagement",
-      "srcPath": "./feature/logcallback"
+      "srcPath": "./feature/hilogmonitormanagement"
     },
     {
       "name": "bigfilecopy",
