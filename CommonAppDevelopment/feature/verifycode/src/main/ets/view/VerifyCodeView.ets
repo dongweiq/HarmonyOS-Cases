@@ -13,12 +13,11 @@
  * limitations under the License.
  */
 
-import promptAction from '@ohos.promptAction';
 import { inputMethod } from '@kit.IMEKit';
-import { Logger } from '../utils/Logger';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { VerifyCodeConstants } from '../constants/VerifyCodeConstants';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
+import { logger } from '@ohos/common';
 
 @Extend(Text)
 function verifyCodeUnitStyle() {
@@ -39,61 +38,60 @@ function verifyCodeUnitStyle() {
 struct VerifyCodeComponentWithoutCursor {
   @State codeText: string = "";
   private inputController: inputMethod.InputMethodController = inputMethod.getController();
-  private isAttached: boolean = false;
   private verifyCodeLength: number = 6;
+  private textConfig: inputMethod.TextConfig = {
+    inputAttribute: {
+      textInputType: inputMethod.TextInputType.NUMBER,
+      enterKeyType: inputMethod.EnterKeyType.GO
+    },
+  };
   private codeIndexArray: Array<number> = Array.from([0, 1, 2, 3, 4, 5]);
 
-  // TODO 知识点：在aboutToAppear与aboutToDisappear回调中对输入法进行绑定与解绑
-  aboutToAppear(): void {
-    this.setAttachAndListener()
-  }
-
   aboutToDisappear(): void {
-    if (this.isAttached) {
-      return;
-    }
-    this.inputController.detach((err: BusinessError) => {
-      Logger.error("Failed to detach: %{public}s", err.message);
-    })
+    this.dettach();
   }
 
   /**
    * TODO 知识点：绑定输入法并订阅输入法相关事件
    */
-  async setAttachAndListener() {
-    if (this.isAttached) {
-      return;
-    }
-    let textConfig: inputMethod.TextConfig = {
-      inputAttribute: {
-        textInputType: inputMethod.TextInputType.NUMBER,
-        enterKeyType: inputMethod.EnterKeyType.GO
-      },
-    };
-    // 绑定控件输入法
-    await this.inputController.attach(true, textConfig);
-    this.isAttached = true;
-    this.attachListener();
+  async attach() {
+    await this.inputController.attach(true, this.textConfig);
+    logger.info("attached");
   }
 
   /**
    * TODO 知识点：订阅输入法代插入、向左删除事件，从而获得键盘输入内容
    */
-  attachListener() {
+  listen() {
     this.inputController.on("insertText", (text: string) => {
       if (this.codeText.length >= this.verifyCodeLength) {
         return;
       }
       this.codeText += text;
       if (this.codeText.length === this.verifyCodeLength) {
-        Logger.info("VerifyCode: %{public}s", this.codeText);
+        logger.info("VerifyCode: %{public}s", this.codeText);
       }
-      Logger.info("VerifyCode [insert]: %{public}s", this.codeText);
+      logger.info("VerifyCode [insert]: %{public}s", this.codeText);
     })
     this.inputController.on("deleteLeft", (length: number) => {
       this.codeText = this.codeText.substring(0, this.codeText.length - 1);
-      Logger.info("VerifyCode [delete left]: %{public}s", this.codeText);
+      logger.info("VerifyCode [delete left]: %{public}s", this.codeText);
     })
+    logger.info("listener added");
+  }
+
+  /**
+   * TODO：知识点：解绑
+   */
+  dettach(): void {
+    this.inputController.off("insertText");
+    this.inputController.off("deleteLeft");
+    this.inputController.detach((err: BusinessError) => {
+      if (err) {
+        logger.error(err.message);
+      }
+    })
+    logger.info("dettached");
   }
 
   /**
@@ -107,13 +105,26 @@ struct VerifyCodeComponentWithoutCursor {
           .verifyCodeUnitStyle()
       }, (item: number, index: number) => item.toString())
     }
+    /**
+     * TODO：知识点：当可视面积变化时进行绑定注册与解绑
+     */
+    .onVisibleAreaChange([0.0, 1, 0], async (isVisible: boolean, currentRatio: number) => {
+      if (isVisible && currentRatio >= 1.0) {
+        await this.attach();
+        this.listen();
+      }
+      if (!isVisible && currentRatio <= 0.0) {
+        this.dettach();
+      }
+    })
     .backgroundColor(Color.Transparent)
     .height($r("app.integer.verify_code_height"))
     .margin({ left: $r("sys.float.ohos_id_card_margin_start"), right: $r("sys.float.ohos_id_card_margin_start") })
     .defaultFocus(true)
     .onClick(() => {
-      // TODO 知识点：点击本组件时弹出输入法
-      this.inputController.showTextInput();
+      // TODO 知识点：点击本组件时弹出输入法，因为这里使用的是Text组件，因此需要重新attach，而不能直接使用showSoftKeyboard
+      this.attach();
+      logger.info("reattached");
     })
   }
 
@@ -146,4 +157,4 @@ export function getVerifyCodeView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.VERIFY_CODE,wrapBuilder(getVerifyCodeView));
+DynamicsRouter.registerRouterPage(RouterInfo.VERIFY_CODE, wrapBuilder(getVerifyCodeView));
