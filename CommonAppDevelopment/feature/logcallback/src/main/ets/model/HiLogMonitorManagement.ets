@@ -13,4 +13,22 @@
  * limitations under the License.
  */
 
-export { HiLogMonitorManagement } from "./src/main/ets/model/HiLogMonitorManagement";
+/**
+ * 1. 通过调用Native的setLogCallback接口实现日志回调注册
+ * 2. 通过调用Native的CancelCallback接口实现关闭日志回调
+ */
+
+import testNapi from 'liblogcallback.so';
+
+export class HiLogMonitorManagement {
+
+  // TODO: 知识点： 注册日志回调函数
+  registerCallback(strLog: string, callBack : Function) : void {
+    testNapi.setLogCallback(strLog, callBack);
+  }
+
+  // TODO: 知识点： 关闭日志回调
+  cancelCallback() : void {
+    testNapi.cancelLogCallback();
+  }
+}

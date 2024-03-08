@@ -14,7 +14,7 @@
  */
 
 {
-  "name": "logcallback",
+  "name": "hilogmonitormanagement",
   "version": "1.0.0",
   "description": "Please describe the basic information.",
   "main": "Index.ets",

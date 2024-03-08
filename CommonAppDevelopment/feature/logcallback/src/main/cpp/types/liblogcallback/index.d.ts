@@ -13,6 +13,5 @@
  * limitations under the License.
  */
 
-export const setLogCallBack: (strLog: string, callback: Function) => void;
-export const cancelLogCallBack: () => void;
-export const callMyfunction: () => void;
+export const setLogCallback: (strLog: string, callback: Function) => void;
+export const cancelLogCallback: () => void;

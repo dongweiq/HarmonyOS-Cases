@@ -257,7 +257,7 @@
       "srcPath": "./feature/pageloading"
     },
     {
-      "name": "logcallback",
+      "name": "hilogmonitormanagement",
       "srcPath": "./feature/logcallback"
     },
     {

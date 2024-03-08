@@ -15,8 +15,8 @@
 
 /**
  * 实现步骤
- * 1.定义注册日志回调、关闭日志回调、调用接口三个接口并实现
- * 2.实现自定义的日志处理函数MyHiLog，供册日志回调、关闭日志回调两个接口调用
+ * 1.定义注册日志回调、关闭日志回调接口并实现
+ * 2.实现自定义的日志处理函数HiLogCallbackFilter，供注册日志回调调用
  */
 
 #include <fstream>
@@ -28,31 +28,31 @@ const char *TAG = "[testTag]";
 
 #define MAX_LOG_LEN 512
 char logToFiter[MAX_LOG_LEN] = {};      // 要过滤的日志内容
-static int s_functionCallNum = 0;       // 接口被调用的次数
 napi_env g_env;
 napi_ref callbackRef = nullptr;         // ArkTs端回调函数的引用
 
 // TODO: 知识点： 自定义的日志处理函数
-static void MyHiLog(const LogType type, const LogLevel level, const unsigned int domain, const char *tag,
+static void HiLogCallbackFilter(const LogType type, const LogLevel level, const unsigned int domain, const char *tag,
                     const char *msg) {
     std::string strMsg(msg, strlen(msg) + 1);    
     // TODO: 知识点： 过滤要查找的日志
     size_t foundIndex = strMsg.find(logToFiter);
-    if (foundIndex != -1) {
+    if(foundIndex != -1) {
+        // ArkTS回调函数
         napi_value callback = nullptr;
         napi_get_reference_value(g_env, callbackRef, &callback);
-        napi_value retArg;
-        s_functionCallNum += 1;
-        napi_create_int32(g_env, s_functionCallNum, &retArg);        
+        // 返回日志内容
+        napi_value hilogArg;
+        napi_create_string_utf8(g_env, msg, NAPI_AUTO_LENGTH, &hilogArg);
         napi_value ret;
-        // TODO: 知识点： 调用ArkTS端的回调函数
-        napi_call_function(g_env, nullptr, callback, 1, &retArg, &ret);
+        // TODO: 知识点： 调用ArkTS端传入的回调函数
+        napi_call_function(g_env, nullptr, callback, 1, &hilogArg, &ret);
     }
     return;
 }
 
 // TODO: 知识点：注册日志回调函数
-static napi_value SetLogCallBack(napi_env env, napi_callback_info info) {
+static napi_value SetLogCallback(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -63,41 +63,34 @@ static napi_value SetLogCallBack(napi_env env, napi_callback_info info) {
     // 解析ArkTS端的回调函数
     napi_valuetype valueType = napi_undefined;
     napi_typeof(env, args[1], &valueType);
-    if (valueType != napi_function) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "SetLogCallBack fail，param2 is not a function！");
+    if(valueType != napi_function) {
+        OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "SetLogCallback fail，param[2] is not a function！");
         return nullptr;
     }
     // 创建ArkTS端回调函数的引用
     napi_create_reference(env, args[1], 1, &callbackRef);
     g_env = env;
     // 注册日志回调接口
-    OH_LOG_SetCallback(MyHiLog);
-    s_functionCallNum = 0;    // 重新初始化接口调用次数
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "TestLogCallBack SetCallback end");
+    OH_LOG_SetCallback(HiLogCallbackFilter);
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "TestLogCallback SetCallback end");
     return nullptr;
 }
 
 // TODO: 知识点：关闭日志回调功能
-static napi_value CancelLogCallBack(napi_env env, napi_callback_info info) {
+static napi_value CancelLogCallback(napi_env env, napi_callback_info info) {
     // 关闭日志回调
     OH_LOG_SetCallback(nullptr);
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "TestLogCallBack CancelLogCallBack end");
-    return nullptr;
-}
-
-// TODO: 知识点：调用功能接口
-static napi_value CallMyfunction(napi_env env, napi_callback_info info) {
-    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "TestLogCallBack [%{public}s]", logToFiter);
-    // TODO: 业务处理
+    OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "TestLogCallback CancelLogCallback end");
+    // 删除回调函数引用
+    napi_delete_reference(env, callbackRef);
     return nullptr;
 }
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports) {
     napi_property_descriptor desc[] = {
-        {"setLogCallBack", nullptr, SetLogCallBack, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"cancelLogCallBack", nullptr, CancelLogCallBack, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"callMyfunction", nullptr, CallMyfunction, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"setLogCallback", nullptr, SetLogCallback, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"cancelLogCallback", nullptr, CancelLogCallback, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

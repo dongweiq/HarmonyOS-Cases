@@ -14,7 +14,7 @@
  */
 {
   "module": {
-    "name": "logcallback",
+    "name": "hilogmonitormanagement",
     "type": "har",
     "deviceTypes": [
       "default",

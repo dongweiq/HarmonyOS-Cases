@@ -74,7 +74,7 @@
           "@ohos/expandtitle",
           "@ohos/listslidetohistory",
           "@ohos/pageloading",
-          "@ohos/logcallback",
+          "@ohos/hilogmonitormanagement",
           "@ohos/bigfilecopy",
           "@ohos/diggingholescreen",
           "@ohos/dragtoswitchpictures",

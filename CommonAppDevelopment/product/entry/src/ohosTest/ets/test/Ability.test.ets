@@ -16,8 +16,10 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Component, Driver, ON } from '@ohos.UiTest';
+import Want from '@ohos.app.ability.Want';
 import { logger } from '@ohos/base';
-import { LogCallBack } from '@ohos/logcallback';
+import { HiLogMonitorManagement } from '@ohos/hilogmonitormanagement';
 
 const BUNDLE: string = 'CommonAppDevelopment';
 const TAG: string = '[CommonAppDevelopment_Test]';
@@ -46,41 +48,75 @@ export default function abilityTest() {
     })
 
     /**
-     * 开启日志回调验证
+     * 打开应用
      */
-    it('testLogcallback_001',0, async () => {
-      const logCall: LogCallBack = new LogCallBack();
-      // 注册日志回调函数,参数为要监听的日志内容。同时清空接口调用次数
-      logCall.RegCallBack("testMyfunction");
-      // 获取接口调用之前被调用的次数
-      let numCallBefore: number = logCall.GetFunctionCallNum();
-      logger.info(TAG, 'TestLogCallBack RegCallBack call begin, callNum:' + numCallBefore.toString());
-      // 调用接口
-      logCall.CallMyfunction();
-      // 获取接口调用之后被调用的次数
-      let numCallAfter: number = logCall.GetFunctionCallNum();
-      logger.info(TAG, 'TestLogCallBack RegCallBack call end, callNum:' + numCallAfter.toString());
-      // 校验前后数据差1
-      expect(numCallBefore + 1).assertEqual(numCallAfter);
+    it(BUNDLE + '_startAbility', 0, async (done: Function) => {
+      logger.info(TAG, BUNDLE + '_startAbility start')
+      let want: Want = {
+        bundleName: 'com.north.commonappdevelopment',
+        abilityName: 'EntryAbility'
+      };
+      delegator.startAbility(want, (err) => {
+        logger.info(TAG, 'StartAbility get err ' + JSON.stringify(err));
+        expect(err).assertNull();
+      })
+      logger.info(TAG, BUNDLE + '_startAbility end');
+      let driver: Driver = Driver.create();
+      await driver.delayMs(3000);
+      done();
     })
 
     /**
-     * 关闭日志回调验证
+     * 注册日志回调，验证保存Rawfile图片到沙箱功能是否运行
      */
-    it('testLogcallback_002',0, async () => {
-      const logCall: LogCallBack = new LogCallBack();
-      // 关闭日志回调功能
-      logCall.CancelCallBack();
-      // 获取接口调用之前被调用的次数
-      let numCallBefore: number = logCall.GetFunctionCallNum();
-      logger.info(TAG, 'TestLogCallBack CancelCallBack call begin, callNum:' + numCallBefore.toString());
-      // 调用接口
-      logCall.CallMyfunction();
-      // 获取接口调用之后被调用的次数
-      let numCallAfter: number = logCall.GetFunctionCallNum();
-      logger.info(TAG, 'TestLogCallBack CancelCallBack call end, callNum:' + numCallAfter.toString());
-      // 校验前后数据相等
-      expect(numCallBefore).assertEqual(numCallAfter);
+    it('CommonAppDevelopment_nativesavepictosandbox_001', 1, async (done: Function) => {
+      logger.info(TAG, `${BUNDLE}_nativesavepictosandbox_001 begin`);
+      let driver: Driver = Driver.create();
+      await driver.delayMs(1000);
+      // 进入tab的native页签
+      let nativeBtn: Component = await driver.findComponent(ON.text('Native'));
+      await driver.delayMs(500);
+      await nativeBtn.click();
+      await driver.delayMs(500);
+
+      // 点击进入native保存图片到沙箱场景首页
+      await driver.swipe(0, 800, 0, 100, 600);
+      let sandboxBtn: Component = await driver.findComponent(ON.text('native保存图片到沙箱'));
+      await driver.delayMs(500);
+      await sandboxBtn.click();
+      await driver.delayMs(500);
+
+      // TODO: 知识点： 注册日志回调, 侦听保存Rawfile图片到沙箱功能
+      const logMonitor : string = "saveImageOfRawfile Begin";  // 要监听的日志内容
+      let isMonitorLogPrint : Boolean = false;                 // 监听的日志内容是否打印
+      let logCallback : string = "";                           // 回调返回的日志内容
+      const hiLogMonitor: HiLogMonitorManagement = new HiLogMonitorManagement();
+      hiLogMonitor.registerCallback(logMonitor, ((strLog: string) => {
+        // 判断返回的日志内容是否包含侦听的日志内容
+        logCallback = strLog;
+        if (logCallback.indexOf(logMonitor) !== -1) {
+          isMonitorLogPrint = true;
+        } else {
+          isMonitorLogPrint = false;
+        }
+      }));
+      isMonitorLogPrint = false;
+      // 点击保存Rawfile图片到沙箱
+      let rawFileBtn: Component = await driver.findComponent(ON.text('保存Rawfile图片'));
+      logger.info(TAG, 'TestLogCallback registerCallback call begin, isMonitorLogPrint:' + isMonitorLogPrint.toString());
+      await rawFileBtn.click();
+      await driver.delayMs(100);
+      // 验证注册日志回调后，isMonitorLogPrint 为 true
+      expect(isMonitorLogPrint).assertEqual(true);
+      // 验证完后关闭侦听
+      hiLogMonitor.cancelCallback();
+      logger.info(TAG, 'TestLogCallback registerCallback call end, isMonitorLogPrint:' + isMonitorLogPrint.toString() + ', log: ' + logCallback);
+
+      // 退出到首页面
+      await driver.delayMs(500);
+      await driver.pressBack();
+      logger.info(TAG, `${BUNDLE}_nativesavepictosandbox_001 end`);
+      done();
     })
 
   })
