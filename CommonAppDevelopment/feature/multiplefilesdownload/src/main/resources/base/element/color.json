@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "donwnolad_text_font_color",
+      "value": "#66182431"
+    },
+    {
+      "name": "donwnolad_column_border_color",
+      "value": "#6fafee"
+    },
+    {
+      "name": "selected_background_color",
+      "value": "#FF007DFF"
+    },
+    {
+      "name": "background_color",
+      "value": "#FFFEFEFE"
+    },
+    {
+      "name": "download_text_color",
+      "value": "#418AF3"
+    }
+  ]
+}

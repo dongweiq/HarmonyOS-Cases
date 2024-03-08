@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "text_width_40",
+      "value": "40%"
+    },
+    {
+      "name": "relative_container_width",
+      "value": "100%"
+    },
+    {
+      "name": "relative_container_height",
+      "value": "30%"
+    },
+    {
+      "name": "row_width_50",
+      "value": "50%"
+    },
+    {
+      "name": "text_width_100",
+      "value": "100%"
+    },
+    {
+      "name": "row_width_100",
+      "value": "100%"
+    },
+    {
+      "name": "transfer_list",
+      "value": "传输列表"
+    },
+    {
+      "name": "download_queue",
+      "value": "下载队列  "
+    },
+    {
+      "name": "download_completed",
+      "value": "下载已完成"
+    },
+    {
+      "name": "function_only_display_purposes",
+      "value": "功能仅做展示"
+    },
+    {
+      "name": "download_list",
+      "value": "下载列表"
+    },
+    {
+      "name": "file_upload",
+      "value": "文件上传"
+    },
+    {
+      "name": "album_backup",
+      "value": "相册备份"
+    },
+    {
+      "name": "row_height",
+      "value": "30%"
+    }
+  ]
+}
