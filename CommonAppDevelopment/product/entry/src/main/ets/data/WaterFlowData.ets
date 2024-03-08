@@ -50,7 +50,7 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.media_fullscreen"), '视频全屏切换', RouterInfo.MEDIA_FULL_SCREEN, 'UI布局'),
   new SceneModuleInfo($r("app.media.city_search"), '选择城市', RouterInfo.CITY_SEARCH, 'UI布局'),
   new SceneModuleInfo($r("app.media.water_ripples"), '听歌识曲水波纹案例', RouterInfo.WATER_RIPPLES, '动效', 1),
-  new SceneModuleInfo($r("app.media.music_player"), '折叠屏适配音乐播放器', RouterInfo.MEDIA_FULL_SCREEN, '动效', 3),
+  new SceneModuleInfo($r("app.media.music_player"), '折叠屏适配音乐播放器', RouterInfo.FOLDABLE_SCREEN_CASES, '动效', 3),
   new SceneModuleInfo($r("app.media.image_comment"), '发布图片评论', RouterInfo.IMAGE_COMMENT, '其他'),
   new SceneModuleInfo($r("app.media.component_stack"), '组件堆叠', RouterInfo.COMPONENT_TACK, 'UI布局'),
   new SceneModuleInfo($r("app.media.native_image2sandbox"), 'native保存图片到沙箱', RouterInfo.NATIVE_PICTURE_SANDBOX, 'Native'),
