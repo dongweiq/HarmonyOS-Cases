@@ -19,6 +19,7 @@ import { logger } from '@ohos/utils';
 import CommonConstants from '../common/constants/CommonConstants';
 
 import { MusicModel } from '../model/MusicModel';
+import { DynamicsRouter } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 播放器歌曲信息组件，包括歌名、歌手、歌曲封面、歌词
@@ -74,6 +75,14 @@ export struct MusicPlayerInfoComp {
 
   build() {
     Flex({ direction: this.curFlexDirection }) {
+      Image($r('app.media.ic_public_back'))
+        .width($r('app.integer.font_size_music_title'))
+        .height($r('app.integer.font_size_music_title'))
+        .onClick(() => {
+          DynamicsRouter.pop()
+        })
+        .position({ x: $r('app.integer.image_position_x'), y: $r('app.integer.image_position_y') })
+        .fillColor(Color.White)
       Column() {
         Text(this.musicModel.title)
           .fontSize($r('app.integer.font_size_music_title'))
