@@ -50,7 +50,7 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.media_fullscreen"), '视频全屏切换', RouterInfo.MEDIA_FULL_SCREEN, 'UI布局'),
   new SceneModuleInfo($r("app.media.city_search"), '选择城市', RouterInfo.CITY_SEARCH, 'UI布局'),
   new SceneModuleInfo($r("app.media.water_ripples"), '听歌识曲水波纹案例', RouterInfo.WATER_RIPPLES, '动效', 1),
-  new SceneModuleInfo($r("app.media.music_player"), '折叠屏适配音乐播放器', RouterInfo.MEDIA_FULL_SCREEN, '动效', 3),
+  new SceneModuleInfo($r("app.media.music_player"), '折叠屏适配音乐播放器', RouterInfo.FOLDABLE_SCREEN_CASES, '动效', 3),
   new SceneModuleInfo($r("app.media.image_comment"), '发布图片评论', RouterInfo.IMAGE_COMMENT, '其他'),
   new SceneModuleInfo($r("app.media.component_stack"), '组件堆叠', RouterInfo.COMPONENT_TACK, 'UI布局'),
   new SceneModuleInfo($r("app.media.native_image2sandbox"), 'native保存图片到沙箱', RouterInfo.NATIVE_PICTURE_SANDBOX, 'Native'),
@@ -77,6 +77,9 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.digging_hole_screen"), '适配挖孔屏案例', RouterInfo.DIGGING_HOLE_SCREEN, 'UI布局'),
   new SceneModuleInfo($r("app.media.drag_to_switch_pictures"), '左右拖动切换图片效果案例', RouterInfo.DRAG_TO_SWITCH_PICTURES, 'UI布局'),
   new SceneModuleInfo($r("app.media.listitem_overflow"), '元素超出List区域', RouterInfo.LIST_ITEM_OVERFLOW, 'UI布局'),
+  new SceneModuleInfo($r("app.media.componentinstancesharedinpages"), '页面间共享组件实例的案例', RouterInfo.COMPONENT_SHARED_IN_PAGES, 'UI布局'),
+  new SceneModuleInfo($r("app.media.custom_safe_keyboard"), '自定义安全键盘案例', RouterInfo.CUSTOM_SAFE_KEYBOARD, 'UI布局'),
+  new SceneModuleInfo($r("app.media.database_upgrade"), '数据库版本升级案例', RouterInfo.DATABASE_UPGRADE, '其他', 3),
   new SceneModuleInfo($r("app.media.image_enableanalyzer"), '图片拖拽AI抠图案例', RouterInfo.IMAGE_ENABLE_ANALYZER, '其他', 1),
   new SceneModuleInfo($r("app.media.transition_animation"), '一镜到底“页面转场”动画', RouterInfo.TRANSITION_ANIMATION, '动效', 2)
 ]

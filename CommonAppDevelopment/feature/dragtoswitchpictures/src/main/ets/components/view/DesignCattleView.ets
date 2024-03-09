@@ -16,13 +16,23 @@
 /**
  * AI设计视图
  */
-import { DecorationComparsionView } from './DragToSwitchPicturesView'
-import { CONFIGURATION } from '../common/Constants'
+import { DecorationComparsionView } from './DragToSwitchPicturesView';
+import { CONFIGURATION } from '../common/Constants';
+import { promptAction } from '@kit.ArkUI';
 
 @Component
 export struct DesignCattleView {
   build() {
     Column() {
+      Row() {
+        Text($r('app.string.dragtoswitchpictures_title'))
+          .width($r('app.string.full_size'))
+          .textAlign(TextAlign.Center)
+          .fontSize($r('sys.float.ohos_id_text_size_headline8'))
+          .fontWeight('sys.string.ohos_id_text_font_family_medium')
+          .margin({ top: $r('app.integer.margin_length') })
+      }
+
       DecorationComparsionView()
 
       Row() {
@@ -33,6 +43,12 @@ export struct DesignCattleView {
           .backgroundColor($r('app.color.designcattleview_column_row_text_backgroundcolor'))
           .borderRadius($r('sys.float.ohos_id_corner_radius_default_m'))
           .margin($r('app.integer.margin_length'))
+          .onClick((event?: ClickEvent) => {
+            promptAction.showToast({
+              message: $r('app.string.dragtoswitchpictures_toast_one'),
+              duration: CONFIGURATION.DRAGTOSWITCHPICTURES_DURATION
+            });
+          })
 
         Column() {
           Row() {
@@ -76,6 +92,12 @@ export struct DesignCattleView {
         .width($r('app.integer.go_to_try_button_width'))
         .height($r('app.integer.go_to_try_button_height'))
         .margin({ right: $r('app.integer.margin_length') })
+        .onClick((event?: ClickEvent) => {
+          promptAction.showToast({
+            message: $r('app.string.dragtoswitchpictures_toast_two'),
+            duration: CONFIGURATION.DRAGTOSWITCHPICTURES_DURATION
+          });
+        })
       }
       .justifyContent(FlexAlign.SpaceBetween)
       .width($r('app.string.full_size'))

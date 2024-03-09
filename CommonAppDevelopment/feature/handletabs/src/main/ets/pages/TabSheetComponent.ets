@@ -85,7 +85,9 @@ export struct TabSheets {
           if (this.tabArray.length < MAX_SHEET_COUNT) {
             this.tabArray.push(this.tabArray.length);
             let newTabIndex: number = this.tabArray.length - 1;
-            this.focusIndex = newTabIndex;
+            setTimeout(() => {
+              this.focusIndex = newTabIndex;
+            }, 50)
           }
         })
     }

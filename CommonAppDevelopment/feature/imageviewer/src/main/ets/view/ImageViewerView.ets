@@ -44,25 +44,17 @@ export struct ImageViewerView {
   }
 
   build() {
-    NavDestination() {
-      Stack() { // 如果需要放其他组件，可以使用Stack，让其他组件显示在图片的上方
-        Column() {
-          ImageContentView({
-            imageScale: this.scaleInfo,
-            image: this.image,
-            swiperController: this.controller
-          })
-        }
-        .alignItems(HorizontalAlign.Center)
-        .justifyContent(FlexAlign.Center)
-        .width(ImageViewerConstants.FULL_SIZE)
-        .height(ImageViewerConstants.FULL_SIZE)
-      }
+    Stack() {
+      ImageContentView({
+        imageScale: this.scaleInfo,
+        image: this.image,
+        swiperController: this.controller
+      })
     }
-    .hideTitleBar(true)
-    .expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
-    .height(ImageViewerConstants.FULL_SIZE)
     .width(ImageViewerConstants.FULL_SIZE)
+    .height(ImageViewerConstants.FULL_SIZE)
+    .expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
+
   }
 }
 
@@ -73,4 +65,4 @@ export function getImageViewerView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.IMAGE_VIEWER,wrapBuilder(getImageViewerView));
+DynamicsRouter.registerRouterPage(RouterInfo.IMAGE_VIEWER, wrapBuilder(getImageViewerView));

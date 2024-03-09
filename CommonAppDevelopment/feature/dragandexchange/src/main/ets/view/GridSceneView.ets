@@ -103,6 +103,7 @@ struct IconWithNameView {
         .height($r('app.string.icon_square_size'))
         .objectFit(ImageFit.Cover)
         .borderRadius($r('app.string.layout_10'))
+        .draggable(false) // TODO：知识点：保持默认值true时，图片有默认拖拽效果，会影响Grid子组件拖拽判断，所以修改为false
       Text(this.app.name)
         .width($r('app.string.icon_square_size'))
         .fontColor(Color.White)

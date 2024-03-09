@@ -1,0 +1,17 @@
+{
+  "string": [
+    {
+      "name": "thirty_percent",
+      "value": "22%"
+    },
+    {
+      "name": "ninety_five_percent",
+      "value": "95%"
+    },
+
+    {
+      "name": "one_hundred_percent",
+      "value": "100%"
+    }
+  ]
+}

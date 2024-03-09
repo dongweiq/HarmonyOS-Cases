@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-<img src="./src/main/resources/base/media/search_component.gif" width="200">
+<img src="../../product/entry/src/main/resources/base/media/search_component.gif" width="200">
 
 **使用说明**
 

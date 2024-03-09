@@ -25,7 +25,7 @@
     }, (item: number, index: number) => item.toString())
     ```
 
-1. 绑定输入法
+1. 绑定输入法，并默认显示键盘
     ```typescript
     this.inputController.attach(true, textConfig);
     ```
@@ -42,6 +42,26 @@
        this.codeText = this.codeText.substring(0, this.codeText.length - 1);
      })
      ```
+1. 由于这里使用的是Text组件，而非TextInput组件，因此需要每次点击目标的组件的时候都重新绑定，并设置键盘的显示，而不能直接使用showSoftKeyboard
+   ```typescript
+   Flex(){
+      //...
+   }.onClick(() => {
+      this.attach();
+   })
+   ```
+1. 当组件的可视面积变化的时候进行绑定与解绑
+   ```typescript
+    .onVisibleAreaChange([0.0, 1, 0], async (isVisible: boolean, currentRatio: number) => {
+      if (isVisible && currentRatio >= 1.0) {
+        await this.attach();
+        this.listen();
+      }
+      if (!isVisible && currentRatio <= 0.0) {
+        this.dettach();
+      }
+    })
+   ```
 
 ### 高性能知识点
 
@@ -53,15 +73,14 @@
    verifycode                                       // har类型
    |---constants
    |   |---VerifyCodeConstants.ets                  // 常量
-   |   utils
-   |   |---Logger                                   // 日志工具类
    |---view
    |   |---VerifyCodeView.ets                       // 视图层-验证码组件
    ```
 
 ### 模块依赖
 
-**不涉及**
+1. [routermodule](../routermodule)：模块动态导入使用
+2. [common/utils](../../common/utils)：使用日志功能
 
 ### 参考资料
 

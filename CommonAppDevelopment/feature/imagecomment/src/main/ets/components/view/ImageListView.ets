@@ -18,6 +18,8 @@
 export struct ImageListView {
   // 图片列表
   @Prop selectedImages: ResourceStr[] = [];
+  // 是否可以删除列表中的图片
+  imageEnableDelete: boolean = false;
 
   build() {
     List({ space: 10 }) {
@@ -27,8 +29,10 @@ export struct ImageListView {
             .height($r('app.integer.image_comment_image_height'))
             .width($r('app.integer.image_comment_image_width'))
             .onClick(() => {
-              // 点击图片时删除图片
-              this.selectedImages.splice(index, 1);
+              if (this.imageEnableDelete) {
+                // 点击图片时删除图片
+                this.selectedImages.splice(index, 1);
+              }
             })
             .borderRadius($r('app.integer.image_comment_image_border_radius'))
         }

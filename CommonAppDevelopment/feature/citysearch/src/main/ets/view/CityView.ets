@@ -71,7 +71,7 @@ export struct CityView {
             })
           }
           .width('100%')
-          .margin({ left: $r('app.integer.txt_margin_left') })
+          .margin({ left: $r('app.integer.txt_margin_left'), bottom: $r('app.integer.txt_margin_bottom') })
           .layoutWeight(1)
           .edgeEffect(EdgeEffect.None)
           .divider({ strokeWidth: $r('app.integer.divider_strokeWidth'), color: $r('app.color.divider_color'),

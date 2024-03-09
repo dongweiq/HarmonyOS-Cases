@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "DataBaseUpgrade"
+    },
+    {
+      "name": "table_width",
+      "value": "33%"
+    },
+    {
+      "name": "case_title",
+      "value": "数据库版本升级案例"
+    },
+    {
+      "name": "arrowhead_text",
+      "value": "↓"
+    },
+    {
+      "name": "version_upgrade_text",
+      "value": "版本升级"
+    },
+    {
+      "name": "upgrade_to_v2_button_text",
+      "value": "升级至V2"
+    },
+    {
+      "name": "upgrade_to_v3_button_text",
+      "value": "升级至V3"
+    },
+    {
+      "name": "version_restore_text",
+      "value": "版本回退"
+    },
+    {
+      "name": "restore_to_v2",
+      "value": "回退到V2"
+    },
+    {
+      "name": "restore_to_v1",
+      "value": "回退到V1"
+    },
+    {
+      "name": "ninety_percent",
+      "value": "90%"
+    },
+    {
+      "name": "hundred_percent",
+      "value": "100%"
+    },
+    {
+      "name": "forty_percent",
+      "value": "30%"
+    },
+    {
+      "name": "delete_class_name",
+      "value": "delete className"
+    },
+    {
+      "name": "add_teacher_name",
+      "value": "add teacherName"
+    },
+    {
+      "name": "add_teacher_first_name",
+      "value": "add teacherFirstName"
+    },
+    {
+      "name": "rename_teacher_name",
+      "value": "rename teacherName"
+    },
+    {
+      "name": "to_teacher_first_name",
+      "value": "to teacherFirstName"
+    }
+  ]
+}

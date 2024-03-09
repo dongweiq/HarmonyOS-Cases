@@ -13,11 +13,8 @@
  * limitations under the License.
  */
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
-import { SearchMapView } from '../view/SearchMapView';
-import { SwiperContentView } from '../view/SwiperContentView';
 import { TabsWaterFlowView } from '../view/TabsWaterFlowView';
 import { DesignCattleView } from '../view/DesignCattleView';
-import { BottomTabsView } from '../view/BottomTabsView';
 import { CONFIGURATION } from '../common/Constants';
 
 @Component
@@ -26,10 +23,6 @@ export struct DragToSwitchPictures {
     Stack({ alignContent: Alignment.BottomEnd }) {
       Scroll() {
         Column() {
-          // 搜索和地图视图
-          SearchMapView()
-          // 轮播图和房价视图
-          SwiperContentView()
           // AI设计视图
           DesignCattleView()
           // 瀑布流视图
@@ -44,9 +37,6 @@ export struct DragToSwitchPictures {
       .scrollable(ScrollDirection.Vertical)
       .zIndex(CONFIGURATION.ZINDEX1)
 
-      //底部Tabs组件
-      BottomTabsView()
-        .zIndex(CONFIGURATION.ZINDEX2)
     }
   }
 }
@@ -58,4 +48,4 @@ export function getEventPropagation(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.DRAG_TO_SWITCH_PICTURES,wrapBuilder(getEventPropagation));
+DynamicsRouter.registerRouterPage(RouterInfo.DRAG_TO_SWITCH_PICTURES, wrapBuilder(getEventPropagation));

@@ -17,10 +17,6 @@
       "value": "25"
     },
     {
-      "name": "layout_40",
-      "value": "40"
-    },
-    {
       "name": "layout_90",
       "value": "90"
     },
@@ -39,6 +35,10 @@
     {
       "name": "layout_70_percent",
       "value": "70%"
+    },
+    {
+      "name": "layout_8_percent",
+      "value": "8%"
     },
     {
       "name": "menu_pic_layout",
