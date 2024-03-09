@@ -84,7 +84,7 @@ export struct AboutMe {
           }.height($r("app.integer.itemoverflow_default_item_height"))
           .toastOnClick($r("app.string.listitem_overflow_toast_no_edit"))
         }
-        .divider({ strokeWidth: 1, color: $r('app.color.pageBcColor') })
+        .divider({ strokeWidth: 1, color: $r('app.color.aboubtme_pageBcColor') })
 
         ListItemGroup({ style: ListItemGroupStyle.CARD }) {
           ListItem({ style: ListItemStyle.CARD }) {
@@ -99,7 +99,7 @@ export struct AboutMe {
         }
         .divider({
           strokeWidth: 1,
-          color: $r('app.color.pageBcColor'),
+          color: $r('app.color.aboubtme_pageBcColor'),
           startMargin: $r("app.integer.itemoverflow_divide_start_margin")
         })
 
@@ -136,7 +136,7 @@ export struct AboutMe {
         }
         .divider({
           strokeWidth: 1,
-          color: $r('app.color.pageBcColor'),
+          color: $r('app.color.aboubtme_pageBcColor'),
           startMargin: $r("app.integer.itemoverflow_divide_start_margin")
         })
 
