@@ -112,6 +112,7 @@ export struct FunctionalScenes {
     .margin({ top: $r('app.string.item_gap_half'), bottom: $r('app.string.item_gap_half') })
     .backgroundColor(Color.White)
     .onClick(() => {
+      DynamicsRouter.clear();
       // 点击瀑布流Item时，根据点击的模块信息，将页面放入路由栈
       DynamicsRouter.push(listData.routerInfo, listData.param);
     })

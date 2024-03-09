@@ -50,13 +50,11 @@ export struct ImageView {
                */
               Image(item)
                 .enableAnalyzer(true)// TODO：知识点：开启Image组件的AI分析能力，目前支持分析PixelMap且为RGBA_8888类型的图片
-                .objectFit(ImageFit.Fill)
+                .objectFit(ImageFit.Contain)
                 .width('100%')
-                .aspectRatio(0.8)
                 .draggable(false) // 禁止整张图片拖动
             })
           }
-          .height($r('app.integer.swiper_height'))
           .index(this.swiperIndex)
           .onChange((index: number) => {
             this.swiperIndex = index;
@@ -138,31 +136,29 @@ export struct ImageView {
   // 图片下面的文字内容组件
 struct Content {
   build() {
-    Row() {
-      Flex({ justifyContent: FlexAlign.Start, wrap: FlexWrap.Wrap }) {
-        Text($r('app.string.image_drag_title'))// 文字标题
-          .fontSize($r('app.integer.text_title_fontSize'))
-          .fontWeight("bold")
-          .padding({ top: $r('app.integer.text_padding_top') })
-        Text($r('app.string.image_drag_content'))// 文字内容
-          .fontSize($r('app.integer.text_content_fontSize'))
-          .padding({ top: $r('app.integer.text_padding_top') })
-          .lineHeight($r('app.integer.contain_line_height'))
-        Text($r('app.string.image_drag_ref'))// 文字内容话题
-          .fontSize($r('app.integer.text_content_fontSize'))
-          .fontColor($r('app.color.content_color'))
-          .padding({ top: $r('app.integer.text_padding_top') })
-      }
-      .flexGrow(1)
-      .flexShrink(1)
+    Column() {
+      Text($r('app.string.image_drag_title'))// 文字标题
+        .fontSize($r('app.integer.text_title_fontSize'))
+        .fontWeight("bold")
+        .padding({ top: $r('app.integer.text_padding_top') })
+        .textAlign(TextAlign.Start)
+      Text($r('app.string.image_drag_content'))// 文字内容
+        .fontSize($r('app.integer.text_content_fontSize'))
+        .padding({ top: $r('app.integer.text_padding_top') })
+        .lineHeight($r('app.integer.contain_line_height'))
+        .textAlign(TextAlign.Start)
+      Text($r('app.string.image_drag_ref'))// 文字内容话题
+        .fontSize($r('app.integer.text_content_fontSize'))
+        .fontColor($r('app.color.content_color'))
+        .padding({ top: $r('app.integer.text_padding_top') })
+        .textAlign(TextAlign.Start)
     }
     .width('100%')
     .padding({
       top: $r('app.integer.view_padding_top'), bottom: $r('app.integer.view_padding_bottom'),
       left: $r('app.integer.view_padding_left'), right: $r('app.integer.view_padding_right')
     })
-    .justifyContent(FlexAlign.SpaceBetween)
-    .alignItems(VerticalAlign.Top)
+    .alignItems(HorizontalAlign.Start)
     .backgroundColor($r('app.color.white'))
     .borderRadius($r('app.integer.view_borderRadius'))
   }

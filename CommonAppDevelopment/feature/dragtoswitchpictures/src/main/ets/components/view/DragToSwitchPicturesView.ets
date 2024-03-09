@@ -25,9 +25,9 @@ import { CONFIGURATION } from '../common/Constants';
 @Component
 export struct DecorationComparsionView {
   @State dragRefOffset: number = 0; // 用来记录每次图标拖动的距离
-  @State imageWidth: number = 170; // 用来记录每次图标拖动完成后左侧Image的width宽度
-  @State leftImageWidth: number = 170; // 用来记录每次图标拖动时左侧Image的实时width宽度
-  @State rightImageWidth: number = 170; // 用来记录每次图标拖动时右侧Image的实时width宽度
+  @State imageWidth: number = 160; // 用来记录每次图标拖动完成后左侧Image的width宽度
+  @State leftImageWidth: number = 160; // 用来记录每次图标拖动时左侧Image的实时width宽度
+  @State rightImageWidth: number = 160; // 用来记录每次图标拖动时右侧Image的实时width宽度
 
   build() {
     Row() {

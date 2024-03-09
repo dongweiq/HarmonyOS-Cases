@@ -130,7 +130,7 @@ export struct DiggingHoleScreen {
     Column() {
       Stack() {
         Image($r('app.media.2048game'))
-          .objectFit(ImageFit.Cover)
+          .objectFit(ImageFit.Fill)
           .width('100%')
           .height('100%')
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {

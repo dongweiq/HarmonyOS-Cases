@@ -36,9 +36,15 @@ export struct ImageViewerView {
       let rect: window.Rect = data.getWindowProperties().windowRect;
       this.windowWidth = px2vp(rect.width);
       this.windowHeight = px2vp(rect.height);
+      if (this.windowWidth > 800) {
+        this.windowWidth = this.windowWidth / 2;
+      }
       data.on("windowSizeChange", (data: window.Size) => {
         this.windowWidth = px2vp(data.width);
         this.windowHeight = px2vp(data.height);
+        if (this.windowWidth > 800) {
+          this.windowWidth = this.windowWidth / 2;
+        }
       })
     })
   }

@@ -55,7 +55,7 @@ export struct AboutMe {
         // TODO 知识点：在List内部使用ListItem占位，包住超出的区域
         ListItem().height($r("app.integer.itemoverflow_avatar_padding_height")).selectable(false) // 占位组件
         ListItemGroup({ style: ListItemGroupStyle.CARD }) {
-          ListItem() {
+          ListItem({ style: ListItemStyle.CARD }) {
             Row() {
               // TODO 知识点：通过设置负的margin值，移动头像框位置，使其超出父组件范围
               Image($r("app.media.io_user_portrait"))
@@ -75,7 +75,7 @@ export struct AboutMe {
           }.height($r("app.integer.itemoverflow_default_item_height"))
           .toastOnClick($r("app.string.listitem_overflow_toast_no_edit"))
 
-          ListItem() {
+          ListItem({ style: ListItemStyle.CARD }) {
             Text($r("app.string.listitem_overflow_signature"))
               .width("100%")
               .fontSize($r("sys.float.ohos_id_text_size_body2"))
@@ -87,7 +87,7 @@ export struct AboutMe {
         .divider({ strokeWidth: 1, color: $r('app.color.pageBcColor') })
 
         ListItemGroup({ style: ListItemGroupStyle.CARD }) {
-          ListItem() {
+          ListItem({ style: ListItemStyle.CARD }) {
             Row() {
               Image($r("app.media.io_bank_cards")).imageStyle()
               Text($r("app.string.listitem_overflow_purse"))
@@ -104,7 +104,7 @@ export struct AboutMe {
         })
 
         ListItemGroup({ style: ListItemGroupStyle.CARD }) {
-          ListItem() {
+          ListItem({ style: ListItemStyle.CARD }) {
             Row() {
               Image($r("app.media.io_highlightsed")).imageStyle()
               Text($r("app.string.listitem_overflow_favorite"))
@@ -114,7 +114,7 @@ export struct AboutMe {
           }.height($r("app.integer.itemoverflow_default_item_height"))
           .toastOnClick($r("app.string.listitem_overflow_toast_no_favorite"))
 
-          ListItem() {
+          ListItem({ style: ListItemStyle.CARD }) {
             Row() {
               Image($r("app.media.io_settings")).imageStyle()
               Text($r("app.string.listitem_overflow_settings"))
@@ -124,7 +124,7 @@ export struct AboutMe {
           }.height($r("app.integer.itemoverflow_default_item_height"))
           .toastOnClick($r("app.string.listitem_overflow_toast_no_settings"))
 
-          ListItem() {
+          ListItem({ style: ListItemStyle.CARD }) {
             Row() {
               Image($r("app.media.io_about")).imageStyle()
               Text($r("app.string.listitem_overflow_about"))
@@ -160,7 +160,7 @@ export struct AboutMe {
       // 此时，List内组件将不再根据List进行形状裁剪，允许滚动时内部组件溢出List的布局范围
       // .clip(false)
     }
-    .backgroundColor($r('app.color.pageBcColor'))
+    .backgroundColor($r('app.color.aboubtme_pageBcColor'))
     .width('100%')
     .height('100%')
   }

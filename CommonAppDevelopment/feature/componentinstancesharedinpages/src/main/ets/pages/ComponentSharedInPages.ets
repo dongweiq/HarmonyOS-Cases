@@ -48,6 +48,7 @@ export struct ComponentSharedInPages {
       // TODO：知识点：navigation组件设置事件透传给兄弟组件
       .hitTestBehavior(HitTestMode.Transparent)
       .navDestination(this.pageMap)
+      .mode(NavigationMode.Stack)
     }
     .width('100%')
     .height('100%')

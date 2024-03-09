@@ -149,6 +149,10 @@ export struct DefaultLogin {
         })
     }
     .size({ width: $r('app.string.size_full'), height: $r('app.string.size_full') })
-    .padding($r('app.integer.padding_default'))
+    .padding({
+      top: $r('app.integer.padding_default'),
+      left: $r('app.integer.padding_default'),
+      right: $r('app.integer.padding_default')
+    })
   }
 }

@@ -31,13 +31,13 @@ export struct WaterRipples {
         .margin({ top: $r('app.integer.margin_large') })
 
       ButtonWithWaterRipples({ isListening: this.isListening })
-        .margin({ top: "55%" })
 
       Text(this.isListening ? $r('app.string.is_listening') : $r('app.string.click_to_listen'))
         .fontColor(Color.White)
-        .margin({ top: "50%" })
+        .margin({ bottom: $r('app.integer.margin_large') })
     }
     .backgroundColor(Color.Black)
+    .justifyContent(FlexAlign.SpaceBetween)
     .width("100%")
     .height("100%")
   }

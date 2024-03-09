@@ -2,7 +2,7 @@
   "string": [
     {
       "name": "news_title_image_height",
-      "value": "16vp"
+      "value": "80%"
     },
     {
       "name": "news_title_image_width",

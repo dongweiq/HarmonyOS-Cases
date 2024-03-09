@@ -42,7 +42,7 @@ export struct DesignCattleView {
           .height($r('app.string.full_size'))
           .backgroundColor($r('app.color.designcattleview_column_row_text_backgroundcolor'))
           .borderRadius($r('sys.float.ohos_id_corner_radius_default_m'))
-          .margin($r('app.integer.margin_length'))
+          .margin({ right: $r('app.integer.dragtoswitchpictures_margin_right_170') })
           .onClick((event?: ClickEvent) => {
             promptAction.showToast({
               message: $r('app.string.dragtoswitchpictures_toast_one'),
@@ -69,7 +69,7 @@ export struct DesignCattleView {
             .fontSize($r('app.integer.10s_fontsize'))
         }
         .alignItems(HorizontalAlign.Start)
-        .margin({ left: $r('app.integer.designcattleview_row_column_margin_length') })
+        .margin({ left: $r('app.integer.dragtoswitchpictures_margin_left_160') })
 
         Button({ type: ButtonType.Capsule, stateEffect: true }) {
           Row() {
@@ -91,7 +91,6 @@ export struct DesignCattleView {
         .backgroundColor($r('app.color.go_to_try_button_backgroundcolor'))
         .width($r('app.integer.go_to_try_button_width'))
         .height($r('app.integer.go_to_try_button_height'))
-        .margin({ right: $r('app.integer.margin_length') })
         .onClick((event?: ClickEvent) => {
           promptAction.showToast({
             message: $r('app.string.dragtoswitchpictures_toast_two'),
@@ -99,7 +98,7 @@ export struct DesignCattleView {
           });
         })
       }
-      .justifyContent(FlexAlign.SpaceBetween)
+      .justifyContent(FlexAlign.Center)
       .width($r('app.string.full_size'))
       .height($r('app.integer.designcattleview_column_row_height'))
     }

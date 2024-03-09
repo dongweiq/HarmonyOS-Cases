@@ -482,6 +482,7 @@ export struct BarChartPage {
                 this.model.invalidate();
               }
             })
+            .margin({left:-3})
         }.alignSelf(ItemAlign.Start)
 
         Row() {

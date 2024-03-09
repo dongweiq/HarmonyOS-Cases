@@ -13,8 +13,10 @@
  * limitations under the License.
  */
 
-import { TakeTaxiPageCommonConstants, CommonConstants} from '../model/CommonConstants';
+import { TakeTaxiPageCommonConstants, CommonConstants } from '../model/CommonConstants';
 import { logger } from '@ohos/utils';
+import { window } from '@kit.ArkUI';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 // 页面背景透明并设置事件穿透，用于显示及操作下层地图组件，绑定半模态用来显示内容
 @Component
@@ -25,8 +27,20 @@ export struct TakeTaxiDetailPage {
   // 用于调整下层地图组件和上层内容的手势响应区域，跟scroll的currentOffset相关
   @Consume mapResponseRegionHeight: number;
   @State isShow: boolean = true;
+  @State windowWidth: number = 0;
 
-  @Builder taxiContentBuilder() {
+  /**
+   * 获取应用主窗口的宽高
+   */
+  aboutToAppear() {
+    window.getLastWindow(getContext(this), (err: BusinessError, data: window.Window) => {
+      let rect: window.Rect = data.getWindowProperties().windowRect;
+      this.windowWidth = px2vp(rect.width);
+    })
+  }
+
+  @Builder
+  taxiContentBuilder() {
     // 页面的内容区域
     Column() {
       /** 性能知识点: ForEach循环渲染会一次性加载所有组件，
@@ -56,13 +70,14 @@ export struct TakeTaxiDetailPage {
       .bindSheet($$this.isShow, this.taxiContentBuilder(),
         {
           detents: TakeTaxiPageCommonConstants.SHEET_DETENTS,
+          preferType: this.windowWidth > 800 ? SheetType.CENTER : SheetType.POPUP,
           enableOutsideInteractive: true,
           dragBar: false,
-          title: {title: $r('app.string.take_taxi_detail_page')},
+          title: { title: $r('app.string.take_taxi_detail_page') },
           backgroundColor: Color.White,
           showClose: false,
           // 关闭半模态组件时直接返回上一级页面
-          shouldDismiss: ()=>{
+          shouldDismiss: () => {
             this.pageStackForComponentSharedPages.pop(false);
           }
         }

@@ -14,7 +14,7 @@
     },
     {
       "name": "decoration_width",
-      "value": 340
+      "value": 320
     },
     {
       "name": "decoration_height",
@@ -123,6 +123,19 @@
     {
       "name": "waterflow_columnsgap",
       "value": 12
+    },
+    {
+      "name": "dragtoswitchpictures_margin_right_170",
+      "value": 170
+    },
+    {
+      "name": "dragtoswitchpictures_margin_left_160",
+      "value": -160
+    },
+    {
+      "name": "dragtoswitchpictures_margin_left_20",
+      "value": 10
     }
+
   ]
 }

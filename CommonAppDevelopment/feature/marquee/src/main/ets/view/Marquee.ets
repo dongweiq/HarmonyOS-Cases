@@ -189,7 +189,6 @@ struct TripMessage {
           .width($r('app.string.scroll_width'))
           .align(Alignment.Start)
           .enableScrollInteraction(false)
-          .flexGrow(1)
           .scrollable(ScrollDirection.Horizontal)
           .scrollBar(BarState.Off)
           .onAreaChange((oldValue, newValue) => {

@@ -186,8 +186,8 @@ export struct TabsWaterFlowView {
       }
       .margin({ top: $r('app.integer.margin_length') })
       .padding({
-        left: $r('app.integer.padding_length'),
-        right: $r('app.integer.padding_length')
+        left: $r('app.string.2_5_size'),
+        right: $r('app.string.2_5_size')
       })
       .barWidth($r('app.string.full_size'))
       .barHeight($r('app.string.6_size'))
