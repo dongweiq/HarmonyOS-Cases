@@ -1,0 +1,28 @@
+{
+  "color": [
+    {
+      "name": "table_border_color",
+      "value": "#DBDBDB"
+    },
+    {
+      "name": "table_background_color",
+      "value": "#E8EAED"
+    },
+    {
+      "name": "rollback_background",
+      "value": "#0D000000"
+    },
+    {
+      "name": "font_color",
+      "value": "#0A59F7"
+    },
+    {
+      "name": "border_color",
+      "value": "#317AF7"
+    },
+    {
+      "name": "background_color",
+      "value": "#FFFFFF"
+    }
+  ]
+}

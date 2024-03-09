@@ -283,6 +283,10 @@
     {
       "name": "customsafekeyboard",
       "srcPath": "./feature/customsafekeyboard"
+    },
+    {
+      "name": "databaseupgrade",
+      "srcPath": "./feature/databaseupgrade"
     }
   ]
 }

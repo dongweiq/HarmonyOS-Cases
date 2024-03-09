@@ -132,6 +132,8 @@
     // 页面间共享组件实例的案例
     "@ohos/componentinstancesharedinpages": "file:../../feature/componentinstancesharedinpages",
     // 自定义安全键盘案例
-    "@ohos/customsafekeyboard": "file:../../feature/customsafekeyboard"
+    "@ohos/customsafekeyboard": "file:../../feature/customsafekeyboard",
+    // 数据库版本升级
+    "@ohos/databaseupgrade": "file:../../feature/databaseupgrade"
   }
 }
