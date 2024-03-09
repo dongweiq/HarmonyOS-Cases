@@ -18,17 +18,18 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 export struct SubDetailPage {
   build() {
     Column() {
-      Row(){
+      Row() {
         Image($r('app.media.left'))
           .width(20)
       }
       .width('100%')
       .height(40)
       .clip(true)
-      .margin({left: 20})
-      .onClick(()=>{
+      .margin({ left: 20 })
+      .onClick(() => {
         DynamicsRouter.navPathStack.pop(true);
       })
+
       Column() {
         Text('这是子页面')
       }
@@ -39,7 +40,7 @@ export struct SubDetailPage {
 // 创建WrappedBuilder对象，动态路由跳转时构建页面
 @Builder
 export function getSubDetailPageView(): void {
-  SubDetailPage()
+  SubDetailPage();
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中

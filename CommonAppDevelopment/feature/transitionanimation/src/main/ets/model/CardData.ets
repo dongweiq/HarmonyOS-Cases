@@ -22,12 +22,11 @@ export class CardData {
   cardArea: Area;
 
   constructor(id: number,
-    imageSrc: ResourceStr,
-    title: string,
-    content: string,
-    authorName: string,
-    avatorSrc: ResourceStr
-  ) {
+              imageSrc: ResourceStr,
+              title: string,
+              content: string,
+              authorName: string,
+              avatorSrc: ResourceStr) {
     this.id = id;
     this.imageSrc = imageSrc;
     this.title = title;
@@ -42,8 +41,8 @@ export class CardData {
         y: 0,
       },
       globalPosition: {
-        x:0,
-        y:0
+        x: 0,
+        y: 0
       }
     }
   }

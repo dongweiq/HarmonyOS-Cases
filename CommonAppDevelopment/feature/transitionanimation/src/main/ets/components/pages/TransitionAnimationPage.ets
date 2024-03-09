@@ -37,14 +37,13 @@ export struct TransitionAnimationPage {
     this.currentDiaplayHeight = display.getDefaultDisplaySync().height;
   }
 
-
   @Builder
-  CardList() {
+  cardList() {
     Column({ space: 2 }) {
       WaterFlow() {
         LazyForEach(this.dataSource, (item: CardData, index) => {
           FlowItem() {
-            CardPage({cardData: item})
+            CardPage({ cardData: item })
               .onClick(() => {
                 this.clickedCardIndex = index;
               })
@@ -52,9 +51,9 @@ export struct TransitionAnimationPage {
           .onAppear(() => {
             // 即将触底时提前增加数据
             for (let i = 0; i < 8; i++) {
-              let cardData = JSON.parse(JSON.stringify(this.dataSource.getData(Math.floor(Math.random()*6)))) as CardData;
+              let cardData = JSON.parse(JSON.stringify(this.dataSource.getData(Math.floor(Math.random() * 6)))) as CardData;
               cardData.id = Date.now();
-              this.dataSource.addLastItem(cardData)
+              this.dataSource.addLastItem(cardData);
             }
           })
           .onAreaChange((oldValue, newValue) => {
@@ -76,7 +75,7 @@ export struct TransitionAnimationPage {
   }
 
   @Builder
-  DetailPage() {
+  detailPage() {
     Column() {
       if (this.clickedCardIndex > -1) {
         CardPage({
@@ -85,10 +84,12 @@ export struct TransitionAnimationPage {
           onCardReadyExpand: () => {
             // Card中Image加载渲染完成时触发
             if (!this.isDetailPageShow) {
-              animateTo({duration: 5,onFinish: ()=>{
-                this.expandCardId = this.dataSource.getData(this.clickedCardIndex).id;
-              }}, ()=> {
-                this.isDetailPageShow = true
+              animateTo({
+                duration: 5, onFinish: () => {
+                  this.expandCardId = this.dataSource.getData(this.clickedCardIndex).id;
+                }
+              }, () => {
+                this.isDetailPageShow = true;
               })
             }
           },
@@ -104,26 +105,34 @@ export struct TransitionAnimationPage {
           }
         })
           .width(this.expandCardId > -1 ? '100%' : this.dataSource.getData(this.clickedCardIndex).cardArea.width)
-          .height(this.expandCardId > -1 ? px2vp( this.currentDiaplayHeight as number) : this.dataSource.getData(this.clickedCardIndex).cardArea.height)
+          .height(this.expandCardId > -1 ? px2vp(this.currentDiaplayHeight as number) : this.dataSource.getData(this.clickedCardIndex)
+            .cardArea
+            .height)
           .position({
-            x: this.expandCardId > -1 ? 0 : this.dataSource.getData(this.clickedCardIndex).cardArea.position.x,
-            y: this.expandCardId > -1 ? 0 : this.dataSource.getData(this.clickedCardIndex).cardArea.position.y
+            x: this.expandCardId > -1 ? 0 : this.dataSource.getData(this.clickedCardIndex)
+              .cardArea
+              .position
+              .x,
+            y: this.expandCardId > -1 ? 0 : this.dataSource.getData(this.clickedCardIndex)
+              .cardArea
+              .position
+              .y
           })
-          .animation({duration: 200})
+          .animation({ duration: 200 })
           .backgroundColor(Color.White)
       }
     }
     .width('100%')
     .height('100%')
     .zIndex(this.isDetailPageShow ? 2 : 0)
-    .animation({duration:100})
+    .animation({ duration: 100 })
     .backgroundColor(Color.Transparent)
   }
 
   build() {
     Stack() {
-      this.CardList();
-      this.DetailPage();
+      this.cardList();
+      this.detailPage();
     }
   }
 }
@@ -131,7 +140,7 @@ export struct TransitionAnimationPage {
 // 创建WrappedBuilder对象，动态路由跳转时构建页面
 @Builder
 export function getTransitionAnimationPageView(): void {
-  TransitionAnimationPage()
+  TransitionAnimationPage();
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中

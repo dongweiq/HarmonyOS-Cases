@@ -9,7 +9,7 @@
 ![](../../product/entry/src/main/resources/base/media/custom_view.gif)
 
 **使用说明**
-1. 点击页签切换页签，选中态页签字体放大加粗，颜色由灰变黑，起到强调作用，同时，底部颜色条横线位移到当前选中也迁出，内容区翻页到当前页签对应区域。
+1. 点击页签进行切换，选中态页签字体放大加粗，颜色由灰变黑，起到强调作用，同时，底部颜色条横线位移到当前选中页签下方，内容区翻页到当前选中页签对应区域。
 
 ### 实现思路
 1. 页签实现：添加onClick方法，记录点击的index，index变化后，改变页签颜色、字体大小，使用animateTo方法实现页签切换动画。 源码参考[CustomView.ets](./src/main/ets/view/CustomView.ets)。

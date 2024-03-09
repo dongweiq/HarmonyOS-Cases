@@ -89,7 +89,7 @@
       "srcPath": "./feature/slidetohideanddisplace"
     },
     {
-      "name": "NavigationParameterTransferView",
+      "name": "navigationparametertransfer",
       "srcPath": "./feature/navigationparametertransfer"
     },
     {
@@ -233,7 +233,7 @@
       "srcPath": "./feature/imagecompression"
     },
     {
-      "name": "imagedrag",
+      "name": "imageenableanalyzer",
       "srcPath": "./feature/imageenableanalyzer"
     },
     {
@@ -261,6 +261,10 @@
       "srcPath": "./feature/pageloading"
     },
     {
+      "name": "hilogmonitormanagement",
+      "srcPath": "./feature/logcallback"
+    },
+    {
       "name": "bigfilecopy",
       "srcPath": "./feature/bigfilecopy"
     },
@@ -275,6 +279,14 @@
     {
       "name": "listitemoverflow",
       "srcPath": "./feature/listitemoverflow"
+    },
+    {
+      "name": "customsafekeyboard",
+      "srcPath": "./feature/customsafekeyboard"
+    },
+    {
+      "name": "databaseupgrade",
+      "srcPath": "./feature/databaseupgrade"
     }
   ]
 }

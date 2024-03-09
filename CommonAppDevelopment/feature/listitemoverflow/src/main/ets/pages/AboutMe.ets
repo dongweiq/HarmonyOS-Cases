@@ -14,6 +14,7 @@
  */
 
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
+import promptAction from '@ohos.promptAction';
 
 /*
  * 实现步骤：
@@ -33,6 +34,14 @@ function imageStyle() {
   .width($r("app.integer.itemoverflow_icon_size"))
   .height($r("app.integer.itemoverflow_icon_size"))
   .margin($r("app.integer.itemoverflow_default_margin"))
+}
+
+@Extend(ListItem)
+function toastOnClick(msg: ResourceStr) {
+  .clickEffect({ level: ClickEffectLevel.HEAVY })
+  .onClick(() => {
+    promptAction.showToast({ message: msg });
+  })
 }
 
 @Preview
@@ -62,15 +71,18 @@ export struct AboutMe {
                 .fontSize($r("sys.float.ohos_id_text_size_sub_title1"))
                 .margin($r("app.integer.itemoverflow_default_margin"))
                 .fontWeight(FontWeight.Bold)
-            }
+            }.width("100%")
           }.height($r("app.integer.itemoverflow_default_item_height"))
+          .toastOnClick($r("app.string.listitem_overflow_toast_no_edit"))
 
           ListItem() {
             Text($r("app.string.listitem_overflow_signature"))
+              .width("100%")
               .fontSize($r("sys.float.ohos_id_text_size_body2"))
               .fontColor(Color.Grey)
               .margin($r("app.integer.itemoverflow_default_margin"))
           }.height($r("app.integer.itemoverflow_default_item_height"))
+          .toastOnClick($r("app.string.listitem_overflow_toast_no_edit"))
         }
         .divider({ strokeWidth: 1, color: $r('app.color.pageBcColor') })
 
@@ -78,11 +90,12 @@ export struct AboutMe {
           ListItem() {
             Row() {
               Image($r("app.media.io_bank_cards")).imageStyle()
-              Text("钱包")
+              Text($r("app.string.listitem_overflow_purse"))
                 .fontSize($r("sys.float.ohos_id_text_size_body1"))
                 .margin($r("app.integer.itemoverflow_default_margin"))
-            }
+            }.width("100%")
           }.height($r("app.integer.itemoverflow_default_item_height"))
+          .toastOnClick($r("app.string.listitem_overflow_toast_no_card"))
         }
         .divider({
           strokeWidth: 1,
@@ -97,8 +110,9 @@ export struct AboutMe {
               Text($r("app.string.listitem_overflow_favorite"))
                 .fontSize($r("sys.float.ohos_id_text_size_body1"))
                 .margin($r("app.integer.itemoverflow_default_margin"))
-            }
+            }.width("100%")
           }.height($r("app.integer.itemoverflow_default_item_height"))
+          .toastOnClick($r("app.string.listitem_overflow_toast_no_favorite"))
 
           ListItem() {
             Row() {
@@ -106,8 +120,9 @@ export struct AboutMe {
               Text($r("app.string.listitem_overflow_settings"))
                 .fontSize($r("sys.float.ohos_id_text_size_body1"))
                 .margin($r("app.integer.itemoverflow_default_margin"))
-            }
+            }.width("100%")
           }.height($r("app.integer.itemoverflow_default_item_height"))
+          .toastOnClick($r("app.string.listitem_overflow_toast_no_settings"))
 
           ListItem() {
             Row() {
@@ -115,8 +130,9 @@ export struct AboutMe {
               Text($r("app.string.listitem_overflow_about"))
                 .fontSize($r("sys.float.ohos_id_text_size_body1"))
                 .margin($r("app.integer.itemoverflow_default_margin"))
-            }
+            }.width("100%")
           }.height($r("app.integer.itemoverflow_default_item_height"))
+          .toastOnClick($r("app.string.listitem_overflow_toast_about"))
         }
         .divider({
           strokeWidth: 1,
@@ -130,6 +146,9 @@ export struct AboutMe {
               .fontSize($r("sys.float.ohos_id_text_size_body2"))
               .fontColor(Color.Red)
               .margin($r("app.integer.itemoverflow_default_margin"))
+              .onClick(() => {
+                DynamicsRouter.pop()
+              })
           }.justifyContent(FlexAlign.Center).width('100%')
         }.height($r("app.integer.itemoverflow_default_item_height"))
       }

@@ -13,21 +13,9 @@
  * limitations under the License.
  */
 
-import { SwiperModule } from '../model/DragToSwitchPicturesModule';
 import { CONFIGURATION } from '../common/Constants';
 import { TabDataModel } from '../model/DragToSwitchPicturesModule';
 import { WaterFlowModule } from '../model/DragToSwitchPicturesModule';
-
-/**
- * Swiper组件数据
- */
-export const SWIPER_DATA: Array<SwiperModule> = [
-  new SwiperModule($r('app.media.Swiper1')),
-  new SwiperModule($r('app.media.Swiper2')),
-  new SwiperModule($r('app.media.Swiper3')),
-  new SwiperModule($r('app.media.Swiper4')),
-  new SwiperModule($r('app.media.Swiper5')),
-]
 
 /**
  * Tabs组件数据

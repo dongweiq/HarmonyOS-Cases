@@ -19,7 +19,7 @@ import fs from '@ohos.file.fs'; // 导入文件管理模块
 import fileUri from "@ohos.file.fileuri"; // 导入文件URI模块
 import image from '@ohos.multimedia.image'; // 导入Image模块
 import resourceManager from '@ohos.resourceManager'; // 导入资源管理模块
-import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 图片压缩实现步骤

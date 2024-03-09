@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-![](../../product/entry/src/main/resources/base/media/image_enableanalyzer.gif)
+<img src="../../product/entry/src/main/resources/base/media/image_enableanalyzer.gif" width="300">
 
 **使用说明**
 1. 选中需要AI抠图的图片。

@@ -13,20 +13,21 @@
  * limitations under the License.
  */
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
-import { CardData } from '../../model/CardData'
+import { CardData } from '../../model/CardData';
+
 @Component
 export struct CardPage {
   @Prop cardData: CardData;
   onCardReadyExpand?: Function;
   onBack?: Function;
-  onAnimationFinish?: ()=> void;
+  onAnimationFinish?: () => void;
   @Prop @Watch('onExpandCardIdChange') expandCardId?: number = -1;
-  @State isCardExpand:boolean = false;
+  @State isCardExpand: boolean = false;
 
   onExpandCardIdChange() {
     // expandCardId 发生变化时，意味着展开状态发生变化，从而改变this.isCardExpand值
-    animateTo({duration:200, onFinish: this.onAnimationFinish}, ()=>{
-      this.isCardExpand = this.expandCardId === this.cardData.id
+    animateTo({ duration: 200, onFinish: this.onAnimationFinish }, () => {
+      this.isCardExpand = this.expandCardId === this.cardData.id;
     })
   }
 
@@ -34,27 +35,29 @@ export struct CardPage {
   topBar() {
     if (this.isCardExpand) {
       Row() {
-        Column(){
+        Column() {
           Image($r('app.media.left'))
             .width('100%')
         }
         .width(20)
         .clip(true)
-        .margin({left: 10})
-        .onClick(()=>{
+        .margin({ left: 10 })
+        .onClick(() => {
           if (this.onBack) {
             this.onBack();
           }
         })
+
         Column() {
           Image(this.cardData.avatorSrc)
             .width('100%')
         }
-        .margin({left: 10})
+        .margin({ left: 10 })
         .width(26)
         .clip(true)
+
         Text(this.cardData.authorName)
-          .padding({left: 10})
+          .padding({ left: 10 })
       }
       .margin({
         top: 0,
@@ -99,6 +102,7 @@ export struct CardPage {
           .width(26)
           .height(26)
           .clip(true)
+
           Text(this.cardData.authorName)
             .align(Alignment.Start)
             .fontColor(Color.Grey)
@@ -113,20 +117,21 @@ export struct CardPage {
         })
       }
       else {
-        Column(){
+        Column() {
           Text(this.cardData.content)
             .textAlign(TextAlign.Start)
             .width('100%')
         }
-        .padding({left:7, right:7})
+        .padding({ left: 7, right: 7 })
         .width('100%')
+
         Button('父页面（点击进入子页面）')
           .onClick(() => {
             let path = RouterInfo.TRANSITION_ANIMATION_SUB_Detail.moduleName + '/' + RouterInfo.TRANSITION_ANIMATION_SUB_Detail.pageName;
-            DynamicsRouter.navPathStack.pushPath({name: path});
+            DynamicsRouter.navPathStack.pushPath({ name: path });
           })
           .width("60%")
-          .margin({top:10, bottom: 40})
+          .margin({ top: 10, bottom: 40 })
       }
     }
   }

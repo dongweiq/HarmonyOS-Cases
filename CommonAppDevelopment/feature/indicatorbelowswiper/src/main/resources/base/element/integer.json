@@ -1,0 +1,16 @@
+{
+  "integer": [
+    {
+      "name": "borderRadius_value",
+      "value": 10
+    },
+    {
+      "name": "offset_value",
+      "value": 15
+    },
+    {
+      "name": "blank_space_height",
+      "value": 50
+    }
+  ]
+}

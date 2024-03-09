@@ -1,6 +1,7 @@
 import { RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 export { TransitionAnimationPage } from './src/main/ets/components/pages/TransitionAnimationPage';
+
 export { SubDetailPage } from './src/main/ets/components/pages/SubDetailPage';
 
 

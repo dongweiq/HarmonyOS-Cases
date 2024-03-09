@@ -71,10 +71,12 @@
    |   |---webgetcameraimage           // WebView拉起原生相机案例
    |   |---sidebaranimation            // SideBarContainer侧边栏淡入淡出动效实现案例
    |   |---imageenableanalyzer         // 图片拖拽AI抠图案例
+   |   |---indicatorbelowswiper        // swiper指示器导航点位于swiper下方
    |   |---bigfilecopy                 // 大文件拷贝案例
    |   |---diggingholescreen           // 适配挖孔屏案例
    |   |---dragtoswitchpictures        // 左右拖动切换图片效果案例
    |   |---listitemoverflow            // 元素超出List区域
+   |   |---multiplefilesdownload       // 多文件下载监听案例
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -98,7 +100,7 @@
 
 基础特性层为上层的产品定制层提供稳健且丰富的基础功能支持，包括UI组件、基础服务等。同时依赖于下层的公共能力层为其提供通用功能和服务。
 
-首页[以Navigation组件为基础，实现了主要页面或模块的路由管理和跳转](./CommonAppDevelopment/product/entry/README.md)。
+首页以[Navigation组件](./CommonAppDevelopment/product/entry/README.md)为基础，通过[路由管理](./CommonAppDevelopment/feature/routermodule/README.md)实现了页面或者模块间的跳转。
 
 #### 主页瀑布流实现案例
 
@@ -360,6 +362,12 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_enableanalyzer.gif" width="200">
 
+#### swiper指示器导航点位于swiper下方
+
+本示例介绍通过分割swiper区域，实现指示器导航点位于swiper下方的效果。[详细说明文档](./CommonAppDevelopment/feature/indicatorbelowswiper/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/indicator_below_swiper.gif" width="200">
+
 #### 大文件拷贝案例
 
 文件拷贝是应用开发中的一个常见场景，通常有两种方式，一是直接读写文件的全部内容，二是使用buffer多次读写。前者的优点在于使用简单，但是在大文件场景下，内存占用较高，影响应用性能；后者的优点在于内存占用较小，但是编程稍显复杂。本例将展示如何使用buffer来将大文件的rawfile复制到应用沙箱。[详细说明文档](./CommonAppDevelopment/feature/bigfilecopy/README.md)
@@ -384,6 +392,11 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/listitem_overflow.jpg" width="200">
 
+#### 多文件下载监听案例
+
+本示例介绍如何使用request上传下载模块实现多文件下载监听，如监听每个文件下载任务的进度，下载暂停，下载完成等文件下载情况。[详细说明文档](./CommonAppDevelopment/feature/multiplefilesdownload/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/multiple_files_download.gif" width="200">
 
 ### 公共能力层
 
