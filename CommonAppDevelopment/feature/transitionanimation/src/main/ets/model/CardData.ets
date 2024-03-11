@@ -15,17 +15,17 @@
 export class CardData {
   id: number;
   imageSrc: ResourceStr;
-  title: string;
-  content: string;
-  authorName: string;
+  title: Resource;
+  content: Resource;
+  authorName: Resource;
   avatorSrc: ResourceStr;
   cardArea: Area;
 
   constructor(id: number,
               imageSrc: ResourceStr,
-              title: string,
-              content: string,
-              authorName: string,
+              title: Resource,
+              content: Resource,
+              authorName: Resource,
               avatorSrc: ResourceStr) {
     this.id = id;
     this.imageSrc = imageSrc;

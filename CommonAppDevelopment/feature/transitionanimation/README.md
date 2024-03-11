@@ -23,15 +23,14 @@
   LazyForEach(this.dataSource, (item: CardData, index) => {
     FlowItem() {
       CardPage({cardData: item})
-          .onClick(() => {
-            this.clickedCardIndex = index;
-          })
-      }
-      .onAreaChange((oldValue, newValue) => {
-        this.dataSource.getData(index).cardArea = newValue;
-      })
-      .width('100%')
+        .onClick(() => {
+          this.clickedCardIndex = index;
+        })
     }
+    .onAreaChange((oldValue, newValue) => {
+      this.dataSource.getData(index).cardArea = newValue;
+    })
+    .width('100%')
   })
   ```
 3、入场动画：onCardReadyExpand回调在DetailPage内部Image渲染结束时触发；（用于解决 Image 组件的渲染期间就发生页面转场导致的白色闪屏问题）
@@ -44,9 +43,9 @@
     onCardReadyExpand: () => {
       if (!this.isDetailPageShow) {
         animateTo({duration: 5,onFinish: ()=>{
-            this.expandCardId = this.dataSource.getData(this.clickedCardIndex).id;
+          this.expandCardId = this.dataSource.getData(this.clickedCardIndex).id;
         }}, ()=> { 
-            this.isDetailPageShow = true
+          this.isDetailPageShow = true
         })
       }
     },

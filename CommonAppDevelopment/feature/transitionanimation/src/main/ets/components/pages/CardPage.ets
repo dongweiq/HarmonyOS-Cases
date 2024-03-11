@@ -125,7 +125,7 @@ export struct CardPage {
         .padding({ left: 7, right: 7 })
         .width('100%')
 
-        Button('父页面（点击进入子页面）')
+        Button($r('app.string.page_description'))
           .onClick(() => {
             let path = RouterInfo.TRANSITION_ANIMATION_SUB_Detail.moduleName + '/' + RouterInfo.TRANSITION_ANIMATION_SUB_Detail.pageName;
             DynamicsRouter.navPathStack.pushPath({ name: path });

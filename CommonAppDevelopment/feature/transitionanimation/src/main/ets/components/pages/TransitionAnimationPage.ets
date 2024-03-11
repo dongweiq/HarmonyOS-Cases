@@ -63,7 +63,7 @@ export struct TransitionAnimationPage {
           .width('100%')
         })
       }
-      .columnsTemplate("1fr 1fr")
+      .columnsTemplate(getContext().resourceManager.getStringSync($r('app.string.two_fr').id))
       .columnsGap(8)
       .rowsGap(8)
       .backgroundColor($r('app.color.water_flow_background_color'))

@@ -31,7 +31,7 @@ export struct SubDetailPage {
       })
 
       Column() {
-        Text('这是子页面')
+        Text($r("app.string.sub_page_description"))
       }
     }
   }
