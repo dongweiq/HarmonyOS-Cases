@@ -136,6 +136,8 @@
     // 数据库版本升级
     "@ohos/databaseupgrade": "file:../../feature/databaseupgrade",
     // 一镜到底“页面转场”动画案例
-    "@ohos/transitionanimation": "file:../../feature/transitionanimation"
+    "@ohos/transitionanimation": "file:../../feature/transitionanimation",
+    // 图片九宫格布局案例
+    "@ohos/imagegridlayout": "file:../../feature/imagegridlayout",
   }
 }
