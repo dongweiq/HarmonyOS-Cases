@@ -85,11 +85,11 @@
      @State textOne: CommodityText = new CommodityText(TextType.TYPE_ONE, 15);
      ...    
      build(){
-   	...
-   	Text($r('app.string.store_name'))
-   	 // TODO：知识点：将入参的AttributeModifier类实例与系统组件绑定
-   	 .attributeModifier(this.textOne)
-   	 .fontColor($r('sys.color.ohos_id_counter_title_font_color'))
+       ...
+       Text($r('app.string.store_name'))
+         // TODO：知识点：将入参的AttributeModifier类实例与系统组件绑定
+         .attributeModifier(this.textOne)
+         .fontColor($r('sys.color.ohos_id_counter_title_font_color'))
    	...
      }
    }
@@ -103,11 +103,11 @@
      @State textOne: MyTextModifier = new MyTextModifier(TextType.TYPE_ONE, 30);
      ...    
      build(){
-   	...
-   	Text($r('app.string.commodity_price'))
-   	 // 动态设置组件样式
-   	.attributeModifier(this.textOne)
-   	.width($r('app.float.float_100'))
+       ...
+       Text($r('app.string.commodity_price'))
+         // 动态设置组件样式
+   	  .attributeModifier(this.textOne)
+   	  .width($r('app.float.float_100'))
    	...
      }
    }
@@ -254,21 +254,21 @@
      @State checkboxModifier: CheckboxModifier = new CheckboxModifier();
    
      build() {
-           ...
-           // AttributeModifier实例作为提供方自定义组件ImageText的入参传入。
-           ImageText({
-                     item: item,
-                     textOne: this.textOne,
-                     textTwo: this.textTwo,
-                     textThree: this.textThree,
-                     imageModifier: this.imageModifier,
-                     imageSrc: $r('app.media.icon'),
-                     checkboxModifier: this.checkboxModifier,
-                     textOneContent: $r('app.string.commodity_price'),
-                     textTwoContent: $r('app.string.commodity_name'),
-                     textThreeContent: $r('app.string.commodity_model')
-                   })
-           ... 
+       ...
+       // AttributeModifier实例作为提供方自定义组件ImageText的入参传入。
+       ImageText({
+         item: item,
+         textOne: this.textOne,
+         textTwo: this.textTwo,
+         textThree: this.textThree,
+         imageModifier: this.imageModifier,
+         imageSrc: $r('app.media.icon'),
+         checkboxModifier: this.checkboxModifier,
+         textOneContent: $r('app.string.commodity_price'),
+         textTwoContent: $r('app.string.commodity_name'),
+         textThreeContent: $r('app.string.commodity_model')
+         })
+       ... 
      }
    }
    ```
