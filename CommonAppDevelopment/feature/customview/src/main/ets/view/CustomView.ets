@@ -97,61 +97,57 @@ struct DiscoverTopView {
 
   build() {
     Column() {
-      Column() {
-        Row() {
-          /**
-           * 数据量比较少的情况下推荐使用ForEach，遇到数据量比较多的场景，如列表场景、瀑布流场景等，推荐使用
-           * LazyForEach(https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md/)
-           */
-          ForEach(this.titleArray, (title: string, idx: number) => {
-            Text(title)
-              .textAlign(TextAlign.Center)
-              .height($r('app.integer.width_and_height_thirty'))
-              .width(this.titleLengthRadix * title.length)
-              .fontColor(this.currentIndex == idx ?
-                        (this.wantGoIndex == idx ? $r('app.color.font_selected_state'):$r('app.color.font_unselected_state')):
-                        (this.wantGoIndex == idx ? $r('app.color.font_selected_state'):$r('app.color.font_unselected_state')))
-              .fontSize(this.currentIndex == idx ? $r('app.integer.font_size_eighteen') : $r('app.integer.font_size_fourteen'))
-              .fontWeight(this.currentIndex == idx ? FontWeight.Bold : FontWeight.Normal)
-              .onClick(() => {
-                // TODO 知识点：页签实现：记录点击index，index变化后，获取颜色条偏移量，刷新页签颜色、字体大小，实现效果
-                if (this.currentIndex !== idx) {
-                  // 记录点击index
-                  this.wantGoIndex = idx;
-                  // 动画效果
-                  animateTo({
-                    duration: Math.abs(idx - this.currentIndex) * this.durationRadix,
-                    curve: Curve.EaseInOut,
-                    iterations: this.iterationsDefault,
-                    playMode: PlayMode.Normal,
-                    onFinish: () => {
-                      this.currentIndex = idx;
-                      // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
-                      this.scroller.scrollToIndex(this.currentIndex, true, ScrollAlign.START);
-                    }
-                  }, () => {
-                    // 获取颜色条偏移量
-                    this.transitionX = this.getTransitionX(idx);
-                  })
-                }
-              })
-          })
-        }
-        .height($r('app.integer.width_and_height_thirty'))
-        .width($r('app.string.one_hundred_percent'))
-
-        Row()
-          .width($r('app.integer.width_and_height_twenty'))
-          .height($r('app.string.one_hundred_percent'))
-          .borderRadius($r('app.integer.borderRadius_value'))
-          .backgroundColor($r('app.color.color_bar'))
-          .position({x: this.transitionX, y: $r('app.integer.positionY')})
+      Row() {
+        /**
+         * 数据量比较少的情况下推荐使用ForEach，遇到数据量比较多的场景，如列表场景、瀑布流场景等，推荐使用
+         * LazyForEach(https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md/)
+         */
+        ForEach(this.titleArray, (title: string, idx: number) => {
+          Text(title)
+            .textAlign(TextAlign.Center)
+            .height($r('app.integer.width_and_height_thirty'))
+            .width(this.titleLengthRadix * title.length)
+            .fontColor(this.currentIndex == idx ?
+              (this.wantGoIndex == idx ? $r('app.color.font_selected_state'):$r('app.color.font_unselected_state')):
+              (this.wantGoIndex == idx ? $r('app.color.font_selected_state'):$r('app.color.font_unselected_state')))
+            .fontSize(this.currentIndex == idx ? $r('app.integer.font_size_eighteen') : $r('app.integer.font_size_fourteen'))
+            .fontWeight(this.currentIndex == idx ? FontWeight.Bold : FontWeight.Normal)
+            .onClick(() => {
+              // TODO 知识点：页签实现：记录点击index，index变化后，获取颜色条偏移量，刷新页签颜色、字体大小，实现效果
+              if (this.currentIndex !== idx) {
+                // 记录点击index
+                this.wantGoIndex = idx;
+                // 动画效果
+                animateTo({
+                  duration: Math.abs(idx - this.currentIndex) * this.durationRadix,
+                  curve: Curve.EaseInOut,
+                  iterations: this.iterationsDefault,
+                  playMode: PlayMode.Normal,
+                  onFinish: () => {
+                    this.currentIndex = idx;
+                    // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
+                    this.scroller.scrollToIndex(this.currentIndex, true, ScrollAlign.START);
+                  }
+                }, () => {
+                  // 获取颜色条偏移量
+                  this.transitionX = this.getTransitionX(idx);
+                })
+              }
+            })
+        })
       }
-      .height($r('app.integer.width_and_height_forty'))
-      .width($r('app.string.ninety_two_percent'))
+      .height($r('app.integer.width_and_height_thirty'))
+      .width($r('app.string.one_hundred_percent'))
+
+      Row()
+        .width($r('app.integer.width_and_height_twenty'))
+        .height($r('app.string.one_hundred_percent'))
+        .borderRadius($r('app.integer.borderRadius_value'))
+        .backgroundColor($r('app.color.color_bar'))
+        .position({x: this.transitionX, y: $r('app.integer.positionY')})
     }
-    .backgroundColor(Color.White)
-    .width($r('app.string.one_hundred_percent'))
+    .height($r('app.integer.width_and_height_forty'))
+    .width($r('app.string.ninety_two_percent'))
   }
 }
 
