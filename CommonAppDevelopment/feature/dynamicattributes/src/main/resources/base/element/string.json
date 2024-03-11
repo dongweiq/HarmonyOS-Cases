@@ -1,6 +1,18 @@
 {
   "string": [
     {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
       "name": "shared_desc",
       "value": "description"
     },
@@ -23,6 +35,10 @@
     {
       "name": "commodity_price",
       "value": "¥300"
+    },
+    {
+      "name": "text",
+      "value": "文本"
     },
     {
       "name": "text_one",
@@ -61,16 +77,16 @@
       "value": "结算"
     },
     {
-      "name": "max_size",
-      "value": "100%"
+      "name": "text_proportion",
+      "value": "40%"
     },
     {
       "name": "image_proportion",
       "value": "60%"
     },
     {
-      "name": "text_proportion",
-      "value": "40%"
+      "name": "max_size",
+      "value": "100%"
     }
   ]
 }

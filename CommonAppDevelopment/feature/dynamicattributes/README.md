@@ -87,7 +87,7 @@
      build(){
    	...
    	Text($r('app.string.store_name'))
-   	 // TODO：高性能知识点：将入参的AttributeModifier类实例与系统组件绑定
+   	 // TODO：知识点：将入参的AttributeModifier类实例与系统组件绑定
    	 .attributeModifier(this.textOne)
    	 .fontColor($r('sys.color.ohos_id_counter_title_font_color'))
    	...
@@ -127,39 +127,40 @@
     */
    @Component
    export struct ImageText {
-     @Prop item: string;  
-     // 接受外部传入的AttributeModifier类实例
-     @Prop textOne: AttributeModifier<TextAttribute>;
-     @Prop textTwo: AttributeModifier<TextAttribute>;
-     @Prop textThree: AttributeModifier<TextAttribute>;
-     @Prop imageModifier: AttributeModifier<ImageAttribute>;
-     @Prop checkboxModifier: AttributeModifier<CheckboxAttribute>;
-     @Prop imageSrc: PixelMap | ResourceStr | DrawableDescriptor;
-     @Prop textOneContent: string | Resource;
-     @Prop textTwoContent: string | Resource;
-     @Prop textThreeContent: string | Resource;
+     @State item: string | Resource = $r('app.string.text');
+     @State textOneContent: string | Resource = $r('app.string.text');
+     @State textTwoContent: string | Resource = $r('app.string.text');
+     @State textThreeContent: string | Resource = $r('app.string.text');
+     @State imageSrc: PixelMap | ResourceStr | DrawableDescriptor = $r('app.media.icon');
+     // TODO：知识点：接受外部传入的AttributeModifier类实例,可以只定制部分组件，选择性传入参数。
+     @State textOne: AttributeModifier<TextAttribute> = new TextModifier();
+     @State textTwo: AttributeModifier<TextAttribute> = new TextModifier();
+     @State textThree: AttributeModifier<TextAttribute> = new TextModifier();
+     @State imageModifier: AttributeModifier<ImageAttribute> = new ImageModifier();
+     @State checkboxModifier: AttributeModifier<CheckboxAttribute> = new CheckboxModifier();
    
      build() {
        Row() {
          Row() {
            Checkbox()
-              // TODO：高性能知识点：将入参的AttributeModifier类实例与系统组件绑定
              .attributeModifier(this.checkboxModifier)
-             
+   
+           // TODO：知识点：AttributeModifier不支持入参为CustomBuilder或Lamda表达式的属性，且不支持事件和手势。image只能单独通过入参传递使用。
            Image(this.imageSrc)
              .attributeModifier(this.imageModifier)
          }
+   
          .margin({ right: $r('app.float.float_10'), bottom: $r('app.float.float_15') })
    
          Column({ space: COLUMN_SPACE }) {
-           // TODO：知识点：AttributeModifier不支持入参为CustomBuilder或Lamda表达式的属性，且不支持事件和手势。text只能单独通过入参传递使用。
+           // TODO：知识点：将入参的AttributeModifier类实例与系统组件绑定
            Text(this.item)
              .attributeModifier(this.textTwo)
    
            Text(this.textThreeContent)
              .attributeModifier(this.textThree)
    
-           CommonText({ textFour: new CommodityText(TextType.TYPE_FOUR, TEXT_SIZE) })
+           CommonText({ textFour: new TextModifier() })
    
            Text(this.textOneContent)
              .attributeModifier(this.textOne)
@@ -169,6 +170,39 @@
        .padding({ top: $r('app.float.float_5') })
        .width($r('app.string.max_size'))
        .height($r('app.string.max_size'))
+     }
+   }
+   
+   /*
+     自定义class实现image的AttributeModifier接口，用于初始化
+   */
+   class ImageModifier implements AttributeModifier<ImageAttribute> {
+     applyNormalAttribute(instance: ImageAttribute): void {
+       instance.width($r('app.float.float_100'));
+       instance.height($r('app.float.float_100'));
+     }
+   }
+   
+   /*
+     自定义class实现text的AttributeModifier接口，用于初始化
+   */
+   class TextModifier implements AttributeModifier<TextAttribute> {
+     applyNormalAttribute(instance: TextAttribute): void {
+       instance.fontSize($r('app.float.float_12'));
+       instance.fontColor($r('app.color.orange'));
+       instance.textAlign(TextAlign.Center);
+       instance.border({ width: $r('app.float.float_1'), color: $r('app.color.orange'), style: BorderStyle.Solid });
+       instance.margin({ right: $r('app.float.float_10') });
+     }
+   }
+   
+   /*
+     自定义class实现checkbox的AttributeModifier接口，用于初始化
+   */
+   class CheckboxModifier implements AttributeModifier<CheckboxAttribute> {
+     applyNormalAttribute(instance: CheckboxAttribute): void {
+       instance.width($r('app.float.float_15'));
+       instance.height($r('app.float.float_15'));
      }
    }
    ```
@@ -216,24 +250,24 @@
      @State textOne: CommodityText = new CommodityText(TextType.TYPE_ONE, 15);
      @State textTwo: CommodityText = new CommodityText(TextType.TYPE_TWO, 17);
      @State textThree: CommodityText = new CommodityText(TextType.TYPE_Three, 15);
-     @State imageModifier: ImageModifier = new ImageModifier($r('app.float.float_100'), $r('app.float.float_100'));
+     @State imageModifier: ImageModifier = new ImageModifier(100, 100);
      @State checkboxModifier: CheckboxModifier = new CheckboxModifier();
    
      build() {
            ...
            // AttributeModifier实例作为提供方自定义组件ImageText的入参传入。
            ImageText({
-           item: item,
-           textOne: this.textOne,
-           textTwo: this.textTwo,
-           textThree: this.textThree,
-           imageModifier: this.imageModifier,
-           imageSrc: $r('app.media.icon'),
-           checkboxModifier: this.checkboxModifier,
-           textOneContent: $r('app.string.commodity_price'),
-           textTwoContent: $r('app.string.commodity_name'),
-           textThreeContent: $r('app.string.commodity_model')
-           })
+                     item: item,
+                     textOne: this.textOne,
+                     textTwo: this.textTwo,
+                     textThree: this.textThree,
+                     imageModifier: this.imageModifier,
+                     imageSrc: $r('app.media.icon'),
+                     checkboxModifier: this.checkboxModifier,
+                     textOneContent: $r('app.string.commodity_price'),
+                     textTwoContent: $r('app.string.commodity_name'),
+                     textThreeContent: $r('app.string.commodity_model')
+                   })
            ... 
      }
    }
@@ -248,13 +282,14 @@
 ### 工程结构&模块类型
 
    ```
+   dynamicattributes
    |---common
-   |   |---AttributeModifier.ets                        // 自定义AttributeModifier接口
-   |   |---CommonText.ets                        		// 自定义组件封装
-   |   |---LazyForEach.ets                              // 懒加载
+   |   |---AttributeModifier.ets               // 自定义AttributeModifier接口
+   |   |---CommonText.ets                      // 自定义组件封装
+   |   |---LazyForEach.ets                     // 懒加载
    |---pages
-   |   |---ShoppingCart.ets                             // 页面一：购物车
-   |   |---Details.ets                					// 页面二：详情页
+   |   |---ShoppingCart.ets                    // 页面一：购物车
+   |   |---Details.ets                         // 页面二：详情页
    ```
 
 ### 模块依赖
@@ -263,6 +298,6 @@
 
 ### 参考资料
 
-[动态属性设置]([动态属性设置-通用属性-组件通用信息-基于ArkTS的声明式开发范式-ArkTS组件-ArkUI API参考-开发 | 华为开发者联盟 (huawei.com)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-attribute-modifier-0000001774280870#ZH-CN_TOPIC_0000001774280870__attributemodifier))
+[动态属性设置](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-attribute-modifier-0000001774280870#ZH-CN_TOPIC_0000001774280870__attributemodifier)
 
-[ArkUI组件封装及复用场景介绍]([ArkUI组件封装及复用场景介绍-更多参考-最佳实践 | 华为开发者联盟 (huawei.com)](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ui-component-encapsulation-and-reuse-0000001814743802))
+[ArkUI组件封装及复用场景介绍](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ui-component-encapsulation-and-reuse-0000001814743802)

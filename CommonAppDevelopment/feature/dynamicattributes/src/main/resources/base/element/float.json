@@ -9,12 +9,12 @@
       "value": "5vp"
     },
     {
-      "name": "float_12",
-      "value": "12vp"
-    },
-    {
       "name": "float_10",
       "value": "10vp"
+    },
+    {
+      "name": "float_12",
+      "value": "12vp"
     },
     {
       "name": "float_15",
@@ -29,20 +29,20 @@
       "value": "25vp"
     },
     {
-      "name":  "float_30",
+      "name": "float_30",
       "value": "30vp"
     },
     {
-      "name":"float_50",
+      "name": "float_50",
       "value": "50vp"
     },
     {
-      "name":"float_60",
+      "name": "float_60",
       "value": "60vp"
     },
     {
-      "name":"float_90",
-      "value": "90vp"
+      "name": "float_90",
+      "value": "90"
     },
     {
       "name": "float_100",

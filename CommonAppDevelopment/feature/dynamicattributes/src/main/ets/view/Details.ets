@@ -19,7 +19,6 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 const COLUMN_SPACE = 20; // column间隙
 const TEXT_SIZE = 15; // 自定义组件中text大小
 
-@Entry
 @Component
 export struct Details {
   // TODO：知识点：实例化自定义的样式类
@@ -90,7 +89,7 @@ export struct Details {
         buttonModifier: new ButtonModifier(),
         barModifier: new BarModifier(),
         buttonName: $r('app.string.settlement'),
-        barType:BarType.DETAILS
+        barType: BarType.DETAILS
       })
     }
   }

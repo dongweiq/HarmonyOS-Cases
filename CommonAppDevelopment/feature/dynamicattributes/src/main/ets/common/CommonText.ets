@@ -12,17 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ButtonModifier, BarModifier, CommodityText, TextType } from './AttributeModifier';
-
 const COLUMN_SPACE = 10; // column间隙
-const TEXT_SIZE = 12 // 自定义组件中text大小
 
 /**
  * 自定义封装公共文本组件
  */
 @Component
 export struct CommonText {
-  @Prop textFour: AttributeModifier<TextAttribute>;
+  @State textFour: AttributeModifier<TextAttribute> = new TextModifier();
 
   build() {
     Row() {
@@ -44,10 +41,10 @@ export struct CommonText {
  */
 @Component
 export struct BottomBar {
-  @Prop buttonModifier: AttributeModifier<ButtonAttribute>;
-  @Prop barModifier: AttributeModifier<RowAttribute>;
-  @Prop buttonName: Resource = $r('app.string.settlement');
-  @Prop barType: BarType = BarType.SHOPPING_CART;
+  @State buttonModifier: AttributeModifier<ButtonAttribute> = new ButtonModifier();
+  @State barModifier: AttributeModifier<RowAttribute> = new BarModifier();
+  @State buttonName: Resource = $r('app.string.settlement');
+  @State barType: BarType = BarType.SHOPPING_CART;
 
   build() {
     Row() {
@@ -68,17 +65,17 @@ export struct BottomBar {
  */
 @Component
 export struct ImageText {
-  @Prop item: string;
-  // 接受外部传入的AttributeModifier类实例
-  @Prop textOne: AttributeModifier<TextAttribute>;
-  @Prop textTwo: AttributeModifier<TextAttribute>;
-  @Prop textThree: AttributeModifier<TextAttribute>;
-  @Prop imageModifier: AttributeModifier<ImageAttribute>;
-  @Prop checkboxModifier: AttributeModifier<CheckboxAttribute>;
-  @Prop imageSrc: PixelMap | ResourceStr | DrawableDescriptor;
-  @Prop textOneContent: string | Resource;
-  @Prop textTwoContent: string | Resource;
-  @Prop textThreeContent: string | Resource;
+  @State item: string | Resource = $r('app.string.text');
+  @State textOneContent: string | Resource = $r('app.string.text');
+  @State textTwoContent: string | Resource = $r('app.string.text');
+  @State textThreeContent: string | Resource = $r('app.string.text');
+  @State imageSrc: PixelMap | ResourceStr | DrawableDescriptor = $r('app.media.icon');
+  // TODO：知识点：接受外部传入的AttributeModifier类实例,可以只定制部分组件，选择性传入参数。
+  @State textOne: AttributeModifier<TextAttribute> = new TextModifier();
+  @State textTwo: AttributeModifier<TextAttribute> = new TextModifier();
+  @State textThree: AttributeModifier<TextAttribute> = new TextModifier();
+  @State imageModifier: AttributeModifier<ImageAttribute> = new ImageModifier();
+  @State checkboxModifier: AttributeModifier<CheckboxAttribute> = new CheckboxModifier();
 
   build() {
     Row() {
@@ -86,7 +83,7 @@ export struct ImageText {
         Checkbox()
           .attributeModifier(this.checkboxModifier)
 
-        // TODO：知识点：AttributeModifier不支持入参为CustomBuilder或Lamda表达式的属性，且不支持事件和手势。image和text只能单独通过入参传递使用。
+        // TODO：知识点：AttributeModifier不支持入参为CustomBuilder或Lamda表达式的属性，且不支持事件和手势。image和text只能单独通过入参传递使用
         Image(this.imageSrc)
           .attributeModifier(this.imageModifier)
       }
@@ -94,14 +91,14 @@ export struct ImageText {
       .margin({ right: $r('app.float.float_10'), bottom: $r('app.float.float_15') })
 
       Column({ space: COLUMN_SPACE }) {
-        // TODO：高性能知识点：将入参的AttributeModifier类实例与系统组件绑定
+        // TODO：知识点：将入参的AttributeModifier类实例与系统组件绑定
         Text(this.item)
           .attributeModifier(this.textTwo)
 
         Text(this.textThreeContent)
           .attributeModifier(this.textThree)
 
-        CommonText({ textFour: new CommodityText(TextType.TYPE_FOUR, TEXT_SIZE) })
+        CommonText({ textFour: new TextModifier() })
 
         Text(this.textOneContent)
           .attributeModifier(this.textOne)
@@ -111,6 +108,59 @@ export struct ImageText {
     .padding({ top: $r('app.float.float_5') })
     .width($r('app.string.max_size'))
     .height($r('app.string.max_size'))
+  }
+}
+
+/*
+  自定义class实现button的AttributeModifier接口，用于初始化
+*/
+export class ButtonModifier implements AttributeModifier<ButtonAttribute> {
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.width($r('app.float.float_30'));
+    instance.height($r('app.float.float_15'));
+  }
+}
+
+/*
+  自定义class实现text的AttributeModifier接口，用于初始化
+*/
+class TextModifier implements AttributeModifier<TextAttribute> {
+  applyNormalAttribute(instance: TextAttribute): void {
+    instance.fontSize($r('app.float.float_12'));
+    instance.fontColor($r('app.color.orange'));
+    instance.textAlign(TextAlign.Center);
+    instance.border({ width: $r('app.float.float_1'), color: $r('app.color.orange'), style: BorderStyle.Solid });
+    instance.margin({ right: $r('app.float.float_10') });
+  }
+}
+
+/*
+  自定义class实现image的AttributeModifier接口，用于初始化
+*/
+class ImageModifier implements AttributeModifier<ImageAttribute> {
+  applyNormalAttribute(instance: ImageAttribute): void {
+    instance.width($r('app.float.float_100'));
+    instance.height($r('app.float.float_100'));
+  }
+}
+
+/*
+  自定义class实现row的AttributeModifier接口，用于初始化
+*/
+class BarModifier implements AttributeModifier<RowAttribute> {
+  applyNormalAttribute(instance: RowAttribute): void {
+    instance.width($r('app.float.float_30'));
+    instance.height($r('app.float.float_15'));
+  }
+}
+
+/*
+  自定义class实现checkbox的AttributeModifier接口，用于初始化
+*/
+class CheckboxModifier implements AttributeModifier<CheckboxAttribute> {
+  applyNormalAttribute(instance: CheckboxAttribute): void {
+    instance.width($r('app.float.float_15'));
+    instance.height($r('app.float.float_15'));
   }
 }
 

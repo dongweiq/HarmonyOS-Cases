@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 import { MyDataSource } from '../common/LazyForEach';
-import { CommodityText,BarModifier,CheckboxModifier,TextType,ImageModifier,ButtonModifier } from '../common/AttributeModifier';
+import { CommodityText, BarModifier, CheckboxModifier, TextType, ImageModifier, ButtonModifier } from '../common/AttributeModifier';
 import { BottomBar, ImageText } from '../common/CommonText';
-import { Details } from './Details';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /*
@@ -36,7 +35,7 @@ export struct ShoppingCart {
   @State textOne: CommodityText = new CommodityText(TextType.TYPE_ONE, 15);
   @State textTwo: CommodityText = new CommodityText(TextType.TYPE_TWO, 17);
   @State textThree: CommodityText = new CommodityText(TextType.TYPE_Three, 15);
-  @State imageModifier: ImageModifier = new ImageModifier($r('app.float.float_100'), $r('app.float.float_100'));
+  @State imageModifier: ImageModifier = new ImageModifier(100, 100);
   @State checkboxModifier: CheckboxModifier = new CheckboxModifier();
 
   aboutToAppear() {
@@ -63,7 +62,7 @@ export struct ShoppingCart {
           })
 
         List() {
-          // TODO：高性能知识点：数据懒加载
+          // TODO：知识点：数据懒加载
           LazyForEach(this.data, (item: string) => {
             ListItem() {
               Column() {
