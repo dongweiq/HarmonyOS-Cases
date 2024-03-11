@@ -12,14 +12,10 @@
 1、入场动画：采用stack布局，容器内有瀑布流卡片列表CardList和卡片详情页DetailPage（展开时是详情页，未展开是卡片组件）
   ```ts
   build() {
-    Navigation(this.pageInfos) {
-      Stack() {
-        this.CardList();
-        this.DetailPage();
-      }
+    Stack() {
+      this.CardList();
+      this.DetailPage();
     }
-    .hideTitleBar(true)
-    .navDestination(this.PageMap)
   }
   ```
 2、入场动画：点击卡片后，记录当前被点击卡片在数组中的索引，DetailPage渲染被点击卡片组件，使用onAreaChange存储每个Card被点击时的位置、宽高信息，用于设置返回动画卡片组件的结束状态位置尺寸信息；
