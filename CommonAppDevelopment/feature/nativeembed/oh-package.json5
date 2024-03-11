@@ -1,0 +1,14 @@
+{
+  "name": "nativeembed",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "Index.ets",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    // 公共特性模块，需要用到公共设计参数
+    "@ohos/base": "file:../../common/utils",
+    // 动态路由模块，用于配置动态路由
+    "@ohos/dynamicsrouter": "file:../../feature/routermodule"
+  }
+}
