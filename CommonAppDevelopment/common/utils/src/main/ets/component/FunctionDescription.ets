@@ -35,6 +35,7 @@ export struct FunctionDescription {
       .margin({ bottom: $r('app.string.ohos_id_elements_margin_vertical_m') })
       Row(){
         Text(this.content)
+          .wordBreak(WordBreak.BREAK_ALL)
       }
       .width('100%')
     }
