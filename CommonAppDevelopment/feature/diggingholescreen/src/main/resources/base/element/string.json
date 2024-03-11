@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "introduction_titel",
+      "value": "适配挖孔屏案例"
+    },
+    {
+      "name": "introduction_content",
+      "value": "本示例模拟游戏中挖孔屏适配场景。通过getDefaultDisplaySync、getCutoutInfo获取窗口display对象和不可用区域的边界、宽高，使用获取到的相关区域调整页面时间和电量显示的偏移量以达到规避挖孔屏遮挡问题"
+    }
+  ]
+}
