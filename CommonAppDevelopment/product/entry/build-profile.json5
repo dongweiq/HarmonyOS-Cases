@@ -82,6 +82,8 @@
           "@ohos/componentinstancesharedinpages",
           "@ohos/customsafekeyboard",
           "@ohos/databaseupgrade"
+          "@ohos/listitemoverflow",
+          "@ohos/transitionanimation"
         ]
       }
     }

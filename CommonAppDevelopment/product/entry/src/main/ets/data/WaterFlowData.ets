@@ -80,4 +80,6 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.componentinstancesharedinpages"), '页面间共享组件实例的案例', RouterInfo.COMPONENT_SHARED_IN_PAGES, 'UI布局'),
   new SceneModuleInfo($r("app.media.custom_safe_keyboard"), '自定义安全键盘案例', RouterInfo.CUSTOM_SAFE_KEYBOARD, 'UI布局'),
   new SceneModuleInfo($r("app.media.database_upgrade"), '数据库版本升级案例', RouterInfo.DATABASE_UPGRADE, '其他', 3),
+  new SceneModuleInfo($r("app.media.image_enableanalyzer"), '图片拖拽AI抠图案例', RouterInfo.IMAGE_ENABLE_ANALYZER, '其他', 1),
+  new SceneModuleInfo($r("app.media.transition_animation"), '一镜到底“页面转场”动画', RouterInfo.TRANSITION_ANIMATION, '动效', 2)
 ]
