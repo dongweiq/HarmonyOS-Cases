@@ -74,12 +74,16 @@
           "@ohos/expandtitle",
           "@ohos/listslidetohistory",
           "@ohos/pageloading",
+          "@ohos/hilogmonitormanagement",
           "@ohos/bigfilecopy",
           "@ohos/diggingholescreen",
           "@ohos/dragtoswitchpictures",
           "@ohos/listitemoverflow",
           "@ohos/componentinstancesharedinpages",
-          "@ohos/customsafekeyboard"
+          "@ohos/customsafekeyboard",
+          "@ohos/databaseupgrade"
+          "@ohos/listitemoverflow",
+          "@ohos/transitionanimation"
         ]
       }
     }

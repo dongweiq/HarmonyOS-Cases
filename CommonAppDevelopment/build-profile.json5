@@ -261,6 +261,10 @@
       "srcPath": "./feature/pageloading"
     },
     {
+      "name": "hilogmonitormanagement",
+      "srcPath": "./feature/hilogmonitormanagement"
+    },
+    {
       "name": "bigfilecopy",
       "srcPath": "./feature/bigfilecopy"
     },
@@ -279,6 +283,10 @@
     {
       "name": "customsafekeyboard",
       "srcPath": "./feature/customsafekeyboard"
+    },
+    {
+      "name": "databaseupgrade",
+      "srcPath": "./feature/databaseupgrade"
     }
   ]
 }

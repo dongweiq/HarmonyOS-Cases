@@ -13,28 +13,22 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-
 /**
- * 日志打印类
+ * 1. 通过调用Native的setLogCallback接口实现日志回调注册
+ * 2. 通过调用Native的CancelCallback接口实现关闭日志回调
  */
-export class Logger {
-  static domain: number = 0x1111;
-  static prefix: string = "VerifyCode"
 
-  static debug(format: string, ...args: string[]) {
-    hilog.debug(Logger.domain, Logger.prefix, format, args);
+import testNapi from 'liblogcallback.so';
+
+export class HiLogMonitorManagement {
+
+  // TODO: 知识点： 注册日志回调函数
+  registerCallback(strLog: string, callBack : Function) : void {
+    testNapi.setLogCallback(strLog, callBack);
   }
 
-  static info(format: string, ...args: string[]) {
-    hilog.info(Logger.domain, Logger.prefix, format, args);
-  }
-
-  static warn(format: string, ...args: string[]) {
-    hilog.warn(Logger.domain, Logger.prefix, format, args);
-  }
-
-  static error(format: string, ...args: string[]) {
-    hilog.error(Logger.domain, Logger.prefix, format, args);
+  // TODO: 知识点： 关闭日志回调
+  cancelCallback() : void {
+    testNapi.cancelLogCallback();
   }
 }

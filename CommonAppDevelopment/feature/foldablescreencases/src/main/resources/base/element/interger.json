@@ -11,6 +11,14 @@
     {
       "name": "font_size_music_time",
       "value": 10
+    },
+    {
+      "name": "image_position_x",
+      "value": 10
+    },
+    {
+      "name": "image_position_y",
+      "value": -40
     }
   ]
 }

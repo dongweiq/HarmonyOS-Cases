@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "mock_btn_js_info",
+      "value": "JS线程调用"
+    },
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "func_desc_title",
+      "value": "Napi封装ArkTS"
+    },
+    {
+      "name": "func_desc_content",
+      "value": "本例使用Napi封装ArkTS的DocumentViewPicker的select方法，实现C++调用TS侧API的能力"
+    },
+    {
+      "name": "mock_btn_p_info",
+      "value": "PThread线程调用"
+    },
+    {
+      "name": "half_size",
+      "value": "50%"
+    },
+    {
+      "name": "ets_btn_info",
+      "value": "ETS拉起picker"
+    }
+  ]
+}

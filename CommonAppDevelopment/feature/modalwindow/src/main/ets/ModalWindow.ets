@@ -52,7 +52,7 @@ export struct ModalWindow {
          * isPresent：是否显示全屏模态页面
          * loginBuilder：配置全屏模态页面内容
          */
-        .bindContentCover(this.isPresent, this.loginBuilder)
+        .bindContentCover($$this.isPresent, this.loginBuilder)
         .onClick(() => {
           this.isPresent = true; // 当isPresent为true时显示模态页面，反之不显示
         })

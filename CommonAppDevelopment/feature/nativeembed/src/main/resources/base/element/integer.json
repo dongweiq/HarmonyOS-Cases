@@ -1,0 +1,12 @@
+{
+  "integer": [
+    {
+      "name": "search_component_height",
+      "value": 30
+    },
+    {
+      "name": "image_size",
+      "value": 100
+    }
+  ]
+}

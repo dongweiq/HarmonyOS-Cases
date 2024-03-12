@@ -1,0 +1,32 @@
+{
+  "integer": [
+    {
+      "name": "table_border_width",
+      "value": 1
+    },
+    {
+      "name": "table_font_size",
+      "value": 10
+    },
+    {
+      "name": "table_height",
+      "value": 30
+    },
+    {
+      "name": "case_title_font_size",
+      "value": 30
+    },
+    {
+      "name": "case_title_margin_bottom",
+      "value": 10
+    },
+    {
+      "name": "production_font_size",
+      "value": 15
+    },
+    {
+      "name": "production_margin_bottom",
+      "value": 20
+    }
+  ]
+}

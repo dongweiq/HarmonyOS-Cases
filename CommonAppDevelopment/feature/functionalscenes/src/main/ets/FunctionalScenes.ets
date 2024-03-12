@@ -23,7 +23,7 @@ import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
  */
 @Component
 export struct FunctionalScenes {
-  @Link @Watch('dataChange') listData: SceneModuleInfo[];
+  @Link listData: SceneModuleInfo[];
   @Consume('pageStack') pageStack: NavPathStack;
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(this.listData);
   @State tabsIndex: number = 0;
@@ -32,11 +32,6 @@ export struct FunctionalScenes {
   tabsController: TabsController = new TabsController();
   tabDataSource: TabDataSource = new TabDataSource();
   waterFlowScroller: Scroller = new Scroller();
-
-  // 监听数据变化
-  dataChange() {
-    this.filterData(this.tabsIndex)
-  }
 
   /**
    * 筛选数据逻辑，触发更新列表信息，用于切换tabs和搜索
@@ -49,21 +44,18 @@ export struct FunctionalScenes {
     if (index !== 0) {
       for (let i = 0; i < this.listData.length; i++) {
         // 判断类别
-        if (this.listData[i].category === TAB_DATA[this.tabsIndex].navData) {
+        if (this.listData[i].category === TAB_DATA[index].navData) {
           newListData.push(this.listData[i]);
         }
       }
-      // 更新数据控制器数据
-      this.dataSource.modifyAllData(newListData);
-      // 通知数据控制器重新加载数据
-      this.dataSource.reload();
+      this.dataSource = new WaterFlowDataSource(newListData);
+      return this.dataSource;
     } else {
-      // 更新数据控制器数据
-      this.dataSource.modifyAllData(this.listData);
-      // 通知数据控制器重新加载数据
-      this.dataSource.reload();
+      this.dataSource = new WaterFlowDataSource(this.listData);
+      return this.dataSource;
     }
   }
+
 
   aboutToAppear(): void {
     // 主页tabContent初始化数据
@@ -163,10 +155,10 @@ export struct FunctionalScenes {
   build() {
     Column() {
       Tabs({ controller: this.tabsController }) {
-        LazyForEach(this.tabDataSource, (tabItem: TabDataModel) => {
+        ForEach(TAB_DATA, (tabItem: TabDataModel) => {
           TabContent() {
             WaterFlow({ scroller: this.waterFlowScroller }) {
-              LazyForEach(this.dataSource, (waterFlowItem: SceneModuleInfo) => {
+              LazyForEach(this.filterData(tabItem.id), (waterFlowItem: SceneModuleInfo) => {
                 FlowItem() {
                   this.methodPoints(waterFlowItem)
                 }
@@ -182,16 +174,20 @@ export struct FunctionalScenes {
             .columnsGap($r('app.string.main_page_water_flow_gap'))
             .width('100%')
           }
-          .tabBar(this.tabBuilder(tabItem.id, tabItem.navData))
+          .backgroundColor("#F1F1F1")
+          .tabBar(
+            SubTabBarStyle.of(tabItem.navData)
+              .indicator({color:Color.Black})
+          )
         })
       }
+      .barBackgroundColor(Color.White)
       .margin({ top: $r('app.string.main_page_padding2') })
       .padding({
         left: $r('app.string.main_page_padding2'),
         right: $r('app.string.main_page_padding2')
       })
       .barWidth('100%')
-      .barHeight('6%')
       .onChange((index: number) => {
         this.tabsIndex = index;
         this.filterData(index);
