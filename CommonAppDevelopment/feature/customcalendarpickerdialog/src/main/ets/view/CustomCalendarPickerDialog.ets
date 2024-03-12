@@ -53,7 +53,7 @@ export struct CustomCalendarPickerDialog {
   aboutToAppear() {
     this.currentMonthDay = getMonthDate(this.currentMonth, this.currentYear);
     // 如果下个月是在下一年，则下个月是1月份，年份要+1
-    if (this.currentMonth == MONTHS) {
+    if (this.currentMonth === MONTHS) {
       this.nextMonth = JANUARY;
       this.nextYear = this.currentYear + 1;
     }
