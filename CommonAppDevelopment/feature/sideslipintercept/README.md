@@ -15,71 +15,46 @@
 3. 点击保存按钮，返回主页，保存用户编辑的数据，再次进入编辑页可在上次编辑的基础上再次编辑。
 
 ### 实现思路
-1. 侧滑后弹出弹窗提示用户是否保存。 源码参考[MainPage.ets](src/main/ets/components/MainPage.ets)。
+
+1. 因为功能是以har的形式集成在主工程中，没有@Entry修饰的组件，也无法作为入口组件，不能使用@Entry组件的onBackPress生命周期函数。
+
+2. 在使用方面onBackPressed是NavDestination自己的事件，需配合NavDestination组件使用；
+   且组件本身用于显示Navigation内容区，作为子页面的根容器，因此若拦截子页面的返回事件，可使用onBackPressed回调。
+
+3. onBackPress生命周期函数只能在@Entry组件中使用，因此若对入口组件的返回事件拦截可使用onBackPress生命周期函数。
+
+4. 通过NavDestination组件的onBackPressed回调对返回事件进行拦截；源码参考[MainPage.ets](src/main/ets/components/MainPage.ets)。
 
   ```ts
-  // 提示弹窗,
-  promptAction.showDialog({
-      message: $r('app.string.edit_prompt'),
-      alignment: DialogAlignment.Center,
-      buttons: [
-        {
-          text: $r('app.string.unsave_edit'),
-          color: $r('app.color.button_text_color')
-        },
-        {
-          text: $r('app.string.save_edit'),
-          color: $r('app.color.button_text_color')
-        }
-      ]
-    })
-  ```
-
-2. 点击保存按钮，退出编辑页，通过用户首选项preferences实例持久化保存用户编辑的数据。源码参考[MainPage.ets](src/main/ets/components/MainPage.ets)。
-
-  ```ts
-  if (data.index === 0) {
-        // 返回到主页面
-          this.homePageStack.pop(true);
+  // 应用主页用NavDestination承载，用于显示Navigation的内容区
+      Navigation(this.pageStackForComponentSharedPages) {
       }
-      // 点击保存按钮，保存编辑退出应用
-      if (data.index === 1) {
-        let preferences: dataPreferences.Preferences | null = null;
-        dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
-          preferences = val;
-          // 订阅数据变更需要指定observer作为回调方法
-          let observer = (key: string) => {
-          }
-          preferences.on('change', observer);
-          // TODO：知识点：触发返回后点击保存通过preferences.put()方法将数据写入到preferences实例中，持久化存储数据
-          preferences.put('startup', this.text, (err: BusinessError) => {
-            // 数据持久化
-            if (preferences !== null) {
-              preferences.flush((err: BusinessError) => {
-                if (err) {
-                  return;
-                }
-              })
-            }
-          })
-        })
-        // 返回到主页面
-        this.homePageStack.pop(true);
-      }
-  ```
-
-3. 重新打开应用，通过preferences实例的getSync方法读取存储的数据。源码参考[MainPage.ets](src/main/ets/components/MainPage.ets)。
-
-  ```ts
-  aboutToAppear() {
-  let preferences: dataPreferences.Preferences | null = null;
-  dataPreferences.getPreferences(this.context, 'myStore', (err: BusinessError, val: dataPreferences.Preferences) => {
-    preferences = val;
-    // 读取数据并同步到text
-    const value: dataPreferences.ValueType = preferences.getSync('startup', this.text);
-    this.text = value.toString()
-  })
-}
+      .onAppear(() => {
+        this.pageStackForComponentSharedPages.pushPathByName("MainPage", null, false);
+      })
+      // 创建NavDestination组件，需使用此组件的onBackPressed回调拦截返回事件
+      .navDestination(this.textArea)
+      
+     @Builder textArea(name: string) {
+       NavDestination() {
+         Column() {
+           TextArea({
+             text: this.text,
+             placeholder: 'input your word...',
+             controller: this.controller
+           })
+             .onChange((value: string) => {
+               this.text = value;
+             })
+         }
+         .justifyContent(FlexAlign.Start)
+         .width('100%')
+         .height('100%')
+     }
+     .onBackPressed(() => {
+         // 此处可添加拦截处理逻辑，然后return true放行
+         return true
+  }
   ```
 
 

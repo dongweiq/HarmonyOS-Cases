@@ -18,9 +18,9 @@ import { common } from '@kit.AbilityKit';
 import { promptAction, ShowDialogSuccessResponse } from '@kit.ArkUI';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
-const MYSTORE = 'myStore'  // Preferences实例名称
-const STARTUP = 'startup' // 写入与读取数据的key值
-const CHANGE = 'change'  // 事件类型，固定为change
+const MYSTORE = 'myStore';  // Preferences实例名称
+const STARTUP = 'startup'; // 写入与读取数据的key值
+const CHANGE = 'change';  // 事件类型，固定为change
 
 /**
  * 实现步骤：
@@ -44,7 +44,7 @@ export struct SideslipIntercept {
       preferences = val;
       // TODO：知识点：进入页面通过preferences.getSync()方法读取存储在preferences实例中的数据
       const value: dataPreferences.ValueType = preferences.getSync(STARTUP, this.text);
-      this.text = value.toString()
+      this.text = value.toString();
     })
   }
 
