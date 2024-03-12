@@ -287,6 +287,10 @@
     {
       "name": "databaseupgrade",
       "srcPath": "./feature/databaseupgrade"
+    },
+    {
+      "name": "transitionanimation",
+      "srcPath": "./feature/transitionanimation"
     }
   ]
 }
