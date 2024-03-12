@@ -28,6 +28,7 @@ export struct TakeTaxiDetailPage {
   @Consume mapResponseRegionHeight: number;
   @State isShow: boolean = true;
   @State windowWidth: number = 0;
+  readonly componentsWindowWidth: number = 600;
 
   /**
    * 获取应用主窗口的宽高
@@ -70,7 +71,7 @@ export struct TakeTaxiDetailPage {
       .bindSheet($$this.isShow, this.taxiContentBuilder(),
         {
           detents: TakeTaxiPageCommonConstants.SHEET_DETENTS,
-          preferType: this.windowWidth > 800 ? SheetType.CENTER : SheetType.POPUP,
+          preferType: this.windowWidth > this.componentsWindowWidth ? SheetType.CENTER : SheetType.POPUP,
           enableOutsideInteractive: true,
           dragBar: false,
           title: { title: $r('app.string.take_taxi_detail_page') },

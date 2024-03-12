@@ -35,6 +35,8 @@ export struct MusicPlayerInfoComp {
   @Prop musicModel: MusicModel;
   // 父组件单向绑定的屏幕状态
   @Prop @Watch('updateWithFoldStatus') curFoldStatus: display.FoldStatus;
+  // 通知Navigation组件隐藏导航栏
+  @Consume('isFullScreen') isFullScreen: string;
   // list控制器
   private lyricsScrollerCtrl: Scroller = new Scroller();
   // 当前是否横屏状态
@@ -48,7 +50,6 @@ export struct MusicPlayerInfoComp {
     iterations: 1,
     playMode: PlayMode.Normal
   }
-
   // 歌曲信息组件整体高度百分比
   @State totalHeightPer: string = CommonConstants.MUSIC_INFO_COMP_HEIGHT_COMMON;
   // 歌词子组件高度百分比
@@ -63,6 +64,13 @@ export struct MusicPlayerInfoComp {
   aboutToAppear(): void {
     // 初始化各组件样式
     this.updateWithFoldStatus();
+    // 隐藏navigation导航栏，设置为全屏。
+    animateTo({
+      duration: 400,
+      curve: Curve.EaseInOut,
+    }, () => {
+      this.isFullScreen = '0.01%';
+    })
     // 监听媒体查询横屏切换
     this.landscapeListener.on('change', (mediaQueryResult: mediaquery.MediaQueryResult) => {
       this.updateWithOrientation(mediaQueryResult);
@@ -80,6 +88,13 @@ export struct MusicPlayerInfoComp {
         .height($r('app.integer.font_size_music_title'))
         .onClick(() => {
           DynamicsRouter.pop()
+          // 呈现navigation导航栏，设置为半屏。
+          animateTo({
+            duration: 200,
+            curve: Curve.EaseInOut,
+          }, () => {
+            this.isFullScreen = '50%';
+          })
         })
         .position({ x: $r('app.integer.image_position_x'), y: $r('app.integer.image_position_y') })
         .fillColor(Color.White)

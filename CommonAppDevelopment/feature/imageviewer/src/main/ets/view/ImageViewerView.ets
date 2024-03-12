@@ -30,19 +30,20 @@ export struct ImageViewerView {
   @State scaleInfo: ImageScaleModel = new ImageScaleModel(1, 1);
   image: Resource = $r("app.media.test1")
   controller: SwiperController = new SwiperController();
+  readonly componentsWindowWidth: number = 600;
 
   aboutToAppear() {
     window.getLastWindow(getContext(this), (err: BusinessError, data: window.Window) => {
       let rect: window.Rect = data.getWindowProperties().windowRect;
       this.windowWidth = px2vp(rect.width);
       this.windowHeight = px2vp(rect.height);
-      if (this.windowWidth > 800) {
+      if (this.windowWidth > this.componentsWindowWidth) {
         this.windowWidth = this.windowWidth / 2;
       }
       data.on("windowSizeChange", (data: window.Size) => {
         this.windowWidth = px2vp(data.width);
         this.windowHeight = px2vp(data.height);
-        if (this.windowWidth > 800) {
+        if (this.windowWidth > this.componentsWindowWidth) {
           this.windowWidth = this.windowWidth / 2;
         }
       })

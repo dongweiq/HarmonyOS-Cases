@@ -17,8 +17,6 @@ import { SearchComponent } from '@ohos/searchcomponent';
 import { DynamicsRouter } from '@ohos/dynamicsRouter/Index';
 import { FunctionalScenes, SceneModuleInfo } from '@ohos/functionalscenes';
 import { waterFlowData } from '../data/WaterFlowData';
-import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
 
 @Entry
 @Component
@@ -27,17 +25,13 @@ struct EntryView {
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: SceneModuleInfo[] = waterFlowData;
-  @State windowWidth: number = 0;
+  @Provide('isFullScreen') isFullScreen: string = '50%';
 
   aboutToAppear(): void {
     // 注册动态router
     DynamicsRouter.createNavPathStack(this.pageStack);
     // 存储初始数据用于搜索筛选
     AppStorage.setOrCreate('listData', this.listData)
-    window.getLastWindow(getContext(this), (err: BusinessError, data: window.Window) => {
-      const rect: window.Rect = data.getWindowProperties().windowRect;
-      this.windowWidth = px2vp(rect.width);
-    })
   }
 
   @Builder
@@ -69,8 +63,9 @@ struct EntryView {
       }
       .backgroundColor($r('app.color.main_background_color'))
       .hideTitleBar(true)
+      .navBarWidth(this.isFullScreen)
       .navDestination(this.pageMap)
-      .mode(this.windowWidth > 800 ? NavigationMode.Split : NavigationMode.Stack)
+      .mode(NavigationMode.Auto)
     }
     .height('100%')
     .backgroundColor($r('app.color.main_background_color'))

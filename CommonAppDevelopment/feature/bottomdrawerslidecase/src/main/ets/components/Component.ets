@@ -62,15 +62,16 @@ export struct ImageMapView {
   @State imagePositionY: number = 0; // 图片在父组件内Y轴位置
   @State offsetX: number = 0; // 拖动事件结束后图片X轴位置
   @State offsetY: number = 0; // 拖动事件结束后图片Y轴位置
+
   build() {
-    Column(){
+    Column() {
       // 背景地图图片
       Image($r('app.media.map'))
         .id("bg_img")
-        .height(2000)
-        .width(2000)
+        .height($r('app.integer.number_2000'))
+        .width($r('app.integer.number_2000'))
         .translate({ x: this.offsetX, y: this.offsetY })// 以组件左上角为坐标原点进行移动
-        .draggable(false)// 单指操作拖动背景地图
+        .draggable(false) // 单指操作拖动背景地图
 
     }.width('100%')
     .height('100%')

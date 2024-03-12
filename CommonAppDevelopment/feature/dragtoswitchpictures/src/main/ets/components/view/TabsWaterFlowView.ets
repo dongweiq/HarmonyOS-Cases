@@ -45,7 +45,7 @@ export struct TabsWaterFlowView {
    * @param index 当前的列表索引
    */
   filterData(index: number) {
-    let newListData: WaterFlowModule[] = []; // 用于接收筛选到的数据
+    const newListData: WaterFlowModule[] = []; // 用于接收筛选到的数据
     for (let i = CONFIGURATION.INIT_VALUE; i < this.listData.length; i++) {
       newListData.push(this.listData[i]);
     }
@@ -113,37 +113,33 @@ export struct TabsWaterFlowView {
 
   @Builder
   tabBuilder(index: number, name: string | Resource) {
-    Row() {
-      Text(name)
-        .fontSize($r('app.integer.tabbar_text_fontsize'))
-        .fontColor(Color.Black)
-        .opacity(this.tabsIndex === index ? CONFIGURATION.TABBAR_TEXT_OPACITY_SELECTED : CONFIGURATION.TABBAR_TEXT_OPACITY)
-        .fontWeight(this.tabsIndex === index ? CONFIGURATION.TABBAR_TEXT_FONT_WEIGHT_SELECTED : CONFIGURATION.TABBAR_TEXT_FONT_WEIGHT)
-        .height($r('app.string.full_size'))
-        .border(this.tabsIndex === index ? {
-          width: {
-            left: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
-            right: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
-            top: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
-            bottom: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH_BOTTOM
-          },
-          color: { bottom: Color.Black },
-          style: BorderStyle.Solid
-        } :
-          {
-            width: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH
-          })
-    }
-    .justifyContent(FlexAlign.Center)
-    .width($r('app.string.full_size'))
-    .backgroundColor(Color.White)
-    .height($r('app.string.full_size'))
-    .align(Alignment.Center)
-    .onClick(() => {
-      this.tabsIndex = index;
-      this.tabsController.changeIndex(index);
-      this.filterData(index);
-    })
+    Text(name)
+      .fontSize($r('app.integer.tabbar_text_fontsize'))
+      .fontColor(Color.Black)
+      .opacity(this.tabsIndex === index ? CONFIGURATION.TABBAR_TEXT_OPACITY_SELECTED : CONFIGURATION.TABBAR_TEXT_OPACITY)
+      .fontWeight(this.tabsIndex === index ? CONFIGURATION.TABBAR_TEXT_FONT_WEIGHT_SELECTED : CONFIGURATION.TABBAR_TEXT_FONT_WEIGHT)
+      .height($r('app.string.full_size'))
+      .border(this.tabsIndex === index ? {
+        width: {
+          left: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
+          right: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
+          top: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
+          bottom: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH_BOTTOM
+        },
+        color: { bottom: Color.Black },
+        style: BorderStyle.Solid
+      } :
+        {
+          width: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH
+        })
+      .width($r('app.string.full_size'))
+      .backgroundColor(Color.White)
+      .onClick(() => {
+        this.tabsIndex = index;
+        this.tabsController.changeIndex(index);
+        this.filterData(index);
+      })
+      .textAlign(TextAlign.Center)
   }
 
   /**
@@ -168,7 +164,8 @@ export struct TabsWaterFlowView {
               }, (waterFlowItem: WaterFlowModule) => JSON.stringify(waterFlowItem))
             }
             .margin({ top: $r('app.integer.margin_length') })
-            .nestedScroll({ // WaterFlow嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+            .nestedScroll({
+              // WaterFlow嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
               scrollForward: NestedScrollMode.PARENT_FIRST, // 可滚动组件往末尾端滚动时父组件先滚动，父组件滚动到边缘以后自身滚动。
               scrollBackward: NestedScrollMode.SELF_FIRST // 可滚动组件往起始端滚动时自身先滚动，父自身滚动到边缘以后父组件滚动。
             })

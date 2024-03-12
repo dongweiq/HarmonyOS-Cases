@@ -482,7 +482,7 @@ export struct BarChartPage {
                 this.model.invalidate();
               }
             })
-            .margin({left:-3})
+            .margin({ left: $r('app.integer.margin_fu_3') })
         }.alignSelf(ItemAlign.Start)
 
         Row() {
@@ -646,4 +646,4 @@ export function getBarChartPage(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.BAR_CHAT,wrapBuilder(getBarChartPage));
+DynamicsRouter.registerRouterPage(RouterInfo.BAR_CHAT, wrapBuilder(getBarChartPage));

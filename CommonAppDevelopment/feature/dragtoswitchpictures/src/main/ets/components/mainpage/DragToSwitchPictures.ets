@@ -20,24 +20,21 @@ import { CONFIGURATION } from '../common/Constants';
 @Component
 export struct DragToSwitchPictures {
   build() {
-    Stack({ alignContent: Alignment.BottomEnd }) {
-      Scroll() {
-        Column() {
-          // AI设计视图
-          DesignCattleView()
-          // 瀑布流视图
-          TabsWaterFlowView()
-        }
-        .justifyContent(FlexAlign.Center)
-        .backgroundColor($r('app.color.home_page_backgroundcolor'))
+    Scroll() {
+      Column() {
+        // AI设计视图
+        DesignCattleView()
+        // 瀑布流视图
+        TabsWaterFlowView()
       }
-      .width($r('app.string.full_size'))
-      .height($r('app.string.full_size'))
-      .scrollBar(BarState.Off)
-      .scrollable(ScrollDirection.Vertical)
-      .zIndex(CONFIGURATION.ZINDEX1)
-
+      .justifyContent(FlexAlign.Center)
+      .backgroundColor($r('app.color.home_page_backgroundcolor'))
     }
+    .width($r('app.string.full_size'))
+    .height($r('app.string.full_size'))
+    .scrollBar(BarState.Off)
+    .scrollable(ScrollDirection.Vertical)
+    .zIndex(CONFIGURATION.ZINDEX1)
   }
 }
 
