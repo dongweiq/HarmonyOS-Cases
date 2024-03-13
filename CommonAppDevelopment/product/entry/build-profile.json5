@@ -83,7 +83,8 @@
           "@ohos/customsafekeyboard",
           "@ohos/databaseupgrade",
           "@ohos/listitemoverflow",
-          "@ohos/transitionanimation"
+          "@ohos/transitionanimation",
+          "@ohos/imagegridlayout",
         ]
       }
     }

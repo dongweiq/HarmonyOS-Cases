@@ -85,4 +85,5 @@ export class RouterInfo {
   static readonly DATABASE_UPGRADE: RouterInfo = new RouterInfo('@ohos/databaseupgrade', 'DatabaseUpgrade');
   static readonly TRANSITION_ANIMATION: RouterInfo = new RouterInfo('@ohos/transitionanimation', 'TransitionAnimation');
   static readonly TRANSITION_ANIMATION_SUB_Detail: RouterInfo = new RouterInfo('@ohos/transitionanimation', 'SubDetailPage');
+  static readonly IMAGE_GRID_LAYOUT: RouterInfo = new RouterInfo('@ohos/imagegridlayout', 'ImageGridLayout');
 }

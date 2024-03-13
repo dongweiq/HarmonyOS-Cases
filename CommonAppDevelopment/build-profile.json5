@@ -291,6 +291,10 @@
     {
       "name": "transitionanimation",
       "srcPath": "./feature/transitionanimation"
+    },
+    {
+      "name": "imagegridlayout",
+      "srcPath": "./feature/imagegridlayout"
     }
   ]
 }
