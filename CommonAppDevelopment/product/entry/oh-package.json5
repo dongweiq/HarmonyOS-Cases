@@ -120,7 +120,7 @@
     // 页面加载效果实现案例
     "@ohos/pageloading": "file:../../feature/pageloading",
     // 监听HiLog日志实现测试用例验证
-    "@ohos/hilogmonitormanagement": "file:../../feature/logcallback",
+    "@ohos/hilogmonitormanagement": "file:../../feature/hilogmonitormanagement",
     // 大文件拷贝案例
     "@ohos/bigfilecopy": "file:../../feature/bigfilecopy",
     // 适配挖孔屏案例
@@ -134,6 +134,10 @@
     // 自定义安全键盘案例
     "@ohos/customsafekeyboard": "file:../../feature/customsafekeyboard",
     // 数据库版本升级
-    "@ohos/databaseupgrade": "file:../../feature/databaseupgrade"
+    "@ohos/databaseupgrade": "file:../../feature/databaseupgrade",
+    // 一镜到底“页面转场”动画案例
+    "@ohos/transitionanimation": "file:../../feature/transitionanimation",
+    // 图片九宫格布局案例
+    "@ohos/imagegridlayout": "file:../../feature/imagegridlayout",
   }
 }

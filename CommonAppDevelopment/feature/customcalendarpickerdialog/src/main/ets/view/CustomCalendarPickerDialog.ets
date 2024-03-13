@@ -53,7 +53,7 @@ export struct CustomCalendarPickerDialog {
   aboutToAppear() {
     this.currentMonthDay = getMonthDate(this.currentMonth, this.currentYear);
     // 如果下个月是在下一年，则下个月是1月份，年份要+1
-    if (this.currentMonth == MONTHS) {
+    if (this.currentMonth === MONTHS) {
       this.nextMonth = JANUARY;
       this.nextYear = this.currentYear + 1;
     }
@@ -107,7 +107,7 @@ export struct CustomCalendarPickerDialog {
               .height($r('app.string.ohos_id_text_size_headline'))
               .fontColor(weekInfomation === SUNDAY || weekInfomation === SATURDAY ? $r('app.color.ohos_id_color_warning') : $r('app.color.ohos_id_color_text_primary'))
           }
-          .width($r('app.string.weekWidth'))
+          .width($r('app.string.week_width'))
         })
       }
       .width('100%')
@@ -163,7 +163,7 @@ export struct CustomCalendarPickerDialog {
           }
         })
       }
-      .height('100%')
+      .height($r('app.string.calendar_height'))
       .width('100%')
       .edgeEffect(EdgeEffect.None)
       .scrollBar(BarState.Off)
@@ -172,7 +172,7 @@ export struct CustomCalendarPickerDialog {
     .padding({top: ELEMENTS_MARGIN, bottom: ELEMENTS_MARGIN})
     .width('100%')
     .height('85%')
-    .borderRadius($r('app.string.ohos_id_corner_radius_default_l'))
+    .borderRadius({topLeft: $r('app.string.ohos_id_corner_radius_default_l'), topRight: $r('app.string.ohos_id_corner_radius_default_l')})
     .backgroundColor($r('app.color.ohos_id_color_background'))
     .alignItems(HorizontalAlign.Center)
   }

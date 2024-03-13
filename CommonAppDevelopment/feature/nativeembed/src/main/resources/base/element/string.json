@@ -1,0 +1,68 @@
+{
+  "string": [
+    {
+      "name": "page_show",
+      "value": "page from package"
+    },
+    {
+      "name": "product_title000",
+      "value": "充电宝"
+    },
+    {
+      "name": "product_title001",
+      "value": "笔记本电脑"
+    },
+    {
+      "name": "product_title002",
+      "value": "移动手机"
+    },
+    {
+      "name": "product_title003",
+      "value": "手机充电器"
+    },
+    {
+      "name": "product_price000",
+      "value": "￥79.9"
+    },
+    {
+      "name": "product_price001",
+      "value": "￥6999"
+    },
+    {
+      "name": "product_price002",
+      "value": "￥5999"
+    },
+    {
+      "name": "product_price003",
+      "value": "￥72.5"
+    },
+    {
+      "name": "reason",
+      "value": "get internet permisssion"
+    },
+    {
+      "name": "full_percent",
+      "value": "100%"
+    },
+    {
+      "name": "half_percent",
+      "value": "50%"
+    },
+    {
+      "name": "mall",
+      "value": "商城"
+    },
+    {
+      "name": "search",
+      "value": "搜索"
+    },
+    {
+      "name": "headline",
+      "value": "功能说明"
+    },
+    {
+      "name": "illustrate",
+      "value": "该方案展示了同层渲染使用原生组件，让原生组件和前端元素一样受webview控制，其中文字、图片、和搜索栏都是原生组件"
+    }
+  ]
+}

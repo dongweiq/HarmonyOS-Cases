@@ -90,7 +90,7 @@
     },
     {
       "name": "control_is_show_limitline_behinddata",
-      "value": "LimitLine是否在数据后："
+      "value": "左Y轴LimitLine是否在数据后："
     },
     {
       "name": "control_leftYAxis_limitline_location",

@@ -19,7 +19,7 @@ import batteryInfo from '@ohos.batteryInfo';
 import common from '@ohos.app.ability.common';
 import window from '@ohos.window';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
-import { logger } from '@ohos/base';
+import { logger, FunctionDescription } from '@ohos/base';
 
 class TextMargin {
   left: number = 0; // 状态栏左偏移量
@@ -133,25 +133,34 @@ export struct DiggingHoleScreen {
           .objectFit(ImageFit.Fill)
           .width('100%')
           .height('100%')
-        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-          Text(this.currentTime)// 时间
-            .fontSize($r('app.integer.title_font_size'))
-            .fontColor(Color.Black)
-            .fontWeight(FontWeight.Regular)
-            .padding({ left: $r('app.integer.text_padding_left') })
-            .margin({
-              left: px2vp(this.topTextMargin.left),
-              top: $r('app.integer.text_margin_top')
-            }) // 获取的偏移量单位为px需要进行转换
-          Text(batteryInfo.batterySOC.toString() + '%')// 电池电量
-            .fontSize($r('app.integer.title_font_size'))
-            .fontColor(Color.Black)
-            .fontWeight(FontWeight.Regular)
-            .padding({ right: $r('app.integer.text_padding_right') })
-            .margin({
-              right: px2vp(this.topTextMargin.right),
-              top: $r('app.integer.text_margin_top')
-            }) // 获取的偏移量单位为px需要进行转换
+        Column() {
+          Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+            Text(this.currentTime)// 时间
+              .fontSize($r('app.integer.title_font_size'))
+              .fontColor(Color.Black)
+              .fontWeight(FontWeight.Regular)
+              .padding({ left: $r('app.integer.text_padding_left') })
+              .margin({
+                left: px2vp(this.topTextMargin.left),
+                top: $r('app.integer.text_margin_top')
+              }) // 获取的偏移量单位为px需要进行转换
+            Text(batteryInfo.batterySOC.toString() + '%')// 电池电量
+              .fontSize($r('app.integer.title_font_size'))
+              .fontColor(Color.Black)
+              .fontWeight(FontWeight.Regular)
+              .padding({ right: $r('app.integer.text_padding_right') })
+              .margin({
+                right: px2vp(this.topTextMargin.right),
+                top: $r('app.integer.text_margin_top')
+              }) // 获取的偏移量单位为px需要进行转换
+          }
+          .width('100%')
+
+          FunctionDescription({
+            title: $r('app.string.introduction_titel'),
+            content: $r('app.string.introduction_content')
+          })
+            .width('90%')
         }
         .width('100%')
       }
@@ -169,4 +178,4 @@ export function getDiggingHoleScreen(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.DIGGING_HOLE_SCREEN,wrapBuilder(getDiggingHoleScreen));
+DynamicsRouter.registerRouterPage(RouterInfo.DIGGING_HOLE_SCREEN, wrapBuilder(getDiggingHoleScreen));

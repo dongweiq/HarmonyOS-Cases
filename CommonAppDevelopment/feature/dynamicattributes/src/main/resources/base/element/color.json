@@ -1,0 +1,36 @@
+{
+  "color": [
+    {
+      "name": "white",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "red",
+      "value": "#FF0000"
+    },
+    {
+      "name": "orange",
+      "value": "#FF4500"
+    },
+    {
+      "name": "buttonColor",
+      "value": "#EE7600"
+    },
+    {
+      "name": "iconColor",
+      "value": "#B22222"
+    },
+    {
+      "name": "imageColor",
+      "value": "#ccc"
+    },
+    {
+      "name": "selectColor",
+      "value": "#FF8247"
+    },
+    {
+      "name": "barColor",
+      "value": "#F5F5F5"
+    }
+  ]
+}

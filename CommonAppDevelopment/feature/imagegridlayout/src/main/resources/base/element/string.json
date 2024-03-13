@@ -1,0 +1,20 @@
+{
+  "string": [
+    {
+      "name": "width_100",
+      "value": "100%"
+    },
+    {
+      "name": "height_100",
+      "value": "100%"
+    },
+    {
+      "name": "image_set_size_9_flex_width",
+      "value": "75%"
+    },
+    {
+      "name": "image_set_size_4_flex_width",
+      "value": "50%"
+    }
+  ]
+}

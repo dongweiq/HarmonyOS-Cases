@@ -22,9 +22,37 @@ export struct Side {
   @State favoriteCount: string = ''; // 收藏数量
   @State shareCount: string = ''; // 分享数量
   @State isFocus: boolean = true; // 是否关注
-  @State isLike: boolean = true; // 是否点赞
+  @State isLike: boolean = false; // 是否点赞
   @State isFavorite: boolean = true; // 是否收藏
   @State index: number = 0; // 用户下标
+
+  // 点击点赞按钮的回调函数
+  private changeLikeCount(isAdd: boolean) {
+    let likeCountNum = Number(this.likeCount);
+    if(isAdd) {
+      likeCountNum++;
+    } else {
+      likeCountNum--;
+    }
+    this.likeCount = '' + likeCountNum;
+    animateTo({ duration: 200, curve: Curve.EaseInOut }, () => {
+      this.isLike = !this.isLike;
+    })
+  }
+
+  // 点击收藏按钮的回调函数
+  private changefavoriteCount(isIncrease: boolean) {
+    let favoriteCountNum = Number(this.favoriteCount);
+    if(isIncrease) {
+      favoriteCountNum++;
+    } else {
+      favoriteCountNum--;
+    }
+    this.favoriteCount = '' + favoriteCountNum;
+    animateTo({ duration: 200, curve: Curve.EaseInOut }, () => {
+      this.isFavorite = !this.isFavorite;
+    })
+  }
 
   build() {
     Column() {
@@ -67,18 +95,13 @@ export struct Side {
       .padding({ bottom: $r('app.integer.avatar_padding_bottom') })
 
       Column() {
-        if (this.isLike) {
+        if (!this.isLike) {
           Image($r('app.media.fabulous'))
             .height($r('app.integer.fabulous_height'))
             .width($r('app.integer.fabulous_width'))
             .objectFit(ImageFit.ScaleDown)
             .onClick(() => {
-              let likeCountNum = Number(this.likeCount);
-              likeCountNum++;
-              this.likeCount = '' + likeCountNum;
-              animateTo({ duration: 200, curve: Curve.EaseInOut }, () => {
-                this.isLike = !this.isLike;
-              })
+              this.changeLikeCount(true);
             })
             .margin({ bottom: $r('app.integer.fabulous_margin_bottom') })
           Text(this.likeCount)
@@ -86,18 +109,13 @@ export struct Side {
             .fontColor(Color.White)
             .opacity($r('app.float.fabulous_opacity'))
         }
-        if (!this.isLike) {
+        if (this.isLike) {
           Image($r('app.media.fabulo'))
             .height($r('app.integer.fabulous_height'))
             .width($r('app.integer.fabulous_width'))
             .objectFit(ImageFit.ScaleDown)
             .onClick(() => {
-              let likeCountNum = Number(this.likeCount);
-              likeCountNum--;
-              this.likeCount = '' + likeCountNum;
-              animateTo({ duration: 200, curve: Curve.EaseInOut }, () => {
-                this.isLike = !this.isLike;
-              })
+              this.changeLikeCount(false);
             })
             .margin({ bottom: $r('app.integer.fabulous_margin_bottom') })
           Text(this.likeCount)
@@ -127,12 +145,7 @@ export struct Side {
             .height($r('app.integer.fabulous_height'))
             .width($r('app.integer.fabulous_width'))
             .onClick(() => {
-              let favoriteCountNum = Number(this.favoriteCount);
-              favoriteCountNum++;
-              this.favoriteCount = '' + favoriteCountNum;
-              animateTo({ duration: 200, curve: Curve.EaseInOut }, () => {
-                this.isFavorite = !this.isFavorite;
-              })
+              this.changefavoriteCount(true);
             })
             .margin({ bottom: $r('app.integer.fabulous_margin_bottom') })
           Text(this.favoriteCount)
@@ -145,12 +158,7 @@ export struct Side {
             .height($r('app.integer.fabulous_height'))
             .width($r('app.integer.fabulous_width'))
             .onClick(() => {
-              let favoriteCountNum = Number(this.favoriteCount);
-              favoriteCountNum--;
-              this.favoriteCount = '' + favoriteCountNum;
-              animateTo({ duration: 200, curve: Curve.EaseInOut }, () => {
-                this.isFavorite = !this.isFavorite;
-              })
+              this.changefavoriteCount(false);
             })
             .margin({ bottom: $r('app.integer.fabulous_margin_bottom') })
           Text(this.favoriteCount)

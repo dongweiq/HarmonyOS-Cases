@@ -1,0 +1,32 @@
+<!Document>
+<html>
+<head>
+    <title>viewhtml</title>
+    <meta name="viewport">
+</head>
+<body>
+<div>
+    <div id="bodyId">
+        <!-- 在H5界面上通过embed标签标识同层元素，在应用侧将原生组件渲染到H5页面embed标签所在位置-->
+        <embed id="nativeSearch" type = "native/component" width="100%" height="100%" src="view"/>
+    </div>
+</div>
+<script>
+// 判断设备是否支持touch事件
+let nativeEmbed = {
+  // 通过id名获取embed标签
+  nativeSearch : document.getElementById('nativeSearch'),
+  // 事件
+  events:{},
+  // 初始化
+  init:function(){
+    let self = this;
+    // 添加touch的监听事件
+    self.nativeSearch.addEventListener('touchstart', self.events, false);
+  }
+};
+nativeEmbed.init();
+</script>
+
+</body>
+</html>

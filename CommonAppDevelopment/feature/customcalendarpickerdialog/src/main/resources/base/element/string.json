@@ -17,8 +17,12 @@
       "value": "出发日期"
     },
     {
-      "name": "weekWidth",
+      "name": "week_width",
       "value": "14.3%"
+    },
+    {
+      "name": "calendar_height",
+      "value": "90%"
     }
   ]
 }

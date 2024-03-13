@@ -262,7 +262,7 @@
     },
     {
       "name": "hilogmonitormanagement",
-      "srcPath": "./feature/logcallback"
+      "srcPath": "./feature/hilogmonitormanagement"
     },
     {
       "name": "bigfilecopy",
@@ -287,6 +287,14 @@
     {
       "name": "databaseupgrade",
       "srcPath": "./feature/databaseupgrade"
+    },
+    {
+      "name": "transitionanimation",
+      "srcPath": "./feature/transitionanimation"
+    },
+    {
+      "name": "imagegridlayout",
+      "srcPath": "./feature/imagegridlayout"
     }
   ]
 }

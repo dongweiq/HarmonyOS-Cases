@@ -30,7 +30,7 @@ import {
   XAxis, // 图表X轴部件
   XAxisPosition, // 图表X轴标签位置枚举类
   YAxis, // 图表Y轴部件
-  Color as Colors
+  ChartColor as Colors
 } from '@ohos/mpchart';
 
 const GRID_BG_COLOR: string = '#FFFBF9EC';
