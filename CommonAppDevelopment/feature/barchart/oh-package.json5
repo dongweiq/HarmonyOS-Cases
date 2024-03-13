@@ -22,7 +22,7 @@
   "main": "Index.ets",
   "version": "1.0.0",
   "dependencies": {
-    "@ohos/mpchart": "3.0.0-rc.1",
+    "@ohos/mpchart": "3.0.1-rc.0",
     // 动态路由模块，用于配置动态路由
     "@ohos/dynamicsrouter": "file:../../feature/routermodule"
   }
