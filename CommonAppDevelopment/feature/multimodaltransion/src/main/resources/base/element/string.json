@@ -1,0 +1,188 @@
+{
+  "string": [
+    {
+      "name": "phone_back",
+      "value": "手机验证码登录"
+    },
+    {
+      "name": "auto_after_login",
+      "value": "首次登录将自动注册"
+    },
+    {
+      "name": "verify_server_tip",
+      "value": "认证服务由橘子提供"
+    },
+    {
+      "name": "read_and_agree",
+      "value": "我已阅读并同意"
+    },
+    {
+      "name": "server_proxy_rule_detail",
+      "value": "服务协议及个人信息处理规则"
+    },
+    {
+      "name": "phone_start_login",
+      "value": "手机号码一键登录"
+    },
+    {
+      "name": "login_success",
+      "value": "登录成功"
+    },
+    {
+      "name": "please_read_and_agree",
+      "value": "请先阅读并同意协议"
+    },
+    {
+      "name": "please_input_account_and_pwd",
+      "value": "请输入账号或密码"
+    },
+    {
+      "name": "other_way_login",
+      "value": "其他登录方式"
+    },
+    {
+      "name": "login_problems",
+      "value": "遇到问题"
+    },
+    {
+      "name": "click_show_login_dialogController",
+      "value": "点击按钮唤出登录弹窗"
+    },
+    {
+      "name": "click_show_proxy",
+      "value": "点击了协议"
+    },
+    {
+      "name": "click_show_cancel",
+      "value": "点击了取消"
+    },
+    {
+      "name": "click_show_confirm",
+      "value": "点击了确认"
+    },
+    {
+      "name": "half_screen_modal_login_description",
+      "value": "点击跳转到半模态登录页"
+    },
+    {
+      "name": "service",
+      "value": "服务条款"
+    },
+    {
+      "name": "and1",
+      "value": "和"
+    },
+    {
+      "name": "privacy",
+      "value": "隐私政策"
+    },
+    {
+      "name": "and2",
+      "value": "以及"
+    },
+    {
+      "name": "account",
+      "value": "天翼账号服务协议"
+    },
+    {
+      "name": "not_this",
+      "value": "不是此账号？用其他账号"
+    },
+    {
+      "name": "login",
+      "value": "登录"
+    },
+    {
+      "name": "phone_login",
+      "value": "手机号登录"
+    },
+    {
+      "name": "new",
+      "value": "首次登录将产生新账号"
+    },
+    {
+      "name": "input_phone_number",
+      "value": "请输入手机号"
+    },
+    {
+      "name": "verify",
+      "value": "发送短信验证码"
+    },
+    {
+      "name": "86",
+      "value": "+86"
+    },
+    {
+      "name": "size_full",
+      "value": "100%"
+    },
+    {
+      "name": "size_ninety_percent",
+      "value": "90%"
+    },
+    {
+      "name": "size_eighty_percent",
+      "value": "80%"
+    },
+    {
+      "name": "size_eighty_three_percent",
+      "value": "83%"
+    },
+    {
+      "name": "size_eighty_two_percent",
+      "value": "83%"
+    },
+    {
+      "name": "account_login_text",
+      "value": "账号密码登录"
+    },
+    {
+      "name": "place_holder",
+      "value": "请输入账号"
+    },
+    {
+      "name": "text_input_place_holder",
+      "value": "请输入密码"
+    },
+    {
+      "name": "row_text",
+      "value": "手机验证码登录"
+    },
+    {
+      "name": "account_btn_text",
+      "value": "登录"
+    },
+    {
+      "name": "captcha_change_title_text",
+      "value": "账号密码登录"
+    },
+    {
+      "name": "captcha_get",
+      "value": "账号密码登录"
+    },
+    {
+      "name": "captcha_sent",
+      "value": "验证码已发送"
+    },
+    {
+      "name": "after_login_more_service",
+      "value": "登录体验更多服务"
+    },
+    {
+      "name": "user_phone_number",
+      "value": "122****2222"
+    },
+    {
+      "name": "get_service",
+      "value": "中国XX提供认证服务"
+    },
+    {
+      "name": "captcha_login_text",
+      "value": "验证码登录"
+    },
+    {
+      "name": "only_show_ui",
+      "value": "此样式仅为案例展示"
+    }
+  ]
+}
