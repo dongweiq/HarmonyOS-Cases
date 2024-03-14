@@ -650,6 +650,7 @@ export struct BarChartPage {
                 this.model.invalidate();
               }
             })
+            .margin({ left: $r('app.integer.margin_fu_3') })
         }.alignSelf(ItemAlign.Start)
       }
       .border({ width: 1, color: $r('app.color.border_color'), radius: 10, style: BorderStyle.Solid })
@@ -669,4 +670,4 @@ export function getBarChartPage(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.BAR_CHAT,wrapBuilder(getBarChartPage));
+DynamicsRouter.registerRouterPage(RouterInfo.BAR_CHAT, wrapBuilder(getBarChartPage));

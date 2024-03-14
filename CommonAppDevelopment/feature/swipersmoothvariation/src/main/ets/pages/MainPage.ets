@@ -145,7 +145,7 @@ export struct SwiperSmoothVariation {
         })
       }
       .height(height)
-      .width($r('app.float.scroll_width'))
+      .width($r('app.string.width_full'))
       .borderRadius($r('app.float.border_radius'))
       .edgeEffect(EdgeEffect.None)
       .columnsTemplate(Const.COLUMN_TEMPLATE)

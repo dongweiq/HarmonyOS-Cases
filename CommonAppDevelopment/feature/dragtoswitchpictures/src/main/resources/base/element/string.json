@@ -49,6 +49,10 @@
       "value": "6%"
     },
     {
+      "name": "2_5_size",
+      "value": "2.5%"
+    },
+    {
       "name": "columnstemplate",
       "value": "1fr 1fr"
     },

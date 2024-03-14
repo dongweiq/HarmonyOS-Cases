@@ -59,15 +59,15 @@ export struct NavigationParameterTransferView {
 
       Column() {
         Row() {
-          Text($r('app.string.user_name'))
+          Text($r('app.string.navigationparametertransferview_user_name'))
             .fontSize($r('app.string.navigation_font_size_20'))
-            .width('30%')
+            .width('35%')
             .textAlign(TextAlign.End)
             .fontWeight(FontWeight.Normal)
             .margin($r('app.string.navigation_margin'))
             .align(Alignment.End)
           Text(this.userName)
-            .width('60%')
+            .width('55%')
             .margin($r('app.string.navigation_margin'))
             .fontSize($r('app.string.navigation_font_size_14'))
         }
@@ -75,13 +75,13 @@ export struct NavigationParameterTransferView {
         Row() {
           Text($r('app.string.user_id'))
             .fontSize($r('app.string.navigation_font_size_20'))
-            .width('30%')
+            .width('35%')
             .fontWeight(FontWeight.Normal)
             .margin($r('app.string.navigation_margin'))
             .textAlign(TextAlign.End)
             .align(Alignment.End)
           Text(this.userID)
-            .width('60%')
+            .width('55%')
             .margin($r('app.string.navigation_margin'))
             .fontSize($r('app.string.navigation_font_size_14'))
         }
@@ -89,13 +89,13 @@ export struct NavigationParameterTransferView {
         Row() {
           Text($r('app.string.user_seatNo'))
             .fontSize($r('app.string.navigation_font_size_20'))
-            .width('30%')
+            .width('35%')
             .fontWeight(FontWeight.Normal)
             .margin($r('app.string.navigation_margin'))
             .textAlign(TextAlign.End)
             .align(Alignment.End)
           Text(this.seatNo)
-            .width('60%')
+            .width('55%')
             .margin($r('app.string.navigation_margin'))
             .fontSize($r('app.string.navigation_font_size_14'))
         }

@@ -91,7 +91,7 @@ struct ReusableComponent {
         }
         // TODO:知识点： 设置窗口是否显示导航栏和状态栏
         data.setWindowSystemBarEnable(WINDOW_SYSTEM_BAR);
-        data.setPreferredOrientation(window.Orientation.PORTRAIT);
+        data.setPreferredOrientation(window.Orientation.UNSPECIFIED);
       })
     } else {
       this.isFullScreen = true;

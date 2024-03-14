@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { HomeTop, SettingItemView, StatusHead } from "../components/Component"
+import { HomeTop, SettingItemView, StatusHead, ImageMapView } from "../components/Component";
 import window from '@ohos.window';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import WindowModel from '../utils/WindowModel';
@@ -42,21 +42,17 @@ export struct BottomDrawerSlideCase {
   @State isUp: boolean = true; // list是否向上滑动
   @State isShow: boolean = false; // 顶部遮蔽导航栏区域是否显示
   @State listItem: SettingItem[] = [
-    new SettingItem('list_item_id_first', $r("app.media.second_list_item")),
-    new SettingItem('list_item_id_second', $r("app.media.first_list_item")),
-    new SettingItem('list_item_id_third', $r("app.media.second_list_item")),
-    new SettingItem('list_item_id_fourth', $r("app.media.first_list_item")),
-    new SettingItem('list_item_id_fifth', $r("app.media.second_list_item")),
-    new SettingItem('list_item_id_sixth', $r("app.media.first_list_item")),
-    new SettingItem('list_item_id_seventh', $r("app.media.second_list_item")),
-    new SettingItem('list_item_id_eighth', $r("app.media.first_list_item")),
+    new SettingItem('list_item_id_first'),
+    new SettingItem('list_item_id_second'),
+    new SettingItem('list_item_id_third'),
+    new SettingItem('list_item_id_fourth'),
+    new SettingItem('list_item_id_fifth'),
+    new SettingItem('list_item_id_sixth'),
+    new SettingItem('list_item_id_seventh'),
+    new SettingItem('list_item_id_eighth'),
   ]; // list内容项
   @State firstListItemHeight: number = 195; // 列表第一个item高度
   @State secondListItemHeight: number = this.bottomAvoidHeight + 150; // 列表第二个item高度
-  @State imagePositionX: number = 0; // 图片在父组件内X轴位置
-  @State imagePositionY: number = 0; // 图片在父组件内Y轴位置
-  @State offsetX: number = 0; // 拖动事件结束后图片X轴位置
-  @State offsetY: number = 0; // 拖动事件结束后图片Y轴位置
 
   aboutToAppear(): void {
     // 初始化窗口管理model
@@ -99,25 +95,11 @@ export struct BottomDrawerSlideCase {
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       RelativeContainer() {
-        // 背景地图图片
-        Image($r('app.media.map'))
-          .id("bg_img")
-          .height(2000)
-          .width(2000)
-          .translate({ x: this.offsetX, y: this.offsetY })// 以组件左上角为坐标原点进行移动
-          .draggable(false)// 单指操作拖动背景地图
-          .gesture(
-            PanGesture({ direction: PanDirection.All, fingers: 1 })
-              .onActionUpdate((event: GestureEvent) => {
-                this.offsetX = event.offsetX + this.imagePositionX;
-                this.offsetY = event.offsetY + this.imagePositionY;
-              })
-              .onActionEnd((event: GestureEvent) => {
-                this.imagePositionX = this.offsetX;
-                this.imagePositionY = this.offsetY;
-                logger.debug('Pan Gesture is end')
-              })
-          )
+
+        // Image地图
+        ImageMapView()
+          .id('map')
+
         // 地图顶部标题栏
         HomeTop({ statusBarHeight: this.statusBarHeight })
           .alignRules({

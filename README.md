@@ -405,6 +405,12 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/search_trasition.gif" width="200">
 
+#### Navigation.Mode实现一多适配案例
+
+本示例介绍如何使用Navigation的mode属性实现一套代码多设备适配。[详细说明文档](./CommonAppDevelopment/doc/MULTIDEVICE_ADAPTATION.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/multi_device_adaptation.gif" width="200">
+
 ### 公共能力层
 
 公共功能层用于存放公共基础能力，集中了例如公共UI组件、数据管理、外部交互以及工具库等的共享功能。应用与元服务都可以共享和调用这些公共能力。

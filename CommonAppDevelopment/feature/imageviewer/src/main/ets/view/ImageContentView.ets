@@ -29,6 +29,7 @@ export struct ImageContentView {
   image: Resource = $r("app.media.test1");
   @State imagePosition: ImagePositionModel = new ImagePositionModel();
   @Consume('pageStack') pageInfo: NavPathStack;
+  readonly componentsWindowWidth: number = 600;
 
   /**
    * 获取应用主窗口的宽高
@@ -38,9 +39,15 @@ export struct ImageContentView {
       let rect: window.Rect = data.getWindowProperties().windowRect;
       this.windowWidth = px2vp(rect.width);
       this.windowHeight = px2vp(rect.height);
+      if (this.windowWidth > this.componentsWindowWidth) {
+        this.windowWidth = this.windowWidth / 2;
+      }
       data.on("windowSizeChange", (size: window.Size) => {
         this.windowWidth = px2vp(size.width);
         this.windowHeight = px2vp(size.height);
+        if (this.windowWidth > this.componentsWindowWidth) {
+          this.windowWidth = this.windowWidth / 2;
+        }
       })
     })
   }

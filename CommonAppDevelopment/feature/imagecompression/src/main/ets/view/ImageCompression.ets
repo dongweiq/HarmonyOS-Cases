@@ -241,10 +241,10 @@ export struct ImageCompression {
   build() {
     Column({ space: SPACE_TEN }) {
       Row({ space: SPACE_TEN }) {
-        Text($r('app.string.max_compression_image_size')).fontSize($r('app.integer.font_size_25'))
+        Text($r('app.string.max_compression_image_size')).fontSize($r('app.integer.font_size_20'))
         TextInput()
           .type(InputType.Number)
-          .fontSize($r('app.integer.font_size_25'))
+          .fontSize($r('app.integer.font_size_20'))
           .width($r('app.string.text_input_width'))
           .onChange((value: string) => {
             this.maxCompressedImageSize = Number(value);
@@ -270,13 +270,13 @@ export struct ImageCompression {
         this.compressedImageSrc = '';
         // 从rawfile中获取图片，图片压缩
         this.imageCompression();
-      }).fontSize($r('app.integer.font_size_25')).width($r('app.string.button_width'))
+      }).fontSize($r('app.integer.font_size_20')).width($r('app.string.button_width'))
 
       Row() {
         Text($r('app.string.image_size_before_compression'))
-          .fontSize($r('app.integer.font_size_25'))
+          .fontSize($r('app.integer.font_size_20'))
         Text(this.beforeCompressionSize)
-          .fontSize($r('app.integer.font_size_25'))
+          .fontSize($r('app.integer.font_size_20'))
       }
 
       Image($rawfile('beforeCompression.jpeg'))
@@ -285,9 +285,9 @@ export struct ImageCompression {
 
       Row() {
         Text($r('app.string.image_size_after_compression'))
-          .fontSize($r('app.integer.font_size_25'))
+          .fontSize($r('app.integer.font_size_20'))
         Text(this.afterCompressionSize)
-          .fontSize($r('app.integer.font_size_25'))
+          .fontSize($r('app.integer.font_size_20'))
       }
 
       Image(this.compressedImageSrc)

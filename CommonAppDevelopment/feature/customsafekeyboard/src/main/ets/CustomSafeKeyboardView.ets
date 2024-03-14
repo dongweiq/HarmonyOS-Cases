@@ -118,7 +118,7 @@ export struct CustomSafeKeyboardView {
 
       TextInput({
         text: this.inputValue,
-        placeholder: $r("app.string.placeholder"),
+        placeholder: $r("app.string.customsafekeyboard_placeholder"),
         controller: this.controller
       })
         .type(InputType.Password)

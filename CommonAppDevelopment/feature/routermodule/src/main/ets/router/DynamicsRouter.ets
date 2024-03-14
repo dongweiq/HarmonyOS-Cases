@@ -72,13 +72,19 @@ export class DynamicsRouter {
   public static async push(routerInfo: RouterInfo, param?: string): Promise<void> {
     const pageName: string = routerInfo.pageName;
     const moduleName: string = routerInfo.moduleName;
+    const FullScreenArray: string[] = ['@ohos/foldablescreencases'];
     // 动态加载模块是否成功
     let isImportSucceed: boolean = false;
+    // 模块是否需要转场动画
+    let isNeedFullScreen: boolean = true;
     // TODO：知识点：通过动态import的方式引入模块，在需要进入页面时才加载模块，可以减少主页面的初始化时间及占用的内存
     await import(moduleName).then((result: ESObject) => {
       // 动态加载模块成功时，通过模块中的harInit接口加载页面
       result.harInit(pageName);
       isImportSucceed = true;
+      if (FullScreenArray.includes(moduleName)) {
+        isNeedFullScreen = false;
+      }
     }, (error: ESObject) => {
       // 动态加载模块失败时，打印错误日志
       logger.error(LOGGER_TAG, error);
@@ -87,7 +93,7 @@ export class DynamicsRouter {
       // 使用moduleName和pageName生成builderName，通过pushPath加载页面
       const builderName: string = moduleName + "/" + pageName;
       // 查找到对应的路由栈进行跳转
-      DynamicsRouter.getNavPathStack().pushPath({ name: builderName, param: param });
+      DynamicsRouter.getNavPathStack().pushPath({ name: builderName, param: param }, isNeedFullScreen);
       // 自定义栈也加入指定页面
       DynamicsRouter.routerStack.push(routerInfo);
       let referrerModel: RouterInfo = DynamicsRouter.routerStack[DynamicsRouter.routerStack.length - 2];

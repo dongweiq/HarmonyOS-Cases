@@ -16,6 +16,8 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
 * 在API Version 9上，首页导航内容需要配合NavRouter组件实现页面路由。
 * 从API Version 10开始，首页推荐使用NavPathStack配合NavDestination属性进行页面路由。
 
+应用内导航组件Navigation还可以通过mode属性实现多设备适配，具体请参考[MULTIDEVICE_ADAPTATION.md](../../doc/MULTIDEVICE_ADAPTATION.md)
+
 > 通过本篇文章的学习，你将学会：    
 1.如何使用**NavPathStack路由转场**  
 2.如何在**Navigation中跨包引用hsp**  

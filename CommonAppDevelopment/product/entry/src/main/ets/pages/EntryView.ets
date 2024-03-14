@@ -25,6 +25,7 @@ struct EntryView {
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: SceneModuleInfo[] = waterFlowData;
+  @Provide('isFullScreen') isFullScreen: string = '50%';
 
   aboutToAppear(): void {
     // 注册动态router
@@ -62,8 +63,9 @@ struct EntryView {
       }
       .backgroundColor($r('app.color.main_background_color'))
       .hideTitleBar(true)
+      .navBarWidth(this.isFullScreen)
       .navDestination(this.pageMap)
-      .mode(NavigationMode.Stack)
+      .mode(NavigationMode.Auto)
     }
     .height('100%')
     .backgroundColor($r('app.color.main_background_color'))

@@ -162,7 +162,7 @@ struct newsItem {
         Image($r('app.media.news'))
           .width($r('app.string.news_title_image_width'))
           .height($r('app.string.news_title_image_height'))
-          .objectFit(ImageFit.Fill)
+          .objectFit(ImageFit.Contain)
         Text(this.newsTitle)
           .fontSize($r('app.integer.news_title_text_font_size'))
           .fontColor($r('app.color.news_title_fontColor'))
