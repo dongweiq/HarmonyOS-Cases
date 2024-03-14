@@ -1,0 +1,12 @@
+{
+  "string": [
+    {
+      "name": "full_size",
+      "value": "100%"
+    },
+    {
+      "name": "photo_preview_width",
+      "value": "90%"
+    }
+  ]
+}

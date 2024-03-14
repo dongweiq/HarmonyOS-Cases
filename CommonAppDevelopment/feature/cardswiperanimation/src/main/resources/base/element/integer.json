@@ -1,0 +1,28 @@
+{
+  "integer": [
+    {
+      "name": "swiper_margin",
+      "value": 25
+    },
+    {
+      "name": "swiper_height",
+      "value": 500
+    },
+    {
+      "name": "photo_radius",
+      "value": 8
+    },
+    {
+      "name": "card_shadow_radius",
+      "value": 35
+    },
+    {
+      "name": "card_shadow_offsetx",
+      "value": 8
+    },
+    {
+      "name": "card_shadow_offsety",
+      "value": 12
+    }
+  ]
+}
