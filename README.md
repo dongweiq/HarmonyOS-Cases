@@ -407,7 +407,7 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 
 #### Navigation.Mode实现一多适配案例
 
-本示例介绍如何使用Navigation的mode属性实现一套代码多设备适配。[详细说明文档](./CommonAppDevelopment/doc/README_MULTIDEVICE_ADAPTATION.md)
+本示例介绍如何使用Navigation的mode属性实现一套代码多设备适配。[详细说明文档](./CommonAppDevelopment/doc/MULTIDEVICE_ADAPTATION.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/multi_device_adaptation.gif" width="200">
 
