@@ -78,7 +78,8 @@ export struct TakeTaxiDetailPage {
           backgroundColor: Color.White,
           showClose: false,
           // 关闭半模态组件时直接返回上一级页面
-          shouldDismiss: () => {
+          shouldDismiss: ()=>{
+            this.isShow = false; // 系统在这块的处理有bug，返回前主动设置false，否则可能引入一些问题，已知：安全键盘无法弹出
             this.pageStackForComponentSharedPages.pop(false);
           }
         }
