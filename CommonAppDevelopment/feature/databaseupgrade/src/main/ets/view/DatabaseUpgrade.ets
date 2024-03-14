@@ -161,6 +161,7 @@ export struct DatabaseUpgrade {
 
           Text($r('app.string.version_restore_text'))
             .alignSelf(ItemAlign.Start)
+            .fontSize(Constants.NUMBER_12)
             .margin({ bottom: Constants.NUMBER_12 })
           Flex({ justifyContent: FlexAlign.Start, direction: FlexDirection.Row }) {
             Button($r('app.string.restore_to_v2'))
