@@ -1,4 +1,4 @@
-# 多终端适配 使用Navigation实现案例
+# Navigation实现多设备适配案例
 
 ### 介绍
 
