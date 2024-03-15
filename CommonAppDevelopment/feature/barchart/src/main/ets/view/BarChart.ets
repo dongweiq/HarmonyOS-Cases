@@ -110,6 +110,8 @@ export struct BarChartPage {
     }
     // 禁用x和y轴方向同时缩放，但是可以单独x轴方向或者y轴方向缩放
     this.model.setPinchZoom(false);
+    // 禁用缩放，可禁止单独x轴方向或者y轴方向缩放
+    this.model.setScaleEnabled(false);
     // 设置是否支持双击放大
     this.model.setDoubleTapToZoomEnabled(false);
     // 启用绘制网格背景
