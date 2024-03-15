@@ -23,6 +23,10 @@
     {
       "name": "placeholder",
       "value": "长沙"
+    },
+    {
+      "name": "only_show_ui",
+      "value": "此样式仅为案例展示"
     }
   ]
 }

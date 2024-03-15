@@ -14,6 +14,7 @@
 */
 
 import { CityType, CITY_DATA, HOT_CITY, TAB_VALUE } from '../model/DetailData';
+import promptAction from '@ohos.promptAction';
 
 @Component
 export struct CityView {
@@ -47,6 +48,10 @@ export struct CityView {
                 .fontColor($r('app.color.text_font_color2'))
                 .backgroundColor($r('app.color.text_bgc'))
                 .borderRadius($r('app.integer.text_border_radius'))
+                .onClick(()=>{
+                  // 调用Toast显示提示:此样式仅为案例展示
+                  promptAction.showToast({ message: $r('app.string.only_show_ui') });
+                })
             })
           }
           .width('100%')
@@ -65,6 +70,10 @@ export struct CityView {
                       .height($r('app.integer.list_item_height'))
                       .fontSize($r('app.integer.text_font'))
                       .width('100%')
+                      .onClick(()=>{
+                        // 调用Toast显示提示:此样式仅为案例展示
+                        promptAction.showToast({ message: $r('app.string.only_show_ui') });
+                      })
                   })
                 }
               }
