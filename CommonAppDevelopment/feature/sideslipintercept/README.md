@@ -35,26 +35,27 @@
       // 创建NavDestination组件，需使用此组件的onBackPressed回调拦截返回事件
       .navDestination(this.textArea)
       
-     @Builder textArea(name: string) {
-       NavDestination() {
-         Column() {
-           TextArea({
-             text: this.text,
-             placeholder: 'input your word...',
-             controller: this.controller
-           })
-             .onChange((value: string) => {
-               this.text = value;
-             })
-         }
-         .justifyContent(FlexAlign.Start)
-         .width('100%')
-         .height('100%')
+      @Builder textArea(name: string) {
+        NavDestination() {
+          Column() {
+            TextArea({
+              text: this.text,
+              placeholder: 'input your word...',
+              controller: this.controller
+            })
+              .onChange((value: string) => {
+                this.text = value;
+              })
+          }
+          .justifyContent(FlexAlign.Start)
+          .width('100%')
+          .height('100%')
+      }
+      .onBackPressed(() => {
+          // 此处可添加拦截处理逻辑，然后return true放行
+          return true
+      }
      }
-     .onBackPressed(() => {
-         // 此处可添加拦截处理逻辑，然后return true放行
-         return true
-  }
   ```
 
 
