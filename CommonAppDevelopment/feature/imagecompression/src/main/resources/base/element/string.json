@@ -39,6 +39,10 @@
     {
       "name": "prompt_not_require_compression",
       "value": "符合压缩要求，无需压缩"
+    },
+    {
+      "name": "image_get_failed",
+      "value": "图片获取失败"
     }
   ]
 }
