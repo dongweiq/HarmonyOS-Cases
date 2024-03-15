@@ -129,14 +129,14 @@ export struct SideslipIntercept {
 
   // 上层navigation用来管理页面,navigation是空的，在onAppear回调时直接跳转到主页面
   build() {
-      // 应用主页用NavDestination承载，用于显示Navigation的内容区
-      Navigation(this.pageStackForComponentSharedPages) {
-      }
-      .onAppear(() => {
-        this.pageStackForComponentSharedPages.pushPathByName("MainPage", null, false);
-      })
-      // 创建NavDestination组件，需使用此组件的onBackPressed回调拦截返回事件
-      .navDestination(this.textArea)
+    // 应用主页用NavDestination承载，用于显示Navigation的内容区
+    Navigation(this.pageStackForComponentSharedPages) {
+    }
+    .onAppear(() => {
+      this.pageStackForComponentSharedPages.pushPathByName("MainPage", null, false);
+    })
+    // 创建NavDestination组件，需使用此组件的onBackPressed回调拦截返回事件
+    .navDestination(this.textArea)
   }
 }
 
