@@ -16,7 +16,7 @@
 import { DynamicsRouter } from '@ohos/dynamicsRouter';
 import { SceneModuleInfo } from './model/SceneModuleInfo';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
-import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
+import { TabDataModel, TAB_DATA } from './model/TabsData';
 
 /**
  * 主页瀑布流列表
@@ -24,45 +24,9 @@ import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
 @Component
 export struct FunctionalScenes {
   @Link listData: SceneModuleInfo[];
-  @Consume('pageStack') pageStack: NavPathStack;
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(this.listData);
   @State tabsIndex: number = 0;
-  @State isMask: boolean = true
-  scroller: Scroller = new Scroller();
   tabsController: TabsController = new TabsController();
-  tabDataSource: TabDataSource = new TabDataSource();
-  waterFlowScroller: Scroller = new Scroller();
-
-  /**
-   * 筛选数据逻辑，触发更新列表信息，用于切换tabs和搜索
-   *
-   * @param index 当前的列表索引
-   */
-  filterData(index: number) {
-    let newListData: SceneModuleInfo[] = []; // 用于接收筛选到的数据
-    // index为0时分类为全部，全部类别情况下不需要筛选
-    if (index !== 0) {
-      for (let i = 0; i < this.listData.length; i++) {
-        // 判断类别
-        if (this.listData[i].category === TAB_DATA[index].navData) {
-          newListData.push(this.listData[i]);
-        }
-      }
-      this.dataSource = new WaterFlowDataSource(newListData);
-      return this.dataSource;
-    } else {
-      this.dataSource = new WaterFlowDataSource(this.listData);
-      return this.dataSource;
-    }
-  }
-
-
-  aboutToAppear(): void {
-    // 主页tabContent初始化数据
-    for (let index = 0; index < TAB_DATA.length; index++) {
-      this.tabDataSource.pushData(TAB_DATA[index]);
-    }
-  }
 
   /**
    * 瀑布流列表项组件布局
@@ -144,7 +108,6 @@ export struct FunctionalScenes {
     .onClick(() => {
       this.tabsIndex = index;
       this.tabsController.changeIndex(index);
-      this.filterData(index);
     })
   }
 
@@ -158,10 +121,15 @@ export struct FunctionalScenes {
       Tabs({ controller: this.tabsController }) {
         ForEach(TAB_DATA, (tabItem: TabDataModel) => {
           TabContent() {
-            WaterFlow({ scroller: this.waterFlowScroller }) {
-              LazyForEach(this.filterData(tabItem.id), (waterFlowItem: SceneModuleInfo) => {
+            WaterFlow() {
+              LazyForEach(this.dataSource, (waterFlowItem: SceneModuleInfo) => {
                 FlowItem() {
-                  this.methodPoints(waterFlowItem)
+                  if (tabItem.navData === '全部') {
+                    this.methodPoints(waterFlowItem)
+                  }
+                  if (tabItem.navData === waterFlowItem.category) {
+                    this.methodPoints(waterFlowItem)
+                  }
                 }
               }, (waterFlowItem: SceneModuleInfo) => JSON.stringify(waterFlowItem))
             }
@@ -178,7 +146,8 @@ export struct FunctionalScenes {
           .backgroundColor("#F1F1F1")
           .tabBar(
             SubTabBarStyle.of(tabItem.navData)
-              .indicator({color:Color.Black})
+              .indicator({ color: Color.Black })
+              .labelStyle({ font: { size: 14 } })
           )
         })
       }
@@ -191,7 +160,6 @@ export struct FunctionalScenes {
       .barWidth('100%')
       .onChange((index: number) => {
         this.tabsIndex = index;
-        this.filterData(index);
       })
     }
     .height('100%')
