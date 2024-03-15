@@ -1,10 +1,6 @@
 {
   "integer": [
     {
-      "name": "font_size_25",
-      "value": 25
-    },
-    {
       "name": "font_size_20",
       "value": 20
     },
