@@ -54,7 +54,7 @@ export struct AddressExchangeView {
           .textAlign(this.swap ? TextAlign.End : TextAlign.Start)
           .onClick(() => {
             promptAction.showToast( {
-              message: $r('app.string.address_exchange_city_choose'),
+              message: $r('app.string.address_exchange_other_function'),
               duration: this.toastDuration
             });
           })
@@ -96,7 +96,7 @@ export struct AddressExchangeView {
           .textAlign(this.swap ? TextAlign.Start : TextAlign.End)
           .onClick(() => {
             promptAction.showToast( {
-              message: $r('app.string.address_exchange_city_choose'),
+              message: $r('app.string.address_exchange_other_function'),
               duration: this.toastDuration
             });
           })
@@ -121,7 +121,7 @@ export struct AddressExchangeView {
         .width(this.rowWidth)
         .onClick(() => {
           promptAction.showToast( {
-            message: $r('app.string.address_exchange_click_search'),
+            message: $r('app.string.address_exchange_other_function'),
             duration: this.toastDuration
           });
         })
