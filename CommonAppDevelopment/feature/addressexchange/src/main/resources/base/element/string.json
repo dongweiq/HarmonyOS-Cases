@@ -43,6 +43,14 @@
     {
       "name": "address_exchange_image_width",
       "value": "20%"
+    },
+    {
+      "name": "address_exchange_city_choose",
+      "value": "非本案例内容，如果需要选择，可参考城市选择案例"
+    },
+    {
+      "name": "address_exchange_click_search",
+      "value": "本案例主要演示地址交换动效，暂无查询车票功能"
     }
   ]
 }
