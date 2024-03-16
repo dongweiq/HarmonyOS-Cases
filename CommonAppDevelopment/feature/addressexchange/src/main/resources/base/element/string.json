@@ -43,6 +43,10 @@
     {
       "name": "address_exchange_image_width",
       "value": "20%"
+    },
+    {
+      "name": "address_exchange_other_function",
+      "value": "仅演示，可自行实现业务功能"
     }
   ]
 }
