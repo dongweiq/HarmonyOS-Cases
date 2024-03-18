@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "tab_index_one_title",
+      "value": "预览本地PDF文件"
+    },
+    {
+      "name": "tab_index_two_title",
+      "value": "预览网络PDF文件"
+    },
+    {
+      "name": "progress_width",
+      "value": "100%"
+    },
+    {
+      "name": "tab_content_width",
+      "value": "100%"
+    },
+    {
+      "name": "bar_width",
+      "value": "100%"
+    }
+  ]
+}
