@@ -90,4 +90,4 @@
 
 ### 参考资料
 
-[high_light_guide三方库]([ohos_highlightguide: 基于OpenHarmony的快速实现新手引导层的库，通过简洁链式调用，快速实现引导层的显示。 - Gitee.com](https://gitee.com/openharmony-sig/ohos_highlightguide/tree/master#high_light_guide))
+[high_light_guide三方库](https://gitee.com/openharmony-sig/ohos_highlightguide/tree/master#high_light_guide)
