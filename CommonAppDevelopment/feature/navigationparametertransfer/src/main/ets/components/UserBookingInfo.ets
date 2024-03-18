@@ -25,6 +25,6 @@ export class UserBookingInfo {
   }
   // 类的方法。
   getUserInfo() {
-    AlertDialog.show({ message: `用户信息为 姓名: ${this.userName}, 身份证号： ${this.userID}, 座位号： ${this.seatNo}`, alignment: DialogAlignment.Center})
+    AlertDialog.show({ message: `用户信息:\n姓名：${this.userName}\n身份证号：${this.userID}\n座位号：${this.seatNo}`, alignment: DialogAlignment.Center})
   }
 }
