@@ -11,6 +11,10 @@
     {
       "name": "EntryAbility_label",
       "value": "通用开发范例"
+    },
+    {
+      "name": "no_network_prompt_msg",
+      "value": "此功能需联网使用"
     }
   ]
 }

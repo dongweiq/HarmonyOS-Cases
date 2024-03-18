@@ -16,7 +16,8 @@
 import { DynamicsRouter } from '@ohos/dynamicsRouter';
 import { SceneModuleInfo } from './model/SceneModuleInfo';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
-import { TabDataModel, TAB_DATA } from './model/TabsData';
+import { TAB_DATA, TabDataModel } from './model/TabsData';
+import { emitter } from '@kit.BasicServicesKit';
 
 /**
  * 主页瀑布流列表
@@ -78,6 +79,15 @@ export struct FunctionalScenes {
       DynamicsRouter.pop();
       // 点击瀑布流Item时，根据点击的模块信息，将页面放入路由栈
       DynamicsRouter.push(listData.routerInfo, listData.param);
+      // 帮助功能：发送当前案例的名称
+      let moduleName: string = listData.routerInfo.moduleName;
+      let split: string[] = moduleName.split('/');
+      moduleName = split[split.length-1];
+      emitter.emit("topModule", {
+        data: {
+          moduleName: moduleName
+        }
+      })
     })
   }
 
