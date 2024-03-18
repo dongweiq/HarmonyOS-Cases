@@ -17,6 +17,10 @@ import { SearchComponent } from '@ohos/searchcomponent';
 import { DynamicsRouter } from '@ohos/dynamicsRouter/Index';
 import { FunctionalScenes, SceneModuleInfo } from '@ohos/functionalscenes';
 import { waterFlowData } from '../data/WaterFlowData';
+import { emitter } from '@kit.BasicServicesKit';
+import { PanPositionModel } from '../model/PanPositionModel';
+import { HelperConstants } from '../constants/HelperConstants';
+import { HelperView } from '../view/HelperView';
 
 @Entry
 @Component
@@ -26,8 +30,21 @@ struct EntryView {
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: SceneModuleInfo[] = waterFlowData;
   @Provide('isFullScreen') isFullScreen: string = '50%';
+  // 帮助功能
+  @State helperUrl: string = "";
+  @State helperIconOffset: PanPositionModel = new PanPositionModel();
 
   aboutToAppear(): void {
+    //  帮助功能：监听当前的案例
+    emitter.on("topModule", (data: emitter.EventData) => {
+      let moduleName: string = data["data"]!["moduleName"];
+      if (moduleName) {
+        this.helperUrl = HelperConstants.HELPER_URL_PROTOTYPE.replace("{placeholder}", data["data"]!["moduleName"]);
+        this.helperIconOffset.reset();
+      } else {
+        this.helperUrl = moduleName;
+      }
+    })
     // 注册动态router
     DynamicsRouter.createNavPathStack(this.pageStack);
     // 存储初始数据用于搜索筛选
@@ -44,7 +61,7 @@ struct EntryView {
   }
 
   build() {
-    Column() {
+    Stack() {
       Navigation(this.pageStack) {
         Scroll() {
           Column() {
@@ -56,6 +73,9 @@ struct EntryView {
             FunctionalScenes({ listData: this.listData })
           }
         }
+        .onFocus(() => { // 当回到主页的时候隐藏帮助icon
+          this.helperUrl = "";
+        })
         .width('100%')
         .height('100%')
         .scrollBar(BarState.Off)
@@ -66,7 +86,13 @@ struct EntryView {
       .navBarWidth(this.isFullScreen)
       .navDestination(this.pageMap)
       .mode(NavigationMode.Auto)
+
+      // 帮助功能：在每个案例的右下角添加“帮助”功能
+      if (this.helperUrl) {
+        HelperView({ helperUrl: this.helperUrl, helperIconOffset: this.helperIconOffset })
+      }
     }
+    .alignContent(Alignment.BottomEnd)
     .height('100%')
     .backgroundColor($r('app.color.main_background_color'))
   }
