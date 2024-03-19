@@ -36,7 +36,7 @@ export struct MusicPlayerInfoComp {
   // 父组件单向绑定的屏幕状态
   @Prop @Watch('updateWithFoldStatus') curFoldStatus: display.FoldStatus;
   // 通知Navigation组件隐藏导航栏
-  @Consume('isFullScreen') isFullScreen: string;
+  @Consume('fullScreenSize') fullScreenSize: string;
   // list控制器
   private lyricsScrollerCtrl: Scroller = new Scroller();
   // 当前是否横屏状态
@@ -69,7 +69,7 @@ export struct MusicPlayerInfoComp {
       duration: 400,
       curve: Curve.EaseInOut,
     }, () => {
-      this.isFullScreen = '0.01%';
+      this.fullScreenSize = '0.01%';
     })
     // 监听媒体查询横屏切换
     this.landscapeListener.on('change', (mediaQueryResult: mediaquery.MediaQueryResult) => {
@@ -93,7 +93,7 @@ export struct MusicPlayerInfoComp {
             duration: 200,
             curve: Curve.EaseInOut,
           }, () => {
-            this.isFullScreen = '50%';
+            this.fullScreenSize = '50%';
           })
         })
         .position({ x: $r('app.integer.image_position_x'), y: $r('app.integer.image_position_y') })

@@ -22,46 +22,14 @@ import { TAB_DATA } from '../data/DragToSwitchPicturesData';
 import { CONFIGURATION } from '../common/Constants';
 import { TabDataModel } from '../model/DragToSwitchPicturesModule';
 import { waterFlowData } from '../data/DragToSwitchPicturesData';
-import { TabDataSource } from '../datasource/DragToSwitchPicturesDataSource';
 import { promptAction } from '@kit.ArkUI';
 
 @Component
 export struct TabsWaterFlowView {
   @State listData: WaterFlowModule[] = waterFlowData;
   @State tabsIndex: number = 0;
-  private dataSource: WaterFlowDataSource = new WaterFlowDataSource();
+  private dataSource: WaterFlowDataSource = new WaterFlowDataSource(this.listData);
   private tabsController: TabsController = new TabsController();
-  private tabDataSource: TabDataSource = new TabDataSource();
-  private waterFlowScroller: Scroller = new Scroller();
-
-  // 监听数据变化
-  dataChange() {
-    this.filterData(this.tabsIndex)
-  }
-
-  /**
-   * 筛选数据逻辑，触发更新列表信息，用于切换tabs和搜索
-   *
-   * @param index 当前的列表索引
-   */
-  filterData(index: number) {
-    const newListData: WaterFlowModule[] = []; // 用于接收筛选到的数据
-    for (let i = CONFIGURATION.INIT_VALUE; i < this.listData.length; i++) {
-      newListData.push(this.listData[i]);
-    }
-    // 更新数据控制器数据
-    this.dataSource.modifyAllData(newListData);
-    // 通知数据控制器重新加载数据
-    this.dataSource.notifyDataReload();
-  }
-
-  aboutToAppear(): void {
-    // tabContent初始化数据
-    for (let index = CONFIGURATION.INIT_VALUE; index < TAB_DATA.length; index++) {
-      this.tabDataSource.pushData(TAB_DATA[index]);
-    }
-    this.filterData(0)
-  }
 
   /**
    * 瀑布流列表项组件布局
@@ -137,7 +105,6 @@ export struct TabsWaterFlowView {
       .onClick(() => {
         this.tabsIndex = index;
         this.tabsController.changeIndex(index);
-        this.filterData(index);
       })
       .textAlign(TextAlign.Center)
   }
@@ -150,9 +117,9 @@ export struct TabsWaterFlowView {
   build() {
     Column() {
       Tabs({ controller: this.tabsController }) {
-        LazyForEach(this.tabDataSource, (tabItem: TabDataModel) => {
+        ForEach(TAB_DATA, (tabItem: TabDataModel) => {
           TabContent() {
-            WaterFlow({ scroller: this.waterFlowScroller }) {
+            WaterFlow() {
               /**
                * TODO: 高性能知识点: 使用了LazyForEach进行数据懒加载，WaterFlow布局时会根据可视区域按需创建FlowItem组件，并在FlowItem滑出可视区域外时销毁以降低内存占用。
                * LazyForEach：数据懒加载:https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-rendering-control-lazyforeach-0000001524417213-V2
@@ -190,7 +157,6 @@ export struct TabsWaterFlowView {
       .barHeight($r('app.string.6_size'))
       .onChange((index: number) => {
         this.tabsIndex = index;
-        this.filterData(index);
       })
     }
     .height($r('app.string.full_size'))

@@ -29,7 +29,7 @@ struct EntryView {
   @Provide('pageStack') pageStack: NavPathStack = new NavPathStack();
   // TODO:需求：路由栈信息，待后续封装路由管理HAR
   @State listData: SceneModuleInfo[] = waterFlowData;
-  @Provide('isFullScreen') isFullScreen: string = '50%';
+  @Provide('fullScreenSize') fullScreenSize: string = '50%';
   // 帮助功能
   @State helperUrl: string = "";
   @State helperIconOffset: PanPositionModel = new PanPositionModel();
@@ -83,7 +83,7 @@ struct EntryView {
       }
       .backgroundColor($r('app.color.main_background_color'))
       .hideTitleBar(true)
-      .navBarWidth(this.isFullScreen)
+      .navBarWidth(this.fullScreenSize)
       .navDestination(this.pageMap)
       .mode(NavigationMode.Auto)
 
