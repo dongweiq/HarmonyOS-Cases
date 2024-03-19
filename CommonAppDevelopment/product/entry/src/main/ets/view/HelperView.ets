@@ -43,12 +43,6 @@ export struct HelperView {
       .gesture(
         GestureGroup(
           GestureMode.Exclusive,
-          TapGesture({ fingers: 1, count: 2 })
-            .onAction(() => {
-              animateTo({ duration: 300 }, () => {
-                this.helperIconOffset.reset();
-              })
-            }),
           TapGesture({ fingers: 1, count: 1 })
             .onAction(() => {
               if (connection.hasDefaultNetSync()) {
@@ -62,14 +56,12 @@ export struct HelperView {
               const ICON_SIZE: number = 54;
               this.helperIconOffset.currentX = event.offsetX + this.helperIconOffset.lastX;
               this.helperIconOffset.currentY = event.offsetY + this.helperIconOffset.lastY;
-              logger.debug("===" + this.helperIconOffset.currentY);
 
               // 限制icon的偏移：不能超出屏幕
               if (this.helperIconOffset.currentX > 0) {
                 this.helperIconOffset.currentX = 0;
               } else if (this.helperIconOffset.currentX < -1 * (this.windowSize.width - ICON_SIZE)) {
                 this.helperIconOffset.currentX = -1 * (this.windowSize.width - ICON_SIZE);
-                logger.debug("===" + this.helperIconOffset.currentX);
               }
               if (this.helperIconOffset.currentY > 0) {
                 this.helperIconOffset.currentY = 0;
