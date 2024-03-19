@@ -12,11 +12,11 @@
     // 应用首页列表子组件，需要进入应用时加载
     "@ohos/functionalscenes": "file:../../feature/functionalscenes",
     // 阻塞事件冒泡方案
-    "@ohos/event-propagation": "file:../../feature/eventpropagation",
+    "@ohos/eventpropagation": "file:../../feature/eventpropagation",
     // 读取RawFile中文件的一部分
     "@ohos/nativerawfile": "file:../../feature/nativerawfile",
     // 自定义tabBar
-    "@ohos/custom-tabbar": "file:../../feature/customtabbar",
+    "@ohos/customtabbar": "file:../../feature/customtabbar",
     // 二级联动方案
     "@ohos/secondarylinkage": "file:../../feature/secondarylinkage",
     // MpChart图表实现案例
@@ -30,7 +30,7 @@
     // GBK转码UTF-8方案
     "@ohos/gbktranscoding": 'file:../../feature/gbktranscoding',
     // 自定义增删tab页签
-    "@ohos/handtabs": "file:../../feature/handletabs",
+    "@ohos/handletabs": "file:../../feature/handletabs",
     // 各种登录页面方案
     "@ohos/modalwindow": "file:../../feature/modalwindow",
     // 滑动页面改变顶部个人信息栏显示效果方案
