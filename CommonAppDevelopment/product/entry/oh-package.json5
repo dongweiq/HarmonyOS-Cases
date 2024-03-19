@@ -139,5 +139,25 @@
     "@ohos/transitionanimation": "file:../../feature/transitionanimation",
     // 图片九宫格布局案例
     "@ohos/imagegridlayout": "file:../../feature/imagegridlayout",
+    // 跨文件样式复用和组件复用
+    "@ohos/dynamicattributes": "file:../../feature/dynamicattributes",
+    // NAPI封装ArkTS接口案例
+    "@ohos/etswrapper": "file:../../feature/etswrapper",
+    // 手写绘制及保存图片
+    "@ohos/handwritingtoimage": "file:../../feature/handwritingtoimage",
+    // swiper指示器导航点位于swiper下方
+    "@ohos/indicatorbelowswiper": "file:../../feature/indicatorbelowswiper",
+    // 多模态页面转场动效实现案例
+    "@ohos/multimodaltransion": "file:../../feature/multimodaltransion",
+    // 多文件下载监听案例
+    "@ohos/multiplefilesdownload": "file:../../feature/multiplefilesdownload",
+    // ArkWeb同层渲染
+    "@ohos/nativeembed": "file:../../feature/nativeembed",
+    // 侧滑返回事件拦截案例
+    "@ohos/sideslipintercept": "file:../../feature/sideslipintercept",
+    // Web组件预览PDF文件实现案例
+    "@ohos/webpdfviewer": "file:../../feature/webpdfviewer",
+    // 图片防盗链
+    "@ohos/imagetheft": "file:../../feature/imagetheft"
   }
 }

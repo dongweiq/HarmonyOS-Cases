@@ -259,3 +259,12 @@ function getTimeStr() {
   const seconds: number = now.getSeconds();
   return `${year}${month}${day}_${hours}${minutes}${seconds}`;
 }
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getHandWritingToImageView(): void {
+  HandWritingToImageView();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+DynamicsRouter.registerRouterPage(RouterInfo.HAND_WRITING_TO_IMAGE, wrapBuilder(getHandWritingToImageView));
