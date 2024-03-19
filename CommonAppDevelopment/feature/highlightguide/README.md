@@ -87,6 +87,7 @@
 ### 模块依赖
 
 [动态路由模块](../../feature/routermodule/src/main/ets/router/DynamicsRouter.ets)实现页面动态加载
+[high_light_guide三方库](https://gitee.com/openharmony-sig/ohos_highlightguide/tree/master#high_light_guide)
 
 ### 参考资料
 

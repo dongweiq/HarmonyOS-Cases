@@ -32,7 +32,7 @@ export struct Tab {
     $r('app.media.ic_files_cloud_browse'),
     $r('app.media.ic_files_presentation_drive'),
     $r('app.media.ic_files_spreadsheet_drive'),
-  ];
+  ]; // Grid基础布局
   private TabsController: TabsController = new TabsController();
   controller: SearchController = new SearchController();
 
@@ -50,11 +50,11 @@ export struct Tab {
         .lineHeight($r('app.integer.line_height'))
     }
     .width('100%')
-
   }
 
   build() {
     Column() {
+      // 自定义业务样式布局
       Tabs({ barPosition: BarPosition.End, index: this.currentIndex, controller: this.TabsController }) {
         TabContent() {
           Column() {
@@ -96,7 +96,7 @@ export struct Tab {
             .height($r('app.integer.high_light_swiper_height'))
             .margin({ top: $r('app.integer.common_margin') })
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
+            Row() {
               Row({ space: SPACE }) {
                 Text($r('app.string.module_text'))
                   .margin({ left: $r('app.integer.text_left') })
@@ -104,7 +104,6 @@ export struct Tab {
                   .fontSize($r('app.integer.mid_font_size'))
                   .fontColor(Color.Red)
               }
-
               Row({ space: SPACE }) {
                 Text($r('app.string.test_number2'))
                   .fontSize($r('app.integer.mid_font_size'))
@@ -117,8 +116,8 @@ export struct Tab {
                   .height($r('app.integer.sort_order_height'))
                   .margin({ right: $r('app.integer.image_right') })
               }
-
             }
+            .justifyContent(FlexAlign.SpaceBetween)
             .width('100%')
             .padding($r('app.integer.common_margin'))
 
@@ -128,7 +127,7 @@ export struct Tab {
               .backgroundColor($r('app.color.module_back_ground'))
               .borderRadius($r('app.integer.border_radius'))
 
-            Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+            Row() {
               Text($r('app.string.module_text'))
                 .margin({ left: $r('app.integer.text_left') })
               Image($r('app.media.ic_public_arrow_right'))
@@ -136,12 +135,13 @@ export struct Tab {
                 .height($r('app.integer.sort_order_height'))
                 .margin({ right: $r('app.integer.image_right') })
             }
+            .justifyContent(FlexAlign.SpaceBetween)
             .width('100%')
             .padding($r('app.integer.common_margin'))
           }
           .width('100%')
           .height('100%')
-          // .alignItems(HorizontalAlign.Center)
+          .alignItems(HorizontalAlign.Center)
         }.tabBar(this.tabBuilder(0, $r('app.string.tab_bar1'), $r("app.media.ic_public_home_filled")))
 
         TabContent() {
@@ -176,7 +176,7 @@ export struct Tab {
         this.currentIndex = index;
       })
       .width($r('app.integer.tab_bar_width'))
-      .backgroundColor('#F1F3F5')
+      .backgroundColor($r('app.color.tab_back_ground'))
     }
     .width('100%')
     .height('100%')

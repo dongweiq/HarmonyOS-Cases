@@ -25,49 +25,59 @@ import {
   RectF // 形状类型
 } from '@ohos/high_light_guide';
 import { AnimatorOptions } from '@ohos.animator';
-import hilog from '@ohos.hilog';
-import { Tab } from '../model/Tabs'
+import { Tab } from '../model/Tabs';
 import promptAction from '@ohos.promptAction';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 
-// 1.在需要使用的页面引入high_light_guide库中的引导页组件。
-// 2.初始化引导页构建类，通过addHighLight绑定对应id组件的高光。
-// 3.添加引导页布局。
-// 4.自定义Builder，分别设定基础布局和引导层内容。
+/**
+ * 1.在需要使用的页面引入high_light_guide库中的引导页组件。
+ * 2.初始化引导页构建类，通过addHighLight绑定对应id组件的高光。
+ * 3.添加引导页布局。
+ * 4.自定义Builder，分别设定基础布局和引导层内容。
+ */
 
-@Entry
+const DURATION = 600;
+const DELAY = 0;
+const ITERATIONS = 1;
+const BEGIN = 0.0;
+const END = 1.0;
+const RADIUS = 2;
+const DIFF = 10;
+const START_ANGLE = 0;
+const END_ANGLE = 360;
+
 @Component
-export struct Index {
+export struct HighLightGuide {
   private builder: HighLightGuideBuilder | null = null;
   private controller: Controller | null = null;
   // 设定进入动画参数
   private enterAnimatorParam: AnimatorOptions = {
-    duration: 600,
+    duration: DURATION,
     easing: 'friction',
-    delay: 0,
+    delay: DELAY,
     fill: 'forwards',
     direction: 'normal',
-    iterations: 1,
-    begin: 0.0,
-    end: 1.0
+    iterations: ITERATIONS,
+    begin: BEGIN,
+    end: END
   };
   // 设定退出动画参数
   private exitAnimatorParam: AnimatorOptions = {
-    duration: 600,
+    duration: DURATION,
     easing: 'friction',
-    delay: 0,
+    delay: DELAY,
     fill: 'forwards',
     direction: 'normal',
-    iterations: 1,
-    begin: 1.0,
-    end: 0.0
+    iterations: ITERATIONS,
+    begin: END,
+    end: BEGIN
   };
   private visibleChangeListener: OnGuideChangedListener = {
     onShowed: (controller: Controller) => {
-      hilog.info(0x0000, 'HighLightGuide', '%{public}s', 'HighLightGuide onShowed');
+      // 此处可自定义显示后逻辑;
     },
     onRemoved: (controller: Controller) => {
-      hilog.info(0x0000, 'HighLightGuide', '%{public}s', 'HighLightGuide onRemoved');
+      // 此处可自定义移除后逻辑;
     }
   };
   private pageChangeListener: OnPageChangedListener = {
@@ -81,8 +91,8 @@ export struct Index {
     let onDrewListener: OnHighLightDrewListener = {
       onHighLightDrew(context2d: CanvasRenderingContext2D, rectF: RectF) {
         context2d.strokeStyle = '#ffffff';
-        let radius = Math.max(rectF.getWidth(), rectF.getHeight()) / 2 + 10;
-        context2d.arc(rectF.getCenterX(), rectF.getCenterY(), radius - 20, 0, 360, false);
+        let radius = Math.max(rectF.getWidth(), rectF.getHeight()) / RADIUS - DIFF;
+        context2d.arc(rectF.getCenterX(), rectF.getCenterY(), radius, START_ANGLE, END_ANGLE, false);
         context2d.fill();
         context2d.lineWidth = 2;
       }
@@ -110,19 +120,17 @@ export struct Index {
   }
 
   build() {
-    Column() {
-      Stack() {
-        // 添加引导页布局
-        HighLightGuideComponent({
-          highLightContainer: this.highLightComponent,
-          currentHLIndicator: null,
-          builder: this.builder,
-          onReady: (controllerParam: Controller) => {
-            this.controller = controllerParam;
-            this.controller.show();
-          }
-        })
-      }
+    Stack() {
+      // 添加引导页布局
+      HighLightGuideComponent({
+        highLightContainer: this.highLightComponent,
+        currentHLIndicator: null,
+        builder: this.builder,
+        onReady: (controllerParam: Controller) => {
+          this.controller = controllerParam;
+          this.controller.show();
+        }
+      })
     }
     .height('100%')
     .width('100%')
@@ -157,7 +165,7 @@ export struct Index {
         .margin({ top: $r('app.integer.common_margin_top') })
         .onClick(() => {
           if (this.controller) {
-            this.controller.showPage(2);
+            this.controller.showPage(1);
           }
         })
     }
@@ -209,7 +217,7 @@ export struct Index {
           buttons: [
             {
               text: $r('app.string.agree'),
-              color: '#000000'
+              color: $r('app.color.toast_success_back_ground')
             }
           ],
         }).then(() => {
@@ -224,7 +232,7 @@ export struct Index {
 
 @Builder
 export function getImageCommentView(): void {
-  Index();
+  HighLightGuide();
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中

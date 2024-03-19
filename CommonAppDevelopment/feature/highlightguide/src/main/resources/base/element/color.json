@@ -27,6 +27,14 @@
     {
       "name": "module_back_ground",
       "value": "#ffe2e1e1"
+    },
+    {
+      "name": "tab_back_ground",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "toast_success_back_ground",
+      "value": "#000000"
     }
   ]
 }
