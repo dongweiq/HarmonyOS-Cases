@@ -15,7 +15,6 @@
 import { PanPositionModel } from '../model/PanPositionModel';
 import { connection } from '@kit.NetworkKit';
 import { promptAction, window } from '@kit.ArkUI';
-import { logger } from '@ohos/base/Index';
 import { createNWeb, getNWeb } from '../common/utils/NWebUtils';
 import { BusinessError } from '@kit.BasicServicesKit';
 

@@ -73,27 +73,41 @@ export class NWebNodeController extends NodeController {
   }
 }
 
-// 保存所需要的NodeController与WebViewController
-const nodeMap: Map<string, NWebNodeController | undefined> = new Map();
+interface CurrenNode {
+  url: string | null;
+  webController: webview.WebviewController | null;
+  nWebController: NWebNodeController | null;
+}
+
+// 当前的Node
+const currentNode: CurrenNode = { url: null, nWebController: null, webController: null };
+
+function clear() {
+  currentNode.url = null;
+  currentNode.webController = null;
+  currentNode.nWebController = null;
+}
 
 export function createNWeb(url: string, uiContext: UIContext): void {
   if (!connection.hasDefaultNetSync()) {
     return;
   }
-  nodeMap.clear(); // 只缓存一个
+  clear(); // 每次创建都先将旧的置空
   let baseNode = new NWebNodeController();
   let controller = new webview.WebviewController();
   // 初始化自定义web组件
   baseNode.initWeb(url, uiContext, controller);
-  nodeMap.set(url, baseNode);
+  currentNode.url = url;
+  currentNode.webController = controller;
+  currentNode.nWebController = baseNode;
 }
 
 /**
  * 获取NodeController
  */
-export const getNWeb = (url: string, uiContext: UIContext): NWebNodeController | undefined => {
-  if (!nodeMap.has(url)) {
+export const getNWeb = (url: string, uiContext: UIContext): NWebNodeController | null => {
+  if (currentNode.url != url) {
     createNWeb(url, uiContext);
   }
-  return nodeMap.get(url);
+  return currentNode.nWebController;
 }
