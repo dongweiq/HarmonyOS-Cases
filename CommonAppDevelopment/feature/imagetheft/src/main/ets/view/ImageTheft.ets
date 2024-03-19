@@ -23,6 +23,7 @@ import {
 } from '@ohos/imageknife';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Size } from '@kit.ArkUI';
+import { image } from '@kit.ImageKit';
 import { FunctionDescription } from '@ohos/base';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import {
@@ -49,6 +50,7 @@ export struct ImageTheft {
     loadSrc: '',
     isCacheable: false,
   };
+  emptyPixel: image.PixelMap | null = null; // 存储重置用的空白图片
 
   build() {
     Column() {
@@ -92,6 +94,15 @@ export struct ImageTheft {
             .onClick(() => {
               this.imgUrl = DEFAULT_IMG_URL;
               this.refer = DEFAULT_REFER;
+              if (this.emptyPixel) { // 如果已经有空白Pixel，则将其赋值，否则生成空白Pixel
+                this.imageKnifeOption.loadSrc = this.emptyPixel;
+              } else {
+                const color: ArrayBuffer = new ArrayBuffer(4); // 4为需要创建的像素buffer大小，取值为：height * width * 4
+                const opts: image.InitializationOptions = { size: { height: 1, width: 1 } }; // 为了展示空白，需要生成1*1像素的图片
+                image.createPixelMap(color, opts).then(result => {
+                  this.imageKnifeOption.loadSrc = result;
+                });
+              }
             })
         }
       }
