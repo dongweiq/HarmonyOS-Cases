@@ -25,11 +25,16 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 
 @Component
 export struct AkiView {
-  @State value: number = 0;
+  @StorageLink('akiViewValue') akiViewValue: number = 0;
   // 描述标题
   @State title: Resource = $r('app.string.common_title');
   // 描述详情
   @State content: Resource = $r('app.string.common_content');
+
+  aboutToAppear(): void {
+    // 页面加载重置变量值
+    this.akiViewValue = 0;
+  }
 
   build() {
     Row() {
@@ -37,7 +42,7 @@ export struct AkiView {
         // 场景描述
         FunctionDescription({ title: this.title, content: this.content })
 
-        Text(this.value.toString())
+        Text(this.akiViewValue.toString())
           .fontSize($r('app.integer.common_fontSize'))
           .fontWeight(FontWeight.Bold)
           .margin($r('app.integer.common_margin'))
@@ -51,10 +56,10 @@ export struct AkiView {
             libaki.JSBind.bindFunction("akiAccumulate", (values: number) => {
               // 对变量value做加10操作，刷新Text组件的value值。
               values += 10;
-              this.value = values;
+              AppStorage.setOrCreate('akiViewValue', values);
             });
             // TODO：知识点：使用AKI调用C++全局函数AkiThreadsCallJs，并传入参数value。
-            libaki.AkiThreadsCallJs(this.value);
+            libaki.AkiThreadsCallJs(this.akiViewValue);
           })
       }
       .padding($r('app.string.ohos_id_card_padding_start'))
