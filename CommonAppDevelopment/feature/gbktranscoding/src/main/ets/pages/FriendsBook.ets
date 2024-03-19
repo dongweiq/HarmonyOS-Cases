@@ -45,19 +45,14 @@ export struct FriendsBook {
       }
 
       // 通讯录
-      Row() {
         Text($r('app.string.contacts'))
           .fontSize($r('app.integer.friends_page_title_font_size'))
           .fontWeight(FontWeight.Bold)
           .lineHeight($r('app.integer.friends_page_title_height'))
           .fontColor($r('app.color.title_font_color'))
           .fontFamily($r('app.string.harmony_hei_ti'))
-          .height($r('app.integer.friends_page_title_height'))
-      }
-      .width($r('app.string.layout_100'))
-      .height($r('app.integer.friends_page_title_bar_height'))
-      .justifyContent(FlexAlign.Start)
-      .alignItems(VerticalAlign.Center)
+          .width($r('app.string.layout_100'))
+          .height($r('app.integer.friends_page_title_bar_height'))
 
       // 搜索栏
       Row() {
@@ -88,7 +83,9 @@ export struct FriendsBook {
       .margin({ top: $r('app.integer.discovery_list_margin_top') })
 
       Column() {
-        List({ space: LIST_SPACE, initialIndex: LIST_INITIAL_INDEX }) {
+        List({
+          space: LIST_SPACE, initialIndex: LIST_INITIAL_INDEX
+        }) {
           // 懒加载数据
           LazyForEach(this.friendsListData, (msg: FriendData) => {
             ListItem() {
@@ -125,16 +122,16 @@ export struct FriendsBook {
       .then((res: AxiosResponse) => {
         // TODO: 知识点: 使用util.TextDecoder解码。
         // 首先使用create构造TextDecoder实例，将编码格式设置为gbk。
-        let textDecoder = util.TextDecoder.create('gbk', { ignoreBOM: true });
+        const textDecoder = util.TextDecoder.create('gbk', { ignoreBOM: true });
         // 其次使用decodeWithStream方法通过解码输入的参数，输出对应UTF-8格式的文本字符串。其中传入的参数必须为Uint8Array格式，因此需将获取的数据使用Uint8Array方法转换数组类型。
-        let result = new Uint8Array(res.data);
-        let resultString = textDecoder.decodeWithStream(result, { stream: false });
+        const result = new Uint8Array(res.data);
+        const resultString = textDecoder.decodeWithStream(result, { stream: false });
         // 解析json字符串。
-        let jsonResult = JSON.parse(resultString) as jsonResult;
-        let jsonObj: Array<FriendData> = jsonResult.ListModel;
+        const jsonResult = JSON.parse(resultString) as JsonResult;
+        const jsonObj: Array<FriendData> = jsonResult.ListModel;
         // 映射json数据为friendsListData对象。
         for (let i = 0; i < jsonObj.length; i++) {
-          let contactTemp = new FriendData(jsonObj[i].userId, jsonObj[i].userName);
+          const contactTemp = new FriendData(jsonObj[i].userId, jsonObj[i].userName);
           this.friendsListData.pushData(contactTemp);
         }
       })
@@ -183,8 +180,8 @@ class FriendData {
   }
 }
 
-class jsonResult {
-  ListModel: Array<FriendData> = new Array();
+class JsonResult {
+  ListModel: Array<FriendData> = [];
 }
 
 class FriendListData extends BasicDataSource<FriendData> {

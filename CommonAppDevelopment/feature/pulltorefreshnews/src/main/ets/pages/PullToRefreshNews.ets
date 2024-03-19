@@ -44,7 +44,7 @@ export struct PullToRefreshNews {
   private scroller: Scroller = new Scroller();
 
   aboutToAppear() {
-    let newsModelMockData: Array<NewsData> = getNews(MOCK_DATA_FILE_ONE_DIR)
+    const newsModelMockData: Array<NewsData> = getNews(MOCK_DATA_FILE_ONE_DIR)
     for (let j = 0; j < NEWS_MOCK_DATA_COUNT; j++) {
       this.newsData.pushData(newsModelMockData[j]);
     }
@@ -52,17 +52,15 @@ export struct PullToRefreshNews {
 
   build() {
     Column() {
-      Row() {
         Text($r('app.string.news_page_title'))
           .fontSize($r('app.integer.news_page_text_font_size'))
           .fontWeight(NEWS_PAGE_TEXT_FONT_WEIGHT)
           .textAlign(TextAlign.Start)
           .lineHeight($r('app.integer.news_page_text_font_line_height'))
-          .margin({ left: $r('app.string.news_page_text_margin_left') })
-      }
-      .width($r('app.string.news_page_text_width'))
-      .height($r('app.string.news_page_text_height'))
-      .backgroundColor($r('app.color.listColor'))
+          .padding({ left: $r('app.string.news_page_text_margin_left') })
+          .width($r('app.string.news_page_text_width'))
+          .height($r('app.string.news_page_text_height'))
+          .backgroundColor($r('app.color.listColor'))
 
       Column() {
         PullToRefresh({
@@ -82,7 +80,7 @@ export struct PullToRefreshNews {
               // 模拟网络请求操作，请求网络1.5秒后得到数据，通知组件，变更列表数据
               setTimeout(() => {
                 this.newsData.clear();
-                let newsModelMockData: Array<NewsData> = new Array<NewsData>();
+                let newsModelMockData: Array<NewsData> = [];
                 // 根据mockFlag切换获取的数据文件
                 if (this.mockFlag) {
                   newsModelMockData = getNews(MOCK_DATA_FILE_TWO_DIR);
@@ -112,7 +110,7 @@ export struct PullToRefreshNews {
             });
           },
           customLoad: null,
-          customRefresh: null,
+          customRefresh: null
         })
       }
       .backgroundColor($r('app.color.listColor'))
@@ -123,7 +121,9 @@ export struct PullToRefreshNews {
   // 必须使用@Builder修饰方法
   @Builder
   private getListView() {
-    List({ space: 3, scroller: this.scroller }) {
+    List({
+      space: 3, scroller: this.scroller
+    }) {
       // TODO: 性能知识点：使用懒加载组件渲染数据
       LazyForEach(this.newsData, (item: NewsData) => {
         ListItem() {
@@ -245,7 +245,7 @@ class NewsDataSource extends BasicDataSource {
 }
 
 class JsonObjType {
-  newsList: Array<NewsData> = new Array<NewsData>();
+  newsList: Array<NewsData> = [];
 }
 
 class JsonObject {
@@ -258,18 +258,18 @@ class JsonObject {
   // 获取数据
   getNewsData(): Array<NewsData> {
     // 从本地文件中获取数据
-    let value = getContext().resourceManager.getRawFileContentSync(this.jsonFileDir);
+    const value = getContext().resourceManager.getRawFileContentSync(this.jsonFileDir);
     // 解码为utf-8格式
-    let textDecoder = util.TextDecoder.create('utf-8', {
+    const textDecoder = util.TextDecoder.create('utf-8', {
       ignoreBOM: true
     });
-    let textDecoderResult = textDecoder.decodeWithStream(new Uint8Array(value.buffer));
-    let jsonObj: JsonObjType = JSON.parse(textDecoderResult) as JsonObjType;
-    let newsModelBuckets: Array<NewsData> = new Array<NewsData>();
+    const textDecoderResult = textDecoder.decodeWithStream(new Uint8Array(value.buffer));
+    const jsonObj: JsonObjType = JSON.parse(textDecoderResult) as JsonObjType;
+    const newsModelBuckets: Array<NewsData> = [];
     // 映射json数据为NewsModel对象
-    let newsModelObj = jsonObj.newsList;
+    const newsModelObj = jsonObj.newsList;
     for (let i = 0; i < newsModelObj.length; i++) {
-      let contactTemp = new NewsData(newsModelObj[i].newsId, newsModelObj[i].newsTitle,
+      const contactTemp = new NewsData(newsModelObj[i].newsId, newsModelObj[i].newsTitle,
         newsModelObj[i].newsContent, newsModelObj[i].newsTime);
       newsModelBuckets.push(contactTemp);
     }
@@ -278,8 +278,8 @@ class JsonObject {
 }
 
 function getNews(mockFileDir: string): Array<NewsData> {
-  let jsonObj: JsonObject = new JsonObject(mockFileDir);
-  let newsModelMockData: Array<NewsData> = jsonObj.getNewsData()
+  const jsonObj: JsonObject = new JsonObject(mockFileDir);
+  const newsModelMockData: Array<NewsData> = jsonObj.getNewsData()
   return newsModelMockData
 }
 
