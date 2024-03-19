@@ -20,6 +20,7 @@ import WindowModel from '../utils/WindowModel';
 import { logger } from '@ohos/utils/src/main/ets/log/Logger';
 import { SettingItem } from '../utils/dataSource'
 import { CommonConstants } from '../constants/CommonConstants';
+import promptAction from '@ohos.promptAction';
 
 /**
  * 本实例介绍利用list及onTouch属性实现底部抽屉滑动效果场景
@@ -33,7 +34,7 @@ import { CommonConstants } from '../constants/CommonConstants';
 export struct BottomDrawerSlideCase {
   @State bottomAvoidHeight: number = 0; //底部导航条高度
   private listScroller = new ListScroller(); // list滚动控制器
-  @State listHeight: number = 0; // list初始高度
+  @State listHeight: number = 0; // list高度
   @State windowHeight: number = 0; // window高度
   @State statusBarHeight: number = 0; // 顶部状态栏高度
   private yStart: number = 0; // list触摸事件起始纵坐标
@@ -53,6 +54,7 @@ export struct BottomDrawerSlideCase {
   ]; // list内容项
   @State firstListItemHeight: number = 195; // 列表第一个item高度
   @State secondListItemHeight: number = this.bottomAvoidHeight + 150; // 列表第二个item高度
+  @State scrollOffset: number = 0;
 
   aboutToAppear(): void {
     // 初始化窗口管理model
@@ -134,6 +136,12 @@ export struct BottomDrawerSlideCase {
                   .backgroundColor($r('app.color.list_first_backgroundcolor'))
                   .borderRadius($r('app.integer.number_10'))
                   .width('80%')
+                  .onClick(() => {
+                    promptAction.showToast({
+                      message: '该功能暂未开发',
+                      duration: 2000
+                    })
+                  })
               }
               .height('80%')
               .width('98%')
@@ -154,6 +162,7 @@ export struct BottomDrawerSlideCase {
             .height(this.firstListItemHeight)
             .backgroundColor(Color.White)
 
+            // 性能知识点：此处列表，列表项确定且数量较少，使用了ForEach，在列表项多的情况下，推荐使用LazyForeEach
             ForEach(this.listItem, (item: SettingItem) => {
               ListItem() {
                 SettingItemView({ bottomAvoidHeight: this.bottomAvoidHeight })
@@ -176,15 +185,20 @@ export struct BottomDrawerSlideCase {
           'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start },
           'right': { 'anchor': '__container__', 'align': HorizontalAlign.End },
         })
+        .onReachStart(() => {
+          this.isScroll = false;
+          console.info('listtest' + this.isScroll)
+        })
+        .onScroll((scrollOffset: number) => {
+          this.scrollOffset = scrollOffset;
+          console.info('listtest' + scrollOffset)
+        })
         .id('scrollPart')
         .margin({ left: $r('app.integer.height_10'), right: $r('app.integer.height_10') })
         .sticky(StickyStyle.None) // 列表吸顶效果
         .enableScrollInteraction(this.isScroll)
-        .onReachStart(() => {
-          this.isScroll = false
-        })
         .animation({
-          duration: 500, // 动画持续时间，单位毫秒
+          duration: 300, // 动画持续时间，单位毫秒
           curve: Curve.Friction, // 动画曲线
           iterations: 1, // 动画播放次数
           playMode: PlayMode.Normal// 动画播放模式
@@ -194,10 +208,7 @@ export struct BottomDrawerSlideCase {
           if (!event) {
             return;
           }
-
-          // 当底部列表滑动到页面的顶部时，显示顶部导航栏遮盖部分
-          if (this.isScroll) {
-            this.isShow = true;
+          if (this.isScroll && this.scrollOffset !== 0) {
             return;
           }
 
@@ -214,32 +225,32 @@ export struct BottomDrawerSlideCase {
               let maxHeight = this.windowHeight - this.statusBarHeight; // 设置list最大高度
               // 列表上滑时，分阶段滑动
               if (this.isUp) {
-                this.listScroller.scrollToIndex(0, true)
-                // 分阶段滑动，滑动到第二个item
+                // 分阶段滑动，当list高度位于第一个item和第二个item之间时，滑动到第二个item
                 if (this.listHeight > CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight && this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight) {
                   this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight;
                   this.isShow = false;
                   return;
                 }
-                // 分阶段滑动，滑动到页面顶部
+                // 分阶段滑动，当list高度位于顶部和第二个item之间时，滑动到页面顶部
                 if (CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight < this.listHeight && this.listHeight <= maxHeight) {
                   this.listHeight = maxHeight;
-                  this.isShow = false;
+                  this.isScroll = true;
+                  this.isShow = true;
                   return;
                 }
               }
               // 列表下滑时，分阶段滑动
               else {
-                //存在onReachStart不准确的情况，规避一下
-                this.listScroller.scrollToIndex(0, true)
-                // 分阶段滑动，滑动到第三阶段
-                if (this.listHeight >= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight) {
-                  this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight;
+                // 分阶段滑动，当list高度位于顶部和第二个item之间时,滑动到第二个item
+                if (this.listHeight >= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight && this.listHeight <= maxHeight) {
+                  //存在onReachStart不准确的情况，规避一下
+                  this.listScroller.scrollToIndex(0, true);
+                  this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight + this.bottomAvoidHeight;
                   this.isShow = false;
                   return;
                 }
-                // 分阶段滑动，滑动到第二阶段
-                if (this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight + this.bottomAvoidHeight) {
+                // 分阶段滑动，当list高度位于第一个item和第二个item之间时，滑动到第一个item
+                if (this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight + this.bottomAvoidHeight || this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight) {
                   this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight;
                   this.isShow = false;
                   return;
@@ -254,45 +265,40 @@ export struct BottomDrawerSlideCase {
               let maxHeight = this.windowHeight - this.statusBarHeight; // list列表的最大高度
               // 判断上滑，且list跟随手势滑动
               if (yEnd < this.yStart) {
-                //存在onReachStart不准确的情况，规避一下
-                this.listScroller.scrollToIndex(0, true);
                 this.isUp = true;
                 let temHeight = this.listHeight + height;
                 if (temHeight >= maxHeight) {
-                  this.listHeight = maxHeight;
                   this.isScroll = true;
+                  this.isShow = true;
+                  this.listHeight = maxHeight;
                 } else {
-                  this.listHeight = temHeight;
                   this.isScroll = false;
+                  this.listHeight = temHeight;
                 }
               }
               // 判断下滑，且list跟随手势滑动
               else {
                 this.isUp = false;
-                //存在onReachStart不准确的情况，规避一下
-                this.listScroller.scrollToIndex(0, true);
-                let temHeight = this.listHeight - height;
-                // 设置最小list高度
-                if (temHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight) {
-                  this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight;
-                  this.isScroll = false;
-                  this.isShow = false;
-                } else {
+                // 防止列表惯性滑动减少list高度
+                if (!this.isScroll) {
+                  let temHeight = this.listHeight - height;
+                  // 列表高度随滑动高度变化
                   this.listHeight = temHeight;
-                  this.isScroll = false;
-                  this.isShow = false;
                 }
               }
               this.yStart = event.touches[0].y;
             }
           }
+
         })
       }
 
       // 当列表滑动到第三阶段再向上划，出现的顶部导航栏遮蔽区域
-      StatusHead({ statusBarHeight: this.statusBarHeight, topHeaderHeight: CommonConstants.PAGE_HEADER_HEIGHT })
-        .visibility(this.isShow ? Visibility.Visible : Visibility.None)
-
+      StatusHead({
+        statusBarHeight: this.statusBarHeight,
+        topHeaderHeight: CommonConstants.PAGE_HEADER_HEIGHT,
+        isShow: this.isShow
+      })
     }
     .width(CommonConstants.FULL_SIZE)
     .height(CommonConstants.FULL_SIZE)

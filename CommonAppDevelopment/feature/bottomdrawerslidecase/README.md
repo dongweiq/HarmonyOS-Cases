@@ -27,14 +27,14 @@ Stack({ alignContent: Alignment.TopStart }) {
     List({ scroller: this.listScroller }) {
     ...
     }
-    .alignRules({
-      'bottom': { 'anchor': '__container__', 'align': VerticalAlign.Bottom },
-      'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start },
-      'right': { 'anchor': '__container__', 'align': HorizontalAlign.End },
-    })
-    StatusHead({ statusBarHeight: this.statusBarHeight, topHeaderHeight: CommonConstants.PAGE_HEADER_HEIGHT })
-      .visibility(this.isShow ? Visibility.Visible : Visibility.None)
-  }
+.alignRules({
+  'bottom': { 'anchor': '__container__', 'align': VerticalAlign.Bottom },
+  'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start },
+  'right': { 'anchor': '__container__', 'align': HorizontalAlign.End },
+})
+StatusHead({ statusBarHeight: this.statusBarHeight, topHeaderHeight: CommonConstants.PAGE_HEADER_HEIGHT })
+  .visibility(this.isShow ? Visibility.Visible : Visibility.None)
+}
 }
 ```
 
@@ -48,12 +48,12 @@ List({ scroller: this.listScroller }) {
 }
 .onTouch((event) => {
   switch (event.type) {
-    // 手指按下触摸屏幕
+  // 手指按下触摸屏幕
     case TouchType.Down: {
       this.yStart = event.touches[0].y;  // 手指按压屏幕的纵坐标
       break;
     }
-    // 手指在屏幕移动      
+  // 手指在屏幕移动      
     case TouchType.Move: {
       let yEnd = event.touches[0].y; // 手指离开屏幕的纵坐标
       let height = Math.abs(Math.abs(yEnd) - Math.abs(this.yStart)); // 手指在屏幕上的滑动距离
@@ -75,14 +75,8 @@ List({ scroller: this.listScroller }) {
 3. 根据手指滑动的长度对列表高度进行改变（以上滑为例）。
 
 ```typescript
-let temHeight = this.listHeight + height;
-if (temHeight >= maxHeight) {
-  this.listHeight = maxHeight;
-  this.isScroll = true; // 列表内的内容是否可以滑动
-} else {
-  this.listHeight = temHeight; // listHeight为列表高度
-  this.isScroll = false;
-}
+this.isScroll = false;
+this.listHeight = temHeight;
 ```
 
 4. 在手指滑动结束离开屏幕后，通过判断此时列表高度处于哪个区间，为列表赋予相应的高度（以上滑为例）。
@@ -94,16 +88,23 @@ switch (event.type) {
     let maxHeight = this.windowHeight - this.statusBarHeight; // 设置list最大高度
     // 列表上滑时，分阶段滑动
     if (this.isUp) {
-      // 分阶段滑动，滑动到第二个item
+      // 分阶段滑动，当list高度位于第一个item和第二个item之间时，滑动到第二个item
       if (this.listHeight > CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight && this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight) {
         this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight;
         this.isShow = false;
         return;
       }
-      // 分阶段滑动，滑动到页面顶部
+      // 分阶段滑动，当list高度位于顶部和第二个item之间时，滑动到页面顶部
       if (CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight < this.listHeight && this.listHeight <= maxHeight) {
         this.listHeight = maxHeight;
-        this.isShow = false;
+        this.isScroll = true;
+        this.isShow = true;
+        return;
+      }
+      // 分阶段滑动，当list高度大于最大高度，list滑动到页面顶部内容可滚动
+      if (this.listHeight >= maxHeight) {
+        this.isScroll = true;
+        this.isShow = true;
         return;
       }
     }

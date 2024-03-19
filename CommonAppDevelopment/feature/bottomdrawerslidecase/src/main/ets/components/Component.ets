@@ -14,6 +14,7 @@
  */
 
 import { CommonConstants } from '../constants/CommonConstants';
+import { router } from '@kit.ArkUI';
 
 // 地图顶部标题栏
 @Component
@@ -22,11 +23,15 @@ export struct HomeTop {
 
   build() {
     Row() {
-      Image($r('app.media.return'))
+/*      Image($r('app.media.return'))
         .width($r('app.integer.height_22'))
         .height($r('app.integer.height_22'))
         .margin({ left: $r('app.integer.number_25'), right: $r('app.integer.number_15') })
+        .onClick(()=>{
+          router.back()
+        })*/
       Text($r('app.string.homeTop'))
+        .margin({ left: $r('app.integer.number_25'), right: $r('app.integer.number_15') })
         .fontColor(Color.Black)
         .fontSize($r('app.integer.number_18'))
     }
@@ -95,6 +100,7 @@ export struct ImageMapView {
 export struct StatusHead {
   @Link statusBarHeight: number;
   @State topHeaderHeight: number = 0;
+  @Link isShow:boolean;
 
   build() {
     Column() {
@@ -103,7 +109,7 @@ export struct StatusHead {
         .backgroundColor(Color.White)
         .height(this.statusBarHeight)
       Row() {
-        Image($r('app.media.return'))
+        Image($r('app.media.next'))
           .width($r('app.integer.height_22'))
           .height($r('app.integer.height_22'))
           .margin({ left: $r('app.integer.number_25'), right: $r('app.integer.number_15') })
@@ -115,9 +121,10 @@ export struct StatusHead {
       .width(CommonConstants.FULL_SIZE)
       .height(this.topHeaderHeight)
     }
+    .visibility(this.isShow ? Visibility.Visible : Visibility.None)
     .animation({
-      duration: 2000, // 动画持续时间，单位毫秒
-      curve: Curve.EaseOut, // 动画曲线
+      duration: 200, // 动画持续时间，单位毫秒
+      curve: Curve.Smooth, // 动画曲线
       iterations: 1, // 动画播放次数
       playMode: PlayMode.Normal// 动画播放模式
     })
