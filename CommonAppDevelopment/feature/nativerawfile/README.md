@@ -213,8 +213,10 @@
 
 ### 模块依赖
 
-1. 本实例依赖common模块来实现[公共组件FunctionDescription](../../common/utils/src/main/ets/component/FunctionDescription.ets)。
+1. 本实例依赖common模块中的[日志工具类logger](../../common/utils/src/main/ets/log/Logger.ets)。
 
 ### 参考资料
 
-[公共组件FunctionDescription](../../common/utils/src/main/ets/component/FunctionDescription.ets)
+[@ohos.taskpool（启动任务池）](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/js-apis-taskpool-0000001774280766)
+
+[Rawfile](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/rawfile-0000001770391656)
