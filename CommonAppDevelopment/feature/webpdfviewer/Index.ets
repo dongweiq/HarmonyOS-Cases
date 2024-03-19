@@ -20,7 +20,7 @@ export { WebPDFViewer } from './src/main/ets/view/WebPDFViewer';
 // 动态import时需要调用的接口，接口名请使用harInit，用于动态加载页面
 export function harInit(pageName: string) {
   switch (pageName) {
-    case RouterInfo.PAGE_LOADING.pageName:
+    case RouterInfo.WEB_PDF_VIEWER.pageName:
       import('./src/main/ets/view/WebPDFViewer');
       break;
   }

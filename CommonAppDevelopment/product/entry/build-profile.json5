@@ -85,6 +85,16 @@
           "@ohos/listitemoverflow",
           "@ohos/transitionanimation",
           "@ohos/imagegridlayout",
+          "@ohos/dynamicattributes",
+          "@ohos/etswrapper",
+          "@ohos/handwritingtoimage",
+          "@ohos/indicatorbelowswiper",
+          "@ohos/multimodaltransion",
+          "@ohos/multiplefilesdownload",
+          "@ohos/nativeembed",
+          "@ohos/sideslipintercept",
+          "@ohos/webpdfviewer",
+          "@ohos/imagetheft"
         ]
       }
     }
