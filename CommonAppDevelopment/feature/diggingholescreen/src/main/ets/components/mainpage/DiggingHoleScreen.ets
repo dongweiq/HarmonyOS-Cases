@@ -127,47 +127,45 @@ export struct DiggingHoleScreen {
   }
 
   build() {
-    Column() {
-      Stack() {
-        Image($r('app.media.2048game'))
-          .objectFit(ImageFit.Fill)
-          .width('100%')
-          .height('100%')
-        Column() {
-          Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
-            Text(this.currentTime)// 时间
-              .fontSize($r('app.integer.title_font_size'))
-              .fontColor(Color.Black)
-              .fontWeight(FontWeight.Regular)
-              .padding({ left: $r('app.integer.text_padding_left') })
-              .margin({
-                left: px2vp(this.topTextMargin.left),
-                top: $r('app.integer.text_margin_top')
-              }) // 获取的偏移量单位为px需要进行转换
-            Text(batteryInfo.batterySOC.toString() + '%')// 电池电量
-              .fontSize($r('app.integer.title_font_size'))
-              .fontColor(Color.Black)
-              .fontWeight(FontWeight.Regular)
-              .padding({ right: $r('app.integer.text_padding_right') })
-              .margin({
-                right: px2vp(this.topTextMargin.right),
-                top: $r('app.integer.text_margin_top')
-              }) // 获取的偏移量单位为px需要进行转换
-          }
-          .width('100%')
-
-          FunctionDescription({
-            title: $r('app.string.introduction_titel'),
-            content: $r('app.string.introduction_content')
-          })
-            .width('90%')
+    Stack() {
+      Image($r('app.media.2048game'))
+        .objectFit(ImageFit.Fill)
+        .width('100%')
+        .height('100%')
+      Column() {
+        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
+          Text(this.currentTime)// 时间
+            .fontSize($r('app.integer.title_font_size'))
+            .fontColor(Color.Black)
+            .fontWeight(FontWeight.Regular)
+            .padding({ left: $r('app.integer.text_padding_left') })
+            .margin({
+              left: px2vp(this.topTextMargin.left),
+              top: $r('app.integer.text_margin_top')
+            }) // 获取的偏移量单位为px需要进行转换
+          Text(batteryInfo.batterySOC.toString() + '%')// 电池电量
+            .fontSize($r('app.integer.title_font_size'))
+            .fontColor(Color.Black)
+            .fontWeight(FontWeight.Regular)
+            .padding({ right: $r('app.integer.text_padding_right') })
+            .margin({
+              right: px2vp(this.topTextMargin.right),
+              top: $r('app.integer.text_margin_top')
+            }) // 获取的偏移量单位为px需要进行转换
         }
         .width('100%')
+
+        FunctionDescription({
+          title: $r('app.string.introduction_titel'),
+          content: $r('app.string.introduction_content')
+        })
+          .width('90%')
       }
-      .alignContent(Alignment.TopStart)
+      .width('100%')
     }
     .width('100%')
     .height('100%')
+    .alignContent(Alignment.TopStart)
   }
 }
 

@@ -57,136 +57,138 @@ export struct ComponentStack {
   scroller2: Scroller = new Scroller();
 
   build() {
-    Column() {
-      // TODO: 知识点：堆叠容器，子组件按照顺序依次入栈，后一个子组件覆盖前一个子组件。
-      Stack({ alignContent: Alignment.Top }) {
-        Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-          Image($r("app.media.user_portrait"))
-            .width($r('app.integer.user_portrait_width'))
-            .aspectRatio(ASPECT_RATIO)
-            .borderRadius($r('app.integer.user_portrait_border_radius'))
+    // TODO: 知识点：堆叠容器，子组件按照顺序依次入栈，后一个子组件覆盖前一个子组件。
+    Stack({ alignContent: Alignment.Top }) {
+      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+        Image($r("app.media.user_portrait"))
+          .width($r('app.integer.user_portrait_width'))
+          .aspectRatio(ASPECT_RATIO)
+          .borderRadius($r('app.integer.user_portrait_border_radius'))
 
-          Image($r("app.media.scan"))
-            .width($r('app.integer.scan_width'))
-            .aspectRatio(ASPECT_RATIO)
-        }
-        .padding({ left: $r('app.integer.flex_padding_left'),
-          right: $r('app.integer.flex_padding_right')
-        })
-        .width('100%').height($r('app.integer.flex_height'))
-        // Scroll滚动父组件
-        Scroll(this.scroller) {
-          Column() {
-            Row() {
-              Image($r('app.media.search'))
-                .width($r('app.integer.search_width'))
-                .aspectRatio(ASPECT_RATIO)
-                .margin({ left: $r('app.integer.search_margin_left') })
+        Image($r("app.media.scan"))
+          .width($r('app.integer.scan_width'))
+          .aspectRatio(ASPECT_RATIO)
+      }
+      .padding({
+        left: $r('app.integer.flex_padding_left'),
+        right: $r('app.integer.flex_padding_right')
+      })
+      .width('100%').height($r('app.integer.flex_height'))
 
-              Text($r('app.string.search_title'))
-                .opacity(OPACITY)
-                .fontColor(Color.Black)
-                .fontSize($r('app.integer.search_font_size'))
-                .margin({ left: $r('app.integer.search_text_margin_left') })
-            }
-            .width('100%')
-            .height(this.searchHeight)
-            .backgroundColor(Color.White)
-            .borderRadius($r('app.integer.search_border_radius'))
-            // Stack堆叠组件
-            Stack({ alignContent: Alignment.Top }) {
-              if (this.isChange) {
-                Row() {
-                  IconList3({ marginSpace: this.marginSpace })
-                }
-                .backgroundColor($r('app.color.ohos_id_color_sub_background'))
-                .width('100%')
-                .height($r('app.integer.icon_list_height3'))
-                .opacity(this.Opacity)
-                // TODO: 知识点：组件的Z序，设置组件的堆叠顺序，zIndex值越大，显示层级越高。
-                .zIndex(ZINDEX)
-              } else {
-                Row() {
-                  IconList1()
-                }
-                .width('100%')
-                .height($r('app.integer.icon_list_height1'))
-                .opacity(this.Opacity)
+      // Scroll滚动父组件
+      Scroll(this.scroller) {
+        Column() {
+          Row() {
+            Image($r('app.media.search'))
+              .width($r('app.integer.search_width'))
+              .aspectRatio(ASPECT_RATIO)
+              .margin({ left: $r('app.integer.search_margin_left') })
+
+            Text($r('app.string.search_title'))
+              .opacity(OPACITY)
+              .fontColor(Color.Black)
+              .fontSize($r('app.integer.search_font_size'))
+              .margin({ left: $r('app.integer.search_text_margin_left') })
+          }
+          .width('100%')
+          .height(this.searchHeight)
+          .backgroundColor(Color.White)
+          .borderRadius($r('app.integer.search_border_radius'))
+
+          // Stack堆叠组件
+          Stack({ alignContent: Alignment.Top }) {
+            if (this.isChange) {
+              Row() {
+                IconList3({ marginSpace: this.marginSpace })
               }
-              // Scroll滚动子组件
-              Scroll(this.scroller2) {
-                Column() {
-                  Row() {
-                    IconList2({ ratio: this.ratio })
-                  }
-                  .width('100%')
-                  .height(this.Height2)
-                  .opacity(this.Opacity2)
-                  // 商品列表组件
-                  ProductList()
-                    .width('100%')
-                    .height(px2vp(this.screenHeight - this.statusHeight - this.bottomHeight) - this.UsedSapce)
-                }
-                .margin({ top: this.marginTop }) // 防止遮挡IconList1
+              .backgroundColor($r('app.color.ohos_id_color_sub_background'))
+              .width('100%')
+              .height($r('app.integer.icon_list_height3'))
+              .opacity(this.Opacity)
+              // TODO: 知识点：组件的Z序，设置组件的堆叠顺序，zIndex值越大，显示层级越高。
+              .zIndex(ZINDEX)
+            } else {
+              Row() {
+                IconList1()
               }
               .width('100%')
-              .scrollBar(BarState.Off)
-              // TODO: 知识点：嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
-              .nestedScroll({
-                scrollForward: NestedScrollMode.PARENT_FIRST, // 可滚动组件往末尾端滚动时的嵌套滚动选项,父组件先滚动，父组件滚动到边缘以后自身滚动。
-                scrollBackward: NestedScrollMode.SELF_FIRST // 可滚动组件往起始端滚动时的嵌套滚动选项,自身先滚动，自身滚动到边缘以后父组件滚动。
-              })
-              // Scroll滚动子组件函数回调
-              .onScroll(() => {
-                // TODO: 知识点: Scroll组件绑定onScroll事件，然后在此方法里改变该组件的margin和opacity属性值的大小实现组件移动和隐显
-                // 性能知识点: onScroll属于频繁回调，不建议在onScroll做耗时和冗余操作
-                let yOffset: number = this.scroller2.currentOffset().yOffset;
-                this.Height2 = this.Height2_raw - yOffset * 0.5;
-
-                // 根据yOffset的偏移量来设置IconList2的透明度，当偏移量大于等于IconList2原始高度就是透明的。
-                if (1 - yOffset / this.IconList2_raw >= 0) {
-                  this.Opacity2 = 1 - yOffset / this.IconList2_raw; // IconList2的透明度
-                } else {
-                  this.Opacity2 = 0;
-                }
-                // 巧妙利用IconList2的透明度的值Opacity2来设置IconList2的缩放。
-                this.ratio = this.Opacity2;
-                // 根据yOffset的偏移量来设置IconList1的透明度和IconList3的间距，当偏移量大于等于IconList1原始高度就是透明的同时IconList3的间距也是最小的。
-                if (1 - yOffset / this.IconList1_raw > 0) {
-                  this.isChange = false;
-                  this.Opacity = 1 - yOffset / this.IconList1_raw; // IconList1的透明度
-                  this.marginSpace = this.maxMarginSpace; // IconList3默认间距
-                } else {
-                  this.isChange = true;
-                  this.Opacity = (yOffset - this.IconList1_raw) / this.maxMarginSpace; // IconList1的透明度
-                  this.marginSpace = this.IconList3_raw - yOffset > this.minmarginSpace ?
-                    (this.IconList3_raw - yOffset) : this.minmarginSpace; // IconList3的间距
-                }
-              })
+              .height($r('app.integer.icon_list_height1'))
+              .opacity(this.Opacity)
             }
+            // Scroll滚动子组件
+            Scroll(this.scroller2) {
+              Column() {
+                Row() {
+                  IconList2({ ratio: this.ratio })
+                }
+                .width('100%')
+                .height(this.Height2)
+                .opacity(this.Opacity2)
+
+                // 商品列表组件
+                ProductList()
+                  .width('100%')
+                  .height(px2vp(this.screenHeight - this.statusHeight - this.bottomHeight) - this.UsedSapce)
+              }
+              .margin({ top: this.marginTop }) // 防止遮挡IconList1
+            }
+            .width('100%')
+            .scrollBar(BarState.Off)
+            // TODO: 知识点：嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+            .nestedScroll({
+              scrollForward: NestedScrollMode.PARENT_FIRST, // 可滚动组件往末尾端滚动时的嵌套滚动选项,父组件先滚动，父组件滚动到边缘以后自身滚动。
+              scrollBackward: NestedScrollMode.SELF_FIRST // 可滚动组件往起始端滚动时的嵌套滚动选项,自身先滚动，自身滚动到边缘以后父组件滚动。
+            })
+            // Scroll滚动子组件函数回调
+            .onScroll(() => {
+              // TODO: 知识点: Scroll组件绑定onScroll事件，然后在此方法里改变该组件的margin和opacity属性值的大小实现组件移动和隐显
+              // 性能知识点: onScroll属于频繁回调，不建议在onScroll做耗时和冗余操作
+              let yOffset: number = this.scroller2.currentOffset().yOffset;
+              this.Height2 = this.Height2_raw - yOffset * 0.5;
+
+              // 根据yOffset的偏移量来设置IconList2的透明度，当偏移量大于等于IconList2原始高度就是透明的。
+              if (1 - yOffset / this.IconList2_raw >= 0) {
+                this.Opacity2 = 1 - yOffset / this.IconList2_raw; // IconList2的透明度
+              } else {
+                this.Opacity2 = 0;
+              }
+              // 巧妙利用IconList2的透明度的值Opacity2来设置IconList2的缩放。
+              this.ratio = this.Opacity2;
+              // 根据yOffset的偏移量来设置IconList1的透明度和IconList3的间距，当偏移量大于等于IconList1原始高度就是透明的同时IconList3的间距也是最小的。
+              if (1 - yOffset / this.IconList1_raw > 0) {
+                this.isChange = false;
+                this.Opacity = 1 - yOffset / this.IconList1_raw; // IconList1的透明度
+                this.marginSpace = this.maxMarginSpace; // IconList3默认间距
+              } else {
+                this.isChange = true;
+                this.Opacity = (yOffset - this.IconList1_raw) / this.maxMarginSpace; // IconList1的透明度
+                this.marginSpace = this.IconList3_raw - yOffset > this.minmarginSpace ?
+                  (this.IconList3_raw - yOffset) : this.minmarginSpace; // IconList3的间距
+              }
+            })
           }
-          .height('100%')
-          .width('100%')
-          .margin({ top: $r('app.integer.margin_search_view') }) // 不遮挡搜索栏
         }
-        .padding({ left: $r('app.integer.scroll_padding'), right: $r('app.integer.scroll_padding') })
-        .width('100%')
         .height('100%')
-        .scrollBar(BarState.Off)
-        // Scroll滚动父组件函数回调
-        .onScroll(() => {
-          // 获取滑动距离
-          const yOffset: number = this.scroller.currentOffset().yOffset;
-          // this.searchHeight 随 yOffset变化的公式。按需调整。
-          this.searchHeight = this.searchHeight_raw - yOffset * 0.6;
-        })
+        .width('100%')
+        .margin({ top: $r('app.integer.margin_search_view') }) // 不遮挡搜索栏
       }
+      .padding({ left: $r('app.integer.scroll_padding'), right: $r('app.integer.scroll_padding') })
       .width('100%')
-      .layoutWeight(LAYOUTWEIGHT)
-      .backgroundColor($r('app.color.ohos_id_color_sub_background'))
-      .margin({ top: $r('app.integer.stack_margin_top') })
-      .padding({ top: $r('app.integer.stack_padding_top') })
+      .height('100%')
+      .scrollBar(BarState.Off)
+      // Scroll滚动父组件函数回调
+      .onScroll(() => {
+        // 获取滑动距离
+        const yOffset: number = this.scroller.currentOffset().yOffset;
+        // this.searchHeight 随 yOffset变化的公式。按需调整。
+        this.searchHeight = this.searchHeight_raw - yOffset * 0.6;
+      })
     }
+    .width('100%')
+    .layoutWeight(LAYOUTWEIGHT)
+    .backgroundColor($r('app.color.ohos_id_color_sub_background'))
+    .margin({ top: $r('app.integer.stack_margin_top') })
+    .padding({ top: $r('app.integer.stack_padding_top') })
   }
 }
 
@@ -197,4 +199,4 @@ export function getComponentStack(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.COMPONENT_TACK,wrapBuilder(getComponentStack));
+DynamicsRouter.registerRouterPage(RouterInfo.COMPONENT_TACK, wrapBuilder(getComponentStack));

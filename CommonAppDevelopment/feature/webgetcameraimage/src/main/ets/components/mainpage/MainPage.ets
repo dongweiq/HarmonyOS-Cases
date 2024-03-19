@@ -51,19 +51,17 @@ export struct WebGetCameraImageView {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
 
   build() {
-    Column() {
-      // TODO：知识点：Web组件通过onShowFileSelector接口，处理具有“文件”输入类型的HTML表单，响应用户按下的“选择文件”按钮，并通过event对象，将选择的图片/文件路径返回给input标签中onchange属性调用的js方法。onShowFileSelector接口的用法，可参考官方文档 https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-web-0000001774281246#ZH-CN_TOPIC_0000001774281246__onshowfileselector9
-      Web({ src: $rawfile(LOCAL_HTML_PATH), controller: this.controller })
-        .onShowFileSelector((event: FileResult) => { // event表示文件选择事件，其中result可以存储选择的图片/文件片路径，fileSelector可以设置文件选择器的部分属性
-          // 调用invokeCamera接口，拉起原生相机进行拍照，并将照片路径放到uri中返回
-          this.invokeCamera(((uri: string) => {
-            // 将照片路径uri放到一个数组中，通过系统接口handleFileList将图片/文件的选择结果通知给Web组件，可参考官方文档 https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-web-0000001774281246#ZH-CN_TOPIC_0000001774281246__handlefilelist9
-            event?.result.handleFileList([uri]);
-          }))
-          // 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，绘制的自定义弹窗无效。
-          return true;
-        })
-    }
+    // TODO：知识点：Web组件通过onShowFileSelector接口，处理具有“文件”输入类型的HTML表单，响应用户按下的“选择文件”按钮，并通过event对象，将选择的图片/文件路径返回给input标签中onchange属性调用的js方法。onShowFileSelector接口的用法，可参考官方文档 https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-web-0000001774281246#ZH-CN_TOPIC_0000001774281246__onshowfileselector9
+    Web({ src: $rawfile(LOCAL_HTML_PATH), controller: this.controller })
+      .onShowFileSelector((event: FileResult) => { // event表示文件选择事件，其中result可以存储选择的图片/文件片路径，fileSelector可以设置文件选择器的部分属性
+        // 调用invokeCamera接口，拉起原生相机进行拍照，并将照片路径放到uri中返回
+        this.invokeCamera(((uri: string) => {
+          // 将照片路径uri放到一个数组中，通过系统接口handleFileList将图片/文件的选择结果通知给Web组件，可参考官方文档 https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-web-0000001774281246#ZH-CN_TOPIC_0000001774281246__handlefilelist9
+          event?.result.handleFileList([uri]);
+        }))
+        // 当返回值为true时，用户可以调用系统提供的弹窗能力。当回调返回false时，绘制的自定义弹窗无效。
+        return true;
+      })
   }
 
   /**
@@ -101,4 +99,4 @@ export function getWebView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.WEB_GET_CAMERA_IMAGE,wrapBuilder(getWebView));
+DynamicsRouter.registerRouterPage(RouterInfo.WEB_GET_CAMERA_IMAGE, wrapBuilder(getWebView));

@@ -21,26 +21,25 @@ export struct SearchView {
 
   build() {
     Stack({ alignContent: Alignment.TopEnd }) {
-      Column() {
-        List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
-          ForEach(this.searchList, (index: string) => {
-            ListItem() {
-              Column() {
-                Text(index)
-                  .height(30)
-                  .fontSize(14)
-              }
+      List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
+        ForEach(this.searchList, (index: string) => {
+          ListItem() {
+            Column() {
+              Text(index)
+                .height(30)
+                .fontSize(14)
             }
-          })
-        }
-        .layoutWeight(1)
-        .edgeEffect(EdgeEffect.None)
-        .divider({ strokeWidth: $r('app.integer.divider_strokeWidth'), color: $r('app.color.divider_color'),
-          startMargin: $r('app.integer.divider_start'), endMargin: $r('app.integer.divider_end') })
-        .listDirection(Axis.Vertical)
-        .sticky(StickyStyle.Header)
+          }
+        })
       }
-      .alignItems(HorizontalAlign.Start)
+      .layoutWeight(1)
+      .edgeEffect(EdgeEffect.None)
+      .divider({
+        strokeWidth: $r('app.integer.divider_strokeWidth'), color: $r('app.color.divider_color'),
+        startMargin: $r('app.integer.divider_start'), endMargin: $r('app.integer.divider_end')
+      })
+      .listDirection(Axis.Vertical)
+      .sticky(StickyStyle.Header)
     }
     .width("100%")
     .height("100%")
