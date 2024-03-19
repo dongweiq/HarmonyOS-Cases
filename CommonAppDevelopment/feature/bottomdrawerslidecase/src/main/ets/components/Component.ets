@@ -14,7 +14,6 @@
  */
 
 import { CommonConstants } from '../constants/CommonConstants';
-import { router } from '@kit.ArkUI';
 
 // 地图顶部标题栏
 @Component
@@ -23,13 +22,6 @@ export struct HomeTop {
 
   build() {
     Row() {
-/*      Image($r('app.media.return'))
-        .width($r('app.integer.height_22'))
-        .height($r('app.integer.height_22'))
-        .margin({ left: $r('app.integer.number_25'), right: $r('app.integer.number_15') })
-        .onClick(()=>{
-          router.back()
-        })*/
       Text($r('app.string.homeTop'))
         .margin({ left: $r('app.integer.number_25'), right: $r('app.integer.number_15') })
         .fontColor(Color.Black)
@@ -48,8 +40,7 @@ export struct SettingItemView {
 
   build() {
     Column() {
-      Row()
-        .backgroundColor($r('app.color.setting_item_view_backgroundcolor'))
+      Image($r('app.media.list_item'))
         .height($r('app.integer.other_itemheight'))
         .width('98%')
         .borderRadius($r('app.integer.number_10'))
@@ -100,7 +91,7 @@ export struct ImageMapView {
 export struct StatusHead {
   @Link statusBarHeight: number;
   @State topHeaderHeight: number = 0;
-  @Link isShow:boolean;
+  @Link isShow: boolean;
 
   build() {
     Column() {

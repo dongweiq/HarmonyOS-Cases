@@ -21,20 +21,23 @@
 ```typescript
 Stack({ alignContent: Alignment.TopStart }) {
   RelativeContainer() {
-    // 地图背景
-    Image($r('app.media.map'))
+    // Image地图
+    ImageMapView()
     // 底部可变分阶段滑动列表
     List({ scroller: this.listScroller }) {
     ...
     }
-.alignRules({
-  'bottom': { 'anchor': '__container__', 'align': VerticalAlign.Bottom },
-  'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start },
-  'right': { 'anchor': '__container__', 'align': HorizontalAlign.End },
-})
-StatusHead({ statusBarHeight: this.statusBarHeight, topHeaderHeight: CommonConstants.PAGE_HEADER_HEIGHT })
-  .visibility(this.isShow ? Visibility.Visible : Visibility.None)
-}
+    .alignRules({
+      'bottom': { 'anchor': '__container__', 'align': VerticalAlign.Bottom },
+      'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start },
+      'right': { 'anchor': '__container__', 'align': HorizontalAlign.End },
+    })
+  }
+  StatusHead({
+    statusBarHeight: this.statusBarHeight,
+    topHeaderHeight: CommonConstants.PAGE_HEADER_HEIGHT,
+    isShow: this.isShow
+  })
 }
 ```
 
@@ -48,12 +51,12 @@ List({ scroller: this.listScroller }) {
 }
 .onTouch((event) => {
   switch (event.type) {
-  // 手指按下触摸屏幕
+    // 手指按下触摸屏幕
     case TouchType.Down: {
       this.yStart = event.touches[0].y;  // 手指按压屏幕的纵坐标
       break;
     }
-  // 手指在屏幕移动      
+    // 手指在屏幕移动      
     case TouchType.Move: {
       let yEnd = event.touches[0].y; // 手指离开屏幕的纵坐标
       let height = Math.abs(Math.abs(yEnd) - Math.abs(this.yStart)); // 手指在屏幕上的滑动距离

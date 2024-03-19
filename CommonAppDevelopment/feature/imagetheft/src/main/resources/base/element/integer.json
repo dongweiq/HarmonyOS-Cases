@@ -1,0 +1,36 @@
+{
+  "integer": [
+    {
+      "name": "image_theft_text_width",
+      "value": 80
+    },
+    {
+      "name": "image_theft_text_height",
+      "value": 34
+    },
+    {
+      "name": "image_theft_column_margin_top",
+      "value": 10
+    },
+    {
+      "name": "image_theft_column_margin_bottom",
+      "value": 10
+    },
+    {
+      "name": "image_theft_imageknife_component_border_width",
+      "value": 2
+    },
+    {
+      "name": "image_theft_imageknife_component_border_radius",
+      "value": 15
+    },
+    {
+      "name": "image_theft_outer_column_padding",
+      "value": 10
+    },
+    {
+      "name": "image_theft_button_width",
+      "value": 100
+    }
+  ]
+}

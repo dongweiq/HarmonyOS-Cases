@@ -189,6 +189,11 @@ export struct BottomDrawerSlideCase {
           this.isScroll = false;
           console.info('listtest' + this.isScroll)
         })
+        .onAreaChange((oldValue: Area, newValue: Area) => {
+          if (oldValue !== newValue) {
+            this.listScroller.scrollToIndex(0, true);
+          }
+        })
         .onScroll((scrollOffset: number) => {
           this.scrollOffset = scrollOffset;
           console.info('listtest' + scrollOffset)
@@ -243,9 +248,7 @@ export struct BottomDrawerSlideCase {
               else {
                 // 分阶段滑动，当list高度位于顶部和第二个item之间时,滑动到第二个item
                 if (this.listHeight >= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight && this.listHeight <= maxHeight) {
-                  //存在onReachStart不准确的情况，规避一下
-                  this.listScroller.scrollToIndex(0, true);
-                  this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight + this.bottomAvoidHeight;
+                  this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight;
                   this.isShow = false;
                   return;
                 }
@@ -263,27 +266,31 @@ export struct BottomDrawerSlideCase {
               let yEnd = event.touches[0].y; // 手指离开屏幕的纵坐标
               let height = Math.abs(Math.abs(yEnd) - Math.abs(this.yStart)); // 手指在屏幕上的滑动距离
               let maxHeight = this.windowHeight - this.statusBarHeight; // list列表的最大高度
-              // 判断上滑，且list跟随手势滑动
-              if (yEnd < this.yStart) {
-                this.isUp = true;
-                let temHeight = this.listHeight + height;
-                if (temHeight >= maxHeight) {
-                  this.isScroll = true;
-                  this.isShow = true;
-                  this.listHeight = maxHeight;
-                } else {
-                  this.isScroll = false;
-                  this.listHeight = temHeight;
+              // 防止误触导致列表高度变化,当手指在屏幕滑动一段距离时才触发后续变化
+              if (height > 10) {
+                // 判断上滑，且list跟随手势滑动
+                if (yEnd < this.yStart) {
+                  this.isUp = true;
+                  let temHeight = this.listHeight + height;
+                  if (temHeight >= maxHeight) {
+                    this.isScroll = true;
+                    this.isShow = true;
+                    this.listHeight = maxHeight;
+                  } else {
+                    this.isScroll = false;
+                    this.listHeight = temHeight;
+                  }
                 }
-              }
-              // 判断下滑，且list跟随手势滑动
-              else {
-                this.isUp = false;
-                // 防止列表惯性滑动减少list高度
-                if (!this.isScroll) {
-                  let temHeight = this.listHeight - height;
-                  // 列表高度随滑动高度变化
-                  this.listHeight = temHeight;
+                // 判断下滑，且list跟随手势滑动
+                else {
+                  this.isUp = false;
+                  this.isScroll = false;
+                  // 防止列表惯性滑动减少list高度
+                  if (!this.isScroll) {
+                    let temHeight = this.listHeight - height;
+                    // 列表高度随滑动高度变化
+                    this.listHeight = temHeight;
+                  }
                 }
               }
               this.yStart = event.touches[0].y;

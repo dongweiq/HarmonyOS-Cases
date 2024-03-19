@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "edit_prompt",
+      "value": "编辑是否保存"
+    },
+    {
+      "name": "unsave_edit",
+      "value": "不保存"
+    },
+    {
+      "name": "save_edit",
+      "value": "保存"
+    },
+    {
+      "name": "edit_toast",
+      "value": "保存成功"
+    }
+  ]
+}

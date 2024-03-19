@@ -16,7 +16,8 @@
 import { DynamicsRouter } from '@ohos/dynamicsRouter';
 import { SceneModuleInfo } from './model/SceneModuleInfo';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
-import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
+import { TAB_DATA, TabDataModel } from './model/TabsData';
+import { emitter } from '@kit.BasicServicesKit';
 
 /**
  * 主页瀑布流列表
@@ -24,45 +25,9 @@ import { TabDataModel, TAB_DATA, TabDataSource } from './model/TabsData';
 @Component
 export struct FunctionalScenes {
   @Link listData: SceneModuleInfo[];
-  @Consume('pageStack') pageStack: NavPathStack;
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(this.listData);
   @State tabsIndex: number = 0;
-  @State isMask: boolean = true
-  scroller: Scroller = new Scroller();
   tabsController: TabsController = new TabsController();
-  tabDataSource: TabDataSource = new TabDataSource();
-  waterFlowScroller: Scroller = new Scroller();
-
-  /**
-   * 筛选数据逻辑，触发更新列表信息，用于切换tabs和搜索
-   *
-   * @param index 当前的列表索引
-   */
-  filterData(index: number) {
-    let newListData: SceneModuleInfo[] = []; // 用于接收筛选到的数据
-    // index为0时分类为全部，全部类别情况下不需要筛选
-    if (index !== 0) {
-      for (let i = 0; i < this.listData.length; i++) {
-        // 判断类别
-        if (this.listData[i].category === TAB_DATA[index].navData) {
-          newListData.push(this.listData[i]);
-        }
-      }
-      this.dataSource = new WaterFlowDataSource(newListData);
-      return this.dataSource;
-    } else {
-      this.dataSource = new WaterFlowDataSource(this.listData);
-      return this.dataSource;
-    }
-  }
-
-
-  aboutToAppear(): void {
-    // 主页tabContent初始化数据
-    for (let index = 0; index < TAB_DATA.length; index++) {
-      this.tabDataSource.pushData(TAB_DATA[index]);
-    }
-  }
 
   /**
    * 瀑布流列表项组件布局
@@ -77,12 +42,11 @@ export struct FunctionalScenes {
         .objectFit(ImageFit.Contain)
         .width('100%')
       Text(listData.name)
-        .padding({ left: $r('app.string.main_page_padding1') })
+        .padding({ left: $r('app.string.main_page_padding6'), right: $r('app.string.main_page_padding6') })
         .width('100%')
         .fontColor(Color.Black)
-        .textAlign(TextAlign.Center)
-        .maxLines(1)
-        .height($r('app.string.main_page_text_height'))
+        .textAlign(Array.from(listData.name).length > 13 ? TextAlign.Start : TextAlign.Center)
+        .maxLines(2)
         .fontSize($r('app.string.ohos_id_text_size_body1'))
         .margin({ top: $r('app.string.main_page_margin1'), bottom: $r('app.string.main_page_margin1') })
       Row() {
@@ -115,6 +79,15 @@ export struct FunctionalScenes {
       DynamicsRouter.pop();
       // 点击瀑布流Item时，根据点击的模块信息，将页面放入路由栈
       DynamicsRouter.push(listData.routerInfo, listData.param);
+      // 帮助功能：发送当前案例的名称
+      let moduleName: string = listData.routerInfo.moduleName;
+      let split: string[] = moduleName.split('/');
+      moduleName = split[split.length-1];
+      emitter.emit("topModule", {
+        data: {
+          moduleName: moduleName
+        }
+      })
     })
   }
 
@@ -144,7 +117,6 @@ export struct FunctionalScenes {
     .onClick(() => {
       this.tabsIndex = index;
       this.tabsController.changeIndex(index);
-      this.filterData(index);
     })
   }
 
@@ -158,10 +130,15 @@ export struct FunctionalScenes {
       Tabs({ controller: this.tabsController }) {
         ForEach(TAB_DATA, (tabItem: TabDataModel) => {
           TabContent() {
-            WaterFlow({ scroller: this.waterFlowScroller }) {
-              LazyForEach(this.filterData(tabItem.id), (waterFlowItem: SceneModuleInfo) => {
+            WaterFlow() {
+              LazyForEach(this.dataSource, (waterFlowItem: SceneModuleInfo) => {
                 FlowItem() {
-                  this.methodPoints(waterFlowItem)
+                  if (tabItem.navData === '全部') {
+                    this.methodPoints(waterFlowItem)
+                  }
+                  if (tabItem.navData === waterFlowItem.category) {
+                    this.methodPoints(waterFlowItem)
+                  }
                 }
               }, (waterFlowItem: SceneModuleInfo) => JSON.stringify(waterFlowItem))
             }
@@ -178,7 +155,8 @@ export struct FunctionalScenes {
           .backgroundColor("#F1F1F1")
           .tabBar(
             SubTabBarStyle.of(tabItem.navData)
-              .indicator({color:Color.Black})
+              .indicator({ color: Color.Black })
+              .labelStyle({ font: { size: 14 } })
           )
         })
       }
@@ -191,7 +169,6 @@ export struct FunctionalScenes {
       .barWidth('100%')
       .onChange((index: number) => {
         this.tabsIndex = index;
-        this.filterData(index);
       })
     }
     .height('100%')

@@ -260,10 +260,17 @@ export struct ImageCompression {
           return;
         }
         if (this.maxCompressedImageSize * BYTE_CONVERSION > this.sourceImageByteLength) {
-          AlertDialog.show({
-            message: $r('app.string.prompt_not_require_compression'),
-            alignment: DialogAlignment.Center
-          });
+          if (this.sourceImageByteLength === 0) {
+            AlertDialog.show({
+              message: $r('app.string.image_get_failed'),
+              alignment: DialogAlignment.Center
+            });
+          } else {
+            AlertDialog.show({
+              message: $r('app.string.prompt_not_require_compression'),
+              alignment: DialogAlignment.Center
+            });
+          }
           return;
         }
         // 重置压缩后的图片路径
