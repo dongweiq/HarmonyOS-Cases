@@ -1,0 +1,98 @@
+{
+  "integer": [
+    {
+      "name": "first_indicator_width",
+      "value": 300
+    },
+    {
+      "name": "first_indicator_height",
+      "value": 150
+    },
+    {
+      "name": "sort_order_width",
+      "value": 30
+    },
+    {
+      "name": "sort_order_height",
+      "value": 30
+    },
+    {
+      "name": "access_font_size",
+      "value": 14
+    },
+    {
+      "name": "access_width",
+      "value": 100
+    },
+    {
+      "name": "border_radius",
+      "value": 10
+    },
+    {
+      "name": "builder_size",
+      "value": 25
+    },
+    {
+      "name": "search_height",
+      "value": 40
+    },
+    {
+      "name": "swiper_width",
+      "value": 330
+    },
+    {
+      "name": "high_light_swiper_height",
+      "value": 150
+    },
+    {
+      "name": "mid_font_size",
+      "value": 12
+    },
+    {
+      "name": "tab_bar_width",
+      "value": 360
+    },
+    {
+      "name": "tab_bar_height",
+      "value": 56
+    },
+    {
+      "name": "common_margin",
+      "value": 20
+    },
+    {
+      "name": "common_margin_top",
+      "value": 5
+    },
+    {
+      "name": "high_light_button_width",
+      "value": 120
+    },
+    {
+      "name": "grid_width",
+      "value": 380
+    },
+    {
+      "name": "font_weight",
+      "value": 400
+    },
+    {
+      "name": "font_weight_select",
+      "value": 500
+    },
+    {
+      "name": "image_right",
+      "value": -10
+    },
+    {
+      "name": "text_left",
+      "value": -5
+    },
+    {
+      "name": "line_height",
+      "value": 22
+    }
+
+
+  ]
+}

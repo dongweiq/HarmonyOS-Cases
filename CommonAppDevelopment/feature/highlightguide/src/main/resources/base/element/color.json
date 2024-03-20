@@ -1,0 +1,40 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "first_direct_background",
+      "value": "#00fffafa"
+    },
+    {
+      "name": "access_button_background",
+      "value": "#A5D61D"
+    },
+    {
+      "name": "access_background",
+      "value": "#fffffafa"
+    },
+    {
+      "name": "unselect_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "select_font_color",
+      "value": "#007DFF"
+    },
+    {
+      "name": "module_back_ground",
+      "value": "#ffe2e1e1"
+    },
+    {
+      "name": "tab_back_ground",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "toast_success_back_ground",
+      "value": "#000000"
+    }
+  ]
+}
