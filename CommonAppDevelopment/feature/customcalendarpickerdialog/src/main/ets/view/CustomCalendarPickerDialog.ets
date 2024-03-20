@@ -145,7 +145,7 @@ export struct CustomCalendarPickerDialog {
                     .opacity(day === 0 ? 0 : 1) // 将日期数组中为0的都设置为不显示，即不显示上个月和下个月的内容
                     // 点击选定的日期后，关闭日历弹窗，显示日期改变为选择的日期
                     .onClick(() => {
-                      if (day != 0) {
+                      if (day !== 0) {
                         let weekIndex = monthItem.days.indexOf(day) % WEEK_NUMBER; // 将当前日转换成星期显示
                         this.date = [monthItem.num, day, weekIndex];
                         this.controller.close(); // 关闭自定义弹窗

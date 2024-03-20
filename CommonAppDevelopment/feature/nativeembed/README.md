@@ -21,7 +21,7 @@
 2. 创建控制器管理绑定的NodeContainer组件。
    ```ts
    class SearchNodeController extends NodeController {
-     private rootNode: BuilderNode<[Params]> | undefined | null;
+     private rootNode: BuilderNode<[Params]> | undefined | null = null;
      private embedId : string = "";
      private surfaceId : string = "";
      private renderType :NodeRenderType = NodeRenderType.RENDER_componentTypeDISPLAY;
@@ -29,7 +29,7 @@
      private componentHeight : number = 0;
      private componentType : string = "";
 
-     setRenderOption(params : NodeControllerParams) {
+     setRenderOption(params : NodeControllerParams): void {
        this.surfaceId = params.surfaceId;
        this.renderType = params.renderType;
        this.embedId = params.embedId;
@@ -142,6 +142,7 @@
          }, (embedId: string) => embedId)
          // web组件加载本地test.html页面
          Web({ src: $rawfile("view.html"), controller: this.browserTabController })
+           .backgroundColor($r('app.color.ohos_id_color_sub_background'))
            // 不允许执行缩放
            .zoomAccess(false)
            // Todo: 知识点：通过enableNativeEmbedMode（）配置同层渲染开关
@@ -179,7 +180,7 @@
              })
            })
        }
-     }.backgroundColor($r('app.color.ohos_id_color_sub_background'))
+     }
    }
    ```
 6. h5侧通过id名获取embed标签信息,并通过embed标签添加同层渲染界面的touch监听事件；应用侧添加onNativeEmbedGestureEvent回调使得手指触摸到embed标签时能获取到触摸事件信息。
