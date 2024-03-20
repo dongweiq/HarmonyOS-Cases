@@ -65,13 +65,14 @@ export struct ComponentStack {
           .aspectRatio(ASPECT_RATIO)
           .borderRadius($r('app.integer.user_portrait_border_radius'))
 
-        Image($r("app.media.scan"))
+        Image($r("app.media.stack_scan"))
           .width($r('app.integer.scan_width'))
           .aspectRatio(ASPECT_RATIO)
       }
       .padding({
         left: $r('app.integer.flex_padding_left'),
-        right: $r('app.integer.flex_padding_right')
+        right: $r('app.integer.flex_padding_right'),
+        top: $r('app.integer.flex_padding_top')
       })
       .width('100%').height($r('app.integer.flex_height'))
 
@@ -187,7 +188,6 @@ export struct ComponentStack {
     .width('100%')
     .layoutWeight(LAYOUTWEIGHT)
     .backgroundColor($r('app.color.ohos_id_color_sub_background'))
-    .margin({ top: $r('app.integer.stack_margin_top') })
     .padding({ top: $r('app.integer.stack_padding_top') })
   }
 }
