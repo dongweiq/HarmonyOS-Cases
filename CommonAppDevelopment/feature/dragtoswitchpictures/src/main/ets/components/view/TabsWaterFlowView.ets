@@ -46,7 +46,7 @@ export struct TabsWaterFlowView {
       Text(listData.name)
         .width($r('app.string.90_size'))
         .fontColor(Color.Black)
-        .textAlign(TextAlign.Center)
+        .textAlign(TextAlign.Start)
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .maxLines(CONFIGURATION.WATERFLOW_TEXT_MAXLINES)
         .fontSize($r('app.integer.tabbar_text_fontsize'))
@@ -57,6 +57,9 @@ export struct TabsWaterFlowView {
         .textOverflow({ overflow: TextOverflow.Ellipsis })
         .fontSize($r('app.integer.10s_fontsize'))
         .margin({ top: $r('app.integer.swipercontentview_row_column_margin_length') })
+      Blank()
+        .width($r('app.string.full_size'))
+        .height($r('app.integer.margin_length'))
     }
     .linearGradient({
       angle: CONFIGURATION.WATERFLOW_TABBAR_LINEARGRADIENT_ANGLE,
@@ -81,32 +84,35 @@ export struct TabsWaterFlowView {
 
   @Builder
   tabBuilder(index: number, name: string | Resource) {
-    Text(name)
-      .fontSize($r('app.integer.tabbar_text_fontsize'))
-      .fontColor(Color.Black)
-      .opacity(this.tabsIndex === index ? CONFIGURATION.TABBAR_TEXT_OPACITY_SELECTED : CONFIGURATION.TABBAR_TEXT_OPACITY)
-      .fontWeight(this.tabsIndex === index ? CONFIGURATION.TABBAR_TEXT_FONT_WEIGHT_SELECTED : CONFIGURATION.TABBAR_TEXT_FONT_WEIGHT)
-      .height($r('app.string.full_size'))
-      .border(this.tabsIndex === index ? {
-        width: {
-          left: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
-          right: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
-          top: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
-          bottom: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH_BOTTOM
-        },
-        color: { bottom: Color.Black },
-        style: BorderStyle.Solid
-      } :
-        {
-          width: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH
-        })
-      .width($r('app.string.full_size'))
-      .backgroundColor(Color.White)
-      .onClick(() => {
-        this.tabsIndex = index;
-        this.tabsController.changeIndex(index);
-      })
-      .textAlign(TextAlign.Center)
+    Row() {
+      Text(name)
+        .fontSize($r('app.integer.tabbar_text_fontsize'))
+        .fontColor(Color.Black)
+        .fontWeight(this.tabsIndex === index ? CONFIGURATION.TABBAR_TEXT_FONT_WEIGHT_SELECTED : CONFIGURATION.TABBAR_TEXT_FONT_WEIGHT)
+        .height($r('app.string.full_size'))
+        .border(this.tabsIndex === index ? {
+          width: {
+            left: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
+            right: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
+            top: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
+            bottom: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH_BOTTOM
+          },
+          color: { bottom: Color.Black },
+          style: BorderStyle.Solid
+        } :
+          {
+            width: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH
+          })
+    }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
+    .backgroundColor(Color.White)
+    .height('100%')
+    .align(Alignment.Center)
+    .onClick(() => {
+      this.tabsIndex = index;
+      this.tabsController.changeIndex(index);
+    })
   }
 
   /**
@@ -145,10 +151,14 @@ export struct TabsWaterFlowView {
             .columnsGap($r('app.integer.waterflow_columnsgap'))
             .width($r('app.string.full_size'))
           }
-          .tabBar(this.tabBuilder(tabItem.id, tabItem.navData))
+          .tabBar(SubTabBarStyle.of(tabItem.navData)
+            .indicator({ color: Color.Black })
+            .padding(0)
+            .labelStyle({ font: { size: 14 } }))
         })
       }
       .margin({ top: $r('app.integer.margin_length') })
+      .barBackgroundColor(Color.White)
       .padding({
         left: $r('app.string.2_5_size'),
         right: $r('app.string.2_5_size')
