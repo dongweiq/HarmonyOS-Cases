@@ -153,8 +153,8 @@ export struct TabsWaterFlowView {
           }
           .tabBar(SubTabBarStyle.of(tabItem.navData)
             .indicator({ color: Color.Black })
-            .padding(0)
-            .labelStyle({ font: { size: 14 } }))
+            .padding($r('app.integer.dragtoswitchpictures_padding_zero'))
+            .labelStyle({ font: { size: $r('app.integer.dragtoswitchpictures_fontsize_14') } }))
         })
       }
       .margin({ top: $r('app.integer.margin_length') })

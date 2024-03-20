@@ -135,6 +135,14 @@
     {
       "name": "dragtoswitchpictures_margin_left_20",
       "value": 10
+    },
+    {
+      "name": "dragtoswitchpictures_padding_zero",
+      "value": 0
+    },
+    {
+      "name": "dragtoswitchpictures_fontsize_14",
+      "value": 14
     }
 
   ]
