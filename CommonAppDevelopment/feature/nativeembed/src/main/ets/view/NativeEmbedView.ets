@@ -18,6 +18,7 @@ import { UIContext } from '@ohos.arkui.UIContext';
 import { NodeController, BuilderNode, NodeRenderType, FrameNode } from "@ohos.arkui.node";
 import { PRODUCT_DATA } from '../mock/GoodsMock';
 import { ProductDataModel } from '../model/GoodsModel';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 
 /**
  * 关键流程
@@ -187,11 +188,6 @@ export struct WebViewDemo {
   @State componentIdArr: Array<string> = []; // 存放componentId的数组
   private nodeControllerMap: Map<string, SearchNodeController> = new Map(); // map对象，key为componentId，value为SearchNodeController
 
-  aboutToAppear() {
-    // 配置web开启调试模式
-    webview.WebviewController.setWebDebuggingAccess(true);
-  }
-
   build(){
     Column() {
       Stack() {
@@ -241,3 +237,12 @@ export struct WebViewDemo {
     }.backgroundColor($r('app.color.ohos_id_color_sub_background'))
   }
 }
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getWebViewDemo(): void {
+  WebViewDemo();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+DynamicsRouter.registerRouterPage(RouterInfo.NATIVE_EMBED, wrapBuilder(getWebViewDemo));
