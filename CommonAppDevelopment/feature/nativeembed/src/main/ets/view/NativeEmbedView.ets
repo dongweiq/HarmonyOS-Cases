@@ -55,7 +55,7 @@ declare class NodeControllerParams {
  * 用于控制和反馈对应的NodeContainer上的节点的行为，需要与NodeContainer一起使用
  */
 class SearchNodeController extends NodeController {
-  private rootNode: BuilderNode<[Params]> | undefined | null;
+  private rootNode: BuilderNode<[Params]> | undefined | null = null;
   private embedId : string = "";
   private surfaceId : string = "";
   private renderType :NodeRenderType = NodeRenderType.RENDER_TYPE_DISPLAY;
@@ -63,7 +63,7 @@ class SearchNodeController extends NodeController {
   private componentHeight : number = 0;
   private componentType : string = "";
 
-  setRenderOption(params : NodeControllerParams) {
+  setRenderOption(params : NodeControllerParams): void {
     this.surfaceId = params.surfaceId;
     this.renderType = params.renderType;
     this.embedId = params.embedId;
@@ -197,6 +197,7 @@ export struct WebViewDemo {
         }, (embedId: string) => embedId)
         // web组件加载本地test.html页面
         Web({ src: $rawfile("view.html"), controller: this.browserTabController })
+          .backgroundColor($r('app.color.ohos_id_color_sub_background'))
           // 不允许执行缩放
           .zoomAccess(false)
           // Todo: 知识点：通过enableNativeEmbedMode（）配置同层渲染开关
@@ -234,7 +235,7 @@ export struct WebViewDemo {
             })
           })
       }
-    }.backgroundColor($r('app.color.ohos_id_color_sub_background'))
+    }
   }
 }
 
