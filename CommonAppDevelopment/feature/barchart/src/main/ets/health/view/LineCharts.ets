@@ -47,6 +47,7 @@ const HEART_FILL_COLOR2: string = '#FFFBF4DE';
 const STEP_FILL_COLOR2: string = '#7F0099CC';
 const HEART_FILL_COLOR3: string = '#FFFAE8C2';
 const STEP_FILL_COLOR3: string = '#0099CC';
+const TEXT_SIZE: number = 14;
 const CUSTOM_WIDTH: number = 90;
 const CUSTOM_HEIGHT: number = 50;
 const HEART_RATES: string = '心率';
@@ -156,7 +157,7 @@ export struct LineCharts {
       // 设置图例类型
       legend.setForm(LegendForm.LINE);
       // 设置图例文本大小
-      legend.setTextSize(vp2px(14));
+      legend.setTextSize(TEXT_SIZE);
       // 设置图例方向为水平
       legend.setOrientation(LegendOrientation.HORIZONTAL);
       // 设置图例垂直对齐方式为顶部
