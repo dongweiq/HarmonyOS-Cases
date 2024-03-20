@@ -137,95 +137,104 @@ export struct PaintComponent {
 
   build() {
     Column() {
-      Column() {
-        Text($r("app.string.title_name"))
-          .fontSize($r("app.string.title_font_size"))
-          .textAlign(TextAlign.Center)
-          .margin({ bottom: $r("app.integer.title_margin_bottom") })
-          .fontColor(Constants.COLOR_NORMAL)
-        Stack() {
-          // 外框圆环
-          Circle({ width: Constants.BIG_DIAMETER, height: Constants.BIG_DIAMETER })
-            .fill(Constants.COLOR_TRANSPARENT)
-            .stroke(this.colorBackgroundFill)
-            .strokeWidth($r("app.integer.outer_circle_stroke_width"))
+      Text($r("app.string.title_name"))
+        .fontSize($r("app.string.title_font_size"))
+        .textAlign(TextAlign.Center)
+        .margin({
+          bottom: $r("app.integer.title_margin_bottom")
+        })
+        .fontColor(Constants.COLOR_NORMAL)
+      Stack() {
+        // 外框圆环
+        Circle({
+          width: Constants.BIG_DIAMETER,
+          height: Constants.BIG_DIAMETER
+        })
+          .fill(Constants.COLOR_TRANSPARENT)
+          .stroke(this.colorBackgroundFill)
+          .strokeWidth($r("app.integer.outer_circle_stroke_width"))
 
-          // 进度展示
-          Circle({ width: Constants.DIAMETER, height: Constants.DIAMETER })
-            .fill(this.bgColor)
+        // 进度展示
+        Circle({
+          width: Constants.DIAMETER,
+          height: Constants.DIAMETER
+        })
+          .fill(this.bgColor)
 
-          // TODO:知识点:使用Path组件绘制封闭曲线，实现水位线效果
-          Path()
-            .width(Constants.DIAMETER)
-            .height(Constants.DIAMETER)
-            .commands(this.pathCommands)
-            .fill(this.colorBackgroundFill)
-            .antiAlias(true)
-            .stroke(this.colorBackgroundFill)
-            .strokeWidth($r("app.integer.path_stroke_width"))
+        // TODO:知识点:使用Path组件绘制封闭曲线，实现水位线效果
+        Path()
+          .width(Constants.DIAMETER)
+          .height(Constants.DIAMETER)
+          .commands(this.pathCommands)
+          .fill(this.colorBackgroundFill)
+          .antiAlias(true)
+          .stroke(this.colorBackgroundFill)
+          .strokeWidth($r("app.integer.path_stroke_width"))
 
-          // 进度百分比
-          Row() {
-            Text($r("app.string.progress_percentage_symbol_name"))
-              .fontColor(Constants.COLOR_NORMAL)
-              .fontSize($r("app.integer.progress_percentage_symbol_font_size"))
-            Text(this.progressNum.toFixed(Constants.ZERO) + Constants.PERCENTAGE_STR)
-              .fontSize($r("app.integer.progress_percentage_font_size"))
-          }
-
-        }
-        .width(Constants.BIG_DIAMETER)
-        .height(Constants.BIG_DIAMETER)
-        .margin({ bottom: $r("app.integer.stack_margin_bottom") })
-
+        // 进度百分比
         Row() {
-          Button($r("app.string.increase_button_name"))
-            .type(ButtonType.Capsule)
-            .margin({ right: $r("app.integer.decrease_button_margin_right") })
-            .onClick(() => {
-              if (this.progressNum >= Constants.FULL_PROGRESS || this.isRunning) {
-                // 此为充电按钮，若进度达到100，或者正在进行进度变化，则按钮不生效，提前退出
-                return;
-              }
-              // 将进度变换状态置为运行中
-              this.isRunning = true;
-              // 开启定时器对进度进行自增
-              const id = setInterval(() => {
-                this.changeProgressNum(true);
-                if (this.progressNum >= Constants.FULL_PROGRESS) {
-                  // 此为充电按钮，若进度达到100，则取消定时器并将进度变化状态置为停止
-                  this.isRunning = false;
-                  clearInterval(id)
-                }
-              }, Constants.PROGRESS_CHANGE_INTERVAL)
-            })
-
-          Button($r("app.string.decrease_button_name"))
-            .type(ButtonType.Capsule)
-            .backgroundColor(Constants.COLOR_WARN)
-            .onClick(() => {
-              if (this.progressNum <= Constants.ZERO_PROGRESS || this.isRunning) {
-                // 此为耗电按钮，若进度达到0，或者正在进行进度变化，则按钮不生效，提前退出
-                return;
-              }
-              // 将进度变换状态置为运行中
-              this.isRunning = true;
-              // 开启定时器对进度进行自减
-              const id = setInterval(() => {
-                this.changeProgressNum(false);
-                if (this.progressNum <= Constants.ZERO_PROGRESS) {
-                  this.isRunning = false;
-                  // 此为耗电按钮，若进度达到0，则取消定时器并将进度变化状态置为停止
-                  clearInterval(id)
-                }
-              }, Constants.PROGRESS_CHANGE_INTERVAL)
-            })
+          Text($r("app.string.progress_percentage_symbol_name"))
+            .fontColor(Constants.COLOR_NORMAL)
+            .fontSize($r("app.integer.progress_percentage_symbol_font_size"))
+          Text(this.progressNum.toFixed(Constants.ZERO) + Constants.PERCENTAGE_STR)
+            .fontSize($r("app.integer.progress_percentage_font_size"))
         }
+
       }
-      .width($r("app.string.column_children_width"))
+      .width(Constants.BIG_DIAMETER)
+      .height(Constants.BIG_DIAMETER)
+      .margin({
+        bottom: $r("app.integer.stack_margin_bottom")
+      })
+
+      Row() {
+        Button($r("app.string.increase_button_name"))
+          .type(ButtonType.Capsule)
+          .margin({ right: $r("app.integer.decrease_button_margin_right") })
+          .onClick(() => {
+            if (this.progressNum >= Constants.FULL_PROGRESS || this.isRunning) {
+              // 此为充电按钮，若进度达到100，或者正在进行进度变化，则按钮不生效，提前退出
+              return;
+            }
+            // 将进度变换状态置为运行中
+            this.isRunning = true;
+            // 开启定时器对进度进行自增
+            const id = setInterval(() => {
+              this.changeProgressNum(true);
+              if (this.progressNum >= Constants.FULL_PROGRESS) {
+                // 此为充电按钮，若进度达到100，则取消定时器并将进度变化状态置为停止
+                this.isRunning = false;
+                clearInterval(id)
+              }
+            }, Constants.PROGRESS_CHANGE_INTERVAL)
+          })
+
+        Button($r("app.string.decrease_button_name"))
+          .type(ButtonType.Capsule)
+          .backgroundColor(Constants.COLOR_WARN)
+          .onClick(() => {
+            if (this.progressNum <= Constants.ZERO_PROGRESS || this.isRunning) {
+              // 此为耗电按钮，若进度达到0，或者正在进行进度变化，则按钮不生效，提前退出
+              return;
+            }
+            // 将进度变换状态置为运行中
+            this.isRunning = true;
+            // 开启定时器对进度进行自减
+            const id = setInterval(() => {
+              this.changeProgressNum(false);
+              if (this.progressNum <= Constants.ZERO_PROGRESS) {
+                this.isRunning = false;
+                // 此为耗电按钮，若进度达到0，则取消定时器并将进度变化状态置为停止
+                clearInterval(id)
+              }
+            }, Constants.PROGRESS_CHANGE_INTERVAL)
+          })
+      }
     }
+    .width($r("app.string.column_children_width"))
     .height($r("app.string.column_parent_height"))
     .justifyContent(FlexAlign.Center)
+
   }
 }
 
@@ -238,4 +247,4 @@ export function getPaintComponentView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.PAINT_COMPONENT,wrapBuilder(getPaintComponentView));
+DynamicsRouter.registerRouterPage(RouterInfo.PAINT_COMPONENT, wrapBuilder(getPaintComponentView));
