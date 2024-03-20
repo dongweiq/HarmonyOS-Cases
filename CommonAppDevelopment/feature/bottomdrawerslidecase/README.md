@@ -21,8 +21,8 @@
 ```typescript
 Stack({ alignContent: Alignment.TopStart }) {
   RelativeContainer() {
-    // 地图背景
-    Image($r('app.media.map'))
+    // Image地图
+    ImageMapView()
     // 底部可变分阶段滑动列表
     List({ scroller: this.listScroller }) {
     ...
@@ -32,9 +32,12 @@ Stack({ alignContent: Alignment.TopStart }) {
       'left': { 'anchor': '__container__', 'align': HorizontalAlign.Start },
       'right': { 'anchor': '__container__', 'align': HorizontalAlign.End },
     })
-    StatusHead({ statusBarHeight: this.statusBarHeight, topHeaderHeight: CommonConstants.PAGE_HEADER_HEIGHT })
-      .visibility(this.isShow ? Visibility.Visible : Visibility.None)
   }
+  StatusHead({
+    statusBarHeight: this.statusBarHeight,
+    topHeaderHeight: CommonConstants.PAGE_HEADER_HEIGHT,
+    isShow: this.isShow
+  })
 }
 ```
 
@@ -75,14 +78,8 @@ List({ scroller: this.listScroller }) {
 3. 根据手指滑动的长度对列表高度进行改变（以上滑为例）。
 
 ```typescript
-let temHeight = this.listHeight + height;
-if (temHeight >= maxHeight) {
-  this.listHeight = maxHeight;
-  this.isScroll = true; // 列表内的内容是否可以滑动
-} else {
-  this.listHeight = temHeight; // listHeight为列表高度
-  this.isScroll = false;
-}
+this.isScroll = false;
+this.listHeight = temHeight;
 ```
 
 4. 在手指滑动结束离开屏幕后，通过判断此时列表高度处于哪个区间，为列表赋予相应的高度（以上滑为例）。
@@ -94,16 +91,23 @@ switch (event.type) {
     let maxHeight = this.windowHeight - this.statusBarHeight; // 设置list最大高度
     // 列表上滑时，分阶段滑动
     if (this.isUp) {
-      // 分阶段滑动，滑动到第二个item
+      // 分阶段滑动，当list高度位于第一个item和第二个item之间时，滑动到第二个item
       if (this.listHeight > CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight && this.listHeight <= CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight) {
         this.listHeight = CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.secondListItemHeight;
         this.isShow = false;
         return;
       }
-      // 分阶段滑动，滑动到页面顶部
+      // 分阶段滑动，当list高度位于顶部和第二个item之间时，滑动到页面顶部
       if (CommonConstants.LIST_HEADER_HEIGHT + this.firstListItemHeight + this.bottomAvoidHeight + this.secondListItemHeight < this.listHeight && this.listHeight <= maxHeight) {
         this.listHeight = maxHeight;
-        this.isShow = false;
+        this.isScroll = true;
+        this.isShow = true;
+        return;
+      }
+      // 分阶段滑动，当list高度大于最大高度，list滑动到页面顶部内容可滚动
+      if (this.listHeight >= maxHeight) {
+        this.isScroll = true;
+        this.isShow = true;
         return;
       }
     }
