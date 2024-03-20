@@ -21,8 +21,8 @@
  * 4.前端调用GetTotalRawFileContent与GetRawFileContent接口获取rawfile文件内容。
  */
 
+import promptAction from '@ohos.promptAction';
 import nativeRawfileApi from 'libnativerawfileapi.so';
-import { FunctionDescription } from '@ohos/base';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 let rawfileTotalContent: string;
@@ -32,6 +32,7 @@ export struct NativeRawfileDemo {
   @State ReadStartPos: number = 2;
   @State readLength: number = 5;
   @State rawfileContent: string = '';
+  @State buttonEnabledStatus: boolean = true;
   private rawfileName: string = 'rawfile.txt';
 
   async aboutToAppear() {
@@ -43,11 +44,6 @@ export struct NativeRawfileDemo {
 
   build() {
     Column() {
-      // 功能描述
-      FunctionDescription({
-        title: $r('app.string.navigation_RawFile_title'),
-        content: $r('app.string.navigation_RawFile_description')
-      })
       Column() {
         Row() {
           Text($r('app.string.rawFileContent'))
@@ -80,7 +76,19 @@ export struct NativeRawfileDemo {
             .margin($r('app.string.rawfile_margin'))
             .fontColor(Color.Black)
             .onChange((value: string) => {
-              this.ReadStartPos = Number(value);
+              if (value === '') {
+                this.buttonEnabledStatus = false;
+              } else {
+                this.ReadStartPos = Number(value);
+                if (rawfileTotalContent.length <= this.ReadStartPos) {
+                  promptAction.showToast({
+                    message: `读取位置取值范围0-${rawfileTotalContent.length-1}`
+                  });
+                  this.buttonEnabledStatus = false;
+                } else {
+                  this.buttonEnabledStatus = true;
+                }
+              }
             })
         }
         .width('100%')
@@ -102,7 +110,19 @@ export struct NativeRawfileDemo {
             .margin($r('app.string.rawfile_margin'))
             .fontColor(Color.Black)
             .onChange((value: string) => {
-              this.readLength = Number(value);
+              if (value === '') {
+                this.buttonEnabledStatus = false;
+              } else {
+                this.readLength = Number(value);
+                if (rawfileTotalContent.length < this.readLength + this.ReadStartPos) {
+                  promptAction.showToast({
+                    message: $r('app.string.ReadLength_toast')
+                  });
+                  this.buttonEnabledStatus = false;
+                } else {
+                  this.buttonEnabledStatus = true;
+                }
+              }
             })
         }
         .width('100%')
@@ -127,7 +147,9 @@ export struct NativeRawfileDemo {
           .onClick(() => {
             this.rawfileContent = nativeRawfileApi.getRawFileContent(getContext()
               .resourceManager, this.rawfileName, this.ReadStartPos, this.readLength);
-          }).margin($r('app.string.rawfile_margin'))
+          })
+          .margin($r('app.string.rawfile_margin'))
+          .enabled(this.buttonEnabledStatus)
       }
       .backgroundColor('#FFFFFF')
       .border({
@@ -143,6 +165,7 @@ export struct NativeRawfileDemo {
     }
     .height('100%')
     .padding($r('app.string.rawfile_padding'))
+    .justifyContent(FlexAlign.Center)
   }
 }
 
@@ -153,4 +176,4 @@ export function getNativeRawfileDemo(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.READ_RAW_FILE,wrapBuilder(getNativeRawfileDemo));
+DynamicsRouter.registerRouterPage(RouterInfo.READ_RAW_FILE, wrapBuilder(getNativeRawfileDemo));
