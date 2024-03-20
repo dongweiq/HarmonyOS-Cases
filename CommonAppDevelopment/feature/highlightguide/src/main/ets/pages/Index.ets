@@ -46,6 +46,7 @@ const DIFF = 10;
 const START_ANGLE = 0;
 const END_ANGLE = 360;
 
+@Entry
 @Component
 export struct HighLightGuide {
   private builder: HighLightGuideBuilder | null = null;
@@ -85,19 +86,22 @@ export struct HighLightGuide {
       // 此处可添加监听逻辑;
     }
   };
+  @Provide PosX: number = 0;
+  @Provide PosY: number = 0;
+  @State firstIndicatorHeight: number = 0;
 
   aboutToAppear() {
     // 自定义高光形状
-    let onDrewListener: OnHighLightDrewListener = {
+    const onDrewListener: OnHighLightDrewListener = {
       onHighLightDrew(context2d: CanvasRenderingContext2D, rectF: RectF) {
         context2d.strokeStyle = '#ffffff';
-        let radius = Math.max(rectF.getWidth(), rectF.getHeight()) / RADIUS - DIFF;
+        const radius = Math.max(rectF.getWidth(), rectF.getHeight()) / RADIUS - DIFF;
         context2d.arc(rectF.getCenterX(), rectF.getCenterY(), radius, START_ANGLE, END_ANGLE, false);
         context2d.fill();
-        context2d.lineWidth = 2;
+        context2d.lineWidth = RADIUS;
       }
     }
-    let options = new HighLightOptionsBuilder().setOnHighLightDrewListener(onDrewListener).build();
+    const options = new HighLightOptionsBuilder().setOnHighLightDrewListener(onDrewListener).build();
     // 设定高光组件
     this.builder = new HighLightGuideBuilder()
       .setLabel('guide')
@@ -107,7 +111,7 @@ export struct HighLightGuide {
       .addGuidePage(GuidePage.newInstance()// 设定第一处提示
         .setEverywhereCancelable(true)// 允许点击任意处关闭
         .addHighLightWithOptions('test', HighLightShape.CIRCLE, options)
-        .setHighLightIndicator(this.firstIndicator)
+        .setHighLightIndicator(this.firstIndicator.bind(this))
         .setEnterAnimation(this.enterAnimatorParam)
         .setExitAnimation(this.exitAnimatorParam))
       .addGuidePage(GuidePage.newInstance()// 设定第二处提示
@@ -121,6 +125,7 @@ export struct HighLightGuide {
 
   build() {
     Stack() {
+
       // 添加引导页布局
       HighLightGuideComponent({
         highLightContainer: this.highLightComponent,
@@ -169,23 +174,24 @@ export struct HighLightGuide {
           }
         })
     }
+    .onAreaChange((oldValue: Area, newValue: Area) => {
+      this.firstIndicatorHeight = Number(newValue.height);
+    })
     .width('100%')
-    .position({ x: "48", y: '31%' })
+    .position({ x: this.PosX, y: this.PosY - this.firstIndicatorHeight })
     .alignItems(HorizontalAlign.Center)
   }
 
   @Builder
   secondIndicator() {
     Column() {
-      Row() {
-        Text($r('app.string.custom_show'))
-          .fontColor(Color.Black)
-      }
-      .backgroundColor($r('app.color.module_back_ground'))
-      .justifyContent(FlexAlign.Center)
-      .width($r('app.integer.first_indicator_width'))
-      .height($r('app.integer.first_indicator_height'))
-      .borderRadius($r('app.integer.border_radius'))
+      Text($r('app.string.custom_show'))
+        .fontColor(Color.Black)
+        .backgroundColor($r('app.color.module_back_ground'))
+        .textAlign(TextAlign.Center)
+        .width($r('app.integer.first_indicator_width'))
+        .height($r('app.integer.first_indicator_height'))
+        .borderRadius($r('app.integer.border_radius'))
 
       Text($r('app.string.tips'))
         .fontColor(Color.White)
@@ -204,8 +210,8 @@ export struct HighLightGuide {
     }
     .width('100%')
     .height('100%')
-    .position({ y: '30%' })
     .alignItems(HorizontalAlign.Center)
+    .justifyContent(FlexAlign.Center)
   }
 
   @Builder
