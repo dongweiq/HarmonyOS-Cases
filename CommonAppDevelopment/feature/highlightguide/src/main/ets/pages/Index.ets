@@ -46,7 +46,6 @@ const DIFF = 10;
 const START_ANGLE = 0;
 const END_ANGLE = 360;
 
-@Entry
 @Component
 export struct HighLightGuide {
   private builder: HighLightGuideBuilder | null = null;
