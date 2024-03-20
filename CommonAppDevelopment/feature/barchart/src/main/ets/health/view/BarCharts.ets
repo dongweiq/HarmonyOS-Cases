@@ -100,7 +100,7 @@ export struct BarCharts {
     // 设置限制线的位置
     this.limitLine.setLabelPosition(LimitLabelPosition.RIGHT_TOP);
     // 设置限制线上文本的大小
-    this.limitLine.setTextSize(vp2px(TEXT_SIZE));
+    this.limitLine.setTextSize(TEXT_SIZE);
     // 设置图表左Y轴信息
     this.leftAxis = this.model.getAxisLeft();
     if (this.leftAxis) {
