@@ -68,12 +68,12 @@ export struct BarCharts {
     this.model.setPinchZoom(false);
     // TODO 知识点：配置图表指定样式，各部件间没有先后之分
     // 获取图表描述部件，设置图表描述部件不可用，即图表不进行绘制描述部件
-    let description: Description | null = this.model.getDescription();
+    const description: Description | null = this.model.getDescription();
     if (description) {
       description.setEnabled(false);
     }
     // 获取图表图例部件，设置图表图例部件不可用
-    let legend: Legend | null = this.model.getLegend();
+    const legend: Legend | null = this.model.getLegend();
     if (legend) {
       legend.setEnabled(false);
     }
@@ -143,21 +143,21 @@ export struct BarCharts {
 
   // 生成柱状图数据
   private getNormalData(): BarData {
-    let start: number = 0;
-    let values: JArrayList<BarEntry> = new JArrayList<BarEntry>();
-    for (let i = start; i < this.calorieData.length; i++) {
+    const START: number = 0;
+    const values: JArrayList<BarEntry> = new JArrayList<BarEntry>();
+    for (let i = START; i < this.calorieData.length; i++) {
       values.add(new BarEntry(i, this.calorieData[i]));
     }
-    let dataSet: BarDataSet = new BarDataSet(values, CALORIE);
+    const dataSet: BarDataSet = new BarDataSet(values, CALORIE);
     dataSet.setHighLightColor(Color.Gray);
     dataSet.setDrawIcons(false);
     dataSet.setDrawValues(true);
     dataSet.setHighlightEnabled(false);
     // 为柱体添加颜色信息
     dataSet.setColorByColor(Colors.rgb(34, 177, 48));
-    let dataSetList: JArrayList<IBarDataSet> = new JArrayList<IBarDataSet>();
+    const dataSetList: JArrayList<IBarDataSet> = new JArrayList<IBarDataSet>();
     dataSetList.add(dataSet);
-    let barData: BarData = new BarData(dataSetList);
+    const barData: BarData = new BarData(dataSetList);
     //设置柱状图宽度
     barData.setBarWidth(BAR_WIDTH);
     return barData;
