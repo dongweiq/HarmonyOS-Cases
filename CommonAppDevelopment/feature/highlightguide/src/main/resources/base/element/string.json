@@ -1,0 +1,64 @@
+{
+  "string": [
+    {
+      "name": "new_show",
+      "value": "新功能（请点击）"
+    },
+    {
+      "name": "custom_show",
+      "value": "可自定义功能介绍提示"
+    },
+    {
+      "name": "tips",
+      "value": "此处为对应提示"
+    },
+    {
+      "name": "access",
+      "value": "我知道了"
+    },
+    {
+      "name": "show_prompt",
+      "value": "恭喜您已完成指导！"
+    },
+    {
+      "name": "agree",
+      "value": "确定"
+    },
+    {
+      "name": "tab_bar1",
+      "value": "菜单1"
+    },
+    {
+      "name": "tab_bar2",
+      "value": "菜单2"
+    },
+    {
+      "name": "tab_bar3",
+      "value": "菜单3"
+    },
+    {
+      "name": "tab_bar4",
+      "value": "菜单4"
+    },
+    {
+      "name": "module_text",
+      "value": "模块文字"
+    },
+    {
+      "name": "test_number1",
+      "value": "2893.99"
+    },
+    {
+      "name": "test_number2",
+      "value": "7.70"
+    },
+    {
+      "name": "test_number3",
+      "value": "0.27%"
+    },
+    {
+      "name": "custom_text",
+      "value": "自定义功能页面"
+    }
+  ]
+}

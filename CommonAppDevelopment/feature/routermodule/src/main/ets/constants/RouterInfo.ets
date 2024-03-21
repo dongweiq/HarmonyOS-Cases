@@ -86,5 +86,16 @@ export class RouterInfo {
   static readonly TRANSITION_ANIMATION: RouterInfo = new RouterInfo('@ohos/transitionanimation', 'TransitionAnimation');
   static readonly TRANSITION_ANIMATION_SUB_Detail: RouterInfo = new RouterInfo('@ohos/transitionanimation', 'SubDetailPage');
   static readonly IMAGE_GRID_LAYOUT: RouterInfo = new RouterInfo('@ohos/imagegridlayout', 'ImageGridLayout');
+  static readonly DYNAMIC_ATTRIBUTES: RouterInfo = new RouterInfo('@ohos/dynamicattributes', 'ShoppingCart');
+  static readonly DYNAMIC_ATTRIBUTES_DETAILS: RouterInfo = new RouterInfo('@ohos/dynamicattributes', 'Details');
+  static readonly ETS_WRAPPER: RouterInfo = new RouterInfo('@ohos/dynamicattributes', 'MockNativeCallPickerView');
+  static readonly HAND_WRITING_TO_IMAGE: RouterInfo = new RouterInfo('@ohos/handwritingtoimage', 'HandWritingToImage');
+  static readonly INDICATOR_BELOW_SWIPER: RouterInfo = new RouterInfo('@ohos/indicatorbelowswiper', 'IndicatorBelowSwiper');
+  static readonly MULTI_MODAL_TRANSITION: RouterInfo = new RouterInfo('@ohos/multimodaltransion', 'HalfModalWindow');
+  static readonly MULTIPLE_FILES_DOWNLOAD: RouterInfo = new RouterInfo('@ohos/multiplefilesdownload', 'MultipleFilesDownload');
+  static readonly NATIVE_EMBED: RouterInfo = new RouterInfo('@ohos/nativeembed', 'NativeEmbedView');
+  static readonly SIDE_SLIP_INTERCEPT: RouterInfo = new RouterInfo('@ohos/sideslipintercept', 'MainPage');
+  static readonly WEB_PDF_VIEWER: RouterInfo = new RouterInfo('@ohos/webpdfviewer', 'WebPDFViewer');
+  static readonly IMAGE_THEFT: RouterInfo = new RouterInfo('@ohos/imagetheft', 'ImageTheft');
   static readonly CARD_SWIPER: RouterInfo = new RouterInfo('@ohos/cardswiperanimation', 'CardSwiperAnimation');
 }

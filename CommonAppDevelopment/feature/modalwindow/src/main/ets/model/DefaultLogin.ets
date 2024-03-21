@@ -154,5 +154,6 @@ export struct DefaultLogin {
       left: $r('app.integer.padding_default'),
       right: $r('app.integer.padding_default')
     })
+    .backgroundColor(Color.White) // 将模态页面背景设置为白色，以避免模态页面内组件发生显隐变化时露出下层页面
   }
 }

@@ -174,4 +174,4 @@ export function getEventPropagation(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.CARD_SWIPER,wrapBuilder(getEventPropagation));
+DynamicsRouter.registerRouterPage(RouterInfo.CARD_SWIPER, wrapBuilder(getEventPropagation));

@@ -78,6 +78,16 @@
    |   |---listitemoverflow            // 元素超出List区域
    |   |---multiplefilesdownload       // 多文件下载监听案例
    |   |---searchcomponent             // 搜索页一镜到底案例
+   |   |---dynamicattributes           // 跨文件样式复用和组件复用
+   |   |---etswrapper                  // NAPI封装ArkTS接口案例
+   |   |---handwritingtoimage          // 手写绘制及保存图片
+   |   |---indicatorbelowswiper        // swiper指示器导航点位于swiper下方
+   |   |---multimodaltransion          // 多模态页面转场动效实现案例
+   |   |---nativeembed                 // ArkWeb同层渲染
+   |   |---sideslipintercept           // 侧滑返回事件拦截案例
+   |   |---webpdfviewer                // Web组件预览PDF文件实现案例
+   |   |---listslidetohistory          // 长列表滑动到指定列表项动效实现案例
+   |   |---imagetheft                  // 正确配置ImageKnife请求头实现防盗链功能
    |---libs
    |---product 
    |   |---entry                       // 产品定制层-应用入口
@@ -410,6 +420,66 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 本示例介绍如何使用Navigation的mode属性实现一套代码多设备适配。[详细说明文档](./CommonAppDevelopment/doc/MULTIDEVICE_ADAPTATION.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/multi_device_adaptation.gif" width="200">
+
+#### 跨文件样式复用和组件复用
+
+本示例主要介绍了跨文件样式复用和组件复用的场景。在应用开发中，我们通常需要使用相同功能和样式的ArkUI组件，例如购物页面中会使用相同样式的Button按钮、Text显示文字，我们常用的方法是抽取公共样式或者封装成一个自定义组件到公共组件库中以减少冗余代码。[详细说明文档](./CommonAppDevelopment/feature/dynamicattributes/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/dynamic_attributes.gif" width="200">
+
+#### NAPI封装ArkTS接口案例
+
+部分应用的主要开发语言为C/C++，但是HarmonyOS的部分接口仅以ArkTS的形式暴露，因此需要将ArkTS的接口封装为Native接口。本例以DocumentViewPicker的Select方法为例，提供了Napi封装ArkTSAPI的通用方法。[详细说明文档](./CommonAppDevelopment/feature/etswrapper/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/ets_wrapper.gif" width="200">
+
+#### 手写绘制及保存图片
+
+本示例使用drawing库的Pen和Path结合NodeContainer组件实现手写绘制功能，并通过image库的packToFile和packing接口将手写板的绘制内容保存为图片。[详细说明文档](./CommonAppDevelopment/feature/handwritingtoimage/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/hand_wring_to_image.gif" width="200">
+
+#### swiper指示器导航点位于swiper下方
+
+本示例介绍通过分割swiper区域，实现指示器导航点位于swiper下方的效果。[详细说明文档](./CommonAppDevelopment/feature/indicatorbelowswiper/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/indicator_below_swiper.gif" width="200">
+
+#### 多模态页面转场动效实现案例
+
+本示例介绍多模态页面转场动效实现：通过半模态转场实现半模态登录界面，与全屏模态和组件转场结合实现多模态组合登录场景，其中手机验证码登录与账号密码登录都为组件，通过TransitionEffect.move()实现组件间转场达到近似页面转场的效果。[详细说明文档](./CommonAppDevelopment/feature/multimodaltransion/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/multi_modal_transition.gif" width="200">
+
+#### 侧滑返回事件拦截案例
+
+本示例介绍使用NavDestination组件的onBackPressed回调对返回事件进行拦截，提示用户保存编辑内容，并使用preferences实例持久化保存内容。[详细说明文档](./CommonAppDevelopment/feature/sideslipintercept/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/side_slip_Intercept.gif" width="200">
+
+#### ArkWeb同层渲染
+
+该方案展示了ArkWeb同层渲染：将系统原生组件直接渲染到前端H5页面上，原生组件不仅可以提供H5组件无法实现的一些功能，还能提升用户体验的流畅度[详细说明文档](./CommonAppDevelopment/feature/nativeembed/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/native_embed.gif" width="200">
+
+#### Web组件预览PDF文件实现案例
+
+本案例通过Web组件实现预览本地PDF文件和预览网络PDF文件，代码为Tabs容器组件包含了两个独立的TabContent子组件，分别标示为预览本地PDF文件和预览网络PDF文件。每个子组件内部构建一个Web组件。第一个Web组件利用resource协议关联本地PDF文件路径以预览本地存储的PDF资源；第二个Web组件则通过配置网络链接属性，实现从互联网加载并预览远程PDF文件内容。[详细说明文档](./CommonAppDevelopment/feature/webpdfviewer/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/web_pdf_viewer.gif" width="200">
+
+#### 长列表滑动到指定列表项动效实现案例
+
+本示例使用currentOffset方法获取并记录偏移量，然后使用scrollTo方法跳转到上次浏览记录功能，可以流畅滑动到上次列表的位置。[详细说明文档](./CommonAppDevelopment/feature/listslidetohistory/readme.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/list_slide_to_history.gif" width="200">
+
+#### 正确配置ImageKnife请求头实现防盗链功能
+
+本案例使用了第三方库imageknife，通过在请求头中添加Referer来获取防盗链图片功能。也可以基于此功能设置请求头中的其他参数，例如User-Agent、Origin甚至ETag等等。[详细说明文档](./CommonAppDevelopment/feature/imagetheft/readme.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_theft.gif" width="200">
 
 ### 公共能力层
 

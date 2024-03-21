@@ -25,42 +25,46 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 
 @Component
 export struct AkiView {
-  @State value: number = 0;
+  @StorageLink('akiViewValue') akiViewValue: number = 0;
   // 描述标题
   @State title: Resource = $r('app.string.common_title');
   // 描述详情
   @State content: Resource = $r('app.string.common_content');
 
+  aboutToAppear(): void {
+    // 页面加载重置变量值
+    this.akiViewValue = 0;
+  }
+
   build() {
-    Row() {
-      Column() {
-        // 场景描述
-        FunctionDescription({ title: this.title, content: this.content })
+    Column() {
+      // 场景描述
+      FunctionDescription({ title: this.title, content: this.content })
 
-        Text(this.value.toString())
-          .fontSize($r('app.integer.common_fontSize'))
-          .fontWeight(FontWeight.Bold)
-          .margin($r('app.integer.common_margin'))
+      Text(this.akiViewValue.toString())
+        .fontSize($r('app.integer.common_fontSize'))
+        .fontWeight(FontWeight.Bold)
+        .margin($r('app.integer.common_margin'))
 
-        Button($r('app.string.page_button'))
-          .width($r('app.string.common_button_width'))
-          .height($r('app.integer.common_button_height'))
-          .fontSize($r('app.integer.common_button_fontSize'))
-          .onClick(() => {
-            // TODO：知识点：使用AKI的JSBind.bindFunction绑定JavaScript全局函数。这里第一个参数"akiAccumulate"用于指定绑定的JavaScript函数名，用于Native索引。第二个参数是被绑定的JavaScript函数体。
-            libaki.JSBind.bindFunction("akiAccumulate", (values: number) => {
-              // 对变量value做加10操作，刷新Text组件的value值。
-              values += 10;
-              this.value = values;
-            });
-            // TODO：知识点：使用AKI调用C++全局函数AkiThreadsCallJs，并传入参数value。
-            libaki.AkiThreadsCallJs(this.value);
-          })
-      }
-      .padding($r('app.string.ohos_id_card_padding_start'))
-      .width($r('app.string.common_size'))
+      Button($r('app.string.page_button'))
+        .width($r('app.string.common_button_width'))
+        .height($r('app.integer.common_button_height'))
+        .fontSize($r('app.integer.common_button_fontSize'))
+        .onClick(() => {
+          // TODO：知识点：使用AKI的JSBind.bindFunction绑定JavaScript全局函数。这里第一个参数"akiAccumulate"用于指定绑定的JavaScript函数名，用于Native索引。第二个参数是被绑定的JavaScript函数体。
+          libaki.JSBind.bindFunction("akiAccumulate", (values: number) => {
+            // 对变量value做加10操作，刷新Text组件的value值。
+            values += 10;
+            AppStorage.setOrCreate('akiViewValue', values);
+          });
+          // TODO：知识点：使用AKI调用C++全局函数AkiThreadsCallJs，并传入参数value。
+          libaki.AkiThreadsCallJs(this.akiViewValue);
+        })
     }
     .height($r('app.string.common_size'))
+    .padding($r('app.string.ohos_id_card_padding_start'))
+    .width($r('app.string.common_size'))
+
   }
 }
 
@@ -71,4 +75,4 @@ export function getAkiView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.AKI_USE_PRACTICE,wrapBuilder(getAkiView));
+DynamicsRouter.registerRouterPage(RouterInfo.AKI_USE_PRACTICE, wrapBuilder(getAkiView));

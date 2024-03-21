@@ -19,6 +19,6 @@ export class CommonConstants {
   // list标题高度
   static readonly LIST_HEADER_HEIGHT: number = 60;
   // 页面状态栏标题高度
-  static readonly  PAGE_HEADER_HEIGHT: number = 48;
+  static readonly  PAGE_HEADER_HEIGHT: number = 62;
 
 }

@@ -15,6 +15,7 @@
 
 import curves from '@ohos.curves';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
+import { promptAction } from '@kit.ArkUI';
 
 /**
  * 实现步骤：
@@ -40,6 +41,8 @@ export struct AddressExchangeView {
   private zeroTranslate: number = 0;
   // 单次旋转180°
   private rotateAddAngle: number = 180;
+  // toast弹窗时长
+  private toastDuration: number = 2000;
 
   build() {
     // 地址交换
@@ -49,6 +52,12 @@ export struct AddressExchangeView {
           .translate({ x: this.translateX })
           .width($r('app.string.address_exchange_address_width'))
           .textAlign(this.swap ? TextAlign.End : TextAlign.Start)
+          .onClick(() => {
+            promptAction.showToast( {
+              message: $r('app.string.address_exchange_other_function'),
+              duration: this.toastDuration
+            });
+          })
 
         Stack() {
           Image($r('app.media.address_exchange_airplane'))
@@ -85,6 +94,12 @@ export struct AddressExchangeView {
           .translate({ x: -this.translateX })
           .width($r('app.string.address_exchange_address_width'))
           .textAlign(this.swap ? TextAlign.Start : TextAlign.End)
+          .onClick(() => {
+            promptAction.showToast( {
+              message: $r('app.string.address_exchange_other_function'),
+              duration: this.toastDuration
+            });
+          })
       }
       .width(this.rowWidth)
       .height($r('app.integer.address_exchange_content_height'))
@@ -104,6 +119,12 @@ export struct AddressExchangeView {
         .fontColor(Color.White)
         .height($r('app.integer.address_exchange_button_height'))
         .width(this.rowWidth)
+        .onClick(() => {
+          promptAction.showToast( {
+            message: $r('app.string.address_exchange_other_function'),
+            duration: this.toastDuration
+          });
+        })
     }
     .backgroundColor($r('app.color.ohos_id_color_sub_background'))
     .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))

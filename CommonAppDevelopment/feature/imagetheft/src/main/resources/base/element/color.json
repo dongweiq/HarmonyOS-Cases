@@ -1,0 +1,15 @@
+{
+  "color": [
+    {
+      "name": "image_viewer_bg",
+      "value": "#000000"
+    },
+    {
+      "name": "imge_viewer_font",
+      "value": "#ffffff"
+    },{
+      "name": "prompt_font_color",
+      "value": "#FF3A7BE7"
+    }
+  ]
+}

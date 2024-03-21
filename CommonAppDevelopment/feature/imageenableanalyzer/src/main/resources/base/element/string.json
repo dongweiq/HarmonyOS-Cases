@@ -15,6 +15,10 @@
     {
       "name": "user_name",
       "value": "蝙蝠侠"
+    },
+    {
+      "name": "only_show_ui",
+      "value": "此样式仅为案例展示"
     }
   ]
 }

@@ -297,6 +297,46 @@
       "srcPath": "./feature/imagegridlayout"
     },
     {
+      "name": "dynamicattributes",
+      "srcPath": "./feature/dynamicattributes"
+    },
+    {
+      "name": "etswrapper",
+      "srcPath": "./feature/etswrapper"
+    },
+    {
+      "name": "handwritingtoimage",
+      "srcPath": "./feature/handwritingtoimage"
+    },
+    {
+      "name": "indicatorbelowswiper",
+      "srcPath": "./feature/indicatorbelowswiper"
+    },
+    {
+      "name": "multimodaltransion",
+      "srcPath": "./feature/multimodaltransion"
+    },
+    {
+      "name": "multiplefilesdownload",
+      "srcPath": "./feature/multiplefilesdownload"
+    },
+    {
+      "name": "nativeembed",
+      "srcPath": "./feature/nativeembed"
+    },
+    {
+      "name": "sideslipintercept",
+      "srcPath": "./feature/sideslipintercept"
+    },
+    {
+      "name": "webpdfviewer",
+      "srcPath": "./feature/webpdfviewer"
+    },
+    {
+      "name": "imagetheft",
+      "srcPath": "./feature/imagetheft"
+    },
+    {
       "name": "cardswiperanimation",
       "srcPath": "./feature/cardswiperanimation"
     }

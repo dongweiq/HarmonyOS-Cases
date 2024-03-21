@@ -12,11 +12,11 @@
     // 应用首页列表子组件，需要进入应用时加载
     "@ohos/functionalscenes": "file:../../feature/functionalscenes",
     // 阻塞事件冒泡方案
-    "@ohos/event-propagation": "file:../../feature/eventpropagation",
+    "@ohos/eventpropagation": "file:../../feature/eventpropagation",
     // 读取RawFile中文件的一部分
     "@ohos/nativerawfile": "file:../../feature/nativerawfile",
     // 自定义tabBar
-    "@ohos/custom-tabbar": "file:../../feature/customtabbar",
+    "@ohos/customtabbar": "file:../../feature/customtabbar",
     // 二级联动方案
     "@ohos/secondarylinkage": "file:../../feature/secondarylinkage",
     // MpChart图表实现案例
@@ -30,7 +30,7 @@
     // GBK转码UTF-8方案
     "@ohos/gbktranscoding": 'file:../../feature/gbktranscoding',
     // 自定义增删tab页签
-    "@ohos/handtabs": "file:../../feature/handletabs",
+    "@ohos/handletabs": "file:../../feature/handletabs",
     // 各种登录页面方案
     "@ohos/modalwindow": "file:../../feature/modalwindow",
     // 滑动页面改变顶部个人信息栏显示效果方案
@@ -139,6 +139,26 @@
     "@ohos/transitionanimation": "file:../../feature/transitionanimation",
     // 图片九宫格布局案例
     "@ohos/imagegridlayout": "file:../../feature/imagegridlayout",
+    // 跨文件样式复用和组件复用
+    "@ohos/dynamicattributes": "file:../../feature/dynamicattributes",
+    // NAPI封装ArkTS接口案例
+    "@ohos/etswrapper": "file:../../feature/etswrapper",
+    // 手写绘制及保存图片
+    "@ohos/handwritingtoimage": "file:../../feature/handwritingtoimage",
+    // swiper指示器导航点位于swiper下方
+    "@ohos/indicatorbelowswiper": "file:../../feature/indicatorbelowswiper",
+    // 多模态页面转场动效实现案例
+    "@ohos/multimodaltransion": "file:../../feature/multimodaltransion",
+    // 多文件下载监听案例
+    "@ohos/multiplefilesdownload": "file:../../feature/multiplefilesdownload",
+    // ArkWeb同层渲染
+    "@ohos/nativeembed": "file:../../feature/nativeembed",
+    // 侧滑返回事件拦截案例
+    "@ohos/sideslipintercept": "file:../../feature/sideslipintercept",
+    // Web组件预览PDF文件实现案例
+    "@ohos/webpdfviewer": "file:../../feature/webpdfviewer",
+    // 图片防盗链
+    "@ohos/imagetheft": "file:../../feature/imagetheft",
     // 自定义Swiper卡片预览效果实现
     "@ohos/cardswiperanimation": "file:../../feature/cardswiperanimation"
   }

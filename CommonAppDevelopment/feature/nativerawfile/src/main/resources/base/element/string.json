@@ -49,20 +49,16 @@
       "value": "读取长度:"
     },
     {
+      "name": "ReadLength_toast",
+      "value": "读取位置和读取长度的和不能超过Rawfile内容长度"
+    },
+    {
       "name": "ReadResult",
       "value": "读取结果:"
     },
     {
       "name": "ReadButton",
       "value": "开始读取"
-    },
-    {
-      "name": "navigation_RawFile_title",
-      "value": "预加载so并读取RawFile文件"
-    },
-    {
-      "name": "navigation_RawFile_description",
-      "value": "本示例主要介绍如何预加载so和Native如何读取Rawfile中文本文件部分内容。\n在Ability的onCreate周期函数中，开启TaskPool子线程，使用dlopen预加载so库并存储句柄到全局对象。从全局对象获取句柄，调用so库函数，读取rawfile.txt文件指定起始位置和长度的内容。"
     }
   ]
 }

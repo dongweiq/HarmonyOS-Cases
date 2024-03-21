@@ -1,0 +1,24 @@
+{
+  "integer": [
+    {
+      "name": "hand_writing_view_padding",
+      "value": 20
+    },
+    {
+      "name": "hand_writing_canvas_height",
+      "value": 400
+    },
+    {
+      "name": "hand_writing_margin_bottom",
+      "value": 10
+    },
+    {
+      "name": "hand_writing_border_width",
+      "value": 2
+    },
+    {
+      "name": "hand_writing_save_row_height",
+      "value": 40
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "integer": [
+    {
+      "name": "text_area_width",
+      "value": 380
+    },
+    {
+      "name": "text_area_height",
+      "value": 150
+    },
+    {
+      "name": "text_area_margin",
+      "value": 80
+    },
+    {
+      "name": "text_area_font_size",
+      "value": 20
+    },
+    {
+      "name": "text_area_font_width",
+      "value": 400
+    }
+  ]
+}

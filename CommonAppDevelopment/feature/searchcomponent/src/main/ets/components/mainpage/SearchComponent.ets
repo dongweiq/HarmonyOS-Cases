@@ -12,13 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
+import { DynamicsRouter } from '@ohos/dynamicsRouter/Index';
 import { ListData } from '../model/ListData';
 import { SearchResultDataSource } from '../model/SearchListDataSource';
 import curves from '@ohos.curves';
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 import display from '@ohos.display';
+
+// 持久化存储保证应用退出后再进入数据还在
+PersistentStorage.persistProp('searchHistoryData', []);
 
 /**
  * 搜索实现思路：
@@ -49,8 +52,6 @@ export struct SearchComponent {
   @StorageLink('context') UIContext: common.UIAbilityContext | undefined = AppStorage.get('context');
 
   aboutToAppear(): void {
-    // 持久化存储保证应用退出后再进入数据还在
-    PersistentStorage.persistProp('searchHistoryData', []);
     let type = window.AvoidAreaType.TYPE_SYSTEM;
     window.getLastWindow(this.UIContext, (err, data) => {
       let avoidArea = data.getWindowAvoidArea(type);
@@ -83,7 +84,7 @@ export struct SearchComponent {
       // 通知数据控制器重新加载数据
       this.dataSource.reload();
     } else {
-      this.searchListData = []
+      this.searchNewListData = []
       // 更新数据控制器数据
       this.dataSource.modifyAllData([]);
       // 通知数据控制器重新加载数据
@@ -223,15 +224,14 @@ export struct SearchComponent {
           .width('100%')
           .margin({ top: $r('app.string.search_history_text_padding_margin1') })
           .onClick(() => {
-            if (this.searchHistoryData.includes(item)) {
-              return;
+            if (!this.searchHistoryData.includes(item)) {
+              // 更新搜索历史数据
+              this.searchHistoryData.push(item);
             }
-            // 更新搜索历史数据
-            this.searchHistoryData.push(item);
             this.onArrowClicked();
             // 调用动态路由相关方法实现页面跳转
             DynamicsRouter.push(item.routerInfo, item.param);
-
+            this.searchContext = ''
           })
         }, (item: ListData) => JSON.stringify(item))
       }
@@ -281,6 +281,7 @@ export struct SearchComponent {
       modalTransition: ModalTransition.NONE,
       onDisappear: () => {
         this.onArrowClicked();
+        this.searchContext = ''
       }
     })
     .alignItems(HorizontalAlign.Center)
