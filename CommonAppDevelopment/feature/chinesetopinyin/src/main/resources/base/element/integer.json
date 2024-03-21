@@ -30,7 +30,7 @@
     },
     {
       "name": "text_input_margin_right",
-      "value": 0
+      "value": 2
     },
     {
       "name": "pinyin_height",
@@ -54,7 +54,7 @@
     },
     {
       "name": "pinyin_padding_right",
-      "value": 18
+      "value": 0
     },
     {
       "name": "divider_start_margin",

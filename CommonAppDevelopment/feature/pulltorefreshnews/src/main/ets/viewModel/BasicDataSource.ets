@@ -14,7 +14,7 @@
  */
 
 export  class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = new Array<DataChangeListener>();
+  private listeners: DataChangeListener[] = [];
 
   public totalCount(): number {
     return 0;

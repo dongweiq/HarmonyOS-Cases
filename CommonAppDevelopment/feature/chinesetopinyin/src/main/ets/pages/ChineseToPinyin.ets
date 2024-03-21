@@ -60,22 +60,18 @@ export struct ChineseToPinyin {
 
   build() {
     Column() {
-      Row() {
-        Text($r('app.string.title_content'))
-          .fontSize($r('app.integer.title_font_size'))
-          .fontColor($r('app.color.title_font_color'))
-          .fontWeight(FontWeight.Bold)
-          .width($r('app.string.title_width'))
-          .height($r('app.integer.title_text_height'))
-          .lineHeight($r('app.integer.title_line_height'))
-          .textAlign(TextAlign.Center)
-      }
-      .height($r('app.integer.title_height'))
-      .width($r('app.string.title_width'))
-      .justifyContent(FlexAlign.Center)
-      .alignItems(VerticalAlign.Center)
+      Text($r('app.string.title_content'))
+        .fontSize($r('app.integer.title_font_size'))
+        .fontColor($r('app.color.title_font_color'))
+        .fontWeight(FontWeight.Bold)
+        .width($r('app.string.title_width'))
+        .lineHeight($r('app.integer.title_line_height'))
+        .textAlign(TextAlign.Center)
+        .height($r('app.integer.title_height'))
 
-      List({ space: LIST_SPACE }) {
+      List({
+        space: LIST_SPACE
+      }) {
         ListItem() {
           Row() {
             Text($r('app.string.name_title'))
@@ -84,12 +80,14 @@ export struct ChineseToPinyin {
               .fontSize($r('app.integer.list_title_size'))
               .layoutWeight(LAYOUT_WEIGHT)
               .lineHeight($r('app.integer.list_line_height'))
-            TextInput({ text: this.userName })
+            TextInput({
+              text: this.userName
+            })
               .textAlign(TextAlign.End)
               .backgroundColor($r('app.color.text_input_background'))
               .fontSize($r('app.integer.list_content_size'))
               .layoutWeight(LAYOUT_WEIGHT)
-              .padding({ right: $r('app.integer.text_input_margin_right') })
+              .selectionMenuHidden(true)
               .onChange((value: string) => {
                 /** TODO: 知识点: 使用convertToPinyinString方法将汉字转换成拼音字母。
                  其中参数1为待转数据，参数2为拼音间隔字符，参数3设置是否带声调符号。
@@ -148,7 +146,9 @@ export struct ForEachItem {
 
   build() {
     Row() {
-      List({ space: LIST_SPACE }) {
+      List({
+        space: LIST_SPACE
+      }) {
         // TODO: 性能知识点：使用ForEach组件循环渲染数据
         ForEach(this.dataGroup, (item: ListConstruction) => {
           ListItem() {
