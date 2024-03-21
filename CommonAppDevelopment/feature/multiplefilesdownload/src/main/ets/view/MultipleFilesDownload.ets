@@ -42,7 +42,7 @@ const NO_TASK: number = 0; // 0个下载任务
 // 配置下载参数，这里以简单配置url为例
 function downloadConfig(downloadUrl: string): request.agent.Config {
   // TODO 知识点：配置下载参数。一个下载任务需要配置对应一套下载参数request.agent.Config。本例中使用downloadConfig方法简单配置了下载文件的url，实际业务中请按实际情况按需配置。
-  let config: request.agent.Config = {
+  const config: request.agent.Config = {
     action: request.agent.Action.DOWNLOAD, // 配置任务选项，这里配置为下载任务
     url: downloadUrl, // 配置下载任务url
     overwrite: true, // 下载过程中路径已存在时的解决方案选择。true表示覆盖已存在的文件
@@ -79,7 +79,7 @@ export struct MultipleFilesDownload {
   // 下载信息初始化
   aboutToAppear(): void {
     for (let i = 0; i < this.downloadUrlArray.length; i++) {
-      let config: request.agent.Config = downloadConfig(this.downloadUrlArray[i]);
+      const config: request.agent.Config = downloadConfig(this.downloadUrlArray[i]);
       // 下载配置存入数组
       this.downloadConfigArray.push(config)
     }
@@ -118,27 +118,26 @@ export struct MultipleFilesDownload {
         }.width($r('app.string.row_width_50'))
       }.width($r('app.string.row_width_100'))
 
-      Row() {
-        List() {
-          /**
-           * 本例只展示下载列表。由于每个应用request.agent.create最多支持创建10个未完成的任务，数量较小，所以这里使用ForEach展示下载列表。
-           * 如果需要显示大量历史下载完成任务信息，建议使用LazyForEach提升性能。create相关限制说明请参考https://developer.huawei.com/
-           * consumer/cn/doc/harmonyos-references/js-apis-request-0000001774281338#ZH-CN_TOPIC_0000001774281338__request
-           * agentcreate10。
-           */
-          ForEach(this.downloadConfigArray, (item: request.agent.Config) => {
-            ListItem() {
-              // TODO 知识点：创建多个文件下载监听实例。单个文件下载监听只需要配置下载参数，创建下载任务，注册下载任务相关监听，启动下载任务即可实现。而要实现多文件下载监听，需要每个下载任务注册独立的下载监听回调。本例通过封装自定义组件FileDownloadItem，在每个FileDownloadItem中创建各自的下载任务和监听回调，从而实现多文件下载监听。
-              FileDownloadItem({
-                downloadConfig: item, // 文件下载配置
-                isStartAllDownload: this.isStartAllDownload, // 是否全部开始下载
-                downloadCount: this.downloadCount // 待下载任务数量
-              })
-            }.margin({ bottom: $r('app.integer.margin_bottom_18') })
-          }, (item: request.agent.Config) => JSON.stringify(item))
-        }
-      }
+      List() {
+        /**
+         * 本例只展示下载列表。由于每个应用request.agent.create最多支持创建10个未完成的任务，数量较小，所以这里使用ForEach展示下载列表。
+         * 如果需要显示大量历史下载完成任务信息，建议使用LazyForEach提升性能。create相关限制说明请参考https://developer.huawei.com/
+         * consumer/cn/doc/harmonyos-references/js-apis-request-0000001774281338#ZH-CN_TOPIC_0000001774281338__request
+         * agentcreate10。
+         */
+        ForEach(this.downloadConfigArray, (item: request.agent.Config) => {
+          ListItem() {
+            // TODO 知识点：创建多个文件下载监听实例。单个文件下载监听只需要配置下载参数，创建下载任务，注册下载任务相关监听，启动下载任务即可实现。而要实现多文件下载监听，需要每个下载任务注册独立的下载监听回调。本例通过封装自定义组件FileDownloadItem，在每个FileDownloadItem中创建各自的下载任务和监听回调，从而实现多文件下载监听。
+            FileDownloadItem({
+              downloadConfig: item, // 文件下载配置
+              isStartAllDownload: this.isStartAllDownload, // 是否全部开始下载
+              downloadCount: this.downloadCount // 待下载任务数量
+            })
+          }.margin({ bottom: $r('app.integer.margin_bottom_18') })
+        }, (item: request.agent.Config) => JSON.stringify(item))
+      }.width($r('app.string.list_width'))
       .height($r('app.string.row_height'))
+      .margin({ top: $r('app.integer.margin_top_30') })
     }.padding($r('app.integer.padding_15'))
   }
 }
