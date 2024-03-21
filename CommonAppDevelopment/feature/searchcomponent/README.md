@@ -18,7 +18,7 @@
 
 ### 实现思路
 
-1. 通过include方法判读是否存在符合条件的数据。源码参考[SearchPage.ets](./src/main/ets/components/mainpage/SearchPage.ets)
+1. 通过include方法判读是否存在符合条件的数据。源码参考[SearchPage.ets](./src/main/ets/components/mainpage/SearchComponent.ets)
 ```ts
   searchFunc(value: string) {
     let newListData: ListData[] = [];
@@ -33,7 +33,7 @@
     this.listData = newListData
   }
   ```
-2通过PersistentStorage进行持久化数据存储。源码参考[SearchPage.ets](./src/main/ets/components/mainpage/SearchPage.ets)
+2通过PersistentStorage进行持久化数据存储。源码参考[SearchPage.ets](./src/main/ets/components/mainpage/SearchComponent.ets)
 ```ts
   PersistentStorage.persistProp('searchHistoryData', [])
   @StorageLink('searchHistoryData') searchHistoryData: ListData[] = []
@@ -64,7 +64,7 @@
      // 更新搜索历史数据
      this.searchHistoryData.push(item);
      // 调用动态路由相关方法实现页面跳转
-     buildRouterModel(item.path, item.routerName, item.param);
+     DynamicsRouter.push(item.routerInfo, item.param);
      })
   ```
 
