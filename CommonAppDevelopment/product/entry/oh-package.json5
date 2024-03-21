@@ -139,5 +139,7 @@
     "@ohos/transitionanimation": "file:../../feature/transitionanimation",
     // 图片九宫格布局案例
     "@ohos/imagegridlayout": "file:../../feature/imagegridlayout",
+    // 自定义Swiper卡片预览效果实现
+    "@ohos/cardswiperanimation": "file:../../feature/cardswiperanimation"
   }
 }

@@ -83,4 +83,5 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.image_enableanalyzer"), '图片拖拽AI抠图案例', RouterInfo.IMAGE_ENABLE_ANALYZER, '其他', 1),
   new SceneModuleInfo($r("app.media.transition_animation"), '一镜到底“页面转场”动画', RouterInfo.TRANSITION_ANIMATION, '动效', 2),
   new SceneModuleInfo($r("app.media.images_aligned"), '图片九宫格布局案例', RouterInfo.IMAGE_GRID_LAYOUT, 'UI布局'),
+  new SceneModuleInfo($r("app.media.card_swiper_animation"), '自定义Swiper卡片预览效果实现', RouterInfo.CARD_SWIPER, '动效'),
 ]

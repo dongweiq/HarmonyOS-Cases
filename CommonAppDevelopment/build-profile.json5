@@ -295,6 +295,10 @@
     {
       "name": "imagegridlayout",
       "srcPath": "./feature/imagegridlayout"
+    },
+    {
+      "name": "cardswiperanimation",
+      "srcPath": "./feature/cardswiperanimation"
     }
   ]
 }

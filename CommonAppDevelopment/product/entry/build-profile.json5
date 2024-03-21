@@ -85,6 +85,7 @@
           "@ohos/listitemoverflow",
           "@ohos/transitionanimation",
           "@ohos/imagegridlayout",
+          "@ohos/cardswiperanimation"
         ]
       }
     }

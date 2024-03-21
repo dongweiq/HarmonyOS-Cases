@@ -86,4 +86,5 @@ export class RouterInfo {
   static readonly TRANSITION_ANIMATION: RouterInfo = new RouterInfo('@ohos/transitionanimation', 'TransitionAnimation');
   static readonly TRANSITION_ANIMATION_SUB_Detail: RouterInfo = new RouterInfo('@ohos/transitionanimation', 'SubDetailPage');
   static readonly IMAGE_GRID_LAYOUT: RouterInfo = new RouterInfo('@ohos/imagegridlayout', 'ImageGridLayout');
+  static readonly CARD_SWIPER: RouterInfo = new RouterInfo('@ohos/cardswiperanimation', 'CardSwiperAnimation');
 }
