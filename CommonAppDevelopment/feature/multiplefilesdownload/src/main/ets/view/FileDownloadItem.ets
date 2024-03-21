@@ -21,7 +21,7 @@ import request from '@ohos.request'; // 导入上传下载模块
 const TAG = 'Multiple_Files_Download';
 const BYTE_CONVERSION: number = 1024; // 字节转换
 const INIT_PROGRESS: number = 0; // 进度条初始值
-let context = getContext(this) as common.UIAbilityContext; // 获取当前页面的上下文
+const context = getContext(this) as common.UIAbilityContext; // 获取当前页面的上下文
 
 // 从下载链接获取文件名。这里以简单包含文件名的下载链接为例。
 function getFileNameFromUrl(url: string): string {

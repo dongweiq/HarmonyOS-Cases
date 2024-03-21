@@ -55,6 +55,10 @@
     {
       "name": "row_height",
       "value": "30%"
+    },
+    {
+      "name": "list_width",
+      "value": "100%"
     }
   ]
 }
