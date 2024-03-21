@@ -16,7 +16,7 @@
 
 1. 本地PDF加载:通过resource协议（需在工程resources/rawfile 目录下添加PDF文件,通过RESOURCE_URL获取的PDF文件）来实现本地PDF文件资源的装载与呈现，在无需网络连接的情况下，也能顺利加载并预览用户本地PDF资源。
 ```javascript
-Web({ src: $rawfile(RESOURCE_URL), controller: this.controller })
+Web({ src: RESOURCE_URL, controller: this.controller })
   .onProgressChange((event) => {
     if (event) {
       this.localProgressValue = event.newProgress

@@ -38,10 +38,12 @@ export struct ProductList {
         FlowItem() {
           Column({ space: COLUMNSPACE }) {
             Image(item.uri)
-              .width('65%')
+              .width($r('app.integer.icon_view_image_width'))
               .aspectRatio(ASPECT_RATIO)
               .objectFit(ImageFit.Contain)
               .margin({ top: $r('app.integer.water_flow_image_margin_top') })
+              .alignSelf(ItemAlign.Center)
+              .padding({ right: $r('app.integer.icon_view_padding_right') })
 
             Text(item.title)
               .width('100%')

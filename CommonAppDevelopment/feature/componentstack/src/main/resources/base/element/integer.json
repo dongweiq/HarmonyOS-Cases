@@ -2,15 +2,15 @@
   "integer": [
     {
       "name": "user_portrait_width",
-      "value": 40
+      "value": 30
     },
     {
       "name": "user_portrait_border_radius",
-      "value": 40
+      "value": 15
     },
     {
       "name": "scan_width",
-      "value": 40
+      "value": 30
     },
     {
       "name": "search_font_size",
@@ -18,15 +18,19 @@
     },
     {
       "name": "flex_padding_left",
-      "value": 12
+      "value": 15
     },
     {
       "name": "flex_padding_right",
-      "value": 12
+      "value": 15
+    },
+    {
+      "name": "flex_padding_top",
+      "value": 5
     },
     {
       "name": "flex_height",
-      "value": 60
+      "value": 50
     },
     {
       "name": "search_width",
@@ -42,11 +46,11 @@
     },
     {
       "name": "search_border_radius",
-      "value": 20
+      "value": 12
     },
     {
-      "name": "search_border_width",
-      "value": 3
+      "name": "search_view_border_radius",
+      "value": 16
     },
     {
       "name": "icon_list_height3",
@@ -58,10 +62,6 @@
     },
     {
       "name": "function_description_margin_top",
-      "value": 12
-    },
-    {
-      "name": "stack_margin_top",
       "value": 12
     },
     {
@@ -91,6 +91,14 @@
     {
       "name": "icon_view_title_font_size",
       "value": 16
+    },
+    {
+      "name": "icon_view_image_width",
+      "value": 120
+    },
+    {
+      "name": "icon_view_padding_right",
+      "value": 20
     },
     {
       "name": "icon_view_title_font_size2",
