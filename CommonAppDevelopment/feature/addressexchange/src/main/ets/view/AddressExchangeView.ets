@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import curves from '@ohos.curves';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import { promptAction } from '@kit.ArkUI';
@@ -22,9 +21,9 @@ import { promptAction } from '@kit.ArkUI';
  * 1. 创建左右两边Text组件显示地址。设置初始偏移量以及文本对齐方式。
  * 2. 点击中间的图标时，修改是否切换的状态变量值和通过animateTo修改偏移量的值，来实现动态更新左右两边地址的显示，完成动画效果。
  */
-
 @Component
 export struct AddressExchangeView {
+
   // 旋转角度
   @State rotateAngle: number = 0;
   // 偏移量
@@ -43,7 +42,6 @@ export struct AddressExchangeView {
   private rotateAddAngle: number = 180;
   // toast弹窗时长
   private toastDuration: number = 2000;
-
   build() {
     // 地址交换
     Column({ space: this.columnSpace }) {
@@ -52,8 +50,8 @@ export struct AddressExchangeView {
           .translate({ x: this.translateX })
           .width($r('app.string.address_exchange_address_width'))
           .textAlign(this.swap ? TextAlign.End : TextAlign.Start)
-          .onClick(() => {
-            promptAction.showToast( {
+          .onClick( () => {
+            promptAction.showToast({
               message: $r('app.string.address_exchange_other_function'),
               duration: this.toastDuration
             });
@@ -77,8 +75,8 @@ export struct AddressExchangeView {
             })
         }
         .width($r('app.string.address_exchange_image_width'))
-        .onClick(() => {
-          this.swap = !this.swap
+        .onClick( () => {
+          this.swap = ! this.swap
           // TODO 知识点：动画效果，修改偏移量，修改旋转角度，实现效果
           animateTo({ curve: curves.springMotion() }, () => {
             if (this.swap) {
@@ -94,16 +92,15 @@ export struct AddressExchangeView {
           .translate({ x: -this.translateX })
           .width($r('app.string.address_exchange_address_width'))
           .textAlign(this.swap ? TextAlign.Start : TextAlign.End)
-          .onClick(() => {
-            promptAction.showToast( {
+          .onClick( () => {
+            promptAction.showToast({
               message: $r('app.string.address_exchange_other_function'),
               duration: this.toastDuration
             });
           })
       }
-      .width(this.rowWidth)
-      .height($r('app.integer.address_exchange_content_height'))
-
+        .width(this.rowWidth)
+        .height($r('app.integer.address_exchange_content_height'))
       Row({ space: this.columnSpace }) {
         Text($r('app.string.address_date'))
           .fontSize($r('app.string.ohos_id_text_size_headline'))
@@ -113,24 +110,24 @@ export struct AddressExchangeView {
         Text($r('app.string.address_week'))
           .height($r('app.integer.address_exchange_date_height'))
       }
-      .width(this.rowWidth)
+        .width(this.rowWidth)
 
       Button($r('app.string.address_search_ticket'))
         .fontColor(Color.White)
         .height($r('app.integer.address_exchange_button_height'))
         .width(this.rowWidth)
-        .onClick(() => {
-          promptAction.showToast( {
+        .onClick( () => {
+          promptAction.showToast({
             message: $r('app.string.address_exchange_other_function'),
             duration: this.toastDuration
           });
         })
     }
-    .backgroundColor($r('app.color.ohos_id_color_sub_background'))
-    .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
-    .width($r('app.string.content_size'))
-    .height($r('app.integer.address_exchange_total_height'))
-    .margin($r('app.string.ohos_id_card_margin_start'))
+      .backgroundColor($r('app.color.ohos_id_color_sub_background'))
+      .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
+      .width($r('app.string.content_size'))
+      .height($r('app.integer.address_exchange_total_height'))
+      .margin($r('app.string.ohos_id_card_margin_start'))
   }
 }
 
@@ -141,4 +138,4 @@ export function getAddressExchangeView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.ADDRESS_EXCHANGE,wrapBuilder(getAddressExchangeView));
+DynamicsRouter.registerRouterPage(RouterInfo.ADDRESS_EXCHANGE, wrapBuilder(getAddressExchangeView));
