@@ -23,7 +23,6 @@ import { promptAction } from '@kit.ArkUI';
  */
 @Component
 export struct AddressExchangeView {
-
   // 旋转角度
   @State rotateAngle: number = 0;
   // 偏移量
@@ -89,7 +88,7 @@ export struct AddressExchangeView {
         })
 
         Text($r('app.string.address_exchange_address_right'))
-          .translate({ x: -this.translateX })
+          .translate({ x: - this.translateX })
           .width($r('app.string.address_exchange_address_width'))
           .textAlign(this.swap ? TextAlign.Start : TextAlign.End)
           .onClick( () => {
@@ -106,7 +105,6 @@ export struct AddressExchangeView {
           .fontSize($r('app.string.ohos_id_text_size_headline'))
           .fontWeight(FontWeight.Medium)
           .height($r('app.integer.address_exchange_date_height'))
-
         Text($r('app.string.address_week'))
           .height($r('app.integer.address_exchange_date_height'))
       }
@@ -132,8 +130,7 @@ export struct AddressExchangeView {
 }
 
 // 创建WrappedBuilder对象，动态路由跳转时构建页面
-@Builder
-export function getAddressExchangeView(): void {
+@Builder export function getAddressExchangeView(): void {
   AddressExchangeView();
 }
 
