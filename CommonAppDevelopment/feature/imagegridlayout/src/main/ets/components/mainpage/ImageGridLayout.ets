@@ -59,6 +59,7 @@ export struct ImageGridLayout {
   build() {
     Scroll() {
       Column() {
+        // TODO：性能知识点：List、Grid、Swiper、以及WaterFlow组件，在超过2屏滚动的场景中，建议使用LazyForeach+组件复用提升滚动性能
         ForEach(this.imageSet, (item: Resource[], index: number) => {
           Text(this.textArray[index])
             .margin({ top: $r('app.float.text_margin'), bottom: $r('app.float.text_margin') })

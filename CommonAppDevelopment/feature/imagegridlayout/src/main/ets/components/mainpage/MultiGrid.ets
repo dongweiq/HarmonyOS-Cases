@@ -71,6 +71,7 @@ export struct MultiGrid {
 
   build() {
     Flex({ wrap: FlexWrap.Wrap, justifyContent: FlexAlign.Start }) {
+      // TODO：性能知识点：List、Grid、Swiper、以及WaterFlow组件，在超过2屏滚动的场景中，建议使用LazyForeach+组件复用提升滚动性能
       ForEach(this.imageSource.slice(0, this.arraySize), (item: string | Resource, idx: number) => {
         Image(item)
           .attributeModifier(this.modifier)
