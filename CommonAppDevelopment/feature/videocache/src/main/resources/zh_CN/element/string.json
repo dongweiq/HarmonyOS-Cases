@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "video_cache_progress_width_size",
+      "value": "68%"
+    },
+    {
+      "name": "video_cache_container_width_size",
+      "value": "100%"
+    },
+    {
+      "name": "video_cache_container_height_size",
+      "value": "100%"
+    }
+  ]
+}
