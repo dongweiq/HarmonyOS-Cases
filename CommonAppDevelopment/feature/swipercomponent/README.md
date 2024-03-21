@@ -3,7 +3,7 @@
 ### 介绍
 
 本示例介绍使用ArkUI[stack](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V2/ts-container-stack-0000001427584888-V2)
-组件实现多层级瀑布流。该场景多用于购物、资讯类应用。
+组件实现多层级轮播图。该场景多用于购物、资讯类应用。
 
 ### 效果图预览
 
@@ -15,49 +15,7 @@
 
 ### 实现思路
 
-1.
-SwiperDataSource，实现IDataSource接口的对象，用于LazyForEach加载数据。源码参考[SwiperData.ets](./src/main/ets/components/model/SwiperData.ets)
-
-```ts
-/**
- * 实现IDataSource接口的对象，用于轮播图组件加载数据
- */
-class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener[] = [];
-  private originDataArray: SwiperData[] = [];
-
-  public totalCount(): number {
-    return 0;
-  }
-
-  public getData(index: number): SwiperData {
-    return this.originDataArray[index];
-  }
-
-  /**
-   * 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听
-   */
-  registerDataChangeListener(listener: DataChangeListener): void {
-    if (this.listeners.indexOf(listener) < 0) {
-      console.info('add listener');
-      this.listeners.push(listener);
-    }
-  }
-
-  /**
-   * 该方法为框架侧调用，为对应的LazyForEach组件在数据源处去除listener监听
-   */
-  unregisterDataChangeListener(listener: DataChangeListener): void {
-    const pos = this.listeners.indexOf(listener);
-    if (pos >= 0) {
-      console.info('remove listener');
-      this.listeners.splice(pos, 1);
-    }
-  }
-  ...
-  ```
-
-2.通过stack和offsetx实现多层级堆叠。源码参考[SwiperComponent.ets](./src/main/ets/components/mainpage/SwiperComponent.ets)
+1.通过stack和offsetx实现多层级堆叠。源码参考[SwiperComponent.ets](./src/main/ets/components/mainpage/SwiperComponent.ets)
 
 ```ts
 Stack() {
@@ -75,7 +33,7 @@ Stack() {
 
 ```ts
 Stack() {
-  LazyForEach(this.swiperDataSource, (item: SwiperData, index: number) => {
+  ForEach(this.swiperDataSource, (item: SwiperData, index: number) => {
     Stack({ alignContent: Alignment.BottomStart }) {
       Image(item.imageSrc)
         .objectFit(ImageFit.Auto)
@@ -126,7 +84,7 @@ startAnimation(isLeft: boolean): void {
 
 ### 高性能知识点
 
-本示例使用了LazyForEach进行数据懒加载以降低内存占用。
+**不涉及**
 
 ### 工程结构&模块类型
 

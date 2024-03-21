@@ -93,7 +93,7 @@ export struct SearchComponent {
 
   /**
    * 1.搜索框进入搜索页面animateTo显式动画。
-   * 2.两个搜索框同事绑定同一个geometryId。
+   * 2.两个搜索框同时绑定同一个geometryId。
    */
   private onSearchClicked(): void {
     this.geometryId = 'search';
@@ -111,7 +111,7 @@ export struct SearchComponent {
 
   /**
    * 1.搜索框退出搜索页面animateTo显式动画。
-   * 2.两个搜索框同事绑定同一个geometryId。
+   * 2.两个搜索框同时绑定同一个geometryId。
    */
   private onArrowClicked(): void {
     this.geometryId = 'search';
@@ -200,7 +200,7 @@ export struct SearchComponent {
 
 
       List() {
-        // TODO：知识点：使用LazyForEach加载评论列表，可以按需加载，解决一次性加载全部列表数据引起的卡顿问题，提高页面响应速度
+        // TODO：知识点：使用LazyForEach加载搜索结果列表，可以按需加载，解决一次性加载全部列表数据引起的卡顿问题，提高页面响应速度
         ForEach(this.searchNewListData, (item: ListData) => {
           ListItem() {
             Column() {
@@ -266,10 +266,10 @@ export struct SearchComponent {
         .onClick(() => {
           this.onSearchClicked();
         })
-        .geometryTransition(this.geometryId, { follow: true })// 搜索框转场过渡动画，cubicBezierCurve为三阶贝塞尔曲线动画
+        .geometryTransition(this.geometryId, { follow: true })
         .transition(TransitionEffect.OPACITY.animation({
           duration: 200,
-          curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1)
+          curve: curves.cubicBezierCurve(0.33, 0, 0.67, 1)// 搜索框转场过渡动画，cubicBezierCurve为三阶贝塞尔曲线动画
         }))
         .backgroundColor('#E7E9E8')
         .borderRadius(8)
