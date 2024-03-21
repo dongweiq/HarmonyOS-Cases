@@ -35,9 +35,9 @@ export struct NavigationParameterTransferView {
   @Consume('pageStack') pageStack: NavPathStack;
 
   getParams() {
-    let bookingString: string = this.pageStack.getParamByName(RouterInfo.NAVIGATION_PARAMETER_TRANSFER.moduleName + '/' + RouterInfo.NAVIGATION_PARAMETER_TRANSFER.pageName)[0] as string;
+    const bookingString: string = this.pageStack.getParamByName(RouterInfo.NAVIGATION_PARAMETER_TRANSFER.moduleName + '/' + RouterInfo.NAVIGATION_PARAMETER_TRANSFER.pageName)[0] as string;
     // 转化成普通对象
-    let userBookingTmp: UserBookingInfo = JSON.parse(bookingString);
+    const userBookingTmp: UserBookingInfo = JSON.parse(bookingString);
     // TODO：知识点：通过调用第三方插件class-transformer的plainToClass方法转换成类对象, 不进行转换直接使用userBookingTmp调用getUserInfo方法会造成crash
     this.userBooking = plainToClass(UserBookingInfo, userBookingTmp);
     this.userName = this.userBooking.userName;
