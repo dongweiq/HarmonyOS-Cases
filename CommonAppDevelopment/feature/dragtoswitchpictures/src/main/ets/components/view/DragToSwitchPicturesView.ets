@@ -43,38 +43,35 @@ export struct DecorationComparsionView {
             .draggable(false) // 设置Image不能拖动，不然长按Image会被拖动。
         }
         .width(this.leftImageWidth) // 将左侧Row的width设置为leftImageWidth，这样左侧Row的width随leftImageWidth的变化而变化。
-        .clip(true) // clip属性设置为true，裁剪超出Row宽度的图片。
         .zIndex(CONFIGURATION.ZINDEX1) // z序设为1，为了使水印浮在装修图片上。
+        .clip(true)  // clip属性设置为true，裁剪超出Row宽度的图片。
         .borderRadius({
           topLeft: $r('app.integer.borderradius'),
           bottomLeft: $r('app.integer.borderradius')
         }) // 将Row的左上角和左下角弧度设为10实现效果。
 
-        Column() {
-          Text($r('app.string.before_decoration'))
-            .width($r('app.integer.decoration_text_width'))
-            .height($r('app.integer.decoration_text_height'))
-            .textAlign(TextAlign.Center)
-            .fontSize($r('app.integer.decoration_text_fontsize'))
-            .fontColor($r('app.color.before_text_fontcolor'))
-            .backgroundColor($r('app.color.before_text_backgroundcolor'))
-            .borderRadius($r('app.integer.decoration_text_borderradius'))
-            .margin({
-              top: $r('app.integer.margin_length'),
-              left: $r('app.integer.margin_length')
-            })
-        }
-        .width(this.leftImageWidth) // 将Column的Width设置成和Row的Width一样宽，clip属性设置为true，这样会和图片一起被裁剪，不会移动。
-        .height($r('app.integer.decoration_height'))
-        .alignItems(HorizontalAlign.Start)
-        .clip(true)
-        .zIndex(CONFIGURATION.ZINDEX2) // z序设为2，为了使水印浮在装修图片上。
+
+        Text($r('app.string.before_decoration'))
+          .width($r('app.integer.decoration_text_width'))
+          .height($r('app.integer.decoration_text_height'))
+          .textAlign(TextAlign.Center)
+          .fontSize($r('app.integer.decoration_text_fontsize'))
+          .fontColor($r('app.color.before_text_fontcolor'))
+          .backgroundColor($r('app.color.before_text_backgroundcolor'))
+          .borderRadius($r('app.integer.decoration_text_borderradius'))
+          .margin({
+            top: $r('app.integer.margin_length'),
+            left: $r('app.integer.margin_length')
+          })
+          .zIndex(CONFIGURATION.ZINDEX2) // z序设为2，为了使水印浮在装修图片上。
       }
       // TODO: 知识点：Z序控制，同一容器中兄弟组件显示层级关系。zIndex值越大，显示层级越高，即zIndex值大的组件会覆盖在zIndex值小的组件上方。
       .zIndex(CONFIGURATION.ZINDEX1) // z序设为1，为了使按钮图片浮在装修图片上。
-      .width(this.leftImageWidth)
+      .width(this.leftImageWidth) // 将左侧Stack的width设置为leftImageWidth，这样左侧Stack的width随leftImageWidth的变化而变化。
+      .clip(true)
+      .alignContent(Alignment.TopStart)
 
-      Stack() {
+      Column() {
         Image($r('app.media.drag_button'))
           .width($r('app.integer.drag_button_image_width'))
           .height($r('app.integer.decoration_height'))
@@ -135,25 +132,22 @@ export struct DecorationComparsionView {
           bottomRight: $r('app.integer.borderradius')
         }) // 将Row的右上角和右下角弧度设为10实现效果。
 
-        Column() {
-          Text($r('app.string.after_decoration'))
-            .width($r('app.integer.decoration_text_width'))
-            .height($r('app.integer.decoration_text_height'))
-            .textAlign(TextAlign.Center)
-            .fontSize($r('app.integer.decoration_text_fontsize'))
-            .fontColor($r('app.color.after_text_fontcolor'))
-            .backgroundColor($r('app.color.after_text_backgroundcolor'))
-            .borderRadius($r('app.integer.decoration_text_borderradius'))
-            .margin({ top: $r('app.integer.margin_length'), right: $r('app.integer.margin_length') })
-        }
-        .width(this.rightImageWidth)
-        .height($r('app.integer.decoration_height'))
-        .alignItems(HorizontalAlign.End)
-        .clip(true)
-        .zIndex(CONFIGURATION.ZINDEX2) // z序设为2，为了使水印浮在装修图片上。
+
+        Text($r('app.string.after_decoration'))
+          .width($r('app.integer.decoration_text_width'))
+          .height($r('app.integer.decoration_text_height'))
+          .textAlign(TextAlign.Center)
+          .fontSize($r('app.integer.decoration_text_fontsize'))
+          .fontColor($r('app.color.after_text_fontcolor'))
+          .backgroundColor($r('app.color.after_text_backgroundcolor'))
+          .borderRadius($r('app.integer.decoration_text_borderradius'))
+          .margin({ top: $r('app.integer.margin_length'), right: $r('app.integer.margin_length') })
+          .zIndex(CONFIGURATION.ZINDEX2) // z序设为2，为了使水印浮在装修图片上。
       }
       .zIndex(CONFIGURATION.ZINDEX1) // z序设为1，为了使按钮图片浮在装修图片上。
+      .clip(true)
       .width(this.rightImageWidth)
+      .alignContent(Alignment.TopEnd)
     }
     .margin({top: $r('app.integer.margin_length')})
     .justifyContent(FlexAlign.Center)
