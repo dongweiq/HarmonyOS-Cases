@@ -39,7 +39,7 @@
       Button($r('app.string.tbn_InternetPicture'))
         .onClick(() => {
           // TODO：知识点：通过Native暴露的接口saveImageOfInternet接口获取下载的网络图片保存在沙箱中的路径
-          let sandBoxPath: string = testNapi.saveImageOfInternet(this.internetPicUrl, this.fileDir, this.internetSandBoxFileName);
+          const sandBoxPath: string = testNapi.saveImageOfInternet(this.internetPicUrl, this.fileDir, this.internetSandBoxFileName);
           if (sandBoxPath === undefined) {
             AlertDialog.show({ message: `网络图片写入失败`, alignment: DialogAlignment.Center });
             this.internetSandBoxPath = '';
@@ -85,7 +85,7 @@
       Button($r('app.string.tbn_RawFilePicture'))
         .onClick(() => {
           // TODO：知识点：通过Native暴露的接口saveImageOfRawfile接口获取rawfile中图片保存在沙箱中的路径
-          let sandBoxPath: string = testNapi.saveImageOfRawfile(this.resMgr, this.rawfilePicPath, this.fileDir);
+          const sandBoxPath: string = testNapi.saveImageOfRawfile(this.resMgr, this.rawfilePicPath, this.fileDir);
           if (sandBoxPath === undefined) {
             AlertDialog.show({ message: `Rawfile图片写入失败`, alignment: DialogAlignment.Center });
             this.rawfileSandBoxPath = '';
@@ -144,8 +144,7 @@
    ```
 
 ### 模块依赖
-1. 本实例依赖common模块来实现[公共组件FunctionDescription](../../common/utils/src/main/ets/component/FunctionDescription.ets)。
-2. 本实例依赖[开源库libcurl](https://github.com/curl/curl)。
+1. 本实例依赖[开源库libcurl](https://github.com/curl/curl)。
 
 ### 参考资料    
 [开源库libcurl](https://github.com/curl/curl)    
