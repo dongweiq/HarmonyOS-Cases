@@ -47,6 +47,10 @@
     {
       "name": "border_color",
       "value": "#9F9F9F"
+    },
+    {
+      "name": "note_color",
+      "value": "#7EB2F2"
     }
   ]
 }

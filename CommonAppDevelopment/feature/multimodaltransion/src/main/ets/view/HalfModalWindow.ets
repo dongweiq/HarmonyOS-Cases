@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import { CaptchaLogin } from '../model/CaptchaLogin';
 import promptAction from '@ohos.promptAction';
@@ -7,14 +22,17 @@ const SPACE_THIRTY = 30;
 /**
  * 场景描述：
  * 登录方式有两种，验证码登录和账户，需要在一个全屏模态窗口CaptureLogin中切换，使用if进行条件渲染
- * 1、通过bindSheet属性为主页的button绑定半模态页面
- * 2、在半模态页面中的验证码登录按钮绑定全屏模态转场，并将对应的全屏模态转场特效置空
- * 3、通过点击第二步中的按钮跳转到全屏模态组件(CaptureLogin)，并通过通过isDefaultLogin控制两种登录组件的条件渲染：true(手机验证码登录),false(二维码登录)
+ * 1、通过配置NavDestinationMode类型为DIALOG，实现半模态的背景为透明
+ * 2、通过bindSheet属性为主页无样式的Text绑定半模态页面
+ * 3、在半模态页面中的验证码登录按钮绑定全屏模态转场，并将对应的全屏模态转场特效置空
+ * 4、通过点击第二步中的按钮跳转到全屏模态组件(CaptureLogin)，并通过通过isDefaultLogin控制两种登录组件的条件渲染：true(手机验证码登录),false(二维码登录)
  * 控制两种登录方式的条件渲染，同时通过TransitionEffect.move()实现组件间转场。
  * 子组件中被@Link装饰的变量与其父组件中@State装饰的对应数据源建立双向数据绑定，详见：
  * https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-link-0000001820999565
  * 半模态转场详见：
  * https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-sheet-transition-0000001820880845
+ * NavDestinationMode配置：
+ * https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-navdestination-0000001774280918#ZH-CN_TOPIC_0000001774280918__navdestinationmode
  */
 @Component
 export struct HalfModalWindow {
@@ -30,6 +48,11 @@ export struct HalfModalWindow {
   @State isPresentInLoginView: boolean = false;
   // 发送验证码按钮的透明度
   @State op: number = 0.5;
+  @Consume('pageStack') pageStack: NavPathStack;
+
+  aboutToAppear(): void {
+    this.isPresent = true; // 当isPresent为true时显示模态页面，反之不显示
+  }
 
   @Builder
   defaultLogin() {
@@ -76,7 +99,7 @@ export struct HalfModalWindow {
         .margin({ left: 12, right: 12, bottom: 10 })
 
       Button($r('app.string.captcha_login_text'))
-        .bindContentCover($$this.isPresentInLoginView, this.defaultLogin(), { modalTransition: ModalTransition.NONE })
+        .bindContentCover($$this.isPresentInLoginView, this.defaultLogin())
         .fontColor(Color.Black)
         .borderRadius($r('app.integer.border_radius'))
         .type(ButtonType.Normal)
@@ -136,7 +159,7 @@ export struct HalfModalWindow {
           Span($r('app.string.read_and_agree'))
             .fontColor($r('app.color.grey_9'))
           Span($r('app.string.server_proxy_rule_detail'))
-            .fontColor(Color.Orange)
+            .fontColor($r('app.color.note_color'))
             .onClick(()=>{
               // 调用Toast显示提示:此样式仅为案例展示
               promptAction.showToast({ message: $r('app.string.only_show_ui') });
@@ -151,27 +174,21 @@ export struct HalfModalWindow {
   build() {
     Column() {
       // TODO：需求：增加其他登录方式，如全模态窗口
-      Button($r('app.string.half_screen_modal_login_description'))
-        .fontColor(Color.White)
-        .borderRadius($r('app.integer.border_radius'))
-        .type(ButtonType.Normal)
-        .backgroundColor($r('app.color.red'))
-        .width($r('app.string.size_full'))
-          /**
-           * TODO: 知识点: 通过bindSheet属性为组件绑定半模态页面
-           * isPresent：是否显示全屏模态页面
-           */
-        .bindSheet($$this.isPresent, this.halfModalLogin(), {
-          height: this.sheetHeight,
-          dragBar: this.showDragBar,
+      Text()
+        /**
+         * TODO: 知识点: 通过bindSheet属性为组件绑定半模态页面,由于半模态必须绑定组件，
+         * 此处绑定无样式的Text组件作为开屏半模态展示
+         * isPresent：是否显示全屏模态页面
+         */
+        .bindSheet($$this.isPresent, this.halfModalLogin(), { // Text绑定半模态转场
+          height: this.sheetHeight, // 半模态高度
+          dragBar: this.showDragBar, // 是否显示控制条
           backgroundColor: $r('app.color.btn_bgc'),
-          showClose: true,
-          shouldDismiss: ((sheetDismiss: SheetDismiss) => {
-            sheetDismiss.dismiss()
+          showClose: true, // 是否显示关闭图标
+          shouldDismiss: ((sheetDismiss: SheetDismiss) => { // 半模态页面交互式关闭回调函数
+            sheetDismiss.dismiss();
+            this.pageStack.pop();
           })
-        })
-        .onClick(() => {
-          this.isPresent = true; // 当isPresent为true时显示模态页面，反之不显示
         })
     }
     .justifyContent(FlexAlign.Center)

@@ -23,6 +23,7 @@ export class CityType {
     this.city = city;
   }
 }
+
 // 定义关键字城市类
 export class cityGroup {
   name: string;

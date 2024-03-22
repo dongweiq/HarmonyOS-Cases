@@ -37,6 +37,7 @@ export struct CaptchaLogin {
   @State op: number = 0.5;
   // 判断是否同意协议
   isConfirmed: boolean = false;
+  @Consume('pageStack') pageStack: NavPathStack;
   // 1、 定义验证码登录页的转场效果，从左边推出
   private effect1: TransitionEffect =
     TransitionEffect
@@ -84,7 +85,7 @@ export struct CaptchaLogin {
                 left: $r('app.integer.margin_default'),
                 bottom: $r('app.integer.margin_default')
               })
-              .onClick(()=>{
+              .onClick(() => {
                 // 调用Toast显示提示:此样式仅为案例展示
                 promptAction.showToast({ message: $r('app.string.only_show_ui') });
               })
@@ -108,7 +109,7 @@ export struct CaptchaLogin {
 
           Row() {
             Text($r('app.string.captcha_change_title_text'))
-              .fontColor($r('app.color.grey_7'))
+              .fontColor($r('app.color.note_color'))
               .fontSize(15)
               .backgroundColor($r('app.color.transparent_7'))
               .onClick(() => {
@@ -147,8 +148,8 @@ export struct CaptchaLogin {
               Span($r('app.string.read_and_agree'))
                 .fontColor($r('app.color.grey_9'))
               Span($r('app.string.server_proxy_rule_detail'))
-                .fontColor(Color.Orange)
-                .onClick(()=>{
+                .fontColor($r('app.color.note_color'))
+                .onClick(() => {
                   // 调用Toast显示提示:此样式仅为案例展示
                   promptAction.showToast({ message: $r('app.string.only_show_ui') });
                 })
@@ -166,7 +167,7 @@ export struct CaptchaLogin {
             Image($r("app.media.app_logo1"))
               .width($r('app.integer.other_ways_icon_height'))
               .borderRadius($r('app.integer.other_ways_border_radius'))
-              .onClick(()=>{
+              .onClick(() => {
                 // 调用Toast显示提示:此样式仅为案例展示
                 promptAction.showToast({ message: $r('app.string.only_show_ui') });
               })
@@ -174,7 +175,7 @@ export struct CaptchaLogin {
             Image($r("app.media.app_logo2"))
               .width($r('app.integer.other_ways_icon_height'))
               .borderRadius($r('app.integer.other_ways_border_radius'))
-              .onClick(()=>{
+              .onClick(() => {
                 // 调用Toast显示提示:此样式仅为案例展示
                 promptAction.showToast({ message: $r('app.string.only_show_ui') });
               })
@@ -182,7 +183,7 @@ export struct CaptchaLogin {
             Image($r("app.media.app_logo3"))
               .width($r('app.integer.other_ways_icon_height'))
               .borderRadius($r('app.integer.other_ways_border_radius'))
-              .onClick(()=>{
+              .onClick(() => {
                 // 调用Toast显示提示:此样式仅为案例展示
                 promptAction.showToast({ message: $r('app.string.only_show_ui') });
               })
@@ -201,13 +202,12 @@ export struct CaptchaLogin {
           .transition(this.effect2) // 此处涉及到组件的显示和消失，所以使用transition属性设置出现/消失转场
       }
       Image($r('app.media.close')) // 通过Stack组件，两个页面只实现一个back
-        .width($r('app.integer.height_twenty_five'))
-        .height($r('app.integer.height_twenty_five'))
+        .width($r('app.integer.height_fifty_five'))
+        .height($r('app.integer.height_fifty_five'))
         .margin({ top: $r('app.integer.margin_close_top'), left: $r('app.integer.margin_close_left') })
         .onClick(() => {
-          // 7、点击关闭按钮，关闭所有模态组件，回到主页面
-          this.isPresentInLoginView = false;
-          this.isPresent = false;
+          // 7、点击关闭按钮，回到主页面
+          this.pageStack.pop();
         })
     }
     .size({ width: $r('app.string.size_full'), height: $r('app.string.size_full') })
