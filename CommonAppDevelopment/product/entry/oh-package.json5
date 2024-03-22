@@ -158,6 +158,8 @@
     // Web组件预览PDF文件实现案例
     "@ohos/webpdfviewer": "file:../../feature/webpdfviewer",
     // 图片防盗链
-    "@ohos/imagetheft": "file:../../feature/imagetheft"
+    "@ohos/imagetheft": "file:../../feature/imagetheft",
+    // 自定义Swiper卡片预览效果实现
+    "@ohos/cardswiperanimation": "file:../../feature/cardswiperanimation"
   }
 }

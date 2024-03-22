@@ -91,4 +91,5 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.side_slip_Intercept"), '侧滑返回事件拦截案例', RouterInfo.SIDE_SLIP_INTERCEPT, '其他'),
   new SceneModuleInfo($r("app.media.web_pdf_viewer"), 'Web组件预览PDF文件实现案例', RouterInfo.WEB_PDF_VIEWER, '其他'),
   new SceneModuleInfo($r("app.media.image_theft"), '配置ImageKnife请求头实现防盗链功能', RouterInfo.IMAGE_THEFT, '三方库', 4),
+  new SceneModuleInfo($r("app.media.card_swiper_animation"), '自定义Swiper卡片预览效果实现', RouterInfo.CARD_SWIPER, '动效', 3),
 ]

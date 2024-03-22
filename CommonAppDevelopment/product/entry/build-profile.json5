@@ -94,7 +94,8 @@
           "@ohos/nativeembed",
           "@ohos/sideslipintercept",
           "@ohos/webpdfviewer",
-          "@ohos/imagetheft"
+          "@ohos/imagetheft",
+          "@ohos/cardswiperanimation"
         ]
       }
     }

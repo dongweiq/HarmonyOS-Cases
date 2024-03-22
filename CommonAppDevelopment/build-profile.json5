@@ -335,6 +335,10 @@
     {
       "name": "imagetheft",
       "srcPath": "./feature/imagetheft"
+    },
+    {
+      "name": "cardswiperanimation",
+      "srcPath": "./feature/cardswiperanimation"
     }
   ]
 }

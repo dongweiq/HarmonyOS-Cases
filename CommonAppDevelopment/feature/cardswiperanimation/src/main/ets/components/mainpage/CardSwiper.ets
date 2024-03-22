@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import Constants from '../../utils/Constants';
 import CardComponent from '../viewmodel/CardViewModel';
 import { CardsSource, CardInfo } from '../model/CardModel';
@@ -166,3 +166,12 @@ export struct CardSwiperAnimation {
     return this.displayWidth - this.cardsList[index].width - 2 * this.swiperMargin;
   }
 }
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getEventPropagation(): void {
+  CardSwiperAnimation();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+DynamicsRouter.registerRouterPage(RouterInfo.CARD_SWIPER, wrapBuilder(getEventPropagation));
