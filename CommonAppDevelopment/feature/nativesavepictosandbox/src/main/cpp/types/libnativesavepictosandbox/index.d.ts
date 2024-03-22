@@ -13,6 +13,6 @@
  * limitations under the License.
  */
 
-import resourceManager from '@ohos.resourceManager';
+import type resourceManager from '@ohos.resourceManager';
 export const saveImageOfInternet: (internet_url: string, tar_path: string, tar_name: string) => string;
 export const saveImageOfRawfile: (resmgr: resourceManager.ResourceManager, src_path: string, tar_path: string) => string;

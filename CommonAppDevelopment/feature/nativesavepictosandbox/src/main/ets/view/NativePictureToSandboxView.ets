@@ -20,7 +20,6 @@
 
 import fileUri from "@ohos.file.fileuri";
 import testNapi from 'libnativesavepictosandbox.so';
-import { FunctionDescription } from '@ohos/base';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
 @Component
@@ -36,99 +35,103 @@ export struct NativePictureToSandboxView {
 
   build() {
     Column() {
-      // Native保存图片到应用沙箱功能描述
-      FunctionDescription({
-        title: $r('app.string.native_sandbox_title'),
-        content: $r('app.string.native_sandbox_description')
-      })
       // 保存网络图片到沙箱
-      Column() {
-        Row() {
-          Column() {
-            Image(this.internetSandBoxPath)
-              .width($r('app.integer.sandBox_image_width'))
-              .height($r('app.integer.sandBox_image_height'))
-              .margin($r('app.integer.sandBox_margin'))
-          }
-          .width('30%')
-          Column() {
-            Button($r('app.string.tbn_InternetPicture'))
-              .onClick(() => {
-                // TODO：知识点：通过Native暴露的接口saveImageOfInternet接口获取下载的网络图片保存在沙箱中的路径
-                let sandBoxPath: string = testNapi.saveImageOfInternet(this.internetPicUrl, this.fileDir, this.internetSandBoxFileName);
-                if (sandBoxPath === undefined) {
-                  AlertDialog.show({ message: $r('app.string.internet_file_write_fail'), alignment: DialogAlignment.Center });
-                  this.internetSandBoxPath = '';
-                } else {
-                  // 将沙箱地址转换为url地址
-                  this.internetSandBoxPath = fileUri.getUriFromPath(sandBoxPath);
-                }
-              }).margin($r('app.integer.sandBox_margin'))
-              .align(Alignment.Start)
-              .alignSelf(ItemAlign.Start)
-            Text($r('app.string.txt_sandBox_path'))
-              .fontWeight(FontWeight.Normal)
-              .margin($r('app.integer.sandBox_margin'))
-              .alignSelf(ItemAlign.Start)
-              .textAlign(TextAlign.Start)
-              .align(Alignment.Start)
-            Text(this.internetSandBoxPath)
-              .align(Alignment.Start)
-              .margin($r('app.integer.sandBox_margin'))
-              .fontSize($r('app.integer.sandBox_font_size_14'))
-              .alignSelf(ItemAlign.Start)
-          }
-          .width('70%')
-          .height($r('app.integer.sandBox_image_height180'))
+      Row() {
+        Column() {
+          Image(this.internetSandBoxPath)
+            .width($r('app.integer.sandBox_image_width'))
+            .height($r('app.integer.sandBox_image_height'))
+            .margin($r('app.integer.sandBox_margin'))
         }
+        .width('30%')
+        Column() {
+          Button($r('app.string.tbn_InternetPicture'))
+            .onClick(() => {
+              // TODO：知识点：通过Native暴露的接口saveImageOfInternet接口获取下载的网络图片保存在沙箱中的路径
+              const sandBoxPath: string = testNapi.saveImageOfInternet(this.internetPicUrl, this.fileDir, this.internetSandBoxFileName);
+              if (sandBoxPath === undefined) {
+                AlertDialog.show({
+                  message: $r('app.string.internet_file_write_fail'),
+                  alignment: DialogAlignment.Center
+                });
+                this.internetSandBoxPath = '';
+              } else {
+                // 将沙箱地址转换为url地址
+                this.internetSandBoxPath = fileUri.getUriFromPath(sandBoxPath);
+              }
+            }).margin($r('app.integer.sandBox_margin'))
+            .align(Alignment.Start)
+            .alignSelf(ItemAlign.Start)
+          Text($r('app.string.txt_sandBox_path'))
+            .fontWeight(FontWeight.Normal)
+            .margin($r('app.integer.sandBox_margin'))
+            .alignSelf(ItemAlign.Start)
+            .textAlign(TextAlign.Start)
+            .align(Alignment.Start)
+          Text(this.internetSandBoxPath)
+            .align(Alignment.Start)
+            .margin($r('app.integer.sandBox_margin'))
+            .fontSize($r('app.integer.sandBox_font_size_14'))
+            .alignSelf(ItemAlign.Start)
+        }
+        .width('70%')
+        .height($r('app.integer.sandBox_image_height180'))
       }
-      .border({ width: 1, color: $r('app.color.border_color'), radius: $r('app.integer.common_radius'), style: BorderStyle.Solid })
+      .border({
+        width: 1,
+        color: $r('app.color.border_color'),
+        radius: $r('app.integer.common_radius'),
+        style: BorderStyle.Solid
+      })
       .borderRadius($r('app.integer.common_radius'))
       .padding($r('app.integer.sandBox_padding12'))
       .margin($r('app.integer.sandBox_margin12'))
       .width('100%')
       // 保存Rawfile图片到沙箱
-      Column() {
-        Row() {
-          Column() {
-            Image(this.rawfileSandBoxPath)
-              .width($r('app.integer.sandBox_image_width'))
-              .height($r('app.integer.sandBox_image_height'))
-              .margin($r('app.integer.sandBox_margin'))
-          }
-          .width('30%')
-          Column() {
-            Button($r('app.string.tbn_RawFilePicture'))
-              .onClick(() => {
-                // TODO：知识点：通过Native暴露的接口saveImageOfRawfile接口获取rawfile中图片保存在沙箱中的路径
-                let sandBoxPath: string = testNapi.saveImageOfRawfile(this.resMgr, this.rawfilePicPath, this.fileDir);
-                if (sandBoxPath === undefined) {
-                  AlertDialog.show({ message: $r('app.string.rawfile_write_fail'), alignment: DialogAlignment.Center });
-                  this.rawfileSandBoxPath = '';
-                } else {
-                  // 将沙箱地址转换为url地址
-                  this.rawfileSandBoxPath = fileUri.getUriFromPath(sandBoxPath);
-                }
-              }).margin($r('app.integer.sandBox_margin'))
-              .align(Alignment.Start)
-              .alignSelf(ItemAlign.Start)
-            Text($r('app.string.txt_sandBox_path'))
-              .fontWeight(FontWeight.Normal)
-              .margin($r('app.integer.sandBox_margin'))
-              .alignSelf(ItemAlign.Start)
-              .textAlign(TextAlign.Start)
-              .align(Alignment.Start)
-            Text(this.rawfileSandBoxPath)
-              .align(Alignment.Start)
-              .margin($r('app.integer.sandBox_margin'))
-              .fontSize($r('app.integer.sandBox_font_size_14'))
-              .alignSelf(ItemAlign.Start)
-          }
-          .width('70%')
-          .height($r('app.integer.sandBox_image_height180'))
+      Row() {
+        Column() {
+          Image(this.rawfileSandBoxPath)
+            .width($r('app.integer.sandBox_image_width'))
+            .height($r('app.integer.sandBox_image_height'))
+            .margin($r('app.integer.sandBox_margin'))
         }
+        .width('30%')
+        Column() {
+          Button($r('app.string.tbn_RawFilePicture'))
+            .onClick(() => {
+              // TODO：知识点：通过Native暴露的接口saveImageOfRawfile接口获取rawfile中图片保存在沙箱中的路径
+              const sandBoxPath: string = testNapi.saveImageOfRawfile(this.resMgr, this.rawfilePicPath, this.fileDir);
+              if (sandBoxPath === undefined) {
+                AlertDialog.show({ message: $r('app.string.rawfile_write_fail'), alignment: DialogAlignment.Center });
+                this.rawfileSandBoxPath = '';
+              } else {
+                // 将沙箱地址转换为url地址
+                this.rawfileSandBoxPath = fileUri.getUriFromPath(sandBoxPath);
+              }
+            }).margin($r('app.integer.sandBox_margin'))
+            .align(Alignment.Start)
+            .alignSelf(ItemAlign.Start)
+          Text($r('app.string.txt_sandBox_path'))
+            .fontWeight(FontWeight.Normal)
+            .margin($r('app.integer.sandBox_margin'))
+            .alignSelf(ItemAlign.Start)
+            .textAlign(TextAlign.Start)
+            .align(Alignment.Start)
+          Text(this.rawfileSandBoxPath)
+            .align(Alignment.Start)
+            .margin($r('app.integer.sandBox_margin'))
+            .fontSize($r('app.integer.sandBox_font_size_14'))
+            .alignSelf(ItemAlign.Start)
+        }
+        .width('70%')
+        .height($r('app.integer.sandBox_image_height180'))
       }
-      .border({ width: 1, color: $r('app.color.border_color'), radius: $r('app.string.sandBox_radius'), style: BorderStyle.Solid })
+      .border({
+        width: 1,
+        color: $r('app.color.border_color'),
+        radius: $r('app.string.sandBox_radius'),
+        style: BorderStyle.Solid
+      })
       .borderRadius($r('app.string.sandBox_radius'))
       .padding($r('app.string.sandBox_padding'))
       .margin($r('app.string.sandBox_margin12'))
