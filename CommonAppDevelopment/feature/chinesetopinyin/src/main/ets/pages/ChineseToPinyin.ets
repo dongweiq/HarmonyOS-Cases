@@ -27,6 +27,7 @@ const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间
 const LIST_SPACE: number = 16;
 const PINYIN_ARRAY: number = 0; // 拼音列表项在数组中的位置
 const STROKE_WIDTH: number = 1;
+const MAX_LINE: number = 1; // text显示的最大行数
 
 // 列表结构对象
 @Observed
@@ -180,13 +181,17 @@ export struct UserItemView {
       Text(this.text.title)
         .fontSize($r('app.integer.list_title_size'))
         .fontColor($r('app.color.list_title_color'))
-        .layoutWeight(LAYOUT_WEIGHT)
+        .width($r('app.integer.setting_title_width'))
         .lineHeight($r('app.integer.list_line_height'))
       Text(this.text.content)
         .fontSize($r('app.integer.list_content_size'))
-        .fontColor($r('app.color.list_content_color'))
         .layoutWeight(LAYOUT_WEIGHT)
+        .fontColor($r('app.color.list_content_color'))
         .lineHeight($r('app.integer.list_line_height'))
+        .textOverflow({
+          overflow: TextOverflow.MARQUEE
+        })
+        .maxLines(MAX_LINE)
         .textAlign(TextAlign.End)
     }
     .width($r('app.string.list_width'))
