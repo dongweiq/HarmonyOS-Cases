@@ -112,7 +112,7 @@ export struct LineCharts {
     this.model.setDrawGridBackground(false);
     // TODO 知识点：配置图表指定样式，各部件间没有先后之分
     // 获取图表描述部件，设置图表描述部件不可用，即图表不进行绘制描述部件
-    let description: Description | null = this.model.getDescription();
+    const description: Description | null = this.model.getDescription();
     if (description) {
       description.setEnabled(false);
     }
@@ -151,7 +151,7 @@ export struct LineCharts {
       this.rightAxis.setEnabled(false);
     }
     // 获取图表图例部件，设置图表图例部件不可用
-    let legend: Legend | null = this.model.getLegend();
+    const legend: Legend | null = this.model.getLegend();
     if (legend) {
       legend.setEnabled(true);
       // 设置图例类型
@@ -179,17 +179,17 @@ export struct LineCharts {
 
   // 生成线形图数据
   private getLineData(): LineData {
-    let start: number = 0;
-    let values: JArrayList<EntryOhos> = new JArrayList<EntryOhos>();
-    let values2: JArrayList<EntryOhos> = new JArrayList<EntryOhos>();
-    for (let i = start; i < this.todayData.length; i++) {
+    const START: number = 0;
+    const values: JArrayList<EntryOhos> = new JArrayList<EntryOhos>();
+    const values2: JArrayList<EntryOhos> = new JArrayList<EntryOhos>();
+    for (let i = START; i < this.todayData.length; i++) {
       values.add(new EntryOhos(i, this.todayData[i]));
     }
-    for (let i = start; i < this.referenceData.length; i++) {
+    for (let i = START; i < this.referenceData.length; i++) {
       values2.add(new EntryOhos(i, this.referenceData[i]));
     }
-    let dataSetList: JArrayList<ILineDataSet> = new JArrayList<ILineDataSet>();
-    let dataSet = new LineDataSet(values, '今日');
+    const dataSetList: JArrayList<ILineDataSet> = new JArrayList<ILineDataSet>();
+    const dataSet = new LineDataSet(values, '今日');
     // 设置数据高亮颜色
     dataSet.setHighLightColor(Color.Red);
     // 设置数据高亮线的宽度
@@ -204,7 +204,7 @@ export struct LineCharts {
     dataSet.setDrawCircles(false);
     // 设置曲线颜色
     dataSet.setColorByColor(this.customUiInfo.type === HEART_RATE ? Color.Orange : Color.Blue);
-    let gradientFillColor = new JArrayList<ChartColorStop>();
+    const gradientFillColor = new JArrayList<ChartColorStop>();
     gradientFillColor.add([this.customUiInfo.type === HEART_RATE ? HEART_FILL_COLOR3 : STEP_FILL_COLOR3, 0.2]);
     gradientFillColor.add([this.customUiInfo.type === HEART_RATE ? HEART_FILL_COLOR2 : STEP_FILL_COLOR2, 0.6]);
     gradientFillColor.add([this.customUiInfo.type === HEART_RATE ? HEART_FILL_COLOR1 : STEP_FILL_COLOR1, 1.0]);
@@ -212,7 +212,7 @@ export struct LineCharts {
     dataSet.setGradientFillColor(gradientFillColor);
     dataSet.setDrawFilled(true);
     dataSetList.add(dataSet);
-    let dataSet2 = new LineDataSet(values2, REFERENCE);
+    const dataSet2 = new LineDataSet(values2, REFERENCE);
     dataSet2.setHighLightColor(Color.Black);
     dataSet2.setHighlightLineWidth(0.1);
     dataSet2.setDrawValues(false);

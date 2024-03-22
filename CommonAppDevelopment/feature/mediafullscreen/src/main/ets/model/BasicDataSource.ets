@@ -121,7 +121,7 @@ class FlowItemContent {
   id: string;
   user: UserItem;
   text: string;
-  imageList: Array<string> = new Array<string>();
+  imageList: Array<string> = [];
   media: string = ''; // media为需要获取的视频url
   mediaPreview: string = ''; // mediaPreview为需要获取的视频预览图url
 
@@ -139,7 +139,7 @@ class FlowItemContent {
 }
 
 class JsonObjType {
-  friendMoment: Array<FlowItemContent> = new Array<FlowItemContent>();
+  friendMoment: Array<FlowItemContent> = [];
 }
 
 class JsonObject {
@@ -150,25 +150,25 @@ class JsonObject {
   }
 
   async getFlowItemContentObj(): Promise<Array<FlowItemContent>> {
-    let value = await getContext().resourceManager.getRawFileContent(this.jsonFileDir);
-    let jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer)) as JsonObjType;
-    let friendMomentBuckets: Array<FlowItemContent> = new Array<FlowItemContent>();
+    const value = await getContext().resourceManager.getRawFileContent(this.jsonFileDir);
+    const jsonObj: JsonObjType = JSON.parse(this.bufferToString(value.buffer)) as JsonObjType;
+    const friendMomentBuckets: Array<FlowItemContent> = [];
     // 映射json数据为FlowItemContent对象
-    let friendMomentObj = jsonObj.friendMoment;
+    const friendMomentObj = jsonObj.friendMoment;
     for (let i = 0; i < friendMomentObj.length; i++) {
-      let contactTemp = new UserItem(friendMomentObj[i].user.userId, friendMomentObj[i].user.userName,
+      const contactTemp = new UserItem(friendMomentObj[i].user.userId, friendMomentObj[i].user.userName,
         friendMomentObj[i].user.userImage);
-      let chatModelTemp = new FlowItemContent(friendMomentObj[i].id, contactTemp, friendMomentObj[i].text, friendMomentObj[i].media, friendMomentObj[i].mediaPreview);
+      const chatModelTemp = new FlowItemContent(friendMomentObj[i].id, contactTemp, friendMomentObj[i].text, friendMomentObj[i].media, friendMomentObj[i].mediaPreview);
       friendMomentBuckets.push(chatModelTemp);
     }
     return friendMomentBuckets;
   }
 
   private bufferToString(buffer: ArrayBufferLike): string {
-    let textDecoder = util.TextDecoder.create('utf-8', {
+    const textDecoder = util.TextDecoder.create('utf-8', {
       ignoreBOM: true
     });
-    let resultPut = textDecoder.decodeWithStream(new Uint8Array(buffer), {
+    const resultPut = textDecoder.decodeWithStream(new Uint8Array(buffer), {
       stream: true
     });
     return resultPut;

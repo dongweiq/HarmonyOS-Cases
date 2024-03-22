@@ -54,7 +54,7 @@ export class CustomUiInfo {
 
   // 设置X轴数据的格式转换器
   getFormattedValue(): string {
-    let result = (this.data?.getX() || 1) >= 24 ? '次日' + ((this.data?.getX() || 1) - 24) + '点' : (this.data?.getX() || 1) + '' + '点';
+    const result = (this.data?.getX() || 1) >= 24 ? '次日' + ((this.data?.getX() || 1) - 24) + '点' : (this.data?.getX() || 1) + '' + '点';
     return result;
   }
 }

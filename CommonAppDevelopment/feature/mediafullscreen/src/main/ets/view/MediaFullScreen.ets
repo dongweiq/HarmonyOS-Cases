@@ -38,13 +38,13 @@ export struct MediaFullScreen {
   @State contentData: FlowItemContentsData = new FlowItemContentsData(); // 瀑布流内容
 
   async aboutToAppear() {
-    let jsonObj: JsonObject = new JsonObject(JSON_URI);
-    let array = await jsonObj.getFlowItemContentObj();
+    const jsonObj: JsonObject = new JsonObject(JSON_URI);
+    const array = await jsonObj.getFlowItemContentObj();
     this.contentData.pushData(array);
   }
 
   async aboutToDisappear() {
-    let currentWindow = await window.getLastWindow(getContext(this));
+    const currentWindow = await window.getLastWindow(getContext(this));
     currentWindow.setWindowSystemBarEnable(WINDOW_SYSTEM_BAR);
   }
 
@@ -133,7 +133,9 @@ struct ReusableComponent {
           .height($r('app.integer.friendMomentsPage_icon_play_height'))
       }
       .onClick(() => {
-        if (this.isFullScreen) return;
+        if (this.isFullScreen) {
+          return;
+        };
         // 设置媒体全屏
         this.controller.requestFullscreen(true);
         this.controller.start();
