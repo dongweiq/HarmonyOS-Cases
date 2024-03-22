@@ -71,7 +71,10 @@ export struct VotingComponent {
   build() {
     Column() {
       // 投票主题
-      Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Start }) {
+      Flex({
+        direction: FlexDirection.Row,
+        justifyContent: FlexAlign.Start
+      }) {
         Image($r("app.media.avatars"))// 投票举行者头像
           .width($r("app.integer.voting_theme_image_width"))
           .height($r("app.integer.voting_theme_image_height"))
@@ -85,36 +88,39 @@ export struct VotingComponent {
 
       // 投票动态UI
       Stack() {
-        Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center }) {
+        Flex({
+          direction: FlexDirection.Row,
+          justifyContent: FlexAlign.Center
+        }) {
           // 左边选项图案
           Stack() {
             // 使用Column绘制出胶囊块
             Column()// 设置左上和左下两个角为圆角
-              .borderRadius(
-                {
-                  topLeft: $r("app.integer.fillet_radius"),
-                  bottomLeft: $r("app.integer.fillet_radius"),
-                  topRight: $r("app.integer.right_angle_radius"),
-                  bottomRight: $r("app.integer.right_angle_radius")
-                }
-              )
+              .borderRadius({
+                topLeft: $r("app.integer.fillet_radius"),
+                bottomLeft: $r("app.integer.fillet_radius"),
+                topRight: $r("app.integer.right_angle_radius"),
+                bottomRight: $r("app.integer.right_angle_radius")
+              })
               .backgroundColor(Constants.LEFT_COLOR)
               .opacity(this.fillOpacity)// 动态变化透明度
               .width(this.leftOptionWidth)// 选项宽度
               .height($r("app.integer.option_background_height"))
             // TODO：知识点2：使用if-else语句来控制点击前与点击后的显示不同
-            if (!this.isClick) {
-              Text(Constants.LEFT_OPTION)
-                .fontColor(Color.White)
-                .margin({ right: $r("app.integer.text_center_margin") })
-            } else {
-              Column() {
-                Text(this.leftOptionWidth)
-                  .fontColor(Constants.LEFT_COLOR)
-                  .fontSize($r("app.integer.upper_text_font_size"))
+            Stack() {
+              if (!this.isClick) {
                 Text(Constants.LEFT_OPTION)
-                  .fontColor(Constants.LEFT_COLOR)
-                  .fontSize($r("app.integer.under_text_font_size"))
+                  .fontColor(Color.White)
+                  .margin({ right: $r("app.integer.text_center_margin") })
+              } else {
+                Column() {
+                  Text(this.leftOptionWidth)
+                    .fontColor(Constants.LEFT_COLOR)
+                    .fontSize($r("app.integer.upper_text_font_size"))
+                  Text(Constants.LEFT_OPTION)
+                    .fontColor(Constants.LEFT_COLOR)
+                    .fontSize($r("app.integer.under_text_font_size"))
+                }
               }
             }
           }.onClick(() => {
@@ -129,30 +135,30 @@ export struct VotingComponent {
 
           Stack() {
             Column()
-              .borderRadius(
-                {
-                  topLeft: $r("app.integer.right_angle_radius"),
-                  bottomLeft: $r("app.integer.right_angle_radius"),
-                  topRight: $r("app.integer.fillet_radius"),
-                  bottomRight: $r("app.integer.fillet_radius")
-                }
-              )
+              .borderRadius({
+                topLeft: $r("app.integer.right_angle_radius"),
+                bottomLeft: $r("app.integer.right_angle_radius"),
+                topRight: $r("app.integer.fillet_radius"),
+                bottomRight: $r("app.integer.fillet_radius")
+              })
               .backgroundColor(Constants.RIGHT_COLOR)
               .opacity(this.fillOpacity)
               .width(this.rightOptionWidth)
               .height($r("app.integer.option_background_height"))
-            if (!this.isClick) {
-              Text(Constants.RIGHT_OPTION)
-                .fontColor(Color.White)
-                .margin({ left: $r("app.integer.text_center_margin") })
-            } else {
-              Column() {
-                Text(this.rightOptionWidth)
-                  .fontColor(Constants.RIGHT_COLOR)
-                  .fontSize($r("app.integer.upper_text_font_size"))
+            Stack() {
+              if (!this.isClick) {
                 Text(Constants.RIGHT_OPTION)
-                  .fontColor(Constants.RIGHT_COLOR)
-                  .fontSize($r("app.integer.under_text_font_size"))
+                  .fontColor(Color.White)
+                  .margin({ left: $r("app.integer.text_center_margin") })
+              } else {
+                Column() {
+                  Text(this.rightOptionWidth)
+                    .fontColor(Constants.RIGHT_COLOR)
+                    .fontSize($r("app.integer.upper_text_font_size"))
+                  Text(Constants.RIGHT_OPTION)
+                    .fontColor(Constants.RIGHT_COLOR)
+                    .fontSize($r("app.integer.under_text_font_size"))
+                }
               }
             }
           }.onClick(() => {
@@ -175,17 +181,19 @@ export struct VotingComponent {
             .width($r("app.integer.polygon_width"))
             .height($r("app.integer.polygon_height"))
           // 点击前，空隙宽度稍微大一些，且其中有PK二字
-          if (!this.isClick) {
-            Text() {
-              Span($r("app.string.mid_text_left"))
-                .fontColor(Constants.LEFT_COLOR)
-              Span($r("app.string.mid_text_right"))
-                .fontColor(Constants.RIGHT_COLOR)
+          Stack() {
+            if (!this.isClick) {
+              Text() {
+                Span($r("app.string.mid_text_left"))
+                  .fontColor(Constants.LEFT_COLOR)
+                Span($r("app.string.mid_text_right"))
+                  .fontColor(Constants.RIGHT_COLOR)
+              }
+              .fontSize($r("app.integer.mid_text_font_size"))
+              .fontStyle(FontStyle.Italic)
+              .fontWeight(Constants.MID_TEXT_FONT_WEIGHT)
+              .textAlign(TextAlign.Center)
             }
-            .fontSize($r("app.integer.mid_text_font_size"))
-            .fontStyle(FontStyle.Italic)
-            .fontWeight(Constants.MID_TEXT_FONT_WEIGHT)
-            .textAlign(TextAlign.Center)
           }
         }
         // TODO：知识点4：因为Polygon是以一个矩形框为基准来绘制的，因此会受到这个矩形框的影响，使用position以及markAnchor来偏移，以抵消前述影响
@@ -198,10 +206,12 @@ export struct VotingComponent {
         Text(this.notice)
           .fontSize($r("app.integer.bottom_text_font_size"))
           .margin({ left: $r("app.integer.bottom_text_margin") })
-        if (this.isClick) {
-          Text(this.leftOptionChoose + this.rightOptionChoose + Constants.BOTTOM_TEXT_SUFFIX)
-            .fontSize($r("app.integer.bottom_text_font_size"))
-            .margin({ right: $r("app.integer.bottom_text_margin") })
+        Stack() {
+          if (this.isClick) {
+            Text(this.leftOptionChoose + this.rightOptionChoose + Constants.BOTTOM_TEXT_SUFFIX)
+              .fontSize($r("app.integer.bottom_text_font_size"))
+              .margin({ right: $r("app.integer.bottom_text_margin") })
+          }
         }
       }
     }
@@ -220,4 +230,4 @@ export function getVotingComponent(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.VOTING_COMPONENT,wrapBuilder(getVotingComponent));
+DynamicsRouter.registerRouterPage(RouterInfo.VOTING_COMPONENT, wrapBuilder(getVotingComponent));
