@@ -39,6 +39,8 @@ import {
 } from '@ohos/mpchart';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 
+const SPACE_FIVE: number = 5; // 组件间距
+
 @Component
 export struct BarChartPage {
   private model: BarChartModel | null = null; // 柱状图配置构建类
@@ -99,12 +101,12 @@ export struct BarChartPage {
     // 为图表添加手势识别监听器
     this.model.setOnChartGestureListener(this.chartGestureListener);
     // 获取图表描述部件，设置图表描述部件不可用，即图表不进行绘制描述部件
-    let description: Description | null = this.model.getDescription();
+    const description: Description | null = this.model.getDescription();
     if (description) {
       description.setEnabled(false);
     }
     // 获取图表图例部件，设置图表图例部件不可用
-    let legend: Legend | null = this.model.getLegend();
+    const legend: Legend | null = this.model.getLegend();
     if (legend) {
       legend.setEnabled(true);
     }
@@ -170,7 +172,7 @@ export struct BarChartPage {
 
   // 生成单一颜色数据
   private getNormalData(): BarData {
-    let values: JArrayList<BarEntry> = new JArrayList<BarEntry>();
+    const values: JArrayList<BarEntry> = new JArrayList<BarEntry>();
     values.add(new BarEntry(1, 73.3));
     values.add(new BarEntry(2, 5.4));
     values.add(new BarEntry(3, 73.9));
@@ -191,23 +193,23 @@ export struct BarChartPage {
     values.add(new BarEntry(18, 33.2));
     values.add(new BarEntry(19, 96.9));
 
-    let dataSet: BarDataSet = new BarDataSet(values, 'DataSet');
+    const dataSet: BarDataSet = new BarDataSet(values, 'DataSet');
     dataSet.setHighLightColor(Color.Black);
     dataSet.setDrawIcons(false);
     // 为柱体添加颜色信息
     dataSet.setColorByColor(Color.Pink);
 
-    let dataSetList: JArrayList<IBarDataSet> = new JArrayList<IBarDataSet>();
+    const dataSetList: JArrayList<IBarDataSet> = new JArrayList<IBarDataSet>();
     dataSetList.add(dataSet);
 
-    let barData: BarData = new BarData(dataSetList);
+    const barData: BarData = new BarData(dataSetList);
     barData.setBarWidth(0.85);
     return barData;
   }
 
   // 生成渐变颜色数据
   private getGradientData(): BarData {
-    let values: JArrayList<BarEntry> = new JArrayList<BarEntry>();
+    const values: JArrayList<BarEntry> = new JArrayList<BarEntry>();
     values.add(new BarEntry(1, 32.9));
     values.add(new BarEntry(2, 44.7));
     values.add(new BarEntry(3, 2.1));
@@ -228,39 +230,39 @@ export struct BarChartPage {
     values.add(new BarEntry(18, 45.7));
     values.add(new BarEntry(19, 26.8));
 
-    let dataSet: BarDataSet = new BarDataSet(values, 'DataSet');
+    const dataSet: BarDataSet = new BarDataSet(values, 'DataSet');
     dataSet.setHighLightColor(Color.Black);
     dataSet.setDrawIcons(false);
-    let startColor1: string = '#ffffbb33';
-    let startColor2: string = '#ff33b5e5';
-    let startColor3: string = '#ffffbb33';
-    let startColor4: string = '#ff99cc00';
-    let startColor5: string = '#ffff4444';
-    let endColor1: string = '#ff0099cc';
-    let endColor2: string = '#ffaa66cc';
-    let endColor3: string = '#ff669900';
-    let endColor4: string = '#ffcc0000';
-    let endColor5: string = '#ffff8800';
-    let gradientFills: JArrayList<Fill> = new JArrayList<Fill>();
-    gradientFills.add(new Fill(startColor1, endColor1));
-    gradientFills.add(new Fill(startColor2, endColor2));
-    gradientFills.add(new Fill(startColor3, endColor3));
-    gradientFills.add(new Fill(startColor4, endColor4));
-    gradientFills.add(new Fill(startColor5, endColor5));
+    const START_COLOR1: string = '#ffffbb33';
+    const START_COLOR2: string = '#ff33b5e5';
+    const START_COLOR3: string = '#ffffbb33';
+    const START_COLOR4: string = '#ff99cc00';
+    const START_COLOR5: string = '#ffff4444';
+    const END_COLOR1: string = '#ff0099cc';
+    const END_COLOR2: string = '#ffaa66cc';
+    const END_COLOR3: string = '#ff669900';
+    const END_COLOR4: string = '#ffcc0000';
+    const END_COLOR5: string = '#ffff8800';
+    const gradientFills: JArrayList<Fill> = new JArrayList<Fill>();
+    gradientFills.add(new Fill(START_COLOR1, END_COLOR1));
+    gradientFills.add(new Fill(START_COLOR2, END_COLOR2));
+    gradientFills.add(new Fill(START_COLOR3, END_COLOR3));
+    gradientFills.add(new Fill(START_COLOR4, END_COLOR4));
+    gradientFills.add(new Fill(START_COLOR5, END_COLOR5));
     // 为柱体添加渐变的颜色信息
     dataSet.setFills(gradientFills);
 
-    let dataSetList: JArrayList<IBarDataSet> = new JArrayList<IBarDataSet>();
+    const dataSetList: JArrayList<IBarDataSet> = new JArrayList<IBarDataSet>();
     dataSetList.add(dataSet);
 
-    let barData: BarData = new BarData(dataSetList);
+    const barData: BarData = new BarData(dataSetList);
     barData.setBarWidth(0.85);
     return barData;
   }
 
   // 生成堆叠颜色数据
   private getStackData(): BarData {
-    let values: JArrayList<BarEntry> = new JArrayList<BarEntry>();
+    const values: JArrayList<BarEntry> = new JArrayList<BarEntry>();
     values.add(new BarEntry(1, [38.0, 28.0, 39.8]));
     values.add(new BarEntry(2, [18.2, 16.1, 16.1]));
     values.add(new BarEntry(3, [45.8, 49.8, 26.7]));
@@ -288,10 +290,10 @@ export struct BarChartPage {
     dataSet.setColorsByArr([Color.Red, Color.Green, Color.Pink]);
     dataSet.setStackLabels(["Births", "Divorces", "Marriages"]);
 
-    let dataSets: JArrayList<IBarDataSet> = new JArrayList<IBarDataSet>();
+    const dataSets: JArrayList<IBarDataSet> = new JArrayList<IBarDataSet>();
     dataSets.add(dataSet);
 
-    let data: BarData = new BarData(dataSets);
+    const data: BarData = new BarData(dataSets);
     data.setValueTextColor(Color.White);
     return data;
   }
@@ -305,7 +307,7 @@ export struct BarChartPage {
 
   build() {
     Column() {
-      Column({ space: 5 }) {
+      Column({ space: SPACE_FIVE }) {
         // TODO 知识点：为组件设置配置构建类。可通过在事件中使用this.model.notifyDataSetChanged()触发坐标轴数据更新。通过在事件中使用this.model.invalidate()触发绘制更新。
         BarChart({ model: this.model })
           .width($r('app.string.common_bar_chart_width'))
@@ -318,76 +320,68 @@ export struct BarChartPage {
         .width($r('app.string.common_divider'))
         .padding({ top: $r('app.integer.common_padding_top') })
 
-      Column({ space: 5 }) {
-        Row({ space: 10 }) {
+      Column({ space: SPACE_FIVE }) {
+        Row() {
           Text($r('app.string.control_data_type'))
-          Row() {
-            Text($r('app.string.control_normal'))
-            Radio({ value: 'normal', group: 'dataType' })
-              .checked(true)
-              .onChange((isChecked: boolean) => {
-                if (isChecked) {
-                  this.data = this.getNormalData();
-                  if (this.model) {
-                    if (this.normalMarker) {
-                      this.model.setMarker(this.normalMarker);
-                    }
-                    this.model.setData(this.data);
+          Text($r('app.string.control_normal'))
+          Radio({ value: 'normal', group: 'dataType' })
+            .margin({ right: $r('app.integer.margin_right_25') })
+            .checked(true)
+            .onChange((isChecked: boolean) => {
+              if (isChecked) {
+                this.data = this.getNormalData();
+                if (this.model) {
+                  if (this.normalMarker) {
+                    this.model.setMarker(this.normalMarker);
                   }
+                  this.model.setData(this.data);
                 }
-              })
-          }
+              }
+            })
 
-          Row() {
-            Text($r('app.string.control_gradient'))
-            Radio({ value: 'gradient', group: 'dataType' })
-              .checked(false)
-              .onChange((isChecked: boolean) => {
-                if (isChecked) {
-                  this.data = this.getGradientData();
-                  if (this.model) {
-                    if (this.normalMarker) {
-                      this.model.setMarker(this.normalMarker);
-                    }
-                    this.model.setData(this.data);
+          Text($r('app.string.control_gradient'))
+          Radio({ value: 'gradient', group: 'dataType' })
+            .margin({ right: $r('app.integer.margin_right_25') })
+            .checked(false)
+            .onChange((isChecked: boolean) => {
+              if (isChecked) {
+                this.data = this.getGradientData();
+                if (this.model) {
+                  if (this.normalMarker) {
+                    this.model.setMarker(this.normalMarker);
                   }
+                  this.model.setData(this.data);
                 }
-              })
-          }
+              }
+            })
 
-          Row() {
-            Text($r('app.string.control_stack'))
-            Radio({ value: 'stack', group: 'dataType' })
-              .checked(false)
-              .onChange((isChecked: boolean) => {
-                if (isChecked) {
-                  this.data = this.getStackData();
-                  if (this.model) {
-                    this.model.setData(this.data);
-                  }
+          Text($r('app.string.control_stack'))
+          Radio({ value: 'stack', group: 'dataType' })
+            .checked(false)
+            .onChange((isChecked: boolean) => {
+              if (isChecked) {
+                this.data = this.getStackData();
+                if (this.model) {
+                  this.model.setData(this.data);
                 }
-              })
-          }
+              }
+            })
         }.alignSelf(ItemAlign.Start)
 
         Row() {
           Text($r('app.string.control_XAxis_is_display'))
-          Row() {
-            Checkbox({ name: 'isShowXAxis', group: 'xAxis' })
-              .select(true)
-              .onChange((isChecked: boolean) => {
-                if (this.xAxis) {
-                  this.xAxis.setEnabled(isChecked);
-                  this.isEnableXPosition = isChecked;
-                  this.refresh();
-                }
-              })
-          }
+          Checkbox({ name: 'isShowXAxis', group: 'xAxis' })
+            .select(true)
+            .onChange((isChecked: boolean) => {
+              if (this.xAxis) {
+                this.xAxis.setEnabled(isChecked);
+                this.isEnableXPosition = isChecked;
+                this.refresh();
+              }
+            })
         }.alignSelf(ItemAlign.Start)
 
-        Row() {
-          Text($r('app.string.control_XAxis_location'))
-        }.alignSelf(ItemAlign.Start)
+        Text($r('app.string.control_XAxis_location')).alignSelf(ItemAlign.Start)
 
         Flex({ wrap: FlexWrap.Wrap }) {
           Row() {
@@ -401,7 +395,6 @@ export struct BarChartPage {
                   this.refresh();
                 }
               })
-
           }.margin({ right: $r('app.integer.common_margin_left') })
 
           Row() {
@@ -458,90 +451,81 @@ export struct BarChartPage {
           }
         }.alignSelf(ItemAlign.Start)
 
-        Row({ space: 10 }) {
+        Row() {
           Text($r('app.string.control_leftYAxis_is_display'))
-          Row() {
-            Text($r('app.string.control_leftYAxis'))
-            Checkbox({ name: 'leftYAxis', group: 'yAxis' })
-              .select(true)
-              .onChange((isChecked: boolean) => {
-                if (this.leftAxis) {
-                  this.leftAxis.setEnabled(isChecked);
-                  this.isEnableLeftYAxis = isChecked;
-                  this.refresh();
-                }
-              })
-          }
+          Text($r('app.string.control_leftYAxis'))
+          Checkbox({ name: 'leftYAxis', group: 'yAxis' })
+            .margin({ right: $r('app.integer.margin_right_25') })
+            .select(true)
+            .onChange((isChecked: boolean) => {
+              if (this.leftAxis) {
+                this.leftAxis.setEnabled(isChecked);
+                this.isEnableLeftYAxis = isChecked;
+                this.refresh();
+              }
+            })
 
-          Row() {
-            Text($r('app.string.control_rightYAxis'))
-            Checkbox({ name: 'rightYAxis', group: 'yAxis' })
-              .onChange((isChecked: boolean) => {
-                if (this.rightAxis) {
-                  this.rightAxis.setEnabled(isChecked);
-                  this.isEnableRightYAxis = isChecked;
-                  this.refresh();
-                }
-              })
-          }
+          Text($r('app.string.control_rightYAxis'))
+          Checkbox({ name: 'rightYAxis', group: 'yAxis' })
+            .onChange((isChecked: boolean) => {
+              if (this.rightAxis) {
+                this.rightAxis.setEnabled(isChecked);
+                this.isEnableRightYAxis = isChecked;
+                this.refresh();
+              }
+            })
         }.alignSelf(ItemAlign.Start)
 
-        Row({ space: 10 }) {
+        Row() {
           Text($r('app.string.control_leftYAxis_location'))
-          Row() {
-            Text($r('app.string.control_outSideChart'))
-            Radio({ value: 'outSideChart', group: 'leftYAxisLabelPosition' })
-              .checked(true)
-              .enabled(this.isEnableLeftYAxis)
-              .onChange((isChecked: boolean) => {
-                if (this.leftAxis && isChecked) {
-                  this.leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
-                  this.refresh();
-                }
-              })
-          }
+          Text($r('app.string.control_outSideChart'))
+          Radio({ value: 'outSideChart', group: 'leftYAxisLabelPosition' })
+            .margin({ right: $r('app.integer.margin_right_25') })
+            .checked(true)
+            .enabled(this.isEnableLeftYAxis)
+            .onChange((isChecked: boolean) => {
+              if (this.leftAxis && isChecked) {
+                this.leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
+                this.refresh();
+              }
+            })
 
-          Row() {
-            Text($r('app.string.control_inSideChart'))
-            Radio({ value: 'inSideChart', group: 'leftYAxisLabelPosition' })
-              .checked(false)
-              .enabled(this.isEnableLeftYAxis)
-              .onChange((isChecked: boolean) => {
-                if (this.leftAxis && isChecked) {
-                  this.leftAxis.setPosition(YAxisLabelPosition.INSIDE_CHART);
-                  this.refresh();
-                }
-              })
-          }
+          Text($r('app.string.control_inSideChart'))
+          Radio({ value: 'inSideChart', group: 'leftYAxisLabelPosition' })
+            .checked(false)
+            .enabled(this.isEnableLeftYAxis)
+            .onChange((isChecked: boolean) => {
+              if (this.leftAxis && isChecked) {
+                this.leftAxis.setPosition(YAxisLabelPosition.INSIDE_CHART);
+                this.refresh();
+              }
+            })
         }.alignSelf(ItemAlign.Start)
 
-        Row({ space: 10 }) {
+        Row() {
           Text($r('app.string.control_right_YAxis_location'))
-          Row() {
-            Text($r('app.string.control_right_outSideChart'))
-            Radio({ value: 'outSideChart', group: 'rightYAxisLabelPosition' })
-              .checked(true)
-              .enabled(this.isEnableRightYAxis)
-              .onChange((isChecked: boolean) => {
-                if (this.rightAxis && isChecked) {
-                  this.rightAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
-                  this.refresh();
-                }
-              })
-          }
+          Text($r('app.string.control_right_outSideChart'))
+          Radio({ value: 'outSideChart', group: 'rightYAxisLabelPosition' })
+            .margin({ right: $r('app.integer.margin_right_25') })
+            .checked(true)
+            .enabled(this.isEnableRightYAxis)
+            .onChange((isChecked: boolean) => {
+              if (this.rightAxis && isChecked) {
+                this.rightAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);
+                this.refresh();
+              }
+            })
 
-          Row() {
-            Text($r('app.string.control_left_outSideChart'))
-            Radio({ value: 'inSideChart', group: 'rightYAxisLabelPosition' })
-              .checked(false)
-              .enabled(this.isEnableRightYAxis)
-              .onChange((isChecked: boolean) => {
-                if (this.rightAxis && isChecked) {
-                  this.rightAxis.setPosition(YAxisLabelPosition.INSIDE_CHART);
-                  this.refresh();
-                }
-              })
-          }
+          Text($r('app.string.control_left_outSideChart'))
+          Radio({ value: 'inSideChart', group: 'rightYAxisLabelPosition' })
+            .checked(false)
+            .enabled(this.isEnableRightYAxis)
+            .onChange((isChecked: boolean) => {
+              if (this.rightAxis && isChecked) {
+                this.rightAxis.setPosition(YAxisLabelPosition.INSIDE_CHART);
+                this.refresh();
+              }
+            })
         }.alignSelf(ItemAlign.Start)
 
         Row() {
@@ -557,9 +541,7 @@ export struct BarChartPage {
             })
         }.alignSelf(ItemAlign.Start)
 
-        Row() {
-          Text($r('app.string.control_leftYAxis_limitline_location'))
-        }.alignSelf(ItemAlign.Start)
+        Text($r('app.string.control_leftYAxis_limitline_location')).alignSelf(ItemAlign.Start)
 
         Flex({ wrap: FlexWrap.Wrap }) {
           Row() {
@@ -652,7 +634,6 @@ export struct BarChartPage {
                 this.model.invalidate();
               }
             })
-            .margin({ left: $r('app.integer.margin_fu_3') })
         }.alignSelf(ItemAlign.Start)
       }
       .border({ width: 1, color: $r('app.color.border_color'), radius: 10, style: BorderStyle.Solid })

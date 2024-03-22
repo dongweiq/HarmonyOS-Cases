@@ -33,10 +33,6 @@
       "value": 5
     },
     {
-      "name": "margin_fu_3",
-      "value": -3
-    },
-    {
       "name": "margin_10",
       "value": 10
     },
@@ -75,6 +71,10 @@
     {
       "name": "border_width_1",
       "value": 1
+    },
+    {
+      "name": "margin_right_25",
+      "value": 25
     }
   ]
 }
