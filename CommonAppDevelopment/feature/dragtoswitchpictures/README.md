@@ -16,7 +16,7 @@
 
 本例涉及的关键特性和实现方案如下：
 
-1. 创建三个Stack组件，用来展示装修前后对比图，第一个和第三个Stack分别存放装修前的图片和装修后的图片，zIndex设置为1。第二个Stack存放按钮的图片，zIndex设置为2，这样按钮的图片就会覆盖在两张装修图片之上。
+1. 创建两个Stack组件，用来展示装修前后对比图，左右两个Stack分别存放装修前的图片和装修后的图片，zIndex设置为1。中间Column组件存放按钮的图片，zIndex设置为2，这样按钮的图片就会覆盖在两张装修图片之上。
    源码参考[DragToSwitchPicturesView.ets](./src/main/ets/components/view/DragToSwitchPicturesView.ets)。
 
 ```ts
@@ -24,14 +24,18 @@ Row() {
   Stack() {...}
   .zIndex(CONFIGURATION.ZINDEX1)
   .width(this.leftImageWidth) // z序设为1，为了使按钮图片浮在装修图片上。
+  .clip(true)
+  .alignContent(Alignment.TopStart)
 
-  Stack() {...}
+  Column() {...}
   .width($r('app.integer.drag_button_stack_width'))
   .zIndex(CONFIGURATION.ZINDEX2) // z序设为2，为了使按钮图片浮在装修图片上。
 
   Stack() {...}
   .zIndex(CONFIGURATION.ZINDEX1) // z序设为1，为了使按钮图片浮在装修图片上。
+  .clip(true)
   .width(this.rightImageWidth)
+  .alignContent(Alignment.TopEnd)
 }
 .justifyContent(FlexAlign.Center)
 .width($r('app.string.full_size'))

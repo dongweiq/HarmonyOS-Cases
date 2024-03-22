@@ -83,6 +83,35 @@ export struct TabsWaterFlowView {
   }
 
   @Builder
+  dragWaterFlow() {
+    WaterFlow() {
+      /**
+       * TODO: 高性能知识点: 使用了LazyForEach进行数据懒加载，WaterFlow布局时会根据可视区域按需创建FlowItem组件，并在FlowItem滑出可视区域外时销毁以降低内存占用。
+       * LazyForEach：数据懒加载:https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-rendering-control-lazyforeach-0000001524417213-V2
+       */
+      LazyForEach(this.dataSource, (waterFlowItem: WaterFlowModule) => {
+        FlowItem() {
+          this.methodPoints(waterFlowItem)
+        }
+      }, (waterFlowItem: WaterFlowModule) => JSON.stringify(waterFlowItem))
+    }
+    .margin({ top: $r('app.integer.margin_length') })
+    .nestedScroll({
+      // WaterFlow嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
+      scrollForward: NestedScrollMode.PARENT_FIRST, // 可滚动组件往末尾端滚动时父组件先滚动，父组件滚动到边缘以后自身滚动。
+      scrollBackward: NestedScrollMode.SELF_FIRST // 可滚动组件往起始端滚动时自身先滚动，父自身滚动到边缘以后父组件滚动。
+    })
+    /**
+     * TODO: 高性能知识点: 使用了cachedCount设置预加载的FlowItem的数量，只在LazyForEach中生效，设置该属性后会缓存cachedCount个FlowItem，LazyForEach超出显示和缓存范围的FlowItem会被释放。
+     * 使用cachedCount参数的例子:https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ui-ts-performance-improvement-recommendation-0000001477981001-V2
+     */
+    .cachedCount(CONFIGURATION.WATERFLOW_CACHEDCOUNT)
+    .columnsTemplate('1fr 1fr')
+    .columnsGap($r('app.integer.waterflow_columnsgap'))
+    .width($r('app.string.full_size'))
+  }
+
+  @Builder
   tabBuilder(index: number, name: string | Resource) {
     Row() {
       Text(name)
@@ -125,31 +154,7 @@ export struct TabsWaterFlowView {
       Tabs({ controller: this.tabsController }) {
         ForEach(TAB_DATA, (tabItem: TabDataModel) => {
           TabContent() {
-            WaterFlow() {
-              /**
-               * TODO: 高性能知识点: 使用了LazyForEach进行数据懒加载，WaterFlow布局时会根据可视区域按需创建FlowItem组件，并在FlowItem滑出可视区域外时销毁以降低内存占用。
-               * LazyForEach：数据懒加载:https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-rendering-control-lazyforeach-0000001524417213-V2
-               */
-              LazyForEach(this.dataSource, (waterFlowItem: WaterFlowModule) => {
-                FlowItem() {
-                  this.methodPoints(waterFlowItem)
-                }
-              }, (waterFlowItem: WaterFlowModule) => JSON.stringify(waterFlowItem))
-            }
-            .margin({ top: $r('app.integer.margin_length') })
-            .nestedScroll({
-              // WaterFlow嵌套滚动选项。设置向前向后两个方向上的嵌套滚动模式，实现与父组件的滚动联动。
-              scrollForward: NestedScrollMode.PARENT_FIRST, // 可滚动组件往末尾端滚动时父组件先滚动，父组件滚动到边缘以后自身滚动。
-              scrollBackward: NestedScrollMode.SELF_FIRST // 可滚动组件往起始端滚动时自身先滚动，父自身滚动到边缘以后父组件滚动。
-            })
-            /**
-             * TODO: 高性能知识点: 使用了cachedCount设置预加载的FlowItem的数量，只在LazyForEach中生效，设置该属性后会缓存cachedCount个FlowItem，LazyForEach超出显示和缓存范围的FlowItem会被释放。
-             * 使用cachedCount参数的例子:https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ui-ts-performance-improvement-recommendation-0000001477981001-V2
-             */
-            .cachedCount(CONFIGURATION.WATERFLOW_CACHEDCOUNT)
-            .columnsTemplate('1fr 1fr')
-            .columnsGap($r('app.integer.waterflow_columnsgap'))
-            .width($r('app.string.full_size'))
+            this.dragWaterFlow();
           }
           .tabBar(SubTabBarStyle.of(tabItem.navData)
             .indicator({ color: Color.Black })

@@ -23,9 +23,9 @@ export struct DragToSwitchPictures {
     Scroll() {
       Column() {
         // AI设计视图
-        DesignCattleView()
+        DesignCattleView();
         // 瀑布流视图
-        TabsWaterFlowView()
+        TabsWaterFlowView();
       }
       .justifyContent(FlexAlign.Center)
       .backgroundColor($r('app.color.home_page_backgroundcolor'))
