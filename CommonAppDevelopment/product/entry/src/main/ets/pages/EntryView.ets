@@ -21,6 +21,7 @@ import { emitter } from '@kit.BasicServicesKit';
 import { PanPositionModel } from '../model/PanPositionModel';
 import { HelperConstants } from '../constants/HelperConstants';
 import { HelperView } from '../view/HelperView';
+import { RouterInfo } from '@ohos/dynamicsRouter/Index';
 
 @Entry
 @Component
@@ -57,6 +58,9 @@ struct EntryView {
       // 根据模块名，获取WrappedBuilder对象，通过builder接口创建页面
       DynamicsRouter.getBuilder(name).builder(param);
     }
+    // 按需将NavDestinationMode配置为DIALOG类型，此时背景默认透明
+    .mode(name === RouterInfo.MULTI_MODAL_TRANSITION.moduleName + "/" + RouterInfo.MULTI_MODAL_TRANSITION.pageName ?
+    NavDestinationMode.DIALOG : NavDestinationMode.STANDARD)
     .hideTitleBar(true)
   }
 

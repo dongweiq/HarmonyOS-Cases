@@ -60,12 +60,12 @@ export struct AccountLogin {
         .maxLength(PHONE_NUMBER_LENGTH) // 设置最大输入字符数
         .onChange((value: string) => {
           // 当用户有输入时，pwdIsblank为false
-          this.pwdIsblank= value.length === 0;
+          this.pwdIsblank = value.length === 0;
         })
       Row() {
         Text($r('app.string.row_text'))
           .fontSize($r('app.integer.row_text_font_size'))
-          .fontColor($r('app.color.grey_7'))
+          .fontColor($r('app.color.note_color'))
           .backgroundColor($r('app.color.transparent_7'))
           .onClick(() => {
             // 切换到验证码登录
@@ -73,7 +73,7 @@ export struct AccountLogin {
           })
       }
       .width($r('app.string.size_eighty_percent'))
-      .padding({ bottom: $r('app.integer.row_padding_bottom') , top: $r('app.integer.row_padding_top') })
+      .padding({ bottom: $r('app.integer.row_padding_bottom'), top: $r('app.integer.row_padding_top') })
 
       Button($r('app.string.account_btn_text'))
         .type(ButtonType.Normal)
@@ -99,8 +99,8 @@ export struct AccountLogin {
           Span($r('app.string.read_and_agree'))
             .fontColor($r('app.color.grey_9'))
           Span($r('app.string.server_proxy_rule_detail'))
-            .fontColor(Color.Orange)
-            .onClick(()=>{
+            .fontColor($r('app.color.note_color'))
+            .onClick(() => {
               // 调用Toast显示提示:此样式仅为案例展示
               promptAction.showToast({ message: $r('app.string.only_show_ui') });
             })

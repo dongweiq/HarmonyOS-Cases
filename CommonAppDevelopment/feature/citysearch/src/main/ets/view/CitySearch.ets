@@ -79,7 +79,7 @@ export struct CitySearch {
 
       // 城市列表组件
       CityView({ isSearchState: $isSearchState })
-        .margin({top:$r('app.integer.list_margin_top')})
+        .margin({ top: $r('app.integer.list_margin_top') })
 
       // 搜索组件，将数据传递到搜索列表
       SearchView({ searchList: $searchList, isSearchState: $isSearchState })
@@ -96,7 +96,7 @@ export struct CitySearch {
 
   // 搜索城市展示逻辑
   searchCityList(value: string) {
-    let cityNames: string[] = [];
+    const cityNames: string[] = [];
     ALL_CITY2.forEach(item => {
       if (item.name === value) {
         item.city.forEach(city => {
@@ -124,4 +124,4 @@ export function getCitySearch(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.CITY_SEARCH,wrapBuilder(getCitySearch));
+DynamicsRouter.registerRouterPage(RouterInfo.CITY_SEARCH, wrapBuilder(getCitySearch));
