@@ -85,6 +85,10 @@
       "value": 48
     },
     {
+      "name": "setting_title_width",
+      "value": 200
+    },
+    {
       "name": "setting_item_padding_left",
       "value": 18
     },
