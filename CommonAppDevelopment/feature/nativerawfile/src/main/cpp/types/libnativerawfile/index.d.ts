@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-
-import resourceManager from '@ohos.resourceManager';
+import type resourceManager from '@ohos.resourceManager';
 export const getRawFileContent: (resmgr: resourceManager.ResourceManager, path: string, startPos: Number, len: Number) => string;
 export const getTotalRawFileContent: (resmgr: resourceManager.ResourceManager, path: string) => string;
