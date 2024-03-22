@@ -45,7 +45,7 @@ export struct FunctionalScenes {
         .padding({ left: $r('app.string.main_page_padding6'), right: $r('app.string.main_page_padding6') })
         .width('100%')
         .fontColor(Color.Black)
-        .textAlign(Array.from(listData.name).length > 13 ? TextAlign.Start : TextAlign.Center)
+        .textAlign(TextAlign.Start)
         .maxLines(2)
         .fontSize($r('app.string.ohos_id_text_size_body1'))
         .margin({ top: $r('app.string.main_page_margin1'), bottom: $r('app.string.main_page_margin1') })

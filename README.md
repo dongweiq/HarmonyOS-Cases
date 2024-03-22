@@ -21,76 +21,76 @@
    ```
    common_app_development
    |---AppScope
-   |---common                          // 公共能力层
+   |---common                             // 公共能力层
    |   |---utils  
-   |   |   |---component               // 公共布局，如功能介绍布局
-   |   |   |---log                     // 日志打印 
-   |---feature                         // 基础特性层
-   |   |---addressexchange             // 地址交换动画案例
-   |   |---akiusepractice              // AKI使用实践
-   |   |---applicationexception        // 应用异常处理案例
-   |   |---barchart                    // MpChart图表实现案例
-   |   |---customtabbar                // 自定义TabBar页签 案例
-   |   |---eventpropagation            // 阻塞事件冒泡案例
-   |   |---fitfordarkmode              // 深色模式适配案例
-   |   |---functionalscenes            // 主页瀑布流实现 
-   |   |---gbktranscoding              // Axios获取网络数据案例
-   |   |---handletabs                  // Tab组件实现增删Tab标签案例
-   |   |---imageviewer                 // 图片预览方案
-   |   |---marquee                     // 跑马灯案例
-   |   |---modalwindow                 // 全屏登录页面案例
-   |   |---nativeprogressnotify        // Native侧进度通知到ArkTS
-   |   |---nativerawfile               // Native读取Rawfile中文件部分内容
-   |   |---navigationparametertransfer // Navigation页面跳转对象传递案例
-   |   |---pageturninganimation        // 翻页动效案例
-   |   |---pendingitems                // 列表编辑实现案例
-   |   |---photopickandsave            // 图片选择和下载保存案例
-   |   |---pulltorefreshnews           // 下拉刷新与上滑加载案例
-   |   |---secondarylinkage            // 二级联动实现案例
-   |   |---slidetohideanddisplace      // 滑动页面信息隐藏与组件位移效果案例
-   |   |---variablewatch               // 多层嵌套类对象监听案例
-   |   |---verifycode                  // 验证码布局
-   |   |---vibrateeffect               // 基础特性层-抖动动画及手机振动效果
-   |   |---customcalendarpickerdialog  // 基础特性层-自定义日历选择器
-   |   |---navigationbarchange         // 基础特性层-状态栏显隐变化案例
-   |   |---customview                  // 基础特性层-自定义视图实现Tab效果
-   |   |---waterripples                // 基础特性层-听歌识曲水波纹特效案例
-   |   |---citysearch                  // 城市选择案例
-   |   |---componentstack              // 组件堆叠案例
-   |   |---dragandexchange             // Grid和List内拖拽交换子组件位置案例
-   |   |---foldablescreencases         // 折叠屏音乐播放器案例
-   |   |---imagecomment                // 发布图片评论案例
-   |   |---mediafullscreen             // 视频全屏切换案例
-   |   |---swipercomponent             // 多层级轮播图案例
-   |   |---swipersmoothvariation       // Swiper高度可变化效果案例
-   |   |---decompressfile              // Worker子线程中解压文件案例
-   |   |---paintcomponent              // 使用绘制组件实现自定义进度动画案例
-   |   |---lottieview                  // Lottie
-   |   |---imagecompression            // 图片压缩方案
-   |   |---votingcomponent             // 投票组件
-   |   |---webgetcameraimage           // WebView拉起原生相机案例
-   |   |---sidebaranimation            // SideBarContainer侧边栏淡入淡出动效实现案例
-   |   |---imageenableanalyzer         // 图片拖拽AI抠图案例
-   |   |---indicatorbelowswiper        // swiper指示器导航点位于swiper下方
-   |   |---bigfilecopy                 // 大文件拷贝案例
-   |   |---diggingholescreen           // 适配挖孔屏案例
-   |   |---dragtoswitchpictures        // 左右拖动切换图片效果案例
-   |   |---listitemoverflow            // 元素超出List区域
-   |   |---multiplefilesdownload       // 多文件下载监听案例
-   |   |---searchcomponent             // 搜索页一镜到底案例
-   |   |---dynamicattributes           // 跨文件样式复用和组件复用
-   |   |---etswrapper                  // NAPI封装ArkTS接口案例
-   |   |---handwritingtoimage          // 手写绘制及保存图片
-   |   |---indicatorbelowswiper        // swiper指示器导航点位于swiper下方
-   |   |---multimodaltransion          // 多模态页面转场动效实现案例
-   |   |---nativeembed                 // ArkWeb同层渲染
-   |   |---sideslipintercept           // 侧滑返回事件拦截案例
-   |   |---webpdfviewer                // Web组件预览PDF文件实现案例
-   |   |---listslidetohistory          // 长列表滑动到指定列表项动效实现案例
-   |   |---imagetheft                  // 正确配置ImageKnife请求头实现防盗链功能
+   |   |   |---component                  // 公共布局，如功能介绍布局
+   |   |   |---log                        // 日志打印 
+   |---feature                            // 基础特性层
+   |   |---addressexchange                // 地址交换动画案例
+   |   |---akiusepractice                 // AKI使用实践
+   |   |---applicationexception           // 应用异常处理案例
+   |   |---barchart                       // MpChart图表实现案例
+   |   |---customtabbar                   // 自定义TabBar页签 案例
+   |   |---eventpropagation               // 阻塞事件冒泡案例
+   |   |---fitfordarkmode                 // 深色模式适配案例
+   |   |---functionalscenes               // 主页瀑布流实现 
+   |   |---gbktranscoding                 // Axios获取网络数据案例
+   |   |---handletabs                     // Tab组件实现增删Tab标签案例
+   |   |---imageviewer                    // 图片预览方案
+   |   |---marquee                        // 跑马灯案例
+   |   |---modalwindow                    // 全屏登录页面案例
+   |   |---nativeprogressnotify           // Native侧进度通知到ArkTS
+   |   |---nativerawfile                  // Native读取Rawfile中文件部分内容
+   |   |---navigationparametertransfer    // Navigation页面跳转对象传递案例
+   |   |---pageturninganimation           // 翻页动效案例
+   |   |---pendingitems                   // 列表编辑实现案例
+   |   |---photopickandsave               // 图片选择和下载保存案例
+   |   |---pulltorefreshnews              // 下拉刷新与上滑加载案例
+   |   |---secondarylinkage               // 二级联动实现案例
+   |   |---slidetohideanddisplace         // 滑动页面信息隐藏与组件位移效果案例
+   |   |---variablewatch                  // 多层嵌套类对象监听案例
+   |   |---verifycode                     // 验证码布局
+   |   |---vibrateeffect                  // 基础特性层-抖动动画及手机振动效果
+   |   |---customcalendarpickerdialog     // 基础特性层-自定义日历选择器
+   |   |---navigationbarchange            // 基础特性层-状态栏显隐变化案例
+   |   |---customview                     // 基础特性层-自定义视图实现Tab效果
+   |   |---waterripples                   // 基础特性层-听歌识曲水波纹特效案例
+   |   |---citysearch                     // 城市选择案例
+   |   |---componentstack                 // 组件堆叠案例
+   |   |---dragandexchange                // Grid和List内拖拽交换子组件位置案例
+   |   |---foldablescreencases            // 折叠屏音乐播放器案例
+   |   |---imagecomment                   // 发布图片评论案例
+   |   |---mediafullscreen                // 视频全屏切换案例
+   |   |---swipercomponent                // 多层级轮播图案例
+   |   |---swipersmoothvariation          // Swiper高度可变化效果案例
+   |   |---decompressfile                 // Worker子线程中解压文件案例
+   |   |---paintcomponent                 // 使用绘制组件实现自定义进度动画案例
+   |   |---lottieview                     // Lottie
+   |   |---imagecompression               // 图片压缩方案
+   |   |---votingcomponent                // 投票组件
+   |   |---webgetcameraimage              // WebView拉起原生相机案例
+   |   |---sidebaranimation               // SideBarContainer侧边栏淡入淡出动效实现案例
+   |   |---imageenableanalyzer            // 图片拖拽AI抠图案例
+   |   |---indicatorbelowswiper           // swiper指示器导航点位于swiper下方
+   |   |---bigfilecopy                    // 大文件拷贝案例
+   |   |---diggingholescreen              // 适配挖孔屏案例
+   |   |---dragtoswitchpictures           // 左右拖动切换图片效果案例
+   |   |---listitemoverflow               // 元素超出List区域
+   |   |---multiplefilesdownload          // 多文件下载监听案例
+   |   |---searchcomponent                // 搜索页一镜到底案例
+   |   |---dynamicattributes              // 跨文件样式复用和组件复用
+   |   |---etswrapper                     // NAPI封装ArkTS接口案例
+   |   |---handwritingtoimage             // 手写绘制及保存图片
+   |   |---multimodaltransion             // 多模态页面转场动效实现案例
+   |   |---nativeembed                    // ArkWeb同层渲染
+   |   |---sideslipintercept              // 侧滑返回事件拦截案例
+   |   |---webpdfviewer                   // Web组件预览PDF文件实现案例
+   |   |---listslidetohistory             // 长列表滑动到指定列表项动效实现案例
+   |   |---imagetheft                     // 正确配置ImageKnife请求头实现防盗链功能
+   |   |---componentinstancesharedinpages // 正确配置ImageKnife请求头实现防盗链功能
    |---libs
    |---product 
-   |   |---entry                       // 产品定制层-应用入口
+   |   |---entry                          // 产品定制层-应用入口
    ```
 
 ## 工程框架和实现设计
@@ -439,12 +439,6 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/hand_wring_to_image.gif" width="200">
 
-#### swiper指示器导航点位于swiper下方
-
-本示例介绍通过分割swiper区域，实现指示器导航点位于swiper下方的效果。[详细说明文档](./CommonAppDevelopment/feature/indicatorbelowswiper/README.md)
-
-<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/indicator_below_swiper.gif" width="200">
-
 #### 多模态页面转场动效实现案例
 
 本示例介绍多模态页面转场动效实现：通过半模态转场实现半模态登录界面，与全屏模态和组件转场结合实现多模态组合登录场景，其中手机验证码登录与账号密码登录都为组件，通过TransitionEffect.move()实现组件间转场达到近似页面转场的效果。[详细说明文档](./CommonAppDevelopment/feature/multimodaltransion/README.md)
@@ -480,6 +474,12 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 本案例使用了第三方库imageknife，通过在请求头中添加Referer来获取防盗链图片功能。也可以基于此功能设置请求头中的其他参数，例如User-Agent、Origin甚至ETag等等。[详细说明文档](./CommonAppDevelopment/feature/imagetheft/readme.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_theft.gif" width="200">
+
+#### 页面间共享组件实例的案例
+
+本示例提供组件实例在页面间共享的解决方案：通过Stack容器，下层放地图组件，上层放Navigation组件来管理页面，页面可以共享下层的地图组件，页面中需要显示地图的区域设置为透明，并参考触摸交互控制，设置事件透传及响应区域。[详细说明文档](./CommonAppDevelopment/feature/componentinstancesharedinpages/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/componentinstancesharedinpages.gif" width="200">
 
 ### 公共能力层
 
