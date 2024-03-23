@@ -32,16 +32,16 @@ export class ImageScaleModel {
     this.defaultMaxScaleValue = defaultMaxScaleValue;
   }
 
-  reset() {
+  reset(): void {
     this.scaleValue = this.defaultScaleValue;
     this.pinchValue = this.scaleValue;
   }
 
-  stash() {
+  stash(): void {
     this.pinchValue = this.scaleValue;
   }
 
-  toString() {
-    return "[scaleValue: " + this.scaleValue + " pinchValue:" + this.pinchValue + "]";
+  toString(): string {
+    return `[scaleValue: ${this.scaleValue} pinchValue: ${this.pinchValue}]`;
   }
 }

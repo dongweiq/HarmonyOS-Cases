@@ -25,19 +25,19 @@ export class ImagePositionModel {
     this.currentY = currentY;
   }
 
-  reset() {
+  reset(): void {
     this.currentX = 0;
     this.currentY = 0;
     this.lastX = 0;
     this.lastY = 0;
   }
 
-  stash() {
+  stash(): void {
     this.lastX = this.currentX;
     this.lastY = this.currentY;
   }
 
-  toString() {
-    return "[currentX:" + this.currentX + " currentY:" + this.currentY + " lastX:" + this.lastX + " lastY:" + this.lastY + "]";
+  toString(): string {
+    return `[currentX: ${this.currentX} currentY: ${this.currentY} lastX: ${this.lastX} lastY: ${this.lastY}]`;
   }
 }
