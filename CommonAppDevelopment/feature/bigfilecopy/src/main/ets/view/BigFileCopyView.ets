@@ -67,11 +67,11 @@ export struct BigFileCopyView {
   copyFile2Sandbox() {
     this.isCopyFinished = false;
     // TODO：知识点：这里获取到的fd并不是目标文件的fd，而是文件所属hap包的fd
-    let data: resourceManager.RawFileDescriptor = this.context.resourceManager.getRawFdSync(this.fileName);
-    let targetPath: string = this.context.filesDir + "/" + this.fileName;
-    let destFile: fs.File = fs.openSync(targetPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    const data: resourceManager.RawFileDescriptor = this.context.resourceManager.getRawFdSync(this.fileName);
+    const targetPath: string = this.context.filesDir + "/" + this.fileName;
+    const destFile: fs.File = fs.openSync(targetPath, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
     let buffSize: number = BigFileCopyConstants.BUFF_SIZE;
-    let buffer: ArrayBuffer = new ArrayBuffer(buffSize);
+    const buffer: ArrayBuffer = new ArrayBuffer(Math.min(buffSize, data.length));
     let off: number = 0; // 记录读取位置的偏移（相较于文件起始偏移）
     let len: number = 0; // 本次读取内容的实际长度
     let readedLen: number = 0; // 记录已读文件长度
@@ -98,21 +98,24 @@ export struct BigFileCopyView {
 
   build() {
     Column() {
-      if (!this.isPreview) {
-        Progress({
-          value: this.progress,
-          total: BigFileCopyConstants.PROGRESS_MAX,
-          type: ProgressType.Eclipse
-        })
-          .size({ width: BigFileCopyConstants.COMPONENT_SIZE, height: BigFileCopyConstants.COMPONENT_SIZE })
-          .style({ strokeWidth: $r("app.integer.progress_stroke_width"), enableSmoothEffect: this.isEnableSmooth })
-      } else {
-        // TODO：知识点：Image组件加载沙箱路径需要加前缀 file://
-        Image(BigFileCopyConstants.SANDBOX_PREFIX + this.targetFilePath)
-          .width(BigFileCopyConstants.COMPONENT_SIZE)
-          .height(BigFileCopyConstants.COMPONENT_SIZE)
-          .borderRadius($r("sys.float.ohos_id_corner_radius_default_m"))
+      Stack() {
+        if (!this.isPreview) {
+          Progress({
+            value: this.progress,
+            total: BigFileCopyConstants.PROGRESS_MAX,
+            type: ProgressType.Eclipse
+          })
+            .size({ width: BigFileCopyConstants.COMPONENT_SIZE, height: BigFileCopyConstants.COMPONENT_SIZE })
+            .style({ strokeWidth: $r("app.integer.progress_stroke_width"), enableSmoothEffect: this.isEnableSmooth })
+        } else {
+          // TODO：知识点：Image组件加载沙箱路径需要加前缀 file://
+          Image(BigFileCopyConstants.SANDBOX_PREFIX + this.targetFilePath)
+            .width(BigFileCopyConstants.COMPONENT_SIZE)
+            .height(BigFileCopyConstants.COMPONENT_SIZE)
+            .borderRadius($r("sys.float.ohos_id_corner_radius_default_m"))
+        }
       }
+
       Text(`当前复制进度：${this.progress}%`)
         .margin({ top: $r("sys.float.ohos_id_elements_margin_vertical_m") })
       Button($r("app.string.copy_button_msg"))
