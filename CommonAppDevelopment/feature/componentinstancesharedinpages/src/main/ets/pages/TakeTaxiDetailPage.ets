@@ -17,12 +17,12 @@ import { TakeTaxiPageCommonConstants, CommonConstants } from '../model/CommonCon
 import { logger } from '@ohos/utils';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+import promptAction from '@ohos.promptAction';
 
 // 页面背景透明并设置事件穿透，用于显示及操作下层地图组件，绑定半模态用来显示内容
 @Component
 export struct TakeTaxiDetailPage {
   @State pageHeight: number = 0;
-  @State cardList: number[] = CommonConstants.CARD_NO_ARRAY;
   @Consume pageStackForComponentSharedPages: NavPathStack;
   // 用于调整下层地图组件和上层内容的手势响应区域，跟scroll的currentOffset相关
   @Consume mapResponseRegionHeight: number;
@@ -35,8 +35,8 @@ export struct TakeTaxiDetailPage {
    */
   aboutToAppear() {
     window.getLastWindow(getContext(this), (err: BusinessError, data: window.Window) => {
-      let rect: window.Rect = data.getWindowProperties().windowRect;
-      this.windowWidth = px2vp(rect.width);
+      const RECT: window.Rect = data.getWindowProperties().windowRect;
+      this.windowWidth = px2vp(RECT.width);
     })
   }
 
@@ -44,18 +44,13 @@ export struct TakeTaxiDetailPage {
   taxiContentBuilder() {
     // 页面的内容区域
     Column() {
-      /** 性能知识点: ForEach循环渲染会一次性加载所有组件，
-       *  会导致页面启动时间长，影响用户体验，长列表推荐使用懒加载LazyForEach
-       */
-      ForEach(this.cardList, (item: number) => {
-        Text()
-          .width(CommonConstants.CARD_WIDTH)
-          .height(CommonConstants.CARD_HEIGHT)
-          .margin(CommonConstants.CARD_MARGIN)
-          .backgroundColor(CommonConstants.CARD_BACKGROUND_COLOR)
-          .textAlign(TextAlign.Center)
-          .borderRadius(CommonConstants.CARD_BORDER_RADIUS)
-      })
+      Image($r('app.media.TaxiPageDetail'))
+        .margin({top:CommonConstants.titleTextMargin})
+        .width('100%')
+        .onClick(() => {
+          // 调用Toast显示提示:此样式仅为案例展示
+          promptAction.showToast({ message: $r('app.string.demo_toast_tips')});
+        })
     }
     .width('100%')
   }
@@ -70,12 +65,11 @@ export struct TakeTaxiDetailPage {
       // 绑定上半模态页面，用于显示内容
       .bindSheet($$this.isShow, this.taxiContentBuilder(),
         {
-          detents: TakeTaxiPageCommonConstants.SHEET_DETENTS,
+          detents: TakeTaxiPageCommonConstants.sheetDetents,
           preferType: this.windowWidth > this.componentsWindowWidth ? SheetType.CENTER : SheetType.POPUP,
           enableOutsideInteractive: true,
           dragBar: false,
-          title: { title: $r('app.string.take_taxi_detail_page') },
-          backgroundColor: Color.White,
+          backgroundColor: TakeTaxiPageCommonConstants.backgroundColor,
           showClose: false,
           // 关闭半模态组件时直接返回上一级页面
           shouldDismiss: ()=>{
@@ -85,11 +79,12 @@ export struct TakeTaxiDetailPage {
         }
       )
     }
+    .width('100%')
+    .height('100%')
     .hideTitleBar(true)
     .backgroundColor(Color.Transparent)
     .onAreaChange((oldValue, newValue) => {
       this.pageHeight = newValue.height as number;
-      logger.info('NavDestination area change, height is : ' + this.pageHeight);
       this.mapResponseRegionHeight = this.pageHeight;
     })
     .onShown(() => {
