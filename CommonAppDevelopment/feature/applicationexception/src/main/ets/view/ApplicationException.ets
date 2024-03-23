@@ -138,7 +138,7 @@ struct FaultConstruction {
     switch (index) {
       case 0:
       // 在按钮点击函数中构造一个APP_CRASH场景，触发应用崩溃事件
-        let result: object = JSON.parse('');
+        const result: object = JSON.parse('');
         break;
       case 1:
       // 在按钮点击函数中构造一个APP_FREEZE场景，触发应用卡死事件,500ms之后执行无限循环

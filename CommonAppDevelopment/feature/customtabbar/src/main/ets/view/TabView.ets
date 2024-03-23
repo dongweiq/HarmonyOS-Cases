@@ -121,47 +121,59 @@ struct TabItem {
 
   build() {
     Column() {
-      // 判断tab的下标是否为2
-      if (this.tabBarIndex === COMMUNITY_TAB_BAR_INDEX) {
-        Column() {
-          Image(this.selectedIndex === this.tabBarIndex ? TABINFO[this.tabBarIndex].selectedIcon : TABINFO[this.tabBarIndex].defaultIcon)
-            .size({ width: $r('app.integer.community_image_size'), height: $r('app.integer.community_image_size') })
-             // TODO：知识点：使用interpolation属性对图片进行插值，使图片显示得更清晰
-            .interpolation(ImageInterpolation.High)
+      Stack() {
+        // 判断tab的下标是否为2
+        if (this.tabBarIndex === COMMUNITY_TAB_BAR_INDEX) {
+          Column() {
+            Image(this.selectedIndex === this.tabBarIndex ? TABINFO[this.tabBarIndex].selectedIcon :
+                  TABINFO[this.tabBarIndex].defaultIcon)
+              .size({
+                width: $r('app.integer.community_image_size'),
+                height: $r('app.integer.community_image_size')
+              })
+              .interpolation(ImageInterpolation.High) // TODO：知识点：使用interpolation属性对图片进行插值，使图片显示得更清晰
+          }
+          .width($r('app.integer.community_image_container_size'))
+          .height($r('app.integer.community_image_container_size'))
+          // TODO：知识点：通过设置borderRadius以及margin的top值实现圆弧外轮廓效果。
+          .borderRadius($r('app.integer.community_image_container_border_radius_size'))
+          .margin({ top: ARC_MARGIN_TOP })
+          .backgroundColor(Color.White)
+          .justifyContent(FlexAlign.Center)
+        } else {
+          Column() {
+            // 通过被选中的tabBar下标值和tabBar的默认下标值来改变图片显示
+            Image(this.selectedIndex === this.tabBarIndex ? TABINFO[this.tabBarIndex].selectedIcon :
+                  TABINFO[this.tabBarIndex].defaultIcon)
+              // TODO：知识点：使用interpolation属性对图片进行插值，使图片显示得更清晰
+              .interpolation(ImageInterpolation.High)
+              .size(this.selectedIndex === HOME_TAB_BAR_INDEX && this.selectedIndex === this.tabBarIndex ?
+                { width: $r('app.integer.community_image_size'), height: $r('app.integer.community_image_size') } :
+                {
+                  width: $r('app.integer.tab_bar_image_size'),
+                  height: $r('app.integer.tab_bar_image_size')
+                })
+              // TODO：知识点：通过offset控制图片的纵向偏移。
+              .offset({
+                y: (this.selectedIndex === this.tabBarIndex && this.selectedIndex !== COMMUNITY_TAB_BAR_INDEX) ?
+                this.iconOffset : $r('app.integer.common_size_0')
+              })
+              // TODO：知识点：组件的某些通用属性变化时，可以通过属性动画animation实现过渡效果。本示例的动画效果是tabBar的图片向上偏移一小段距离
+              .animation({
+                duration: 400,
+                curve: Curve.Ease,
+                iterations: 1,
+                playMode: PlayMode.Normal
+              })
+          }
+          .width(this.selectedIndex === HOME_TAB_BAR_INDEX && this.selectedIndex === this.tabBarIndex ?
+          $r('app.integer.community_image_size') : $r('app.integer.tab_bar_image_container_size'))
+          .height(this.selectedIndex === HOME_TAB_BAR_INDEX && this.selectedIndex === this.tabBarIndex ?
+          $r('app.integer.community_image_size') : $r('app.integer.tab_bar_image_container_size'))
+          .justifyContent(FlexAlign.Center)
         }
-        .width($r('app.integer.community_image_container_size'))
-        .height($r('app.integer.community_image_container_size'))
-        // TODO：知识点：通过设置borderRadius以及margin的top值实现圆弧外轮廓效果。
-        .borderRadius($r('app.integer.community_image_container_border_radius_size'))
-        .margin({ top: ARC_MARGIN_TOP })
-        .backgroundColor(Color.White)
-        .justifyContent(FlexAlign.Center)
-      } else {
-        Column() {
-          // 通过被选中的tabBar下标值和tabBar的默认下标值来改变图片显示
-          Image(this.selectedIndex === this.tabBarIndex ? TABINFO[this.tabBarIndex].selectedIcon : TABINFO[this.tabBarIndex].defaultIcon)
-            // TODO：知识点：使用interpolation属性对图片进行插值，使图片显示得更清晰
-            .interpolation(ImageInterpolation.High)
-            .size(this.selectedIndex === HOME_TAB_BAR_INDEX && this.selectedIndex === this.tabBarIndex ?
-              { width: $r('app.integer.community_image_size'), height: $r('app.integer.community_image_size') } :
-              { width: $r('app.integer.tab_bar_image_size'), height: $r('app.integer.tab_bar_image_size') })
-            // TODO：知识点：通过offset控制图片的纵向偏移。
-            .offset({ y: (this.selectedIndex === this.tabBarIndex && this.selectedIndex !== COMMUNITY_TAB_BAR_INDEX) ?
-                      this.iconOffset : $r('app.integer.common_size_0') })
-            // TODO：知识点：组件的某些通用属性变化时，可以通过属性动画animation实现过渡效果。本示例的动画效果是tabBar的图片向上偏移一小段距离
-            .animation({
-              duration: 400,
-              curve: Curve.Ease,
-              iterations: 1,
-              playMode: PlayMode.Normal
-            })
-        }
-        .width(this.selectedIndex === HOME_TAB_BAR_INDEX && this.selectedIndex === this.tabBarIndex ?
-        $r('app.integer.community_image_size') : $r('app.integer.tab_bar_image_container_size'))
-        .height(this.selectedIndex === HOME_TAB_BAR_INDEX && this.selectedIndex === this.tabBarIndex ?
-        $r('app.integer.community_image_size') : $r('app.integer.tab_bar_image_container_size'))
-        .justifyContent(FlexAlign.Center)
       }
+
       Text(TABINFO[this.tabBarIndex].title)
         .fontSize($r('app.integer.tab_bar_text_font_size'))
         .fontColor(this.selectedIndex === this.tabBarIndex ? $r('app.color.selected_text_color') : Color.Black)
@@ -184,4 +196,4 @@ export function getTabView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.CUSTOM_TAB_BAR,wrapBuilder(getTabView));
+DynamicsRouter.registerRouterPage(RouterInfo.CUSTOM_TAB_BAR, wrapBuilder(getTabView));

@@ -134,7 +134,6 @@ struct TripMessage {
       }.width('100%')
       .justifyContent(FlexAlign.SpaceBetween)
 
-
       Row() {
         Text(this.tripDataItem.startingTime)
           .fontSize($r('sys.float.ohos_id_text_size_headline6'))
@@ -165,48 +164,65 @@ struct TripMessage {
       }.commonStyles()
       .justifyContent(FlexAlign.SpaceBetween)
 
-      Row() {
-        Row() {
-          Text($r('app.string.ticket_entrance'))
-            .padding({ right: 4 })
-          // TODO：知识点：使用Scroll组件和文本内容组件结合来判断文本宽度过宽时执行文本滚动，否则不执行
-          Scroll() {
-            Row() {
-              Text(this.tripDataItem.ticketEntrance)
-                .onAreaChange((oldValue, newValue) => {
-                  logger.info(`TextArea oldValue:${JSON.stringify(oldValue)},newValue:${JSON.stringify(newValue)}`);
-                  // 获取当前文本内容宽度
-                  this.ticketCheckTextWidth = Number(newValue.width);
-                })
-              // TODO：知识点：文本宽度大于Scroll组件宽度时显示。在偏移过程中可实现文本接替并显示在同一显示区的效果
-              if (this.ticketCheckTextWidth >= this.ticketCheckScrollWidth) {
-                Blank()
-                  .width(Constants.BLANK_SPACE)
-                Text(this.tripDataItem.ticketEntrance)
-              }
-            }.offset({ x: this.ticketCheckTextOffset })
-          }
-          .width($r('app.string.scroll_width'))
-          .align(Alignment.Start)
-          .enableScrollInteraction(false)
-          .scrollable(ScrollDirection.Horizontal)
-          .scrollBar(BarState.Off)
-          .onAreaChange((oldValue, newValue) => {
-            logger.info(`scrollArea oldValue:${JSON.stringify(oldValue)},newValue:${JSON.stringify(newValue)}`);
-            // 获取当前Scroll组件宽度
-            this.ticketCheckScrollWidth = Number(newValue.width);
+      RelativeContainer() {
+        Text($r('app.string.ticket_entrance'))
+          .padding({
+            right: 4
           })
+          .id('ticketEntrance')
+          .alignRules({
+            top: { anchor: '__container__', align: VerticalAlign.Top },
+            left: { anchor: '__container__', align: HorizontalAlign.Start }
+          })
+        // TODO：知识点：使用Scroll组件和文本内容组件结合来判断文本宽度过宽时执行文本滚动，否则不执行
+        Scroll() {
+          Row() {
+            Text(this.tripDataItem.ticketEntrance)
+              .onAreaChange((oldValue, newValue) => {
+                logger.info(`TextArea oldValue:${JSON.stringify(oldValue)},newValue:${JSON.stringify(newValue)}`);
+                // 获取当前文本内容宽度
+                this.ticketCheckTextWidth = Number(newValue.width);
+              })
+            // TODO：知识点：文本宽度大于Scroll组件宽度时显示。在偏移过程中可实现文本接替并显示在同一显示区的效果
+            if (this.ticketCheckTextWidth >= this.ticketCheckScrollWidth) {
+              Blank()
+                .width(Constants.BLANK_SPACE)
+              Text(this.tripDataItem.ticketEntrance)
+            }
+          }.offset({ x: this.ticketCheckTextOffset })
         }
-        .width('46%')
+        .width($r('app.string.scroll_width'))
+        .id('marquee')
+        .alignRules({
+          top: { anchor: '__container__', align: VerticalAlign.Top },
+          left: { anchor: 'ticketEntrance', align: HorizontalAlign.End }
+        })
+        .width('30%')
+        .align(Alignment.Start)
+        .enableScrollInteraction(false)
+        .scrollable(ScrollDirection.Horizontal)
+        .scrollBar(BarState.Off)
+        .onAreaChange((oldValue, newValue) => {
+          logger.info(`scrollArea oldValue:${JSON.stringify(oldValue)},newValue:${JSON.stringify(newValue)}`);
+          // 获取当前Scroll组件宽度
+          this.ticketCheckScrollWidth = Number(newValue.width);
+        })
 
-        Blank()
         Row() {
           Text($r('app.string.vehicle_model'))
           Text(this.tripDataItem.vehicleModel)
         }
-      }.commonStyles()
+        .id('vehicleModel')
+        .justifyContent(FlexAlign.End)
+        .backgroundColor(Color.White)
+        .alignRules({
+          top: { anchor: '__container__', align: VerticalAlign.Top },
+          right: { anchor: '__container__', align: HorizontalAlign.End }
+        })
+      }
     }
     .width('100%')
+    .height($r('app.integer.trip_message_height'))
     .padding($r('app.string.ohos_id_card_padding_start'))
     .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
     .margin({ top: $r('app.string.ohos_id_elements_margin_vertical_l') })
@@ -225,4 +241,4 @@ export function getMarqueeView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.MARQUEE,wrapBuilder(getMarqueeView));
+DynamicsRouter.registerRouterPage(RouterInfo.MARQUEE, wrapBuilder(getMarqueeView));
