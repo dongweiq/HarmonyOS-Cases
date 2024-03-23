@@ -14,21 +14,22 @@
  */
 import { FunctionDescription } from '@ohos/common/Index';
 import { SideBarAnimationViewConstants } from '../constants/SideBarAnimationViewConstants';
+import { CommonLazySource } from '../model/CommonLazySource';
 
 @Component
 export struct SideBarView {
-  memberArray: string[] = [];
+  memberArray: CommonLazySource<string> = new CommonLazySource();
 
   aboutToAppear(): void {
     for (let i = 0; i < SideBarAnimationViewConstants.MEMBER_COUNT; i++) {
-      this.memberArray.push("成员" + i);
+      this.memberArray.pushData("成员" + i);
     }
   }
 
   @Builder
   buildList() {
     List() {
-      ForEach(this.memberArray, (item: string, index: number) => {
+      LazyForEach(this.memberArray, (item: string, index: number) => {
         ListItem() {
           Row() {
             Image(null)
