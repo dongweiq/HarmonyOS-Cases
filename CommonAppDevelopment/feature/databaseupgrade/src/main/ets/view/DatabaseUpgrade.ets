@@ -97,32 +97,37 @@ export struct DatabaseUpgrade {
         // 表模块
         Column() {
           // V1版本表
-          if ((this.isUpdatedToV2 || this.isUpdatedToV3) && !(this.isUpdatedToV2 && this.isUpdatedToV3)) {
-            CustomFormComponent({ res: this.v1Res, title: Constants.V1 })
-            Row() {
-              Text($r('app.string.delete_class_name'))
-                .fontSize(Constants.NUMBER_10)
-              Text($r('app.string.arrowhead_text'))
-                .fontSize(Constants.NUMBER_50)
-              if (!this.isUpdatedToV2 && this.isUpdatedToV3) {
-                Text($r('app.string.add_teacher_first_name'))
+          Stack() {
+            if ((this.isUpdatedToV2 || this.isUpdatedToV3) && !(this.isUpdatedToV2 && this.isUpdatedToV3)) {
+              CustomFormComponent({ res: this.v1Res, title: Constants.V1 })
+              Row() {
+                Text($r('app.string.delete_class_name'))
                   .fontSize(Constants.NUMBER_10)
-              } else {
-                Text($r('app.string.add_teacher_name'))
-                  .fontSize(Constants.NUMBER_10)
+                Text($r('app.string.arrowhead_text'))
+                  .fontSize(Constants.NUMBER_50)
+                if (!this.isUpdatedToV2 && this.isUpdatedToV3) {
+                  Text($r('app.string.add_teacher_first_name'))
+                    .fontSize(Constants.NUMBER_10)
+                } else {
+                  Text($r('app.string.add_teacher_name'))
+                    .fontSize(Constants.NUMBER_10)
+                }
               }
             }
           }
-          // V2版本表
-          if (this.isUpdatedToV2 && this.isUpdatedToV3) {
-            CustomFormComponent({ res: this.v2Res, title: Constants.V2 })
-            Row() {
-              Text($r('app.string.rename_teacher_name'))
-                .fontSize(Constants.NUMBER_10)
-              Text($r('app.string.arrowhead_text'))
-                .fontSize(Constants.NUMBER_50)
-              Text($r('app.string.to_teacher_first_name'))
-                .fontSize(Constants.NUMBER_10)
+
+          Stack() {
+            // V2版本表
+            if (this.isUpdatedToV2 && this.isUpdatedToV3) {
+              CustomFormComponent({ res: this.v2Res, title: Constants.V2 })
+              Row() {
+                Text($r('app.string.rename_teacher_name'))
+                  .fontSize(Constants.NUMBER_10)
+                Text($r('app.string.arrowhead_text'))
+                  .fontSize(Constants.NUMBER_50)
+                Text($r('app.string.to_teacher_first_name'))
+                  .fontSize(Constants.NUMBER_10)
+              }
             }
           }
           // 当前版本表

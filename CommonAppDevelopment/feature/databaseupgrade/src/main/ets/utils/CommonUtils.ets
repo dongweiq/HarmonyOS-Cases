@@ -17,7 +17,7 @@ import { promptAction } from '@kit.ArkUI';
 import { Constants } from '../constants/Constants';
 
 export class CommonUtils {
-  showToast(message: string) {
+  showToast(message: string): void {
     promptAction.showToast({
       message: message,
       duration: 1000

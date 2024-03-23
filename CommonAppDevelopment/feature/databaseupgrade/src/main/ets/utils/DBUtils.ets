@@ -33,7 +33,7 @@ export class DBUtils {
   /**
    * 初始化db
    */
-  initDB() {
+  initDB(): void {
     if (store !== undefined) {
       return;
     }
@@ -53,7 +53,7 @@ export class DBUtils {
   /**
    * 删除rdbStore
    */
-  deleteRdbStore() {
+  deleteRdbStore(): void {
     if (store === undefined) {
       return;
     }
@@ -70,7 +70,7 @@ export class DBUtils {
    * @param tableName 表名
    * @param columnTypeMap 字段名与其类型
    */
-  async createTable(tableName: string, columnTypeMap: string[][]) {
+  async createTable(tableName: string, columnTypeMap: string[][]): Promise<void> {
     if (store === undefined) {
       return;
     }
@@ -109,7 +109,7 @@ export class DBUtils {
    *
    * @param tableName 表名
    */
-  async dropTable(tableName: string, targetVersion: number) {
+  async dropTable(tableName: string, targetVersion: number): Promise<void> {
     if (store === undefined) {
       return;
     }
@@ -129,26 +129,26 @@ export class DBUtils {
    * @param data 数据
    * @returns 插入条数
    */
-  async batchInsert(tableName: string, data: ValuesBucket[]) {
+  async batchInsert(tableName: string, data: ValuesBucket[]): Promise<void> {
     if (store === undefined) {
       return;
     }
     await store.batchInsert(tableName, data);
   }
 
-  rollback() {
+  rollback(): void {
     if (store !== undefined) {
       store.rollBack();
     }
   }
 
-  commit() {
+  commit(): void {
     if (store !== undefined) {
       store.commit();
     }
   }
 
-  beginTransaction() {
+  beginTransaction(): void {
     if (store !== undefined) {
       store.beginTransaction();
     }
@@ -168,7 +168,7 @@ export class DBUtils {
    * @param lastId    上一次查询id
    * @param callback  业务逻辑
    */
-  async queryData(tableName: string, limit: number, lastId: number, callback: (result: relationalStore.ResultSet) => Promise<void>) {
+  async queryData(tableName: string, limit: number, lastId: number, callback: (result: relationalStore.ResultSet) => Promise<void>): Promise<void> {
     if (store === undefined) {
       return;
     }
@@ -187,7 +187,7 @@ export class DBUtils {
    * @param callback 版本升级方法
    * @param version 版本
    */
-  async backup(version: number) {
+  async backup(version: number): Promise<void> {
     if (store === undefined) {
       return;
     }
@@ -199,7 +199,7 @@ export class DBUtils {
    * @param callback 版本升级方法
    * @param version 版本
    */
-  async restore(version: number) {
+  async restore(version: number): Promise<void> {
     if (store === undefined) {
       return;
     }
