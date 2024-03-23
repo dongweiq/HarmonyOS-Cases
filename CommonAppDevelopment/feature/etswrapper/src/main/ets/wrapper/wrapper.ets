@@ -50,7 +50,7 @@ function documentViewPickerSelect(uiContext: UIContext, options: picker.Document
   uiContext.runScopedTask(() => {
     logger.debug("enter ets select");
     logger.debug(JSON.stringify(uiContext));
-    let documentViewPicker: picker.DocumentViewPicker = new picker.DocumentViewPicker();
+    const documentViewPicker: picker.DocumentViewPicker = new picker.DocumentViewPicker();
     documentViewPicker.select(options).then((value: string[]) => {
       logger.debug("enter js select then");
       logger.debug(JSON.stringify(uiContext));
@@ -121,7 +121,7 @@ export function generateAbilityID(): string {
  * @param windowStage：UIAbitliy对应的windowStage对象
  */
 export function addUIContext(abilityID: string, windowStage: window.WindowStage): void {
-  let uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
+  const uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
   // TODO：知识点：添加UIAbitliy的id及其对应UIContext，后续将uiContext传回ets侧，以确保多实例情况下事件在正确的窗口/UIAbitliy内发生
   etswrapper.addUIContext(abilityID, uiContext);
 }

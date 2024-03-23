@@ -46,7 +46,7 @@ export struct MockNativeCallPickerView {
     emitter.on({
       eventId: EVENT_ID
     }, (eventData: emitter.EventData): void => {
-      let data = eventData.data as Record<string, string>;
+      const data = eventData.data as Record<string, string>;
       this.selectedContent = "";
       this.selectedContent = data.content.replace(',', '\n');
     })
@@ -74,19 +74,21 @@ export struct MockNativeCallPickerView {
           mockDocumentViewPickerSelectPThread();
           this.clickedBtnTitle = $r("app.string.mock_btn_p_info")
         })
-      if (this.selectedContent) {
-        Column() {
-          Text(this.clickedBtnTitle)
-          Text(this.selectedContent)
-            .padding($r("sys.float.ohos_id_card_margin_start"))
-            .wordBreak(WordBreak.BREAK_ALL)
-            .border({ radius: $r("sys.float.ohos_id_corner_radius_default_m") })
-            .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
-            .width($r("app.string.full_size"))
+      Stack() {
+        if (this.selectedContent) {
+          Column() {
+            Text(this.clickedBtnTitle)
+            Text(this.selectedContent)
+              .padding($r("sys.float.ohos_id_card_margin_start"))
+              .wordBreak(WordBreak.BREAK_ALL)
+              .border({ radius: $r("sys.float.ohos_id_corner_radius_default_m") })
+              .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
+              .width($r("app.string.full_size"))
+          }
+          .alignItems(HorizontalAlign.Start)
+          .margin({ top: $r("sys.float.ohos_id_card_margin_start") })
+          .width($r("app.string.full_size"))
         }
-        .alignItems(HorizontalAlign.Start)
-        .margin({ top: $r("sys.float.ohos_id_card_margin_start") })
-        .width($r("app.string.full_size"))
       }
     }
     .padding($r("sys.float.ohos_id_card_margin_start"))
