@@ -21,7 +21,7 @@
     switch (index) {
       case 0:
       // 在按钮点击函数中构造一个APP_CRASH场景，触发应用崩溃事件
-        let result: object = JSON.parse('');
+        const result: object = JSON.parse('');
         break;
       case 1:
       // 在按钮点击函数中构造一个APP_FREEZE场景，触发应用卡死事件,500ms之后执行无限循环
@@ -173,7 +173,7 @@ export class FaultDataSource extends BasicDataSource {
    * 存储数据异常信息
    * @param faultMessage 异常信息集合
    */
-  public static putFaultMessage(faultMessage: Array<string>) {
+  public static putFaultMessage(faultMessage: Array<string>): void {
     logger.info(`putMessage start`);
     try {
       // TODO：知识点：通过 dataPreferencesManager.put方法存储数据
@@ -186,8 +186,8 @@ export class FaultDataSource extends BasicDataSource {
         dataPreferencesManager.flush();
       })
     } catch (err) {
-      let code = (err as BusinessError).code;
-      let message = (err as BusinessError).message;
+      const code = (err as BusinessError).code;
+      const message = (err as BusinessError).message;
       logger.error("Failed to put value of 'catch err'. code =" + err.code + ", message =" + err.message);
     }
   }
@@ -196,20 +196,20 @@ export class FaultDataSource extends BasicDataSource {
    * 获取数据异常信息
    * @param faultMessage 异常信息集合
    */
-  public static getFaultMessage(faultDataSource:FaultDataSource) {
+  public static getFaultMessage(faultDataSource: FaultDataSource):void {
     logger.info(`getFaultMessage start`);
     try {
       // TODO：知识点：通过dataPreferencesManager.get方法获取异常信息数据
-      let promise = dataPreferencesManager.get('faultMessage', []);
+      const promise = dataPreferencesManager.get('faultMessage', []);
       promise.then(async (data: dataPreferences.ValueType) => {
         if (typeof data === 'string') {
-          let faultData: Array<string> = JSON.parse(data);
+          const faultData: Array<string> = JSON.parse(data);
           // 将异常数据添加到懒加载数据源中
           faultData.forEach((item: string) => {
             faultDataSource.pushData(item);
           })
           // 双向数据绑定懒加载数据源长度，更新数据源长度
-          AppStorage.setOrCreate('faultDataSourceLength',faultDataSource.totalCount())
+          AppStorage.setOrCreate('faultDataSourceLength', faultDataSource.totalCount())
           logger.info('Succeeded in getting value of faultMessage.');
         }
       })

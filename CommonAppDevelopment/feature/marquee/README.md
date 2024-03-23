@@ -21,36 +21,39 @@
    Scroll组件宽度时，通过添加判断显示同样的文本，在偏移过程中可实现文本接替并显示在同一显示区的效果。源码参考[Marquee.ets](./src/main/ets/view/Marquee.ets)
 
 ```
-    // TODO：知识点：使用Scroll组件和文本内容组件结合来判断文本宽度过宽时执行文本滚动，否则不执行
-    Scroll() {
-      Row() {
+  // TODO：知识点：使用Scroll组件和文本内容组件结合来判断文本宽度过宽时执行文本滚动，否则不执行
+  Scroll() {
+    Row() {
+      Text(this.tripDataItem.ticketEntrance)
+        .onAreaChange((oldValue, newValue) => {
+          logger.info(`TextArea oldValue:${JSON.stringify(oldValue)},newValue:${JSON.stringify(newValue)}`);
+          // 获取当前文本内容宽度
+          this.ticketCheckTextWidth = Number(newValue.width);
+        })
+      // TODO：知识点：文本宽度大于Scroll组件宽度时显示。在偏移过程中可实现文本接替并显示在同一显示区的效果
+      if (this.ticketCheckTextWidth >= this.ticketCheckScrollWidth) {
+        Blank()
+          .width(Constants.BLANK_SPACE)
         Text(this.tripDataItem.ticketEntrance)
-          .onAreaChange((oldValue, newValue) => {
-            logger.info(`TextArea oldValue:${JSON.stringify(oldValue)},newValue:${JSON.stringify(newValue)}`);
-            // 获取当前文本内容宽度
-            this.ticketCheckTextWidth = Number(newValue.width);
-          })
-        // TODO：知识点：文本宽度大于Scroll组件宽度时显示。在偏移过程中可实现文本接替并显示在同一显示区的效果
-        if (this.ticketCheckTextWidth >= this.ticketCheckScrollWidth) {
-          Blank()
-            .width(50)
-          Text(this.tripDataItem.ticketEntrance)
-        }
-      }.offset({ x: this.ticketCheckTextOffset })
-    }
-    .width('50%')
-    .align(Alignment.Start)
-    .enableScrollInteraction(false)
-    .flexGrow(1)
-    .scrollable(ScrollDirection.Horizontal)
-    .scrollBar(BarState.Off)
-    .onAreaChange((oldValue, newValue) => {
-      logger.info(`scrollArea oldValue:${JSON.stringify(oldValue)},newValue:${JSON.stringify(newValue)}`);
-      // 获取当前Scroll组件宽度
-      this.ticketCheckScrollWidth = Number(newValue.width);
-    })
-   }
-   .width('46%')
+      }
+    }.offset({ x: this.ticketCheckTextOffset })
+  }
+  .width($r('app.string.scroll_width'))
+  .id('marquee')
+  .alignRules({
+    top: { anchor: '__container__', align: VerticalAlign.Top },
+    left: { anchor: 'ticketEntrance', align: HorizontalAlign.End }
+  })
+  .width('30%')
+  .align(Alignment.Start)
+  .enableScrollInteraction(false)
+  .scrollable(ScrollDirection.Horizontal)
+  .scrollBar(BarState.Off)
+  .onAreaChange((oldValue, newValue) => {
+    logger.info(`scrollArea oldValue:${JSON.stringify(oldValue)},newValue:${JSON.stringify(newValue)}`);
+    // 获取当前Scroll组件宽度
+    this.ticketCheckScrollWidth = Number(newValue.width);
+  })
 ```
 
 2. 页面进来执行文本滚动函数scrollAnimation()，在指定的时间内完成文本的偏移，当循环一次之后，通过定时器setTimeout
