@@ -16,6 +16,7 @@
 {
   "module": {
     "name": "entry",
+    "compressNativeLibs": true, // 标识libs库以压缩存储方式打包
     "type": "entry",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
