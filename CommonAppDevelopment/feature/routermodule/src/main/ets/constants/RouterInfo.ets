@@ -88,7 +88,7 @@ export class RouterInfo {
   static readonly IMAGE_GRID_LAYOUT: RouterInfo = new RouterInfo('@ohos/imagegridlayout', 'ImageGridLayout');
   static readonly DYNAMIC_ATTRIBUTES: RouterInfo = new RouterInfo('@ohos/dynamicattributes', 'ShoppingCart');
   static readonly DYNAMIC_ATTRIBUTES_DETAILS: RouterInfo = new RouterInfo('@ohos/dynamicattributes', 'Details');
-  static readonly ETS_WRAPPER: RouterInfo = new RouterInfo('@ohos/dynamicattributes', 'MockNativeCallPickerView');
+  static readonly ETS_WRAPPER: RouterInfo = new RouterInfo('@ohos/etswrapper', 'MockNativeCallPickerView');
   static readonly HAND_WRITING_TO_IMAGE: RouterInfo = new RouterInfo('@ohos/handwritingtoimage', 'HandWritingToImage');
   static readonly INDICATOR_BELOW_SWIPER: RouterInfo = new RouterInfo('@ohos/indicatorbelowswiper', 'IndicatorBelowSwiper');
   static readonly MULTI_MODAL_TRANSITION: RouterInfo = new RouterInfo('@ohos/multimodaltransion', 'HalfModalWindow');

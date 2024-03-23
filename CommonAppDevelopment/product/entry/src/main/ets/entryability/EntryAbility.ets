@@ -23,7 +23,14 @@ import { logger } from '@ohos/base';
 import { Configuration } from '@ohos.app.ability.Configuration';
 import display from '@ohos.display';
 import { BusinessError } from '@ohos.base';
-
+// Napi封装ETS代码
+import {
+  registryDocumentViewPickerFn,
+  generateAbilityID,
+  addUIContext,
+  setTopAbilityID,
+  removeUIContext
+} from '@ohos/etswrapper';
 // 引用异常处理模块
 import { eventSubscription } from '@ohos/applicationexception';
 import { preloadSOByTaskPool } from '@ohos/nativerawfile';
@@ -32,11 +39,17 @@ const TAG = 'EntryAbility'
 // 资源异常枚举
 const RESOURCE_CONTROL: number = 7;
 
+registryDocumentViewPickerFn(); // napi封装ets
+
 export default class EntryAbility extends UIAbility {
+  // napi封装ets
+  abilityID: string = generateAbilityID();
+
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     logger.info(TAG, '%{public}s', 'Ability onCreate');
     // TODO：需求：待系统查杀类型需求开发，补充查杀系统枚举类型
-    if (launchParam.lastExitReason === RESOURCE_CONTROL) {}
+    if (launchParam.lastExitReason === RESOURCE_CONTROL) {
+    }
     // 绑定上下文信息
     AppStorage.setOrCreate('context', this.context);
     // 事件订阅(获取上次异常退出信息)
@@ -65,8 +78,10 @@ export default class EntryAbility extends UIAbility {
         logger.info(TAG, 'Failed to load the content. Cause:', JSON.stringify(err));
         return;
       }
+      addUIContext(this.abilityID, windowStage); // napi封装ets
       logger.info(TAG, 'Succeeded in loading the content. Data:', JSON.stringify(data));
     });
+    setTopAbilityID(this.abilityID, windowStage); // napi封装ets
 
     let windowClass: window.Window | undefined = undefined;
     window.getLastWindow(this.context, (err: BusinessError, data) => {
@@ -119,7 +134,7 @@ export default class EntryAbility extends UIAbility {
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
     logger.info(TAG, '%{public}s', 'Ability onWindowStageDestroy');
-
+    removeUIContext(this.abilityID); // napi封装ets
     // 移除当前windowStage实例缓存
     AppStorage.delete('windowStage');
   }
@@ -127,7 +142,6 @@ export default class EntryAbility extends UIAbility {
   onForeground(): void {
     // Ability has brought to foreground
     logger.info(TAG, '%{public}s', 'Ability onForeground');
-
   }
 
   onBackground(): void {
