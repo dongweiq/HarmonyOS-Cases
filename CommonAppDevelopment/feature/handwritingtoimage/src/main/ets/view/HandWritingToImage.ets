@@ -47,12 +47,6 @@ export struct HandWritingToImageView {
 
   build() {
     Column() {
-      // 功能描述
-      FunctionDescription({
-        title: $r('app.string.hand_writing_title'),
-        content: $r('app.string.hand_writing_description')
-      })
-        .margin({ top: 30, bottom: $r('app.integer.hand_writing_margin_bottom') })
       // 画布
       Row() {
         // TODO：知识点：自定义节点容器组件NodeContainer，接收MyNodeController的实例，将自定义的渲染节点挂载到组件上，实现自定义绘制
@@ -117,20 +111,23 @@ export struct HandWritingToImageView {
       .justifyContent(FlexAlign.SpaceAround)
       .margin({ bottom: $r('app.integer.hand_writing_margin_bottom') })
 
-      // 保存的图片所处路径
-      if (this.filePath !== '') {
-        Row() {
-          Text($r('app.string.hand_writing_image_save_path'))
-          Text(this.filePath)
-            .wordBreak(WordBreak.BREAK_ALL)
-            .textOverflow({ overflow: TextOverflow.Ellipsis })
-            .maxLines(MAX_LINES)
-            .layoutWeight(LAYOUT_WEIGHT)
+      Stack() {
+        // 保存的图片所处路径
+        if (this.filePath !== '') {
+          Row() {
+            Text($r('app.string.hand_writing_image_save_path'))
+            Text(this.filePath)
+              .wordBreak(WordBreak.BREAK_ALL)
+              .textOverflow({ overflow: TextOverflow.Ellipsis })
+              .maxLines(MAX_LINES)
+              .layoutWeight(LAYOUT_WEIGHT)
+          }
+          .width('100%')
+          .height($r('app.integer.hand_writing_save_row_height'))
+          .margin({ bottom: $r('app.integer.hand_writing_margin_bottom') })
         }
-        .width('100%')
-        .height($r('app.integer.hand_writing_save_row_height'))
-        .margin({ bottom: $r('app.integer.hand_writing_margin_bottom') })
       }
+
       // TODO：需求：手写内容使用ocr识别
     }
     .width('100%')
@@ -249,7 +246,7 @@ export struct HandWritingToImageView {
 /**
  * 获取当前时间的拼接字符串，用于图片命名
  */
-function getTimeStr() {
+function getTimeStr(): string {
   const now: Date = new Date();
   const year: number = now.getFullYear();
   const month: number = now.getMonth() + 1;
