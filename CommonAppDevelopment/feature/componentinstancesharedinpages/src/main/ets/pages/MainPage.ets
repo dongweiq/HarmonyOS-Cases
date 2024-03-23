@@ -14,6 +14,7 @@
  */
 
 import { MainPageCommonConstants, CommonConstants} from '../model/CommonConstants';
+import promptAction from '@ohos.promptAction';
 
 // 整个页面使用Scroll作为容器，实现页面内容滑动，Scroll中第一个组件设置为透明，并设置页面的事件穿透，用于显示和操作下层地图组件
 @Component
@@ -21,7 +22,6 @@ import { MainPageCommonConstants, CommonConstants} from '../model/CommonConstant
 export struct MainPageComponent {
   @State transParentInitHeight: number = 0;
   @State pageHeight: number = 0;
-  @State cardList: number[] = CommonConstants.CARD_NO_ARRAY;
   @Consume pageStackForComponentSharedPages: NavPathStack;
   @Consume('pageStack') homePageStack: NavPathStack;
   // 用于调整下层地图组件和上层内容的手势响应区域，跟scroll的currentOffset相关
@@ -40,30 +40,21 @@ export struct MainPageComponent {
           .height(this.transParentInitHeight)
           // 模拟页面的内容区域
           Column() {
-            Text($r('app.string.goto_page_tips'))
-              .margin(CommonConstants.TITLE_TEXT_MARGIN)
-              .textAlign(TextAlign.Center)
-              .fontWeight(CommonConstants.TITLE_FONT_WEIGHT)
-              .fontColor(Color.Black)
-              .fontSize(CommonConstants.TITLE_FONT_SIZE)
+            Image($r('app.media.MainPageGrid'))
+              .margin({top:CommonConstants.titleTextMargin})
+              .width('100%')
               .onClick(() => {
                 this.pageStackForComponentSharedPages.pushPathByName("TakeTaxiDetailPage", null, false);
               })
-            /** 性能知识点: ForEach循环渲染会一次性加载所有组件，
-             *  会导致页面启动时间长，影响用户体验，长列表推荐使用懒加载LazyForEach
-             */
-            ForEach(this.cardList, (item: number) => {
-              Text()
-                .width(CommonConstants.CARD_WIDTH)
-                .height(CommonConstants.CARD_HEIGHT)
-                .margin(CommonConstants.CARD_MARGIN)
-                .backgroundColor(CommonConstants.CARD_BACKGROUND_COLOR)
-                .textAlign(TextAlign.Center)
-                .borderRadius(CommonConstants.CARD_BORDER_RADIUS)
-            })
+            Image($r('app.media.MainPageAds'))
+              .width('100%')
+              .onClick(() => {
+                // 调用Toast显示提示:此样式仅为案例展示
+                promptAction.showToast({ message: $r('app.string.demo_toast_tips')});
+              })
           }
-          .borderRadius(MainPageCommonConstants.CONTENT_AREA_RADIUS)
-          .backgroundColor(Color.White)
+          .borderRadius(MainPageCommonConstants.contentAreaRadius)
+          .backgroundColor(MainPageCommonConstants.backgroundColor)
           .width('100%')
         }
       }
@@ -89,13 +80,11 @@ export struct MainPageComponent {
         return {offsetRemain : offset};
       })
     }
-    .height('100%')
-    .width('100%')
     .hideTitleBar(true)
     .backgroundColor(Color.Transparent)
     .onAreaChange((oldValue, newValue) => {
       this.pageHeight = newValue.height as number;
-      this.transParentInitHeight = this.pageHeight * MainPageCommonConstants.MAP_AREA_HEIGHT_RATIO;
+      this.transParentInitHeight = this.pageHeight * MainPageCommonConstants.mapAreaHeightRatio;
       this.mapResponseRegionHeight =
         this.transParentInitHeight - this.scrollCurOffset > 0 ? this.transParentInitHeight - this.scrollCurOffset:0;
     })

@@ -13,15 +13,14 @@
  * limitations under the License.
  */
 
-import { CommonConstants, MapCommonConstants } from '../model/CommonConstants'
-import { FunctionDescription } from '@ohos/utils'
+import { MapCommonConstants } from '../model/CommonConstants'
 
 // 使用image组件模拟地图组件
 @Component
 export struct MapComponent {
   // Image组件模拟地图，拖拽时修改这些状态变量，调整地图图片位置。地图图片宽高是页面的3倍，初始化xy偏移适当距离使地图显示在合适的位置
-  @State mapOffsetX: number = MapCommonConstants.MAP_INIT_OFFSET_X;
-  @State mapOffsetY: number = MapCommonConstants.MAP_INIT_OFFSET_Y;
+  @State mapOffsetX: number = MapCommonConstants.mapInitOffsetX;
+  @State mapOffsetY: number = MapCommonConstants.mapInitOffsetY;
   // 保存拖拽前xy的偏移位置
   private mapPoxX: number = 0;
   private mapPoxY: number = 0;
@@ -29,17 +28,12 @@ export struct MapComponent {
   @Consume mapResponseRegionHeight: number;
 
   build() {
-    Stack({alignContent:Alignment.Top}) {
+    Column() {
       Image($r('app.media.MapPicture'))
         // 地图图片设置为页面3倍，减少拖拽后显示空白
-        .width(MapCommonConstants.MAP_IMAGE_WIDTH)
-        .height(MapCommonConstants.MAP_IMAGE_HEIGHT)
+        .width(MapCommonConstants.mapImageWidth)
+        .height(MapCommonConstants.mapImageHeight)
         .offset({x:this.mapOffsetX, y:this.mapOffsetY})
-      FunctionDescription({
-        title:$r('app.string.demo_title'),
-        content:$r('app.string.demo_description')
-      })
-        .margin(CommonConstants.CARD_MARGIN)
     }
     .clip(true) // 地图图片超出页面区域时裁剪掉
     .width('100%')
