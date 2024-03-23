@@ -20,6 +20,7 @@ import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs'; // 引入文件管理模块
 import { logger } from '@ohos/base';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
+import { promptAction } from '@kit.ArkUI';
 
 const TAG = 'DecompressFileMainPage';
 const LAYOUT_WEIGHT = 1;
@@ -58,6 +59,9 @@ export struct DecompressFileView {
     // TODO：知识点：主线程在onmessage中接收来自worker线程的消息。
     workerInstance.onmessage = (e: MessageEvents): void => {
       if (e.data) {
+        promptAction.showToast({
+          message: $r('app.string.decompress_file_toast')
+        });
         this.outFileDir = e.data;
         logger.info(TAG, `Decompressed Files outFileDir: ${this.outFileDir}`);
         // 根据解压后的文件所属沙箱目录，获取解压后的文件列表
@@ -104,6 +108,7 @@ export struct DecompressFileView {
   getFileListData(outFileDir: string) {
     // TODO：知识点：使用fs.listFile接口获取解压得到的沙箱目录下的所有文件名。
     fs.listFile(outFileDir).then((fileNames: Array<string>) => {
+      this.fileListData.clearData(); // 清空上一次获取的列表
       for (let i = 0; i < fileNames.length; i++) {
         this.fileListData.pushData(new FileItem(fileNames[i], `${outFileDir}/${fileNames[i]}`));
       }
@@ -164,53 +169,68 @@ export struct DecompressFileView {
       .backgroundColor($r('app.color.ohos_id_color_background'))
 
       Divider()
-      Column() {
-        Text($r('app.string.decompressed_files'))
-          .textAlign(TextAlign.Start)
-          .fontSize($r('app.string.ohos_id_text_size_headline'))
-          .fontWeight(FontWeight.Bold)
-          .width('100%')
-          .padding($r('app.string.ohos_id_card_padding_start'))
-          .backgroundColor($r('app.color.decompress_result_background'))
 
-        Divider()
-        // 解压后的文件列表组件
-        List() {
-          // 性能：使用LazyForEach加载文件列表，https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/lazyforeach_optimization.md/
-          LazyForEach(this.fileListData, (item: FileItem) => {
-            ListItem() {
-              Row() {
-                Image($r('app.media.ic_files_documents'))
-                  .width($r('app.integer.file_icon_width'))
-                  .height($r('app.integer.file_icon_width'))
-                  .margin({ right: $r('app.string.ohos_id_card_margin_start') })
-                Text(item.fileName)
-                  .fontSize($r('app.string.ohos_id_text_size_body1'))
-              }
-              .padding($r('app.string.ohos_id_card_padding_start'))
-            }
-          }, (item: FileItem) => JSON.stringify(item))
-        }
-        .cachedCount(CACHED_COUNT)
+      Text($r('app.string.decompressed_files'))
+        .textAlign(TextAlign.Start)
+        .fontSize($r('app.string.ohos_id_text_size_headline'))
+        .fontWeight(FontWeight.Bold)
         .width('100%')
-        .backgroundColor($r('app.color.ohos_id_color_background'))
-        .layoutWeight(LAYOUT_WEIGHT)
-        .divider({
-          strokeWidth: $r('app.integer.stroke_width'),
-          color: $r('app.color.ohos_id_color_sub_background'),
-          startMargin: $r('app.string.ohos_id_card_margin_start'),
-          endMargin: $r('app.string.ohos_id_card_margin_start')
-        }) // 每行之间的分界线
-        .borderRadius({
-          bottomLeft: $r('app.string.ohos_id_corner_radius_default_m'),
-          bottomRight: $r('app.string.ohos_id_corner_radius_default_m')
-        })
+        .padding($r('app.string.ohos_id_card_padding_start'))
+        .backgroundColor($r('app.color.decompress_result_background'))
+
+      Divider()
+
+      // 解压后的文件列表组件
+      List() {
+        // 性能：使用LazyForEach加载文件列表，https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/lazyforeach_optimization.md/
+        LazyForEach(this.fileListData, (item: FileItem) => {
+          ListItem() {
+            FileListItem({ item: item })
+          }
+        }, (item: FileItem) => JSON.stringify(item))
       }
+      .cachedCount(CACHED_COUNT)
+      .width('100%')
+      .backgroundColor($r('app.color.ohos_id_color_background'))
+      .height($r('app.integer.decompress_list_height'))
       .layoutWeight(LAYOUT_WEIGHT)
+      .divider({
+        strokeWidth: $r('app.integer.stroke_width'),
+        color: $r('app.color.ohos_id_color_sub_background'),
+        startMargin: $r('app.string.ohos_id_card_margin_start'),
+        endMargin: $r('app.string.ohos_id_card_margin_start')
+      }) // 每行之间的分界线
+      .borderRadius({
+        bottomLeft: $r('app.string.ohos_id_corner_radius_default_m'),
+        bottomRight: $r('app.string.ohos_id_corner_radius_default_m')
+      })
+
     }
     .height('100%')
     .padding($r('app.string.ohos_id_card_padding_start'))
     .backgroundColor($r('app.color.ohos_id_color_sub_background'))
+  }
+}
+
+@Reusable
+@Component
+struct FileListItem {
+  @State item: FileItem = new FileItem('', '');
+
+  aboutToReuse(params: Record<string, FileItem>): void {
+    this.item = params.item;
+  }
+
+  build() {
+    Row() {
+      Image($r('app.media.ic_files_documents'))
+        .width($r('app.integer.file_icon_width'))
+        .height($r('app.integer.file_icon_width'))
+        .margin({ right: $r('app.string.ohos_id_card_margin_start') })
+      Text(this.item.fileName)
+        .fontSize($r('app.string.ohos_id_text_size_body1'))
+    }
+    .padding($r('app.string.ohos_id_card_padding_start'))
   }
 }
 
@@ -221,5 +241,5 @@ export function getDecompressFileView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.DECOMPRESS_FILE,wrapBuilder(getDecompressFileView));
+DynamicsRouter.registerRouterPage(RouterInfo.DECOMPRESS_FILE, wrapBuilder(getDecompressFileView));
 
