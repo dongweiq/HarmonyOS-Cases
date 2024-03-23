@@ -33,6 +33,10 @@
       "value": "登录成功"
     },
     {
+      "name": "message_third_party_authorization",
+      "value": "使用XX应用授权登录 "
+    },
+    {
       "name": "please_read_and_agree",
       "value": "请先阅读并同意协议"
     },
@@ -45,52 +49,8 @@
       "value": "遇到问题"
     },
     {
-      "name": "click_show_login_dialogController",
-      "value": "点击按钮唤出登录弹窗"
-    },
-    {
-      "name": "click_show_proxy",
-      "value": "点击了协议"
-    },
-    {
-      "name": "click_show_cancel",
-      "value": "点击了取消"
-    },
-    {
-      "name": "click_show_confirm",
-      "value": "点击了确认"
-    },
-    {
       "name": "full_screen_modal_login_description",
       "value": "点击跳转到全屏登录页"
-    },
-    {
-      "name": "service",
-      "value": "服务条款"
-    },
-    {
-      "name": "and1",
-      "value": "和"
-    },
-    {
-      "name": "privacy",
-      "value": "隐私政策"
-    },
-    {
-      "name": "and2",
-      "value": "以及"
-    },
-    {
-      "name": "account",
-      "value": "天翼账号服务协议"
-    },
-    {
-      "name": "not_this",
-      "value": "不是此账号？用其他账号"
-    },
-    {
-      "name": "login",
-      "value": "登录"
     },
     {
       "name": "phone_login",
@@ -119,6 +79,18 @@
     {
       "name": "size_ninety_percent",
       "value": "90%"
+    },
+    {
+      "name": "message_right_phone_number",
+      "value": "请输入正确的手机号"
+    },
+    {
+      "name": "message_read_agreement",
+      "value": "请先阅读并同意服务协议及个人信息处理规则"
+    },
+    {
+      "name": "message_verify_code_send",
+      "value": "验证码已发送"
     }
   ]
 }
