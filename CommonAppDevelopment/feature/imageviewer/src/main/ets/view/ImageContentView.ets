@@ -25,29 +25,20 @@ export struct ImageContentView {
   // windowHeight与windowWidth在entryAbility中进行设置，单位px
   @State windowWidth: number = 0;
   @State windowHeight: number = 0;
-  swiperController: SwiperController | undefined;
   image: Resource = $r("app.media.test1");
   @State imagePosition: ImagePositionModel = new ImagePositionModel();
-  @Consume('pageStack') pageInfo: NavPathStack;
-  readonly componentsWindowWidth: number = 600;
 
   /**
    * 获取应用主窗口的宽高
    */
   aboutToAppear() {
     window.getLastWindow(getContext(this), (err: BusinessError, data: window.Window) => {
-      let rect: window.Rect = data.getWindowProperties().windowRect;
+      const rect: window.Rect = data.getWindowProperties().windowRect;
       this.windowWidth = px2vp(rect.width);
       this.windowHeight = px2vp(rect.height);
-      if (this.windowWidth > this.componentsWindowWidth) {
-        this.windowWidth = this.windowWidth / 2;
-      }
       data.on("windowSizeChange", (size: window.Size) => {
         this.windowWidth = px2vp(size.width);
         this.windowHeight = px2vp(size.height);
-        if (this.windowWidth > this.componentsWindowWidth) {
-          this.windowWidth = this.windowWidth / 2;
-        }
       })
     })
   }
@@ -83,8 +74,8 @@ export struct ImageContentView {
             } else {
               animateTo({ duration: ImageViewerConstants.SCALE_DURATION }, () => {
                 // 记录点击的位置
-                let targetX: number = event.fingerList[0].globalX;
-                let targetY: number = event.fingerList[0].globalY;
+                const targetX: number = event.fingerList[0].globalX;
+                const targetY: number = event.fingerList[0].globalY;
                 // 缩放
                 this.imageScale.scaleValue = this.imageScale.defaultMaxScaleValue;
                 // 偏移
@@ -127,9 +118,6 @@ export struct ImageContentView {
               })
             }
           }),
-          TapGesture({ fingers: 1 }).onAction(() => {
-            this.pageInfo.pop();
-          })
         )
       )
   }

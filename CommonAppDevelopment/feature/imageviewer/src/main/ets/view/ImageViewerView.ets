@@ -24,44 +24,12 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 @Preview
 @Component
 export struct ImageViewerView {
-  @State currentIndex: number = 0;
-  @State windowHeight: number = 0;
-  @State windowWidth: number = 0;
-  @State scaleInfo: ImageScaleModel = new ImageScaleModel(1, 1);
   image: Resource = $r("app.media.test1")
-  controller: SwiperController = new SwiperController();
-  readonly componentsWindowWidth: number = 600;
-
-  aboutToAppear() {
-    window.getLastWindow(getContext(this), (err: BusinessError, data: window.Window) => {
-      let rect: window.Rect = data.getWindowProperties().windowRect;
-      this.windowWidth = px2vp(rect.width);
-      this.windowHeight = px2vp(rect.height);
-      if (this.windowWidth > this.componentsWindowWidth) {
-        this.windowWidth = this.windowWidth / 2;
-      }
-      data.on("windowSizeChange", (data: window.Size) => {
-        this.windowWidth = px2vp(data.width);
-        this.windowHeight = px2vp(data.height);
-        if (this.windowWidth > this.componentsWindowWidth) {
-          this.windowWidth = this.windowWidth / 2;
-        }
-      })
-    })
-  }
 
   build() {
-    Stack() {
-      ImageContentView({
-        imageScale: this.scaleInfo,
-        image: this.image,
-        swiperController: this.controller
-      })
-    }
-    .width(ImageViewerConstants.FULL_SIZE)
-    .height(ImageViewerConstants.FULL_SIZE)
-    .expandSafeArea([SafeAreaType.SYSTEM, SafeAreaType.CUTOUT], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
-
+    ImageContentView({
+      image: this.image,
+    })
   }
 }
 
