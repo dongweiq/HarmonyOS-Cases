@@ -10,7 +10,7 @@
     },
     {
       "name": "case_description",
-      "value": "本例主要用于PC场景，如群聊侧边栏显示群成员。通过显式动画来实现SideBarContainer侧边栏的淡入淡出。\n1. 请点击右侧三角进行侧边栏的显示或隐藏\n2. 请将鼠标置于侧边栏边缘，待鼠标变为双向箭头样式，长按鼠标左键并左右拖动以变化侧边栏大小"
+      "value": "本例主要用于PC场景，如群聊侧边栏显示群成员，在手机上的效果与PC上有区别。通过显式动画来实现SideBarContainer侧边栏的淡入淡出。\n1. 请点击右侧三角进行侧边栏的显示或隐藏\n2. 请将鼠标置于侧边栏边缘，待鼠标变为双向箭头样式，长按鼠标左键并左右拖动以变化侧边栏大小（手机上无此效果）"
     },
     {
       "name": "sidebar_message",
@@ -27,6 +27,18 @@
     {
       "name": "message_max_width",
       "value": "calc(100% - 50vp)"
+    },
+    {
+      "name": "not_implement_prompt",
+      "value": "仅供UI展示"
+    },
+    {
+      "name": "btn_send_msg",
+      "value": "发送"
+    },
+    {
+      "name": "group_name",
+      "value": "侧边栏淡入淡出动画案例群"
     }
   ]
 }

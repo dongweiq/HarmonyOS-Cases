@@ -24,28 +24,21 @@ import { SideBarContentView } from './SideBarContentView';
 import { SideBarAnimationViewConstants } from '../constants/SideBarAnimationViewConstants';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 import deviceInfo from '@ohos.deviceInfo';
-import { window } from '@kit.ArkUI';
+import { KeyboardAvoidMode, window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit';
+import { resourceManager } from '@kit.LocalizationKit';
 
 @Component
 export struct SideBarAnimationView {
   @State isShowSideBar: boolean = false;
   sidebarType: SideBarContainerType = SideBarContainerType.Embed;
-
-  setPhoneWindowOrientation(orientation: window.Orientation): void {
-    window.getLastWindow(getContext(this), (err: BusinessError, data: window.Window) => {
-      if (deviceInfo.deviceType === "phone") {
-        data.setPreferredOrientation(orientation);
-      }
-    })
-  }
+  deviceType: resourceManager.DeviceType = resourceManager.DeviceType.DEVICE_TYPE_PHONE;
 
   aboutToAppear(): void {
-    this.setPhoneWindowOrientation(window.Orientation.LANDSCAPE_INVERTED);
-  }
-
-  aboutToDisappear(): void {
-    this.setPhoneWindowOrientation(window.Orientation.PORTRAIT);
+    this.deviceType = getContext(this).resourceManager.getDeviceCapabilitySync().deviceType;
+    if (this.deviceType === resourceManager.DeviceType.DEVICE_TYPE_PHONE) {
+      this.sidebarType = SideBarContainerType.Overlay;
+    }
   }
 
   build() {
@@ -59,7 +52,7 @@ export struct SideBarAnimationView {
         .opacity(this.isShowSideBar ? SideBarAnimationViewConstants.SIDEBAR_OPACITY_SHOW : SideBarAnimationViewConstants.SIDEBAR_OPACITY_HIDDEN)
         .borderRadius($r("sys.float.ohos_id_corner_radius_default_m"))
 
-      SideBarContentView({ isShowSideBar: this.isShowSideBar })
+      SideBarContentView({ isShowSideBar: this.isShowSideBar, deviceType: this.deviceType })
         .width($r("app.string.full_size"))
     }
     .divider(null)
@@ -69,6 +62,10 @@ export struct SideBarAnimationView {
     // TODO：知识点：由于SideBarContainer的默认按钮无法定制动效，所以需要隐藏掉，通过自定义按钮进行动画的控制
     .showControlButton(SideBarAnimationViewConstants.SIDEBAR_IS_SHOW_BUTTON)
     .sideBarWidth(SideBarAnimationViewConstants.SIDEBAR_WIDTH)
+    .maxSideBarWidth(this.deviceType === resourceManager.DeviceType.DEVICE_TYPE_PHONE ?
+    SideBarAnimationViewConstants.SIDEBAR_WIDTH : null)
+    .minSideBarWidth(this.deviceType === resourceManager.DeviceType.DEVICE_TYPE_PHONE ?
+    SideBarAnimationViewConstants.SIDEBAR_WIDTH : null)
     .autoHide(SideBarAnimationViewConstants.SIDEBAR_IS_AUTO_HIDE)
     .width($r("app.string.full_size"))
     .height($r("app.string.full_size"))
@@ -83,4 +80,4 @@ export function getSideBarAnimationView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.SIDE_BAR_ANIMATION,wrapBuilder(getSideBarAnimationView));
+DynamicsRouter.registerRouterPage(RouterInfo.SIDE_BAR_ANIMATION, wrapBuilder(getSideBarAnimationView));
