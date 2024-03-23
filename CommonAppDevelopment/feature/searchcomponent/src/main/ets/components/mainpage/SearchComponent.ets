@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 import { DynamicsRouter } from '@ohos/dynamicsRouter/Index';
-import { ListData } from '../model/ListData';
-import { SearchResultDataSource } from '../model/SearchListDataSource';
+import { SceneModuleInfo } from '@ohos/functionalscenes';
 import curves from '@ohos.curves';
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
@@ -39,14 +38,13 @@ PersistentStorage.persistProp('searchHistoryData', []);
  */
 @Component
 export struct SearchComponent {
-  @StorageLink('listData') searchListData: ListData[] | undefined = AppStorage.get('listData'); // 搜索原始数据
-  dataSource: SearchResultDataSource = new SearchResultDataSource(); // 列表数据控制器
-  @StorageLink('searchHistoryData') searchHistoryData: ListData[] = []; // 搜索历史数组
+  @StorageLink('listData') searchListData: SceneModuleInfo[] | undefined = AppStorage.get('listData'); // 搜索原始数据
+  @StorageLink('searchHistoryData') searchHistoryData: SceneModuleInfo[] = []; // 搜索历史数组
   @State searchContext: string = ''; // 搜索输入内容
   @State isSearchPageShow: boolean = false; // 搜索页面是否显式标志位
   @State geometryId: string = ''; // 组件内隐式共享元素转场id
   @State XPosition: number = 0; // 搜索框水平位移
-  @State searchNewListData: ListData[] = [];
+  @State searchNewListData: SceneModuleInfo[] = [];
   @State avoidAreaHeight: number = 0;
   @State screenWidth: number = 0
   @StorageLink('context') UIContext: common.UIAbilityContext | undefined = AppStorage.get('context');
@@ -67,7 +65,7 @@ export struct SearchComponent {
    * @param value:输入框输入的内容
    */
   searchFunc(value: string) {
-    let newListData: ListData[] = [];
+    let newListData: SceneModuleInfo[] = [];
     if (this.searchListData !== undefined) {
       for (let i = 0; i < this.searchListData.length; i++) {
         // 通过includes对输入的字符进行查询
@@ -79,16 +77,8 @@ export struct SearchComponent {
     // 判断是否有输入的值
     if (value.length !== 0) {
       this.searchNewListData = newListData
-      // 更新数据控制器数据
-      this.dataSource.modifyAllData(newListData);
-      // 通知数据控制器重新加载数据
-      this.dataSource.reload();
     } else {
       this.searchNewListData = []
-      // 更新数据控制器数据
-      this.dataSource.modifyAllData([]);
-      // 通知数据控制器重新加载数据
-      this.dataSource.reload();
     }
   }
 
@@ -170,7 +160,7 @@ export struct SearchComponent {
           .visibility(this.searchHistoryData.length === 0 || this.searchContext.length !== 0 ? Visibility.None : Visibility.Visible) // 没有搜索历史时隐藏
         Flex({ wrap: FlexWrap.Wrap }) {
           // 首次进入页面就需要全部加载不需要使用LazyForeach懒加载
-          ForEach(this.searchHistoryData, (item: ListData) => {
+          ForEach(this.searchHistoryData, (item: SceneModuleInfo) => {
             Column() {
               Text(item.name)
                 .fontSize($r('app.string.search_history_font_size2'))
@@ -202,7 +192,7 @@ export struct SearchComponent {
 
       List() {
         // TODO：知识点：使用LazyForEach加载搜索结果列表，可以按需加载，解决一次性加载全部列表数据引起的卡顿问题，提高页面响应速度
-        ForEach(this.searchNewListData, (item: ListData) => {
+        ForEach(this.searchNewListData, (item: SceneModuleInfo) => {
           ListItem() {
             Column() {
               Row() {
@@ -233,7 +223,7 @@ export struct SearchComponent {
             DynamicsRouter.push(item.routerInfo, item.param);
             this.searchContext = ''
           })
-        }, (item: ListData) => JSON.stringify(item))
+        }, (item: SceneModuleInfo) => JSON.stringify(item))
       }
       .edgeEffect(EdgeEffect.Spring)
       .sticky(StickyStyle.Header)
