@@ -51,6 +51,14 @@ export class FileListDataSource implements IDataSource {
   }
 
   /**
+   * 清空数据
+   */
+  public clearData(): void {
+    this.fileList = [];
+    this.notifyDataReload();
+  }
+
+  /**
    * 注册改变数据的控制器
    * @param listener 数据控制器
    */

@@ -15,6 +15,10 @@
     {
       "name": "decompressed_files",
       "value": "解压结果"
+    },
+    {
+      "name": "decompress_file_toast",
+      "value": "文件解压成功"
     }
   ]
 }

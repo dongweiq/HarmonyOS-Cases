@@ -35,6 +35,10 @@
     {
       "name": "stroke_width",
       "value": 1
+    },
+    {
+      "name": "decompress_list_height",
+      "value": 400
     }
   ]
 }
