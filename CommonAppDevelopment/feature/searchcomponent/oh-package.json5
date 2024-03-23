@@ -7,6 +7,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     // 动态路由模块，用于配置动态路由
-    "@ohos/dynamicsrouter": "file:../../feature/routermodule"
+    "@ohos/dynamicsrouter": "file:../../feature/routermodule",
+    // 主页瀑布流组件，复用数据模型
+    "@ohos/functionalscenes": "file:../../feature/functionalscenes"
   }
 }
