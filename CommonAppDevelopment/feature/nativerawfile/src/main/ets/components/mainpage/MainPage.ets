@@ -44,128 +44,122 @@ export struct NativeRawfileDemo {
 
   build() {
     Column() {
-      Column() {
-        Row() {
-          Text($r('app.string.rawFileContent'))
-            .width('35%')
-            .align(Alignment.End)
-            .textAlign(TextAlign.End)
-            .fontWeight(FontWeight.Normal)
-            .margin($r('app.string.rawfile_margin'))
-          Text(rawfileTotalContent)
-            .width('50%')
-            .fontWeight(FontWeight.Normal)
-            .margin($r('app.string.rawfile_margin'))
-        }
-        .width('100%')
-
-        Row() {
-          Text($r('app.string.ReadStartPos'))
-            .width('35%')
-            .textAlign(TextAlign.End)
-            .fontWeight(FontWeight.Normal)
-            .margin($r('app.string.rawfile_margin'))
-            .align(Alignment.End)
-          TextInput({ text: this.ReadStartPos.toString() })
-            .id('startPos')
-            .width('50%')
-            .type(InputType.Number)
-            .placeholderColor(Color.Grey)
-            .placeholderFont({ size: $r('app.string.rawfile_font_size_14') })
-            .caretColor(Color.Blue)
-            .margin($r('app.string.rawfile_margin'))
-            .fontColor(Color.Black)
-            .onChange((value: string) => {
-              if (value === '') {
-                this.buttonEnabledStatus = false;
-              } else {
-                this.ReadStartPos = Number(value);
-                if (rawfileTotalContent.length <= this.ReadStartPos) {
-                  promptAction.showToast({
-                    message: `读取位置取值范围0-${rawfileTotalContent.length-1}`
-                  });
-                  this.buttonEnabledStatus = false;
-                } else {
-                  this.buttonEnabledStatus = true;
-                }
-              }
-            })
-        }
-        .width('100%')
-
-        Row() {
-          Text($r('app.string.ReadLength'))
-            .width('35%')
-            .fontWeight(FontWeight.Normal)
-            .margin($r('app.string.rawfile_margin'))
-            .textAlign(TextAlign.End)
-            .align(Alignment.End)
-          TextInput({ text: this.readLength.toString() })
-            .id('contentLen')
-            .width('50%')
-            .type(InputType.Number)
-            .placeholderColor(Color.Grey)
-            .placeholderFont({ size: $r('app.string.rawfile_font_size_14') })
-            .caretColor(Color.Blue)
-            .margin($r('app.string.rawfile_margin'))
-            .fontColor(Color.Black)
-            .onChange((value: string) => {
-              if (value === '') {
-                this.buttonEnabledStatus = false;
-              } else {
-                this.readLength = Number(value);
-                if (rawfileTotalContent.length < this.readLength + this.ReadStartPos) {
-                  promptAction.showToast({
-                    message: $r('app.string.ReadLength_toast')
-                  });
-                  this.buttonEnabledStatus = false;
-                } else {
-                  this.buttonEnabledStatus = true;
-                }
-              }
-            })
-        }
-        .width('100%')
-
-        Row() {
-          Text($r('app.string.ReadResult'))
-            .width('35%')
-            .fontWeight(FontWeight.Normal)
-            .margin($r('app.string.rawfile_margin'))
-            .textAlign(TextAlign.End)
-            .align(Alignment.Start)
-          Text(this.rawfileContent)
-            .width('50%')
-            .fontWeight(FontWeight.Normal)
-            .margin($r('app.string.rawfile_margin'))
-            .align(Alignment.Start)
-        }
-        .width('100%')
-        .margin($r('app.string.ohos_id_elements_margin_vertical_m'))
-
-        Button($r('app.string.ReadButton'))
-          .onClick(() => {
-            this.rawfileContent = nativeRawfileApi.getRawFileContent(getContext()
-              .resourceManager, this.rawfileName, this.ReadStartPos, this.readLength);
-          })
+      Row() {
+        Text($r('app.string.rawFileContent'))
+          .width('35%')
+          .align(Alignment.End)
+          .textAlign(TextAlign.End)
+          .fontWeight(FontWeight.Normal)
           .margin($r('app.string.rawfile_margin'))
-          .enabled(this.buttonEnabledStatus)
+        Text(rawfileTotalContent)
+          .width('50%')
+          .fontWeight(FontWeight.Normal)
+          .margin($r('app.string.rawfile_margin'))
       }
-      .backgroundColor('#FFFFFF')
-      .border({
-        width: 1,
-        color: $r('app.color.border_color'),
-        radius: $r('app.string.rawfile_radius'),
-        style: BorderStyle.Solid
-      })
-      .borderRadius($r('app.string.rawfile_borderRadius'))
-      .padding($r('app.string.rawfile_padding'))
-      .margin($r('app.string.rawfile_margin12'))
       .width('100%')
+
+      Row() {
+        Text($r('app.string.ReadStartPos'))
+          .width('35%')
+          .textAlign(TextAlign.End)
+          .fontWeight(FontWeight.Normal)
+          .margin($r('app.string.rawfile_margin'))
+          .align(Alignment.End)
+        TextInput({ text: this.ReadStartPos.toString() })
+          .id('startPos')
+          .width('50%')
+          .type(InputType.Number)
+          .placeholderColor(Color.Grey)
+          .placeholderFont({ size: $r('app.string.rawfile_font_size_14') })
+          .caretColor(Color.Blue)
+          .margin($r('app.string.rawfile_margin'))
+          .fontColor(Color.Black)
+          .onChange((value: string) => {
+            if (value === '') {
+              this.buttonEnabledStatus = false;
+            } else {
+              this.ReadStartPos = Number(value);
+              if (rawfileTotalContent.length <= this.ReadStartPos) {
+                promptAction.showToast({
+                  message: `读取位置取值范围0-${rawfileTotalContent.length - 1}`
+                });
+                this.buttonEnabledStatus = false;
+              } else {
+                this.buttonEnabledStatus = true;
+              }
+            }
+          })
+      }
+      .width('100%')
+
+      Row() {
+        Text($r('app.string.ReadLength'))
+          .width('35%')
+          .fontWeight(FontWeight.Normal)
+          .margin($r('app.string.rawfile_margin'))
+          .textAlign(TextAlign.End)
+          .align(Alignment.End)
+        TextInput({ text: this.readLength.toString() })
+          .id('contentLen')
+          .width('50%')
+          .type(InputType.Number)
+          .placeholderColor(Color.Grey)
+          .placeholderFont({ size: $r('app.string.rawfile_font_size_14') })
+          .caretColor(Color.Blue)
+          .margin($r('app.string.rawfile_margin'))
+          .fontColor(Color.Black)
+          .onChange((value: string) => {
+            if (value === '') {
+              this.buttonEnabledStatus = false;
+            } else {
+              this.readLength = Number(value);
+              if (rawfileTotalContent.length < this.readLength + this.ReadStartPos) {
+                promptAction.showToast({
+                  message: $r('app.string.ReadLength_toast')
+                });
+                this.buttonEnabledStatus = false;
+              } else {
+                this.buttonEnabledStatus = true;
+              }
+            }
+          })
+      }
+      .width('100%')
+
+      Row() {
+        Text($r('app.string.ReadResult'))
+          .width('35%')
+          .fontWeight(FontWeight.Normal)
+          .margin($r('app.string.rawfile_margin'))
+          .textAlign(TextAlign.End)
+          .align(Alignment.Start)
+        Text(this.rawfileContent)
+          .width('50%')
+          .fontWeight(FontWeight.Normal)
+          .margin($r('app.string.rawfile_margin'))
+          .align(Alignment.Start)
+      }
+      .width('100%')
+      .margin($r('app.string.ohos_id_elements_margin_vertical_m'))
+
+      Button($r('app.string.ReadButton'))
+        .onClick(() => {
+          this.rawfileContent = nativeRawfileApi.getRawFileContent(getContext()
+            .resourceManager, this.rawfileName, this.ReadStartPos, this.readLength);
+        })
+        .margin($r('app.string.rawfile_margin'))
+        .enabled(this.buttonEnabledStatus)
     }
-    .height('100%')
+    .backgroundColor('#FFFFFF')
+    .border({
+      width: 1,
+      color: $r('app.color.border_color'),
+      radius: $r('app.string.rawfile_radius'),
+      style: BorderStyle.Solid
+    })
+    .borderRadius($r('app.string.rawfile_borderRadius'))
     .padding($r('app.string.rawfile_padding'))
-    .justifyContent(FlexAlign.Center)
+    .margin($r('app.string.rawfile_margin12'))
   }
 }
 
