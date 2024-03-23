@@ -23,14 +23,14 @@ export class MyRenderNode extends RenderNode {
   path: drawing.Path = new drawing.Path(); // 新建路径对象，用于绘制手指移动轨迹
 
   // RenderNode进行绘制时会调用draw方法
-  async draw(context: DrawContext) {
+  draw(context: DrawContext): void {
     const canvas = context.canvas;
     // 创建一个画笔Pen对象，Pen对象用于形状的边框线绘制
-    let pen = new drawing.Pen();
+    const pen = new drawing.Pen();
     // 设置画笔开启反走样，可以使得图形的边缘在显示时更平滑
     pen.setAntiAlias(true);
     // 设置画笔颜色为黑色
-    let pen_color: common2D.Color = { alpha: 0xFF, red: 0x00, green: 0x00, blue: 0x00 };
+    const pen_color: common2D.Color = { alpha: 0xFF, red: 0x00, green: 0x00, blue: 0x00 };
     pen.setColor(pen_color);
     // 开启画笔的抖动绘制效果。抖动绘制可以使得绘制出的颜色更加真实。
     pen.setDither(true);
@@ -62,7 +62,7 @@ export class MyNodeController extends NodeController {
   }
 
   // 绑定的NodeContainer布局时触发，获取NodeContainer的宽高
-  aboutToResize(size: Size) {
+  aboutToResize(size: Size): void {
     this.width = size.width;
     this.height = size.height;
     // 设置画布底色为白色

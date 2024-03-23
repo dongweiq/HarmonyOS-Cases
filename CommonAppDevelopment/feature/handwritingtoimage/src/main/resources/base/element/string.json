@@ -19,14 +19,6 @@
     {
       "name": "hand_writing_image_save_path",
       "value": "图片路径："
-    },
-    {
-      "name": "hand_writing_title",
-      "value": "手写绘制及保存图片"
-    },
-    {
-      "name": "hand_writing_description",
-      "value": "本示例使用drawing库的Pen和Path结合NodeContainer组件实现手写绘制功能，并通过image库的packToFile和packing接口将手写板的绘制内容保存为图片。"
     }
   ]
 }
