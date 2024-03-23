@@ -35,6 +35,22 @@
     {
       "name": "sidebar_member_list_name_height",
       "value": 20
+    },
+    {
+      "name": "back_btn_response_width",
+      "value": 40
+    },
+    {
+      "name": "back_btn_x",
+      "value": -10
+    },
+    {
+      "name": "back_btn_response_height",
+      "value": 60
+    },
+    {
+      "name": "back_btn_y",
+      "value": -10
     }
   ]
 }

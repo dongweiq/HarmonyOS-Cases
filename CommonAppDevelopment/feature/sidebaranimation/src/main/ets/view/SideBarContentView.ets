@@ -13,17 +13,27 @@
  * limitations under the License.
  */
 import { SideBarAnimationViewConstants } from '../constants/SideBarAnimationViewConstants';
-import { FunctionDescription } from '@ohos/common';
+import { promptAction } from '@kit.ArkUI';
+import { resourceManager } from '@kit.LocalizationKit';
 
 @Preview
 @Component
 export struct SideBarContentView {
   @Link isShowSideBar: boolean;
+  @State sideBarBtnOffset: number = 0;
+  deviceType: resourceManager.DeviceType = resourceManager.DeviceType.DEVICE_TYPE_PHONE;
 
   switchTabBar() {
     // TODO：知识点：本例核心，点击Button的时候通过显式动画来控制sidebar的显示与隐藏，因为这里只对this.isShowSideBar进行了变化，因此所有相关动画均需与其关联
     animateTo({ duration: SideBarAnimationViewConstants.SIDEBAR_ANIMATION_DURATION, curve: Curve.Friction }, () => {
       this.isShowSideBar = !this.isShowSideBar;
+      if (this.deviceType === resourceManager.DeviceType.DEVICE_TYPE_PHONE) {
+        if (this.isShowSideBar) {
+          this.sideBarBtnOffset = -1 * SideBarAnimationViewConstants.SIDEBAR_WIDTH;
+        } else {
+          this.sideBarBtnOffset = 0;
+        }
+      }
     })
   }
 
@@ -58,7 +68,7 @@ export struct SideBarContentView {
     Stack() {
       Column() {
         Column() {
-          Text("侧边栏淡入淡出动画案例群")
+          Text($r("app.string.group_name"))
             .fontSize($r("sys.float.ohos_id_text_size_headline8"))
             .fontWeight(SideBarAnimationViewConstants.GROUP_NAME_FONT_WEIGHT)
             .margin($r("sys.float.ohos_id_card_margin_start"))
@@ -73,14 +83,23 @@ export struct SideBarContentView {
         .width($r("app.string.full_size"))
 
         Blank()
-        Stack() {
-          TextArea()
-            .borderRadius($r("sys.float.ohos_id_corner_radius_default_m"))
-            .height($r("app.integer.input_box_height"))
-          Button("发送")
-            .margin($r("sys.float.ohos_id_card_margin_end"))
+        if (this.deviceType === resourceManager.DeviceType.DEVICE_TYPE_PHONE) {
+          TextInput()
+            .defaultFocus(false)
+            .width($r("app.string.full_size"))
+        } else {
+          Stack() {
+            TextArea()
+              .borderRadius($r("sys.float.ohos_id_corner_radius_default_m"))
+              .height($r("app.integer.input_box_height"))
+            Button($r("app.string.btn_send_msg"))
+              .onClick(() => {
+                promptAction.showToast({ message: $r("app.string.not_implement_prompt") })
+              })
+              .margin($r("sys.float.ohos_id_card_margin_end"))
+          }
+          .align(Alignment.BottomEnd)
         }
-        .align(Alignment.BottomEnd)
       }
       .alignItems(HorizontalAlign.End)
       .width($r("app.string.full_size"))
@@ -98,6 +117,14 @@ export struct SideBarContentView {
         .borderRadius({
           topLeft: $r("app.integer.sidebar_button_radius"),
           bottomLeft: $r("app.integer.sidebar_button_radius")
+        })
+        .offset({ x: this.sideBarBtnOffset })
+        .responseRegion({
+          // TODO：知识点：在手机上，边缘较难相应事件，因此这里扩展了热区
+          x: $r("app.integer.back_btn_x"),
+          y: $r("app.integer.back_btn_y"),
+          width: $r("app.integer.back_btn_response_width"),
+          height: $r("app.integer.back_btn_response_height")
         })
         .backgroundColor($r("sys.color.ohos_id_color_sub_background"))
     }
