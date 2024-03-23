@@ -34,9 +34,9 @@ export abstract class BaseDataService {
     await dbUtils.createTable(Constants.STUDENT_TABLE, newTableColumnTypeMap);
     dbUtils.commit();
     // 自定义迁移逻辑
-    let lastId: number = -1;
-    let flag: boolean = false;
-    await this.migrate(lastId, oldVersion, targetVersion, flag);
+    const  LAST_ID: number = -1;
+    const  FLAG: boolean = false;
+    await this.migrate(LAST_ID, oldVersion, targetVersion, FLAG);
     // 删除旧表
     await dbUtils.dropTable(Constants.STUDENT_TABLE + oldVersion, targetVersion);
   }
@@ -46,7 +46,7 @@ export abstract class BaseDataService {
    * @param lastId 上一次查询的最后一个id
    * @param targetVersion 目标版本
    */
-  private async migrate(lastId: number, oldVersion: number, targetVersion: number, flag: boolean) {
+  private async migrate(lastId: number, oldVersion: number, targetVersion: number, flag: boolean): Promise<void> {
     if (flag) {
       return;
     }
@@ -58,7 +58,7 @@ export abstract class BaseDataService {
       }
       // 对查询的旧表数据依次进行转换
       while (resultSet.goToNextRow()) {
-        let newData: ValuesBucket = this.transform(resultSet, targetVersion);
+        const  newData: ValuesBucket = this.transform(resultSet, targetVersion);
         newDataArray.push(newData);
         if (resultSet.isAtLastRow) {
           lastId = newData[Constants.ID_STR] as number;
