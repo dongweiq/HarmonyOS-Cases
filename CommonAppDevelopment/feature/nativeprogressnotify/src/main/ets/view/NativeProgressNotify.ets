@@ -28,39 +28,38 @@ export struct NativeProgressNotify {
   @State buttonText: string = this.START_DOWNLOAD;
 
   build() {
-    Row() {
-      Column({ space: 10 }) {
-        // TODO 知识点：进度信息使用Progress组件进行显示
-        Progress({ value: this.progress, total: 100, type: ProgressType.Ring })
-          .width($r("app.integer.progress_size"))
-          .height($r("app.integer.progress_size"))
-          .animation({ duration: NativeProgressNotifyConstants.PROGRESS_ANIMATION_DURATION, curve: Curve.Ease })
-          .style({ strokeWidth: 15 })
-        Text(`当前下载进度：${this.progress}%`)
-        Button(this.buttonText)
-          .onClick(() => {
-            // TODO 知识点：调用native的下载方法，并传入回调函数，在回调函数中接收native侧传递过来的进度信息
-            naitiveprogressnotify.startDownload((data: number) => {
-              if (data === this.PROGRESS_START || data === this.PROGRESS_END) {
-                this.buttonEnabled = true;
-                this.buttonText = this.START_DOWNLOAD;
+    Column({ space: 10 }) {
+      // TODO 知识点：进度信息使用Progress组件进行显示
+      Progress({ value: this.progress, total: 100, type: ProgressType.Ring })
+        .width($r("app.integer.progress_size"))
+        .height($r("app.integer.progress_size"))
+        .animation({ duration: NativeProgressNotifyConstants.PROGRESS_ANIMATION_DURATION, curve: Curve.Ease })
+        .style({ strokeWidth: 15 })
+      Text(`当前下载进度：${this.progress}%`)
+      Button(this.buttonText)
+        .onClick(() => {
+          // TODO 知识点：调用native的下载方法，并传入回调函数，在回调函数中接收native侧传递过来的进度信息
+          naitiveprogressnotify.startDownload((data: number) => {
+            if (data === this.PROGRESS_START || data === this.PROGRESS_END) {
+              this.buttonEnabled = true;
+              this.buttonText = this.START_DOWNLOAD;
+            }
+            else {
+              if (this.buttonEnabled) {
+                this.buttonEnabled = false;
               }
-              else {
-                if (this.buttonEnabled) {
-                  this.buttonEnabled = false;
-                }
-                if (this.buttonText == this.START_DOWNLOAD) {
-                  this.buttonText = this.DOWNING;
-                }
+              if (this.buttonText === this.START_DOWNLOAD) {
+                this.buttonText = this.DOWNING;
               }
-              this.progress = data;
-              console.log("[NativeProgressNotify]progress:" + this.progress);
-            })
+            }
+            this.progress = data;
+            console.log("[NativeProgressNotify]progress:" + this.progress);
           })
-          .enabled(this.buttonEnabled)
-      }
-      .width('100%')
+        })
+        .enabled(this.buttonEnabled)
     }
+    .justifyContent(FlexAlign.Center)
+    .width('100%')
     .height('100%')
   }
 }
@@ -72,4 +71,4 @@ export function getNativeProgressNotify(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.NATIVE_PROGRESS_NOTIFY,wrapBuilder(getNativeProgressNotify));
+DynamicsRouter.registerRouterPage(RouterInfo.NATIVE_PROGRESS_NOTIFY, wrapBuilder(getNativeProgressNotify));
