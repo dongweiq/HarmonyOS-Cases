@@ -1,0 +1,20 @@
+{
+  "integer": [
+    {
+      "name": "margin_12",
+      "value": 12
+    },
+    {
+      "name": "margin_20",
+      "value": 20
+    },
+    {
+      "name": "padding_12",
+      "value": 12
+    },
+    {
+      "name": "padding_20",
+      "value": 20
+    }
+  ]
+}

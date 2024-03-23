@@ -183,7 +183,7 @@
 ### 工程结构&模块类型
 
    ```
-   logcallback                           // har类型
+   hilogmonitormanagement                // har类型
    |---src\main\ets\model\
    |   |---logCallBack.ets               // ArkTS层- ts接口
    |---src\main\cpp\
