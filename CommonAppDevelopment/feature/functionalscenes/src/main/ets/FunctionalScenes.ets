@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { DynamicsRouter } from '@ohos/dynamicsRouter';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter';
 import { SceneModuleInfo } from './model/SceneModuleInfo';
 import { WaterFlowDataSource } from './model/WaterFlowDataSource';
 import { TAB_DATA, TabDataModel } from './model/TabsData';
@@ -28,68 +28,6 @@ export struct FunctionalScenes {
   dataSource: WaterFlowDataSource = new WaterFlowDataSource(this.listData);
   @State tabsIndex: number = 0;
   tabsController: TabsController = new TabsController();
-
-  /**
-   * 瀑布流列表项组件布局
-   *
-   * @param listData 组件列表信息
-   */
-  @Builder
-  methodPoints(listData: SceneModuleInfo) {
-    Column() {
-      Image(listData.imageSrc)
-        .borderRadius($r('app.string.main_page_list_borderRadius'))
-        .objectFit(ImageFit.Contain)
-        .width('100%')
-      Text(listData.name)
-        .padding({ left: $r('app.string.main_page_padding6'), right: $r('app.string.main_page_padding6') })
-        .width('100%')
-        .fontColor(Color.Black)
-        .textAlign(TextAlign.Start)
-        .maxLines(2)
-        .fontSize($r('app.string.ohos_id_text_size_body1'))
-        .margin({ top: $r('app.string.main_page_margin1'), bottom: $r('app.string.main_page_margin1') })
-      Row() {
-        Text($r('app.string.difficulty'))
-          .padding({ left: $r('app.string.main_page_padding1') })
-          .fontColor('#B7B9B8')
-          .textAlign(TextAlign.Start)
-          .maxLines(1)
-          .height($r('app.string.main_page_text_height'))
-          .fontSize($r('app.string.main_page_text_font_size'))
-        Rating({
-          rating: listData.ratingNumber,
-          indicator: true
-        })
-          .stars(5)
-      }
-      .width('100%')
-      .justifyContent(FlexAlign.End)
-    }
-    .linearGradient({
-      angle: 180,
-      colors: [['#CCDFFF', 0], ['#F3F4F7', 1]]
-    })
-    .shadow(ShadowStyle.OUTER_DEFAULT_XS)
-    .width('49%')
-    .borderRadius($r('app.string.main_page_list_borderRadius'))
-    .margin({ top: $r('app.string.item_gap_half'), bottom: $r('app.string.item_gap_half') })
-    .backgroundColor(Color.White)
-    .onClick(() => {
-      DynamicsRouter.pop();
-      // 点击瀑布流Item时，根据点击的模块信息，将页面放入路由栈
-      DynamicsRouter.push(listData.routerInfo, listData.param);
-      // 帮助功能：发送当前案例的名称
-      let moduleName: string = listData.routerInfo.moduleName;
-      let split: string[] = moduleName.split('/');
-      moduleName = split[split.length-1];
-      emitter.emit("topModule", {
-        data: {
-          moduleName: moduleName
-        }
-      })
-    })
-  }
 
   @Builder
   tabBuilder(index: number, name: string | undefined) {
@@ -133,11 +71,8 @@ export struct FunctionalScenes {
             WaterFlow() {
               LazyForEach(this.dataSource, (waterFlowItem: SceneModuleInfo) => {
                 FlowItem() {
-                  if (tabItem.navData === '全部') {
-                    this.methodPoints(waterFlowItem)
-                  }
-                  if (tabItem.navData === waterFlowItem.category) {
-                    this.methodPoints(waterFlowItem)
+                  if (tabItem.navData === '全部' || tabItem.navData === waterFlowItem.category) {
+                    methodPoints({ listData: waterFlowItem })
                   }
                 }
               }, (waterFlowItem: SceneModuleInfo) => JSON.stringify(waterFlowItem))
@@ -173,6 +108,86 @@ export struct FunctionalScenes {
     }
     .height('100%')
     .backgroundColor("#F1F1F1")
+  }
+}
+
+/**
+ * 瀑布流列表项组件布局
+ *
+ * @param listData 组件列表信息
+ */
+// TODO:知识点：
+// 1.@Reusable标识自定义组件具备可复用的能力，它可以被添加到任意的自定义组件上。
+// 2.复用自定义组件时避免一切可能改变自定义组件的组件树结构和可能使可复用组件中产生重新布局的操作以将组件复用的性能提升到最高。
+@Reusable
+@Component
+struct methodPoints {
+  @State listData: SceneModuleInfo = new SceneModuleInfo($r("app.media.address_exchange"), '地址交换动画', new RouterInfo('@ohos/addressexchange', 'AddressExchangeView'), '动效')
+
+  /**
+   * 组件的生命周期回调，在可复用组件从复用缓存中加入到组件树之前调用
+   * @param params：组件更新时所需参数
+   */
+  aboutToReuse(params: Record<string, SceneModuleInfo>): void {
+    this.listData = params.listData as SceneModuleInfo
+  }
+
+  build() {
+    Column() {
+      Image(this.listData.imageSrc)
+        .borderRadius($r('app.string.main_page_list_borderRadius'))
+        .objectFit(ImageFit.Contain)
+        .width('100%')
+      Text(this.listData.name)
+        .padding({ left: $r('app.string.main_page_padding6'), right: $r('app.string.main_page_padding6') })
+        .width('100%')
+        .fontColor(Color.Black)
+        .textAlign(TextAlign.Start)
+        .maxLines(2)
+        .fontSize($r('app.string.ohos_id_text_size_body1'))
+        .margin({ top: $r('app.string.main_page_margin1'), bottom: $r('app.string.main_page_margin1') })
+      Row() {
+        Text($r('app.string.difficulty'))
+          .padding({ left: $r('app.string.main_page_padding1') })
+          .fontColor('#B7B9B8')
+          .textAlign(TextAlign.Start)
+          .maxLines(1)
+          .height($r('app.string.main_page_text_height'))
+          .fontSize($r('app.string.main_page_text_font_size'))
+        Rating({
+          rating: this.listData.ratingNumber,
+          indicator: true
+        })
+          .stars(5)
+      }
+      .width('100%')
+      .justifyContent(FlexAlign.End)
+    }
+    .linearGradient({
+      angle: 180,
+      colors: [['#CCDFFF', 0], ['#F3F4F7', 1]]
+    })
+    .shadow(ShadowStyle.OUTER_DEFAULT_XS)
+    .width('49%')
+    .borderRadius($r('app.string.main_page_list_borderRadius'))
+    .margin({ top: $r('app.string.item_gap_half'), bottom: $r('app.string.item_gap_half') })
+    .backgroundColor(Color.White)
+    .onClick(() => {
+      DynamicsRouter.pop();
+      if (this.listData !== undefined) {
+        // 点击瀑布流Item时，根据点击的模块信息，将页面放入路由栈
+        DynamicsRouter.push(this.listData.routerInfo, this.listData.param);
+        // 帮助功能：发送当前案例的名称
+        let moduleName: string = this.listData.routerInfo.moduleName;
+        let split: string[] = moduleName.split('/');
+        moduleName = split[split.length-1];
+        emitter.emit("topModule", {
+          data: {
+            moduleName: moduleName
+          }
+        })
+      }
+    })
   }
 }
 
