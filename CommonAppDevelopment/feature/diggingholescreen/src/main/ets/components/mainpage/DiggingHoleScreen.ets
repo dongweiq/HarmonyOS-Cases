@@ -20,6 +20,7 @@ import common from '@ohos.app.ability.common';
 import window from '@ohos.window';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 import { logger, FunctionDescription } from '@ohos/base';
+import prompt from '@system.prompt';
 
 class TextMargin {
   left: number = 0; // 状态栏左偏移量
@@ -132,6 +133,12 @@ export struct DiggingHoleScreen {
         .objectFit(ImageFit.Fill)
         .width('100%')
         .height('100%')
+        .onClick(() => {
+          prompt.showToast({
+            message: '该功能暂未开发',
+            duration: 2000
+          })
+        })
       Column() {
         Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.SpaceBetween }) {
           Text(this.currentTime)// 时间
