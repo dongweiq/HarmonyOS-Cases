@@ -27,7 +27,7 @@
 #include "rawfile/raw_file.h"
 
 const int GLOBAL_RESMGR = 0xFF00;
-const char *TAG = "[testTag]";
+const char *TAG = "[pic2sandbox]";
 const char libCurlDownload[256] = "libcurlDownload.so";   // 下载so文件
 
 /**
@@ -47,15 +47,50 @@ static napi_value SaveImageOfInternet(napi_env env, napi_callback_info info) {
     }
 
     // 声明函数指针类型
-    typedef napi_value (*DownloadInternetFileFunc)(napi_env, napi_callback_info);
+    typedef std::string (*DownloadInternetFileFunc)(char*, char*);
     DownloadInternetFileFunc downloadInternetWrapper =
         reinterpret_cast<DownloadInternetFileFunc>(dlsym(handler, "DownloadInternetFileWrapper"));
     if (downloadInternetWrapper) {
         // TODO：知识点：调用so的downloadInternetWrapper函数保存网路图片到沙箱
-        napi_value result = downloadInternetWrapper(env, info);
+        size_t argc = 3;
+        napi_value argv[3] = {nullptr};
+        napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
+
+        // 网络图片
+        size_t internetPicSize;
+        char internetPicBuf[512];
+        napi_get_value_string_utf8(env, argv[0], internetPicBuf, sizeof(internetPicBuf), &internetPicSize);
+        std::string internetPicUrl(internetPicBuf, internetPicSize);
+        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "saveImageOfInternet 网络图片路径：%{public}s",
+                     internetPicBuf);
+
+        // 保存文件沙箱目录
+        size_t targetDirectorSize;
+        char targetDirectoryBuf[512];
+        napi_get_value_string_utf8(env, argv[1], targetDirectoryBuf, sizeof(targetDirectoryBuf), &targetDirectorSize);
+        std::string targetDirectory(targetDirectoryBuf, targetDirectorSize);
+        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "saveImageOfInternet 保存路径：%{public}s",
+                     targetDirectoryBuf);
+
+        // 沙箱中的图片名
+        size_t internetSandBoxFileNameSize;
+        char internetSandBoxFileNameBuf[512];
+        napi_get_value_string_utf8(env, argv[2], internetSandBoxFileNameBuf, sizeof(internetSandBoxFileNameBuf),
+                                   &internetSandBoxFileNameSize);
+        std::string internetSandBoxFileName(internetSandBoxFileNameBuf, internetSandBoxFileNameSize);
+
+        // 图片沙箱完整路径
+        std::string targetSandboxPath = targetDirectory + internetSandBoxFileName; // 保存目标网络图片的沙箱路径
+        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "saveImageOfInternet 保存沙箱文件：%{public}s",
+                     targetSandboxPath.c_str());
+
+        std::string result = downloadInternetWrapper((char*)internetPicUrl.c_str(), (char*)targetSandboxPath.c_str());
         OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "saveImageOfInternet download finish");
         dlclose(handler);
-        return result;
+        
+        napi_value strSandBoxPath;
+        napi_create_string_utf8(env, result.c_str(), NAPI_AUTO_LENGTH, &strSandBoxPath);
+        return strSandBoxPath;
     } else {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "saveImageOfInternet download function is null");
         dlclose(handler);

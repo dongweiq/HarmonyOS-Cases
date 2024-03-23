@@ -23,7 +23,7 @@
         "armeabi-v7a"
       ],
       "arguments": "-v -DOHOS_STL=c++_shared",
-      "cppFlags": ""
+      "cppFlags": "-s"
     }
   },
   "buildOptionSet": [
