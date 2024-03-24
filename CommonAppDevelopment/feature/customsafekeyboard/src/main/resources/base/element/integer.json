@@ -49,23 +49,23 @@
       "value": 24
     },
     {
-      "name": "title_font_size",
+      "name": "keyboard_title_font_size",
       "value": 20
     },
     {
-      "name": "title_margin_top",
+      "name": "keyboard_title_margin_top",
       "value": 12
     },
     {
-      "name": "title_margin_bottom",
+      "name": "keyboard_title_margin_bottom",
       "value": 10
     },
     {
-      "name": "key_border_radius",
+      "name": "keyboard_radius",
       "value": 4
     },
     {
-      "name": "key_board_marin_bottom",
+      "name": "keyboard_marin_bottom",
       "value": 20
     }
   ]

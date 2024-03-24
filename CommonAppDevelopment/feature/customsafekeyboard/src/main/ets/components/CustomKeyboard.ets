@@ -46,12 +46,12 @@ export struct CustomKeyboard {
   titleBar() {
     Stack() {
       Text($r("app.string.keyboard_title"))
-        .fontSize($r("app.integer.title_font_size"))
+        .fontSize($r("app.integer.keyboard_title_font_size"))
         .fontColor(Color.Grey)
 
       Row() {
         Text($r("app.string.keyboard_submit"))
-          .fontSize($r("app.integer.title_font_size"))
+          .fontSize($r("app.integer.keyboard_title_font_size"))
           .fontColor(Color.Blue)
           .onClick(() => {
             this.controller.stopEditing();
@@ -61,7 +61,7 @@ export struct CustomKeyboard {
       .justifyContent(FlexAlign.End)
     }
     .width($r("app.string.one_hundred_percent"))
-    .margin({ top: $r("app.integer.title_margin_top"), bottom: $r("app.integer.title_margin_bottom") })
+    .margin({ top: $r("app.integer.keyboard_title_margin_top"), bottom: $r("app.integer.keyboard_title_margin_bottom") })
   }
 
   build() {
@@ -81,7 +81,7 @@ export struct CustomKeyboard {
           .columnStart(item?.position?.[2])
           .columnEnd(item?.position?.[3])
           .backgroundColor(item.backgroundColor)
-          .borderRadius($r("app.integer.key_border_radius"))
+          .borderRadius($r("app.integer.keyboard_radius"))
           .onClick(() => {
             this.onKeyboardEvent?.(item);
             if (item.type === EKeyType.CAPSLOCK && typeof item.label === 'object') {
@@ -94,7 +94,7 @@ export struct CustomKeyboard {
           })
         }, (item: IKeyAttribute, index: number) => JSON.stringify(item) + index)
       }
-      .margin({ bottom: $r("app.integer.key_board_marin_bottom") })
+      .margin({ bottom: $r("app.integer.keyboard_marin_bottom") })
       .columnsTemplate(this.curKeyboardType === EKeyboardType.NUMERIC ? "1fr 1fr 1fr" :
         "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr")
       .rowsTemplate("1fr 1fr 1fr 1fr") // Grid高度均分成4份
