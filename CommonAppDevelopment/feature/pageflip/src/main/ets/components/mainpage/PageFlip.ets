@@ -30,28 +30,28 @@ export struct PageFlip {
   readonly flipPage_zIndex = 2;
   readonly leftRightFlipPageName = '左右翻页';
   readonly upDownFlipPageName = '上下翻页';
-  readonly coverFlipPageName = '覆盖翻页';
 
   build() {
     Stack() {
-      LeftRightPlipPage({
-        isMenuViewVisible: this.isMenuViewVisible,
-        isCommentVisible: this.isCommentVisible,
-        currentPageNum: this.currentPageNum
-      }).visibility(this.buttonClickedName === this.leftRightFlipPageName ? Visibility.Visible : Visibility.Hidden)
-
-      UpDownFlipPage({
-        isMenuViewVisible: this.isMenuViewVisible,
-        isCommentVisible: this.isCommentVisible,
-        currentPageNum: this.currentPageNum
-      }).visibility(this.buttonClickedName === this.upDownFlipPageName ? Visibility.Visible : Visibility.Hidden)
-
-      CoverFlipPage({
-        isMenuViewVisible: this.isMenuViewVisible,
-        isCommentVisible: this.isCommentVisible,
-        currentPageNum: this.currentPageNum
-      }).visibility(this.buttonClickedName === this.coverFlipPageName ? Visibility.Visible : Visibility.Hidden)
-
+      if (this.buttonClickedName === this.leftRightFlipPageName) {
+        LeftRightPlipPage({
+          isMenuViewVisible: this.isMenuViewVisible,
+          isCommentVisible: this.isCommentVisible,
+          currentPageNum: this.currentPageNum
+        });
+      } else if (this.buttonClickedName === this.upDownFlipPageName) {
+        UpDownFlipPage({
+          isMenuViewVisible: this.isMenuViewVisible,
+          isCommentVisible: this.isCommentVisible,
+          currentPageNum: this.currentPageNum
+        });
+      } else {
+        CoverFlipPage({
+          isMenuViewVisible: this.isMenuViewVisible,
+          isCommentVisible: this.isCommentVisible,
+          currentPageNum: this.currentPageNum
+        });
+      }
       Column() {
         TopView({ isMenuViewVisible: this.isMenuViewVisible })
           .zIndex(this.flipPage_zIndex)
