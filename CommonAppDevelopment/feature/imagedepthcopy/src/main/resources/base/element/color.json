@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "edit_image_public_background",
+      "value": "#33FFFFFF"
+    },
+    {
+      "name": "edit_image_crop_select",
+      "value": "#19FFFFFF"
+    },
+    {
+      "name": "background_color",
+      "value": "#F0F0F0"
+    },
+    {
+      "name": "cancel",
+      "value": "#c71d23"
+    },
+    {
+      "name": "confirm",
+      "value": "#5bb8f7"
+    }
+  ]
+}

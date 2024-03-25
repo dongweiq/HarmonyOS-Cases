@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "image_depthcopy_save_confirm",
+      "value": "您确认要保存么"
+    },
+    {
+      "name": "image_depthcopy_save",
+      "value": "保存"
+    },
+    {
+      "name": "image_depthcopy_confirm",
+      "value": "确认"
+    },
+    {
+      "name": "image_depthcopy_cancel",
+      "value": "取消"
+    },
+    {
+      "name": "image_depthcopy_savepath",
+      "value": "图片已保存到如下路径：\n"
+    },
+    {
+      "name": "image_depthcopy_crop",
+      "value": "裁剪"
+    },
+    {
+      "name": "image_depthcopy_repeal",
+      "value": "撤销"
+    },
+    {
+      "name": "origin_photo",
+      "value": "原图"
+    },
+    {
+      "name": "proportion_three_four",
+      "value": "4:3"
+    },
+    {
+      "name": "proportion_nine_sixth",
+      "value": "16:9"
+    },
+    {
+      "name": "proportion_one_one",
+      "value": "1:1"
+    }
+  ]
+}
