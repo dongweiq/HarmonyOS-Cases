@@ -89,6 +89,7 @@
    ```
 
 4. 保存图片。将裁剪后的图片保存。源码参考[FileUtil.ets](./src/main/ets/util/FileUtil.ets)。
+
    ```typescript
    export async function savePixelMap(context: Context, pm: PixelMap): Promise<string> {
      if (pm === null) {
@@ -107,23 +108,22 @@
      }
    }
    
-  async function saveFile(context: Context, data: ArrayBuffer): Promise<string> {
-    let uri: string = context.filesDir + '/' + getTimeStr() + '.jpg';
-    const file: fileIo.File = fs.openSync(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-    fs.writeSync(file.fd, data);
-    fs.closeSync(file);
-    // 加上file://前缀
-    uri = 'file:/' + uri;
-    return uri;
-  }
-  ```
+   async function saveFile(context: Context, data: ArrayBuffer): Promise<string> {
+     let uri: string = context.filesDir + '/' + getTimeStr() + '.jpg';
+     const file: fileIo.File = fs.openSync(uri, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+     fs.writeSync(file.fd, data);
+     fs.closeSync(file);
+     // 加上file://前缀
+     uri = 'file:/' + uri;
+     return uri;
+   }
+   ```  
 
 ### 高性能知识点
 
 **不涉及**
 
 ### 工程结构&模块类型
-
    ```
    imagedepthcopy                               // har类型
    |---view
@@ -136,7 +136,7 @@
    |   |---CopyObj.ets                          // 业务层-图片深拷贝处理
    |   |---FileUtil.ets                         // 业务层-图片保存
    ```
-
+   
 ### 模块依赖
 
 本示例依赖common模块来实现[日志](../../common/utils/src/main/ets/log/Logger.ets)的打印、[动态路由模块](../../feature/routermodule/src/main/ets/router/DynamicsRouter.ets)来实现页面的动态加载。
