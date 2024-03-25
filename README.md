@@ -158,7 +158,7 @@ TabBar在大部分的APP当中都能够使用到，不同的APP可能存在不�
 
 #### 列表编辑实现案例
 
-列表的编辑模式用途十分广泛，常见于待办事项管理、文件管理、备忘录的记录管理等应用场景。列表编辑实现方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/pendingitems/README_zh.md)。
+列表的编辑模式用途十分广泛，常见于待办事项管理、文件管理、备忘录的记录管理等应用场景。列表编辑实现方案可以参考此[详细说明文档](./CommonAppDevelopment/feature/pendingitems/README.md)。
 
 <img src="./CommonAppDevelopment//product/entry/src/main/resources/base/media/todo_list.gif" width="200">
 
