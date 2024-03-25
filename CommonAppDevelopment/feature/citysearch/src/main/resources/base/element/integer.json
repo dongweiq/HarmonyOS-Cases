@@ -50,7 +50,7 @@
     },
     {
       "name": "text_margin_left2",
-      "value": 3
+      "value": 6
     },
     {
       "name": "row_margin_bottom",
@@ -115,6 +115,10 @@
     {
       "name": "search_margin_top",
       "value": 15
+    },
+    {
+      "name": "search_margin_left",
+      "value": 3
     },
     {
       "name": "list_margin_top",

@@ -70,17 +70,15 @@ export struct ImageView {
               .color(Color.Gray)
               .selectedColor(Color.Red))
 
-            Row() {
-              Text(`${this.swiperIndex + 1}/${this.imagePixelMapList.length}`)
-                .fontSize($r('app.integer.bubble_text_fontSize'))
-                .fontColor($r('app.color.white'))
-            }
-            .width($r('app.integer.row_text_width'))
-            .height($r('app.integer.row_text_height'))
-            .borderRadius($r('app.integer.row_borderRadius'))
-            .justifyContent(FlexAlign.Center)
-            .backgroundColor($r('app.color.bg3'))
-            .margin({ right: $r('app.integer.row_margin_right'), bottom: $r('app.integer.row_margin_bottom') })
+            Text(`${this.swiperIndex + 1}/${this.imagePixelMapList.length}`)
+              .fontSize($r('app.integer.bubble_text_fontSize'))
+              .fontColor($r('app.color.white'))
+              .width($r('app.integer.row_text_width'))
+              .height($r('app.integer.row_text_height'))
+              .borderRadius($r('app.integer.row_borderRadius'))
+              .textAlign(TextAlign.Center)
+              .backgroundColor($r('app.color.bg3'))
+              .margin({ right: $r('app.integer.row_margin_right'), bottom: $r('app.integer.row_margin_bottom') })
           }
           .width('100%')
           .height($r('app.integer.swiper_height'))

@@ -22,6 +22,7 @@ export struct CityView {
   @State stabIndex: number = 0;
   @State location: boolean = true;
   @Link isSearchState: boolean;
+  @Link changeValue: string;
   curCity: string = '';
   controller: SearchController = new SearchController();
 
@@ -39,7 +40,7 @@ export struct CityView {
             // 这里规定每行占四个城市
             Text(`${item}`)
               .margin({ bottom: $r('app.integer.text_margin_bottom'), left: $r('app.integer.text_margin_left2') })
-              .width('20%')
+              .width('22%')
               .height($r('app.integer.text_height'))
               .textAlign(TextAlign.Center)
               .fontSize($r('app.integer.text_font'))
@@ -48,8 +49,7 @@ export struct CityView {
               .backgroundColor($r('app.color.text_bgc'))
               .borderRadius($r('app.integer.text_border_radius'))
               .onClick(() => {
-                // 调用Toast显示提示:此样式仅为案例展示
-                promptAction.showToast({ message: $r('app.string.only_show_ui') });
+                this.changeValue = item;
               })
           })
         }
@@ -101,17 +101,17 @@ export struct CityView {
        */
       AlphabetIndexer({ arrayValue: TAB_VALUE, selected: this.stabIndex })
         .height('100%')
-        .selectedColor($r('app.color.alphabet_select_color'))// 选中项文本颜色
-        .popupColor($r('app.color.alphabet_pop_color'))// 弹出框文本颜色
-        .selectedBackgroundColor($r('app.color.alphabet_selected_bgc'))// 选中项背景颜色
-        .popupBackground($r('app.color.alphabet_pop_bgc'))// 弹出框背景颜色
+        .selectedColor($r('app.color.alphabet_select_color')) // 选中项文本颜色
+        .popupColor($r('app.color.alphabet_pop_color')) // 弹出框文本颜色
+        .selectedBackgroundColor($r('app.color.alphabet_selected_bgc')) // 选中项背景颜色
+        .popupBackground($r('app.color.alphabet_pop_bgc')) // 弹出框背景颜色
         .popupPosition({ x: $r('app.integer.pop_position_x'), y: $r('app.integer.pop_position_y') })
-        .usingPopup(true)// 是否显示弹出框
-        .selectedFont({ size: $r('app.integer.select_font'), weight: FontWeight.Bolder })// 选中项字体样式
-        .popupFont({ size: $r('app.integer.pop_font'), weight: FontWeight.Bolder })// 弹出框内容的字体样式
-        .alignStyle(IndexerAlign.Right)// 弹出框在索引条左侧弹出
-        .itemSize(18) // 每一项的尺寸大小
-        .margin({ right: -5 })
+        .usingPopup(true) // 是否显示弹出框
+        .selectedFont({ size: $r('app.integer.select_font'), weight: FontWeight.Bolder }) // 选中项字体样式
+        .popupFont({ size: $r('app.integer.pop_font'), weight: FontWeight.Bolder }) // 弹出框内容的字体样式
+        .alignStyle(IndexerAlign.Right) // 弹出框在索引条左侧弹出
+        .itemSize(20) // 每一项的尺寸大小
+        .margin({ right: -8 })
         .onSelect((tabIndex: number) => {
           this.scroller.scrollToIndex(tabIndex);
         })
