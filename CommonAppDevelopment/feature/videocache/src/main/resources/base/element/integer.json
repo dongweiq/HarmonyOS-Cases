@@ -1,0 +1,20 @@
+{
+  "integer": [
+    {
+      "name": "video_cache_loading_image_size",
+      "value": 36
+    },
+    {
+      "name": "video_cache_play_image_size",
+      "value": 24
+    },
+    {
+      "name": "video_cache_download_image_size",
+      "value": 24
+    },
+    {
+      "name": "video_cache_download_progress_size",
+      "value": 40
+    }
+  ]
+}
