@@ -43,197 +43,89 @@ export struct NavigationBarChangeView {
   // 透明度计算基数
   private opacityComputeRadix: number = 35;
   // 内容相隔距离
-  private columnSpace1: number = 10;
-  // 内容相隔距离
-  private columnSpace2: number = 15;
-  // 垂直列表列数
-  private lanesSize: number = 4;
-  // 自动播放时间间隔
-  private intervalValue: number = 3000;
+  private columnSpace: number = 15;
   // 创建Scroll对象
   private scroller: Scroller = new Scroller();
-  // 话题battle模块显示数据
-  private listData: Resource[] = [
-    $r('app.media.list_page_one'),
-    $r('app.media.list_page_two'),
-    $r('app.media.list_page_three')
-  ];
-  // 我的订单模块显示数据
-  private listItemData: ItemInfo[] = [
-    { name: '机票', image: $r('app.media.Air_ticket')},
-    { name: '火车票', image: $r('app.media.Train_ticket')},
-    { name: '专车', image: $r('app.media.special_train')},
-    { name: '酒店', image: $r('app.media.Hotel')}
-  ];
-  // 常用功能模块显示数据
-  private commonListItemData: ItemInfo[] = [
-    { name: '订团体票', image: $r('app.media.group_bookings')},
-    { name: '订酒店', image: $r('app.media.order_hotel')},
-    { name: '常旅客卡', image: $r('app.media.passenger_card')},
-    { name: '常用乘机人', image: $r('app.media.passengers')},
-    { name: '微信通知', image: $r('app.media.wechat')},
-    { name: '发票报销', image: $r('app.media.invoice_reimbursement')},
-    { name: '飞行足迹', image: $r('app.media.flight_footprint')},
-    { name: '领券', image: $r('app.media.coupon_collection')},
-    { name: '出行指南', image: $r('app.media.travel_guide')},
-    { name: '签证', image: $r('app.media.visa'), prompt: 'new'}
-  ];
 
   build() {
     Stack() {
       Scroll(this.scroller) {
-        Column({space: this.columnSpace2}) {
+        Column({space: this.columnSpace}) {
           Column() {
             Text($r('app.string.text_welcome'))
-              .fontSize($r('app.integer.font_size8'))
+              .fontSize($r('app.integer.font_size_twenty_two'))
             Text($r('app.string.text_new_user_registration'))
-              .fontSize($r('app.integer.font_size4'))
-              .margin({top: $r('app.integer.top_interval_value1')})
+              .fontSize($r('app.integer.font_size_fourteen'))
+              .margin({top: $r('app.integer.top_interval_five')})
             Button({ type: ButtonType.Capsule}) {
               Text($r('app.string.text_load'))
-                .fontSize($r('app.integer.font_size6'))
+                .fontSize($r('app.integer.font_size_eighteen'))
                 .fontColor(Color.White)
             }
-            .margin({top: $r('app.integer.top_interval_value2')})
-            .height($r('app.integer.width_and_height_value8'))
-            .width($r('app.integer.width_and_height_value11'))
+            .margin({top: $r('app.integer.top_interval_twenty')})
+            .height($r('app.integer.width_and_height_forty'))
+            .width($r('app.integer.width_and_height_one_hundred_and_thirty'))
           }
-          .width($r('app.string.width_and_height_value12'))
-          .height($r('app.string.width_and_height_value2'))
+          .width($r('app.string.width_and_height_one_hundred_percent'))
+          .height($r('app.string.width_and_height_fifteen_percent'))
           .alignItems(HorizontalAlign.Start)
-          .margin({top: $r('app.integer.top_interval_value3')})
+          .margin({top: $r('app.integer.top_interval_sixty')})
 
-          // "我的订单"功能区
+          // "购物"功能区
           Column() {
-            Row() {
-              Text($r('app.string.text_my_order'))
-                .fontColor(Color.Black)
-                .fontSize($r('app.integer.font_size7'))
-                .margin({left: $r('app.integer.left_interval_value2')})
-
-              // 创建功能区标题
-              this.ribbonTitle();
-            }
-            .width($r('app.string.width_and_height_value12'))
-            .height($r('app.string.width_and_height_value7'))
-            .justifyContent(FlexAlign.SpaceBetween)
-
-            Row() {
-              List() {
-                /**
-                 * 数据量比较少的情况下推荐使用ForEach，遇到数据量比较多的场景，如列表场景、瀑布流场景等，推荐使用
-                 * LazyForEach(https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md/)
-                 */
-                ForEach(this.listItemData, (item: ItemInfo) => {
-                  ListItem() {
-                    Column({space: this.columnSpace1}) {
-                      Image(item.image)
-                        .height($r('app.integer.width_and_height_value7'))
-                        .width($r('app.integer.width_and_height_value7'))
-                      Text(item.name)
-                        .fontSize($r('app.integer.font_size4'))
-                    }
-                    .width($r('app.string.width_and_height_value13'))
-                  }
-                })
-              }
-              .alignListItem(ListItemAlign.Center)
-              .listDirection(Axis.Horizontal)
-            }
-            .width($r('app.string.width_and_height_value12'))
-            .height($r('app.string.width_and_height_value9'))
-          }
-          .backgroundColor(Color.White)
-          .borderRadius($r('app.integer.borderRadius_value2'))
-          .width($r('app.string.width_and_height_value12'))
-          .height($r('app.string.width_and_height_value3'))
-
-          // "常用功能"功能区
-          Column() {
-            Text($r('app.string.text_common_function'))
+            Text($r('app.string.text_shopping'))
               .fontColor(Color.Black)
-              .fontSize($r('app.integer.font_size5'))
-              .margin({top: $r('app.integer.top_interval_value5'),
-                       left: $r('app.integer.left_interval_value2'),
-                       bottom: $r('app.integer.bottom_interval_value')})
+              .fontSize($r('app.integer.font_size_twenty'))
+              .margin({bottom: $r('app.integer.bottom_interval_five')})
 
-            List({space: this.columnSpace1}) {
-              /**
-               * 数据量比较少的情况下推荐使用ForEach，遇到数据量比较多的场景，如列表场景、瀑布流场景等，推荐使用
-               * LazyForEach(https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md/)
-               */
-              ForEach(this.commonListItemData, (item: ItemInfo) => {
-                ListItem() {
-                  Column() {
-                    // 创建功能视图
-                    ViewItem({item: item})
-                    Text(item.name)
-                      .fontSize($r('app.integer.font_size3'))
-                  }
-                }
-              })
-            }
-            .edgeEffect(EdgeEffect.None)
-            .lanes(this.lanesSize)
-            .alignListItem(ListItemAlign.Center)
-            .scrollBar(BarState.Off)
+            Image($r('app.media.shopping'))
+              .width($r('app.string.width_and_height_one_hundred_percent'))
+              .height($r('app.string.width_and_height_eighty_percent'))
+              .borderRadius($r('app.integer.borderRadius_twelve'))
           }
-          .backgroundColor(Color.White)
-          .borderRadius($r('app.integer.borderRadius_value2'))
-          .width($r('app.string.width_and_height_value12'))
-          .height($r('app.string.width_and_height_value6'))
+          .backgroundColor($r('app.color.mine_background'))
+          .borderRadius($r('app.integer.borderRadius_twelve'))
+          .width($r('app.string.width_and_height_one_hundred_percent'))
+          .height($r('app.string.width_and_height_thirty_two_percent'))
 
-          // "话题battle"功能区
+          // "娱乐"功能区
           Column() {
-            Row() {
-              Text($r('app.string.text_topic_battle'))
-                .fontColor(Color.Black)
-                .fontSize($r('app.integer.font_size5'))
-                .margin({left: $r('app.integer.left_interval_value2')})
+            Text($r('app.string.text_happy'))
+              .fontColor(Color.Black)
+              .fontSize($r('app.integer.font_size_twenty'))
+              .margin({bottom: $r('app.integer.bottom_interval_five')})
 
-              // 创建功能区标题
-              this.ribbonTitle();
-            }
-            .width($r('app.string.width_and_height_value12'))
-            .height($r('app.string.width_and_height_value4'))
-            .justifyContent(FlexAlign.SpaceBetween)
-
-            Row() {
-              List({space: this.columnSpace2}) {
-                /**
-                 * 数据量比较少的情况下推荐使用ForEach，遇到数据量比较多的场景，如列表场景、瀑布流场景等，推荐使用
-                 * LazyForEach(https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md/)
-                 */
-                ForEach(this.listData, (item: Resource) => {
-                  ListItem() {
-                    Row() {
-                      Image(item)
-                        .borderRadius($r('app.integer.borderRadius_value2'))
-                    }
-                  }
-                })
-              }
-              .height($r('app.string.width_and_height_value11'))
-              .margin({left: $r('app.integer.left_interval_value2')})
-              .borderRadius($r('app.integer.borderRadius_value2'))
-              .scrollBar(BarState.Off)
-              .backgroundColor(Color.White)
-              .edgeEffect(EdgeEffect.None)
-              .listDirection(Axis.Horizontal)
-            }
-            .borderRadius($r('app.integer.borderRadius_value2'))
-            .width($r('app.string.width_and_height_value12'))
-            .height($r('app.string.width_and_height_value10'))
+            Image($r('app.media.happly'))
+              .width($r('app.string.width_and_height_one_hundred_percent'))
+              .height($r('app.string.width_and_height_eighty_percent'))
+              .borderRadius($r('app.integer.borderRadius_twelve'))
           }
-          .backgroundColor(Color.White)
-          .borderRadius($r('app.integer.borderRadius_value2'))
-          .width($r('app.string.width_and_height_value12'))
-          .height($r('app.string.width_and_height_value5'))
+          .backgroundColor($r('app.color.mine_background'))
+          .borderRadius($r('app.integer.borderRadius_twelve'))
+          .width($r('app.string.width_and_height_one_hundred_percent'))
+          .height($r('app.string.width_and_height_thirty_two_percent'))
+
+          // "休闲"功能区
+          Column() {
+            Text($r('app.string.text_relaxation'))
+              .fontColor(Color.Black)
+              .fontSize($r('app.integer.font_size_twenty'))
+              .margin({bottom: $r('app.integer.bottom_interval_five')})
+
+            Image($r('app.media.relaxation'))
+              .width($r('app.string.width_and_height_one_hundred_percent'))
+              .height($r('app.string.width_and_height_eighty_percent'))
+              .borderRadius($r('app.integer.borderRadius_twelve'))
+          }
+          .backgroundColor($r('app.color.mine_background'))
+          .borderRadius($r('app.integer.borderRadius_twelve'))
+          .width($r('app.string.width_and_height_one_hundred_percent'))
+          .height($r('app.string.width_and_height_thirty_two_percent'))
         }
-        .width($r('app.string.width_and_height_value11'))
+        .width($r('app.string.width_and_height_ninety_two_percent'))
       }
-      .width($r('app.string.width_and_height_value12'))
-      .height($r('app.string.width_and_height_value12'))
+      .width($r('app.string.width_and_height_one_hundred_percent'))
+      .height($r('app.string.width_and_height_one_hundred_percent'))
       .scrollable(ScrollDirection.Vertical)
       .scrollBar(BarState.Off)
       .edgeEffect(EdgeEffect.None)
@@ -253,52 +145,10 @@ export struct NavigationBarChangeView {
       // 添加置顶状态栏
       Header({headOpacity: this.opacityDefaultValue, titleBackgroundColor: $r('app.color.transparent_color'), isTop: true});
     }
-    .width($r('app.string.width_and_height_value12'))
-    .height($r('app.string.width_and_height_value12'))
+    .width($r('app.string.width_and_height_one_hundred_percent'))
+    .height($r('app.string.width_and_height_one_hundred_percent'))
     .backgroundColor($r('app.color.mine_background'))
     .alignContent(Alignment.Top)
-  }
-
-  // 创建功能区标题
-  @Builder
-  private ribbonTitle() {
-    Row() {
-      Text($r('app.string.text_full_order'))
-        .fontColor(Color.Black)
-        .fontSize($r('app.integer.font_size3'))
-      Image($r('app.media.arrow_right_icon'))
-        .height($r('app.integer.width_and_height_value1'))
-        .width($r('app.integer.width_and_height_value1'))
-        .margin({right: $r('app.integer.right_interval_value2')})
-    }
-    .width($r('app.string.width_and_height_value8'))
-    .justifyContent(FlexAlign.End)
-  }
-}
-
-// "常用功能"功能区视图
-@Component
-struct ViewItem {
-  item: ItemInfo = {name: '', image: $r('app.media.visa'), prompt: 'default'};
-
-  build() {
-    Stack() {
-      Image(this.item.image)
-        .height($r('app.integer.width_and_height_value6'))
-        .width($r('app.integer.width_and_height_value6'))
-      Text(this.item.prompt)
-        .fontSize($r('app.integer.font_size1'))
-        .fontColor(Color.White)
-        .backgroundColor(Color.Red)
-        .textAlign(TextAlign.Center)
-        .width($r('app.integer.width_and_height_value5'))
-        .height($r('app.integer.width_and_height_value2'))
-        .borderRadius({topLeft: $r('app.integer.borderRadius_value1'),
-                       topRight: $r('app.integer.borderRadius_value1'),
-                       bottomRight: $r('app.integer.borderRadius_value1')})
-        .margin({top: $r('app.integer.top_interval_value4'), left: $r('app.integer.left_interval_value3')})
-        .visibility(this.item.prompt !== undefined ? Visibility.Visible : Visibility.None)
-    }
   }
 }
 
@@ -323,44 +173,43 @@ struct  Header{
       Row({space: this.columnSpace}) {
         Button({ type: ButtonType.Normal}) {
           Image($r('app.media.button_setting_configuration'))
-            .width($r('app.integer.width_and_height_value4'))
-            .height($r('app.integer.width_and_height_value4'))
+            .width($r('app.integer.width_and_height_thirty_five'))
+            .height($r('app.integer.width_and_height_thirty_five'))
         }
         .backgroundColor($r('app.color.transparent_color'))
 
         Button({ type: ButtonType.Normal}) {
           Image($r('app.media.button_scan'))
-            .width($r('app.integer.width_and_height_value4'))
-            .height($r('app.integer.width_and_height_value4'))
+            .width($r('app.integer.width_and_height_thirty'))
+            .height($r('app.integer.width_and_height_thirty'))
         }
         .backgroundColor($r('app.color.transparent_color'))
       }
       .justifyContent(FlexAlign.Start)
-      .margin({left: $r('app.integer.left_interval_value1')})
-      .width($r('app.string.width_and_height_value5'))
+      .margin({left: $r('app.integer.left_interval_value')})
+      .width($r('app.string.width_and_height_thirty_percent'))
 
       Text($r('app.string.text_mine'))
         .fontColor(Color.Black)
-        .fontSize($r('app.integer.font_size6'))
+        .fontSize($r('app.integer.font_size_twenty_two'))
         .opacity(this.isTop ? this.opacityTopValue : this.opacityUnTopValue)
 
       Row() {
         Button({ type: ButtonType.Normal}) {
           Image($r('app.media.button_customer_service_line'))
-            .width($r('app.integer.width_and_height_value4'))
-            .height($r('app.integer.width_and_height_value4'))
+            .width($r('app.integer.width_and_height_thirty'))
+            .height($r('app.integer.width_and_height_thirty'))
         }
         .backgroundColor($r('app.color.transparent_color'))
       }
       .justifyContent(FlexAlign.End)
-      .margin({right: $r('app.integer.right_interval_value1')})
-      .width($r('app.string.width_and_height_value5'))
+      .margin({right: $r('app.integer.right_interval_value')})
+      .width($r('app.string.width_and_height_thirty_percent'))
     }
     .opacity(this.headOpacity)
-    .height($r('app.integer.width_and_height_value9'))
-    .width($r('app.string.width_and_height_value12'))
+    .height($r('app.integer.width_and_height_sixty'))
+    .width($r('app.string.width_and_height_one_hundred_percent'))
     .justifyContent(FlexAlign.SpaceAround)
-    .alignItems(VerticalAlign.Center)
     .backgroundColor(this.titleBackgroundColor)
   }
 }
