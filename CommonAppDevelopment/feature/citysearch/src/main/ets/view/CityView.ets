@@ -110,6 +110,8 @@ export struct CityView {
         .selectedFont({ size: $r('app.integer.select_font'), weight: FontWeight.Bolder })// 选中项字体样式
         .popupFont({ size: $r('app.integer.pop_font'), weight: FontWeight.Bolder })// 弹出框内容的字体样式
         .alignStyle(IndexerAlign.Right)// 弹出框在索引条左侧弹出
+        .itemSize(18) // 每一项的尺寸大小
+        .margin({ right: -5 })
         .onSelect((tabIndex: number) => {
           this.scroller.scrollToIndex(tabIndex);
         })
