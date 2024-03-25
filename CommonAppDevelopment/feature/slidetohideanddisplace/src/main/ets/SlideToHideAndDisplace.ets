@@ -17,7 +17,7 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import { IconAndDescription, Size } from './model/Util';
 
 const Y_OFFSET130 = 130;
-const Y_OFFSET100 = 100;
+const Y_OFFSET_TOP = 76;
 const Y_OFFSET60 = 60;
 const Y_OFFSET50 = 50;
 const Y_OFFSET40 = 40;
@@ -253,9 +253,9 @@ export struct SlideToHideAndDisplace {
         // TODO: 知识点: Scroll组件绑定onScroll事件，然后在此方法里改变该组件的margin和opacity属性值的大小实现组件移动和隐显
         // 性能知识点: onScroll属于频繁回调，不建议在onScroll做耗时和冗余操作
         const yOffset: number = this.scroller.currentOffset().yOffset;
-        if (yOffset < Y_OFFSET100) {
+        this.userRowOpacity = yOffset < Y_OFFSET60 ? 1 - yOffset / Y_OFFSET60 : 0;
+        if (yOffset < Y_OFFSET_TOP) {
           this.scrollMarginTop = -yOffset;
-          this.userRowOpacity = yOffset < Y_OFFSET60 ? 1 - yOffset / Y_OFFSET60 : 0;
           this.userImageHeight = Y_OFFSET50 * (1 - (yOffset / Y_OFFSET130));
           this.userImageMarginTop = -yOffset * RACE;
           this.userImageMarginLeft = Y_OFFSET20 * (yOffset / Y_OFFSET60) * RACE;
@@ -264,6 +264,11 @@ export struct SlideToHideAndDisplace {
           } else {
             this.userNameOpacity = 0;
           }
+        } else {
+          this.userImageHeight = Y_OFFSET50 * (1 - (Y_OFFSET_TOP / Y_OFFSET130));
+          this.userImageMarginTop = -Y_OFFSET_TOP * RACE;
+          this.userImageMarginLeft = Y_OFFSET20 * (Y_OFFSET_TOP / Y_OFFSET60) * RACE;
+          this.userNameOpacity = 1;
         }
       })
     }
