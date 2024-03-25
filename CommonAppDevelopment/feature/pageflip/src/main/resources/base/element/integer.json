@@ -1,0 +1,40 @@
+{
+  "integer": [
+    {
+      "name": "flippage_toast_duration",
+      "value": 300
+    },
+    {
+      "name": "flippage_padding_5",
+      "value": 5
+    },
+    {
+      "name": "flippage_padding_10",
+      "value": 10
+    },
+    {
+      "name": "flippage_margin_10",
+      "value": 10
+    },
+    {
+      "name": "flippage_image_height",
+      "value": 5
+    },
+    {
+      "name": "flippage_text_fontsize",
+      "value": 20
+    },
+    {
+      "name": "flippage_margin_40",
+      "value": 40
+    },
+    {
+      "name": "flippage_margin_20",
+      "value": 20
+    },
+    {
+      "name": "flippage_padding_40",
+      "value": 40
+    }
+  ]
+}
