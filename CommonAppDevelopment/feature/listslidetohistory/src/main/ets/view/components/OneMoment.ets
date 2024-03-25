@@ -61,20 +61,22 @@ export struct OneMoment {
         bottom: $r('app.integer.list_history_row_padding_bottom')
       })
 
-      if (this.moment.image) {
-        Column() {
-          Image($r(this.moment.image))
-            .id('singleImage')
-            .width($r('app.integer.list_history_single_image_width'))
-            .height($r('app.integer.list_history_single_image_height'))
-            .borderRadius($r('app.integer.list_history_single_image_radius'))
+      Stack() {
+        if (this.moment.image) {
+          Column() {
+            Image($r(this.moment.image))
+              .id('singleImage')
+              .width($r('app.integer.list_history_single_image_width'))
+              .height($r('app.integer.list_history_single_image_height'))
+              .borderRadius($r('app.integer.list_history_single_image_radius'))
+          }
+          .alignItems(HorizontalAlign.Start)
+          .width($r('app.string.layout_100'))
+          .padding({
+            left: $r('app.integer.list_history_image_group_padding_left'),
+            right: $r('app.integer.list_history_image_group_padding_right')
+          })
         }
-        .alignItems(HorizontalAlign.Start)
-        .width($r('app.string.layout_100'))
-        .padding({
-          left: $r('app.integer.list_history_image_group_padding_left'),
-          right: $r('app.integer.list_history_image_group_padding_right')
-        })
       }
 
       Row() {

@@ -48,7 +48,7 @@ class FriendMomentsData extends BasicDataSource<FriendMoment> {
   }
 }
 
-let momentData: FriendMomentsData = new FriendMomentsData(); // 公共常亮存放LazyForEach数据实体
+const momentData: FriendMomentsData = new FriendMomentsData(); // 公共常亮存放LazyForEach数据实体
 
 /** 附近的人主页面
  * 实现步骤：
@@ -165,7 +165,7 @@ async function getFriendMomentFromRawfile(): Promise<void> {
   }
 
   const textDecoder = util.TextDecoder.create();
-  let friendMomentArray = (JSON.parse(textDecoder.decodeWithStream(res)) as MyJsonModel).friendMoments;
+  const friendMomentArray = (JSON.parse(textDecoder.decodeWithStream(res)) as MyJsonModel).friendMoments;
 
   friendMomentArray.forEach(item => {
     // 由于获取的json的id是固定0-9，所以使用当前列表数量totalCount的十位部分加上json的id生成新的不重复id。
