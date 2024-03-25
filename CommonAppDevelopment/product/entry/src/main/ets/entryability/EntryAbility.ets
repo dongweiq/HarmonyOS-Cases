@@ -23,6 +23,8 @@ import { logger } from '@ohos/base';
 import { Configuration } from '@ohos.app.ability.Configuration';
 import display from '@ohos.display';
 import { BusinessError } from '@ohos.base';
+import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
+
 // Napi封装ETS代码
 import {
   registryDocumentViewPickerFn,
@@ -123,6 +125,9 @@ export default class EntryAbility extends UIAbility {
       console.error('Succeeded to obtain the default display object. Code: ' + JSON.stringify(displayClass));
       // 存储当前窗口高度
       AppStorage.setOrCreate('screenHeight', screenHeight);
+
+      // TODO: 知识点：设置监听键盘变化，控制虚拟键盘抬起时页面的避让模式
+      windowClass.getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
     });
 
     // 获取当前的颜色模式并保存
@@ -142,6 +147,7 @@ export default class EntryAbility extends UIAbility {
   onForeground(): void {
     // Ability has brought to foreground
     logger.info(TAG, '%{public}s', 'Ability onForeground');
+
   }
 
   onBackground(): void {
