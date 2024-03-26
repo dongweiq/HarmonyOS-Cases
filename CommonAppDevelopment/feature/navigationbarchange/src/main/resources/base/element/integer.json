@@ -1,131 +1,71 @@
 {
   "integer": [
     {
-      "name": "top_interval_value1",
+      "name": "top_interval_five",
       "value": 5
     },
     {
-      "name": "top_interval_value2",
+      "name": "top_interval_twenty",
       "value": 20
     },
     {
-      "name": "top_interval_value3",
+      "name": "top_interval_sixty",
       "value": 60
     },
     {
-      "name": "top_interval_value4",
-      "value": -23
+      "name": "left_interval_value",
+      "value": -10
     },
     {
-      "name": "top_interval_value5",
-      "value": 12
+      "name": "right_interval_value",
+      "value": -10
     },
     {
-      "name": "left_interval_value1",
-      "value": 15
-    },
-    {
-      "name": "left_interval_value2",
-      "value": 20
-    },
-    {
-      "name": "left_interval_value3",
-      "value": 35
-    },
-    {
-      "name": "right_interval_value1",
-      "value": 15
-    },
-    {
-      "name": "right_interval_value2",
-      "value": 20
-    },
-    {
-      "name": "bottom_interval_value",
+      "name": "bottom_interval_five",
       "value": 5
     },
     {
-      "name": "font_size1",
-      "value": 9
-    },
-    {
-      "name": "font_size2",
-      "value": 12
-    },
-    {
-      "name": "font_size3",
-      "value": 13
-    },
-    {
-      "name": "font_size4",
-      "value": 14
-    },
-    {
-      "name": "font_size5",
-      "value": 17
-    },
-    {
-      "name": "font_size6",
-      "value": 18
-    },
-    {
-      "name": "font_size7",
-      "value": 20
-    },
-    {
-      "name": "font_size8",
-      "value": 22
-    },
-    {
-      "name": "width_and_height_value1",
+      "name": "bottom_interval_ten",
       "value": 10
     },
     {
-      "name": "width_and_height_value2",
-      "value": 12
+      "name": "font_size_fourteen",
+      "value": 14
     },
     {
-      "name": "width_and_height_value3",
+      "name": "font_size_eighteen",
+      "value": 18
+    },
+    {
+      "name": "font_size_twenty",
       "value": 20
     },
     {
-      "name": "width_and_height_value4",
-      "value": 25
+      "name": "font_size_twenty_two",
+      "value": 22
     },
     {
-      "name": "width_and_height_value5",
+      "name": "width_and_height_thirty",
       "value": 30
     },
     {
-      "name": "width_and_height_value6",
+      "name": "width_and_height_thirty_five",
       "value": 35
     },
     {
-      "name": "width_and_height_value7",
-      "value": 37
-    },
-    {
-      "name": "width_and_height_value8",
+      "name": "width_and_height_forty",
       "value": 40
     },
     {
-      "name": "width_and_height_value9",
+      "name": "width_and_height_sixty",
       "value": 60
     },
     {
-      "name": "width_and_height_value10",
-      "value": 80
-    },
-    {
-      "name": "width_and_height_value11",
+      "name": "width_and_height_one_hundred_and_thirty",
       "value": 130
     },
     {
-      "name": "borderRadius_value1",
-      "value": 4
-    },
-    {
-      "name": "borderRadius_value2",
+      "name": "borderRadius_twelve",
       "value": 12
     },
     {
