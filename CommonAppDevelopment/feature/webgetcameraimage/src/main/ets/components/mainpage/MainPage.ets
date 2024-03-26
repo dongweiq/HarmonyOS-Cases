@@ -73,19 +73,19 @@ export struct WebGetCameraImageView {
    */
   invokeCamera(callback: (uri: string) => void) {
     const context = getContext(this) as common.UIAbilityContext;
-    let want: Want = {
+    const want: Want = {
       action: ACTION_IMAGE_CAPTURE,
       parameters: {
         "callBundleName": context.abilityInfo.bundleName,
       }
     };
-    let result: (error: BusinessError, data: common.AbilityResult) => void = (error: BusinessError, data: common.AbilityResult) => {
+    const result: (error: BusinessError, data: common.AbilityResult) => void = (error: BusinessError, data: common.AbilityResult) => {
       if (error && error.code !== 0) {
         logger.error(`${TAG_CAMERA_ERROR} ${JSON.stringify(error.message)}`);
         return;
       }
       // 获取相机拍照后返回的图片地址
-      let resultUri: string = data.want?.parameters?.resourceUri as string;
+      const resultUri: string = data.want?.parameters?.resourceUri as string;
       if (callback && resultUri) {
         callback(resultUri);
       }
@@ -101,4 +101,4 @@ export function getWebView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.WEB_GET_CAMERA_IMAGE,wrapBuilder(getWebView));
+DynamicsRouter.registerRouterPage(RouterInfo.WEB_GET_CAMERA_IMAGE, wrapBuilder(getWebView));

@@ -79,7 +79,7 @@ export struct CommentInputDialog {
               return;
             }
             // 拉起相机进行拍照
-            let image: string = await cameraCapture(getContext(this) as common.UIAbilityContext);
+            const image: string = await cameraCapture(getContext(this) as common.UIAbilityContext);
             if (image !== "") {
               this.selectedImages.push(image);
             }

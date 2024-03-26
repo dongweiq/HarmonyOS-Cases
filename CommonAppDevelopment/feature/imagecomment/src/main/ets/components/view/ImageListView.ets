@@ -13,11 +13,14 @@
  * limitations under the License.
  */
 
+const ID_IMAGE: string = 'image';
+const ID_DELETE: string = 'delete';
+
 // 评论中显示图片的组件
 @Component
 export struct ImageListView {
   // 图片列表
-  @Prop selectedImages: ResourceStr[] = [];
+  @State selectedImages: ResourceStr[] = [];
   // 是否可以删除列表中的图片
   imageEnableDelete: boolean = false;
 
@@ -25,23 +28,41 @@ export struct ImageListView {
     List({ space: 10 }) {
       ForEach(this.selectedImages, (image: string, index: number) => {
         ListItem() {
-          Image(image)
-            .height($r('app.integer.image_comment_image_height'))
-            .width($r('app.integer.image_comment_image_width'))
-            .onClick(() => {
-              if (this.imageEnableDelete) {
-                // 点击图片时删除图片
-                this.selectedImages.splice(index, 1);
-              }
-            })
-            .borderRadius($r('app.integer.image_comment_image_border_radius'))
+          RelativeContainer() {
+            Image(image)
+              .height($r('app.integer.image_comment_image_height'))
+              .width($r('app.integer.image_comment_image_width'))
+              .borderRadius($r('app.integer.image_comment_image_border_radius'))
+              .alignRules({
+                bottom: { anchor: "__container__", align: VerticalAlign.Bottom },
+                left: { anchor: "__container__", align: HorizontalAlign.Start }
+              })
+              .id(ID_IMAGE + index)
+            if (this.imageEnableDelete) {
+              Image($r('app.media.ic_public_close_filled'))
+                .height($r('app.integer.image_delete_height'))
+                .width($r('app.integer.image_delete_width'))
+                .onClick(() => {
+                  if (this.imageEnableDelete) {
+                    // 点击图片时删除图片
+                    this.selectedImages.splice(index, 1);
+                  }
+                })
+                .alignRules({
+                  top: { anchor: "__container__", align: VerticalAlign.Top },
+                  right: { anchor: "__container__", align: HorizontalAlign.End }
+                })
+                .id(ID_DELETE + index)
+            }
+          }
+          .width($r('app.integer.image_relative_container_width'))
+          .height($r('app.integer.image_relative_container_height'))
         }
       })
     }
     .height($r('app.integer.list_comment_image_height'))
     .width($r('app.string.percent_100'))
     .padding({
-      top: $r('app.integer.list_comment_image_padding_top'),
       bottom: $r('app.integer.list_comment_image_padding_bottom')
     })
     .listDirection(Axis.Horizontal)
