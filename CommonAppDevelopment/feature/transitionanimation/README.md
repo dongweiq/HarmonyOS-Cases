@@ -60,7 +60,7 @@
     }
   })
   .width(this.expandCardId > -1 ? '100%' : this.dataSource.getData(this.clickedCardIndex).cardArea.width)
-  .height(this.expandCardId > -1 ? px2vp( this.currentDiaplayHeight as number) : this.dataSource.getData(this.clickedCardIndex).cardArea.height)
+  .height(this.expandCardId > -1 ? px2vp( this.currentDisplayHeight as number) : this.dataSource.getData(this.clickedCardIndex).cardArea.height)
   .position({
     x: this.expandCardId > -1 ? 0 : this.dataSource.getData(this.clickedCardIndex).cardArea.position.x,
     y: this.expandCardId > -1 ? 0 : (this.dataSource.getData(this.clickedCardIndex).cardArea.position.y)

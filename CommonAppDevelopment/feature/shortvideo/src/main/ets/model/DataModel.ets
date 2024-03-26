@@ -35,27 +35,27 @@ export interface VideoData {
 
 // 继承自BasicDataSource的子类，重写了方法
 export class TopTabContent extends BasicDataSource {
-  private tabcontent: string[] = ['关注', '精选', '推荐', '放映厅'];
+  private tabContent: string[] = ['关注', '精选', '推荐', '放映厅'];
 
   // 获取数组长度
   public totalCount(): number {
-    return this.tabcontent.length;
+    return this.tabContent.length;
   }
 
   // 获取指定索引数据
   public getData(index: number): string {
-    return this.tabcontent[index];
+    return this.tabContent[index];
   }
 
   // 改变单个数据
   public addData(index: number, data: string): void {
-    this.tabcontent.splice(index, 0, data);
+    this.tabContent.splice(index, 0, data);
     this.notifyDataAdd(index);
   }
 
   // 添加数据
   public pushData(data: string): void {
-    this.tabcontent.push(data);
-    this.notifyDataAdd(this.tabcontent.length - 1);
+    this.tabContent.push(data);
+    this.notifyDataAdd(this.tabContent.length - 1);
   }
 }

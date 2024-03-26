@@ -29,7 +29,7 @@ class BasicDataSource <T> implements IDataSource {
 
   // 获取指定数据项
   public getData(index: number): T | void {
-    console.info('getDataindex:' + index);
+    console.info('getData, index:' + index);
   }
 
   // 该方法为框架侧调用，为LazyForEach组件向其数据源处添加listener监听

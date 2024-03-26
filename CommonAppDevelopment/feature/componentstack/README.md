@@ -51,8 +51,8 @@ Scroll(this.scroller) {
   } else {
     this.isChange = true;
     this.Opacity = (yOffset - this.IconList1_raw) / this.maxMarginSpace; // IconList1的透明度
-    this.marginSpace = this.IconList3_raw - yOffset > this.minmarginSpace ?
-    (this.IconList3_raw - yOffset) : this.minmarginSpace; // IconList3的间距
+    this.marginSpace = this.IconList3_raw - yOffset > this.minMarginSpace ?
+    (this.IconList3_raw - yOffset) : this.minMarginSpace; // IconList3的间距
   }
 })
 ```

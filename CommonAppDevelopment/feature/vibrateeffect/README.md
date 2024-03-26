@@ -28,7 +28,7 @@
         usage: 'alarm',
       }, (error: BusinessError) => {
         if (error) {
-          logger.error(`Failed to start vibration. Code: ${error.code}, messege: ${error.message}`);
+          logger.error(`Failed to start vibration. Code: ${error.code}, message: ${error.message}`);
           return;
         }
         logger.info('Succeed in starting vibration');

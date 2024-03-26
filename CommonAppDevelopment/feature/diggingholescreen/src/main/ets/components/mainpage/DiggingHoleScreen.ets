@@ -163,7 +163,7 @@ export struct DiggingHoleScreen {
         .width('100%')
 
         FunctionDescription({
-          title: $r('app.string.introduction_titel'),
+          title: $r('app.string.introduction_title'),
           content: $r('app.string.introduction_content')
         })
           .width('90%')

@@ -22,7 +22,7 @@ export abstract class BasicDataSource<T> implements IDataSource {
   public abstract totalCount(): number
 
   public getData(index: number): T | void {
-    console.info('getDataindex:'+index);
+    console.info('getData, index:'+index);
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {

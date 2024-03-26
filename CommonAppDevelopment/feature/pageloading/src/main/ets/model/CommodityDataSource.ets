@@ -34,7 +34,7 @@ class BasicDataSource <T> implements IDataSource {
    * 获取指定数据项
    */
   public getData(index: number): T | void {
-    logger.info('getDataindex:' + index);
+    logger.info('getData, index:' + index);
   }
 
   /**

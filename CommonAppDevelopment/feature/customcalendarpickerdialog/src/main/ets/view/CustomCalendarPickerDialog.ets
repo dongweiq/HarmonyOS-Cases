@@ -99,13 +99,13 @@ export struct CustomCalendarPickerDialog {
       // 显示周信息，从周日开始到周六
       List() {
         // 一周七天固定，且在场景中必须显示，使用了ForEach
-        ForEach(this.week, (weekInfomation: string) => {
+        ForEach(this.week, (weekInformation: string) => {
           ListItem() {
-            Text(weekInfomation)
+            Text(weekInformation)
               .textAlign(TextAlign.Center)
               .width('100%')
               .height($r('app.string.ohos_id_text_size_headline'))
-              .fontColor(weekInfomation === SUNDAY || weekInfomation === SATURDAY ? $r('app.color.ohos_id_color_warning') : $r('app.color.ohos_id_color_text_primary'))
+              .fontColor(weekInformation === SUNDAY || weekInformation === SATURDAY ? $r('app.color.ohos_id_color_warning') : $r('app.color.ohos_id_color_text_primary'))
           }
           .width($r('app.string.week_width'))
         })
