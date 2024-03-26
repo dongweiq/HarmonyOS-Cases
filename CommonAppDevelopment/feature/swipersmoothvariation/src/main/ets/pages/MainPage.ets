@@ -194,6 +194,7 @@ export struct SwiperSmoothVariation {
         // swiper第四个page
         this.GridBuilderFunction(this.dataPageFour, Const.GRID_DOUBLE_HEIGHT, Const.GRID_TEMPLATE)
       }
+      .width($r('app.string.width_full'))
       .backgroundColor($r('app.color.color_white'))
       .borderRadius($r('app.integer.border_radius'))
       .margin({ top: $r('app.float.margin_fifteen') })
@@ -203,7 +204,7 @@ export struct SwiperSmoothVariation {
       // 性能知识点: onGestureSwipe属于频繁回调，不建议在onGestureSwipe做耗时和冗余操作
       .onGestureSwipe((index: number, extraInfo: SwiperAnimationEvent) => {
         animateTo({
-          duration: Const.DURATION,
+          duration: Const.DURATION_SWIPER,
           curve: Curve.EaseOut,
           playMode: PlayMode.Normal,
           onFinish: () => {
@@ -224,7 +225,7 @@ export struct SwiperSmoothVariation {
       // 平滑变化的动画效果
       .onAnimationStart((_: number, targetIndex: number) => {
         animateTo({
-          duration: Const.DURATION,
+          duration: Const.DURATION_DOWN_PAGE,
           curve: Curve.EaseOut,
           playMode: PlayMode.Normal,
           onFinish: () => {

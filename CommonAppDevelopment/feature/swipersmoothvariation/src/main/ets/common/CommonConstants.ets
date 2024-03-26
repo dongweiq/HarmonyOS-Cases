@@ -22,5 +22,6 @@ export class CommonConstants{
   static readonly SMALL_FONT_SIZE: number = 13
   static readonly GRID_TEMPLATE: string = '1fr 1fr'
   static readonly COLUMN_TEMPLATE: string = '1fr 1fr 1fr 1fr 1fr'
-  static readonly DURATION: number = 400
+  static readonly DURATION_SWIPER: number = 0
+  static readonly DURATION_DOWN_PAGE: number = 400
 }
