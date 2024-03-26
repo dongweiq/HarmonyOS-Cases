@@ -22,7 +22,7 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 @Component
 export struct TransitionAnimationPage {
   // 存储当前设备高度，用于计算详情页展开后高度
-  @State currentDiaplayHeight: Length = 0;
+  @State currentDisplayHeight: Length = 0;
   // 详情页是否显示标识
   @State isDetailPageShow: boolean = false;
   @State myOpacity: number = 1;
@@ -34,7 +34,7 @@ export struct TransitionAnimationPage {
   dataSource: WaterFlowDataSource = new WaterFlowDataSource();
 
   aboutToAppear() {
-    this.currentDiaplayHeight = display.getDefaultDisplaySync().height;
+    this.currentDisplayHeight = display.getDefaultDisplaySync().height;
   }
 
   @Builder
@@ -105,7 +105,7 @@ export struct TransitionAnimationPage {
           }
         })
           .width(this.expandCardId > -1 ? '100%' : this.dataSource.getData(this.clickedCardIndex).cardArea.width)
-          .height(this.expandCardId > -1 ? px2vp(this.currentDiaplayHeight as number) : this.dataSource.getData(this.clickedCardIndex)
+          .height(this.expandCardId > -1 ? px2vp(this.currentDisplayHeight as number) : this.dataSource.getData(this.clickedCardIndex)
             .cardArea
             .height)
           .position({

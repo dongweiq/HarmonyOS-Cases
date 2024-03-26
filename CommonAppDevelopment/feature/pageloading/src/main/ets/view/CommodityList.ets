@@ -21,7 +21,7 @@ const IMAGE_ASPECT_RATIO: number = 1; // 图片的宽高比
 const OFFSET: number = -4; // 价格控件偏移量
 const OFFSETX: number = 10; // banner阴影X轴偏移量
 const OFFSETY: number = 10; // banner阴影Y轴偏移量
-const LAYOUTWEIGHT: number = 1; // 分配剩余空间
+const LAYOUT_WEIGHT: number = 1; // 分配剩余空间
 const ANGLE: number = 180; // 自上而下渐变
 
 @Component
@@ -153,7 +153,7 @@ export struct CommodityList {
         }, (item: CommodityDataModel) => item.id.toString())
       }
       .width('100%')
-      .layoutWeight(LAYOUTWEIGHT)
+      .layoutWeight(LAYOUT_WEIGHT)
     }
     // 设置背景颜色渐变
     .linearGradient({

@@ -25,7 +25,7 @@ export abstract class BasicDataSource implements IDataSource {
 
   // 获取指定索引数据
   public getData(index: number): void {
-    console.info('getDataindex:' + index);
+    console.info('getData, index:' + index);
   }
 
   // 为LazyForEach组件向其数据源处添加listener监听

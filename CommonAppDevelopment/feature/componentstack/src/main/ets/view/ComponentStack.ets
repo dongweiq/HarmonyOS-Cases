@@ -29,7 +29,7 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 const ASPECT_RATIO: number = 1; // 图片的宽高比
 const OPACITY: number = 0.6; // 字体设置透明度
 const ZINDEX: number = 1; // 快截图标区域3放在最上层
-const LAYOUTWEIGHT: number = 1; // 分配剩余空间
+const LAYOUT_WEIGHT: number = 1; // 分配剩余空间
 
 @Preview
 @Component
@@ -45,11 +45,11 @@ export struct ComponentStack {
   @State Opacity: number = 1; // 快截图标区域1的透明度
   @State marginSpace: number = 25; // 快截图标区域3 左右之间间隔
   readonly maxMarginSpace: number = 25; // IconList3默认最大间距
-  readonly minmarginSpace: number = 12; // IconList3默认最小间距
+  readonly minMarginSpace: number = 12; // IconList3默认最小间距
   readonly IconList1_raw: number = 100; // 计算IconList1的透明度
   readonly IconList2_raw: number = 120; // 计算IconList2的透明度
   readonly IconList3_raw: number = 140; // 计算IconList3的透明度
-  readonly UsedSapce: number = 110; // 已占用高度
+  readonly UsedSpace: number = 110; // 已占用高度
   @StorageLink('statusHeight') statusHeight: number = 0; // 状态栏的高度
   @StorageLink('bottomHeight') bottomHeight: number = 0; // 底部安全区高度
   @StorageLink('screenHeight') screenHeight: number = 0; // 当前窗口高度
@@ -129,7 +129,7 @@ export struct ComponentStack {
                 // 商品列表组件
                 ProductList()
                   .width('100%')
-                  .height(px2vp(this.screenHeight - this.statusHeight - this.bottomHeight) - this.UsedSapce)
+                  .height(px2vp(this.screenHeight - this.statusHeight - this.bottomHeight) - this.UsedSpace)
               }
               .margin({ top: this.marginTop }) // 防止遮挡IconList1
             }
@@ -163,8 +163,8 @@ export struct ComponentStack {
               } else {
                 this.isChange = true;
                 this.Opacity = (yOffset - this.IconList1_raw) / this.maxMarginSpace; // IconList1的透明度
-                this.marginSpace = this.IconList3_raw - yOffset > this.minmarginSpace ?
-                  (this.IconList3_raw - yOffset) : this.minmarginSpace; // IconList3的间距
+                this.marginSpace = this.IconList3_raw - yOffset > this.minMarginSpace ?
+                  (this.IconList3_raw - yOffset) : this.minMarginSpace; // IconList3的间距
               }
             })
           }
@@ -186,7 +186,7 @@ export struct ComponentStack {
       })
     }
     .width('100%')
-    .layoutWeight(LAYOUTWEIGHT)
+    .layoutWeight(LAYOUT_WEIGHT)
     .backgroundColor($r('app.color.ohos_id_color_sub_background'))
     .padding({ top: $r('app.integer.stack_padding_top') })
   }
