@@ -17,17 +17,18 @@
  * 歌词数据类，待扩展
  */
 export class LyricsDataSource implements IDataSource {
-  private _lyricsDataArr: Array<string>;
+  private lyricsDataArr: Array<string>;
+
   constructor(lyricsArr: Array<string>) {
-    this._lyricsDataArr = lyricsArr;
+    this.lyricsDataArr = lyricsArr;
   }
 
   totalCount(): number {
-    return this._lyricsDataArr.length;
+    return this.lyricsDataArr.length;
   }
 
   getData(index: number): string {
-    return this._lyricsDataArr[index];
+    return this.lyricsDataArr[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {

@@ -158,7 +158,8 @@ struct TouchEvent {
           .backgroundColor($r('sys.color.ohos_id_color_focused_bg'))
           .onTouch((event) => {
             if (this.isEnabled) {
-              event.stopPropagation(); // TODO：知识点：在onTouch事件里，通过调用event.stopPropagation()阻止事件冒泡(子组件向父组件透传Touch事件)
+              // TODO：知识点：在onTouch事件里，通过调用event.stopPropagation()阻止事件冒泡(子组件向父组件透传Touch事件)
+              event.stopPropagation();
             }
             this.childCompResponseTimes++;
           })
@@ -184,4 +185,4 @@ export function getEventPropagation(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.EVENT_TRANSMISSION_SOLUTION,wrapBuilder(getEventPropagation));
+DynamicsRouter.registerRouterPage(RouterInfo.EVENT_TRANSMISSION_SOLUTION, wrapBuilder(getEventPropagation));

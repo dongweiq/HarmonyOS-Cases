@@ -42,7 +42,7 @@ export struct SelectPictures {
         this.photoCount = this.uris.length;
       })
       .catch((err: BusinessError) => {
-        console.log('Invoke photoViewPicker.select failed, code is ${err.code},message is ${err.message}');
+        console.info('Invoke photoViewPicker.select failed, code is ${err.code},message is ${err.message}');
       })
   }
 

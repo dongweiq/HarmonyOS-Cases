@@ -33,7 +33,7 @@ export default struct MemoItem {
         Text(this.memoItem.content)
           .fontSize($r('app.float.font_size_smaller'))
           .memoTextExpand()
-          .margin({top: $r('app.string.layout_10'), bottom: $r('app.string.layout_10')})
+          .margin({ top: $r('app.string.layout_10'), bottom: $r('app.string.layout_10') })
           .fontColor($r('app.color.font_color_light_dark'))
         Text(this.memoItem.time)
           .fontSize($r('app.float.font_size_smaller'))

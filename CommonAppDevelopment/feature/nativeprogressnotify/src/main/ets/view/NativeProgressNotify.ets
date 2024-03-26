@@ -53,7 +53,7 @@ export struct NativeProgressNotify {
               }
             }
             this.progress = data;
-            console.log("[NativeProgressNotify]progress:" + this.progress);
+            console.info("[NativeProgressNotify]progress:" + this.progress);
           })
         })
         .enabled(this.buttonEnabled)

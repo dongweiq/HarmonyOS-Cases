@@ -16,7 +16,7 @@
 /**
  * AI设计视图
  */
-import { DecorationComparsionView } from './DragToSwitchPicturesView';
+import { DecorationComparisonView } from './DragToSwitchPicturesView';
 import { CONFIGURATION } from '../common/Constants';
 import { promptAction } from '@kit.ArkUI';
 
@@ -31,7 +31,7 @@ export struct DesignCattleView {
         .fontWeight('sys.string.ohos_id_text_font_family_medium')
         .margin({ top: $r('app.integer.margin_length') })
 
-      DecorationComparsionView()
+      DecorationComparisonView()
 
       RelativeContainer() {
         Text()

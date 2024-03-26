@@ -18,9 +18,9 @@
  */
 @Observed
 export class AppInfo {
-  icon: ResourceStr  = ''
-  name: ResourceStr = ''
-  visible: boolean = true
+  icon: ResourceStr = ''; // 应用图标
+  name: ResourceStr = ''; // 应用名称
+  visible: boolean = true; // 是否可见
 
   constructor(icon: ResourceStr = '', name: ResourceStr = '', visible: boolean = true) {
     this.icon = icon;

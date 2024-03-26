@@ -29,6 +29,7 @@ export default class GlobalProxyServer {
     }
     return GlobalProxyServer.instance;
   }
+
   /**
    * 获取上下文信息
    * @returns
@@ -36,6 +37,7 @@ export default class GlobalProxyServer {
   getContext(): common.UIAbilityContext {
     return this.objects.get(CONTEXT_STR) as common.UIAbilityContext;
   }
+
   /**
    * 设置上下文信息
    * @param context

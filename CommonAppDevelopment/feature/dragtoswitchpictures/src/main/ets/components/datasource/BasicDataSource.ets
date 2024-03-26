@@ -24,7 +24,7 @@ export abstract class BasicDataSource<T> implements IDataSource {
   }
 
   public getData(index: number): T | void {
-    console.info('getDataindex:'+index);
+    console.info('getData, index:'+index);
   }
 
   /**

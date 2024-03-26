@@ -121,16 +121,16 @@ export struct TabsWaterFlowView {
         .height($r('app.string.full_size'))
         .border(this.tabsIndex === index ? {
           width: {
-            left: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
-            right: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
-            top: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH,
-            bottom: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH_BOTTOM
+            left: CONFIGURATION.TABBAR_TEXT_BORDER_WIDTH,
+            right: CONFIGURATION.TABBAR_TEXT_BORDER_WIDTH,
+            top: CONFIGURATION.TABBAR_TEXT_BORDER_WIDTH,
+            bottom: CONFIGURATION.TABBAR_TEXT_BORDER_WIDTH_BOTTOM
           },
           color: { bottom: Color.Black },
           style: BorderStyle.Solid
         } :
           {
-            width: CONFIGURATION.TABBAR_TEXT_BODER_WIDTH
+            width: CONFIGURATION.TABBAR_TEXT_BORDER_WIDTH
           })
     }
     .justifyContent(FlexAlign.Center)

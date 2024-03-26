@@ -83,7 +83,7 @@ export struct ImageText {
         Checkbox()
           .attributeModifier(this.checkboxModifier)
 
-        // TODO：知识点：AttributeModifier不支持入参为CustomBuilder或Lamda表达式的属性，且不支持事件和手势。image和text只能单独通过入参传递使用
+        // TODO：知识点：AttributeModifier不支持入参为CustomBuilder或Lambda表达式的属性，且不支持事件和手势。image和text只能单独通过入参传递使用
         Image(this.imageSrc)
           .attributeModifier(this.imageModifier)
       }

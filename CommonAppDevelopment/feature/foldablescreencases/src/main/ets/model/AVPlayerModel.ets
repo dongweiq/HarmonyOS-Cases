@@ -85,7 +85,7 @@ export class AVPlayerModel {
       timeUpdateCb(newTime);
     })
     // 状态机变化回调函数
-    avPlayer.on('stateChange', (state: string, reason: media.StateChangeReason) => {
+    avPlayer.on('stateChange', (state: string) => {
       stateUpdateCb(state);
 
       switch (state) {

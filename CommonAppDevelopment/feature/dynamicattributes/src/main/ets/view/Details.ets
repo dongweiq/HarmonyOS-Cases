@@ -22,7 +22,7 @@ const TEXT_SIZE = 15; // 自定义组件中text大小
 @Component
 export struct Details {
   // TODO：知识点：实例化自定义的样式类
-  @State rowModifie: BarModifier = new BarModifier();
+  @State rowModifier: BarModifier = new BarModifier();
   @State textOne: CommodityText = new CommodityText(TextType.TYPE_ONE, 30);
   @State textTwo: CommodityText = new CommodityText(TextType.TYPE_TWO, 20);
   @State textThree: CommodityText = new CommodityText(TextType.TYPE_Three, 20);

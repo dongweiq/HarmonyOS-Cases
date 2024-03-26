@@ -46,7 +46,9 @@ export struct ListSceneView {
         .fontSize($r('app.string.opt_title_font_size'))
       Row() { // 仅靠List实现背景框，padding调整样式后，互换时可能错位
         List({ space: LIST_SPACE }) {
-          ForEach(this.appInfoList, (item: AppInfo, index) => { // TODO: 性能知识点：图标一次性完全显示，且禁用滑动，无需懒加载（LazyForEach可以适用在动态添加数据的场景中，参考资料：https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/lazyforeach_optimization.md/）
+          // TODO: 性能知识点：图标一次性完全显示，且禁用滑动，无需懒加载。LazyForEach可以适用在动态添加数据的场景中，参考资料：
+          //  https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/lazyforeach_optimization.md/
+          ForEach(this.appInfoList, (item: AppInfo, index) => {
             ListItem() {
               Column() {
                 IconNoNameView({ app: item })

@@ -18,7 +18,8 @@ import { AppInfo } from '../model/AppInfo';
 const ICON_NUM_IN_GRID: number = 15; // 示例Grid中子组件数目
 
 /**
- * 实现Grid场景，拖拽交换子组件位置: 通过editMode()打开编辑模式、通过onItemDragStart()指定拖拽时样式、通过onItemDrop()指定拖拽释放时的行为
+ * 实现Grid场景，拖拽交换子组件位置: 通过editMode()打开编辑模式、通过onItemDragStart()
+ * 指定拖拽时样式、通过onItemDrop()指定拖拽释放时的行为
  */
 @Component
 export struct GridSceneView {
@@ -39,7 +40,9 @@ export struct GridSceneView {
         .fontSize($r('app.string.opt_title_font_size'))
       Row() {
         Grid() {
-          ForEach(this.appInfoList, (item: AppInfo) => { // TODO: 性能知识点：图标一次性完全显示，且禁用滑动，无需懒加载（LazyForEach可以适用在动态添加数据的场景中，参考资料：https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/lazyforeach_optimization.md/）
+          // TODO: 性能知识点：图标一次性完全显示，且禁用滑动，无需懒加载。LazyForEach可以适用在动态添加数据的场景中，参考资料：
+          //  https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/lazyforeach_optimization.md/
+          ForEach(this.appInfoList, (item: AppInfo) => {
             GridItem() {
               IconWithNameView({ app: item });
             }
@@ -62,7 +65,12 @@ export struct GridSceneView {
             this.changeIndex(itemIndex, insertIndex);
           }
         })
-        .padding({ top: $r('app.string.layout_10'), bottom: $r('app.string.layout_10'), left: $r('app.string.layout_5'), right: $r('app.string.layout_5') })
+        .padding({
+          top: $r('app.string.layout_10'),
+          bottom: $r('app.string.layout_10'),
+          left: $r('app.string.layout_5'),
+          right: $r('app.string.layout_5')
+        })
       }
       .width($r('app.string.layout_90_percent'))
       .height($r('app.string.layout_250'))
