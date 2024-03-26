@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "swiper_width",
+      "value": "100%"
+    },
+    {
+      "name": "column_width",
+      "value": "100%"
+    },
+    {
+      "name": "column_height",
+      "value": "100%"
+    }
+  ]
+}
