@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "title_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "detail_divider",
+      "value": "#f3f3f3"
+    },
+    {
+      "name": "message_body_background",
+      "value": "#F1F3F5"
+    },
+    {
+      "name": "top_bar_font_color",
+      "value": "#182431"
+    },
+    {
+      "name": "detail_item_message_background",
+      "value": "#D0E9F3"
+    }
+  ]
+}

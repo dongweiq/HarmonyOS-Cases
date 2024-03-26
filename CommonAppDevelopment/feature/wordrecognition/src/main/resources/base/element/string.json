@@ -1,0 +1,28 @@
+{
+  "string": [
+    {
+      "name": "word_title_content",
+      "value": "新建信息"
+    },
+    {
+      "name": "input_background",
+      "value": "rgba(0,0,0,0.05)"
+    },
+    {
+      "name": "layout_100",
+      "value": "100%"
+    },
+    {
+      "name": "input_button",
+      "value": "发送"
+    },
+    {
+      "name": "text_content_one",
+      "value": "【流量提醒】 尊敬的客户，您的2024年2月流量账单已送达，点击查看账单详情：https://developer.harmonyos.com/ 拒收请回复R"
+    },
+    {
+      "name": "text_content_two",
+      "value": "【邮箱】 您有一条新邮件，请登录邮箱https://12345@abc.com/查收 拒收请回复R"
+    }
+  ]
+}
