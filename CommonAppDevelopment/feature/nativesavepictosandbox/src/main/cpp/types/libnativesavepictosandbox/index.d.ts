@@ -14,5 +14,5 @@
  */
 
 import type resourceManager from '@ohos.resourceManager';
-export const saveImageOfInternet: (internet_url: string, tar_path: string, tar_name: string) => string;
-export const saveImageOfRawfile: (resmgr: resourceManager.ResourceManager, src_path: string, tar_path: string) => string;
+export const saveImageOfInternetCallback: (internet_url: string, tar_path: string, tar_name: string, callback: Function) => string;
+export const saveImageOfRawfileCallback: (resmgr: resourceManager.ResourceManager, src_path: string, tar_path: string, callback: Function) => string;

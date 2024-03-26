@@ -14,8 +14,7 @@
 
 2. 设备连接上网络。
 
-3. 点击"保存Rawfile图片"，前端通过调用Native侧暴露的saveImageOfRawfile接口将rawfile中的图片sandBoxTest.jpg保存到应用沙箱中并返回沙箱路径到前端进行显示；点击“保存网络图片”，前端通过调用Native侧暴露的saveImageOfInternet接口将网络图片[http://placekitten.com/96/140](http://placekitten.com/96/140)保存到应用沙箱中并返回沙箱路径到前端进行显示。
-
+3. 点击"保存Rawfile图片"，前端通过调用Native侧暴露的saveImageOfRawfileCallback接口将rawfile中的图片sandBoxTest.jpg保存到应用沙箱中并返回沙箱路径到前端进行显示；点击“保存网络图片”，前端通过调用Native侧暴露的saveImageOfInternetCallback接口将网络图片[https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/imagedepthcopy/src/main/resources/rawfile/depthCopy.png](https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/imagedepthcopy/src/main/resources/rawfile/depthCopy.png)保存到应用沙箱中并返回沙箱路径到前端进行显示。  
 具体代码可参考[NativePictureToSandboxView.ets](./src/main/ets/view/NativePictureToSandboxView.ets)以及[native_picture_to_sandbox.cpp](./src/main/cpp/native_picture_to_sandbox.cpp)。
 
 ### 实现思路
@@ -33,96 +32,115 @@
    target_link_directories(nativesavepictosandbox PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/../../../libs/${OHOS_ARCH}/)
    target_link_libraries(nativesavepictosandbox PUBLIC libace_napi.z.so libcurlDownload.so libhilog_ndk.z.so librawfile.z.so)
    ```   
-4. 在前端通过调用Native中的saveImageOfInternet接口获取沙箱地址并将沙箱地址转换为url地址绑定到Image组件显示。传入的参数为js的资源对象、rawfile中的图片名、获取应用的文件路径。
+4. 在前端通过调用Native中的saveImageOfInternetCallback接口获取沙箱地址并将沙箱地址转换为url地址绑定到Image组件显示。传入的参数为网络图片地址、应用的文件路径、沙箱中的文件名。
 
    ```typescript
       Button($r('app.string.tbn_InternetPicture'))
         .onClick(() => {
-          // TODO：知识点：通过Native暴露的接口saveImageOfInternet接口获取下载的网络图片保存在沙箱中的路径
-          const sandBoxPath: string = testNapi.saveImageOfInternet(this.internetPicUrl, this.fileDir, this.internetSandBoxFileName);
-          if (sandBoxPath === undefined) {
-            AlertDialog.show({ message: `网络图片写入失败`, alignment: DialogAlignment.Center });
-            this.internetSandBoxPath = '';
-          } else {
-            // 将沙箱地址转换为url地址
-            this.internetSandBoxPath = fileUri.getUriFromPath(sandBoxPath);
-          }
-        })
+            // TODO：知识点：通过Native暴露的接口saveImageOfInternetCallback接口获取下载的网络图片保存在沙箱中的路径
+            testNapi.saveImageOfInternetCallback(this.internetPicUrl, this.fileDir, this.internetSandBoxFileName, ((result: string) => {
+              if (result === undefined || result === '') {
+                AlertDialog.show({
+                  message: $r('app.string.internet_file_write_fail'),
+                  alignment: DialogAlignment.Center
+                });
+                this.internetSandBoxPath = '';
+              } else {
+                this.internetSandBoxPath = fileUri.getUriFromPath(result);
+                logger.info('[pic2sandbox]', `saveImageOfInternet sandboxPath is ` + result);
+              }
+            }))
+          })
    ```
-5. 在Native的saveImageOfInternet接口中通过调用libcurlDownload.so的接口将网络图片写入沙箱。
+5. 在Native的saveImageOfInternetCallback接口中通过调用libcurlDownload.so的接口将网络图片写入沙箱。
 
    ```c++
+    // TODO：知识点：使用dlopen动态加载so库，返回so库的句柄
     void *handler = dlopen(libCurlDownload, RTLD_LAZY);
     if (handler == nullptr) {
         // 抛出加载库失败的错误
         dlerror();
-        return nullptr;
+        return;
     }
 
     // 声明函数指针类型
-    typedef napi_value (*DownloadInternetFileFunc)(napi_env, napi_callback_info);
+    typedef std::string (*DownloadInternetFileFunc)(char *, char *);
     DownloadInternetFileFunc downloadInternetWrapper =
         reinterpret_cast<DownloadInternetFileFunc>(dlsym(handler, "DownloadInternetFileWrapper"));
     if (downloadInternetWrapper) {
         // TODO：知识点：调用so的downloadInternetWrapper函数保存网路图片到沙箱
-        napi_value result = downloadInternetWrapper(env, info);
+        CallbackInternetContext *internetContext = (CallbackInternetContext *)data;
+        if (internetContext == nullptr) {
+            OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "saveImageOfInternet internetContext is null");
+            return;
+        }
+        // 图片沙箱完整路径
+        std::string targetSandboxPath = internetContext->sandboxDir + internetContext->FileName;
+        OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "saveImageOfInternet 保存沙箱文件：%{public}s",
+                     targetSandboxPath.c_str());
+
+        internetContext->result = downloadInternetWrapper((char *)internetContext->internetPicUrl.c_str(),
+            (char *)targetSandboxPath.c_str());
         OH_LOG_Print(LOG_APP, LOG_INFO, GLOBAL_RESMGR, TAG, "saveImageOfInternet download finish");
         dlclose(handler);
-        return result;
     } else {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "saveImageOfInternet download function is null");
         dlclose(handler);
-        return nullptr;
     }
    ```
 
 
 #### Native保存Rawfile图片到沙箱的实现主要步骤如下：
 
-1. 在前端通过调用Native中的saveImageOfRawfile接口获取沙箱地址并将沙箱地址转换为url地址绑定到Image组件显示。传入的参数为js的资源对象、rawfile中的图片名、获取应用的文件路径。
+1. 在前端通过调用Native中的saveImageOfRawfileCallback接口获取沙箱地址并将沙箱地址转换为url地址绑定到Image组件显示。传入的参数为js的资源对象、rawfile中的图片名、应用的文件路径。
 
    ```typescript
       Button($r('app.string.tbn_RawFilePicture'))
         .onClick(() => {
-          // TODO：知识点：通过Native暴露的接口saveImageOfRawfile接口获取rawfile中图片保存在沙箱中的路径
-          const sandBoxPath: string = testNapi.saveImageOfRawfile(this.resMgr, this.rawfilePicPath, this.fileDir);
-          if (sandBoxPath === undefined) {
-            AlertDialog.show({ message: `Rawfile图片写入失败`, alignment: DialogAlignment.Center });
-            this.rawfileSandBoxPath = '';
-          } else {
-            // 将沙箱地址转换为url地址
-            this.rawfileSandBoxPath = fileUri.getUriFromPath(sandBoxPath);
-          }
-        })
+            // TODO：知识点：通过Native暴露的接口saveImageOfRawfileCallback接口获取rawfile中图片保存在沙箱中的路径
+            testNapi.saveImageOfRawfileCallback(this.resMgr, this.rawfilePicPath, this.fileDir, ((result: string) => {
+              if (result === undefined || result === '') {
+                AlertDialog.show({
+                  message: $r('app.string.rawfile_write_fail'),
+                  alignment: DialogAlignment.Center
+                });
+                this.rawfileSandBoxPath = '';
+              } else {
+                this.rawfileSandBoxPath = fileUri.getUriFromPath(result);
+                logger.info('[pic2sandbox]', `saveImageOfRawfile sandboxPath is ` + result);
+              }
+            }))
+          })
    ```
 
-2. 在Native的saveImageOfRawfile接口中通过Rawfile的API接口以及文件流将图片资源写入沙箱。
+2. 在Native的saveImageOfRawfileCallback接口中通过Rawfile的API接口以及文件流将图片资源写入沙箱。
 
    ```c++
     // 打开Rawfile文件。
-    RawFile *rawFile = OH_ResourceManager_OpenRawFile(mNativeResMgr, rawFileName.c_str());
+    RawFile *rawFile = OH_ResourceManager_OpenRawFile(rawFileContext->resMgr,
+        rawFileContext->rawFileName.c_str());
     if (rawFile == nullptr) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "saveImageOfRawfile OpenRawFile fail!");
         // 释放资源
-        OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
-        return nullptr;
+        OH_ResourceManager_ReleaseNativeResourceManager(rawFileContext->resMgr);
+        return;
     }
     // 获取文件大小
     long imageDataSize = OH_ResourceManager_GetRawFileSize(rawFile);
     // 申请内存
     std::unique_ptr<char[]> imageData = std::make_unique<char[]>(imageDataSize);
-    // 读取rawfile
+    // TODO：知识点：通过Rawfile的API接口读取Rawfile文件
     long rawFileOffset = OH_ResourceManager_ReadRawFile(rawFile, imageData.get(), imageDataSize);
     // 保存目标网络图片的沙箱路径
-    std::string targetSandboxPath = targetDirectory + rawFileName;
-    // 打开沙箱文件的文件输出流
+    std::string targetSandboxPath = rawFileContext->sandboxDir + rawFileContext->rawFileName;
+    // TODO：知识点：通过std::ofstream，将读取的数据写入沙箱文件
     std::ofstream outputFile(targetSandboxPath, std::ios::binary);
     if (!outputFile) {
         OH_LOG_Print(LOG_APP, LOG_ERROR, GLOBAL_RESMGR, TAG, "saveImageOfRawfile 创建沙箱目标文件失败");
         // 释放资源
         OH_ResourceManager_CloseRawFile(rawFile);
-        OH_ResourceManager_ReleaseNativeResourceManager(mNativeResMgr);
-        return nullptr;
+        OH_ResourceManager_ReleaseNativeResourceManager(rawFileContext->resMgr);
+        return;
     }
     // 写文件
     outputFile.write(imageData.get(), imageDataSize);
