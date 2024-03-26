@@ -14,12 +14,13 @@
  */
 
 /** 实现步骤
- * 1. 调用native侧saveImageOfInternet接口，将返回的沙箱路径转换为Uri路径后绑定到Image组件
- * 2. 调用native侧saveImageOfRawfile接口，将返回的沙箱路径转换为Uri路径后绑定到Image组件
+ * 1. 调用native侧saveImageOfInternetCallback接口，将返回的沙箱路径转换为Uri路径后绑定到Image组件
+ * 2. 调用native侧saveImageOfRawfileCallback接口，将返回的沙箱路径转换为Uri路径后绑定到Image组件
  */
 
 import fileUri from "@ohos.file.fileuri";
 import testNapi from 'libnativesavepictosandbox.so';
+import { logger } from '@ohos/base';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
 
 @Component
@@ -27,8 +28,8 @@ export struct NativePictureToSandboxView {
   private resMgr = getContext().resourceManager;                       // 获取js的资源对象
   private fileDir = getContext().filesDir;                             // 获取应用的文件路径
   private rawfilePicPath:string = "sandBoxTest.jpg";                   // rawfile中的图片名
-  private internetPicUrl:string = "http://placekitten.com/96/140";     // 网络图片
-  private internetSandBoxFileName:string = "internet_image.jpg";       // 网络图片保存到沙箱的图片名
+  private internetPicUrl:string = "https://gitee.com/harmonyos-cases/cases/raw/master/CommonAppDevelopment/feature/imagedepthcopy/src/main/resources/rawfile/depthCopy.png";     // 网络图片
+  private internetSandBoxFileName:string = "internet_image.png";       // 网络图片保存到沙箱的图片名
 
   @State internetSandBoxPath:string = "";                              // 网络下载图片保存的沙箱路径
   @State rawfileSandBoxPath:string = "";                               // rawfile中图片保存的沙箱路径
@@ -47,18 +48,19 @@ export struct NativePictureToSandboxView {
         Column() {
           Button($r('app.string.tbn_InternetPicture'))
             .onClick(() => {
-              // TODO：知识点：通过Native暴露的接口saveImageOfInternet接口获取下载的网络图片保存在沙箱中的路径
-              const sandBoxPath: string = testNapi.saveImageOfInternet(this.internetPicUrl, this.fileDir, this.internetSandBoxFileName);
-              if (sandBoxPath === undefined) {
-                AlertDialog.show({
-                  message: $r('app.string.internet_file_write_fail'),
-                  alignment: DialogAlignment.Center
-                });
-                this.internetSandBoxPath = '';
-              } else {
-                // 将沙箱地址转换为url地址
-                this.internetSandBoxPath = fileUri.getUriFromPath(sandBoxPath);
-              }
+              // TODO：知识点：通过Native暴露的接口saveImageOfInternetCallback接口获取下载的网络图片保存在沙箱中的路径
+              testNapi.saveImageOfInternetCallback(this.internetPicUrl, this.fileDir, this.internetSandBoxFileName, ((result: string) => {
+                if (result === undefined || result === '') {
+                  AlertDialog.show({
+                    message: $r('app.string.internet_file_write_fail'),
+                    alignment: DialogAlignment.Center
+                  });
+                  this.internetSandBoxPath = '';
+                } else {
+                  this.internetSandBoxPath = fileUri.getUriFromPath(result);
+                  logger.info('[pic2sandbox]', `saveImageOfInternet sandboxPath is ` + result);
+                }
+              }))
             }).margin($r('app.integer.sandBox_margin'))
             .align(Alignment.Start)
             .alignSelf(ItemAlign.Start)
@@ -95,19 +97,24 @@ export struct NativePictureToSandboxView {
             .height($r('app.integer.sandBox_image_height'))
             .margin($r('app.integer.sandBox_margin'))
         }
+
         .width('30%')
         Column() {
           Button($r('app.string.tbn_RawFilePicture'))
             .onClick(() => {
-              // TODO：知识点：通过Native暴露的接口saveImageOfRawfile接口获取rawfile中图片保存在沙箱中的路径
-              const sandBoxPath: string = testNapi.saveImageOfRawfile(this.resMgr, this.rawfilePicPath, this.fileDir);
-              if (sandBoxPath === undefined) {
-                AlertDialog.show({ message: $r('app.string.rawfile_write_fail'), alignment: DialogAlignment.Center });
-                this.rawfileSandBoxPath = '';
-              } else {
-                // 将沙箱地址转换为url地址
-                this.rawfileSandBoxPath = fileUri.getUriFromPath(sandBoxPath);
-              }
+              // TODO：知识点：通过Native暴露的接口saveImageOfRawfileCallback接口获取rawfile中图片保存在沙箱中的路径
+              testNapi.saveImageOfRawfileCallback(this.resMgr, this.rawfilePicPath, this.fileDir, ((result: string) => {
+                if (result === undefined || result === '') {
+                  AlertDialog.show({
+                    message: $r('app.string.rawfile_write_fail'),
+                    alignment: DialogAlignment.Center
+                  });
+                  this.rawfileSandBoxPath = '';
+                } else {
+                  this.rawfileSandBoxPath = fileUri.getUriFromPath(result);
+                  logger.info('[pic2sandbox]', `saveImageOfRawfile sandboxPath is ` + result);
+                }
+              }))
             }).margin($r('app.integer.sandBox_margin'))
             .align(Alignment.Start)
             .alignSelf(ItemAlign.Start)
