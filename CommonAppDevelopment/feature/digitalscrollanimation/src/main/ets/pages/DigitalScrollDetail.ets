@@ -29,13 +29,15 @@ export struct DigitalScrollDetail {
   @State scrollYList: number[] = []; // 数字Y轴滚动位移集合
   private currentData: number[] = new Array(DATA_CONFIG.NUMBER_LEN).fill(0); // 当前数据值
   private preData: number[] = new Array(DATA_CONFIG.NUMBER_LEN).fill(0); // 上一次数据值
-  @Link @Watch('onDataRefresh') isRefresh: boolean; // 是否刷新
+  @Prop @Watch('onDataRefresh') isRefresh: boolean; // 是否刷新
 
   /**
    * 监听到刷新状态变化，执行回调
    */
   onDataRefresh() {
-    this.refreshData();
+    if (this.isRefresh === false) {
+      this.refreshData();
+    }
   }
 
   /**

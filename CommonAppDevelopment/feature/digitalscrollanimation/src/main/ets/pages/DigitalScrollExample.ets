@@ -12,9 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
-import { PullToRefresh, PullToRefreshConfigurator } from '@ohos/pulltorefresh/index';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import { STYLE_CONFIG } from '../model/ConstData';
 import { DigitalScrollDetail } from './DigitalScrollDetail';
 
@@ -23,26 +22,17 @@ export struct DigitalScrollExample {
   private scroller: Scroller = new Scroller(); // Scroller对象
   @State data: number[] = [1, 2, 3, 4, 5, 6]; // 数据项
   @State isRefresh: boolean = false;
-  private pullToRefreshConfigurator: PullToRefreshConfigurator = new PullToRefreshConfigurator(); // 下拉刷新组件配置对象
 
   build() {
     Column({ space: STYLE_CONFIG.ITEM_GUTTER }) {
       // 下拉刷新组件
-      PullToRefresh({
-        data: $data, // 绑定数据项，必选
-        scroller: this.scroller, // 绑定scroller对象，必选
-        refreshConfigurator: this.pullToRefreshConfigurator.setAnimDuration(600), // 设置下拉回弹动画
-        customList: () => {
-          this.scrollArea(); // 自定义Builder，必选
-        },
-        onRefresh: () => {
-          return new Promise<string>((resolve, reject) => {
-            setTimeout(() => {
-              resolve('');
-              this.isRefresh = true; // 更新下拉刷新状态
-            }, 1000)
-          })
-        },
+      Refresh({ refreshing: $$this.isRefresh }) {
+        this.scrollArea()
+      }
+      .onRefreshing(() => {
+        setTimeout(() => {
+          this.isRefresh = false; // 刷新完成
+        }, 1000)
       })
     }
     .padding({
@@ -73,7 +63,7 @@ export struct DigitalScrollExample {
               .fontWeight(FontWeight.Bold)
 
             // 数字滚动组件
-            DigitalScrollDetail({ isRefresh: $isRefresh })
+            DigitalScrollDetail({ isRefresh: this.isRefresh })
 
             Text($r('app.string.getTicket'))
               .fontColor($r('sys.color.ohos_id_color_text_secondary'))
@@ -84,8 +74,8 @@ export struct DigitalScrollExample {
         }
       }
     }
-    .edgeEffect(EdgeEffect.None) // 设置List组件滑动到边缘无效果
     .scrollBar(BarState.Off) // 设置滚动调状态不可见
+    .height($r('app.string.max_size'))
   }
 }
 
@@ -96,4 +86,4 @@ export function getDigitalScrollDetail(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.DIGITAL_SCROLL_ANIMATION,wrapBuilder(getDigitalScrollDetail));
+DynamicsRouter.registerRouterPage(RouterInfo.DIGITAL_SCROLL_ANIMATION, wrapBuilder(getDigitalScrollDetail));

@@ -90,10 +90,6 @@ this.currentData.forEach((item: number, index: number) => {
 
 ### 模块依赖
 当前场景依赖以下模块
-1. 三方库的pulltorefresh组件，主要用于实现列表下拉刷新功能。详细可参考文档[pulltorefresh](https://ohpm.openharmony.cn/#/cn/detail/@ohos%2Fpulltorefresh)。
-2. [动态路由模块](../routermodule/src/main/ets/router/DynamicsRouter.ets)，主要用于注册模块路由。
+1. [动态路由模块](../routermodule/src/main/ets/router/DynamicsRouter.ets)，主要用于注册模块路由。
 ### 参考资料
-
-[pulltorefresh](https://ohpm.openharmony.cn/#/cn/detail/@ohos%2Fpulltorefresh)
-
 [animateTo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-explicit-animation-0000001774121350)
