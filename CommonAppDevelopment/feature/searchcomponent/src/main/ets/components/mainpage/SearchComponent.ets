@@ -41,9 +41,8 @@ export struct SearchComponent {
   @StorageLink('listData') searchListData: SceneModuleInfo[] | undefined = AppStorage.get('listData'); // 搜索原始数据
   @StorageLink('searchHistoryData') searchHistoryData: SceneModuleInfo[] = []; // 搜索历史数组
   @State searchContext: string = ''; // 搜索输入内容
-  @State isSearchPageShow: boolean = false; // 搜索页面是否显式标志位
+  @State isSearchPageShow: boolean = false; // 搜索页面是否显示标志位
   @State geometryId: string = ''; // 组件内隐式共享元素转场id
-  @State XPosition: number = 0; // 搜索框水平位移
   @State searchNewListData: SceneModuleInfo[] = [];
   @State avoidAreaHeight: number = 0;
   @State screenWidth: number = 0
