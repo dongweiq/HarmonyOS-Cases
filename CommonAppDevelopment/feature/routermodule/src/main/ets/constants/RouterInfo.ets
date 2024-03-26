@@ -98,4 +98,5 @@ export class RouterInfo {
   static readonly WEB_PDF_VIEWER: RouterInfo = new RouterInfo('@ohos/webpdfviewer', 'WebPDFViewer');
   static readonly IMAGE_THEFT: RouterInfo = new RouterInfo('@ohos/imagetheft', 'ImageTheft');
   static readonly CARD_SWIPER: RouterInfo = new RouterInfo('@ohos/cardswiperanimation', 'CardSwiperAnimation');
+  static readonly FONT_DYNAMIC_REGISTRATION: RouterInfo = new RouterInfo('@ohos/fontdynamicregistration', 'FontDynamicRegistration');
 }

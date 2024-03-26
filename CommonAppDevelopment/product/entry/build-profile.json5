@@ -95,7 +95,8 @@
           "@ohos/sideslipintercept",
           "@ohos/webpdfviewer",
           "@ohos/imagetheft",
-          "@ohos/cardswiperanimation"
+          "@ohos/cardswiperanimation",
+          "@ohos/fontdynamicregistration",
         ]
       }
     }

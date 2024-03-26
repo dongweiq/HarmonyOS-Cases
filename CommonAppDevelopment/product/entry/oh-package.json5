@@ -160,6 +160,8 @@
     // 图片防盗链
     "@ohos/imagetheft": "file:../../feature/imagetheft",
     // 自定义Swiper卡片预览效果实现
-    "@ohos/cardswiperanimation": "file:../../feature/cardswiperanimation"
+    "@ohos/cardswiperanimation": "file:../../feature/cardswiperanimation",
+    // 动态注册字体案例
+    "@ohos/fontdynamicregistration": "file:../../feature/fontdynamicregistration",
   }
 }
