@@ -71,19 +71,19 @@ export struct WebGetCameraImageView {
    */
   invokeCamera(callback: (uri: string) => void) {
     const context = getContext(this) as common.UIAbilityContext;
-    let want: Want = {
+    const want: Want = {
       action: ACTION_IMAGE_CAPTURE,
       parameters: {
         "callBundleName": context.abilityInfo.bundleName,
       }
     };
-    let result: (error: BusinessError, data: common.AbilityResult) => void = (error: BusinessError, data: common.AbilityResult) => {
+    const result: (error: BusinessError, data: common.AbilityResult) => void = (error: BusinessError, data: common.AbilityResult) => {
       if (error && error.code !== 0) {
         logger.error(`${TAG_CAMERA_ERROR} ${JSON.stringify(error.message)}`);
         return;
       }
       // 获取相机拍照后返回的图片地址
-      let resultUri: string = data.want?.parameters?.resourceUri as string;
+      const resultUri: string = data.want?.parameters?.resourceUri as string;
       if (callback && resultUri) {
         callback(resultUri);
       }

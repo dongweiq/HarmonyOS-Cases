@@ -116,8 +116,13 @@ export class CommentData extends BasicDataSource {
   // TODO：知识点：存储数据到懒加载数据源中
   pushData(data: Comment): void {
     this.comments.push(data);
-    AppStorage.setOrCreate('commentCount', this.totalCount());
     // 在数组头部添加数据
     this.notifyDataAdd(this.comments.length - 1);
+  }
+
+  addDataFirst(data: Comment): void {
+    this.comments.unshift(data);
+    // 在数组头部添加数据
+    this.notifyDataAdd(0);
   }
 }

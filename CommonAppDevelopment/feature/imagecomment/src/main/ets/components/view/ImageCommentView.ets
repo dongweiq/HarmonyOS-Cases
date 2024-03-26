@@ -41,7 +41,7 @@ export struct ImageCommentView {
   // 评论中的图片列表
   @State imageInComment: string[] = [];
   // 评论数量，用于刷新列表
-  @StorageLink('commentCount') commentCount: number = 0;
+  commentCount: number = 0;
   // 评论输入弹窗
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CommentInputDialog({
@@ -52,7 +52,10 @@ export struct ImageCommentView {
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     customStyle: true,
-    offset: { dx: 0, dy: -20 }
+    offset: {
+      dx: $r('app.integer.dialog_offset_x'),
+      dy: $r('app.integer.dialog_offset_y')
+    }
   });
 
   aboutToAppear(): void {
@@ -68,13 +71,13 @@ export struct ImageCommentView {
 
   // 发布评论
   publishComment(): void {
-    let comment: Comment = new Comment("Kevin", this.textInComment, $r('app.media.icon'), this.imageInComment, this.getCurrentDate());
-    this.commentList.pushData(comment);
+    const comment: Comment = new Comment("Kevin", this.textInComment, $r('app.media.icon'), this.imageInComment, this.getCurrentDate());
+    this.commentList.addDataFirst(comment);
   }
 
   // 获取当前时间
   getCurrentDate(): string {
-    let date: Date = new Date();
+    const date: Date = new Date();
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}:${date.getMinutes()}`;
   }
 
@@ -116,7 +119,7 @@ export struct ImageCommentView {
             ListItem() {
               CommentView({ comment: comment })
             }
-          })
+          }, (item: Comment) => JSON.stringify(item))
         }
         .scrollBar(BarState.Off)
         .width($r('app.string.percent_100'))
@@ -169,7 +172,7 @@ export struct ImageCommentView {
       .alignItems(VerticalAlign.Center)
       .justifyContent(FlexAlign.Center)
       .height($r('app.integer.row_input_hint_height'))
-      .width('100%')
+      .width($r('app.string.percent_100'))
       .border({
         width: {
           top: $r('app.integer.row_input_hint_border_width_top')

@@ -10,7 +10,7 @@
     },
     {
       "name": "text_input_padding_right",
-      "value": 10
+      "value": 50
     },
     {
       "name": "text_input_padding_top",
@@ -159,6 +159,30 @@
     {
       "name": "column_input_dialog_offset_y",
       "value": 20
+    },
+    {
+      "name": "image_delete_height",
+      "value": 20
+    },
+    {
+      "name": "image_delete_width",
+      "value": 20
+    },
+    {
+      "name": "image_relative_container_height",
+      "value": 110
+    },
+    {
+      "name": "image_relative_container_width",
+      "value": 110
+    },
+    {
+      "name": "dialog_offset_x",
+      "value": 0
+    },
+    {
+      "name": "dialog_offset_y",
+      "value": -20
     }
   ]
 }

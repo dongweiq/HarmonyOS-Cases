@@ -42,10 +42,10 @@ export class DynamicsRouter {
 
   // 通过名称获取builder
   public static getBuilder(builderName: string): WrappedBuilder<[object]> {
-    let builder = DynamicsRouter.builderMap.get(builderName);
+    const builder = DynamicsRouter.builderMap.get(builderName);
     if (!builder) {
-      let msg = "not found builder";
-      logger.info(msg + builderName);
+      const MSG = "not found builder";
+      logger.info(MSG + builderName);
     }
     return builder as WrappedBuilder<[object]>;
   }
@@ -96,7 +96,7 @@ export class DynamicsRouter {
       DynamicsRouter.getNavPathStack().pushPath({ name: builderName, param: param }, isNeedFullScreen);
       // 自定义栈也加入指定页面
       DynamicsRouter.routerStack.push(routerInfo);
-      let referrerModel: RouterInfo = DynamicsRouter.routerStack[DynamicsRouter.routerStack.length - 2];
+      const referrerModel: RouterInfo = DynamicsRouter.routerStack[DynamicsRouter.routerStack.length - 2];
       DynamicsRouter.referrer[0] = referrerModel.moduleName;
       DynamicsRouter.referrer[1] = referrerModel.pageName;
       logger.info(`From DynamicsRouter.routerStack push preview module name is + ${DynamicsRouter.referrer[0]}, path is ${DynamicsRouter.referrer[1]}`);
@@ -106,7 +106,7 @@ export class DynamicsRouter {
   // 通过获取页面栈并pop
   public static pop(): void {
     // pop前记录的来源页为当前栈顶
-    let referrerModel: RouterInfo = DynamicsRouter.routerStack[DynamicsRouter.routerStack.length - 1];
+    const referrerModel: RouterInfo = DynamicsRouter.routerStack[DynamicsRouter.routerStack.length - 1];
     DynamicsRouter.referrer[0] = referrerModel.moduleName;
     DynamicsRouter.referrer[1] = referrerModel.pageName;
     logger.info(`From DynamicsRouter.routerStack pop preview module name is + ${DynamicsRouter.referrer[0]}, path is ${DynamicsRouter.referrer[1]}`);
@@ -131,8 +131,8 @@ export class DynamicsRouter {
    * @param pageName 页面名，需要动态加载的页面名称
    * @param wrapBuilder wrapBuilder对象
    */
-  public static registerRouterPage(routerInfo: RouterInfo, wrapBuilder: WrappedBuilder<[object]>) {
-    let builderName: string = routerInfo.moduleName + "/" + routerInfo.pageName;
+  public static registerRouterPage(routerInfo: RouterInfo, wrapBuilder: WrappedBuilder<[object]>): void {
+    const builderName: string = routerInfo.moduleName + "/" + routerInfo.pageName;
     if (!DynamicsRouter.getBuilder(builderName)) {
       DynamicsRouter.registerBuilder(builderName, wrapBuilder);
     }
