@@ -46,7 +46,7 @@ export const EVENT_ID: number = 0x1111; // 注意：仅供UI展示使用
  */
 function documentViewPickerSelect(uiContext: UIContext, options: picker.DocumentSelectOptions, thenWrapper:
   StringArrayCbWrapper, catchWrapper: CatchCbWrapper): void {
-  // TODO：知识点：使用对应UIAbitliy的UIContext.runScopedTask来执行方法，确保多实例情况下，事件在正确的窗口/UIAbility内发生
+  // TODO：知识点：使用对应UIAbility的UIContext.runScopedTask来执行方法，确保多实例情况下，事件在正确的窗口/UIAbility内发生
   uiContext.runScopedTask(() => {
     logger.debug("enter ets select");
     logger.debug(JSON.stringify(uiContext));
@@ -118,25 +118,25 @@ export function generateAbilityID(): string {
  * 注册UIAbility的ID及其对应的UIContext，此方法应确保在loadContent成功之后执行，
  * 即EntryAbility中的onWindowStageCreate中的windowStage.loadContent回调中执行
  * @param abilityID：UIAbility的ID
- * @param windowStage：UIAbitliy对应的windowStage对象
+ * @param windowStage：UIAbility对应的windowStage对象
  */
 export function addUIContext(abilityID: string, windowStage: window.WindowStage): void {
   const uiContext: UIContext = windowStage.getMainWindowSync().getUIContext();
-  // TODO：知识点：添加UIAbitliy的id及其对应UIContext，后续将uiContext传回ets侧，以确保多实例情况下事件在正确的窗口/UIAbitliy内发生
+  // TODO：知识点：添加UIAbility的id及其对应UIContext，后续将uiContext传回ets侧，以确保多实例情况下事件在正确的窗口/UIAbility内发生
   etswrapper.addUIContext(abilityID, uiContext);
 }
 
 /**
  * TODO：步骤四：
  * 订阅相关事件，当窗口活跃时，设置对应的abilityID为全局的topAbility（表示当前正活跃的窗口），必须在windowStage.loadContent之后调用
- * @param abilityID：UIAbitliy的ID
- * @param windowStage：UIAbitliy对应的windowStage
+ * @param abilityID：UIAbility的ID
+ * @param windowStage：UIAbility对应的windowStage
  */
 export function setTopAbilityID(abilityID: string, windowStage: window.WindowStage): void {
   windowStage.on("windowStageEvent", (data: window.WindowStageEventType) => {
     if (data === window.WindowStageEventType.ACTIVE) {
       logger.debug(`[activeAbility]${abilityID}`);
-      // TODO：知识点：当窗口为Active时，设置当前UIAbitliy的id为活跃的id，则在Native执行方法时，需要取到对应id的UIContext
+      // TODO：知识点：当窗口为Active时，设置当前UIAbility的id为活跃的id，则在Native执行方法时，需要取到对应id的UIContext
       etswrapper.setTopAbilityID(abilityID);
     }
   })

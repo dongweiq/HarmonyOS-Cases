@@ -185,13 +185,13 @@ export struct ImageDepthCopy {
                 this.pixelMapDst = await this.imageSource!.createPixelMap();
               } else if (this.currentCropTask === CropTasks.ONE_ONE) {
                 await this.cropImage(ImageCropConstants.ONE_ONE);
-                console.log(TAG + 'CropTasks  this.cropImage(1)' + this.currentCropTask)
+                console.info(TAG + 'CropTasks  this.cropImage(1)' + this.currentCropTask)
               } else if (this.currentCropTask === CropTasks.THREE_FOUR) {
                 await this.cropImage(ImageCropConstants.THREE_FOUR);
-                console.log(TAG + 'CropTasks  cropImage(4 / 3)==' + this.currentCropTask)
+                console.info(TAG + 'CropTasks  cropImage(4 / 3)==' + this.currentCropTask)
               } else if (this.currentCropTask === CropTasks.NINE_SIXTH) {
                 await this.cropImage(ImageCropConstants.NINE_SIXTH);
-                console.log(TAG + 'CropTasks  (16 / 9)==' + this.currentCropTask);
+                console.info(TAG + 'CropTasks  (16 / 9)==' + this.currentCropTask);
               }
             })
           }

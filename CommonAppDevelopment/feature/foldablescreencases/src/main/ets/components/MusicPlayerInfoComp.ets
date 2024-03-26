@@ -122,7 +122,7 @@ export struct MusicPlayerInfoComp {
        * https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/lazyforeach_optimization.md/
        */
       List({ space: 20, scroller: this.lyricsScrollerCtrl }) {
-        LazyForEach(this.musicModel.lyricsInfo, (lyricsLine: string, index) => {
+        LazyForEach(this.musicModel.lyricsInfo, (lyricsLine: string) => {
           ListItem() {
             Column() {
               Text(lyricsLine)

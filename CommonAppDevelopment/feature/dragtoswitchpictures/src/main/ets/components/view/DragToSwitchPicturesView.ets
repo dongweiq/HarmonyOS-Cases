@@ -23,7 +23,7 @@ import { CONFIGURATION } from '../common/Constants';
  * 4.中间的Image组件通过手势事件中的滑动手势对Image组件滑动进行监听，对左右Image组件的宽度进行计算从而重新布局渲染。
  */
 @Component
-export struct DecorationComparsionView {
+export struct DecorationComparisonView {
   @State dragRefOffset: number = 0; // 用来记录每次图标拖动的距离
   @State imageWidth: number = 160; // 用来记录每次图标拖动完成后左侧Image的width宽度
   @State leftImageWidth: number = 160; // 用来记录每次图标拖动时左侧Image的实时width宽度

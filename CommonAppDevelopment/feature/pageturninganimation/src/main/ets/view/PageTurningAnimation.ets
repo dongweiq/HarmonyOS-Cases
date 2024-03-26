@@ -45,7 +45,8 @@ struct BookPage {
       .width($r('app.string.common_text_width'))
       .height($r('app.string.common_text_height'))
       .borderRadius($r('app.integer.common_border_radius'))
-      .rotate({ // 使用rotate属性控制旋转
+      .rotate({
+        // 使用rotate属性控制旋转
         x: 0,
         y: 1, // 指定y轴作为旋转轴
         z: 0,
@@ -83,7 +84,8 @@ export struct PageTurningAnimation {
   private pageTurningAnimate() {
     // TODO: 知识点: 使用animateTo方法添加动画效果，同时控制动画的时长，以及动画过程中各元素状态的改变。
     animateTo(
-      { duration: 700, onFinish: () => {
+      {
+        duration: 700, onFinish: () => {
         // 动画结束时，Text组件A显示的页面编号和B显示的页面编号相等
         this.pageNumTextA = this.animatePageNumTextB;
         // 动画结束时，Text组件A以中心线为轴旋转180度，用于显示左侧翻页动画结束时的页面编号
@@ -92,7 +94,8 @@ export struct PageTurningAnimation {
         this.rotateAngleTextB = 0;
         // 动画结束时，Text组件B显示的页面编号加1
         this.animatePageNumTextB = (this.animatePageNumTextB + 1) % 8;
-      } },
+      }
+      },
       () => {
         // 动画开始，Text组件B的旋转角度设置为180度
         this.rotateAngleTextB = 180;
@@ -156,4 +159,4 @@ export function getPageTurningAnimation(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.PAGE_TURNING_ANIMATION,wrapBuilder(getPageTurningAnimation));
+DynamicsRouter.registerRouterPage(RouterInfo.PAGE_TURNING_ANIMATION, wrapBuilder(getPageTurningAnimation));

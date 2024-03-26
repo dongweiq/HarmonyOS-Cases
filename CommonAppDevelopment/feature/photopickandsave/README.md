@@ -37,7 +37,7 @@ async getFileAssetsFromType(){
         this.uris = photoSelectResult.photoUris; // select返回的uri权限是只读权限，需要将uri写入全局变量@State中即可根据结果集中的uri进行读取文件数据操作。
       })
       .catch((err: BusinessError) => {
-       console.log('Invoke photoViewPicker.select failed, code is ${err.code},message is ${err.message}');
+       console.info('Invoke photoViewPicker.select failed, code is ${err.code},message is ${err.message}');
       })
   }
 ```

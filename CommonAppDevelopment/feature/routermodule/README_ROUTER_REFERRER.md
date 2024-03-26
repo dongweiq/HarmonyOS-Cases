@@ -54,15 +54,15 @@ public static async push(router: RouterModel): Promise<void> {
   const path: string = router.path;
   const routerName: string = router.routerName;
   let param: string = router.param;
-  console.log('push', path, routerName);
+  console.info('push', path, routerName);
   // TODO：知识点：通过动态import的方式引入模块，在需要进入页面时才加载模块，可以减少主页面的初始化时间及占用的内存
   await import(routerName).then(
     (ns: ESObject) => {
-      console.log('harInit');
+      console.info('harInit');
       ns.harInit(path) 
   },
     (ret: ESObject) => {
-      console.log('import reason', ret);
+      console.info('import reason', ret);
     }
   );
   // push前记录当前页面的名字

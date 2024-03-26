@@ -86,6 +86,7 @@ export struct MusicPlayerCtrlComp {
         this.showTimeBuilder({ str: this.viewModel.totalTimeStr })
       }
       .margin(10)
+
       Flex({ justifyContent: FlexAlign.SpaceAround, alignItems: ItemAlign.Center }) {
         // 播放模式切换按钮
         this.ctrlBtnBuilder({
@@ -106,7 +107,7 @@ export struct MusicPlayerCtrlComp {
         // 播放、暂停按钮
         this.ctrlBtnBuilder({
           imgSrc: this.viewModel.curPlayerState === CommonConstants.AVPLAYER_STATE_PLAYING ?
-            $r('app.media.ic_public_pause') : $r('app.media.ic_public_play'),
+          $r('app.media.ic_public_pause') : $r('app.media.ic_public_play'),
           btnSize: CommonConstants.MUSIC_PLAYER_CTRL_BTN_SIZE_BIG,
           callback: () => {
             if (this.viewModel.curPlayerState === CommonConstants.AVPLAYER_STATE_IDLE) {
@@ -135,7 +136,7 @@ export struct MusicPlayerCtrlComp {
           }
         });
       }
-      .margin({top: 20, bottom: 50})
+      .margin({ top: 20, bottom: 50 })
     }
   }
 }

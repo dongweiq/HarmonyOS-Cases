@@ -180,4 +180,4 @@ export function getApplicationExceptionView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.FAULT,wrapBuilder(getApplicationExceptionView));
+DynamicsRouter.registerRouterPage(RouterInfo.FAULT, wrapBuilder(getApplicationExceptionView));

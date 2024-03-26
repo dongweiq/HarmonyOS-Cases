@@ -115,6 +115,7 @@ export struct MusicPlayerPage {
 export function getMusicPlayerPage(): void {
   MusicPlayerPage();
 }
-console.log('DynamicsRouter register!!!');
+
+console.info('DynamicsRouter register!!!');
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.FOLDABLE_SCREEN_CASES,wrapBuilder(getMusicPlayerPage));
+DynamicsRouter.registerRouterPage(RouterInfo.FOLDABLE_SCREEN_CASES, wrapBuilder(getMusicPlayerPage));

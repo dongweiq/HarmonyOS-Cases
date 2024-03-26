@@ -46,4 +46,4 @@ class Logger {
   }
 }
 
-export let logger = new Logger('[Sample_CommonAppDevelopment]')
+export let logger = new Logger('[CommonAppDevelopment]')

@@ -157,7 +157,7 @@ export struct CustomSafeKeyboardView {
         }
         break;
       default:
-        console.log(`Sorry, we are out of input type.`);
+        console.info(`Sorry, we are out of input type.`);
     }
   }
 

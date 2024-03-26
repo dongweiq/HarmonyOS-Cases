@@ -27,7 +27,7 @@
    ```typescript
    naitiveprogressnotify.startDownload((data: number) => {
        this.progress = data;
-       console.log("[NativeProgressNotify]progress:" + this.progress);
+       console.info("[NativeProgressNotify]progress:" + this.progress);
    })
    ```
 1. Naitive侧使用std::thread创建子线程执行模拟下载的任务

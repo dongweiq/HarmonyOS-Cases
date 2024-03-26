@@ -41,6 +41,7 @@ export struct AddressExchangeView {
   private rotateAddAngle: number = 180;
   // toast弹窗时长
   private toastDuration: number = 2000;
+
   build() {
     // 地址交换
     Column({ space: this.columnSpace }) {
@@ -49,7 +50,7 @@ export struct AddressExchangeView {
           .translate({ x: this.translateX })
           .width($r('app.string.address_exchange_address_width'))
           .textAlign(this.swap ? TextAlign.End : TextAlign.Start)
-          .onClick( () => {
+          .onClick(() => {
             promptAction.showToast({
               message: $r('app.string.address_exchange_other_function'),
               duration: this.toastDuration
@@ -74,8 +75,8 @@ export struct AddressExchangeView {
             })
         }
         .width($r('app.string.address_exchange_image_width'))
-        .onClick( () => {
-          this.swap = ! this.swap
+        .onClick(() => {
+          this.swap = !this.swap
           // TODO 知识点：动画效果，修改偏移量，修改旋转角度，实现效果
           animateTo({ curve: curves.springMotion() }, () => {
             if (this.swap) {
@@ -88,18 +89,19 @@ export struct AddressExchangeView {
         })
 
         Text($r('app.string.address_exchange_address_right'))
-          .translate({ x: - this.translateX })
+          .translate({ x: -this.translateX })
           .width($r('app.string.address_exchange_address_width'))
           .textAlign(this.swap ? TextAlign.Start : TextAlign.End)
-          .onClick( () => {
+          .onClick(() => {
             promptAction.showToast({
               message: $r('app.string.address_exchange_other_function'),
               duration: this.toastDuration
             });
           })
       }
-        .width(this.rowWidth)
-        .height($r('app.integer.address_exchange_content_height'))
+      .width(this.rowWidth)
+      .height($r('app.integer.address_exchange_content_height'))
+
       Row({ space: this.columnSpace }) {
         Text($r('app.string.address_date'))
           .fontSize($r('app.string.ohos_id_text_size_headline'))
@@ -108,29 +110,30 @@ export struct AddressExchangeView {
         Text($r('app.string.address_week'))
           .height($r('app.integer.address_exchange_date_height'))
       }
-        .width(this.rowWidth)
+      .width(this.rowWidth)
 
       Button($r('app.string.address_search_ticket'))
         .fontColor(Color.White)
         .height($r('app.integer.address_exchange_button_height'))
         .width(this.rowWidth)
-        .onClick( () => {
+        .onClick(() => {
           promptAction.showToast({
             message: $r('app.string.address_exchange_other_function'),
             duration: this.toastDuration
           });
         })
     }
-      .backgroundColor($r('app.color.ohos_id_color_sub_background'))
-      .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
-      .width($r('app.string.content_size'))
-      .height($r('app.integer.address_exchange_total_height'))
-      .margin($r('app.string.ohos_id_card_margin_start'))
+    .backgroundColor($r('app.color.ohos_id_color_sub_background'))
+    .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
+    .width($r('app.string.content_size'))
+    .height($r('app.integer.address_exchange_total_height'))
+    .margin($r('app.string.ohos_id_card_margin_start'))
   }
 }
 
 // 创建WrappedBuilder对象，动态路由跳转时构建页面
-@Builder export function getAddressExchangeView(): void {
+@Builder
+export function getAddressExchangeView(): void {
   AddressExchangeView();
 }
 

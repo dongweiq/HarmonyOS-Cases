@@ -59,7 +59,7 @@ export struct BigFileCopyView {
       type: BigFileCopyConstants.MIMETYPE
     };
     this.context.startAbility(want).then(() => {
-      console.log("open file success");
+      console.info("open file success");
     })
   }
 

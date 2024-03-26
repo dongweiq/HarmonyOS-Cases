@@ -79,7 +79,7 @@ export struct TitleExpansion {
         .scale(this.getTitleScaleOptions()) // TODO：知识点：配置标题缩放参数
         .animation({ duration: this.duration, curve: Curve.FastOutLinearIn })
         .transition({ type: TransitionType.Insert, translate: { y: Constants.TRANSLATE_Y } })
-        .visibility(this.isExpanded ? Visibility.Visible : Visibility.Hidden) // 性能知识点：相对频繁的显隐切换，可以使用显隐控制替换条件渲染，减少组件的反复销毁创建成本。
+        .visibility(this.isExpanded ? Visibility.Visible : Visibility.Hidden) // TODO: 性能知识点：相对频繁的显隐切换，可以使用显隐控制替换条件渲染，减少组件的反复销毁创建成本。
 
       }
       .height($r('app.string.layout_100_percent'))
@@ -93,7 +93,9 @@ export struct TitleExpansion {
               .height($r('app.string.layout_8_percent'))
               .backgroundColor(Color.White)
           }
-          // 性能知识点：动态加载数据场景可以使用LazyForEach遍历数据。参考资料：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-rendering-control-lazyforeach-0000001820879609
+
+          // TODO: 性能知识点：动态加载数据场景可以使用LazyForEach遍历数据。参考资料：
+          //  https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-rendering-control-lazyforeach-0000001820879609
           LazyForEach(this.memoData, (item: MemoInfo) => {
             ListItem() {
               MemoItem({ memoItem: item })
@@ -165,7 +167,7 @@ export struct TitleExpansion {
    */
   handleTouchEvent(event: TouchEvent): void {
     switch (event.type) {
-      // 手指下按时
+    // 手指下按时
       case TouchType.Down:
         this.downY = event.touches[0].y;
         this.lastMoveY = event.touches[0].y;
@@ -173,7 +175,7 @@ export struct TitleExpansion {
         this.duration = Constants.ANIMATE_DURATION_DRAG; // 重置动画持续时间
         break;
 
-      // 手指滑动时
+    // 手指滑动时
       case TouchType.Move:
         const delta = event.touches[0].y - this.lastMoveY;
         this.offsetY = event.touches[0].y - this.downY;
@@ -192,7 +194,7 @@ export struct TitleExpansion {
         this.lastMoveY = event.touches[0].y;
         break;
 
-      // 滑动结束时
+    // 滑动结束时
       case TouchType.Up:
       case TouchType.Cancel:
         this.isMoving = false;
@@ -206,7 +208,9 @@ export struct TitleExpansion {
    */
   animateToThrottle(fn: Callback<void>, delay: number) {
     if (this.throttleStatus) {
-      // 性能知识点：播放动画时，系统需要在一个刷新周期内完成动画变化曲线的计算，完成组件布局绘制等操作。建议使用系统提供的动画接口，只需设置曲线类型、终点位置、时长等信息，就能够满足常用的动画功能，减少UI主线程的负载。参考资料：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-attribute-animation-apis-0000001820879805
+      // TODO: 性能知识点：播放动画时，系统需要在一个刷新周期内完成动画变化曲线的计算，完成组件布局绘制等操作。建议使用系统提供的动画接口，
+      // 只需设置曲线类型、终点位置、时长等信息，就能够满足常用的动画功能，减少UI主线程的负载。参考资料：
+      // https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/arkts-attribute-animation-apis-0000001820879805
       animateTo({
         duration: this.duration, curve: Curve.FastOutLinearIn
       }, fn)
