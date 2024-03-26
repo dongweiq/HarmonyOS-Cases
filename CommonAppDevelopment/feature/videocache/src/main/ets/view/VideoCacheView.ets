@@ -40,49 +40,8 @@ const ANIMATION_DURATION: number = 500; // 动画总时长
  */
 @Component
 export struct VideoCacheView {
-  @Provide isPlaying: boolean = true; // 是否处于播放中状态
-  @Provide videoDuration: string = '00:00'; // 视频时长
-  @Provide currentTime: string = '00:00'; // 当前播放时长
-
-  build() {
-    Column() {
-      // 下载进度组件
-      UpdateProcessView()
-      // 视频播放组件
-      VideoView()
-    }
-    .backgroundColor(Color.Black)
-    .height($r('app.string.video_cache_container_height_size'))
-    .width($r('app.string.video_cache_container_width_size'))
-    .alignItems(HorizontalAlign.End)
-    .padding($r('app.string.ohos_id_card_padding_start'))
-  }
-}
-
-@Component
-struct UpdateProcessView {
-  @StorageLink('currentCachePercent') currentCachePercent: number = 0;
-
-  build() {
-    Stack() {
-      Progress({ value: this.currentCachePercent, total: TOTAL, type: ProgressType.Ring })
-        .width($r('app.integer.video_cache_download_progress_size'))
-        .height($r('app.integer.video_cache_download_progress_size'))
-        .backgroundColor(Color.White)
-        .style({
-          strokeWidth: 2,
-          scaleWidth: 2
-        })
-
-      Image($r("app.media.video_cache_download"))
-        .width($r('app.integer.video_cache_download_image_size'))
-    }
-    .visibility(this.currentCachePercent === 100 || this.currentCachePercent === 0 ? Visibility.Hidden : Visibility.Visible)
-  }
-}
-
-@Component
-struct VideoView {
+  @State isPlaying: boolean = true; // 是否处于播放中状态
+  @State videoDuration: string = '00:00'; // 视频时长
   @State windowWidth: number = 300; // 初始化窗口宽度
   @State windowHeight: number = 300; // 初始化窗口高度
   @State xComponentWidth: number | null = null; // 初始化XComponent的宽度
@@ -93,8 +52,7 @@ struct VideoView {
   private surfaceId: string = '';
   private componentController: XComponentController = new XComponentController();
   @StorageLink('playStatus') @Watch('updateImageStatus') playStatus: string = '';
-  @Consume videoDuration: string;
-  @Consume isPlaying: boolean;
+  @StorageLink('currentCachePercent') currentCachePercent: number = 0;
 
   aboutToAppear() {
     // 执行加载动画
@@ -196,13 +154,20 @@ struct VideoView {
         Text(handleTime(this.currentTime))
           .fontColor(Color.White)
         Blank()
-        Progress({
-          value: this.currentTime,
-          total: this.total,
-          type: ProgressType.Linear
-        })
-          .width($r('app.string.video_cache_progress_width_size'))
-          .backgroundColor(Color.White)
+        Stack({ alignContent: Alignment.Center }) {
+          Progress({ value: this.currentCachePercent, total: TOTAL, type: ProgressType.Linear })
+            .width($r('app.string.video_cache_progress_width_size'))
+            .color($r('app.color.cache_progress_color'))
+            .backgroundColor(Color.White)
+
+          Progress({
+            value: this.currentTime,
+            total: this.total,
+            type: ProgressType.Linear
+          })
+            .width($r('app.string.video_cache_progress_width_size'))
+        }
+
         Blank()
         Text(this.videoDuration)
           .fontColor(Color.White)
@@ -210,9 +175,12 @@ struct VideoView {
       .width(`${this.xComponentWidth}px`)
       .margin({ top: $r('app.string.ohos_id_elements_margin_vertical_m') })
     }
-    .width('100%')
     .justifyContent(FlexAlign.Center)
     .layoutWeight(1)
+    .backgroundColor(Color.Black)
+    .height($r('app.string.video_cache_container_height_size'))
+    .width($r('app.string.video_cache_container_width_size'))
+    .padding($r('app.string.ohos_id_card_padding_start'))
   }
 }
 
