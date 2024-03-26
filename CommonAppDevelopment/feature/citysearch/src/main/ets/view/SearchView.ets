@@ -18,17 +18,20 @@ export struct SearchView {
   private scroller: Scroller = new Scroller(); // List组件里可以绑定的可滚动组件的控制器
   @Link searchList: string[];
   @Link isSearchState: boolean;
+  @Link changeValue: string;
 
   build() {
     Stack({ alignContent: Alignment.TopEnd }) {
       List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
-        ForEach(this.searchList, (index: string) => {
+        ForEach(this.searchList, (item: string) => {
           ListItem() {
             Column() {
-              Text(index)
+              Text(item)
                 .height(30)
                 .fontSize(14)
-            }
+            }.onClick(()=>{
+              this.changeValue= item;
+            })
           }
         })
       }

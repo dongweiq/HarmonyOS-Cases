@@ -49,7 +49,7 @@ export struct CitySearch {
         .searchButton(SEARCH_BUTTON_TEXT)
         .width('100%')
         .height($r('app.integer.search_height'))
-        .margin({ top: $r('app.integer.search_margin_top') })
+        .margin({ top: $r('app.integer.search_margin_top'), left: $r('app.integer.search_margin_left') })
         .backgroundColor($r('app.color.search_bgc'))
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: $r('app.integer.placeholderFont_size'), weight: 400 })
@@ -74,24 +74,29 @@ export struct CitySearch {
             this.isSearchState = false;
             // 清空数据
             this.searchList.splice(0, this.searchList.length);
+          } else {
+            this.changeValue = value;
+            // 搜索
+            this.searchCityList(value);
+            this.isSearchState = true;
           }
         })
 
       // 城市列表组件
-      CityView({ isSearchState: $isSearchState })
+      CityView({ isSearchState: $isSearchState, changeValue:$changeValue })
         .margin({ top: $r('app.integer.list_margin_top') })
 
       // 搜索组件，将数据传递到搜索列表
-      SearchView({ searchList: $searchList, isSearchState: $isSearchState })
+      SearchView({ searchList: $searchList, isSearchState: $isSearchState, changeValue:$changeValue })
         .width("100%")
         .layoutWeight(1)
     }
     .width('100%')
+    .height('100%')
     .padding({ left: $r('app.integer.padding_left'), right: $r('app.integer.padding_right') })
     .backgroundColor($r('app.color.bgc'))
     .justifyContent(FlexAlign.Center)
     .alignItems(HorizontalAlign.Start)
-    .height('100%')
   }
 
   // 搜索城市展示逻辑

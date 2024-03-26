@@ -46,6 +46,7 @@ export struct AccountLogin {
         .backgroundColor(Color.Transparent)
         .caretColor(Color.Grey)
         .width($r('app.string.size_eighty_three_percent'))
+        .margin({ top: 12 })
         .maxLength(PHONE_NUMBER_LENGTH) // 设置最大输入字符数
         .onChange((value: string) => {
           // 当用户有输入时，userIsblank为false
@@ -56,7 +57,8 @@ export struct AccountLogin {
         .type(InputType.Password)
         .backgroundColor(Color.Transparent)
         .caretColor(Color.Grey)
-        .width($r('app.string.size_eighty_three_percent'))
+        .width("85%")
+        .margin({ top: 12 })
         .maxLength(PHONE_NUMBER_LENGTH) // 设置最大输入字符数
         .onChange((value: string) => {
           // 当用户有输入时，pwdIsblank为false
@@ -109,7 +111,7 @@ export struct AccountLogin {
         .textAlign(TextAlign.Start)
       }
       .alignItems(VerticalAlign.Center)
-      .width($r('app.string.size_eighty_percent'))
+      .width("83%")
     }
     .width($r('app.string.size_full'))
     .height($r('app.string.size_full'))

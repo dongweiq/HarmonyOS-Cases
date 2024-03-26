@@ -57,24 +57,22 @@ export struct CaptchaLogin {
       // 3、这里默认是验证码登录（手机验证码登录）
       if (this.isDefaultLogin) {
         Column({ space: SPACE＿FIFTEEN }) {
-          Row() {
-            Row({ space: SPACE＿FIFTEEN }) {
-              Column({ space: SPACE＿FIFTEEN }) {
-                Text($r('app.string.phone_back'))
-                  .fontSize($r('app.integer.font_size_middle'))
-                  .fontWeight(70)
-                  .fontColor(Color.Black)
-                Text($r('app.string.auto_after_login'))
-                  .fontColor($r('app.color.grey_3'))
-                  .fontWeight(20)
-                  .opacity(0.5)
-              }
-              .alignItems(HorizontalAlign.Start)
+          Row({ space: SPACE＿FIFTEEN }) {
+            Column({ space: SPACE＿FIFTEEN }) {
+              Text($r('app.string.phone_back'))
+                .fontSize($r('app.integer.font_size_middle'))
+                .fontWeight(70)
+                .fontColor(Color.Black)
+              Text($r('app.string.auto_after_login'))
+                .fontColor($r('app.color.grey_3'))
+                .fontWeight(20)
+                .opacity(0.5)
             }
-            .alignItems(VerticalAlign.Top)
+            .alignItems(HorizontalAlign.Start)
           }
+          .alignItems(VerticalAlign.Top)
           .width($r('app.string.size_eighty_percent'))
-          .padding({ bottom: 20 })
+          .padding({ bottom: 15 })
 
           Row() {
             Text($r('app.string.86'))
@@ -107,18 +105,16 @@ export struct CaptchaLogin {
           .height($r('app.integer.user_image_height'))
           .width($r('app.string.size_eighty_percent'))
 
-          Row() {
-            Text($r('app.string.captcha_change_title_text'))
-              .fontColor($r('app.color.note_color'))
-              .fontSize(15)
-              .backgroundColor($r('app.color.transparent_7'))
-              .onClick(() => {
-                // 5、切换到账号登录
-                this.isDefaultLogin = false;
-              })
-          }
-          .width($r('app.string.size_eighty_percent'))
-          .padding({ bottom: 10 })
+          Text($r('app.string.captcha_change_title_text'))
+            .fontColor($r('app.color.note_color'))
+            .fontSize(15)
+            .backgroundColor($r('app.color.transparent_7'))
+            .width($r('app.string.size_eighty_percent'))
+            .padding({ bottom: 10 })
+            .onClick(() => {
+              // 5、切换到账号登录
+              this.isDefaultLogin = false;
+            })
 
           Button($r('app.string.captcha_get'))
             .fontColor(Color.White)
@@ -162,7 +158,6 @@ export struct CaptchaLogin {
           .width($r('app.string.size_eighty_two_percent'))
 
           Blank() // 在容器主轴方向上自动填充容器空余部分
-
           Row({ space: 20 }) {
             Image($r("app.media.app_logo1"))
               .width($r('app.integer.other_ways_icon_height'))

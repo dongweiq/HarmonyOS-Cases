@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-![](../../product/entry/src/main/resources/base/media/city_search.gif)
+<img src="../../product/entry/src/main/resources/base/media/city_search.gif" width="300">
 
 **使用说明**
 
