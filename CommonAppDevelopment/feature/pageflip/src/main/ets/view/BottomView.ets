@@ -79,7 +79,7 @@ export struct BottomView {
           Button(item, { type: ButtonType.Capsule })
             .backgroundColor($r('app.color.pageflip_button_backgroundcolor'))
             .fontColor(this.buttonClickedName === item ? $r('app.color.pageflip_button_click_fontcolor') : $r('app.color.pageflip_button_fontcolor'))
-            .margin({ left: $r('app.integer.flippage_margin_small') })
+            .margin({ left: $r('app.integer.flippage_margin_small'),right: $r('app.integer.flippage_margin_small') })
             .borderWidth(CONFIGURATION.PAGEFLIPBORDERWIDTH)
             .onClick(() => {
               if (this.buttonClickedName !== item) {
@@ -155,6 +155,8 @@ export struct BottomView {
       }
     }
     .backgroundColor($r('app.color.pageflip_column_backgroundcolor'))
+    // 扩展至所有非安全区域
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.BOTTOM])
     .visibility(this.isMenuViewVisible ? Visibility.Visible : Visibility.None)
   }
 }

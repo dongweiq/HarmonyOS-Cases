@@ -9,6 +9,10 @@
       "value": 10
     },
     {
+      "name": "flippage_padding_middle_two",
+      "value": 6
+    },
+    {
       "name": "flippage_margin_small",
       "value": 10
     },
@@ -27,6 +31,10 @@
     {
       "name": "flippage_margin_middle",
       "value": 20
+    },
+    {
+      "name": "flippage_margin_middle_up",
+      "value": 26
     },
     {
       "name": "flippage_padding_large",

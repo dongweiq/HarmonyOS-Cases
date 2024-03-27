@@ -104,7 +104,8 @@ export struct CoverFlipPage {
           z: CONFIGURATION.PAGEFLIPZERO
         })
         .width(this.screenW);
-      ReaderPage({ content: this.leftPageContent }) // TODO: 知识点：在midPage的左边，当向右滑时，跟随this.offsetX向右滑动。
+      ReaderPage({ content: this.leftPageContent })
+        // TODO: 知识点：在midPage的左边，当向右滑时，跟随this.offsetX向右滑动。
         .translate({
           x: -this.screenW + this.offsetX
         });
@@ -158,6 +159,12 @@ struct ReaderPage {
       .fontSize($r('app.integer.flippage_text_fontsize'))
       .align(Alignment.TopStart)
       .backgroundColor($r('app.color.pageflip_swiper_backgroundcolor'))
-      .padding({ top: $r('app.integer.flippage_padding_large'),left:$r('app.integer.flippage_margin_middle'),right:$r('app.integer.flippage_margin_middle') })
+      .padding({
+        top: $r('app.integer.flippage_padding_large'),
+        left: $r('app.integer.flippage_margin_middle_up'),
+        right: $r('app.integer.flippage_margin_middle')
+      })
+        // 扩展至所有非安全区域
+      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
   }
 }

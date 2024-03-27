@@ -49,14 +49,18 @@ export struct LeftRightPlipPage {
         LazyForEach(this.data, (item: string) => {
           Text($r(item))
             .width($r('app.string.pageflip_full_size'))
+            .height($r('app.string.pageflip_full_size'))
             .fontSize($r('app.integer.flippage_text_fontsize'))
             .textAlign(TextAlign.Start)
             .align(Alignment.TopStart)
             .margin({
               top: $r('app.integer.flippage_margin_large'),
-              right: $r('app.integer.flippage_margin_middle'),
-              left: $r('app.integer.flippage_margin_middle'),
+              left: $r('app.integer.flippage_padding_middle_two'),
               bottom: $r('app.integer.flippage_margin_middle')
+            })
+            .padding({
+              left: $r('app.integer.flippage_padding_middle'),
+              right: $r('app.integer.flippage_padding_middle'),
             })
         }, (item: string) => item)
       }
@@ -69,7 +73,6 @@ export struct LeftRightPlipPage {
       .itemSpace(CONFIGURATION.PAGEFLIPZERO)
       .loop(false)
       .curve(Curve.Linear)
-      .backgroundColor($r('app.color.pageflip_swiper_backgroundcolor'))
       .effectMode(EdgeEffect.Fade)
       .duration(CONFIGURATION.PAGEFLIPTOASTDURATION)
       .onChange((index: number) => {
@@ -78,6 +81,9 @@ export struct LeftRightPlipPage {
     }
     .width($r('app.string.pageflip_full_size'))
     .height($r('app.string.pageflip_full_size'))
+    .backgroundColor($r('app.color.pageflip_swiper_backgroundcolor'))
+    // 扩展至所有非安全区域
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
     .onClick((event?: ClickEvent) => {
       if (!event) {
         return;

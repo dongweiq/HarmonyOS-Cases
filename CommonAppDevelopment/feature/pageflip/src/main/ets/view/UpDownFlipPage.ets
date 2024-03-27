@@ -49,6 +49,7 @@ export struct UpDownFlipPage {
             Text($r(item))
               .fontSize($r('app.integer.flippage_text_fontsize'))
               .width($r('app.string.pageflip_full_size'))
+              .padding({left:$r('app.integer.flippage_padding_middle_two'),})
           }
         }, (item: string) => item)
       }
@@ -62,6 +63,8 @@ export struct UpDownFlipPage {
     }
     .width($r('app.string.pageflip_full_size'))
     .backgroundColor($r('app.color.pageflip_swiper_backgroundcolor'))
+    // 扩展至所有非安全区域
+    .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
     .onClick((event?: ClickEvent) => {
       if (event) {
         if (this.isMenuViewVisible) {
