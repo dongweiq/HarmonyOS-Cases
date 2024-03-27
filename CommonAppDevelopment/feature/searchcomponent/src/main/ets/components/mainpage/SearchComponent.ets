@@ -49,7 +49,7 @@ export struct SearchComponent {
   @StorageLink('context') UIContext: common.UIAbilityContext | undefined = AppStorage.get('context');
 
   aboutToAppear(): void {
-    let type = window.AvoidAreaType.TYPE_SYSTEM;
+    const type = window.AvoidAreaType.TYPE_SYSTEM;
     window.getLastWindow(this.UIContext, (err, data) => {
       let avoidArea = data.getWindowAvoidArea(type);
       this.avoidAreaHeight = avoidArea.topRect.height
