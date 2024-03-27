@@ -36,7 +36,7 @@ export struct FunctionalScenes {
         .fontSize($r('app.string.ohos_id_text_size_body1'))
         .fontColor(Color.Black)
         .opacity(this.tabsIndex === index ? 1 : 0.8)
-        .fontWeight(this.tabsIndex == index ? 600 : 400)
+        .fontWeight(this.tabsIndex === index ? 600 : 400)
         .height('100%')
         .border(this.tabsIndex === index ? {
           width: { left: 0, right: 0, top: 0, bottom: $r('app.string.main_page_tab_text_underline') },
@@ -179,7 +179,7 @@ struct methodPoints {
         DynamicsRouter.push(this.listData.routerInfo, this.listData.param);
         // 帮助功能：发送当前案例的名称
         let moduleName: string = this.listData.routerInfo.moduleName;
-        let split: string[] = moduleName.split('/');
+        const split: string[] = moduleName.split('/');
         moduleName = split[split.length-1];
         emitter.emit("topModule", {
           data: {

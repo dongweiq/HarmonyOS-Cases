@@ -51,12 +51,12 @@ export struct SwiperComponent {
    * @returns
    */
   getImgCoefficients(index: number): number {
-    let coefficient: number = this.currentIndex - index; // 计算图片左右位置
-    let tempCoefficient: number = Math.abs(coefficient);
+    const coefficient: number = this.currentIndex - index; // 计算图片左右位置
+    const tempCoefficient: number = Math.abs(coefficient);
     if (tempCoefficient <= this.halfCount) {
       return coefficient;
     }
-    let dataLength: number = this.swiperData.length;
+    const dataLength: number = this.swiperData.length;
     let tempOffset: number = dataLength - tempCoefficient; // 判断图片位于左右层级位置
     if (tempOffset <= this.halfCount) {
       if (coefficient > 0) {
@@ -73,8 +73,8 @@ export struct SwiperComponent {
    * @returns
    */
   getOffSetX(index: number): number {
-    let offsetIndex: number = this.getImgCoefficients(index);
-    let tempOffset: number = Math.abs(offsetIndex);
+    const offsetIndex: number = this.getImgCoefficients(index);
+    const tempOffset: number = Math.abs(offsetIndex);
     let offsetX: number = 0;
     if (tempOffset === 1) {
       // 根据图片层级系数来决定左右偏移量
@@ -88,8 +88,8 @@ export struct SwiperComponent {
     animateTo({
       duration: duration,
     }, () => {
-      let dataLength: number = this.swiperData.length;
-      let tempIndex: number = isLeft ? this.currentIndex + 1 : this.currentIndex - 1 + dataLength;
+      const dataLength: number = this.swiperData.length;
+      const tempIndex: number = isLeft ? this.currentIndex + 1 : this.currentIndex - 1 + dataLength;
       this.currentIndex = tempIndex % dataLength;
     })
   }
