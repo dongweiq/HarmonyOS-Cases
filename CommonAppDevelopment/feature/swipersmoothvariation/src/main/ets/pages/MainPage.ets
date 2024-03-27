@@ -192,7 +192,7 @@ export struct SwiperSmoothVariation {
         // swiper第三个page
         this.GridBuilderFunction(this.dataPageThree, Const.GRID_DOUBLE_HEIGHT, Const.GRID_TEMPLATE)
         // swiper第四个page
-        this.GridBuilderFunction(this.dataPageFour, Const.GRID_DOUBLE_HEIGHT, Const.GRID_TEMPLATE)
+        this.GridBuilderFunction(this.dataPageFour, Const.GRID_SINGLE_HEIGHT, Const.GRID_SINGLE_TEMPLATE)
       }
       .width($r('app.string.width_full'))
       .backgroundColor($r('app.color.color_white'))
