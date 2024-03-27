@@ -1,4 +1,4 @@
-# 利用colorPicker获取图片颜色平均值
+# 使用colorPicker实现背景跟随主题颜色转换
 
 ### 介绍
 
