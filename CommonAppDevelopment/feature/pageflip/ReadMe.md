@@ -107,7 +107,8 @@ Stack() {
          z: CONFIGURATION.PAGEFLIPZERO
       })
       .width(this.screenW);
-   ReaderPage({ content: this.leftPageContent }) // TODO: 知识点：在midPage的左边，当向右滑时，跟随this.offsetX向右滑动。
+   ReaderPage({ content: this.leftPageContent }) 
+      // TODO: 知识点：在midPage的左边，当向右滑时，跟随this.offsetX向右滑动。
       .translate({
          x: -this.screenW + this.offsetX
       });
