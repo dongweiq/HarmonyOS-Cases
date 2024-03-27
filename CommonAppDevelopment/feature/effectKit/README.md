@@ -13,33 +13,25 @@
 
 ### 实现思路
 
-1. 通过使用滑动视图容器Swiper，将控制器SwiperController绑定Swiper组件，实现其子组件Image图片滑动轮播显示效果。源码参考[MainPage.ets](./src/main/ets/components/mainpage/MainPage.ets)
-    ```typescript
-        Swiper(this.swiperController){
-            ForEach(this.imgData, (item: Resource) => {
-             Image(item).borderRadius($r('app.integer.image_borderRadius'))
-            .margin({ top: $r('app.integer.image_margin_top') })
-        })}
-    ```
-2. 在事件onAnimationStart切换动画过程中通过Image模块相关能力，获取图片颜色平均值，使用effectKit包中的ColorPicker智能取色器进行颜色取值。源码参考[MainPage.ets](./src/main/ets/components/mainpage/MainPage.ets)
+1. 在事件onAnimationStart切换动画过程中通过Image模块相关能力，获取图片颜色平均值，使用effectKit库中的ColorPicker智能取色器进行颜色取值。源码参考[MainPage.ets](./src/main/ets/components/mainpage/MainPage.ets)
     ```typescript
           const context = getContext(this);
-          //获取resourceManager资源管理器
+          // 获取resourceManager资源管理器
           const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
           const fileData: Uint8Array = await resourceMgr.getMediaContent(this.imgData[targetIndex]);
-          //获取图片的ArrayBuffer
+          // 获取图片的ArrayBuffer
           const buffer = fileData.buffer;
-          //创建imageSource
+          // 创建imageSource
           const imageSource: image.ImageSource = image.createImageSource(buffer);
-          //创建pixelMap
+          // 创建pixelMap
           const pixelMap: image.PixelMap = await imageSource.createPixelMap();
 
           effectKit.createColorPicker(pixelMap, (err, colorPicker) => {
-            //读取图像主色的颜色值，结果写入Color
+            // 读取图像主色的颜色值，结果写入Color
             let color = colorPicker.getMainColorSync();
           })
     ```
-3. 同时通过接口animateTO开启背景颜色渲染的属性动画。全局界面开启沉浸式状态栏。源码参考[MainPage.ets](./src/main/ets/components/mainpage/MainPage.ets)
+2. 同时通过接口animateTo开启背景颜色渲染的属性动画。全局界面开启沉浸式状态栏。源码参考[MainPage.ets](./src/main/ets/components/mainpage/MainPage.ets)
     ```typescript
    animateTo({ duration: 500, curve: Curve.Linear, iterations: 1 }, () => {
    //将取色器选取的color示例转换为十六进制颜色代码
@@ -47,7 +39,7 @@
             })
    
     ```
-4. 通过属性linearGradient设置背景色渲染方向以及渲染氛围。源码参考[MainPage.ets](./src/main/ets/components/mainpage/MainPage.ets)
+3. 通过属性linearGradient设置背景色渲染方向以及渲染氛围。源码参考[MainPage.ets](./src/main/ets/components/mainpage/MainPage.ets)
     ```typescript
     linearGradient({
       //渐变方向
@@ -62,11 +54,12 @@
    ```
    effectKit                                  // har类型
    |---pages
-   |---|---MainPage.ets                         // 视图层-场景列表页面
+   |---|---MainPage.ets                       // 视图层-场景列表页面
    ```
 
 ### 高性能知识点
-swiper组件使用cachedCount()属性，对子组件进行预加载，提高响应时延
+
+不涉及。
 
 ### 模块依赖
 
