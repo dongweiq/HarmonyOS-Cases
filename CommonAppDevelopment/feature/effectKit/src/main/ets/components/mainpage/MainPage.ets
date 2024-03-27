@@ -72,7 +72,7 @@ export struct MainPage {
   build() {
     Column() {
       Swiper(this.swiperController) {
-        // TODO 高性能知识点：子组件数量超过5个建议使用LazyForEach
+        // TODO 高性能知识点：此处为了演示场景，数量只有4个，使用ForEach，真实场景列表数量较多的场景，推荐使用LazyForEach+组件复用+缓存列表项实现
         ForEach(this.imgData, (item: Resource) => {
           Image(item).borderRadius($r('app.integer.image_borderRadius'))
             .margin({ top: $r('app.integer.image_margin_top') })
