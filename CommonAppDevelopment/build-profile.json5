@@ -339,6 +339,10 @@
     {
       "name": "cardswiperanimation",
       "srcPath": "./feature/cardswiperanimation"
+    },
+    {
+      "name": "effectKit",
+      "srcPath": "./feature/effectKit"
     }
   ]
 }
