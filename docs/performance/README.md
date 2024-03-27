@@ -28,7 +28,7 @@
 
 碰到此类问题，我们可以在生命周期aboutToApear中，使用[多线程并发](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/efficient-concurrent-programming.md)的方法执行第二个Tab页的网络数据访问解析、数据加载等耗时操作，既可以提前完成数据加载，也不会影响主线程UI绘制和渲染。
 
-使用[TaskPool]((https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/multi_thread_capability.md))进行耗时操作的示例代码如下：
+使用[TaskPool](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/multi_thread_capability.md)进行耗时操作的示例代码如下：
 ```typescript
 import taskpool from '@ohos.taskpool';
 
@@ -63,14 +63,29 @@ requestByTaskPool(): void {
 * [预加载so并读取RawFile文件](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/nativerawfile/README.md)
 * [Worker子线程中解压文件](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/decompressfile/README.md)
 
-#### 使用多线程执行耗时操作
+#### 使用异步执行耗时操作
 
 问题：在aboutToApear生命周期中，运行了业务数据解析和处理等耗时操作，影响了上一页面点击跳转该页面的响应时延。
 
 可以把耗时操作的执行从同步执行改为异步或者延后执行，比如使用setTimeOut执行耗时操作，示例如下：
 
 ```typescript
-// TODO
+aboutToApear() {
+  ...
+  // 在生命周期中，使用异步处理数据，延时大小视情况确定
+  setTimeout(() => {
+    this.workoutResult()
+  }, 1000)
+}
+
+workoutResult(): string[] {
+  // 处理需要展示的业务数据
+  let data: Data[] = []
+  for(let i = 1; i < 100; i++) {
+    result += data[i];
+  }
+  return result;
+}
 ```
 
 ### 使用预加载提升页面启动和响应速度
@@ -89,7 +104,7 @@ preload() {
   // Web组件引擎初始化
   webview.WebviewController.initializeWebEngine();
   // 启动预连接，连接地址为即将打开的网址
-  webview.WebviewController.prepareForPageLoad('https://gitee.com/harmonyos-cases/cases', true, 2);
+  webview.WebviewController.prepareForPageLoad('https://gitee.com/  harmonyos-cases/cases', true, 2);
 }
 ```
 相关案例：
@@ -99,12 +114,50 @@ preload() {
 
 问题：页面布局复杂度较高，导致跳转该页面的响应时延较慢。
 
-可以使用条件渲染的方式，添加页面的简单骨架图作为默认展示页面，等数据加载完成后再显示最终的复杂布局，加快点击响应速度。
+可以使用[条件渲染](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/proper-choice-between-if-and-visibility.md)的方式，添加页面的简单骨架图作为默认展示页面，等数据加载完成后再显示最终的复杂布局，加快点击响应速度。
 
 示例代码如下：
 
 ```typescript
-// TODO
+import skeletonComponent from "./skeletonComponent"
+import businessComponent from "./businessComponent"
+
+@State isInitialzed:boolean = false
+
+aboutToAppear() {
+  ...
+  // 从网络获取页面数据
+  requestByTaskPool()
+}
+
+build() {
+  // 当数据未就位时展示骨架图，提升用户体验，减少页面渲染时间
+  if(!this.isInitialzed) {
+    skeletonComponent()
+  } else {
+    businessComponent()
+  }
+}
+
+@Concurrent
+getInfoFromHttp(): string[] {
+  // 从网络加载数据
+  return http.request();
+}
+
+requestByTaskPool(): void {
+  // 创建任务项
+  let task: taskpool.Task = new taskpool.Task(this.getInfoFromHttp);
+  try {
+	// 执行网络加载函数
+	taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
+    // 设置状态变量改变页面展示
+    this.isInitialzed = true;
+	})
+  } catch (err) {
+	 logger.error(TAG, "failed, " + (err as BusinessError).toString());
+  }
+}
 ```
 
 ### 使用缓存提升启动速度和滑动帧率
@@ -116,7 +169,7 @@ preload() {
 
 HarmonyOS应用框架提供了组件复用能力，可复用组件从组件树上移除时，会进入到一个回收缓存区。后续创建新组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
 
-若业务实现中存在以下场景，并成为UI线程的帧率瓶颈，推荐使用组件复用：
+若业务实现中存在以下场景，并成为UI线程的帧率瓶颈，推荐使用[组件复用](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/component-recycle.md)：
 
 * 列表滚动（本例中的场景）：当应用需要展示大量数据的列表，并且用户进行滚动操作时，频繁创建和销毁列表项的视图可能导致卡顿和性能问题。在这种情况下，使用列表组件的组件复用机制可以重用已经创建的列表项视图，提高滚动的流畅度。
 * 动态布局更新：如果应用中的界面需要频繁地进行布局更新，例如根据用户的操作或数据变化动态改变视图结构和样式，重复创建和销毁视图可能导致频繁的布局计算，影响帧率。在这种情况下，使用组件复用可以避免不必要的视图创建和布局计算，提高性能。
@@ -125,7 +178,54 @@ HarmonyOS应用框架提供了组件复用能力，可复用组件从组件树�
 示例代码如下：
 
 ```typescript
-// TODO
+// xxx.ets
+class MyDataSource implements IDataSource {
+  private dataArray: string[] = [];
+  private listener: DataChangeListener | undefined;
+  ...
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource();
+
+  aboutToAppear() {
+    for (let i = 0; i < 1000; i++) {
+      this.data.pushData(i.toString())
+    }
+  }
+
+  build() {
+    List({ space: 3 }) {
+      LazyForEach(this.data, (item: string) => {
+        ListItem() {
+          ReusableChildComponent({ item: item })
+        }
+      }, (item: string) => item)
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+
+@Reusable
+@Component
+struct ReusableChildComponent {
+  @State item: string = ''
+  // 复用时触发的生命周期
+  aboutToReuse(params: ESObject) {
+    this.item = params.item;
+  }
+
+  build() {
+    Row() {
+      Text(this.item)
+        .fontSize(20)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
+  }
+}
 ```
 
 #### 使用renderGroup缓存提升属性动画性能
@@ -136,26 +236,139 @@ HarmonyOS应用框架提供了组件复用能力，可复用组件从组件树�
 
 示例代码如下：
 ```typescript
-// TODO
+// Index.ets
+
+import { IconItem } from './IconItem'
+
+// IconItem相关数据
+class IconItemSource {
+  image: string | Resource = ''
+  text: string | Resource = ''
+  ...
+}
+
+@Entry
+@Component
+struct Index {
+  private iconItemSourceList: IconItemSource[] = [];
+
+  aboutToAppear() {
+    // 遍历添加IconItem的数据
+    this.iconItemSourceList.push(
+      new IconItemSource($r('app.media.img1'), `label1`),
+      new IconItemSource($r('app.media.img2'), `label2`),
+      new IconItemSource($r('app.media.img3'), `label3`),
+    );
+  }
+
+  build() {
+    Column() {
+      // IconItem放置在grid内
+      GridRow({}) {
+        ForEach(this.iconItemSourceList, (item: IconItemSource) => {
+          GridCol() {
+            IconItem({ image: item.image, text: item.text })
+              .transition(
+                TransitionEffect.scale({})
+                  .animation({})
+                  .combine(TransitionEffect.rotate({})
+                  .animation({ }))
+              )
+          }
+        })
+      }
+    }
+  }
+}
+
+// IconItem.ets
+
+@Component
+export struct IconItem {
+  ...
+  build()  {
+    Flex()  {
+      Image(this.image)
+      Text(this.text)
+    }
+    // 在IconItem内开启renderGroup
+    .renderGroup(true)
+  }
+}
 ```
 
 #### 使用显隐控制进行页面缓存
 
-控制元素显示与隐藏是一种常见的场景，使用Visibility.none、if条件判断等都能够实现该效果。其中if条件判断控制的是组件的创建、布局阶段，visibility属性控制的是元素在布局阶段是否参与布局渲染。使用时如果使用的方式不当，将引起性能上的问题。
+控制元素显示与[隐藏](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/proper-choice-between-if-and-visibility.md)是一种常见的场景，使用Visibility.none、if条件判断等都能够实现该效果。其中if条件判断控制的是组件的创建、布局阶段，visibility属性控制的是元素在布局阶段是否参与布局渲染。使用时如果使用的方式不当，将引起性能上的问题。
 如果会频繁响应显示与隐藏的交互效果，建议使用切换Visibility.None和Visibility.Visiable来控制元素显示与隐藏，在组件无需展示的时候进行缓存，提高性能。
 
 示例代码如下：
 ```typescript
-// TODO
+@State isVisible: boolean = true;
+
+build() {
+  Column() {
+    Button("Switch visible and hidden").onClick(() => {
+        this.isVisible = !(this.isVisible);
+    })
+    Stack() {
+      Scroll() {
+        Column() {
+          Image($r('app.media.icon'))
+        }
+      }.visibility(this.isVisible ? Visibility.Visible : Visibility.None)// 使用显隐控制切换，不会频繁创建与销毁组件
+    }  
+  }  
+}
 ```
 
 ## 第二板斧：尽量减少布局的嵌套层数
 
-在进行页面布局开发时，应该去除冗余的布局嵌套，使用相对布局、绝对定位、自定义布局、Grid、GridRow等扁平化布局，减少布局的嵌套层数，避免系统绘制更多的布局组件，达到优化性能、减少内存占用的目的。
+在进行页面布局开发时，应该去除冗余的布局嵌套，使用相对布局、绝对定位、自定义布局、Grid、GridRow等扁平化布局，减少布局的嵌套层数，避免系统绘制更多的布局组件，达到[优化性能](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/reduce-view-nesting-levels.md#%E4%BC%98%E5%8C%96%E5%B8%83%E5%B1%80%E6%80%A7%E8%83%BD)、减少内存占用的目的。
 
 ### 移除冗余节点
 
 应该删除冗余的布局嵌套，例如build最外层的无用容器嵌套、无用的Stack或Column嵌套等，减少布局层数。
+
+
+反例代码如下：
+```typescript
+@Componnet
+struct componentA {
+  build() {
+    Column() {
+      ComponentB();
+    }
+  }
+}
+
+@Componnet
+struct componentB {
+  build() {
+    Column() {
+      Text('');
+    }
+  }
+}
+```
+正例代码如下：
+```typescript
+@Componnet
+struct componentA {
+  build() {
+    Column() {
+      ComponentB();
+    }
+  }
+}
+
+@Componnet
+struct componentB {
+  build() {
+    Text('');
+  }
+}
+```
 
 #### 删除无用的Stack/Column/Row嵌套
 
@@ -190,8 +403,8 @@ MyCompnent {
   build() {
     Stack() {
 	  Row {
-        Image()
-        Text()
+      Image()
+      Text()
 	  }
 	}
   }
@@ -201,10 +414,10 @@ MyCompnent {
 @Component
 MyCompnent {
   build() {
-	Row {
+    Row {
       Image()
       Text()
-	}
+    }
   }
 }
 ```
@@ -213,16 +426,102 @@ MyCompnent {
 
 #### 使用Column/Row替代Flex构建线性布局
 
-由于Flex本身带来的二次布局的影响，Flex的性能明显低于Column和Row容器，因此推荐使用Column/Row替代Flex构建线性布局。
+由于Flex本身带来的二次布局的影响，Flex的性能明显低于Column和Row容器，因此推荐使用Column/Row替代Flex[构建线性布局](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/flex-development-performance-boost.md)。
+
+反例代码如下：
+```typescript
+@Entry
+@Component
+struct MyComponent {
+  build() {
+    Flex({ direction: FlexDirection.Column }) {
+      Flex().width(300).height(200).backgroundColor(Color.Pink)
+      Flex().width(300).height(200).backgroundColor(Color.Yellow)
+      Flex().width(300).height(200).backgroundColor(Color.Grey)
+    }
+  }
+}
+```
+正例代码如下：
+```typescript
+@Entry
+@Component
+struct MyComponent {
+  build() {
+    Column() {
+      Row().width(300).height(200).backgroundColor(Color.Pink)
+      Row().width(300).height(200).backgroundColor(Color.Yellow)
+      Row().width(300).height(200).backgroundColor(Color.Grey)
+    }
+  }
+}
+```
+
 
 #### 使用Flex、List、Grid、RelativeContainer、绝对布局和自定义布局等构建复杂布局
 
-复杂布局提供了场景化的能力，解决一种或者多种布局场景：
+[复杂布局](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/reduce-view-nesting-levels.md#%E5%87%8F%E5%B0%91%E5%B5%8C%E5%A5%97%E5%B1%82%E7%BA%A7)提供了场景化的能力，解决一种或者多种布局场景：
 
 * 使用Flex构建弹性布局；
 * List既具备线性布局的特点，同时支持懒加载和滑动的能力；
 * Grid/GridItem提供了宫格布局的能力，同时也支持懒加载和滑动能力；
 * RelativeContainer是一种相对布局，通过描述各个内容组件间相互关系来指导内容元素的布局过程，可从横纵两个方面进行布局描述，是一种二维布局算法；
+
+
+反例代码如下：
+```typescript
+@Entry
+@Component
+struct AspectRatioExample12 {
+    @State children: Number[] = Array.from(Array<number>(900), (v, k) => k);
+    
+    build() {
+      Scroll() {
+      Grid() {
+        ForEach(this.children, (item: Number[]) => {
+          GridItem() {
+            Stack() {  
+              Stack() {  
+                Stack() {  
+                  Text(item.toString())  
+                }.size({ width: "100%"})  
+              }.backgroundColor(Color.Yellow)  
+            }.backgroundColor(Color.Pink)  
+          }  
+        }, (item: string) => item)  
+      }  
+      .columnsTemplate('1fr 1fr 1fr 1fr')  
+      .columnsGap(0)  
+      .rowsGap(0)  
+      .size({ width: "100%", height: "100%" })  
+    }  
+  }  
+}
+```
+正例代码如下：
+```typescript
+@Entry  
+@Component  
+struct AspectRatioExample11 {  
+  @State children: Number[] = Array.from(Array<number>(900), (v, k) => k);  
+  
+  build() {  
+    Scroll() {  
+      Grid() {  
+        ForEach(this.children, (item: Number[]) => {  
+          GridItem() {  
+            Text(item.toString())  
+          }.backgroundColor(Color.Yellow)  
+        }, (item: string) => item)  
+      }  
+      .columnsTemplate('1fr 1fr 1fr 1fr')  
+      .columnsGap(0)  
+      .rowsGap(0)  
+      .size({ width: "100%", height: "100%" })  
+    }  
+  }  
+}
+```
 
 ## 第三板斧：合理管理状态变量
 
@@ -234,27 +533,218 @@ MyCompnent {
 
 #### 使用Stack包裹条件悬案组件，减小更新范围
 
-示例代码如下：
+用条件渲染的方式控制组件的显示，在条件发生变化时会引起父组件的重新渲染。如果在同个父组件下存在复杂组件，在高频操作场景会产生性能问题。因此，对于该场景，我们应该用父容器组件包裹可能会频繁条件变化的组件
+
+
+反例代码如下：
 ```typescript
-// TODO
+@State isVisiable: boolean;
+@State realData: Data[] = [];
+
+aboutToAppear() {
+  // 更新状态变量
+  this.realData = [...]
+}
+
+build() {
+  Column() {
+    if(this.isVisiable) {
+      Image()
+    }
+    ForEach(this.realData,(item: Data) => {
+      Text(`${item.label}`)
+    })
+  }
+}
+```
+正例代码如下：
+```typescript
+@State isVisiable: boolean;
+@State realData: Data[] = [];
+
+aboutToAppear() {
+  // 更新状态变量
+  this.realData = [...]
+}
+
+build() {
+  Column() {
+    Column() {
+      if(this.isVisiable) {
+        Image()
+      }
+    }
+    ForEach(this.realData,(item: Data) => {
+      Text(`${item.label}`)
+    })
+  }
+}
 ```
 
 #### 减少不必要的参数层次传递
 
 @State+@Prop、@State+@Link、@State+@Observed+@ObjectLink三种方案的实现方式是逐级向下传递状态，当共享状态的组件间层级相差较大时，会出现状态层层传递的现象。对于没有使用该状态的中间组件而言，这是“额外的消耗”。因此，对于跨越多层的状态变量传递，使用@Provide+@Consume方案更为合理。
 
-示例代码如下：
+
+反例代码如下：
 ```typescript
-// TODO
+// 父组件
+@Component
+struct componentParent{
+  @State data: Data = {}
+  
+  aboutToAppear() {
+    // 获取子组件数据
+    this.data = getData()
+  }
+
+  build() {
+    Colume() {
+      componentSon({data: this.data})
+    }
+  }
+}
+
+// 子组件
+@Component
+struct componentSon{
+  // 获取传递参数
+  @Prop data: Data;
+
+  build() {
+    Colume() {
+      Text(data.text)
+      ComponentGrandSon({data: this.data})
+    }
+  }
+}
+
+@Component
+struct componentGrandSon{
+  // 获取传递参数
+  @Prop data: Data;
+
+  build() {
+    Colume() {
+      Text(data.text)
+    }
+  }
+}
+```
+正例代码如下：
+```typescript
+// 父组件
+@Component
+struct componentParent{
+  @Provide('data') data: Data = {};
+  
+  aboutToAppear() {
+    // 获取子组件数据
+    this.data = getData()
+  }
+
+  build() {
+    Colume() {
+      componentSon({data: this.data})
+    }
+  }
+}
+
+// 子组件
+@Component
+struct componentSon{
+  // 获取传递参数
+  @Consume("data") data: Data;
+
+  build() {
+    Colume() {
+      Text(data.text)
+      ComponentGrandSon({data: this.data})
+    }
+  }
+}
+
+@Component
+struct componentGrandSon{
+  // 获取传递参数
+  @Consume("data") data: Data;
+
+  build() {
+    Colume() {
+      Text(data.text)
+    }
+  }
+}
 ```
 
 #### 避免滥用@Provide+@Consume
 
 在父子组件关联的场景下，@Provide+@Consume开销要大于@State+@Prop/@Link，因此在该场景下推荐使用@State+@Prop/@Link的组合。
 
-示例代码如下：
+反例代码如下：
 ```typescript
-// TODO
+// 父组件
+@Component
+struct componentParent{
+  @Provide("data") data: Data = {};
+  
+  aboutToAppear() {
+    // 获取子组件数据
+    this.data = getData();
+  }
+
+  build() {
+    Colume() {
+      componentSon()
+    }
+  }
+}
+
+// 子组件
+@Component
+struct componentSon{
+  // 获取传递参数
+  @Consume("data") data: Data;
+
+  build() {
+    Colume() {
+      Text(data.text)
+    }
+  }
+}
+```
+
+正例代码如下：
+```typescript
+// 父组件
+@Component
+struct componentParent{
+  @State data:Data = {};
+  
+  aboutToAppear() {
+    // 获取子组件数据
+    this.data = getData();
+  }
+
+  build() {
+    Colume() {
+      componentSon({data: this.data})
+    }
+  }
+}
+
+// 子组件
+@Component
+struct componentSon{
+  // 获取传递参数
+  @Prop data:Data;
+
+  build() {
+    Colume() {
+      Text(data.text)
+    }
+  }
+}
 ```
 
 ### 精准控制状态变量关联组件数量
@@ -263,18 +753,253 @@ MyCompnent {
 
 #### 控制状态变量关联组件数量
 
-示例代码如下：
+反例代码如下：
 ```typescript
-// TODO
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+@Component
+struct Title {
+  @ObjectLink translateObj: Translate;
+  build() {
+    Row() {
+      Image($r('app.media.icon'))
+        .translate({
+          x:this.translateObj.translateX // this.translateObj.translateX used in two component both in Row
+        })
+      Text("Title")
+        .translate({
+          x: this.translateObj.translateX
+        })
+    }
+  }
+}
+@Entry
+@Component
+struct Page {
+  @State translateObj: Translate = new Translate();
+  build() {
+    Column() {
+      Title({
+        translateObj: this.translateObj
+      })
+      Stack() {
+      }
+      .translate({
+        x:this.translateObj.translateX //this.translateObj.translateX used in two components both in Column
+      })
+      Button("move")
+        .translate({
+          x:this.translateObj.translateX
+        })
+        .onClick(() => {
+          animateTo({
+            duration: 50
+          },()=>{
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+          })
+        })
+    }
+  }
+}
+```
+正例代码如下：
+```typescript
+@Observed
+class Translate {
+  translateX: number = 20;
+}
+@Component
+struct Title {
+  build() {
+    Row() {
+      Image($r('app.media.icon'))
+      Text("Title")
+    }
+  }
+}
+@Entry
+@Component
+struct Page1 {
+  @State translateObj: Translate = new Translate();
+  build() {
+    Column() {
+      Title()
+      Stack() {
+      }
+      Button("move")
+        .onClick(() => {
+          animateTo({
+            duration: 50
+          },()=>{
+            this.translateObj.translateX = (this.translateObj.translateX + 50) % 150
+          })
+        })
+    }
+    .translate({ // the component in Column shares the same property translate
+      x: this.translateObj.translateX
+    })
+  }
+}
 ```
 
 #### 控制对象级状态变量成员数量
 
 应该控制对象级状态变量的成员变量关联的组件数量。开发者封装一个数据结构类用于进行状态变量关联时，应该避免过多的成员变量关联大量ArkUI组件，这种情况下，当这个大对象的一个成员变量更新时，会导致所有关联这个大对象的组件都同时进行刷新，造成不必要的性能损耗，从而影响帧率。
 
-示例代码如下：
+
+反例代码如下：
 ```typescript
-// TODO
+@Observed
+class AnimationParams {
+  translateX: number = 0;
+  translateY: number = 0;
+  alpha: number = 1;
+  rotationX: number = 0;
+  rotationY: number = 0;
+  centerX: number = 0;
+  centerY: number = 0;
+  angle: number = 0;
+  scaleX: number = 1;
+  scaleY: number = 1;
+}
+
+@Entry
+@Component
+struct Page {
+  @State animationParam: AnimationParams = new AnimationParams();
+
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.startIcon'))
+          .translate({
+            x: this.animationParam.translateX,
+            y: this.animationParam.translateY
+          })
+          .rotate({
+            x: this.animationParam.rotationX,
+            y: this.animationParam.translateY,
+            centerX: this.animationParam.centerX,
+            centerY: this.animationParam.centerY,
+            angle: this.animationParam.angle
+          })
+          .opacity(this.animationParam.alpha)
+          .scale({
+            x: this.animationParam.scaleX,
+            y: this.animationParam.scaleY,
+            centerX: this.animationParam.centerX,
+            centerY: this.animationParam.centerY
+          })
+          .animation({
+            duration: 3000
+          })
+      }
+
+      Button('点击播放动画')
+        .onClick(() => {
+          this.animationParam.translateX = 300;
+          this.animationParam.translateY = 200;
+          this.animationParam.rotationX = 90;
+          this.animationParam.rotationY = 90;
+          this.animationParam.centerX = 20;
+          this.animationParam.centerY = 20;
+          this.animationParam.angle = 270;
+          this.animationParam.alpha = 0.5;
+          this.animationParam.scaleX = 3;
+          this.animationParam.scaleY = 3;
+        })
+    }
+  }
+}
+```
+正例代码如下：
+```typescript
+@Observed
+class RotationAnimationParams {
+  rotationX: number = 0;
+  rotationY: number = 0;
+  centerX: number = 0;
+  centerY: number = 0;
+  angle: number = 0;
+}
+
+@Observed
+class TranslateAnimationParams {
+  translateX: number = 0;
+  translateY: number = 0;
+}
+
+@Observed
+class AlphaAnimationParams {
+  alpha: number = 1;
+}
+
+@Observed
+class ScaleAnimationParams {
+  scaleX: number = 1;
+  scaleY: number = 1;
+  centerX: number = 0;
+  centerY: number = 0;
+}
+
+@Entry
+@Component
+struct Page {
+  @State rotationAnimation: RotationAnimationParams = new RotationAnimationParams();
+  @State translateAnimation: TranslateAnimationParams = new TranslateAnimationParams();
+  @State alphaAnimation: AlphaAnimationParams = new AlphaAnimationParams();
+  @State scaleAnimation: ScaleAnimationParams = new ScaleAnimationParams();
+
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.startIcon'))
+          .translate({
+            x: this.translateAnimation.translateX,
+            y: this.translateAnimation.translateY
+          })
+          .rotate({
+            x: this.rotationAnimation.rotationX,
+            y: this.rotationAnimation.rotationY,
+            centerX: this.rotationAnimation.centerX,
+            centerY: this.rotationAnimation.centerY,
+            angle: this.rotationAnimation.angle
+          })
+          .opacity(this.alphaAnimation.alpha)
+          .scale({
+            x: this.scaleAnimation.scaleX,
+            y: this.scaleAnimation.scaleY,
+            centerX: this.scaleAnimation.centerX,
+            centerY: this.scaleAnimation.centerY
+          })
+          .animation({
+            duration: 3000
+          })
+      }
+
+      Button('点击播放动画')
+        .onClick(() => {
+          this.rotationAnimation.rotationX = 90;
+          this.rotationAnimation.rotationY = 90;
+          this.rotationAnimation.centerX = 20;
+          this.rotationAnimation.centerY = 20;
+          this.rotationAnimation.angle = 270;
+
+          this.translateAnimation.translateX = 300;
+          this.translateAnimation.translateY = 200;
+
+          this.alphaAnimation.alpha = 0.5;
+
+          this.scaleAnimation.scaleX = 3;
+          this.scaleAnimation.scaleY = 3;
+          this.scaleAnimation.centerX = 20;
+          this.scaleAnimation.centerY = 20;
+        })
+    }
+  }
+}
 ```
 
 ### 避免不必要的创建和读取状态变量
@@ -282,12 +1007,68 @@ MyCompnent {
 避免不必要的创建和读取状态变量，减少性能损耗。
 
 #### 删除冗余的状态变量标记
+状态变量的管理有一定的开销，应在合理场景使用，普通的变量用状态变量标记可能会导致性能劣化
+
+反例代码如下：
+```typescript
+@Component
+struct component {
+  @State bgcolor: string | Color = '#ffffff';
+  @State selectColor: string | Color = '#007DFF';
+
+}
+```
+正例代码如下：
+```typescript
+@Component
+struct component {
+  bgcolor: string | Color = '#ffffff';
+  selectColor: string | Color = '#007DFF';
+  
+}
+```
 
 #### 避免在For/while等循环函数中重复读取状态变量
 
-状态变量的读取耗时远大于普通变量的读取耗时，因此要避免重复读取状态变量，例如在打印For/while循环中打印状态变量的日志信息，示例代码如下：
+状态变量的读取耗时远大于普通变量的读取耗时，因此要避免重复读取状态变量，而是应该放在循环外面读取，例如在打印For/while循环中打印状态变量的日志信息
+
+反例代码如下：
 ```typescript
-// TODO
+@Component
+struct Page {
+  @State message: string = '';
+
+  build() {
+    Column() {
+      Button('点击打印日志')
+        .onClick(() => {
+          for (let i = 0; i < 10; i++) {
+            console.debug(this.message);
+          }
+        })
+    }
+  }
+}
+```
+
+正例代码如下：
+```typescript
+@Component
+struct Page {
+  @State message: string = '';
+
+  build() {
+    Column() {
+      Button('点击打印日志')
+        .onClick(() => {
+          let logMessage: string = this.message;
+          for (let i = 0; i < 10; i++) {
+            console.debug(logMessage);
+          }
+        })
+    }
+  }
+}
 ```
 
 ## 第四板斧：合理使用系统接口，避免冗余操作
@@ -305,7 +1086,12 @@ MyCompnent {
 
 ### 删除不要的Trace和日志打印
 
-示例代码如下：
+
+反例代码如下：
+```typescript
+// TODO
+```
+正例代码如下：
 ```typescript
 // TODO
 ```
