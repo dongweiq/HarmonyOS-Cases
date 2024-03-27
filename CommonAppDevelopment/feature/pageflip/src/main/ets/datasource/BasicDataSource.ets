@@ -12,20 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { CONFIGURATION, STRINGCONFIGURATION } from '../common/Constants';
 
 export class BasicDataSource implements IDataSource {
   private elements: string[] = [];
   private listeners: Set<DataChangeListener>;
-  readonly flipPageToastDuration = 300;
-  readonly pageFlipTwo = 2;
-  readonly pageFlipZero = 0;
-  readonly pageFlipOne = 1;
-  readonly pageFlipThree = 3;
-  readonly pageFlipFive = 5;
-  readonly pageFlipEleven = 11;
-  readonly pageFlipContentResource = 'app.string.pageflip_content';
 
-  constructor(elements: string[] = []) {
+  constructor(elements: string[]) {
     this.elements = elements;
     this.listeners = new Set();
   }
@@ -35,18 +28,10 @@ export class BasicDataSource implements IDataSource {
   }
 
   public getData(index: number): string {
-    // 当index等于this.totalCount() - 1时向后请求网络数据。cacheout等于3,此案例本地只有11条数据，最后几条数据需要另行处理。
-    if (index === this.totalCount() - this.pageFlipOne && index < this.pageFlipEleven) {
-      for (let i = index + this.pageFlipTwo; i <= index + this.pageFlipFive; i++) {
-        this.elements.push(this.pageFlipContentResource + i.toString());
-        this.listeners.forEach(listeners => listeners.onDataAdd(this.elements.length - this.pageFlipOne));
-      }
-    } else if (index === this.pageFlipEleven) {
-      for (let i = index + this.pageFlipOne; i <= index + this.pageFlipThree; i++) {
-        this.elements.push('app.string.pageflip_content' + i.toString());
-        this.listeners.forEach(listeners => listeners.onDataAdd(this.elements.length - this.pageFlipOne));
-      }
-    }
+    /**
+     * TODO:知识点:1.当index等于this.totalCount() - 1时向后请求网络数据。当index等于0时向前请求网络数据。
+     * TODO:知识点:2.新请求到的数据可以通过push插入到队尾，通知listeners刷新添加可参考pushItem方法。如果想要插到队头可以通过unshift插入到队头，通知listeners刷新添加可参考addItem方法。
+     */
     return this.elements[index];
   }
 
@@ -65,7 +50,7 @@ export class BasicDataSource implements IDataSource {
   }
 
   public pinItem(item: string, index: number): void {
-    this.elements.splice(index, this.pageFlipOne);
+    this.elements.splice(index, CONFIGURATION.PAGEFLIPONE);
     this.elements.unshift(item);
     this.listeners.forEach(listeners => listeners.onDataReloaded());
   }
@@ -73,31 +58,31 @@ export class BasicDataSource implements IDataSource {
   // 从开头添加数据
   public addItem(item: string): void {
     this.elements.unshift(item);
-    this.listeners.forEach(listeners => listeners.onDataAdd(this.pageFlipZero));
+    this.listeners.forEach(listeners => listeners.onDataAdd(CONFIGURATION.PAGEFLIPZERO));
   }
 
   // 从结尾插入数据
   public pushItem(item: string): void {
     this.elements.push(item);
-    this.listeners.forEach(listeners => listeners.onDataAdd(this.elements.length - this.pageFlipOne));
+    this.listeners.forEach(listeners => listeners.onDataAdd(this.elements.length - CONFIGURATION.PAGEFLIPONE));
   }
 
   public insertItem(item: string, index: number): void {
-    this.elements.splice(index, this.pageFlipZero, item);
+    this.elements.splice(index, CONFIGURATION.PAGEFLIPZERO, item);
     this.listeners.forEach(listeners => listeners.onDataAdd(index));
   }
 
   public deleteItem(item: string): void {
     const index = this.elements.indexOf(item);
-    if (index < this.pageFlipZero) {
+    if (index < CONFIGURATION.PAGEFLIPZERO) {
       return;
     }
-    this.elements.splice(index, this.pageFlipOne);
+    this.elements.splice(index, CONFIGURATION.PAGEFLIPONE);
     this.listeners.forEach(listeners => listeners.onDataDelete(index));
   }
 
   public deleteItemByIndex(index: number): void {
-    this.elements.splice(index, this.pageFlipOne);
+    this.elements.splice(index, CONFIGURATION.PAGEFLIPONE);
     this.listeners.forEach(listeners => listeners.onDataDelete(index));
   }
 }

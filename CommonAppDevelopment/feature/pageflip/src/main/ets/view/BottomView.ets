@@ -13,30 +13,21 @@
  * limitations under the License.
  */
 import { promptAction } from '@kit.ArkUI';
+import { CONFIGURATION, STRINGCONFIGURATION } from '../common/Constants';
 
 @Component
 export struct BottomView {
-  // Todo:知识点:@Link装饰器：父子双向同步。@Link装饰的变量与其父组件中的数据源共享相同的值。
+  // TODO:知识点:@Link装饰器：父子双向同步。@Link装饰的变量与其父组件中的数据源共享相同的值。
   @Link filledName: string;
   @Link buttonClickedName: string; // 点击按钮的名称，用来判断是否已被点击。
   @Link isVisible: boolean; // 用来判断翻页方式视图是否显示。
   @Link isCommentVisible: boolean; // 用来判断评论视图是否显示。
   @Link isMenuViewVisible: boolean; // 用来判断上下菜单视图是否显示。
-  readonly pageFlipBottomBlankBeight = 0.3;
-  readonly pageFlipBorderWidth = 0.5;
-  readonly pageFlipToastDuration = 300;
-  readonly leftRightPageFlipName = '左右翻页';
-  readonly upDownPageFlipName = '上下翻页';
-  readonly coverPageFlipName = '覆盖翻页';
-  readonly PageFlipViewList = 'flippage_view_list';
-  readonly PageFlipFree = 'flippage_free';
-  readonly PageFlipDiscover = 'flippage_discover';
-  readonly PageFlipBrightness = 'flippage_brightness';
-  readonly PageFlipSettings = 'flippage_settings';
+  @State buttonNameList: Array<string> = [STRINGCONFIGURATION.LEFTRIGHTFLIPPAGENAME, STRINGCONFIGURATION.UPDOWNFLIPPAGENAME, STRINGCONFIGURATION.COVERFLIPPAGENAME]
 
-  func1(name: string) {
+  clickAnimate(name: string) {
     animateTo({
-      duration: this.pageFlipToastDuration,
+      duration: CONFIGURATION.PAGEFLIPTOASTDURATION,
       curve: Curve.Linear,
     }, () => {
       if (this.filledName === name) {
@@ -45,7 +36,7 @@ export struct BottomView {
       } else {
         promptAction.showToast({
           message: $r('app.string.pageflip_default_toast'),
-          duration: this.pageFlipToastDuration
+          duration: CONFIGURATION.PAGEFLIPTOASTDURATION
         });
         this.filledName = name;
         this.isVisible = false;
@@ -59,133 +50,107 @@ export struct BottomView {
       Blank()
         .backgroundColor($r('app.color.pageflip_bottom_blank_backgroundcolor'))
         .width($r('app.string.pageflip_full_size'))
-        .height(this.pageFlipBottomBlankBeight)
-
+        .height(CONFIGURATION.PAGEFLIPBOTTOMBLANKBEIGHT)
       Row() {
         Image($r('app.media.flippage_comments'))
-          .width($r('app.string.pageflip_lippage_10_size'))
-          .height($r('app.string.pageflip_lippage_6_size'))
+          .width($r('app.string.pageflip_topview_row_image_width'))
+          .height($r('app.string.pageflip_bottomview_row_text_height'))
           .objectFit(ImageFit.Contain)
           .padding({
-            top: $r('app.integer.flippage_padding_5'),
-            bottom: $r('app.integer.flippage_padding_5'),
-            left: $r('app.integer.flippage_padding_10'),
-            right: $r('app.integer.flippage_padding_10')
+            top: $r('app.integer.flippage_padding_small'),
+            bottom: $r('app.integer.flippage_padding_small'),
+            left: $r('app.integer.flippage_padding_middle'),
+            right: $r('app.integer.flippage_padding_middle')
           })
         Text($r('app.string.pageflip_bottom_comment'))
-          .width($r('app.string.pageflip_lippage_90_size'))
-          .height($r('app.string.pageflip_lippage_6_size'))
+          .width($r('app.string.pageflip_bottomview_row_text_width'))
+          .height($r('app.string.pageflip_bottomview_row_text_height'))
       }
-      .onClick((event?: ClickEvent) => {
+      .onClick(() => {
         promptAction.showToast({
           message: $r('app.string.pageflip_default_toast'),
-          duration: this.pageFlipToastDuration
+          duration: CONFIGURATION.PAGEFLIPTOASTDURATION
         });
       })
       .visibility(this.isCommentVisible ? Visibility.Visible : Visibility.None)
 
-
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-        Button(this.leftRightPageFlipName, { type: ButtonType.Capsule })
-          .backgroundColor($r('app.color.pageflip_button_backgroundcolor'))
-          .fontColor(this.buttonClickedName === this.leftRightPageFlipName ? $r('app.color.pageflip_button_click_fontcolor') : $r('app.color.pageflip_button_fontcolor'))
-          .margin({ left: $r('app.integer.flippage_margin_10') })
-          .borderWidth(this.pageFlipBorderWidth)
-          .onClick((event?: ClickEvent) => {
-            if (this.buttonClickedName !== this.leftRightPageFlipName) {
-              this.buttonClickedName = this.leftRightPageFlipName;
-              this.isMenuViewVisible = false;
-              this.filledName = '';
-              this.isVisible = false;
-            }
-          })
-        Button(this.upDownPageFlipName, { type: ButtonType.Capsule })
-          .backgroundColor($r('app.color.pageflip_button_backgroundcolor'))
-          .fontColor(this.buttonClickedName === this.upDownPageFlipName ? $r('app.color.pageflip_button_click_fontcolor') : $r('app.color.pageflip_button_fontcolor'))
-          .borderWidth(this.pageFlipBorderWidth)
-          .onClick((event?: ClickEvent) => {
-            if (this.buttonClickedName !== this.upDownPageFlipName) {
-              this.buttonClickedName = this.upDownPageFlipName;
-              this.isMenuViewVisible = false;
-              this.filledName = '';
-              this.isVisible = false;
-            }
-          })
-        Button(this.coverPageFlipName, { type: ButtonType.Capsule })
-          .backgroundColor($r('app.color.pageflip_button_backgroundcolor'))
-          .fontColor(this.buttonClickedName === this.coverPageFlipName ? $r('app.color.pageflip_button_click_fontcolor') : $r('app.color.pageflip_button_fontcolor'))
-          .borderWidth(this.pageFlipBorderWidth)
-          .margin({ right: $r('app.integer.flippage_margin_10') })
-          .onClick((event?: ClickEvent) => {
-            if (this.buttonClickedName !== this.coverPageFlipName) {
-              this.buttonClickedName = this.coverPageFlipName;
-              this.isMenuViewVisible = false;
-              this.filledName = '';
-              this.isVisible = false;
-            }
-          })
+        ForEach(this.buttonNameList, (item: string) => {
+          Button(item, { type: ButtonType.Capsule })
+            .backgroundColor($r('app.color.pageflip_button_backgroundcolor'))
+            .fontColor(this.buttonClickedName === item ? $r('app.color.pageflip_button_click_fontcolor') : $r('app.color.pageflip_button_fontcolor'))
+            .margin({ left: $r('app.integer.flippage_margin_small') })
+            .borderWidth(CONFIGURATION.PAGEFLIPBORDERWIDTH)
+            .onClick(() => {
+              if (this.buttonClickedName !== item) {
+                this.buttonClickedName = item;
+                this.isMenuViewVisible = false;
+                this.filledName = '';
+                this.isVisible = false;
+              }
+            })
+        }, (item: string) => item)
       }
-      .margin({ top: $r('app.integer.flippage_margin_10'), bottom: $r('app.integer.flippage_margin_10') })
+      .margin({ top: $r('app.integer.flippage_margin_small'), bottom: $r('app.integer.flippage_margin_small') })
       .visibility(this.isVisible ? Visibility.Visible : Visibility.None)
-
 
       Blank()
         .backgroundColor($r('app.color.pageflip_bottom_blank_backgroundcolor'))
         .width($r('app.string.pageflip_full_size'))
-        .height(this.pageFlipBottomBlankBeight)
+        .height(CONFIGURATION.PAGEFLIPBOTTOMBLANKBEIGHT)
       Row() {
-        Image(this.filledName === this.PageFlipViewList ? $r('app.media.flippage_view_list_filled') : $r('app.media.flippage_view_list'))
-          .width($r('app.string.pageflip_lippage_20_size'))
-          .height($r('app.string.pageflip_lippage_5_size'))
+        Image(this.filledName === STRINGCONFIGURATION.PAGEFLIPVIEWLIST ? $r('app.media.flippage_view_list_filled') : $r('app.media.flippage_view_list'))
+          .width($r('app.string.pageflip_bottomview_row_image_width'))
+          .height($r('app.string.pageflip_bottomview_row_image_height'))
           .objectFit(ImageFit.Contain)
-          .padding($r('app.integer.flippage_padding_5'))
-          .onClick((event?: ClickEvent) => {
-            this.func1(this.PageFlipViewList);
+          .padding($r('app.integer.flippage_padding_small'))
+          .onClick(() => {
+            this.clickAnimate(STRINGCONFIGURATION.PAGEFLIPVIEWLIST);
           })
-        Image(this.filledName === this.PageFlipFree ? $r('app.media.flippage_free_filled') : $r('app.media.flippage_free'))
-          .width($r('app.string.pageflip_lippage_20_size'))
-          .height($r('app.string.pageflip_lippage_5_size'))
+        Image(this.filledName === STRINGCONFIGURATION.PAGEFLIPFREE ? $r('app.media.flippage_free_filled') : $r('app.media.flippage_free'))
+          .width($r('app.string.pageflip_bottomview_row_image_width'))
+          .height($r('app.string.pageflip_bottomview_row_image_height'))
           .objectFit(ImageFit.Contain)
-          .padding($r('app.integer.flippage_padding_5'))
-          .onClick((event?: ClickEvent) => {
-            this.func1(this.PageFlipFree);
+          .padding($r('app.integer.flippage_padding_small'))
+          .onClick(() => {
+            this.clickAnimate(STRINGCONFIGURATION.PAGEFLIPFREE);
           })
-        Image(this.filledName === this.PageFlipDiscover ? $r('app.media.flippage_discover_filled') : $r('app.media.flippage_discover'))
-          .width($r('app.string.pageflip_lippage_20_size'))
-          .height($r('app.string.pageflip_lippage_5_size'))
+        Image(this.filledName === STRINGCONFIGURATION.PAGEFLIPDISCOVER ? $r('app.media.flippage_discover_filled') : $r('app.media.flippage_discover'))
+          .width($r('app.string.pageflip_bottomview_row_image_width'))
+          .height($r('app.string.pageflip_bottomview_row_image_height'))
           .objectFit(ImageFit.Contain)
-          .padding($r('app.integer.flippage_padding_5'))
-          .onClick((event?: ClickEvent) => {
-            this.func1(this.PageFlipDiscover);
+          .padding($r('app.integer.flippage_padding_small'))
+          .onClick(() => {
+            this.clickAnimate(STRINGCONFIGURATION.PAGEFLIPDISCOVER);
           })
-        Image(this.filledName === this.PageFlipBrightness ? $r('app.media.flippage_brightness_filled') : $r('app.media.flippage_brightness'))
-          .width($r('app.string.pageflip_lippage_20_size'))
-          .height($r('app.string.pageflip_lippage_5_size'))
+        Image(this.filledName === STRINGCONFIGURATION.PAGEFLIPBRIGHTNESS ? $r('app.media.flippage_brightness_filled') : $r('app.media.flippage_brightness'))
+          .width($r('app.string.pageflip_bottomview_row_image_width'))
+          .height($r('app.string.pageflip_bottomview_row_image_height'))
           .objectFit(ImageFit.Contain)
-          .padding($r('app.integer.flippage_padding_5'))
-          .onClick((event?: ClickEvent) => {
-            this.func1(this.PageFlipBrightness);
+          .padding($r('app.integer.flippage_padding_small'))
+          .onClick(() => {
+            this.clickAnimate(STRINGCONFIGURATION.PAGEFLIPBRIGHTNESS);
           })
-        Image(this.filledName === this.PageFlipSettings ? $r('app.media.flippage_settings_filled') : $r('app.media.flippage_settings'))
-          .width($r('app.string.pageflip_lippage_20_size'))
-          .height($r('app.string.pageflip_lippage_5_size'))
+        Image(this.filledName === STRINGCONFIGURATION.PAGEFLIPSETTINGS ? $r('app.media.flippage_settings_filled') : $r('app.media.flippage_settings'))
+          .width($r('app.string.pageflip_bottomview_row_image_width'))
+          .height($r('app.string.pageflip_bottomview_row_image_height'))
           .objectFit(ImageFit.Contain)
-          .padding($r('app.integer.flippage_padding_5'))
-          .onClick((event?: ClickEvent) => {
+          .padding($r('app.integer.flippage_padding_small'))
+          .onClick(() => {
             animateTo({
-              duration: this.pageFlipToastDuration,
+              duration: CONFIGURATION.PAGEFLIPTOASTDURATION,
               curve: Curve.Linear,
             }, () => {
-              if (this.filledName === this.PageFlipSettings) {
+              if (this.filledName === STRINGCONFIGURATION.PAGEFLIPSETTINGS) {
                 this.filledName = '';
                 this.isVisible = false;
                 this.isCommentVisible = true;
               } else {
-                this.filledName = this.PageFlipSettings;
+                this.filledName = STRINGCONFIGURATION.PAGEFLIPSETTINGS;
                 this.isVisible = true;
                 this.isCommentVisible = false;
               }
-            })
+            });
           })
       }
     }

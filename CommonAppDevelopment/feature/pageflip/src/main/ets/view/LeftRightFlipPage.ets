@@ -14,6 +14,11 @@
  */
 import { BasicDataSource } from '../datasource/BasicDataSource';
 import { display } from '@kit.ArkUI';
+import { CONFIGURATION, STRINGCONFIGURATION } from '../common/Constants';
+
+/**
+ * 左右翻页方式通过swiper+lazyforeach+cachecount实现按需加载。什么时候加载在BasicDataSource的getData方法中实现
+ */
 
 @Component
 export struct LeftRightPlipPage {
@@ -21,23 +26,16 @@ export struct LeftRightPlipPage {
   @Link isCommentVisible: boolean;
   @Link currentPageNum: number;
   private swiperController: SwiperController = new SwiperController();
-  private data: BasicDataSource = new BasicDataSource();
+  private data: BasicDataSource = new BasicDataSource([]);
   private screenW: number = px2vp(display.getDefaultDisplaySync().width);
-  readonly pageFlipPageCount = 1;
-  readonly pageFlipCacheCount = 3;
-  readonly pageFlipToastDuration = 300;
-  readonly pageFlipThree = 3;
-  readonly pageFlipTwo = 2;
-  readonly pageFlipZero = 0;
-  readonly pageFlipPageStart = 1;
-  readonly pageFlipPageEnd = 4;
-  readonly pageFlipContentResource = 'app.string.pageflip_content';
 
   aboutToAppear(): void {
-    // 请求网络数据之后可以通过this.data.addItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的开头形成新的数据源。
-    // 请求网络数据之后可以通过this.data.pushItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的末尾形成新的数据源。
-    for (let i = this.pageFlipPageStart; i <= this.pageFlipPageEnd; i++) {
-      this.data.pushItem(this.pageFlipContentResource + i.toString());
+    /**
+     * 请求网络数据之后可以通过this.data.addItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的开头形成新的数据源。
+     * 请求网络数据之后可以通过this.data.pushItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的末尾形成新的数据源。
+     */
+    for (let i = CONFIGURATION.PAGEFLIPPAGESTART; i <= CONFIGURATION.PAGEFLIPPAGEEND; i++) {
+      this.data.pushItem(STRINGCONFIGURATION.PAGEFLIPRESOURCE + i.toString());
     }
   }
 
@@ -55,49 +53,51 @@ export struct LeftRightPlipPage {
             .textAlign(TextAlign.Start)
             .align(Alignment.TopStart)
             .margin({
-              top: $r('app.integer.flippage_margin_40'),
-              right: $r('app.integer.flippage_margin_20'),
-              left: $r('app.integer.flippage_margin_20'),
-              bottom: $r('app.integer.flippage_margin_20')
+              top: $r('app.integer.flippage_margin_large'),
+              right: $r('app.integer.flippage_margin_middle'),
+              left: $r('app.integer.flippage_margin_middle'),
+              bottom: $r('app.integer.flippage_margin_middle')
             })
         }, (item: string) => item)
       }
-      .index(this.currentPageNum - this.pageFlipPageCount)
+      // TODO:知识点:index设置当前在容器中显示的子组件的索引值。设置小于0或大于等于子组件数量时，按照默认值0处理。
+      .index(this.currentPageNum - CONFIGURATION.PAGEFLIPPAGECOUNT)
       .width($r('app.string.pageflip_full_size'))
       .height($r('app.string.pageflip_full_size'))
       .indicator(false)
-      .cachedCount(this.pageFlipCacheCount)
-      .itemSpace(this.pageFlipZero)
+      .cachedCount(CONFIGURATION.PAGEFLIPCACHECOUNT)
+      .itemSpace(CONFIGURATION.PAGEFLIPZERO)
       .loop(false)
       .curve(Curve.Linear)
       .backgroundColor($r('app.color.pageflip_swiper_backgroundcolor'))
       .effectMode(EdgeEffect.Fade)
-      .duration(this.pageFlipToastDuration)
+      .duration(CONFIGURATION.PAGEFLIPTOASTDURATION)
       .onChange((index: number) => {
-        this.currentPageNum = index + this.pageFlipPageCount;  // 通过onChange监听当前处于第几页。
+        this.currentPageNum = index + CONFIGURATION.PAGEFLIPPAGECOUNT; // 通过onChange监听当前处于第几页。
       })
     }
     .width($r('app.string.pageflip_full_size'))
     .height($r('app.string.pageflip_full_size'))
     .onClick((event?: ClickEvent) => {
-      if (event) {
-        if (event.x > this.screenW / this.pageFlipThree * this.pageFlipTwo) {
-          if (this.currentPageNum !== this.data.totalCount()) {
-            this.swiperController.showNext();
-          }
-        } else if (event.x > this.screenW / this.pageFlipThree) {
-          if (this.isMenuViewVisible) {
-            this.isMenuViewVisible = false;
-            this.isCommentVisible = false;
-          } else {
-            this.isMenuViewVisible = true;
-            this.isCommentVisible = true;
-          }
+      if (!event) {
+        return;
+      }
+      if (event.x > this.screenW / CONFIGURATION.PAGEFLIPTHREE * CONFIGURATION.PAGEFLIPTWO) {
+        if (this.currentPageNum !== this.data.totalCount()) {
+          this.swiperController.showNext();
+        }
+      } else if (event.x > this.screenW / CONFIGURATION.PAGEFLIPTHREE) {
+        if (this.isMenuViewVisible) {
+          this.isMenuViewVisible = false;
+          this.isCommentVisible = false;
         } else {
-          //向左翻页
-          if (this.currentPageNum !== this.pageFlipPageStart) {
-            this.swiperController.showPrevious();
-          }
+          this.isMenuViewVisible = true;
+          this.isCommentVisible = true;
+        }
+      } else {
+        // 向左翻页
+        if (this.currentPageNum !== CONFIGURATION.PAGEFLIPPAGESTART) {
+          this.swiperController.showPrevious();
         }
       }
     })

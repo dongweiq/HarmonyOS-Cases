@@ -14,84 +14,51 @@
  */
 import { promptAction } from '@kit.ArkUI';
 import { DynamicsRouter } from '@ohos/dynamicsrouter/Index';
+import { CONFIGURATION, STRINGCONFIGURATION } from '../common/Constants';
 
 @Component
 export struct TopView {
   @Link isMenuViewVisible: boolean; // 用来判断上下菜单视图是否显示。
-  readonly pageFlipBottomBlankHeight = 0.3;
-  readonly pageFlipToastDuration = 300;
+  @State imageNameList: Array<string> = [STRINGCONFIGURATION.FLIPPAGECLOUDUPLOAD, STRINGCONFIGURATION.FLIPPAGECONTACTS, STRINGCONFIGURATION.FLIPPAGESHAREFILLED, STRINGCONFIGURATION.FLIPPAGEMOREFILLED]
 
   build() {
     Column() {
       Row() {
         Image($r('app.media.flippage_back'))
-          .width($r('app.string.pageflip_lippage_10_size'))
-          .height($r('app.string.pageflip_lippage_70_size'))
+          .width($r('app.string.pageflip_topview_row_image_width'))
+          .height($r('app.string.pageflip_topview_row_image_height'))
           .objectFit(ImageFit.Contain)
-          .padding($r('app.integer.flippage_padding_5'))
-          .onClick((event?: ClickEvent) => {
+          .padding($r('app.integer.flippage_padding_small'))
+          .onClick(() => {
             DynamicsRouter.pop();
           })
 
         Row() {
-          Image($r('app.media.flippage_cloud_upload'))
-            .width($r('app.string.pageflip_lippage_25_size'))
-            .height($r('app.string.pageflip_lippage_60_size'))
-            .objectFit(ImageFit.Contain)
-            .padding($r('app.integer.flippage_padding_5'))
-            .onClick((event?: ClickEvent) => {
-              promptAction.showToast({
-                message: $r('app.string.pageflip_default_toast'),
-                duration: this.pageFlipToastDuration
-              });
-            })
+          ForEach(this.imageNameList, (item: string) => {
+            Image($r(item))
+              .width($r('app.string.pageflip_topview_row_row_image_width'))
+              .height($r('app.string.pageflip_topview_row_row_image_height'))
+              .objectFit(ImageFit.Contain)
+              .padding($r('app.integer.flippage_padding_small'))
+              .onClick(() => {
+                promptAction.showToast({
+                  message: $r('app.string.pageflip_default_toast'),
+                  duration: CONFIGURATION.PAGEFLIPTOASTDURATION
+                });
+              })
+          }, (item: string) => item)
 
-          Image($r('app.media.flippage_contacts'))
-            .width($r('app.string.pageflip_lippage_25_size'))
-            .height($r('app.string.pageflip_lippage_60_size'))
-            .objectFit(ImageFit.Contain)
-            .padding($r('app.integer.flippage_padding_5'))
-            .onClick((event?: ClickEvent) => {
-              promptAction.showToast({
-                message: $r('app.string.pageflip_default_toast'),
-                duration: this.pageFlipToastDuration
-              });
-            })
-
-          Image($r('app.media.flippage_share_filled'))
-            .width($r('app.string.pageflip_lippage_25_size'))
-            .height($r('app.string.pageflip_lippage_60_size'))
-            .objectFit(ImageFit.Contain)
-            .padding($r('app.integer.flippage_padding_5'))
-            .onClick((event?: ClickEvent) => {
-              promptAction.showToast({
-                message: $r('app.string.pageflip_default_toast'),
-                duration: this.pageFlipToastDuration
-              });
-            })
-
-          Image($r('app.media.flippage_more_filled'))
-            .width($r('app.string.pageflip_lippage_25_size'))
-            .height($r('app.string.pageflip_lippage_60_size'))
-            .objectFit(ImageFit.Contain)
-            .padding($r('app.integer.flippage_padding_5'))
-            .onClick((event?: ClickEvent) => {
-              promptAction.showToast({
-                message: $r('app.string.pageflip_default_toast'),
-                duration: this.pageFlipToastDuration
-              });
-            })
-        }.width($r('app.string.pageflip_lippage_60_size'))
+        }.width($r('app.string.pageflip_topview_row_row_image_height'))
       }
       .backgroundColor($r('app.color.pageflip_row_backgroundcolor'))
       .justifyContent(FlexAlign.SpaceBetween)
       .width($r('app.string.pageflip_full_size'))
-      .height($r('app.string.pageflip_lippage_8_size'))
+      .height($r('app.string.pageflip_topview_row_height'))
 
       Blank()
         .backgroundColor($r('app.color.pageflip_bottom_blank_backgroundcolor'))
         .width($r('app.string.pageflip_full_size'))
-        .height(this.pageFlipBottomBlankHeight)
+        .height(CONFIGURATION.PAGEFLIPBOTTOMBLANKBEIGHT)
     }
     .visibility(this.isMenuViewVisible ? Visibility.Visible : Visibility.None)
   }

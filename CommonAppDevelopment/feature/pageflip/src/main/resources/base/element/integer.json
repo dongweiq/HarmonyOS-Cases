@@ -1,19 +1,15 @@
 {
   "integer": [
     {
-      "name": "flippage_toast_duration",
-      "value": 300
-    },
-    {
-      "name": "flippage_padding_5",
+      "name": "flippage_padding_small",
       "value": 5
     },
     {
-      "name": "flippage_padding_10",
+      "name": "flippage_padding_middle",
       "value": 10
     },
     {
-      "name": "flippage_margin_10",
+      "name": "flippage_margin_small",
       "value": 10
     },
     {
@@ -25,15 +21,15 @@
       "value": 20
     },
     {
-      "name": "flippage_margin_40",
+      "name": "flippage_margin_large",
       "value": 40
     },
     {
-      "name": "flippage_margin_20",
+      "name": "flippage_margin_middle",
       "value": 20
     },
     {
-      "name": "flippage_padding_40",
+      "name": "flippage_padding_large",
       "value": 40
     }
   ]

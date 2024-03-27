@@ -13,12 +13,17 @@
  * limitations under the License.
  */
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
+import { CONFIGURATION, STRINGCONFIGURATION } from '../../common/Constants';
 import { BottomView } from '../../view/BottomView';
 import { CoverFlipPage } from '../../view/CoverFlipPage';
 import { LeftRightPlipPage } from '../../view/LeftRightFlipPage';
 import { TopView } from '../../view/TopView';
 import { UpDownFlipPage } from '../../view/UpDownFlipPage';
 
+/**
+ * 创建一个Stack组件，上下菜单通过zIndex在阅读页面之上。
+ * 通过底部点击的按钮名来确定翻页方式，创建翻页组件。
+ */
 @Component
 export struct PageFlip {
   @State isMenuViewVisible: boolean = false; // 用来判断上下菜单视图是否显示。
@@ -27,19 +32,16 @@ export struct PageFlip {
   @State isVisible: boolean = false; // 用来判断翻页方式视图是否显示。
   @State isCommentVisible: boolean = false; // 用来判断评论视图是否显示。
   @State currentPageNum: number = 1; // 书籍在第几页。
-  readonly flipPage_zIndex = 2;
-  readonly leftRightFlipPageName = '左右翻页';
-  readonly upDownFlipPageName = '上下翻页';
 
   build() {
     Stack() {
-      if (this.buttonClickedName === this.leftRightFlipPageName) {
+      if (this.buttonClickedName === STRINGCONFIGURATION.LEFTRIGHTFLIPPAGENAME) {
         LeftRightPlipPage({
           isMenuViewVisible: this.isMenuViewVisible,
           isCommentVisible: this.isCommentVisible,
           currentPageNum: this.currentPageNum
         });
-      } else if (this.buttonClickedName === this.upDownFlipPageName) {
+      } else if (this.buttonClickedName === STRINGCONFIGURATION.UPDOWNFLIPPAGENAME) {
         UpDownFlipPage({
           isMenuViewVisible: this.isMenuViewVisible,
           isCommentVisible: this.isCommentVisible,
@@ -54,7 +56,7 @@ export struct PageFlip {
       }
       Column() {
         TopView({ isMenuViewVisible: this.isMenuViewVisible })
-          .zIndex(this.flipPage_zIndex)
+          .zIndex(CONFIGURATION.FLIPPAGEZINDEX)
         BottomView({
           isMenuViewVisible: this.isMenuViewVisible,
           buttonClickedName: this.buttonClickedName,
@@ -62,11 +64,15 @@ export struct PageFlip {
           isVisible: this.isVisible,
           isCommentVisible: this.isCommentVisible,
         })
-          .zIndex(this.flipPage_zIndex)
+          .zIndex(CONFIGURATION.FLIPPAGEZINDEX)
       }
       .height($r('app.string.pageflip_full_size'))
       .justifyContent(FlexAlign.SpaceBetween)
-      .onClick((event?: ClickEvent) => { // 弹出上下菜单视图时，由于Column中间无组件，点击事件会被下一层的LeftRightPlipPage或UpDownFlipPage或CoverFlipPage的点击事件取代。
+      .onClick(() => {
+        /**
+         * 弹出上下菜单视图时，由于Column中间无组件，
+         * 点击事件会被下一层的LeftRightPlipPage或UpDownFlipPage或CoverFlipPage的点击事件取代。
+         */
         this.isMenuViewVisible = false;
         this.filledName = '';
         this.isVisible = false;

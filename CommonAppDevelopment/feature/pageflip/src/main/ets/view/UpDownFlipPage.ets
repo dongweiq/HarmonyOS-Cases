@@ -12,32 +12,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { CONFIGURATION, STRINGCONFIGURATION } from '../common/Constants';
 import { BasicDataSource } from '../datasource/BasicDataSource';
+
+/**
+ * 上下翻页方式通过list+lazyforeach+cachecount实现按需加载。什么时候加载在BasicDataSource的getData方法中实现。
+ */
 
 @Component
 export struct UpDownFlipPage {
-  private data: BasicDataSource = new BasicDataSource();
+  private data: BasicDataSource = new BasicDataSource([]);
   @Link isMenuViewVisible: boolean;
   @Link isCommentVisible: boolean;
   @Link currentPageNum: number;
-  readonly pageFlipToastDuration = 300;
-  readonly pageFlipPageStart = 1;
-  readonly pageFlipPageEnd = 4;
-  readonly pageFlipContentResource = 'app.string.pageflip_content';
-  readonly pageFlipPageCount = 1;
-  readonly pageFlipCacheCount = 3;
 
   aboutToAppear(): void {
-    // 请求网络数据之后可以通过this.data.addItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的开头形成新的数据源。
-    // 请求网络数据之后可以通过this.data.pushItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的末尾形成新的数据源。
-    for (let i = this.pageFlipPageStart; i <= this.pageFlipPageEnd; i++) {
-      this.data.pushItem(this.pageFlipContentResource + i.toString());
+    /**
+     * 请求网络数据之后可以通过this.data.addItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的开头形成新的数据源。
+     * 请求网络数据之后可以通过this.data.pushItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的末尾形成新的数据源。
+     */
+    for (let i = CONFIGURATION.PAGEFLIPPAGESTART; i <= CONFIGURATION.PAGEFLIPPAGEEND; i++) {
+      this.data.pushItem(STRINGCONFIGURATION.PAGEFLIPRESOURCE + i.toString());
     }
   }
 
   build() {
     Column() {
-      List({ initialIndex: this.currentPageNum - this.pageFlipPageCount }) {
+      // TODO:知识点:initialIndex设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值0显示。
+      List({ initialIndex: this.currentPageNum - CONFIGURATION.PAGEFLIPPAGECOUNT }) {
         /**
          * TODO: 高性能知识点: 使用了cachedCount设置预加载的ListItem的数量，只在LazyForEach中生效，设置该属性后会缓存cachedCount个ListItem，LazyForEach超出显示和缓存范围的ListItem会被释放。
          * 使用cachedCount参数的例子:https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/ui-ts-performance-improvement-recommendation-0000001477981001-V2
@@ -50,12 +52,12 @@ export struct UpDownFlipPage {
           }
         }, (item: string) => item)
       }
-      .width($r('app.string.pageflip_lippage_90_size'))
+      .width($r('app.string.pageflip_bottomview_row_text_width'))
       .height($r('app.string.pageflip_full_size'))
       .scrollBar(BarState.Off)
-      .cachedCount(this.pageFlipCacheCount)
-      .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-        this.currentPageNum = firstIndex + this.pageFlipPageCount;  // 通过onScrollIndex监听当前处于第几页。
+      .cachedCount(CONFIGURATION.PAGEFLIPCACHECOUNT)
+      .onScrollIndex((firstIndex: number) => {
+        this.currentPageNum = firstIndex + CONFIGURATION.PAGEFLIPPAGECOUNT;  // 通过onScrollIndex监听当前处于第几页。
       })
     }
     .width($r('app.string.pageflip_full_size'))
