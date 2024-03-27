@@ -26,9 +26,9 @@
 
 在日常开发过程中经常会碰到这样的问题：主页的开发场景中有多个Tab页展示不同内容，在首次加载完主页后，切换到第二个Tab页时需要加载和处理网络数据，导致第二个Tab页的页面显示较慢，有较大的完成时延。
 
-碰到此类问题，我们可以在生命周期aboutToApear中，使用[多线程并发](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/efficient-concurrent-programming.md)的方法执行第二个Tab页的网络数据访问解析、数据加载等耗时操作，既可以提前完成数据加载，也不会影响主线程UI绘制和渲染。
+碰到此类问题，我们可以在生命周期aboutToApear中，使用多线程并发（详细介绍可参考文章：[高效并发编程](efficient-concurrent-programming.md)、[多线程能力场景化](multi_thread_capability.md)）的方法执行第二个Tab页的网络数据访问解析、数据加载等耗时操作，既可以提前完成数据加载，也不会影响主线程UI绘制和渲染。
 
-使用[TaskPool](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/multi_thread_capability.md)进行耗时操作的示例代码如下：
+使用TaskPool进行耗时操作的示例代码如下：
 ```typescript
 import taskpool from '@ohos.taskpool';
 
@@ -58,16 +58,16 @@ requestByTaskPool(): void {
 ```
 
 其他多线程并发相关文章：
-* [利用native的方式实现跨线程调用](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/native-threads-call-js.md)
+* [利用native的方式实现跨线程调用](native-threads-call-js.md)
 相关案例：
-* [预加载so并读取RawFile文件](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/nativerawfile/README.md)
-* [Worker子线程中解压文件](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/feature/decompressfile/README.md)
+* [预加载so并读取RawFile文件](../../../CommonAppDevelopment/feature/nativerawfile/README.md)
+* [Worker子线程中解压文件](../../../CommonAppDevelopment/feature/decompressfile/README.md)
 
 #### 使用异步执行耗时操作
 
 问题：在aboutToApear生命周期中，运行了业务数据解析和处理等耗时操作，影响了上一页面点击跳转该页面的响应时延。
 
-可以把耗时操作的执行从同步执行改为异步或者延后执行，比如使用setTimeOut执行耗时操作，示例如下：
+可以把耗时操作的执行从同步执行改为异步或者延后执行（详细介绍可参考文章：[提升应用冷启动速度](improve-application-cold-start-speed.md)），比如使用setTimeOut执行耗时操作，示例如下：
 
 ```typescript
 aboutToApear() {
@@ -90,11 +90,11 @@ workoutResult(): string[] {
 
 ### 使用预加载提升页面启动和响应速度
 
-应该合理使用系统的预加载能力，例如Web组件的预连接、预加载、预渲染，[List]()、[Swiper]()、Grid、[WaterFlow]()等组件的[cachedCount属性]()实现预加载，使用条件渲染实现预加载等，提升页面的启动和响应速度。
+应该合理使用系统的预加载能力，例如Web组件的预连接、预加载、预渲染，使用List、Swiper、Grid、WaterFlow等组件的cachedCount属性实现预加载，使用条件渲染实现预加载）等，提升页面的启动和响应速度。
 
 #### 使用Web组件的预连接、预加载、预渲染能力
 
-当我们碰到Web页面加载慢的场景，我们可以使用Web组件的[预连接、预加载](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/performance-web-import.md)、[预渲染](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/web-page-loading-with-web-components-0000001820999889#ZH-CN_TOPIC_0000001820999889__%E5%8A%A8%E6%80%81%E5%88%9B%E5%BB%BAweb%E7%BB%84%E4%BB%B6)能力，在应用空闲时间提前进行Web引擎初始化和页面加载，提升下一页面的启动和响应速度。
+当我们碰到Web页面加载慢的场景，我们可以使用Web组件的预连接、预加载、预渲染能力（详细介绍可参考文章：[Web组件开发性能提升指导](performance-web-import.md)），在应用空闲时间提前进行Web引擎初始化和页面加载，提升下一页面的启动和响应速度。
 
 示例代码如下：
 ```typescript
@@ -110,11 +110,19 @@ preload() {
 相关案例：
 * [Web组件的动态加载实现案例](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/product/entry/src/main/ets/view/HelperView.ets)
 
+#### 使用cachedCount属性实现预加载
+
+推荐在使用List、Swiper、Grid、WaterFlow等组件时，配合使用cachedCount属性实现预加载（详细介绍可参考文章：[WaterFlow高性能开发指导](waterflow_optimization.md)、[Swiper高性能开发指导](swiper_optimization.md)、[Grid高性能开发指导](grid_optimization.md)、[列表场景性能提升实践](list-perf-improvment.md)），示例代码如下所示：
+
+```typescript
+// TODO
+```
+
 #### 使用条件渲染实现预加载
 
 问题：页面布局复杂度较高，导致跳转该页面的响应时延较慢。
 
-可以使用[条件渲染](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/proper-choice-between-if-and-visibility.md)的方式，添加页面的简单骨架图作为默认展示页面，等数据加载完成后再显示最终的复杂布局，加快点击响应速度。
+可以使用条件渲染（详细介绍可参考文章：[合理选择条件渲染和显隐控制](proper-choice-between-if-and-visibility.md)的方式，添加页面的简单骨架图作为默认展示页面，等数据加载完成后再显示最终的复杂布局，加快点击响应速度。
 
 示例代码如下：
 
@@ -162,8 +170,7 @@ requestByTaskPool(): void {
 
 ### 使用缓存提升启动速度和滑动帧率
 
-使用LazyForEach+组件复用+缓存列表项的能力，替代Scroll/ForEach实现滚动列表场景的实现，加快页面启动速度，提升滑动帧率。
-（文章：正确使用LazyForEach优化、组件复用使用指导、合理使用renderGroup、应用列表场景性能提升实践）（案例：List、Swiper、WaterFlow使用案例）
+在列表场景钟，我们推荐使用LazyForEach+组件复用+缓存列表项的能力，替代Scroll/ForEach实现滚动列表场景的实现，加快页面启动速度，提升滑动帧率；在一些属性动画的场景下，我们可以使用renderGroup缓存提升属性动画性能；也可以使用显隐控制对页面进行缓存，加快页面的显示响应速度。
 
 #### 组件复用
 
