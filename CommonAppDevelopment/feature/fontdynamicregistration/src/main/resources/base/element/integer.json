@@ -1,0 +1,41 @@
+{
+  "integer": [
+    {
+      "name": "title_font_size",
+      "value": 30
+    },
+    {
+      "name": "body_font_size",
+      "value": 18
+    },
+    {
+      "name": "body_text_margin",
+      "value": 10
+    },
+    {
+      "name": "body_text_padding",
+      "value": 20
+    },
+    {
+      "name": "body_text_borderRadius",
+      "value": 20
+    },
+    {
+      "name": "divider_margin",
+      "value": 20
+    },
+    {
+      "name": "bt_width",
+      "value": 130
+    },
+    {
+      "name": "button_spacing",
+      "value": 20
+    },
+    {
+      "name": "progress_margin",
+      "value": 20
+    }
+
+  ]
+}

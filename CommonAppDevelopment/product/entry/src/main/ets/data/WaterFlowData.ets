@@ -93,4 +93,5 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.image_theft"), '配置ImageKnife请求头实现防盗链功能', RouterInfo.IMAGE_THEFT, '三方库', 4),
   new SceneModuleInfo($r("app.media.card_swiper_animation"), '自定义Swiper卡片预览效果实现', RouterInfo.CARD_SWIPER, '动效', 3),
   new SceneModuleInfo($r("app.media.ets_wrapper"), 'Napi封装ETS', RouterInfo.ETS_WRAPPER, 'Native', 3),
+  new SceneModuleInfo($r("app.media.font_registration"), '动态注册字体案例', RouterInfo.FONT_DYNAMIC_REGISTRATION, '其他', 1),
 ]

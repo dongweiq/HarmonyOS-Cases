@@ -1,0 +1,63 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "font_sans",
+      "value": "HarmonyOS Sans"
+    },
+    {
+      "name": "font_SourceHanSerif",
+      "value": "思源宋体"
+    },
+    {
+      "name": "main_title",
+      "value": "字体样式"
+    },
+    {
+      "name": "question",
+      "value": "怎么动态注册并调整字体样式呢？"
+    },
+    {
+      "name": "answer",
+      "value": "点击下方按钮，可以切换不同的字体样式哦，快来试试吧。"
+    },
+    {
+      "name": "target_font",
+      "value": "当前字体: "
+    },
+    {
+      "name": "toast_message",
+      "value": "下载成功！"
+    },
+    {
+      "name": "text_dialog_width",
+      "value": "70%"
+    },
+    {
+      "name": "text_wrapper_width",
+      "value": "100%"
+    },{
+      "name": "bottom_wrapper_width",
+      "value": "100%"
+    },
+    {
+      "name": "top_wrapper_size",
+      "value": "100%"
+    },
+    {
+      "name": "second_wrapper_size",
+      "value": "85%"
+    }
+  ]
+}
