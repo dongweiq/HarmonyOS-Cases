@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例介绍使用image库以及effectKit库对目标图片进行取色，通过swiper组件对图片进行轮播，将获取的颜色作为背景渐变色。
+本示例介绍使用image库以及effectKit库中的colorPicker对目标图片进行取色，通过swiper组件对图片进行轮播，将获取的颜色作为背景渐变色。
 ### 效果图预览
 
 <img src="../../product/entry/src/main/resources/base/media/color_picker.gif" width="200">
