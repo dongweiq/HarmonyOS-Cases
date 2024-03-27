@@ -72,6 +72,7 @@ export struct MainPage {
   build() {
     Column() {
       Swiper(this.swiperController) {
+        // TODO 高性能知识点：子组件数量超过5个建议使用LazyForEach
         ForEach(this.imgData, (item: Resource) => {
           Image(item).borderRadius($r('app.integer.image_borderRadius'))
             .margin({ top: $r('app.integer.image_margin_top') })
@@ -85,7 +86,7 @@ export struct MainPage {
       .loop(true)
       .itemSpace(this.swiperItemSpace)
       .indicator(false)
-      // TODO 知识点： 切换动画过程中获取图片平均颜色
+      // TODO 知识点：切换动画过程中获取图片平均颜色
       .onAnimationStart(async (index, targetIndex) => {
         try {
           const context = getContext(this);
