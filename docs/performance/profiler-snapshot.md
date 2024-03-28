@@ -128,9 +128,9 @@ struct SecondPage {
 
 ④ 准备好内存抓取环境后，点击开始按钮开始内存分析任务。
 
-![img](imagesrofiler_snapshot.jpg)
+![img](./images/profiler_snapshot.jpg)
 
-单击任务栏上方的![img](imagesrofiler_select.jpg)按钮进行泳道的新增和删除，再次单击此按钮可关闭设置并生效。
+单击任务栏上方的![img](./images/profiler_select.jpg)按钮进行泳道的新增和删除，再次单击此按钮可关闭设置并生效。
 
 ### 注意
 
@@ -138,21 +138,21 @@ struct SecondPage {
 
 ## 如何录制内存快照
 
-![img](imagesrofiler_snapshot_record.jpg)
+![img](./images/profiler_snapshot_record.jpg)
 
 开始录制后可观察Memory泳道的内存使用情况
 
-在需要定位的时刻点击![img](imagesrofiler_snapshot_camera.jpg)“Take Heap Snapshot”按钮来创建内存快照，“ArkTS Snapshot”泳道的紫色区块表示一次快照完成。
+在需要定位的时刻点击![img](./images/profiler_snapshot_camera.jpg)“Take Heap Snapshot”按钮来创建内存快照，“ArkTS Snapshot”泳道的紫色区块表示一次快照完成。
 
-点击![img](imagesrofiler_collect_garbage.jpg)“Collect garbage”按钮可启动内存回收机制。当方舟虚拟机的调优对象的某个程序/进程占用的部分内存空间在后续的操作中不再被该对象访问时，内存回收机制会自动将这部分空间归还给系统，降低程序错误概率，减少不必要的内存损耗。通常在分析启动时触发，用于降低内存回收对内存快照统计准确性的影响。
+点击![img](./images/profiler_collect_garbage.jpg)“Collect garbage”按钮可启动内存回收机制。当方舟虚拟机的调优对象的某个程序/进程占用的部分内存空间在后续的操作中不再被该对象访问时，内存回收机制会自动将这部分空间归还给系统，降低程序错误概率，减少不必要的内存损耗。通常在分析启动时触发，用于降低内存回收对内存快照统计准确性的影响。
 
-点击![img](imagesrofiler_stop.jpg)按钮停止内存分析任务
+点击![img](./images/profiler_stop.jpg)按钮停止内存分析任务
 
 针对示例场景，在设备上多次进行页面跳转动作，并在页面跳转完成前后分别进行一次快照。
 
 ## 查看快照详情
 
-![img](imagesrofiler_snapshot_detail.jpg)
+![img](./images/profiler_snapshot_detail.jpg)
 
 ArkTS Snapshot泳道的紫色色块代表抓取的内存快照，点击色块查看快照中的内存详情分析。“Statistic”页签中显示当前快照的详细信息，包括构造函数名称、从GC roots到这个对象的层级深度、自身内存大小、相关内存大小等。
 
@@ -160,13 +160,13 @@ ArkTS Snapshot泳道的紫色色块代表抓取的内存快照，点击色块查
 
 单击列表中任一对象，右侧区域会显示从GC roots到这个对象的路径，通过这些路径可以看到该对象的句柄被谁持有，从而方便定位问题产生的原因。
 
-带![img](imagesrofiler_details.jpg)标识的对象，表示其可以通过窗口访问。
+带![img](./images/profiler_details.jpg)标识的对象，表示其可以通过窗口访问。
 
 图中可以看出，每次页面跳转结束回到主页后抓取的内存快照大小基本没有差异。
 
 ## 比较快照差异
 
-![img](imagesrofiler_snapshot_compare.jpg)
+![img](./images/profiler_snapshot_compare.jpg)
 
 在“Snapshot”的“Comparision”页签中，可进行两次快照的差异比较，比较内容包括新增数、删除数、个数增量、分配大小、释放大小、大小增量等等。通过不断对比，可快速分析和定位内存问题的具体位置。
 

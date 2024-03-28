@@ -121,15 +121,15 @@ struct SecondPage { // 跳转后的页面
 
 以DevEco Studio 4.0.0.400版本为例，在DevEco Studio菜单栏上单击***\*View\**** > ***\*Tool Windows\**** > ***\*Profiler\****，或者在DevEco Studio底部工具栏单击Profiler按钮，打开Profiler性能分析器，点选Time选项，再点击Create Session按钮创建耗时分析任务。
 
-![img](imagesrofiler_time.jpg)
+![img](./images/profiler_time.jpg)
 
 ## 开始耗时分析任务录制
 
 耗时分析任务创建完成后，窗口显示如下：
 
-![img](imagesrofiler_create_session.jpg)
+![img](./images/profiler_create_session.jpg)
 
-耗时分析任务支持在录制前单击![img](imagesrofiler_select.jpg)按钮指定要录制的泳道：
+耗时分析任务支持在录制前单击![img](./images/profiler_select.jpg)按钮指定要录制的泳道：
 
 ArkTS Callstack：基于时间轴展示CPU使用率和状态的变化，以及当前调用栈名称和调用类型。调用栈的类型包括：System、ArkTS、NAPI、Native。
 
@@ -137,7 +137,7 @@ User Trace：基于时间轴展示当前时段内触发用户自定义打点任�
 
 Native Callstack：基于时间轴展示进程/线程的活动状态，以及在一段时间内对CPU的占用情况和函数调用栈。
 
-点击![img](imagesrofiler_action.jpg)按钮即可开始耗时分析任务录制，开始录制后在应用首页点击页面跳转按钮，等待成功跳转至下个页面后，结束录制任务。
+点击![img](./images/profiler_action.jpg)按钮即可开始耗时分析任务录制，开始录制后在应用首页点击页面跳转按钮，等待成功跳转至下个页面后，结束录制任务。
 
 ### 提示
 
@@ -147,7 +147,7 @@ Native Callstack：基于时间轴展示进程/线程的活动状态，以及在
 
 耗时分析任务录制结束后，任务分析窗口如下：
 
-![img](imagesrofiler_analyse.jpg)
+![img](./images/profiler_analyse.jpg)
 
 在“ArkTS Callstack”泳道或“Native Callstack”子泳道上长按鼠标左键并拖拽，框选应用正在进行页面跳转的时间段。
 
@@ -161,7 +161,7 @@ Native Callstack：基于时间轴展示进程/线程的活动状态，以及在
 
 打开页面下方的“Flame Chart”开关，以火焰图模式展示函数栈调用情况。其中，横轴表示调用栈，纵轴表示栈的深度。火焰图模式如下，利用火焰图可以更清晰地发现ForEach接口的异常耗时。
 
-![img](imagesrofiler_fire.jpg)
+![img](./images/profiler_fire.jpg)
 
 ### 提示
 
@@ -169,7 +169,7 @@ Native Callstack：基于时间轴展示进程/线程的活动状态，以及在
 
 将鼠标置于泳道任意位置，可查看到对应时间点的CPU使用率。
 
-单击任意泳道名称后方的![img](imagesrofiler_star.jpg)按钮可将其置顶。
+单击任意泳道名称后方的![img](./images/profiler_star.jpg)按钮可将其置顶。
 
 火焰图条块支持搜索，搜索结果不匹配的条块会被置灰。
 
@@ -276,4 +276,4 @@ struct SecondPage {
 
 如图所示，跳转页面加载时间从1.46s降低至19ms。
 
-![img](imagesrofiler_result.jpg)
+![img](./images/profiler_result.jpg)

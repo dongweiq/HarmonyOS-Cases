@@ -56,7 +56,7 @@ struct Index {
 
 2. 创建Frame分析任务并录制相关数据
 
-![img](imagesrofiler_frame.jpg)
+![img](./images/profiler_frame.jpg)
 
 ① 打开Profiler性能分析器；
 
@@ -74,7 +74,7 @@ struct Index {
 
 结束录制任务后，找到Frame泳道并展开，如下图：
 
-![img](imagesrofiler_frame_analysis.jpg)
+![img](./images/profiler_frame_analysis.jpg)
 
 - Frame泳道展开之后的子泳道对应录制过程中各个进程的帧数据，在RS Frame和App Frame标签的泳道中绿色帧为正常帧，红色帧为卡顿帧。点击相关的帧提交数据，如果有关联的App侧帧/RS侧帧，则会进行连线表示提交关系。
 
@@ -88,13 +88,13 @@ struct Index {
 
 - 如果是RS侧帧处理有红色帧出现，那需要审视是否是界面布局过于复杂。
 
-后者可以借助ArkUI Inspector等工具进一步分析，具体参考页面布局检查器ArkUI Inspector工具使用指导。上述案例中的场景明显属于前者中App侧的发送帧卡顿，针对前一种现象可以点击查看卡顿帧的Details信息，点击![img](imagesrofiler_turn.jpg)以跳转到此帧对应的trace数据。如下所示，卡顿帧对应Trace中的FlushLayoutTask为重新测量和布局所有的Item。
+后者可以借助ArkUI Inspector等工具进一步分析，具体参考页面布局检查器ArkUI Inspector工具使用指导。上述案例中的场景明显属于前者中App侧的发送帧卡顿，针对前一种现象可以点击查看卡顿帧的Details信息，点击![img](./images/profiler_turn.jpg)以跳转到此帧对应的trace数据。如下所示，卡顿帧对应Trace中的FlushLayoutTask为重新测量和布局所有的Item。
 
-![img](imagesrofiler_frame_trace.jpg)
+![img](./images/profiler_frame_trace.jpg)
 
 去除3层stack容器后，得到的Frame泳道数据如下，可以看到滑动页面无丢帧现象。
 
-![img](imagesrofiler_frame_lane.jpg)
+![img](./images/profiler_frame_lane.jpg)
 
 开发者在使用Frame Profiler分析工具时需要结合应用代码进行相关信息的分析，确定需要优化的代码，避免造成视图嵌套层次过多。
 
@@ -104,4 +104,4 @@ struct Index {
 
 1. 帧率（FPS）的计算公式为：**FPS = 1 / 时间间隔**，其中，时间间隔指的是相邻两帧之间的时间差，可以框选两个正常帧的起始位置查看时间差。例如，如果两帧之间的时间间隔为16.6ms，则帧率为1/0.0166≈60FPS。
 2. 在任务分析窗口，可以通过“Ctrl+鼠标滚轮”缩放时间轴，通过“Shift+鼠标滚轮”左右移动时间轴。
-3. Profiler为Frame分析数据提供了全局搜索能力。单击分析窗口左上角的![img](imagesrofiler_magnifier.jpg)，根据界面提示信息输入需要搜索的项目，可获取到相关内容的定位，使用搜索框的<、>按键可依次显示返回结果的详细内容。
+3. Profiler为Frame分析数据提供了全局搜索能力。单击分析窗口左上角的![img](./images/profiler_magnifier.jpg)，根据界面提示信息输入需要搜索的项目，可获取到相关内容的定位，使用搜索框的<、>按键可依次显示返回结果的详细内容。
