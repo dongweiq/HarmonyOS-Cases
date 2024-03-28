@@ -53,6 +53,7 @@ export struct LeftRightPlipPage {
             .fontSize($r('app.integer.flippage_text_fontsize'))
             .textAlign(TextAlign.Start)
             .align(Alignment.TopStart)
+            .lineHeight($r('app.integer.flippage_text_lineheight'))
             .margin({
               top: $r('app.integer.flippage_margin_large'),
               left: $r('app.integer.flippage_padding_middle_two'),

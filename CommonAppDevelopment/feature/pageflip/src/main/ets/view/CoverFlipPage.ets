@@ -164,6 +164,7 @@ struct ReaderPage {
         left: $r('app.integer.flippage_margin_middle_up'),
         right: $r('app.integer.flippage_margin_middle')
       })
+      .lineHeight($r('app.integer.flippage_text_lineheight'))
         // 扩展至所有非安全区域
       .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
   }

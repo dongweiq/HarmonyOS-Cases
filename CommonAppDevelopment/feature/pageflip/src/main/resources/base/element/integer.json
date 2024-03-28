@@ -37,6 +37,10 @@
       "value": 26
     },
     {
+      "name": "flippage_text_lineheight",
+      "value": 26
+    },
+    {
       "name": "flippage_padding_large",
       "value": 40
     }

@@ -19,8 +19,14 @@
 
 本例涉及的关键特性和实现方案如下：
 
-1. 左右翻页方式通过`swiper`+`lazyforeach`+`cachecount`实现按需加载。
-   源码参考<br>[LeftRightFlipPage.ets](./src/main/ets/view/LeftRightFlipPage.ets)。
+#### 场景一: 左右翻页方式通过`swiper`+`lazyforeach`+`cachecount`实现按需加载。
+
+实现步骤：
+   1. 在`aboutToAppear()`方法中通过`pushItem`向后加载数据，`addItem`向前加载数据。
+   2. 使用`Swiper`组件和`LazyForEach`将数据源中的每条数据存放于Text组件中，`Swiper`向左或向右滑动的效果就是左右翻页的效果。
+   3. 需要网络加载时可在`BasicDataSource`的`getData`方法中进行。当index等于0向前申请网络数据，当`index`等于this.totalCount() - 1时向后请求网络数据。
+   4. 请求完数据后可通过`push`方法将数据插入到队尾，通过`unshift`插入到队头。
+      <br>源码参考:[LeftRightFlipPage.ets](./src/main/ets/view/LeftRightFlipPage.ets)。
 
 ```typescript
  Swiper(this.swiperController) { 
@@ -59,8 +65,13 @@
  })
 ```
 
-2. 上下翻页方式通过`list`+`lazyforeach`+`cachecount`实现按需加载。
-   源码参考<br>[UpDownFlipPage.ets](./src/main/ets/view/UpDownFlipPage.ets)。
+#### 场景二: 上下翻页方式通过`list`+`lazyforeach`+`cachecount`实现按需加载。
+实现步骤：
+   1. 在`aboutToAppear()`方法中通过`pushItem`向后加载数据，`addItem`向前加载数据。
+   2. 使用`List`组件和`LazyForEach`将数据源中的每条数据存放于Text组件中，`List`向上或向下滑动的效果就是上下翻页的效果。
+   3. 需要网络加载时可在`BasicDataSource`的`getData`方法中进行。当index等于0向前申请网络数据，当`index`等于this.totalCount() - 1时向后请求网络数据。
+   4. 请求完数据后可通过`push`方法将数据插入到队尾，通过`unshift`插入到队头。
+      源码参考<br>[UpDownFlipPage.ets](./src/main/ets/view/UpDownFlipPage.ets)。
 
 ```typescript
 // TODO:知识点:initialIndex设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值0显示。
@@ -86,13 +97,17 @@ List({ initialIndex: this.currentPageNum - CONFIGURATION.PAGEFLIPPAGECOUNT }) {
 })
 ```
 
-3. 覆盖翻页方式通过三个`Stack`组件通过滑动+动画+改变组件内容实现效果。
-   源码参考<br>[CoverFlipPage.ets](./src/main/ets/view/CoverFlipPage.ets)。
+#### 场景三： 覆盖翻页方式通过三个`Stack`组件通过滑动+动画+改变组件内容实现效果。
+实现步骤：
+   1. 在`Stack`组件中布局三个`ReaderPage`，`midPage`位于中间可以根据this.offsetX实时translate自己的位置。
+   2. 当this.offsetX<0时,translate的x为this.offsetX，midPage向左移动，显现`rightPage`。
+   3. 当this.offsetX>0,translate的x为0，midPage不动，`leftPage`向右滑动。
+   4. 将滑动翻页的动画和点击翻页的动画封装在一个闭包中，由`isClick`来判断是点击翻页还是滑动翻页，由`isLeft`来判断点击翻页中是向左翻页还是向右翻页。
+   5. 确定翻页时将this.offsetX设置为this.screenW或者-this.screenW。translate移动加上动画效果就会产生覆盖翻页的效果。
+   6. 最终滑动动画结束时this.offsetX都会被置为0，leftPage和midPage回归原位。
+   7. 当动画结束时由于翻页会让`this.currentPageNum`加一或减一，根据相应的页数来加载三个`content`相应的内容。
+      源码参考<br>[CoverFlipPage.ets](./src/main/ets/view/CoverFlipPage.ets)。
 
-场景一：在`Stack`组件中布局三个`ReaderPage`，`midPage`位于中间
-可以根据this.offsetX实时translate自己的位置。当this.offsetX<0时,translate的x为this.offsetX，midPage
-向左移动，显现`rightPage`。当this.offsetX>0,translate的x为0，midPage不动，`leftPage`向右滑动。
-最终滑动动画结束时this.offsetX都会被置为0，leftPage和midPage回归原位。
 ```typescript
 Stack() {
    ReaderPage({ content: this.rightPageContent }); // 当midPage向左滑时，rightPage开始显现。
@@ -114,9 +129,7 @@ Stack() {
       });
 }
 ```
-场景二：将滑动翻页的动画和点击翻页的动画封装在一个闭包中，由`isClick`来判断是点击翻页还是滑动翻页，
-由`isLeft`来判断点击翻页中是向左翻页还是向右翻页。确定翻页时将this.offsetX设置为this.screenW
-或者-this.screenW。translate移动加上动画效果就会产生覆盖翻页的效果。
+
 ```typescript
 private clickAnimateTo(isClick: boolean, isLeft?: boolean) {
    animateTo({
@@ -154,7 +167,7 @@ private clickAnimateTo(isClick: boolean, isLeft?: boolean) {
    });
 }
 ```     
-场景三：当动画结束时由于翻页会让`this.currentPageNum`加一或减一，根据相应的页数来加载三个`content`相应的内容。
+
 ```typescript
 // 模拟书页内容,可以在此进行网络请求。
 simulatePageContent() {
@@ -185,7 +198,7 @@ simulatePageContent() {
 
 ### 模块依赖
 
-[**routermodule**](../routermodule)
+[**routermodule**](../../feature/routermodule)
 
 ### 高性能知识点
 

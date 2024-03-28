@@ -49,7 +49,8 @@ export struct UpDownFlipPage {
             Text($r(item))
               .fontSize($r('app.integer.flippage_text_fontsize'))
               .width($r('app.string.pageflip_full_size'))
-              .padding({left:$r('app.integer.flippage_padding_middle_two'),})
+              .lineHeight($r('app.integer.flippage_text_lineheight'))
+              .padding({left:$r('app.integer.flippage_padding_middle_two')})
           }
         }, (item: string) => item)
       }
