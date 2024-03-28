@@ -26,12 +26,10 @@
 
 ## 场景示例
 
-下面通过一个点击按钮更改状态变量引起组件刷新的场景示例，为开发者提供工具的实践指导。场景示例仅展示部分关键代码，完整代码请访问[示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/DFXStateManagement/src/main/ets/view/DFXStateBeforeOptimization.ets)。
+下面通过一个点击按钮更改状态变量引起组件刷新的场景示例，为开发者提供工具的实践指导。场景示例仅展示部分关键代码。
 
 在以下代码中，创建了自定义组件ComponentA、SpecialImage，每个组件都拥有一些状态变量和UI组件。组件ComponentA中存在Move和Scale两个按钮，在按钮的点击回调中改变状态变量的值刷新相应的组件。
 ```javascript
-// feature/DFXStateManagement/src/main/ets/view/DFXStateBeforeOptimization.ets  
-
 // 常量声明
 // ... 
 // 样式属性类  
@@ -165,9 +163,8 @@ hdc shell "hidumper -s WindowManagerService -a '-w 11 -jsdump -stateVariables -v
 
 示例中组件SpecialImage仅使用了uiStyle传递到specialImageUiStyle中的属性scaleX、scaleY，但是点击Move按钮修改uiStyle中的属性translateY时引起的uiStyle变化也会导致组件SpecialImage的刷新，所以可以将uiStyle中的属性scaleX、scaleY提取到状态变量scaleStyle中，属性translateX和translateY提取到状态变量translateStyle中，仅传递scaleStyle给组件SpecialImage，避免不必要的刷新。
 
-由于提取后存在Class的嵌套，所以需要使用@Observed/@ObjectLink装饰器装饰相应的Class和状态变量。修改后的部分代码如下，完整代码可访问[示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/code/Performance/PerformanceLibrary/feature/DFXStateManagement/src/main/ets/view/DFXStateAfterOptimization.ets)获取。
+由于提取后存在Class的嵌套，所以需要使用@Observed/@ObjectLink装饰器装饰相应的Class和状态变量。修改后的部分代码如下。
 ```javascript
-// feature/DFXStateManagement/src/main/ets/view/DFXStateAfterOptimization.ets
 
 // 常量声明
 // ...
@@ -360,8 +357,6 @@ hdc shell "hidumper -s WindowManagerService -a '-w 11 -jsdump -dumpAll'"
 dumpAll命令携带-r和-viewId参数时，输出结果中对应各个命令的部分与单独使用该命令携带相应参数时的结果相同。
 
 ## 参考资料
-
-[场景示例代码](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Performance/PerformanceLibrary/feature/DFXStateManagement/src/main/ets/view)
 
 [使用HiDumper命令行工具优化性能](performance-optimization-using-hidumper.md)
 
