@@ -18,6 +18,8 @@ import { BottomView } from '../../view/BottomView';
 import { CoverFlipPage } from '../../view/CoverFlipPage';
 import { LeftRightPlipPage } from '../../view/LeftRightFlipPage';
 import { UpDownFlipPage } from '../../view/UpDownFlipPage';
+import { common } from '@kit.AbilityKit';
+import { window } from '@kit.ArkUI';
 
 /**
  * 创建一个Stack组件，上下菜单通过zIndex在阅读页面之上。
@@ -31,6 +33,17 @@ export struct PageFlip {
   @State isVisible: boolean = false; // 用来判断翻页方式视图是否显示。
   @State isCommentVisible: boolean = false; // 用来判断评论视图是否显示。
   @State currentPageNum: number = 1; // 书籍在第几页。
+  private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext
+
+  async setSystemBar() {
+    let windowClass = await window.getLastWindow(this.context)
+    //设置导航栏，状态栏不可见
+    await windowClass.setWindowSystemBarEnable([])
+  }
+
+  aboutToAppear() {
+    this.setSystemBar()
+  }
 
   build() {
     Stack() {
