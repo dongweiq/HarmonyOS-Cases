@@ -26,7 +26,7 @@
    2. 使用`Swiper`组件和`LazyForEach`将数据源中的每条数据存放于Text组件中，`Swiper`向左或向右滑动的效果就是左右翻页的效果。
    3. 需要网络加载时可在`BasicDataSource`的`getData`方法中进行。当index等于0向前申请网络数据，当`index`等于this.totalCount() - 1时向后请求网络数据。
    4. 请求完数据后可通过`push`方法将数据插入到队尾，通过`unshift`插入到队头，具体可参考`BasicDataSource`的`pushItem`和`addItem`方法。
-      <br>源码参考:[LeftRightFlipPage.ets](./src/main/ets/view/LeftRightFlipPage.ets)。
+      <br>源码参考:[LeftRightFlipPage.ets](./src/main/ets/view/LeftRightFlipPage.ets)<br>[BasicDataSource.ets](./src/main/ets/datasource/BasicDataSource.ets)。
 
 ```typescript
  Swiper(this.swiperController) { 
@@ -76,7 +76,7 @@ public getData(index: number): string {
    2. 使用`List`组件和`LazyForEach`将数据源中的每条数据存放于Text组件中，`List`向上或向下滑动的效果就是上下翻页的效果。
    3. 需要网络加载时可在`BasicDataSource`的`getData`方法中进行。当index等于0向前申请网络数据，当`index`等于this.totalCount() - 1时向后请求网络数据。
    4. 请求完数据后可通过`push`方法将数据插入到队尾，通过`unshift`插入到队头，具体可参考`BasicDataSource`的`pushItem`和`addItem`方法。
-      源码参考<br>[UpDownFlipPage.ets](./src/main/ets/view/UpDownFlipPage.ets)。
+      源码参考<br>[UpDownFlipPage.ets](./src/main/ets/view/UpDownFlipPage.ets)<br>[BasicDataSource.ets](./src/main/ets/datasource/BasicDataSource.ets)。
 
 ```typescript
 // TODO:知识点:initialIndex设置为负数或超过了当前List最后一个item的索引值时视为无效取值，无效取值按默认值0显示。
@@ -123,7 +123,7 @@ public getData(index: number): string {
 }
 ```
 
-#### 场景三： 覆盖翻页方式通过三个`Stack`组件通过滑动+动画+改变组件内容实现效果。
+#### 场景三: 覆盖翻页方式通过三个`Stack`组件通过滑动+动画+改变组件内容实现效果。
 实现步骤：
    1. 在`Stack`组件中布局三个`ReaderPage`，`midPage`位于中间可以根据this.offsetX实时translate自己的位置。
    2. 当this.offsetX<0时,translate的x为this.offsetX，midPage向左移动，显现`rightPage`。
