@@ -1087,12 +1087,95 @@ struct Page {
 
 应该避免在onSroll、onAreaChange等系统高频的回调接口中进行冗余和耗时操作，这些接口在系统的每一帧绘制中都会执行回调操作，因此在这些接口中进行冗余和耗时操作会大量消耗系统资源，影响应用运行性能。
 
-示例代码如下：
+#### 避免在系统高频回调用打印Trace
+
+Trace的打印是会额外消耗系统性能的，因此应该避免在这些系统高频回调接口中打印Trace，示例代码如下：
+
+```typescript
+// 反例
+Scroll() {
+  ForEach(this.arr, (item: number) => {
+    Text("ListItem" + item)
+    .width("100%")
+    .height("100%")
+  }, (item: number) => item.toString())
+}
+.width('100%')
+.height('100%')
+.onScroll(() => {
+  hitrace.startTrace("ScrollSlide", 1002);
+  // 业务逻辑
+  // ...
+  hitrace.finishTrace("ScrollSlide", 1002);
+})
+
+// 正例
+Scroll() {
+  ForEach(this.arr, (item: number) => {
+    Text("ListItem" + item)
+    .width("100%")
+    .height("100%")
+  }, (item: number) => item.toString())
+}
+.width('100%')
+.height('100%')
+.onScroll(() => {
+  // 业务逻辑
+  // ...
+})
+```
+
+#### 避免在系统高频回调用打印日志
+
+日志的打印是会额外消耗系统性能的，特别是有些日志还读取了状态变量的信息，会加剧资源开销，因此应该避免在这些系统高频回调接口中打印日志，示例代码如下：
+
+```typescript
+// 反例
+Scroll() {
+  ForEach(this.arr, (item: number) => {
+    Text("ListItem" + item)
+    .width("100%")
+    .height("100%")
+  }, (item: number) => item.toString())
+}
+.width('100%')
+.height('100%')
+.onScroll(() => {
+  hilog.info(1002, 'Scroll', 'ListItem');
+  // 业务逻辑
+  // ...
+})
+
+// 正例
+Scroll() {
+  ForEach(this.arr, (item: number) => {
+    Text("ListItem" + item)
+    .width("100%")
+    .height("100%")
+  }, (item: number) => item.toString())
+}
+.width('100%')
+.height('100%')
+.onScroll(() => {
+  // 业务逻辑
+  // ...
+})
+```
+
+### 删除冗余Trace和日志打印
+
+#### 在release版本中Trace
+
+反例代码如下：
+```typescript
+// TODO
+```
+正例代码如下：
 ```typescript
 // TODO
 ```
 
-### 删除不要的Trace和日志打印
+#### 在release版本中删除debug日志
 
 
 反例代码如下：
