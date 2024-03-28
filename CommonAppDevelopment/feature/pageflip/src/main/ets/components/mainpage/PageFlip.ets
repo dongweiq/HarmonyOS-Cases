@@ -23,7 +23,6 @@ import { UpDownFlipPage } from '../../view/UpDownFlipPage';
  * 创建一个Stack组件，上下菜单通过zIndex在阅读页面之上。
  * 通过底部点击的按钮名来确定翻页方式，创建翻页组件。
  */
-@Entry
 @Component
 export struct PageFlip {
   @State isMenuViewVisible: boolean = false; // 用来判断上下菜单视图是否显示。
