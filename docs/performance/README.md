@@ -1164,7 +1164,11 @@ Scroll() {
 
 ### 删除冗余Trace和日志打印
 
-#### 在release版本中Trace
+Trace和日志打印会比较消耗系统性能，因此我们应该避免冗余的Trace和日志打印。推荐在Release版本中，尽量删除所有Trace信息，删除Debug日志，减少额外的系统开销。
+
+#### 在Release版本中删除Trace
+
+Trace会比较消耗系统性能，建议在Release版本删除Trace打印。
 
 反例代码如下：
 ```typescript
@@ -1189,8 +1193,9 @@ struct ComponentA {
 }
 ```
 
-#### 在release版本中删除debug日志
+#### 在Release版本中删除Debug日志
 
+Trace会比较消耗系统性能，建议在Release版本删除Trace打印。
 
 反例代码如下：
 ```typescript
@@ -1216,6 +1221,8 @@ struct ComponentA {
 ```
 
 ### 避免设置冗余系统回调监听
+
+冗余的系统回调监听，会额外消耗系统开销去做计算和函数回调消耗。比如设置了onAreaChange，就算回调中没有任何逻辑，系统也会在C++侧去计算该组件的大小和位置变化情况，并且把结果回调到TS侧，额外消耗了系统开销。
 
 反例代码如下：
 ```typescript
@@ -1257,9 +1264,6 @@ smartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗
 开发者可以使用状态变量组件定位工具获取状态管理相关信息，例如自定义组件拥有的状态变量、状态变量的同步对象和关联组件等，了解状态变量影响UI的范围，写出高性能应用代码。
 
 ## 性能文章总览
-
-下面是性能详细指导文章的总览目录：
-
 - [性能优化概览](performance-overview.md)
   - ArkTS高性能编程
     - [高性能编程规范](high-performance-programming.md)
