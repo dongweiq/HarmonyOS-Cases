@@ -74,7 +74,20 @@ export struct MultipleFilesDownload {
     selectedBackgroundColor: $r('app.color.selected_background_color'),
     backgroundColor: $r('app.color.background_color')
   })
-  @State tabSelectedIndexes: number[] = [1];
+  // 监听SegmentButton组件selectedIndexes值变化，[1]表示设置默认选中项编号为'下载列表'项
+  @State @Watch('onSelectedChange') tabSelectedIndexes: number[] = [1];
+  // 控制是否显示下载列表相应内容
+  @State isShow: boolean = true;
+
+  // 当选择"下载列表"时,显示下载列表相应内容，选择其他选项时，不显示内容，仅用于ux展示
+  onSelectedChange(): void {
+    if (this.tabSelectedIndexes[0] === 1) {
+      this.isShow = true;
+    }
+    else {
+      this.isShow = false;
+    }
+  }
 
   // 下载信息初始化
   aboutToAppear(): void {
@@ -95,50 +108,52 @@ export struct MultipleFilesDownload {
         .fontWeight(FontWeight.Bold)
       SegmentButton({ options: this.tabOptions, selectedIndexes: $tabSelectedIndexes })
         .margin({ top: $r('app.integer.margin_top_20'), bottom: $r('app.integer.margin_bottom_12') })
-      Row() {
+      if (this.isShow) {
         Row() {
-          Text($r('app.string.download_queue')).fontSize($r('app.integer.text_font_size_20'))
-          Text(this.downloadCount.toString()).fontSize($r('app.integer.text_font_size_20'))
-        }.width($r('app.string.row_width_50'))
+          Row() {
+            Text($r('app.string.download_queue')).fontSize($r('app.integer.text_font_size_20'))
+            Text(this.downloadCount.toString()).fontSize($r('app.integer.text_font_size_20'))
+          }.width($r('app.string.row_width_50'))
 
-        Row() {
-          // this.downloadCount > 0用于当存在未完成的下载任务时才可以暂停下载
-          Text(this.isStartAllDownload && this.downloadCount > NO_TASK ? "全部暂停" : "全部开始")
-            .fontSize($r('app.integer.text_font_size_20'))
-            .fontColor($r('app.color.download_text_color'))
-            .textAlign(TextAlign.End)
-            .width($r('app.string.text_width_100'))
-            .onClick(() => {
-              if (this.downloadCount === NO_TASK) {
-                AlertDialog.show({ message: $r('app.string.download_completed'), alignment: DialogAlignment.Center });
-                return;
-              }
-              this.isStartAllDownload = !this.isStartAllDownload;
-            })
-        }.width($r('app.string.row_width_50'))
-      }.width($r('app.string.row_width_100'))
+          Row() {
+            // this.downloadCount > 0用于当存在未完成的下载任务时才可以暂停下载
+            Text(this.isStartAllDownload && this.downloadCount > NO_TASK ? "全部暂停" : "全部开始")
+              .fontSize($r('app.integer.text_font_size_20'))
+              .fontColor($r('app.color.download_text_color'))
+              .textAlign(TextAlign.End)
+              .width($r('app.string.text_width_100'))
+              .onClick(() => {
+                if (this.downloadCount === NO_TASK) {
+                  AlertDialog.show({ message: $r('app.string.download_completed'), alignment: DialogAlignment.Center });
+                  return;
+                }
+                this.isStartAllDownload = !this.isStartAllDownload;
+              })
+          }.width($r('app.string.row_width_50'))
+        }.width($r('app.string.row_width_100'))
 
-      List() {
-        /**
-         * 本例只展示下载列表。由于每个应用request.agent.create最多支持创建10个未完成的任务，数量较小，所以这里使用ForEach展示下载列表。
-         * 如果需要显示大量历史下载完成任务信息，建议使用LazyForEach提升性能。create相关限制说明请参考https://developer.huawei.com/
-         * consumer/cn/doc/harmonyos-references/js-apis-request-0000001774281338#ZH-CN_TOPIC_0000001774281338__request
-         * agentcreate10。
-         */
-        ForEach(this.downloadConfigArray, (item: request.agent.Config) => {
-          ListItem() {
-            // TODO 知识点：创建多个文件下载监听实例。单个文件下载监听只需要配置下载参数，创建下载任务，注册下载任务相关监听，启动下载任务即可实现。而要实现多文件下载监听，需要每个下载任务注册独立的下载监听回调。本例通过封装自定义组件FileDownloadItem，在每个FileDownloadItem中创建各自的下载任务和监听回调，从而实现多文件下载监听。
-            FileDownloadItem({
-              downloadConfig: item, // 文件下载配置
-              isStartAllDownload: this.isStartAllDownload, // 是否全部开始下载
-              downloadCount: this.downloadCount // 待下载任务数量
-            })
-          }.margin({ bottom: $r('app.integer.margin_bottom_18') })
-        }, (item: request.agent.Config) => JSON.stringify(item))
-      }.width($r('app.string.list_width'))
-      .height($r('app.string.row_height'))
-      .margin({ top: $r('app.integer.margin_top_30') })
-    }.padding($r('app.integer.padding_15'))
+        List() {
+          /**
+           * 本例只展示下载列表。由于每个应用request.agent.create最多支持创建10个未完成的任务，数量较小，所以这里使用ForEach展示下载列表。
+           * 如果需要显示大量历史下载完成任务信息，建议使用LazyForEach提升性能。create相关限制说明请参考https://developer.huawei.com/
+           * consumer/cn/doc/harmonyos-references/js-apis-request-0000001774281338#ZH-CN_TOPIC_0000001774281338__request
+           * agentcreate10。
+           */
+          ForEach(this.downloadConfigArray, (item: request.agent.Config) => {
+            ListItem() {
+              // TODO 知识点：创建多个文件下载监听实例。单个文件下载监听只需要配置下载参数，创建下载任务，注册下载任务相关监听，启动下载任务即可实现。而要实现多文件下载监听，需要每个下载任务注册独立的下载监听回调。本例通过封装自定义组件FileDownloadItem，在每个FileDownloadItem中创建各自的下载任务和监听回调，从而实现多文件下载监听。
+              FileDownloadItem({
+                downloadConfig: item, // 文件下载配置
+                isStartAllDownload: this.isStartAllDownload, // 是否全部开始下载
+                downloadCount: this.downloadCount // 待下载任务数量
+              })
+            }.margin({ bottom: $r('app.integer.margin_bottom_18') })
+          }, (item: request.agent.Config) => JSON.stringify(item))
+        }.width($r('app.string.list_width'))
+        .height($r('app.string.row_height'))
+        .margin({ top: $r('app.integer.margin_top_30') })
+      }
+    }.padding($r('app.integer.padding_15')).focusable(false) // 避免SegmentButton组件在Navigator路由页面中获焦显示多余的选中框
   }
 }
 
