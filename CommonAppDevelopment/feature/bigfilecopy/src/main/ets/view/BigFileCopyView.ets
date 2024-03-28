@@ -19,14 +19,14 @@
  * 3. 调用图库的预览器对复制的文件进行预览，以验证复制过程的正确性
  */
 
-import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
 import { BigFileCopyConstants } from '../constants/BigFileCopyConstants';
 import { common, wantConstant } from '@kit.AbilityKit';
-import { resourceManager } from '@kit.LocalizationKit';
-import Want from '@ohos.app.ability.Want';
-import fs from '@ohos.file.fs';
 import { promptAction } from '@kit.ArkUI';
 import { fileUri } from '@kit.CoreFileKit';
+import { resourceManager } from '@kit.LocalizationKit';
+import Want from '@ohos.app.ability.Want';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
+import fs from '@ohos.file.fs';
 
 
 @Extend(Button)
