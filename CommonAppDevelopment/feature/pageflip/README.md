@@ -25,7 +25,7 @@
    1. 在`aboutToAppear()`方法中通过`pushItem`向后加载数据，`addItem`向前加载数据。
    2. 使用`Swiper`组件和`LazyForEach`将数据源中的每条数据存放于Text组件中，`Swiper`向左或向右滑动的效果就是左右翻页的效果。
    3. 需要网络加载时可在`BasicDataSource`的`getData`方法中进行。当index等于0向前申请网络数据，当`index`等于this.totalCount() - 1时向后请求网络数据。
-   4. 请求完数据后可通过`push`方法将数据插入到队尾，通过`unshift`插入到队头。
+   4. 请求完数据后可通过`push`方法将数据插入到队尾，通过`unshift`插入到队头，具体可参考`BasicDataSource`的`pushItem`和`addItem`方法。
       <br>源码参考:[LeftRightFlipPage.ets](./src/main/ets/view/LeftRightFlipPage.ets)。
 
 ```typescript
@@ -36,16 +36,7 @@
     */
    LazyForEach(this.data, (item: string) => {
       Text($r(item))
-         .width($r('app.string.pageflip_full_size'))
-         .fontSize($r('app.integer.flippage_text_fontsize'))
-         .textAlign(TextAlign.Start)
-         .align(Alignment.TopStart)
-         .margin({
-            top: $r('app.integer.flippage_margin_large'),
-            right: $r('app.integer.flippage_margin_middle'),
-            left: $r('app.integer.flippage_margin_middle'),
-            bottom: $r('app.integer.flippage_margin_middle')
-         })
+         ...
    }, (item: string) => item)
  }
   // TODO:知识点:index设置当前在容器中显示的子组件的索引值。设置小于0或大于等于子组件数量时，按照默认值0处理。
@@ -54,15 +45,29 @@
  .height($r('app.string.pageflip_full_size'))
  .indicator(false)
  .cachedCount(CONFIGURATION.PAGEFLIPCACHECOUNT)
- .itemSpace(CONFIGURATION.PAGEFLIPZERO)
- .loop(false)
- .curve(Curve.Linear)
- .backgroundColor($r('app.color.pageflip_swiper_backgroundcolor'))
- .effectMode(EdgeEffect.Fade)
- .duration(CONFIGURATION.PAGEFLIPTOASTDURATION)
- .onChange((index: number) => {
-    this.currentPageNum = index + CONFIGURATION.PAGEFLIPPAGECOUNT; // 通过onChange监听当前处于第几页。
- })
+ ...
+```
+
+```typescript
+aboutToAppear(): void {
+  /**
+   * 请求网络数据之后可以通过this.data.addItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的开头形成新的数据源。
+   * 请求网络数据之后可以通过this.data.pushItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的末尾形成新的数据源。
+   */
+  for (let i = CONFIGURATION.PAGEFLIPPAGESTART; i <= CONFIGURATION.PAGEFLIPPAGEEND; i++) {
+    this.data.pushItem(STRINGCONFIGURATION.PAGEFLIPRESOURCE + i.toString());
+  }
+}
+```
+
+```typescript
+public getData(index: number): string {
+  /**
+   * TODO:知识点:1.当index等于this.totalCount() - 1时向后请求网络数据。当index等于0时向前请求网络数据。
+   * TODO:知识点:2.新请求到的数据可以通过push插入到队尾，通知listeners刷新添加可参考pushItem方法。如果想要插到队头可以通过unshift插入到队头，通知listeners刷新添加可参考addItem方法。
+   */
+  return this.elements[index];
+}
 ```
 
 #### 场景二: 上下翻页方式通过`list`+`lazyforeach`+`cachecount`实现按需加载。
@@ -70,7 +75,7 @@
    1. 在`aboutToAppear()`方法中通过`pushItem`向后加载数据，`addItem`向前加载数据。
    2. 使用`List`组件和`LazyForEach`将数据源中的每条数据存放于Text组件中，`List`向上或向下滑动的效果就是上下翻页的效果。
    3. 需要网络加载时可在`BasicDataSource`的`getData`方法中进行。当index等于0向前申请网络数据，当`index`等于this.totalCount() - 1时向后请求网络数据。
-   4. 请求完数据后可通过`push`方法将数据插入到队尾，通过`unshift`插入到队头。
+   4. 请求完数据后可通过`push`方法将数据插入到队尾，通过`unshift`插入到队头，具体可参考`BasicDataSource`的`pushItem`和`addItem`方法。
       源码参考<br>[UpDownFlipPage.ets](./src/main/ets/view/UpDownFlipPage.ets)。
 
 ```typescript
@@ -83,8 +88,7 @@ List({ initialIndex: this.currentPageNum - CONFIGURATION.PAGEFLIPPAGECOUNT }) {
    LazyForEach(this.data, (item: string) => {
       ListItem() {
          Text($r(item))
-            .fontSize($r('app.integer.flippage_text_fontsize'))
-            .width($r('app.string.pageflip_full_size'))
+            ...
       }
    }, (item: string) => item)
 }
@@ -95,6 +99,28 @@ List({ initialIndex: this.currentPageNum - CONFIGURATION.PAGEFLIPPAGECOUNT }) {
 .onScrollIndex((firstIndex: number) => {
  this.currentPageNum = firstIndex + CONFIGURATION.PAGEFLIPPAGECOUNT;  // 通过onScrollIndex监听当前处于第几页。
 })
+```
+
+```typescript
+aboutToAppear(): void {
+  /**
+   * 请求网络数据之后可以通过this.data.addItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的开头形成新的数据源。
+   * 请求网络数据之后可以通过this.data.pushItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的末尾形成新的数据源。
+   */
+  for (let i = CONFIGURATION.PAGEFLIPPAGESTART; i <= CONFIGURATION.PAGEFLIPPAGEEND; i++) {
+    this.data.pushItem(STRINGCONFIGURATION.PAGEFLIPRESOURCE + i.toString());
+  }
+}
+```
+
+```typescript
+public getData(index: number): string {
+  /**
+   * TODO:知识点:1.当index等于this.totalCount() - 1时向后请求网络数据。当index等于0时向前请求网络数据。
+   * TODO:知识点:2.新请求到的数据可以通过push插入到队尾，通知listeners刷新添加可参考pushItem方法。如果想要插到队头可以通过unshift插入到队头，通知listeners刷新添加可参考addItem方法。
+   */
+  return this.elements[index];
+}
 ```
 
 #### 场景三： 覆盖翻页方式通过三个`Stack`组件通过滑动+动画+改变组件内容实现效果。
