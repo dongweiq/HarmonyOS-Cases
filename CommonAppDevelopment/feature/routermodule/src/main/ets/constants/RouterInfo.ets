@@ -26,13 +26,13 @@ export class RouterInfo {
   static readonly HOME_PAGE: RouterInfo = new RouterInfo('@ohos/entry', 'EntryView');
   static readonly ADDRESS_EXCHANGE: RouterInfo = new RouterInfo('@ohos/addressexchange', 'AddressExchangeView');
   static readonly BAR_CHAT: RouterInfo = new RouterInfo('@ohos/barchart', 'BarChart');
-  static readonly CUSTOM_TAB_BAR: RouterInfo = new RouterInfo('@ohos/custom-tabbar', 'TabView');
+  static readonly CUSTOM_TAB_BAR: RouterInfo = new RouterInfo('@ohos/customtabbar', 'TabView');
   static readonly SECONDARY_LINKAGE: RouterInfo = new RouterInfo('@ohos/secondarylinkage', 'SecondaryLinkExample');
   static readonly READ_RAW_FILE: RouterInfo = new RouterInfo('@ohos/nativerawfile', 'MainPage');
-  static readonly EVENT_TRANSMISSION_SOLUTION: RouterInfo = new RouterInfo('@ohos/event-propagation', 'EventPropagation');
+  static readonly EVENT_TRANSMISSION_SOLUTION: RouterInfo = new RouterInfo('@ohos/eventpropagation', 'EventPropagation');
   static readonly IMAGE_VIEWER: RouterInfo = new RouterInfo('@ohos/imageviewer', 'ImageViewerView');
   static readonly PENDING_ITEMS: RouterInfo = new RouterInfo('@ohos/pendingitems', 'ToDoList');
-  static readonly HANDLE_TABS: RouterInfo = new RouterInfo('@ohos/handtabs', 'HandleTabs');
+  static readonly HANDLE_TABS: RouterInfo = new RouterInfo('@ohos/handletabs', 'HandleTabs');
   static readonly MODAL_WINDOW: RouterInfo = new RouterInfo('@ohos/modalwindow', 'ModalWindow');
   static readonly SLIDE_TO_HIDE_AND_DISPLACE: RouterInfo = new RouterInfo('@ohos/slidetohideanddisplace', 'SlideToHideAndDisplace');
   static readonly NAVIGATION_PARAMETER_TRANSFER: RouterInfo = new RouterInfo('@ohos/navigationparametertransfer', 'NavigationParameterTransferView');
