@@ -1,0 +1,22 @@
+{
+  "module": {
+    "name": "customscan",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.CAMERA",
+        "reason": "$string:tips_camera_permissions_reason",
+        "usedScene": {
+          "abilities": [
+            "EntryAbility"
+          ],
+          "when": "inuse"
+        }
+      },
+    ]
+  }
+}

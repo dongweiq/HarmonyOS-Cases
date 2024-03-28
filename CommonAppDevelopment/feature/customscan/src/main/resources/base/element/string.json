@@ -1,0 +1,44 @@
+{
+  "string": [
+    {
+      "name": "tips_camera_permissions_reason",
+      "value": "执行扫码功能"
+    },
+    {
+      "name": "tips_camera_permissions_denied",
+      "value": "未允许相机权限，扫码开启失败"
+    },
+    {
+      "name": "text_put_code_to_scan",
+      "value": "识别二维码"
+    },
+    {
+      "name": "tips_scan_result_title",
+      "value": "扫码结果"
+    },
+    {
+      "name": "text_btn_restart_scan",
+      "value": "重新扫码"
+    },
+    {
+      "name": "color_black",
+      "value": "#000000"
+    },
+    {
+      "name": "scan_ani_width",
+      "value": "90%"
+    },
+    {
+      "name": "scan_ani_height",
+      "value": "50%"
+    },
+    {
+      "name": "text_scan_height",
+      "value": "20%"
+    },
+    {
+      "name": "toast_sys_pic",
+      "value": "相册功能待开发"
+    }
+  ]
+}
