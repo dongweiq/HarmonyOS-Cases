@@ -238,7 +238,7 @@ struct ReusableChildComponent {
 
 #### 使用renderGroup缓存提升属性动画性能
 
-页面响应时，可能大量使用属性动画和转场动画，当复杂度达到一定程度之后，就有可能出现卡顿的情况。renderGroup是组件通用方法，它代表了渲染绘制的一个组合。
+页面响应时，可能大量使用属性动画和转场动画，当复杂度达到一定程度之后，就有可能出现卡顿的情况。renderGroup(详细介绍可参考文章:[合理使用renderGroup](reasonable-using-renderGroup.md))是组件通用方法，它代表了渲染绘制的一个组合。
 
 具体原理是在首次绘制组件时，若组件被标记为启用renderGroup状态，将对组件及其子组件进行离屏绘制，将绘制结果合并保存到缓存中。此后当需要重新绘制相同组件时，就会优先使用缓存而不必重新绘制了，从而降低绘制负载，进而加快响应速度。
 
@@ -307,8 +307,8 @@ export struct IconItem {
 
 #### 使用显隐控制进行页面缓存
 
-控制元素显示与[隐藏](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/proper-choice-between-if-and-visibility.md)是一种常见的场景，使用Visibility.none、if条件判断等都能够实现该效果。其中if条件判断控制的是组件的创建、布局阶段，visibility属性控制的是元素在布局阶段是否参与布局渲染。使用时如果使用的方式不当，将引起性能上的问题。
-如果会频繁响应显示与隐藏的交互效果，建议使用切换Visibility.None和Visibility.Visiable来控制元素显示与隐藏，在组件无需展示的时候进行缓存，提高性能。
+控制元素显示与隐藏是一种常见的场景，使用Visibility.none、if条件判断等都能够实现该效果。其中if条件判断控制的是组件的创建、布局阶段，visibility属性控制的是元素在布局阶段是否参与布局渲染。使用时如果使用的方式不当，将引起性能上的问题。
+如果会频繁响应显示与隐藏的交互效果，建议使用切换Visibility.None和Visibility.Visiable来控制元素显示与隐藏(详细介绍可参考文章: [合理选择条件渲染和显隐控制](proper-choice-between-if-and-visibility.md))，在组件无需展示的时候进行缓存，提高性能。
 
 示例代码如下：
 ```typescript
@@ -332,7 +332,7 @@ build() {
 
 ## 第二板斧：尽量减少布局的嵌套层数
 
-在进行页面布局开发时，应该去除冗余的布局嵌套，使用相对布局、绝对定位、自定义布局、Grid、GridRow等扁平化布局，减少布局的嵌套层数，避免系统绘制更多的布局组件，达到[优化性能](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/reduce-view-nesting-levels.md#%E4%BC%98%E5%8C%96%E5%B8%83%E5%B1%80%E6%80%A7%E8%83%BD)、减少内存占用的目的。
+在进行页面布局开发时，应该去除冗余的布局嵌套，使用相对布局、绝对定位、自定义布局、Grid、GridRow等扁平化布局，减少布局的嵌套层数，避免系统绘制更多的布局组件，达到优化性能(详细介绍可参考文章: [优化布局性能](reduce-view-nesting-levels.md))、减少内存占用的目的。
 
 ### 移除冗余节点
 
@@ -434,7 +434,7 @@ MyCompnent {
 
 #### 使用Column/Row替代Flex构建线性布局
 
-由于Flex本身带来的二次布局的影响，Flex的性能明显低于Column和Row容器，因此推荐使用Column/Row替代Flex[构建线性布局](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/flex-development-performance-boost.md)。
+由于Flex本身带来的二次布局的影响，Flex的性能明显低于Column和Row容器，因此推荐使用Column/Row替代Flex构建线性布局(详细介绍可参考文章: [Flex布局性能提升使用指导](flex-development-performance-boost.md))。
 
 反例代码如下：
 ```typescript
@@ -468,7 +468,7 @@ struct MyComponent {
 
 #### 使用Flex、List、Grid、RelativeContainer、绝对布局和自定义布局等构建复杂布局
 
-[复杂布局](https://gitee.com/wanghanghui/cases/blob/master/docs/performance/reduce-view-nesting-levels.md#%E5%87%8F%E5%B0%91%E5%B5%8C%E5%A5%97%E5%B1%82%E7%BA%A7)提供了场景化的能力，解决一种或者多种布局场景：
+复杂布局提供了场景化的能力(详细介绍可参考文章: [优化布局性能](reduce-view-nesting-levels.md))，解决一种或者多种布局场景：
 
 * 使用Flex构建弹性布局；
 * List既具备线性布局的特点，同时支持懒加载和滑动的能力；
@@ -533,7 +533,7 @@ struct AspectRatioExample11 {
 
 ## 第三板斧：合理管理状态变量
 
-应该合理的使用状态变量，[精准控制组件的更新范围](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/precisely-control-render-scope.md)，控制状态变量关联组件数量上限，控制对象级状态变量的成员变量关联组件数，减少系统的组件渲染负载，提升应用流畅度。
+应该合理的使用状态变量，精准控制组件的更新范围(详细介绍可参考文章: [精准控制组件的更新范围](precisely-control-render-scope.md))，控制状态变量关联组件数量上限，控制对象级状态变量的成员变量关联组件数，减少系统的组件渲染负载，提升应用流畅度。
 
 ### 精准控制组件的更新范围
 
@@ -1168,11 +1168,25 @@ Scroll() {
 
 反例代码如下：
 ```typescript
-// TODO
+@Component
+struct ComponentA {
+  aboutToAppear {
+    hitrace.startTrace("HITRACE_TAG_APP", 1001);
+    // 业务代码
+    ...
+    hitrace.finishTrace("HITRACE_TAG_APP", 1001);
+  }
+}
 ```
 正例代码如下：
 ```typescript
-// TODO
+@Component
+struct ComponentA {
+  aboutToAppear {
+    // 业务代码
+    ...
+  }
+}
 ```
 
 #### 在release版本中删除debug日志
@@ -1180,32 +1194,65 @@ Scroll() {
 
 反例代码如下：
 ```typescript
-// TODO
+@Component
+struct ComponentA {
+  aboutToAppear {
+    hilog.debug(0xFF00, "testTag", "ComponentA_aboutToAppear_start");
+    // 业务代码
+    ...
+    hilog.debug(0xFF00, "testTag", "ComponentA_aboutToAppear_end");
+  }
+}
 ```
 正例代码如下：
 ```typescript
-// TODO
+@Component
+struct ComponentA {
+  aboutToAppear {
+    // 业务代码
+    ...
+  }
+}
 ```
 
 ### 避免设置冗余系统回调监听
 
 反例代码如下：
 ```typescript
-// TODO
+build() {
+  Column() {
+    Text(this.value)
+      .onClick(() => {
+      })
+      .onAreaChange((oldValue: Area, newValue: Area) => {
+        console.info(`Ace: on area change`)
+      })
+  }
+}
 ```
 正例代码如下：
 ```typescript
-// TODO
+build() {
+  Column() {
+    Text(this.value)
+  }
+}
 ```
 
 ## 使用性能工具分析和定位问题
 
 学会合理使用工具进行问题分析和定位，提升问题解决效率。
 
-### [使用SmartPerf-Host分析应用性能](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/performance-optimization-using-smartperf-host.md)
+### 使用[SmartPerf-Host](performance-optimization-using-smartperf-host.md)分析应用性能
 smartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗调优工具，可采集CPU调度、频点、进程线程时间片、堆内存、帧率等数据，采集的数据通过泳道图清晰地呈现给开发者，同时通过GUI以可视化的方式进行分析。工具当前为开发者提供了五个分析模板，分别是帧率分析、CPU/线程调度分析、应用启动分析、TaskPool分析、动效分析。
 
-### 使用[状态变量组件定位工具](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/state_variable_dfx_pratice.md)分析状态变量关联信息
+### 使用[耗时分析器Time Profiler](profiler-time.md)分析应用耗时
+
+该工具为OpenHarmony应用开发者提供性能采样分析手段，可在不插桩情况下获取调用栈上各层函数的执行时间，并展示在时间轴上。
+
+开发者可通过该工具查看TS/JS代码及NAPI代码执行过程中的时序及耗时情况，进而发现热点函数及性能瓶颈，进行应用层性能优化
+
+### 使用[状态变量组件定位工具](state_variable_dfx_pratice.md)分析状态变量关联信息
 
 开发者可以使用状态变量组件定位工具获取状态管理相关信息，例如自定义组件拥有的状态变量、状态变量的同步对象和关联组件等，了解状态变量影响UI的范围，写出高性能应用代码。
 
