@@ -386,7 +386,3 @@ workerPort.onmessage = (e: MessageEvents): void => {
 ```
 
 大家可以根据实际场景选择第二种或者第三种方案。
-
-## 相关实例
-针对多线程并发，有以下相关实例可供参考：  
-* [聊天实例应用（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/IM/Chat)

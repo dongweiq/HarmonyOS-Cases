@@ -8,10 +8,6 @@
 
 ![输入图片说明](figures/application-cold-start.png)
 
->**说明：**
->
->关于本文中示例，可参考：[提升应用冷启动速度示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/DocsSample/Ability/Performance/Startup)。
-
 ## 1、缩短应用进程创建&初始化阶段耗时
 
 该阶段主要是系统完成应用进程的创建以及初始化的过程，包含了启动页图标(startWindowIcon)的解码。
