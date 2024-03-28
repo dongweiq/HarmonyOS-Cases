@@ -10,7 +10,7 @@
 
 **使用说明**
 
-1. 加载完成后显示主界面，点当前日期后会弹出日历选择器，选择日期后会关闭弹窗，主页面日期会变成选定的日期。
+1. 加载完成后显示主界面，点当前日期后会弹出日历选择器，选择日期后会关闭弹窗，主页面日期会变成选定的日期，应用退出再进入还是显示上次选择的日期。
 
 ### 实现思路
 
@@ -43,10 +43,8 @@ export function getMonthDate(specifiedMonth: number, specifiedYear: number) {
 ```ts
 dialogController: CustomDialogController = new CustomDialogController({
   builder: CustomCalendarPickerDialog({
-    date: this.date,
     currentMonth: this.currentMonth,
     currentDay: this.currentDay,
-    currentWeekDay: this.currentWeekDay,
     currentYear: this.currentYear,
     cancel: this.onCancel
   }),
@@ -57,11 +55,11 @@ dialogController: CustomDialogController = new CustomDialogController({
 3. 设置自定义日历选择器界面。源码参考[CustomCalendarPickerDialog.ets](./src/main/ets/view/CustomCalendarPickerDialog.ets)。
 ```ts
 // 每个月的日期
-List() {
-  /*
-   *性能知识点：列表中数据较多且不确定的情况下，使用LazyForEach进行数据循环渲染。
-   *当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。
-   *文档参考链接：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-rendering-control-lazyforeach-0000001524417213-V2
+List({initialIndex: this.initialIndex}) {
+  /**
+   * 性能知识点：列表中数据较多且不确定的情况下，使用LazyForEach进行数据循环渲染。
+   * 当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。
+   * 文档参考链接：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-rendering-control-lazyforeach-0000001524417213-V2
    */
   LazyForEach(this.contentData, (monthItem: Month) => {
     // 设置ListItemGroup头部组件，显示年份和月份
@@ -73,6 +71,7 @@ List() {
             .fontColor($r('app.color.ohos_id_color_palette_aux8'))
             .opacity(MONTH_OPACITY)
           Grid() {
+            // TODO: 高性能知识点: 此处日期固定，使用了ForEach，其他列表数量较多的场景，推荐使用LazyForEach+组件复用+缓存列表项实现
             ForEach(monthItem.days, (day: number) => {
               GridItem() {
                 Text(day.toString())
@@ -81,14 +80,17 @@ List() {
                   this.currentMonth ? $r('app.color.ohos_id_color_text_secondary') : $r('app.color.ohos_id_color_text_primary'))
               }
               .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
-              .backgroundColor(day === this.currentDay && monthItem.num ===
-              this.currentMonth ? $r('app.color.ohos_id_color_palette9') : $r('app.color.ohos_id_color_background'))
+              .backgroundColor(day === this.dateModel.day && monthItem.num ===
+              this.dateModel.month ? $r('app.color.ohos_id_color_palette9') : $r('app.color.ohos_id_color_background'))
               .opacity(day === 0 ? 0 : 1) // 将日期数组中为0的都设置为不显示，即不显示上个月和下个月的内容
               // 点击选定的日期后，关闭日历弹窗，显示日期改变为选择的日期
               .onClick(() => {
-                if (day !== 0) {
+                if (day >= this.currentDay || monthItem.num > this.currentMonth) {
                   let weekIndex = monthItem.days.indexOf(day) % WEEK_NUMBER; // 将当前日转换成星期显示
-                  this.date = [monthItem.num, day, weekIndex];
+                  this.dateModel.day = day;
+                  this.dateModel.week = weekIndex;
+                  this.dateModel.month = monthItem.num;
+                  DataManager.setDate(getContext(this), this.dateModel, () => {});
                   this.controller.close(); // 关闭自定义弹窗
                 }
               })
@@ -105,6 +107,45 @@ List() {
   })
 }
 ```
+4. 通过用户首选项实现选择的日期数据持久化。源码参考[DataManager.ets](./src/main/ets/components/DataManager.ets)。
+```ts
+static setDate(context: Context, dateModel: DateModel, callback: () => void) {
+  try {
+    // 获取Preferences实例
+    let promise = dataPreferences.getPreferences(context, 'date')
+    promise.then((object: dataPreferences.Preferences) => {
+      try {
+        // 将数据写入缓存的Preferences实例中
+        let setPromise = object.put('selectedDate', JSON.stringify(dateModel))
+        setPromise.then(() => {
+          // 将缓存的Preferences实例中的数据异步存储到用户首选项的持久化文件中
+          let flushPromise = object.flush()
+          flushPromise.then(() => {
+            // 创建单个AppStorage的键值对
+            AppStorage.setOrCreate<DateModel>('selectedDate', dateModel)
+            callback()
+          }).catch((err: Error) => {
+            callback()
+            console.error("LoginMessage: Failed to flush" + err.name + ", message = " + err.message)
+          })
+        }).catch((err: Error) => {
+          callback()
+          console.error("LoginMessage: Failed to put selectedDate" + err.name + ", message = " + err.message)
+        })
+      } catch (err) {
+        callback()
+        console.error("LoginMessage: Failed to put selectedDate" + err.name + ", message = " + err.message)
+      }
+    }).catch((err: Error) => {
+      callback()
+      console.error("LoginMessage: Failed to get preferences" + err.name + ", message = " + err.message)
+    })
+  } catch (err) {
+    callback()
+    console.error("LoginMessage: Failed to get preferences" + err.name + ", message = " + err.message)
+  }
+}
+```
 ### 高性能知识点
 
 本示例使用了LazyForEach进行数据懒加载，List布局时会根据可视区域按需创建ListItem组件，并在ListItem滑出可视区域外时销毁以降低内存占用。
@@ -115,6 +156,8 @@ List() {
    ```
    customcalendarpickerdialog                      // har类型
    |---components
+   |   |---DataManager.ets                         // 持久化方法
+   |   |---DateModel.ets                           // 数据类型定义
    |   |---GetDate.ets                             // 获取日期信息
    |   |---MonthDataSource.ets                     // 数据类型定义
    |---view
@@ -131,3 +174,5 @@ List() {
 [自定义弹窗](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V2/ts-methods-custom-dialog-box-0000001477981237-V2)
 
 [LazyForEach：数据懒加载](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-rendering-control-lazyforeach-0000001524417213-V2)
+
+[通过用户首选项实现数据持久化](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/data-persistence-by-preferences-0000001774120070)
