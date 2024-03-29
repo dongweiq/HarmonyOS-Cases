@@ -84,8 +84,8 @@ struct DiscoverTopView {
   getTransitionX(index: number) {
     let theNumber: number = 0;
     for (let i = this.loopDefault; i <= index; i++) {
-      let title = this.titleArray[i];
-      let titleLength = title.length * this.titleLengthRadix;
+      const title = this.titleArray[i];
+      const titleLength = title.length * this.titleLengthRadix;
       if (i === index) {
         theNumber += titleLength / this.titleLengthHalf - this.colorBarHalf;
       } else {
@@ -98,20 +98,17 @@ struct DiscoverTopView {
   build() {
     Column() {
       Row() {
-        /**
-         * 数据量比较少的情况下推荐使用ForEach，遇到数据量比较多的场景，如列表场景、瀑布流场景等，推荐使用
-         * LazyForEach(https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md/)
-         */
+        // TODO 高性能知识点：此处为了演示场景，列表数量只有4个，使用ForEach，列表数量较多的场景，推荐使用LazyForEach+组件复用+缓存列表项实现
         ForEach(this.titleArray, (title: string, idx: number) => {
           Text(title)
             .textAlign(TextAlign.Center)
             .height($r('app.integer.width_and_height_thirty'))
             .width(this.titleLengthRadix * title.length)
-            .fontColor(this.currentIndex == idx ?
-              (this.wantGoIndex == idx ? $r('app.color.font_selected_state'):$r('app.color.font_unselected_state')):
-              (this.wantGoIndex == idx ? $r('app.color.font_selected_state'):$r('app.color.font_unselected_state')))
-            .fontSize(this.currentIndex == idx ? $r('app.integer.font_size_eighteen') : $r('app.integer.font_size_fourteen'))
-            .fontWeight(this.currentIndex == idx ? FontWeight.Bold : FontWeight.Normal)
+            .fontColor(this.currentIndex === idx ?
+              (this.wantGoIndex === idx ? $r('app.color.font_selected_state'):$r('app.color.font_unselected_state')):
+              (this.wantGoIndex === idx ? $r('app.color.font_selected_state'):$r('app.color.font_unselected_state')))
+            .fontSize(this.currentIndex === idx ? $r('app.integer.font_size_eighteen') : $r('app.integer.font_size_fourteen'))
+            .fontWeight(this.currentIndex === idx ? FontWeight.Bold : FontWeight.Normal)
             .onClick(() => {
               // TODO 知识点：页签实现：记录点击index，index变化后，获取颜色条偏移量，刷新页签颜色、字体大小，实现效果
               if (this.currentIndex !== idx) {
@@ -189,8 +186,8 @@ struct DiscoverTabView {
   getTransitionX(index: number) {
     let theNumber: number = 0;
     for (let i = this.loopDefault; i <= index; i++) {
-      let title = this.titleArray[i];
-      let titleLength = title.length * this.titleLengthRadix;
+      const title = this.titleArray[i];
+      const titleLength = title.length * this.titleLengthRadix;
       if (i === index) {
         theNumber += titleLength / this.titleLengthHalf - this.colorBarHalf;
       } else {
@@ -200,13 +197,29 @@ struct DiscoverTabView {
     return theNumber;
   }
 
+  // 实现动画效果
+  achieveEffect(temIndex: number) {
+    // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
+    this.scroller.scrollToIndex(temIndex, true, ScrollAlign.START);
+    this.wantGoIndex = temIndex;
+    // 动画效果
+    animateTo({
+      duration: Math.abs(temIndex - this.currentIndex) * this.durationRadix,
+      curve: Curve.EaseInOut,
+      iterations: this.iterationsDefault,
+      playMode: PlayMode.Normal,
+      onFinish: () => {
+        this.currentIndex = temIndex;
+      }
+    }, () => {
+      this.transitionX = this.getTransitionX(temIndex);
+    })
+  }
+
   build() {
     List({ scroller: this.scroller }) {
       // 内容区域部分
-      /**
-       * 数据量比较少的情况下推荐使用ForEach，遇到数据量比较多的场景，如列表场景、瀑布流场景等，推荐使用
-       * LazyForEach(https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md/)
-       */
+      // TODO 高性能知识点：此处为了演示场景，列表数量只有4个，使用ForEach，列表数量较多的场景，推荐使用LazyForEach+组件复用+缓存列表项实现
       ForEach(this.titleArray, (item: string) => {
         ListItem() {
           Text(item)
@@ -227,41 +240,13 @@ struct DiscoverTabView {
             this.isStartAction = true;
             if (event.offsetX < this.judgmentValue) {
               if (this.currentIndex < this.titleArray.length - this.currentIndexRadix) {
-                let temIndex: number = this.currentIndex + this.currentIndexRadix;
-                // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
-                this.scroller.scrollToIndex(temIndex, true, ScrollAlign.START);
-                this.wantGoIndex = temIndex;
-                // 动画效果
-                animateTo({
-                  duration: Math.abs(temIndex - this.currentIndex) * this.durationRadix,
-                  curve: Curve.EaseInOut,
-                  iterations: this.iterationsDefault,
-                  playMode: PlayMode.Normal,
-                  onFinish: () => {
-                    this.currentIndex = temIndex;
-                  }
-                }, () => {
-                  this.transitionX = this.getTransitionX(temIndex);
-                })
+                const temIndex: number = this.currentIndex + this.currentIndexRadix;
+                this.achieveEffect(temIndex);
               }
             } else {
               if (this.currentIndex > this.judgmentValue) {
-                let temIndex: number = this.currentIndex - this.currentIndexRadix;
-                // 高性能知识点：scrollToIndex方法，开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题
-                this.scroller.scrollToIndex(temIndex, true, ScrollAlign.START);
-                this.wantGoIndex = temIndex;
-                // 动画效果
-                animateTo({
-                  duration: Math.abs(temIndex - this.currentIndex) * this.durationRadix,
-                  curve: Curve.EaseInOut,
-                  iterations: this.iterationsDefault,
-                  playMode: PlayMode.Normal,
-                  onFinish: () => {
-                    this.currentIndex = temIndex;
-                  }
-                }, () => {
-                  this.transitionX = this.getTransitionX(temIndex);
-                })
+                const temIndex: number = this.currentIndex - this.currentIndexRadix;
+                this.achieveEffect(temIndex);
               }
             }
           }
