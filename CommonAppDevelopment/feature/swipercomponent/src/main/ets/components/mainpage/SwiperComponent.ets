@@ -33,16 +33,10 @@ export struct SwiperComponent {
   private manualSlidingDuration: number = 800;
   private automaticSlidingDuration: number = 300;
   private automaticSwitchTime: number = 5000;
+  @State swiperInterval: number = 0
 
   aboutToAppear(): void {
     this.currentIndex = this.halfCount;
-    setInterval(() => {
-      this.startAnimation(true, this.manualSlidingDuration);
-    }, this.automaticSwitchTime)
-  }
-
-  aboutToDisappear(): void {
-    clearInterval()
   }
 
   /**
@@ -149,12 +143,26 @@ export struct SwiperComponent {
           })
         })
       }
+      .onVisibleAreaChange([0.0, 1.0], (isVisible: boolean, currentRatio: number) => {
+        if (isVisible && currentRatio >= 1.0) {
+          this.swiperInterval = setInterval(() => {
+            this.startAnimation(true, this.manualSlidingDuration);
+          }, this.automaticSwitchTime)
+        }
+
+        if (!isVisible && currentRatio <= 0.0) {
+          clearInterval(this.swiperInterval)
+        }
+      })
       .height($r('app.string.main_page_swiper_height'))
       .width('100%')
       .gesture(
         PanGesture({ direction: PanDirection.Horizontal })
           .onActionStart((event: GestureEvent) => {
             this.startAnimation(event.offsetX < 0, this.automaticSlidingDuration);
+          })
+          .onActionEnd(() => {
+            clearInterval(this.swiperInterval)
           })
       )
       .alignContent(Alignment.Center)
