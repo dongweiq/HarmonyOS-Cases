@@ -1,0 +1,32 @@
+{
+  "color": [
+    {
+      "name": "pageflip_bottom_blank_backgroundcolor",
+      "value": "#80aeacac"
+    },
+    {
+      "name": "pageflip_button_backgroundcolor",
+      "value": "#ffffffff"
+    },
+    {
+      "name": "pageflip_column_backgroundcolor",
+      "value": "#ffffffff"
+    },
+    {
+      "name": "pageflip_row_backgroundcolor",
+      "value": "#ffffffff"
+    },
+    {
+      "name": "pageflip_button_fontcolor",
+      "value": "#000000"
+    },
+    {
+      "name": "pageflip_button_click_fontcolor",
+      "value": "#ff51b6ff"
+    },
+    {
+      "name": "pageflip_swiper_backgroundcolor",
+      "value": "#FFEFEFEF"
+    }
+  ]
+}
