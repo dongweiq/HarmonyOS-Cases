@@ -45,6 +45,9 @@ export struct CoverFlipPage {
      * 请求网络数据之后可以通过this.data.pushItem(new Item('app.string.content' + i.toString()));的方法插入到数据源的末尾形成新的数据源。
      */
     this.simulatePageContent();
+    if (this.screenW > CONFIGURATION.WINDOWWIDTH) {
+      this.screenW = this.screenW / 2;
+    }
   }
 
   // 模拟书页内容,可以在此进行网络请求。

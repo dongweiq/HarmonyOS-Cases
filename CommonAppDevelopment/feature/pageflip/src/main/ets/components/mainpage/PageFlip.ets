@@ -35,14 +35,24 @@ export struct PageFlip {
   @State currentPageNum: number = 1; // 书籍在第几页。
   private context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext
 
-  async setSystemBar() {
+  async setSystemBarHidden() {
     let windowClass = await window.getLastWindow(this.context)
     //设置导航栏，状态栏不可见
     await windowClass.setWindowSystemBarEnable([])
   }
 
-  aboutToAppear() {
-    this.setSystemBar()
+  async setSystemBarVisible() {
+    let windowClass = await window.getLastWindow(this.context)
+    //设置导航栏，状态栏不可见
+    await windowClass.setWindowSystemBarEnable(['status'])
+  }
+
+  aboutToAppear(): void {
+    this.setSystemBarHidden()
+  }
+
+  aboutToDisappear(): void {
+    this.setSystemBarVisible()
   }
 
   build() {

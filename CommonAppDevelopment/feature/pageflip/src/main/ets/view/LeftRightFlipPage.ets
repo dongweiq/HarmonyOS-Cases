@@ -37,6 +37,9 @@ export struct LeftRightPlipPage {
     for (let i = CONFIGURATION.PAGEFLIPPAGESTART; i <= CONFIGURATION.PAGEFLIPPAGEEND; i++) {
       this.data.pushItem(STRINGCONFIGURATION.PAGEFLIPRESOURCE + i.toString());
     }
+    if (this.screenW > CONFIGURATION.WINDOWWIDTH) {
+      this.screenW = this.screenW / 2;
+    }
   }
 
   build() {
