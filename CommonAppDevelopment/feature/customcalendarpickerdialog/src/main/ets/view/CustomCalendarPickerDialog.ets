@@ -15,6 +15,8 @@
 
 import { getMonthDate } from '../components/GetDate';
 import { MonthDataSource, Month } from '../components/MonthDataSource';
+import { DataManager } from '../components/DataManager';
+import { DateModel } from '../components/DateModel'
 
 const MONTHS = 12;
 const JANUARY = 1;
@@ -39,11 +41,11 @@ export struct CustomCalendarPickerDialog {
   @State nextYear: number = 1; // 初始化下一个月年份
   @State nextMonthDay: number[] = []; // 初始化下一个月的日期排列数组
   @State currentMonthDay: number[] = []; // 初始化当前月的日期排列数组
+  @State initialIndex: number = 0; // List初次加载时视口起始位置
   @Link currentMonth: number; // 当前月份
   @Link currentDay: number; // 当前日
   @Link currentYear: number; // 当前年份
-  @Link currentWeekDay: number; // 当前周几
-  @Link date: number[]; // 当前日期显示的数组
+  @StorageLink('selectedDate') dateModel: DateModel = new DateModel(0, 0, 0, 0); // 初始化dateModel数据
   controller: CustomDialogController; // 通过CustomDialogController类显示自定义弹窗
   cancel: () => void = () => {
   }; //点击遮障层退出时的回调
@@ -77,6 +79,7 @@ export struct CustomCalendarPickerDialog {
       }
     ]
     this.contentData.pushData(months);
+    this.initialIndex = this.dateModel.month > this.currentMonth ? 1 : 0; // 设置List初次加载时视口起始位置显示的item的索引值
   }
 
   // 显示日历布局的每个月上方的年月信息
@@ -98,7 +101,7 @@ export struct CustomCalendarPickerDialog {
 
       // 显示周信息，从周日开始到周六
       List() {
-        // 一周七天固定，且在场景中必须显示，使用了ForEach
+        // TODO: 高性能知识点: 此处日期固定，使用了ForEach，其他列表数量较多的场景，推荐使用LazyForEach+组件复用+缓存列表项实现
         ForEach(this.week, (weekInformation: string) => {
           ListItem() {
             Text(weekInformation)
@@ -116,11 +119,11 @@ export struct CustomCalendarPickerDialog {
       .scrollBar(BarState.Off)
 
       // 每个月的日期
-      List() {
-        /*
-         *性能知识点：列表中数据较多且不确定的情况下，使用LazyForEach进行数据循环渲染。
-         *当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。
-         *文档参考链接：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-rendering-control-lazyforeach-0000001524417213-V2
+      List({initialIndex: this.initialIndex}) {
+        /**
+         * 性能知识点：列表中数据较多且不确定的情况下，使用LazyForEach进行数据循环渲染。
+         * 当组件滑出可视区域外时，框架会进行组件销毁回收以降低内存占用。
+         * 文档参考链接：https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V2/arkts-rendering-control-lazyforeach-0000001524417213-V2
          */
         LazyForEach(this.contentData, (monthItem: Month) => {
           // 设置ListItemGroup头部组件，显示年份和月份
@@ -132,6 +135,7 @@ export struct CustomCalendarPickerDialog {
                   .fontColor($r('app.color.ohos_id_color_palette_aux8'))
                   .opacity(MONTH_OPACITY)
                 Grid() {
+                  // TODO: 高性能知识点: 此处日期固定，使用了ForEach，其他列表数量较多的场景，推荐使用LazyForEach+组件复用+缓存列表项实现
                   ForEach(monthItem.days, (day: number) => {
                     GridItem() {
                       Text(day.toString())
@@ -140,14 +144,17 @@ export struct CustomCalendarPickerDialog {
                           this.currentMonth ? $r('app.color.ohos_id_color_text_secondary') : $r('app.color.ohos_id_color_text_primary'))
                     }
                     .borderRadius($r('app.string.ohos_id_corner_radius_default_m'))
-                    .backgroundColor(day === this.currentDay && monthItem.num ===
-                      this.currentMonth ? $r('app.color.ohos_id_color_palette9') : $r('app.color.ohos_id_color_background'))
+                    .backgroundColor(day === this.dateModel.day && monthItem.num ===
+                    this.dateModel.month ? $r('app.color.ohos_id_color_palette9') : $r('app.color.ohos_id_color_background'))
                     .opacity(day === 0 ? 0 : 1) // 将日期数组中为0的都设置为不显示，即不显示上个月和下个月的内容
                     // 点击选定的日期后，关闭日历弹窗，显示日期改变为选择的日期
                     .onClick(() => {
-                      if (day !== 0) {
+                      if (day >= this.currentDay || monthItem.num > this.currentMonth) {
                         let weekIndex = monthItem.days.indexOf(day) % WEEK_NUMBER; // 将当前日转换成星期显示
-                        this.date = [monthItem.num, day, weekIndex];
+                        this.dateModel.day = day;
+                        this.dateModel.week = weekIndex;
+                        this.dateModel.month = monthItem.num;
+                        DataManager.setDate(getContext(this), this.dateModel, () => {});
                         this.controller.close(); // 关闭自定义弹窗
                       }
                     })
@@ -175,5 +182,25 @@ export struct CustomCalendarPickerDialog {
     .borderRadius({topLeft: $r('app.string.ohos_id_corner_radius_default_l'), topRight: $r('app.string.ohos_id_corner_radius_default_l')})
     .backgroundColor($r('app.color.ohos_id_color_background'))
     .alignItems(HorizontalAlign.Center)
+  }
+}
+
+@CustomDialog
+export struct promptDialog {
+  controller: CustomDialogController; // 通过CustomDialogController类显示自定义弹窗
+  build() {
+    Column() {
+      Text($r('app.string.button_text'))
+        .fontSize($r('app.string.ohos_id_text_size_headline'))
+    }
+    .width('90%')
+    .height('10%')
+    .borderRadius($r('app.string.ohos_id_corner_radius_default_l'))
+    .backgroundColor($r('app.color.ohos_id_color_background'))
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
+    .onClick(() => {
+      this.controller.close(); // 关闭自定义弹窗
+    })
   }
 }

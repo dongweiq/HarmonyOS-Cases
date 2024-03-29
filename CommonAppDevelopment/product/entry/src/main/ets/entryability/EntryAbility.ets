@@ -24,6 +24,8 @@ import { Configuration } from '@ohos.app.ability.Configuration';
 import display from '@ohos.display';
 import { BusinessError } from '@ohos.base';
 import { KeyboardAvoidMode } from '@ohos.arkui.UIContext';
+// 日期数据持久化数据模块
+import { DataManager, DateModel } from '@ohos/customcalendarpickerdialog';
 
 // Napi封装ETS代码
 import {
@@ -134,6 +136,9 @@ export default class EntryAbility extends UIAbility {
     AppStorage.setOrCreate('currentColorMode', this.context.config.colorMode);
     // 保存windowStage供fitfordarkmode的har包中FitForDarkPage.ets中setStatusBar方法修改状态栏颜色。
     AppStorage.setOrCreate('windowStage', windowStage);
+
+    // 获取Preferences实例
+    this.getPreferencesData();
   }
 
   onWindowStageDestroy(): void {
@@ -160,5 +165,13 @@ export default class EntryAbility extends UIAbility {
     // 获取最新的变更颜色并更新到AppStorage
     AppStorage.setOrCreate('currentColorMode', config.colorMode);
     logger.info(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
+  }
+
+  // 获取Preferences实例
+  getPreferencesData() {
+    DataManager.getDate(this.context, (dateModel: DateModel) => {
+      // TODO: 知识点：应用级变量的状态管理
+      AppStorage.setOrCreate<DateModel>('selectedDate', dateModel);
+    })
   }
 }

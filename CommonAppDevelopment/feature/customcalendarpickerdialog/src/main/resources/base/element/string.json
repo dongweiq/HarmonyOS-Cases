@@ -17,6 +17,10 @@
       "value": "出发日期"
     },
     {
+      "name": "button_text",
+      "value": "仅做UI展示"
+    },
+    {
       "name": "week_width",
       "value": "14.3%"
     },
