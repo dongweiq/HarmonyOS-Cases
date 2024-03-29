@@ -35,10 +35,7 @@ export struct IndicatorBelowSwiper {
   build() {
     Column() {
       Swiper(this.swiperController) {
-        /**
-         * 数据量比较少的情况下推荐使用ForEach，遇到数据量比较多的场景，如列表场景、瀑布流场景等，推荐使用
-         * LazyForEach(https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/quick-start/arkts-rendering-control-lazyforeach.md/)
-         */
+        // TODO 高性能知识点：此处为了演示场景，列表数量只有3个，使用ForEach，列表数量较多的场景，推荐使用LazyForEach+组件复用+缓存列表项实现
         ForEach(this.swiperData, (item: Resource) => {
           Column() {
             // TODO 知识点：将swiper区域分割成内容区和空白区
