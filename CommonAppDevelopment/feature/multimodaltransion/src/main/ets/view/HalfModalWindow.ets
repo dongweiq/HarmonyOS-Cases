@@ -23,8 +23,8 @@ const SPACE_THIRTY = 30;
  * 场景描述：
  * 登录方式有两种，验证码登录和账户，需要在一个全屏模态窗口CaptureLogin中切换，使用if进行条件渲染
  * 1、通过配置NavDestinationMode类型为DIALOG，实现半模态的背景为透明
- * 2、通过bindSheet属性为主页无样式的Text绑定半模态页面
- * 3、在半模态页面中的验证码登录按钮绑定全屏模态转场，并将对应的全屏模态转场特效置空
+ * 2、通过bindSheet属性为主页无样式的Text绑定半模态页面，再通过bindContentCover属性为主页无样式的Text绑定全屏模态页面
+ * 3、在半模态页面中的验证码登录按钮点击时打开全屏模态转场，并将对应的组件入场动效置为空，此时进场只保留全屏模态入场动效
  * 4、通过点击第二步中的按钮跳转到全屏模态组件(CaptureLogin)，并通过通过isDefaultLogin控制两种登录组件的条件渲染：true(手机验证码登录),false(二维码登录)
  * 控制两种登录方式的条件渲染，同时通过TransitionEffect.move()实现组件间转场。
  * 子组件中被@Link装饰的变量与其父组件中@State装饰的对应数据源建立双向数据绑定，详见：
@@ -33,6 +33,8 @@ const SPACE_THIRTY = 30;
  * https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-sheet-transition-0000001820880845
  * NavDestinationMode配置：
  * https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-basic-components-navdestination-0000001774280918#ZH-CN_TOPIC_0000001774280918__navdestinationmode
+ * 组件内转场transition:
+ * https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-transition-animation-component-0000001774121354
  */
 @Component
 export struct HalfModalWindow {
@@ -49,16 +51,20 @@ export struct HalfModalWindow {
   // 发送验证码按钮的透明度
   @State op: number = 0.5;
   @Consume('pageStack') pageStack: NavPathStack;
+  // 用于标识转场类型，从半模态跳转至手机验证码组件时为false，从账号密码组件跳转至手机验证码组件时为true
+  @State isShowTransition: boolean = false;
 
   aboutToAppear(): void {
-    this.isPresent = true; // 当isPresent为true时显示模态页面，反之不显示
+    this.isPresent = true; // 当isPresent为true时显示半模态页面，反之不显示
   }
 
   @Builder
   defaultLogin() {
     Column() {
       // 在登录页中控制，半模态、全模态和半模态的确认的checkBox
-      CaptchaLogin({ isPresent: $isPresent, isPresentInLoginView: $isPresentInLoginView })
+      CaptchaLogin({
+        isPresent: $isPresent, isPresentInLoginView: $isPresentInLoginView, isShowTransition: $isShowTransition
+      })
     }
   }
 
@@ -99,7 +105,6 @@ export struct HalfModalWindow {
         .margin({ left: 12, right: 12, bottom: 10 })
 
       Button($r('app.string.captcha_login_text'))
-        .bindContentCover($$this.isPresentInLoginView, this.defaultLogin())
         .fontColor(Color.Black)
         .borderRadius($r('app.integer.border_radius'))
         .type(ButtonType.Normal)
@@ -113,6 +118,7 @@ export struct HalfModalWindow {
             // 半模态页面中调出全模态登录页
             this.isPresentInLoginView = true;
             this.isConfirmed = false;
+            this.isShowTransition = false;
           } else {
             // 调用Toast显示请先阅读并同意协议提示
             promptAction.showToast({ message: $r('app.string.please_read_and_agree') });
@@ -126,7 +132,7 @@ export struct HalfModalWindow {
         Image($r("app.media.app_logo1"))
           .width($r('app.integer.other_ways_icon_height'))
           .borderRadius($r('app.integer.other_ways_border_radius'))
-          .onClick(()=>{
+          .onClick(() => {
             // 调用Toast显示提示:此样式仅为案例展示
             promptAction.showToast({ message: $r('app.string.only_show_ui') });
           })
@@ -134,7 +140,7 @@ export struct HalfModalWindow {
         Image($r("app.media.app_logo2"))
           .width($r('app.integer.other_ways_icon_height'))
           .borderRadius($r('app.integer.other_ways_border_radius'))
-          .onClick(()=>{
+          .onClick(() => {
             // 调用Toast显示提示:此样式仅为案例展示
             promptAction.showToast({ message: $r('app.string.only_show_ui') });
           })
@@ -142,7 +148,7 @@ export struct HalfModalWindow {
         Image($r("app.media.app_logo3"))
           .width($r('app.integer.other_ways_icon_height'))
           .borderRadius($r('app.integer.other_ways_border_radius'))
-          .onClick(()=>{
+          .onClick(() => {
             // 调用Toast显示提示:此样式仅为案例展示
             promptAction.showToast({ message: $r('app.string.only_show_ui') });
           })
@@ -160,7 +166,7 @@ export struct HalfModalWindow {
             .fontColor($r('app.color.grey_9'))
           Span($r('app.string.server_proxy_rule_detail'))
             .fontColor($r('app.color.note_color'))
-            .onClick(()=>{
+            .onClick(() => {
               // 调用Toast显示提示:此样式仅为案例展示
               promptAction.showToast({ message: $r('app.string.only_show_ui') });
             })
@@ -176,11 +182,12 @@ export struct HalfModalWindow {
       // TODO：需求：增加其他登录方式，如全模态窗口
       Text()
         /**
-         * TODO: 知识点: 通过bindSheet属性为组件绑定半模态页面,由于半模态必须绑定组件，
-         * 此处绑定无样式的Text组件作为开屏半模态展示
-         * isPresent：是否显示全屏模态页面
+         * TODO: 知识点: 通过bindSheet属性为组件绑定半模态页面，由于半模态必须绑定组件，
+         * 此处绑定无样式的Text组件作为开屏半模态展示。
+         * isPresent：是否显示半模态页面
          */
-        .bindSheet($$this.isPresent, this.halfModalLogin(), { // Text绑定半模态转场
+        .bindSheet($$this.isPresent, this.halfModalLogin(), {
+          // Text绑定半模态转场
           height: this.sheetHeight, // 半模态高度
           dragBar: this.showDragBar, // 是否显示控制条
           backgroundColor: $r('app.color.btn_bgc'),
@@ -190,6 +197,14 @@ export struct HalfModalWindow {
             this.pageStack.pop();
           })
         })
+
+      Text()
+        /**
+         * TODO: 知识点: 通过bindContentCover属性为组件绑定全屏模态页面，由于全屏模态必须绑定组件，
+         * 此处绑定无样式的Text组件作为手机验证码组件和账号密码组件的全屏模态展示。
+         * isPresentInLoginView：是否显示全屏模态页面
+         */
+        .bindContentCover($$this.isPresentInLoginView, this.defaultLogin())
     }
     .justifyContent(FlexAlign.Center)
     .size({ width: $r('app.string.size_full'), height: $r('app.string.size_full') })
