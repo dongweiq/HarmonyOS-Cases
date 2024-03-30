@@ -6,17 +6,17 @@
 
 我们把应用性能分析的方法划分为了**性能分析四板斧**，下面将介绍如何使用性能分析四板斧，解决应用开发过程中的性能问题。
 
-* **第一板斧：合理使用并行化、预加载和缓存**，我们需要合理的使用并行化、预加载和缓存等方法，例如使用多线程并发、异步并发、Web预加载等能力，提升系统资源利用率，减少主线程负载，加快应用的启动速度和响应速度。
+* **第一板斧：合理使用并行化、预加载和缓存**，我们需要合理地使用并行化、预加载和缓存等方法，例如使用多线程并发、异步并发、Web预加载等能力，提升系统资源利用率，减少主线程负载，加快应用的启动速度和响应速度。
 
 * **第二板斧：尽量减少布局的嵌套层数**，在进行页面布局开发时，应该去除冗余的布局嵌套，使用相对布局、绝对定位、自定义布局、Grid、GridRow等扁平化布局，减少布局的嵌套层数，避免系统绘制更多的布局组件，达到优化性能、减少内存占用的目的。
 
-* **第三板斧：合理管理状态变量**，应该合理的使用状态变量，精准控制组件的更新范围，控制状态变量关联组件数量，控制对象级状态变量的成员变量关联组件数，减少系统的组件渲染负载，提升应用流畅度。
+* **第三板斧：合理管理状态变量**，应该合理地使用状态变量，精准控制组件的更新范围，控制状态变量关联组件数量，控制对象级状态变量的成员变量关联组件数，减少系统的组件渲染负载，提升应用流畅度。
 
 * **第四板斧：合理使用系统接口，避免冗余操作**，应该合理使用系统的高频回调接口，删除不必要的Trace和日志打印，避免注册系统冗余回调，减少系统开销。
 
 ## 第一板斧：合理使用并行化、预加载和缓存
 
-我们需要合理的使用并行化、预加载和缓存等方法，提升系统资源利用率，减少主线程负载，加快应用的启动速度和响应速度。
+我们需要合理地使用并行化、预加载和缓存等方法，提升系统资源利用率，减少主线程负载，加快应用的启动速度和响应速度。
 
 ### 使用并行化提升启动速度
 
@@ -116,7 +116,21 @@ preload() {
 推荐在使用List、Swiper、Grid、WaterFlow等组件时，配合使用cachedCount属性实现预加载（详细介绍可参考文章：[WaterFlow高性能开发指导](waterflow_optimization.md)、[Swiper高性能开发指导](swiper_optimization.md)、[Grid高性能开发指导](grid_optimization.md)、[列表场景性能提升实践](list-perf-improvment.md)），示例代码如下所示：
 
 ```typescript
-// TODO
+  private source: MyDataSource = new MyDataSource();
+
+  build() {
+    List() {
+      LazyForEach(this.source, item => {
+        ListItem() {
+          Text("Hello" + item)
+            .fontSize(50)
+            .onAppear(() => {
+              console.log("appear:" + item)
+            })
+        }
+      })
+    }.cachedCount(3) // 扩大数值appear日志范围会变大
+  }
 ```
 
 #### 使用条件渲染实现预加载
@@ -171,7 +185,7 @@ requestByTaskPool(): void {
 
 ### 使用缓存提升启动速度和滑动帧率
 
-在列表场景钟，我们推荐使用LazyForEach+组件复用+缓存列表项的能力，替代Scroll/ForEach实现滚动列表场景的实现，加快页面启动速度，提升滑动帧率；在一些属性动画的场景下，我们可以使用renderGroup缓存提升属性动画性能；也可以使用显隐控制对页面进行缓存，加快页面的显示响应速度。
+在列表场景中，我们推荐使用LazyForEach+组件复用+缓存列表项的能力，替代Scroll/ForEach实现滚动列表场景的实现，加快页面启动速度，提升滑动帧率；在一些属性动画的场景下，我们可以使用renderGroup缓存提升属性动画性能；也可以使用显隐控制对页面进行缓存，加快页面的显示响应速度。
 
 #### 组件复用
 
@@ -342,7 +356,7 @@ build() {
 反例代码如下：
 ```typescript
 @Component
-struct componentA {
+struct ComponentA {
   build() {
     Column() {
       ComponentB();
@@ -351,7 +365,7 @@ struct componentA {
 }
 
 @Component
-struct componentB {
+struct ComponentB {
   build() {
     Column() {
       Text('');
@@ -362,7 +376,7 @@ struct componentB {
 正例代码如下：
 ```typescript
 @Component
-struct componentA {
+struct ComponentA {
   build() {
     Column() {
       ComponentB();
@@ -371,7 +385,7 @@ struct componentA {
 }
 
 @Component
-struct componentB {
+struct ComponentB {
   build() {
     Text('');
   }
@@ -533,7 +547,7 @@ struct AspectRatioExample11 {
 
 ## 第三板斧：合理管理状态变量
 
-应该合理的使用状态变量，精准控制组件的更新范围(详细介绍可参考文章: [精准控制组件的更新范围](precisely-control-render-scope.md))，控制状态变量关联组件数量上限，控制对象级状态变量的成员变量关联组件数，减少系统的组件渲染负载，提升应用流畅度。
+应该合理地使用状态变量，精准控制组件的更新范围(详细介绍可参考文章: [精准控制组件的更新范围](precisely-control-render-scope.md))，控制状态变量关联组件数量上限，控制对象级状态变量的成员变量关联组件数，减少系统的组件渲染负载，提升应用流畅度。
 
 ### 精准控制组件的更新范围
 
@@ -1251,7 +1265,7 @@ build() {
 学会合理使用工具进行问题分析和定位，提升问题解决效率。
 
 ### 使用[SmartPerf-Host](performance-optimization-using-smartperf-host.md)分析应用性能
-smartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗调优工具，可采集CPU调度、频点、进程线程时间片、堆内存、帧率等数据，采集的数据通过泳道图清晰地呈现给开发者，同时通过GUI以可视化的方式进行分析。工具当前为开发者提供了五个分析模板，分别是帧率分析、CPU/线程调度分析、应用启动分析、TaskPool分析、动效分析。
+SmartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗调优工具，可采集CPU调度、频点、进程线程时间片、堆内存、帧率等数据，采集的数据通过泳道图清晰地呈现给开发者，同时通过GUI以可视化的方式进行分析。工具当前为开发者提供了五个分析模板，分别是帧率分析、CPU/线程调度分析、应用启动分析、TaskPool分析、动效分析。
 
 ### 使用[耗时分析器Time Profiler](profiler-time.md)分析应用耗时
 
