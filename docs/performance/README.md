@@ -105,7 +105,7 @@ preload() {
   // Web组件引擎初始化
   webview.WebviewController.initializeWebEngine();
   // 启动预连接，连接地址为即将打开的网址
-  webview.WebviewController.prepareForPageLoad('https://gitee.com/  harmonyos-cases/cases', true, 2);
+  webview.WebviewController.prepareForPageLoad('https://gitee.com/harmonyos-cases/cases', true, 2);
 }
 ...
 ```
