@@ -13,7 +13,7 @@
       "value": "本机号码一键登录"
     },
     {
-      "name": "read_and_agree",
+      "name": "read_and_check",
       "value": "请阅读并勾选协议"
     },
     {
@@ -39,6 +39,10 @@
     {
       "name": "phone_number",
       "value": "188******74"
+    },
+    {
+      "name": "reason",
+      "value": "get vibrate permission"
     }
   ]
 }
