@@ -59,23 +59,6 @@ export struct FunctionalScenes {
   }
 
   /**
-   * 判断当前可视区域左右两边的tabcontent是否加载
-   * @param index 索引值
-   * @returns
-   */
-  getWaterFlowDisplayStatus(index: number): boolean {
-    if (index === this.tabsIndex - 1) {
-      return true
-    } else if (index === this.tabsIndex) {
-      return true
-    } else if (index === this.tabsIndex + 1) {
-      return true
-    } else {
-      return false
-    }
-  }
-
-  /**
    * 主页通过瀑布流和LazyForeach加载
    * WaterFlow+LazyForEach详细用法可参考性能范例：
    * https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/waterflow_optimization.md/
@@ -88,10 +71,8 @@ export struct FunctionalScenes {
             WaterFlow() {
               LazyForEach(this.dataSource, (waterFlowItem: SceneModuleInfo) => {
                 FlowItem() {
-                  if (this.getWaterFlowDisplayStatus(tabItem.id)) {
-                    if (tabItem.navData === '全部' || tabItem.navData === waterFlowItem.category) {
-                      methodPoints({ listData: waterFlowItem })
-                    }
+                  if (tabItem.navData === '全部' || tabItem.navData === waterFlowItem.category) {
+                    methodPoints({ listData: waterFlowItem })
                   }
                 }
               }, (waterFlowItem: SceneModuleInfo) => JSON.stringify(waterFlowItem))
