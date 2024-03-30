@@ -132,7 +132,7 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
     }
     ```
 
-5. 在子模块中添加路由管理的依赖，详细代码可参考[oh-package.json](../eventpropagation/oh-package.json5)。
+5. 在子模块中添加路由管理的依赖，详细代码可参考[oh-package.json](../../feature/eventpropagation/oh-package.json5)。
 
     ```
     ...
@@ -142,8 +142,8 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
     }
     ```
 
-6. 在子模块中添加动态加载页面组件的接口harInit，其中pageName和RouterInfo中配置的pageName相同，import()接口中传入的参数，是页面的相对路径。详细代码可参考[Index.ets](../eventpropagation/Index.ets)。
-   如果模块中有多个页面需要跳转，则需要配置多个pageName和页面路径，并且pageName和页面路径需要一一对应，否则无法跳转到预期中的页面，详细代码可参考[barchart模块中的Index.ets](../barchart/Index.ets)。
+6. 在子模块中添加动态加载页面组件的接口harInit，其中pageName和RouterInfo中配置的pageName相同，import()接口中传入的参数，是页面的相对路径。详细代码可参考[Index.ets](../../feature/eventpropagation/Index.ets)。
+   如果模块中有多个页面需要跳转，则需要配置多个pageName和页面路径，并且pageName和页面路径需要一一对应，否则无法跳转到预期中的页面，详细代码可参考[barchart模块中的Index.ets](../../feature/barchart/Index.ets)。
 
     ```ts
     export function harInit(pageName: string) {
@@ -155,7 +155,7 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
     }
     ```
    
-7. 在子模块中添加动态创建组件的方法，并注册到路由管理中，详细代码可参考[EventPropagation.ets](../eventpropagation/src/main/ets/view/EventPropagation.ets)。
+7. 在子模块中添加动态创建组件的方法，并注册到路由管理中，详细代码可参考[EventPropagation.ets](../../feature/eventpropagation/src/main/ets/view/EventPropagation.ets)。
 
     ```ts
     ...
