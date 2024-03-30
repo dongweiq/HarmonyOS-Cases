@@ -104,7 +104,7 @@ Navigation的路由切换的方式有两种，本次示例主要介绍NavPathSta
     }
     ```
 
-3. 在routermodule模块中添加需要跳转的moduleName（模块名）和pageName（页面名），RouterInfo中配置的moduleName必须和[oh-package.json](../../product/entry/oh-package.json5)中配置的名称相同，RouterInfo中添加的pageName是子模块中需要加载的页面，详细代码请参考[RouterInfo.ets](./src/main/ets/constants/RouterInfo.ets)。
+3. 在routermodule模块中添加需要跳转的moduleName（模块名）和pageName（页面名），RouterInfo中配置的moduleName必须和[oh-package.json](../../product/entry/oh-package.json5)中配置的名称相同，RouterInfo中添加的pageName是子模块中需要加载的页面，详细代码请参考[RouterInfo.ets](../../feature/routermodule/src/main/ets/constants/RouterInfo.ets)。
 
     ```ts
     export class RouterInfo {
