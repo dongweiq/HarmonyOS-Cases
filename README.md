@@ -106,7 +106,15 @@
    |   |---webpdfviewer                   // Web组件预览PDF文件实现案例
    |   |---listslidetohistory             // 长列表滑动到指定列表项动效实现案例
    |   |---imagetheft                     // 正确配置ImageKnife请求头实现防盗链功能
-   |   |---componentinstancesharedinpages // 正确配置ImageKnife请求头实现防盗链功能
+   |   |---componentinstancesharedinpages // 页面间共享组件实例的案例
+   |   |---fontdynamicregistration        // 动态注册字体案例
+   |   |---effectKit                      // 使用colorPicker实现背景跟随主题颜色转换
+   |   |---cardswiperanimation            // 自定义Swiper卡片预览效果实现
+   |   |---customscan                     // 折叠屏扫描二维码方案
+   |   |---imagedepthcopy                 // PixelMap深拷贝案例
+   |   |---pageflip                       // 阅读翻页方式案例
+   |   |---videocache                     // 边缓存边播放案例
+   |   |---iconmaincolor                  // 根据icon自适应背景颜色
    |---libs
    |---product 
    |   |---entry                          // 产品定制层-应用入口
@@ -499,6 +507,55 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 本示例提供组件实例在页面间共享的解决方案：通过Stack容器，下层放地图组件，上层放Navigation组件来管理页面，页面可以共享下层的地图组件，页面中需要显示地图的区域设置为透明，并参考触摸交互控制，设置事件透传及响应区域。[详细说明文档](./CommonAppDevelopment/feature/componentinstancesharedinpages/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/componentinstancesharedinpages.gif" width="200">
+
+#### 自定义Swiper卡片预览效果实现
+
+本方案做的是采用Swiper组件实现容器视图居中完全展示，两边等长露出，并且跟手滑动效果。[详细说明文档](./CommonAppDevelopment/feature/cardswiperanimation/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/card_swiper_animation.gif" width="200">
+
+#### 使用colorPicker实现背景跟随主题颜色转换
+
+本示例介绍使用image库以及effectKit库中的colorPicker对目标图片进行取色，将获取的颜色作为背景渐变色，通过swiper组件对图片进行轮播。[详细说明文档](./CommonAppDevelopment/feature/effectKit/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/color_picker.gif" width="200">
+
+#### 动态注册字体案例
+
+本示例介绍利用上传下载模块和注册自定义字体模块实现从网络上下载字体并注册应用字体的功能，该场景多用于由特殊字体要求的场景。[详细说明文档](./CommonAppDevelopment/feature/fontdynamicregistration/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/font_registration.gif" width="200">
+
+#### 折叠屏扫描二维码方案
+
+本示例介绍使用自定义界面扫码能力在折叠屏设备中实现折叠态切换适配。自定义界面扫码使用系统能力customScan，其提供相机流的初始化、启动扫码、识别、停止扫码、释放相机流资源等能力。折叠屏折叠状态通过监听display的foldStatusChange事件实现。[详细说明文档](./CommonAppDevelopment/feature/customscan/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/custom_scan.gif" width="200">
+
+#### PixelMap深拷贝案例
+
+在图片开发过程中经常会涉及到PixelMap的深拷贝，本例通过使用PixelMap的readPixelsToBuffer方法来实现深拷贝。在创建源PixelMap的时候，需要将解码参数设置为BGRA_8888，而在深拷贝创建目标PixelMap的时候需要将解码参数设置为RGBA_8888。[详细说明文档](./CommonAppDevelopment/feature/imagedepthcopy/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_depthcopy.gif" width="200">
+
+#### 阅读翻页方式案例
+
+本示例展示手机阅读时左右翻页，上下翻页，覆盖翻页的功能。[详细说明文档](./CommonAppDevelopment/feature/pageflip/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/page_flip.gif" width="200">
+
+#### 边缓存边播放案例
+
+OhosVideoCache是一个支持边播放边缓存的库，只需要将音视频的url传递给OhosVideoCache处理之后再设置给播放器，OhosVideoCache就可以一边下载音视频数据并保存在本地，一边读取本地缓存返回给播放器，使用者无需进行其他操作。[详细说明文档](./CommonAppDevelopment/feature/videocache/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/video_cache.gif" width="200">
+
+#### 边缓存边播放案例
+
+本示例将介绍如何根据图片设置自适应的背景色。[详细说明文档](./CommonAppDevelopment/feature/iconmaincolor/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/icon_main_color.png" width="200">
+
 
 ### 公共能力层
 

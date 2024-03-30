@@ -347,6 +347,26 @@
     {
       "name": "fontdynamicregistration",
       "srcPath": "./feature/fontdynamicregistration"
+    },
+    {
+      "name": "customscan",
+      "srcPath": "./feature/customscan"
+    },
+    {
+      "name": "imagedepthcopy",
+      "srcPath": "./feature/imagedepthcopy"
+    },
+    {
+      "name": "pageflip",
+      "srcPath": "./feature/pageflip"
+    },
+    {
+      "name": "videocache",
+      "srcPath": "./feature/videocache"
+    },
+    {
+      "name": "iconmaincolor",
+      "srcPath": "./feature/iconmaincolor"
     }
   ]
 }

@@ -94,4 +94,9 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r("app.media.card_swiper_animation"), '自定义Swiper卡片预览效果实现', RouterInfo.CARD_SWIPER, '动效', 3),
   new SceneModuleInfo($r("app.media.ets_wrapper"), 'Napi封装ETS', RouterInfo.ETS_WRAPPER, 'Native', 3),
   new SceneModuleInfo($r("app.media.font_registration"), '动态注册字体案例', RouterInfo.FONT_DYNAMIC_REGISTRATION, '其他', 1),
+  new SceneModuleInfo($r("app.media.custom_scan"), '折叠屏扫描二维码方案', RouterInfo.CUSTOM_SCAN, '其他'),
+  new SceneModuleInfo($r("app.media.image_depthcopy"), 'PixelMap深拷贝案例', RouterInfo.IMAGE_DEPTH_COPY, '其他'),
+  new SceneModuleInfo($r("app.media.page_flip"), '阅读翻页方式案例', RouterInfo.PAGE_FLIP, '动效', 1),
+  new SceneModuleInfo($r("app.media.video_cache"), '边缓存边播放案例', RouterInfo.VIDEO_CACHE, '其他', 3),
+  new SceneModuleInfo($r("app.media.icon_main_color"), '根据icon自适应背景颜色', RouterInfo.ICON_MAIN_COLOR, '其他', 3),
 ]

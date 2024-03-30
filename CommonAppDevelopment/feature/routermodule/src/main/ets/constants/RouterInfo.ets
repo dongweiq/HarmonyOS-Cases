@@ -99,4 +99,9 @@ export class RouterInfo {
   static readonly IMAGE_THEFT: RouterInfo = new RouterInfo('@ohos/imagetheft', 'ImageTheft');
   static readonly CARD_SWIPER: RouterInfo = new RouterInfo('@ohos/cardswiperanimation', 'CardSwiperAnimation');
   static readonly FONT_DYNAMIC_REGISTRATION: RouterInfo = new RouterInfo('@ohos/fontdynamicregistration', 'FontDynamicRegistration');
+  static readonly CUSTOM_SCAN: RouterInfo = new RouterInfo('@ohos/customscan', 'CustomScanPage');
+  static readonly IMAGE_DEPTH_COPY: RouterInfo = new RouterInfo('@ohos/imagedepthcopy', 'ImageDepthCopy');
+  static readonly PAGE_FLIP: RouterInfo = new RouterInfo('@ohos/pageflip', 'PageFlip');
+  static readonly VIDEO_CACHE: RouterInfo = new RouterInfo('@ohos/videocache', 'VideoCacheView');
+  static readonly ICON_MAIN_COLOR: RouterInfo = new RouterInfo('@ohos/iconmaincolor', 'MainPage');
 }
