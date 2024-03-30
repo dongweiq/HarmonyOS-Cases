@@ -17,11 +17,11 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 import { request } from '@kit.BasicServicesKit';
 import { font } from '@kit.ArkUI';
 import fs from '@ohos.file.fs';
-import promptAction from '@ohos.promptAction';
-import { BusinessError } from '@ohos.base';
 import { logger } from '@ohos/common';
 
 // 常量定义
+
+const TAG: string = 'FontDynamicRegistration'
 
 // 字体下载链接
 const URL: string = "https://gitee.com/coufran/font-online/raw/master/fonts/SourceHanSerif/SourceHanSerif-ExtraLight.otf";
@@ -31,22 +31,21 @@ const FILE_NAME: string = '/font.TTF';
 const CACHE_DIR: string = getContext().cacheDir;
 // 下载文件头
 const DOWNLOAD_HEADER: string = 'file://';
-const DOWNLOAD_BUTTON_TEXT: string = '下载中...';
-const TOAST_DURATION: number = 2000;
+const PROGRESS_CONTENT: string = '思源宋体';
+const PROGRESS_CONTENT_START_DOWNLOADING: string = '准备中...';
 const DIVIDER_STROKEWIDTH: number = 1;
 
 @Preview
 @Component
 export struct FontDynamicRegistration {
   @State targetFont: ResourceStr = $r('app.string.font_sans');
-  @State targetFont1: string = this.targetFont.toString();
-  //控制进度条显隐
-  @State progressFlag: boolean = false;
   //进度条进度
   @State downloadTotal: number = 0;
   @State downloadNow: number = 0;
-  @State downloadButtonText: ResourceStr = $r('app.string.font_SourceHanSerif');
-  @State downloadButtonEnabled: boolean = true;
+  @State progressContent: string | undefined = PROGRESS_CONTENT;
+  @State progressColor: ResourceColor = $r('app.color.progress_normal');
+  @State progressFontColor: ResourceColor = $r('app.color.progress_font_normal');
+  @State progressBgColor: ResourceColor = $r('app.color.progress_bg_normal');
 
   build() {
     Column() {
@@ -79,14 +78,6 @@ export struct FontDynamicRegistration {
         .alignItems(HorizontalAlign.Start)
 
         Column() {
-          Stack() {
-            if (this.progressFlag) {
-              Progress({ value: this.downloadNow, total: this.downloadTotal })
-                .color($r('app.color.global_bg'))
-                .margin($r('app.integer.progress_margin'))
-            }
-          }
-
           Text() {
             Span($r('app.string.target_font'))
             Span(this.targetFont)
@@ -98,15 +89,23 @@ export struct FontDynamicRegistration {
           Row() {
             Button($r('app.string.font_sans'))
               .width($r('app.integer.bt_width'))
+              .height($r('app.integer.bt_height'))
               .backgroundColor($r('app.color.global_bg'))
               .margin({ right: $r('app.integer.button_spacing') })
               .onClick(() => {
                 this.targetFont = $r('app.string.font_sans');
               })
-            Button(this.downloadButtonText)
+            Progress({ value: this.downloadNow, total: this.downloadTotal, type: ProgressType.Capsule })
               .width($r('app.integer.bt_width'))
-              .backgroundColor($r('app.color.global_bg'))
-              .enabled(this.downloadButtonEnabled)
+              .height($r('app.integer.bt_height'))
+              .style({
+                borderColor: $r('app.color.progress_bg_normal'),
+                content: this.progressContent,
+                showDefaultPercentage: true,
+                fontColor: this.progressFontColor
+              })
+              .color(this.progressColor)
+              .backgroundColor(this.progressBgColor)
               .onClick(() => {
                 this.downloadAndRegister();
               })
@@ -127,7 +126,7 @@ export struct FontDynamicRegistration {
     // 检查文件是否存在
     const filePath = CACHE_DIR + FILE_NAME;
     let res = fs.accessSync(filePath);
-    logger.info('file exist:' + res);
+    logger.info(TAG, `file exist:${res}`);
     if (res) {
       // TODO ：知识点：注册自定义字体
       font.registerFont({
@@ -136,46 +135,37 @@ export struct FontDynamicRegistration {
       })
       // 字体变更为思源宋体
       this.targetFont = $r('app.string.font_SourceHanSerif');
-      ;
-      logger.info('registerFont successful');
+      logger.info(TAG, 'registerFont successful');
       return;
     }
-    this.downloadButtonText = DOWNLOAD_BUTTON_TEXT;
-    this.downloadButtonEnabled = false;
     try {
+      this.progressContent = PROGRESS_CONTENT_START_DOWNLOADING;
+      this.progressColor = $r('app.color.progress_downloading');
+      this.progressFontColor = $r('app.color.progress_font_downloading');
+      this.progressBgColor = $r('app.color.progress_bg_downloading');
       // TODO ：知识点：下载网络文件
       request.downloadFile(getContext(), {
         url: URL,
         filePath: filePath
       }, (err, downloadTask) => {
         if (err) {
-          logger.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+          logger.error(TAG, `Failed to request the download. Cause: ${JSON.stringify(err)}`);
           return;
         }
         // 监听下载进度，赋值到状态变量
         downloadTask.on('progress', (receivedSize, totalSize) => {
-          this.progressFlag = true;
+          this.progressContent = undefined;
           this.downloadNow = receivedSize;
           this.downloadTotal = totalSize;
-          logger.info("Download receivedSize:" + receivedSize + " totalSize:" + totalSize);
+          logger.info(TAG, `Download receivedSize:${receivedSize},totalSize: ${totalSize}`);
         });
 
         // 监听下载完成事件
         downloadTask.on('complete', () => {
-          this.progressFlag = false;
-          this.downloadButtonText = $r('app.string.font_SourceHanSerif');
-          ;
-          this.downloadButtonEnabled = true;
-          try {
-            promptAction.showToast({
-              message: $r('app.string.toast_message'),
-              duration: TOAST_DURATION
-            });
-          } catch (error) {
-            const message = (error as BusinessError).message;
-            const code = (error as BusinessError).code;
-            logger.error(`showToast args error code is ${code}, message is ${message}`);
-          }
+          this.progressColor = $r('app.color.progress_normal');
+          this.progressFontColor = $r('app.color.progress_font_normal');
+          this.progressBgColor = $r('app.color.progress_bg_normal');
+          this.progressContent = PROGRESS_CONTENT;
           downloadTask.off('progress');
           downloadTask.off('fail');
           font.registerFont({
@@ -183,12 +173,11 @@ export struct FontDynamicRegistration {
             familySrc: DOWNLOAD_HEADER + filePath
           })
           this.targetFont = $r('app.string.font_SourceHanSerif');
-          ;
         })
 
         // 监听下载失败事件
         downloadTask.on('fail', (err: number) => {
-          logger.error("DownloadTask failed");
+          logger.error(TAG, "DownloadTask failed");
           let res = fs.accessSync(filePath);
           if (res) {
             fs.unlink(filePath);
@@ -197,7 +186,7 @@ export struct FontDynamicRegistration {
         })
       });
     } catch (err) {
-      logger.error("Download failed with error message: " + err.message + ", error code: " + err.code);
+      logger.error(TAG, `Download failed with error message:  + ${err.message} + , error code:  + ${err.code}`);
     }
   }
 }
