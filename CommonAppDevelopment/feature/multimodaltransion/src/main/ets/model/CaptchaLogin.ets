@@ -37,15 +37,30 @@ export struct CaptchaLogin {
   @State op: number = 0.5;
   // 判断是否同意协议
   isConfirmed: boolean = false;
+  // 用于标识转场类型，从半模态跳转至手机验证码组件时为false，从账号密码组件跳转至手机验证码组件时为true
+  @Link isShowTransition: boolean;
   @Consume('pageStack') pageStack: NavPathStack;
-  // 1、 定义验证码登录页的转场效果，从左边推出
+  // 1.1、定义验证码登录页的转场效果1：用于定义半模态转场到此组件的进场动效，与组件间后续切换的转场动效，进场时无动效，转场时从左边推出，
   private effect1: TransitionEffect =
-    TransitionEffect
-      .move(TransitionEdge.START).animation({ duration: EFFECT_DURATION, curve: Curve.Linear })
+    TransitionEffect.asymmetric(
+      TransitionEffect.IDENTITY,
+      TransitionEffect.move(TransitionEdge.START).animation({ duration: EFFECT_DURATION, curve: Curve.Linear }))
   // 2、定义账号登录页的转场效果，从右边推出
   private effect2: TransitionEffect =
     TransitionEffect
       .move(TransitionEdge.END).animation({ duration: EFFECT_DURATION, curve: Curve.Linear })
+  // 1.2、定义验证码登录页的转场效果2：用于后面组件切换到此组件时转场的动效，从左边推出。
+  private effect3: TransitionEffect =
+    TransitionEffect
+      .move(TransitionEdge.START).animation({ duration: EFFECT_DURATION, curve: Curve.Linear })
+
+  aboutToAppear(): void {
+    this.isPresent = false;
+  }
+
+  aboutToDisappear(): void {
+    this.pageStack.pop();
+  }
 
   build() {
     /* 性能知识点：由于需要针对反复切换条件渲染的控制分支，但切换项仅涉及页面中少部分组件的场景，因此推荐容器限制条件渲染组件的刷新范围。
@@ -184,15 +199,18 @@ export struct CaptchaLogin {
               })
           }.margin({ bottom: 20 })
         }
-        // 验证码登录组件绑定转场
-        .transition(this.effect1)
+        /* 验证码登录组件绑定转场
+         * TODO: 知识点: 当isShowTransition为false，此时从半模态进入手机验证码组件：此时关闭组件进场动效，开启全模态进场动效，
+         * 当isShowTransition为true，此时从账号密码组件返回此组件：打开组件进场动效，此时左滑进入手机验证码组件。
+         */
+        .transition(this.isShowTransition ? this.effect3 : this.effect1)
         .width($r('app.string.size_full'))
         .height($r('app.string.size_full'))
         .backgroundColor(Color.White)
         .padding({ bottom: $r('app.integer.padding_mid'), top: $r('app.integer.padding_top') })
         .justifyContent(FlexAlign.Center)
       } else {
-        AccountLogin({ isDefaultLogin: $isDefaultLogin }) // 账户登录方式
+        AccountLogin({ isDefaultLogin: $isDefaultLogin, isShowTransition: $isShowTransition }) // 账户登录方式
           // 6、账户登录组件绑定转场
           .transition(this.effect2) // 此处涉及到组件的显示和消失，所以使用transition属性设置出现/消失转场
       }
@@ -202,7 +220,7 @@ export struct CaptchaLogin {
         .margin({ top: $r('app.integer.margin_close_top'), left: $r('app.integer.margin_close_left') })
         .onClick(() => {
           // 7、点击关闭按钮，回到主页面
-          this.pageStack.pop();
+          this.isPresentInLoginView = false;
         })
     }
     .size({ width: $r('app.string.size_full'), height: $r('app.string.size_full') })
