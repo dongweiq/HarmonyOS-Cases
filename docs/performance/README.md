@@ -26,13 +26,13 @@
 
 在日常开发过程中经常会碰到这样的问题：主页的开发场景中有多个Tab页展示不同内容，在首次加载完主页后，切换到第二个Tab页时需要加载和处理网络数据，导致第二个Tab页的页面显示较慢，有较大的完成时延。
 
-碰到此类问题，我们可以在生命周期aboutToApear中，使用多线程并发（详细介绍可参考文章：[高效并发编程](efficient-concurrent-programming.md)、[多线程能力场景化](multi_thread_capability.md)）的方法执行第二个Tab页的网络数据访问解析、数据加载等耗时操作，既可以提前完成数据加载，也不会影响主线程UI绘制和渲染。
+碰到此类问题，我们可以在生命周期aboutToAppear中，使用多线程并发（详细介绍可参考文章：[高效并发编程](efficient-concurrent-programming.md)、[多线程能力场景化](multi_thread_capability.md)）的方法执行第二个Tab页的网络数据访问解析、数据加载等耗时操作，既可以提前完成数据加载，也不会影响主线程UI绘制和渲染。
 
 使用TaskPool进行耗时操作的示例代码如下：
 ```typescript
 import taskpool from '@ohos.taskpool';
 
-aboutToApear() {
+aboutToAppear() {
   ...
   // 在生命周期中，使用TaskPool加载和解析网络数据
   this.requestByTaskPool()
@@ -66,12 +66,12 @@ requestByTaskPool(): void {
 
 #### 使用异步执行耗时操作
 
-问题：在aboutToApear生命周期中，运行了业务数据解析和处理等耗时操作，影响了上一页面点击跳转该页面的响应时延。
+问题：在aboutToAppear生命周期中，运行了业务数据解析和处理等耗时操作，影响了上一页面点击跳转该页面的响应时延。
 
 可以把耗时操作的执行从同步执行改为异步或者延后执行（详细介绍可参考文章：[提升应用冷启动速度](improve-application-cold-start-speed.md)），比如使用setTimeOut执行耗时操作，示例如下：
 
 ```typescript
-aboutToApear() {
+aboutToAppear() {
   ...
   // 在生命周期中，使用异步处理数据，延时大小视情况确定
   setTimeout(() => {
@@ -131,7 +131,7 @@ preload() {
 import skeletonComponent from "./skeletonComponent"
 import businessComponent from "./businessComponent"
 
-@State isInitialzed:boolean = false
+@State isInitialized: boolean = false
 
 aboutToAppear() {
   ...
@@ -141,7 +141,7 @@ aboutToAppear() {
 
 build() {
   // 当数据未就位时展示骨架图，提升用户体验，减少页面渲染时间
-  if(!this.isInitialzed) {
+  if(!this.isInitialized) {
     skeletonComponent()
   } else {
     businessComponent()
@@ -161,7 +161,7 @@ requestByTaskPool(): void {
 	// 执行网络加载函数
 	taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
     // 设置状态变量改变页面展示
-    this.isInitialzed = true;
+    this.isInitialized = true;
 	})
   } catch (err) {
 	 logger.error(TAG, "failed, " + (err as BusinessError).toString());
@@ -308,7 +308,7 @@ export struct IconItem {
 #### 使用显隐控制进行页面缓存
 
 控制元素显示与隐藏是一种常见的场景，使用Visibility.none、if条件判断等都能够实现该效果。其中if条件判断控制的是组件的创建、布局阶段，visibility属性控制的是元素在布局阶段是否参与布局渲染。使用时如果使用的方式不当，将引起性能上的问题。
-如果会频繁响应显示与隐藏的交互效果，建议使用切换Visibility.None和Visibility.Visiable来控制元素显示与隐藏(详细介绍可参考文章: [合理选择条件渲染和显隐控制](proper-choice-between-if-and-visibility.md))，在组件无需展示的时候进行缓存，提高性能。
+如果会频繁响应显示与隐藏的交互效果，建议使用切换Visibility.None和Visibility.Visible来控制元素显示与隐藏(详细介绍可参考文章: [合理选择条件渲染和显隐控制](proper-choice-between-if-and-visibility.md))，在组件无需展示的时候进行缓存，提高性能。
 
 示例代码如下：
 ```typescript
@@ -329,7 +329,7 @@ build() {
   }  
 }
 ```
-
+@Component
 ## 第二板斧：尽量减少布局的嵌套层数
 
 在进行页面布局开发时，应该去除冗余的布局嵌套，使用相对布局、绝对定位、自定义布局、Grid、GridRow等扁平化布局，减少布局的嵌套层数，避免系统绘制更多的布局组件，达到优化性能(详细介绍可参考文章: [优化布局性能](reduce-view-nesting-levels.md))、减少内存占用的目的。
@@ -341,7 +341,7 @@ build() {
 
 反例代码如下：
 ```typescript
-@Componnet
+@Component
 struct componentA {
   build() {
     Column() {
@@ -350,7 +350,7 @@ struct componentA {
   }
 }
 
-@Componnet
+@Component
 struct componentB {
   build() {
     Column() {
@@ -361,7 +361,7 @@ struct componentB {
 ```
 正例代码如下：
 ```typescript
-@Componnet
+@Component
 struct componentA {
   build() {
     Column() {
@@ -370,7 +370,7 @@ struct componentA {
   }
 }
 
-@Componnet
+@Component
 struct componentB {
   build() {
     Text('');
@@ -407,7 +407,7 @@ Row() {
 ```typescript
 // 反例
 @Component
-MyCompnent {
+@Component {
   build() {
     Stack() {
 	  Row {
@@ -420,7 +420,7 @@ MyCompnent {
 
 // 正例
 @Component
-MyCompnent {
+@Component {
   build() {
     Row {
       Image()
@@ -546,7 +546,7 @@ struct AspectRatioExample11 {
 
 反例代码如下：
 ```typescript
-@State isVisiable: boolean;
+@State isVisible: boolean;
 @State realData: Data[] = [];
 
 aboutToAppear() {
@@ -556,7 +556,7 @@ aboutToAppear() {
 
 build() {
   Column() {
-    if(this.isVisiable) {
+    if(this.isVisible) {
       Image()
     }
     ForEach(this.realData,(item: Data) => {
@@ -567,7 +567,7 @@ build() {
 ```
 正例代码如下：
 ```typescript
-@State isVisiable: boolean;
+@State isVisible: boolean;
 @State realData: Data[] = [];
 
 aboutToAppear() {
@@ -578,7 +578,7 @@ aboutToAppear() {
 build() {
   Column() {
     Column() {
-      if(this.isVisiable) {
+      if(this.isVisible) {
         Image()
       }
     }
@@ -607,7 +607,7 @@ struct componentParent{
   }
 
   build() {
-    Colume() {
+    Column() {
       componentSon({data: this.data})
     }
   }
@@ -620,7 +620,7 @@ struct componentSon{
   @Prop data: Data;
 
   build() {
-    Colume() {
+    Column() {
       Text(data.text)
       ComponentGrandSon({data: this.data})
     }
@@ -633,7 +633,7 @@ struct componentGrandSon{
   @Prop data: Data;
 
   build() {
-    Colume() {
+    Column() {
       Text(data.text)
     }
   }
@@ -652,7 +652,7 @@ struct componentParent{
   }
 
   build() {
-    Colume() {
+    Column() {
       componentSon({data: this.data})
     }
   }
@@ -665,7 +665,7 @@ struct componentSon{
   @Consume("data") data: Data;
 
   build() {
-    Colume() {
+    Column() {
       Text(data.text)
       ComponentGrandSon({data: this.data})
     }
@@ -678,7 +678,7 @@ struct componentGrandSon{
   @Consume("data") data: Data;
 
   build() {
-    Colume() {
+    Column() {
       Text(data.text)
     }
   }
@@ -702,7 +702,7 @@ struct componentParent{
   }
 
   build() {
-    Colume() {
+    Column() {
       componentSon()
     }
   }
@@ -715,7 +715,7 @@ struct componentSon{
   @Consume("data") data: Data;
 
   build() {
-    Colume() {
+    Column() {
       Text(data.text)
     }
   }
@@ -735,7 +735,7 @@ struct componentParent{
   }
 
   build() {
-    Colume() {
+    Column() {
       componentSon({data: this.data})
     }
   }
@@ -748,7 +748,7 @@ struct componentSon{
   @Prop data:Data;
 
   build() {
-    Colume() {
+    Column() {
       Text(data.text)
     }
   }
@@ -1311,6 +1311,3 @@ smartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗
     - [性能优化工具SmartPerf-Host](performance-optimization-using-smartperf-host.md)
     - [常用trace使用指导](common-trace-using-instructions.md)
     - [状态变量组件定位工具实践](state_variable_dfx_pratice.md)
-
-
-
