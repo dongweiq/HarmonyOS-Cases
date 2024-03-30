@@ -61,8 +61,8 @@ requestByTaskPool(): void {
 * [利用native的方式实现跨线程调用](native-threads-call-js.md)
 
 相关案例：
-* [预加载so并读取RawFile文件](../../../CommonAppDevelopment/feature/nativerawfile/README.md)
-* [Worker子线程中解压文件](../../../CommonAppDevelopment/feature/decompressfile/README.md)
+* [预加载so并读取RawFile文件](../../CommonAppDevelopment/feature/nativerawfile/README.md)
+* [Worker子线程中解压文件](../../CommonAppDevelopment/feature/decompressfile/README.md)
 
 #### 使用异步执行耗时操作
 

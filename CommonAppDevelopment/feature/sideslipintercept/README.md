@@ -23,7 +23,7 @@
 
 3. onBackPress生命周期函数只能在@Entry组件中使用，因此若对入口组件的返回事件拦截可使用onBackPress生命周期函数。
 
-4. 通过NavDestination组件的onBackPressed回调对返回事件进行拦截；源码参考[MainPage.ets](src/main/ets/components/MainPage.ets)。
+4. 通过NavDestination组件的onBackPressed回调对返回事件进行拦截；源码参考[MainPage.ets](src/main/ets/components/mainpage/MainPage.ets)。
 
   ```ts
   // 应用主页用NavDestination承载，用于显示Navigation的内容区

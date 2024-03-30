@@ -97,7 +97,7 @@
    ```
 
 ### 模块依赖
-本实例依赖common模块来实现[日志](../../common/utils/src/main/ets/Logger.ets)的打印、[资源](../../common/utils/src/main/resources/base/element)
+本实例依赖common模块来实现[日志](../../common/utils/src/main/ets/log/Logger.ets)的打印、[资源](../../common/utils/src/main/resources/base/element)
 的调用，依赖routermodule模块来实现[路由注册管理](../routermodule/Index.ets)。
 
 ### 参考资料
