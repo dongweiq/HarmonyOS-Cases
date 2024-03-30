@@ -58,7 +58,7 @@ struct ArkUIInspectorExample {
 
 3. 页面快照区，点击Text组件后，页面组件列表跳转至选中的Text组件。点击右下角![img](./images/profiler_pan_screen.jpg)“Pan Screen”按钮以拖移屏幕；点击![img](./images/profiler_plus.jpg) 、![img](./images/profiler_minus.jpg) 按钮来缩放页面；点击![img](./images/profiler_zoom.jpg)“Zoom to Fit Screen”按钮使页面居中并适应屏幕大小。
 
-4. 组件详情区，展示当前选中Text组件的属性信息，包括组件的坐标、布局信息（Spacing）、尺寸信息（Size）、边框信息（Border）、背景信息（Background）、蒙版信息（Effect）、所有其他属性（All Atributes）。如需精准查找单个属性，可通过页面上方搜索栏进行搜索。
+4. 组件详情区，展示当前选中Text组件的属性信息，包括组件的坐标、布局信息（Spacing）、尺寸信息（Size）、边框信息（Border）、背景信息（Background）、蒙版信息（Effect）、所有其他属性（All Attributes）。如需精准查找单个属性，可通过页面上方搜索栏进行搜索。
 
 ## 问题分析
 

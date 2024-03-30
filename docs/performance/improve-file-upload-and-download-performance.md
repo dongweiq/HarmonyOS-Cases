@@ -278,7 +278,7 @@ async resume() {
 > // 可以同时选择多段，用逗号分隔
 > Range: <unit>=<range-start>-<range-end>, <range-start>-<range-end>
 > 
-> // 示例：表示返回1024btyes之后的文件
+> // 示例：表示返回1024 bytes之后的文件
 > Range: bytes=1024-
 > ```
 > 服务器收到请求后，正确处理请求会回复206 Partial

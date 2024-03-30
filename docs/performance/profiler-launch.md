@@ -89,7 +89,7 @@ struct Index {
 
 ② Application Launching：应用程序启动阶段。该阶段主要是资源加载、Application相关对象的创建与初始化、依赖模块的加载等
 
-③ UI Ability Launching：UIAbiity启动阶段。该阶段主要是资源加载、Ability相关对象的创建与初始化、依赖模块的加载等
+③ UI Ability Launching：UIAbility启动阶段。该阶段主要是资源加载、Ability相关对象的创建与初始化、依赖模块的加载等
 
 ④ UI Ability OnForeground：UIAbility置为前台阶段。该阶段主要是加载应用首页的源码和so以及创建应用首页内各个组件
 

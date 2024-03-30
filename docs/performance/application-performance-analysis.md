@@ -197,7 +197,7 @@ Chrome浏览器比重图（Heavy）的时间并不是实际时间，而是通过
 
 2. 按照下图所示①-⑤的步骤打开 **Profiler > Time** ，选择设备及应用，创建一个新的Time Session监视器。
 
-   图12 **DevEco Studio Prifiler采集指引**
+   图12 **DevEco Studio Profiler采集指引**
 
    ![DevEco Studio Profiler采集指引](figures/deveco-studio-profiler-catch-guide.png)
 
