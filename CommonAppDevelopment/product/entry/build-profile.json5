@@ -97,6 +97,11 @@
           "@ohos/imagetheft",
           "@ohos/cardswiperanimation",
           "@ohos/fontdynamicregistration",
+          "@ohos/customscan",
+          "@ohos/imagedepthcopy",
+          "@ohos/pageflip",
+          "@ohos/videocache",
+          "@ohos/iconmaincolor"
         ]
       }
     }

@@ -16,6 +16,7 @@
 import CustomScanViewModel from '../viewmodel/CustomScanViewModel';
 import CustomScanCameraComp from '../components/CustomScanCameraComp';
 import CustomScanCtrlComp from '../components/CustomScanCtrlComp';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 
 /**
  * 二维码扫描页面
@@ -61,3 +62,14 @@ export struct CustomScanPage {
     .backgroundColor(Color.Black)
   }
 }
+
+/**
+ * 创建WrappedBuilder对象，动态路由跳转时构建页面
+ */
+@Builder
+export function getCustomScanPage(): void {
+  CustomScanPage();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+DynamicsRouter.registerRouterPage(RouterInfo.CUSTOM_SCAN, wrapBuilder(getCustomScanPage));
