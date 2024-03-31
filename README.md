@@ -492,13 +492,13 @@ Lottie是一个适用于OpenHarmony的动画库，它可以解析Adobe After Eff
 
 #### 长列表滑动到指定列表项动效实现案例
 
-本示例使用currentOffset方法获取并记录偏移量，然后使用scrollTo方法跳转到上次浏览记录功能，可以流畅滑动到上次列表的位置。[详细说明文档](./CommonAppDevelopment/feature/listslidetohistory/readme.md)
+本示例使用currentOffset方法获取并记录偏移量，然后使用scrollTo方法跳转到上次浏览记录功能，可以流畅滑动到上次列表的位置。[详细说明文档](./CommonAppDevelopment/feature/listslidetohistory/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/list_slide_to_history.gif" width="200">
 
 #### 正确配置ImageKnife请求头实现防盗链功能
 
-本案例使用了第三方库ImageKnife，通过在请求头中添加Referer来获取防盗链图片功能。也可以基于此功能设置请求头中的其他参数，例如User-Agent、Origin甚至ETag等等。[详细说明文档](./CommonAppDevelopment/feature/imagetheft/readme.md)
+本案例使用了第三方库ImageKnife，通过在请求头中添加Referer来获取防盗链图片功能。也可以基于此功能设置请求头中的其他参数，例如User-Agent、Origin甚至ETag等等。[详细说明文档](./CommonAppDevelopment/feature/imagetheft/README.md)
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/image_theft.gif" width="200">
 
