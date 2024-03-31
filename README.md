@@ -550,7 +550,7 @@ OhosVideoCache是一个支持边播放边缓存的库，只需要将音视频的
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/video_cache.gif" width="200">
 
-#### 边缓存边播放案例
+#### 根据icon自适应背景颜色
 
 本示例将介绍如何根据图片设置自适应的背景色。[详细说明文档](./CommonAppDevelopment/feature/iconmaincolor/README.md)
 

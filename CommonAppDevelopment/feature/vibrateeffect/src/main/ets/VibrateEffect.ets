@@ -81,7 +81,7 @@ export struct VibrateEffectView {
 
       Scroll() {
         // 应用图标
-        Column({space: CONFIGURATION.MARGIN_VERTICAL}) {
+        Column({ space: CONFIGURATION.MARGIN_VERTICAL }) {
           Image($r('app.media.speed_train'))
             .width($r('app.integer.image_size'))
             .height($r('app.integer.image_size'))
@@ -199,4 +199,4 @@ export function getVibrateEffectView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.VIBRATE_EFFECT,wrapBuilder(getVibrateEffectView));
+DynamicsRouter.registerRouterPage(RouterInfo.VIBRATE_EFFECT, wrapBuilder(getVibrateEffectView));
