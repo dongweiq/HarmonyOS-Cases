@@ -13,12 +13,36 @@
       "value": 10
     },
     {
-      "name": "image_position_x",
+      "name": "btn_ctrl_padding",
       "value": 10
     },
     {
-      "name": "image_position_y",
+      "name": "btn_back_position_x",
+      "value": 10
+    },
+    {
+      "name": "btn_back_position_y",
       "value": -40
+    },
+    {
+      "name": "music_progress_slider_trackthickness",
+      "value": 5
+    },
+    {
+      "name": "music_progress_margin",
+      "value": 10
+    },
+    {
+      "name": "music_ctrl_margin_top",
+      "value": 30
+    },
+    {
+      "name": "music_ctrl_margin_bottom",
+      "value": 40
+    },
+    {
+      "name": "music_info_margin_top",
+      "value": 10
     }
   ]
 }

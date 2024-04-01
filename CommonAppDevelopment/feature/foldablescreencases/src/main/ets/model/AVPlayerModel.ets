@@ -13,33 +13,15 @@
  * limitations under the License.
  */
 
-import { promptAction } from '@kit.ArkUI';
 import { media } from '@kit.MediaKit';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 import { logger } from '@ohos/utils';
+import CommonConstants from '../common/constants/CommonConstants';
 
 export class AVPlayerModel {
-  /**
-   * AVPlayerModel 单例
-   */
-  private static instance?: AVPlayerModel;
-
-  /**
-   * 获取AVPlayerModel单例实例
-   * @returns {AVPlayerModel} AVPlayerModel
-   */
-  static getInstance(): AVPlayerModel {
-    if (!AVPlayerModel.instance) {
-      AVPlayerModel.instance = new AVPlayerModel();
-    }
-
-    return AVPlayerModel.instance;
-  }
-
+  // avPlayer播放器实例
   private avPlayer?: media.AVPlayer;
-  private constructor() {
-  }
 
   /**
    * 初始化AVPlayer
@@ -65,6 +47,18 @@ export class AVPlayerModel {
   }
 
   /**
+   * 释放AVPlayer资源
+   */
+  releaseAVPlayer(): void {
+    if (!this.avPlayer) {
+      return;
+    }
+
+    this.avPlayer.release();
+    this.avPlayer = undefined;
+  }
+
+  /**
    * 注册avplayer回调函数
    * @param avPlayer AVPlayer实例
    * @returns {void}
@@ -72,7 +66,7 @@ export class AVPlayerModel {
   private regAVPlayerCallback(avPlayer: media.AVPlayer, timeUpdateCb: Function, stateUpdateCb: Function): void {
     // seek操作结果回调函数
     avPlayer.on('seekDone', (seekDoneTime: number) => {
-      logger.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
+      logger.debug(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
     })
     // error回调监听函数,当avPlayer在操作过程中出现错误时调用 reset接口触发重置流程
     avPlayer.on('error', (err: BusinessError) => {
@@ -85,71 +79,50 @@ export class AVPlayerModel {
       timeUpdateCb(newTime);
     })
     // 状态机变化回调函数
-    avPlayer.on('stateChange', (state: string) => {
+    avPlayer.on('stateChange', (state: media.AVPlayerState) => {
       stateUpdateCb(state);
 
       switch (state) {
         // 成功调用reset接口后触发该状态机上报
-        case 'idle':
-          logger.info('AVPlayer state idle called.');
-          this.showToast('avPlayer in idle');
+        case CommonConstants.AVPLAYER_STATE_IDLE:
+          logger.debug('AVPlayer state idle called.');
           break;
         // avplayer 设置播放源后触发该状态上报
-        case 'initialized':
-          logger.info('AVPlayer state initialized called.');
+        case CommonConstants.AVPLAYER_STATE_INITIALIZED:
+          logger.debug('AVPlayer state initialized called.');
           avPlayer.prepare();
-          this.showToast('avPlayer in initialized');
           break;
         // prepare调用成功后上报该状态机
-        case 'prepared':
-          logger.info('AVPlayer state prepared called.');
-          // 调用播放接口开始播放
-          avPlayer.play();
-          this.showToast('avPlayer in prepared');
+        case CommonConstants.AVPLAYER_STATE_PREPARED:
+          logger.debug('AVPlayer state prepared called.');
           break;
         // play成功调用后触发该状态机上报
-        case 'playing':
-          logger.info('AVPlayer state playing called.');
-          this.showToast('avPlayer in playing');
+        case CommonConstants.AVPLAYER_STATE_PLAYING:
+          logger.debug('AVPlayer state playing called.');
           break;
         // pause成功调用后触发该状态机上报
-        case 'paused':
-          logger.info('AVPlayer state paused called.');
-          this.showToast('avPlayer in paused');
+        case CommonConstants.AVPLAYER_STATE_PAUSED:
+          logger.debug('AVPlayer state paused called.');
           break;
         // 播放结束后触发该状态机上报
-        case 'completed':
-          logger.info('AVPlayer state completed called.');
-          this.showToast('avPlayer in completed');
+        case CommonConstants.AVPLAYER_STATE_COMPLETED:
+          logger.debug('AVPlayer state completed called.');
           break;
         // stop接口成功调用后触发该状态机上报
-        case 'stopped':
-          logger.info('AVPlayer state stopped called.');
+        case CommonConstants.AVPLAYER_STATE_STOPPED:
+          logger.debug('AVPlayer state stopped called.');
           // 调用reset接口初始化avplayer状态
           avPlayer.reset();
-          this.showToast('avPlayer in stopped');
           break;
         // avplayer实例释放状态
-        case 'released':
-          logger.info('AVPlayer state released called.');
+        case CommonConstants.AVPLAYER_STATE_RELEASED:
+          logger.debug('AVPlayer state released called.');
           this.avPlayer = undefined;
-          this.showToast('avPlayer in released');
           break;
         default:
-          logger.info('AVPlayer state unknown called.');
-          this.showToast('avPlayer in unknown');
+          logger.debug('AVPlayer state unknown called.');
           break;
       }
-    })
-  }
-
-  /**
-   * 状态提示弹窗
-   * @param msg 提示内容
-   */
-  private showToast(msg: string): void {
-    promptAction.showToast({
-      message: msg
     })
   }
 
@@ -167,11 +140,11 @@ export class AVPlayerModel {
   }
 
   /**
-   * 播放本地沙箱内的rawfile资源
+   * 加载本地沙箱内的rawfile资源
    * @param fileName 本地沙箱内的rawfile资源文件名
    * @returns {Promise<void>}
    */
-  async playLocalRawfile(fileName: string): Promise<void> {
+  async prepare(fileName: string): Promise<void> {
     if (!this.avPlayer) {
       logger.error('avPlayer no create.');
       return;
@@ -188,6 +161,19 @@ export class AVPlayerModel {
     };
     // 为fdSrc赋值触发initialized状态机上报
     this.avPlayer.fdSrc = avFileDescriptor;
+  }
+
+  /**
+   * 开始播放
+   * @returns {void}
+   */
+  play(): void {
+    if (!this.avPlayer) {
+      logger.error('avPlayer no create.');
+      return;
+    }
+
+    this.avPlayer.play();
   }
 
   /**

@@ -19,6 +19,7 @@ import CommonConstants from '../common/constants/CommonConstants';
 
 import { MusicModel } from '../model/MusicModel';
 import WindowModel from '../model/WindowModel';
+import { MusicPlayerViewModel } from '../viewmodel/MusicPlayViewModel';
 
 import { MusicPlayerCtrlComp } from '../components/MusicPlayerCtrlComp';
 import { MusicPlayerInfoComp } from '../components/MusicPlayerInfoComp';
@@ -36,9 +37,11 @@ import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
 @Component
 export struct MusicPlayerPage {
   // 窗口管理model
-  private windowModel: WindowModel = WindowModel.getInstance();
+  private windowModel: WindowModel = new WindowModel();
   // 当前播放音乐数据模型
   @State musicModel: MusicModel = new MusicModel(CommonConstants.TEST_MUSIC_INFO);
+  // 当前页面的vm实例
+  @Provide('musicPlayerViewModel') viewModel: MusicPlayerViewModel = new MusicPlayerViewModel();
   // 当前折叠屏状态（若当前为折叠屏设备才有效）
   @State curFoldStatus: display.FoldStatus = display.getFoldStatus();
 
@@ -76,11 +79,16 @@ export struct MusicPlayerPage {
         this.windowModel.updateMainWinPreferredOrientation(curFoldStatus);
       })
     }
+
+    // vm配置歌曲数据
+    this.viewModel.musicModel = this.musicModel;
   }
 
   aboutToDisappear(): void {
     // 关闭页面沉浸式展示
     this.windowModel.setMainWindowImmersive(false);
+    // 释放vm实例持有的资源
+    this.viewModel.release();
   }
 
   build() {
@@ -90,7 +98,7 @@ export struct MusicPlayerPage {
       FolderStack({ upperItems: [CommonConstants.FOLDER_STACK_UP_COMP_ID] }) {
         MusicPlayerInfoComp({ musicModel: this.musicModel, curFoldStatus: this.curFoldStatus })
           .id(CommonConstants.FOLDER_STACK_UP_COMP_ID)
-        MusicPlayerCtrlComp({ musicModel: this.musicModel })
+        MusicPlayerCtrlComp()
       }
       // TODO：知识点：是否使用默认动效
       .enableAnimation(false)
@@ -102,7 +110,7 @@ export struct MusicPlayerPage {
     } else { // 非折叠屏UI展示
       Stack() {
         MusicPlayerInfoComp({ musicModel: this.musicModel })
-        MusicPlayerCtrlComp({ musicModel: this.musicModel })
+        MusicPlayerCtrlComp()
       }
       .stackStyle()
       .alignContent(Alignment.Bottom)
@@ -116,6 +124,5 @@ export function getMusicPlayerPage(): void {
   MusicPlayerPage();
 }
 
-console.info('DynamicsRouter register!!!');
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
 DynamicsRouter.registerRouterPage(RouterInfo.FOLDABLE_SCREEN_CASES, wrapBuilder(getMusicPlayerPage));

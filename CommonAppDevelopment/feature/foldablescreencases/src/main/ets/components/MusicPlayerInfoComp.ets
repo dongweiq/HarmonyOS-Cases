@@ -55,7 +55,7 @@ export struct MusicPlayerInfoComp {
   // 歌词子组件高度百分比
   @State lyricsHeightPer: string = CommonConstants.MUSIC_LYRICS_COMP_HEIGHT_EXPANDED;
   // 歌词子组件外边距
-  @State lyricsMargin: Margin = { top: 0 };
+  @State lyricsMargin: Margin = { top: CommonConstants.MUSIC_LYRICS_COMP_MARGIN_TOP_COMMON };
   // 歌曲封面图片尺寸
   @State curImgSize: number = CommonConstants.MUSIC_COVER_SIZE_COMMON;
   // 歌曲信息组件Flex布局方向
@@ -84,8 +84,8 @@ export struct MusicPlayerInfoComp {
   build() {
     Flex({ direction: this.curFlexDirection }) {
       Image($r('app.media.ic_public_back'))
-        .width($r('app.integer.font_size_music_title'))
-        .height($r('app.integer.font_size_music_title'))
+        .width(CommonConstants.MUSIC_PLAYER_CTRL_BTN_SIZE_COMMON)
+        .height(CommonConstants.MUSIC_PLAYER_CTRL_BTN_SIZE_COMMON)
         .onClick(() => {
           DynamicsRouter.pop()
           // 呈现navigation导航栏，设置为半屏。
@@ -96,7 +96,7 @@ export struct MusicPlayerInfoComp {
             this.fullScreenSize = '50%';
           })
         })
-        .position({ x: $r('app.integer.image_position_x'), y: $r('app.integer.image_position_y') })
+        .position({ x: $r('app.integer.btn_back_position_x'), y: $r('app.integer.btn_back_position_y') })
         .fillColor(Color.White)
       Column() {
         Text(this.musicModel.title)
@@ -115,7 +115,7 @@ export struct MusicPlayerInfoComp {
       }
       .width('100%')
       .height('50%')
-      .margin({ top: 10 })
+      .margin({ top: $r('app.integer.music_info_margin_top') })
 
       /**
        * TODO：高性能知识点：歌词列表数据较多，不需要全部渲染上屏，采用LazyForEach，仅渲染可视区域的歌词
@@ -158,7 +158,7 @@ export struct MusicPlayerInfoComp {
       this.curImgSize = CommonConstants.MUSIC_COVER_SIZE_EXPANDED;
       this.totalHeightPer = CommonConstants.MUSIC_INFO_COMP_HEIGHT_COMMON;
       this.lyricsHeightPer = CommonConstants.MUSIC_LYRICS_COMP_HEIGHT_EXPANDED;
-      this.lyricsMargin.top = 100;
+      this.lyricsMargin.top = CommonConstants.MUSIC_LYRICS_COMP_MARGIN_TOP_EXPANDED;
       this.curFlexDirection = FlexDirection.Row;
     } else if (this.curFoldStatus === display.FoldStatus.FOLD_STATUS_FOLDED) {
       // 折叠屏折叠态
@@ -167,7 +167,7 @@ export struct MusicPlayerInfoComp {
       this.curImgSize = CommonConstants.MUSIC_COVER_SIZE_COMMON;
       this.totalHeightPer = CommonConstants.MUSIC_INFO_COMP_HEIGHT_COMMON;
       this.lyricsHeightPer = CommonConstants.MUSIC_LYRICS_COMP_HEIGHT_COMMON;
-      this.lyricsMargin.top = 0;
+      this.lyricsMargin.top = CommonConstants.MUSIC_LYRICS_COMP_MARGIN_TOP_COMMON;
       this.curFlexDirection = FlexDirection.Column;
     } else if (this.curFoldStatus === display.FoldStatus.FOLD_STATUS_HALF_FOLDED) {
       // 折叠屏半折叠态
@@ -178,14 +178,14 @@ export struct MusicPlayerInfoComp {
         this.curImgSize = CommonConstants.MUSIC_COVER_SIZE_HALF_FOLDED;
         this.totalHeightPer = CommonConstants.MUSIC_INFO_COMP_HEIGHT_HALF_FOLDED;
         this.lyricsHeightPer = CommonConstants.MUSIC_LYRICS_COMP_HEIGHT_HALF_FOLDED;
-        this.lyricsMargin.top = 100;
+        this.lyricsMargin.top = CommonConstants.MUSIC_LYRICS_COMP_MARGIN_TOP_EXPANDED;
       } else {
         // 半折叠态同时竖屏
         // 使用展开态的属性样式
         this.curImgSize = CommonConstants.MUSIC_COVER_SIZE_EXPANDED;
         this.totalHeightPer = CommonConstants.MUSIC_INFO_COMP_HEIGHT_COMMON;
         this.lyricsHeightPer = CommonConstants.MUSIC_LYRICS_COMP_HEIGHT_EXPANDED;
-        this.lyricsMargin.top = 100;
+        this.lyricsMargin.top = CommonConstants.MUSIC_LYRICS_COMP_MARGIN_TOP_EXPANDED;
       }
       this.curFlexDirection = FlexDirection.Row;
     } else {
@@ -194,7 +194,7 @@ export struct MusicPlayerInfoComp {
       this.curImgSize = CommonConstants.MUSIC_COVER_SIZE_COMMON;
       this.totalHeightPer = CommonConstants.MUSIC_INFO_COMP_HEIGHT_COMMON;
       this.lyricsHeightPer = CommonConstants.MUSIC_LYRICS_COMP_HEIGHT_COMMON;
-      this.lyricsMargin.top = 0;
+      this.lyricsMargin.top = CommonConstants.MUSIC_LYRICS_COMP_MARGIN_TOP_COMMON;
       this.curFlexDirection = FlexDirection.Column;
     }
   }
