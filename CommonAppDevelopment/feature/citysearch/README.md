@@ -19,7 +19,7 @@
 
 城市列表中的右侧首拼索引条，通过AlphabetIndexer组件实现首字母快速定位城市的索引条导航。
 
-- 通过AlphabetIndexer的selected属性与城市列表中List组件onScrollIndex事件绑定，[源码参考](src/main/ets/view/CityView.ets)
+- 通过AlphabetIndexer的selected属性与城市列表中List组件onScrollIndex事件绑定，[CityView.ets](src/main/ets/view/CityView.ets)
 
 ```
 AlphabetIndexer({ arrayValue: TAB_VALUE, selected: this.stabIndex })
@@ -38,7 +38,7 @@ AlphabetIndexer({ arrayValue: TAB_VALUE, selected: this.stabIndex })
   })
 ```
 - 当用户滑动List组件，list组件onScrollIndex监听到firstIndex的改变，绑定赋值给AlphabetIndexer的selected属性，从而定位到字母索引。
-- 当点击AlphabetIndexer的字母索引时，通过scrollToIndex触发list组件滑动并指定firstIndex，从而实现List列表与AlphabetIndexer组件首字母联动吸顶展示，[源码参考](src/main/ets/view/CityView.ets)。
+- 当点击AlphabetIndexer的字母索引时，通过scrollToIndex触发list组件滑动并指定firstIndex，从而实现List列表与AlphabetIndexer组件首字母联动吸顶展示，[CityView.ets](src/main/ets/view/CityView.ets)。
 ```
 List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
   .onScrollIndex((firstIndex: number, lastIndex: number) => {
@@ -50,7 +50,7 @@ List({ space: 14, initialIndex: 0, scroller: this.scroller }) {
 
 ### 高性能知识点
 
-由于需要通过搜索按钮频繁的控制自定义组件的显隐状态，[源码详见](src/main/ets/view/CityView.ets)，因此推荐使用显隐控制替代条件渲染，参考[合理选择条件渲染和显隐控制文章](https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/proper-choice-between-if-and-visibility.md/)。
+由于需要通过搜索按钮频繁的控制自定义组件的显隐状态，[CityView.ets](src/main/ets/view/CityView.ets)，因此推荐使用显隐控制替代条件渲染，参考[合理选择条件渲染和显隐控制文章](../../../docs/performance/proper-choice-between-if-and-visibility.md)。
 
 ### 工程结构&模块类型
 

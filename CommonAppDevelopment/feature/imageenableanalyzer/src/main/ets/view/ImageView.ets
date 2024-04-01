@@ -49,10 +49,10 @@ export struct ImageView {
               ForEach(this.imagePixelMapList, (item: image.PixelMap) => { // 传入符合AI处理的图片类型并渲染图片
                 /* 性能知识点：当数据量较大时，推荐使用懒加载加载数据。
                  * 参考使用数据懒加载文章：
-                 * https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/arkts-performance-improvement-recommendation.md/
+                 * https://gitee.com/harmonyos-cases/cases/blob/master/docs/performance/arkts-performance-improvement-recommendation.md
                  */
                 Image(item)
-                  .enableAnalyzer(true)// TODO：知识点：开启Image组件的AI分析能力，目前支持分析PixelMap且为RGBA_8888类型的图片
+                  .enableAnalyzer(true) // TODO：知识点：开启Image组件的AI分析能力，目前支持分析PixelMap且为RGBA_8888类型的图片
                   .objectFit(ImageFit.Contain)
                   .width('100%')
                   .draggable(false) // 禁止整张图片拖动

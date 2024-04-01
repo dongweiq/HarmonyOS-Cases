@@ -18,7 +18,7 @@
 
 - Image.enableAnalyzer()可以设置组件支持AI分析，设置为true时，组件可进行AI分析。
 
-- 支持分析的图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，仅支持传入PixelMap进行分析，目前仅支持RGBA_8888类型，[源码参考](src/main/ets/view/ImageView.ets)，
+- 支持分析的图像要求是静态非矢量图，即svg、gif等图像类型不支持分析，仅支持传入PixelMap进行分析，目前仅支持RGBA_8888类型，[ImageView.ets](src/main/ets/view/ImageView.ets)，
 因此需要定义图片转成PixelMap且为RGBA_8888类型方法：
 
 ```typescript
@@ -45,7 +45,7 @@ build() {
     ForEach(this.imagePixelMapList, (item: image.PixelMap) => {
       /* 性能知识点：当数据量较大时，推荐使用懒加载加载数据。
        * 参考使用数据懒加载文章：
-       * https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/arkts-performance-improvement-recommendation.md/
+       * https://gitee.com/harmonyos-cases/cases/blob/master/docs/performance/arkts-performance-improvement-recommendation.md
        */
       Image(item)
         .enableAnalyzer(true) // 开启Image组件的AI分析能力，目前支持分析PixelMap且为RGBA_8888类型的图片
