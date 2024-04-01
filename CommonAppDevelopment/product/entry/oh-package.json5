@@ -172,6 +172,12 @@
     // 边缓存边播放案例
     "@ohos/videocache": "file:../../feature/videocache",
     // 根据icon自适应背景颜色
-    "@ohos/iconmaincolor": "file:../../feature/iconmaincolor"
+    "@ohos/iconmaincolor": "file:../../feature/iconmaincolor",
+    // 使用colorPicker实现背景跟随主题颜色转换
+    "@ohos/effectKit": "file:../../feature/effectKit",
+    // 应用新功能引导实现案例
+    "@ohos/highlightguide": "file:../../feature/highlightguide",
+    // 文字识别案例
+    "@ohos/wordrecognition": "file:../../feature/wordrecognition"
   }
 }

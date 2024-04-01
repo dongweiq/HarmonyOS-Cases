@@ -17,6 +17,8 @@ import image from '@ohos.multimedia.image';
 import effectKit from '@ohos.effectKit';
 import resourceManager from '@ohos.resourceManager';
 import window from '@ohos.window';
+import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter/Index';
+
 /**
  * 实现步骤：
  * 1. 通过使用滑动视图容器Swiper，将控制器SwiperController绑定Swiper组件，实现其子组件Image图片滑动轮播显示效果。
@@ -57,7 +59,7 @@ export struct MainPage {
     const context = getContext(this);
     const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
     const fileData: Uint8Array = await resourceMgr.getMediaContent(this.imgData[0]);
-    const buffer = fileData.buffer;
+    const buffer = fileData.buffer as ArrayBuffer;
     const imageSource: image.ImageSource = image.createImageSource(buffer);
     const pixelMap: image.PixelMap = await imageSource.createPixelMap();
 
@@ -94,7 +96,7 @@ export struct MainPage {
           const resourceMgr: resourceManager.ResourceManager = context.resourceManager;
           const fileData: Uint8Array = await resourceMgr.getMediaContent(this.imgData[targetIndex]);
           // 获取图片的ArrayBuffer
-          const buffer = fileData.buffer;
+          const buffer = fileData.buffer as ArrayBuffer;
           // 创建imageSource
           const imageSource: image.ImageSource = image.createImageSource(buffer);
           // 创建pixeMap
@@ -125,3 +127,12 @@ export struct MainPage {
     .padding({ top: this.topSafeHeight })
   }
 }
+
+// 创建WrappedBuilder对象，动态路由跳转时构建页面
+@Builder
+export function getMainPage(): void {
+  MainPage();
+}
+
+// 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
+DynamicsRouter.registerRouterPage(RouterInfo.EFFECT_KIT, wrapBuilder(getMainPage));

@@ -19,7 +19,7 @@ export { HighLightGuide } from './src/main/ets/pages/Index';
 // 动态import时需要调用的接口，接口名请使用harInit，用于动态加载页面
 export function harInit(pageName: string) {
   switch (pageName) {
-    case RouterInfo.IMAGE_COMMENT.pageName:
+    case RouterInfo.HIGH_LIGHT_GUIDE.pageName:
       import('./src/main/ets/pages/Index');
       break;
   }

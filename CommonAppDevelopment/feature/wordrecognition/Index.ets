@@ -20,7 +20,7 @@ export { WordRecognition } from './src/main/ets/pages/WordRecognition';
 // 动态import时需要调用的接口，接口名请使用harInit，用于动态加载页面
 export function harInit(pageName: string) {
   switch (pageName) {
-    case RouterInfo.CHINESE_TO_PINYIN.pageName:
+    case RouterInfo.WORD_RECOGNITION.pageName:
       import('./src/main/ets/pages/WordRecognition');
       break;
   }

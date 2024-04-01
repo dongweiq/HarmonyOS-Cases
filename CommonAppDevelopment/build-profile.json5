@@ -367,6 +367,14 @@
     {
       "name": "iconmaincolor",
       "srcPath": "./feature/iconmaincolor"
+    },
+    {
+      "name": "direct",
+      "srcPath": "./feature/highlightguide"
+    },
+    {
+      "name": "wordrecognition",
+      "srcPath": "./feature/wordrecognition"
     }
   ]
 }

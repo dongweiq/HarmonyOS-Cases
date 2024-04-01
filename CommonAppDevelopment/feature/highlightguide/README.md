@@ -6,7 +6,7 @@
 
 ### 效果图预览
 
-![动画](../../product/entry/src/main/resources/base/media/direct.gif)
+![动画](../../product/entry/src/main/resources/base/media/high_light_guide.gif)
 
 **使用说明**
 

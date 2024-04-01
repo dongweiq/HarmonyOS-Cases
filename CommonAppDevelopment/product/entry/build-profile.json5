@@ -101,7 +101,10 @@
           "@ohos/imagedepthcopy",
           "@ohos/pageflip",
           "@ohos/videocache",
-          "@ohos/iconmaincolor"
+          "@ohos/iconmaincolor",
+          "@ohos/effectKit",
+          "@ohos/highlightguide",
+          "@ohos/wordrecognition"
         ]
       }
     }
