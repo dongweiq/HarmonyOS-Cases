@@ -111,6 +111,10 @@
     {
       "name": "validity_id",
       "value": "idValidity"
+    },
+    {
+      "name": "only_show",
+      "value": "此样式仅为案例展示"
     }
   ]
 }
