@@ -6,6 +6,18 @@
       "default",
       "tablet",
       "2in1"
+    ],
+    "requestPermissions":[
+      {
+        "name" : "ohos.permission.VIBRATE",
+        "reason": "$string:reason",
+        "usedScene": {
+          "abilities": [
+            "FormAbility"
+          ],
+          "when":"always"
+        }
+      }
     ]
   }
 }

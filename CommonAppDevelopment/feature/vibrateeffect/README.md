@@ -42,20 +42,27 @@
 2. 创建一个函数startAnimation()使用animateTo显示动画实现提示文本的抖动动画。源码参考[VibrateEffect.ets](./src/main/ets/VibrateEffect.ets)
 ```ts
   startAnimation() {
-    // TODO: 知识点：通过animateTo显示动画指定由于闭包代码导致的状态变化插入过渡动效
-    animateTo({
-      duration: CONFIGURATION.ANIMATION_TIME,
-      // 弹簧曲线：初始速度100，质量1，刚度80，阻尼10
-      curve: curves.springCurve(CONFIGURATION.VELOCITY_VALUE, CONFIGURATION.MASS_VALUE,
-        CONFIGURATION.STIFFNESS_VALUE, CONFIGURATION.DAMPING_VALUE),
-      // 播放2次
-      iterations: CONFIGURATION.PLAYBACK_COUNT,
-    },
-      () => {
-        // 抖动动偏移量
-        this.translateX = CONFIGURATION.TRANSLATE_OFFSET_X;
-      })
+    if (!this.uiContext) {
+      return;
+    }
     this.translateX = CONFIGURATION.POSITION_ZERO;
+    // TODO: 知识点：通过keyframeAnimateTo关键帧动画指定状态变化过渡动效
+    this.uiContext.keyframeAnimateTo({ iterations: CONFIGURATION.PLAYBACK_COUNT }, [
+      {
+        // 第一段动画时长为100ms，translateX属性从0到5
+        duration: CONFIGURATION.ANIMATION_TIME,
+        event: () => {
+          this.translateX = CONFIGURATION.TRANSLATE_OFFSET_X;
+        }
+      },
+      {
+        // 第二段动画时长为100ms，translateX属性从5到0
+        duration: CONFIGURATION.ANIMATION_TIME,
+        event: () => {
+          this.translateX = CONFIGURATION.POSITION_ZERO;
+        }
+      }
+    ]);
   }
 ```
 ### 高性能知识点
