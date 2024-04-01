@@ -19,7 +19,7 @@
 
 **场景1：enabled的值为false时，点击Button按钮，会导致父组件的点击事件触发**
 
-对Button组件包裹一层容器组件，并设置[hitTestBehavior](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/ts-universal-attributes-hit-test-behavior-0000001427744800-V3)属性，
+对Button组件包裹一层容器组件，并设置[hitTestBehavior](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V4/ts-universal-attributes-hit-test-behavior-0000001815767744-V4?catalogVersion=V4)属性，
 属性值设置为HitTestMode.Block，可阻止事件的冒泡。具体代码可参考[EventPropagation.ets](./src/main/ets/view/EventPropagation.ets)。
 
 ```
@@ -160,9 +160,9 @@ eventpropagation                                // har类型
 
 ### 参考资料
 
-[触摸测试控制(hitTestBehavior)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/ts-universal-attributes-hit-test-behavior-0000001427744800-V3)
+[触摸测试控制(hitTestBehavior)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V4/ts-universal-attributes-hit-test-behavior-0000001815767744-V4?catalogVersion=V4)
 
-[触摸事件(onTouch)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/ts-universal-events-touch-0000001427902424-V3)
+[触摸事件(onTouch)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V4/ts-universal-events-touch-0000001862607321-V4?catalogVersion=V4)
 
 
 

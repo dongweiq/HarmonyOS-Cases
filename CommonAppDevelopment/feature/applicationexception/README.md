@@ -2,7 +2,7 @@
 
 ### 介绍
 
-本示例介绍了通过应用事件打点[hiAppEvent](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/js-apis-hiviewdfx-hiappevent-0000001478341401-V3)获取上一次应用异常信息的方法，主要分为应用崩溃、应用卡死以及系统查杀三种。
+本示例介绍了通过应用事件打点[hiAppEvent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V1/js-apis-hiviewdfx-hiappevent-0000001580345558-V1)获取上一次应用异常信息的方法，主要分为应用崩溃、应用卡死以及系统查杀三种。
 
 ### 效果图预览
 
@@ -136,8 +136,8 @@ struct FaultArea {
   }
 }
 ```
-4. 以上代码中有引用懒加载数据类和持久化存储类，源码可参考[DataSource.ets](./src/main/ets/view/ApplicationException.ets)和
-   [PreferencesManager.ets](./src/main/ets/view/ApplicationException.ets)。
+4. 以上代码中有引用懒加载数据类和持久化存储类，源码可参考[DataSource.ets](./src/main/ets/model/DataSource.ets)和
+   [PreferencesManager.ets](./src/main/ets/model/PreferencesManager.ets)。
 ```
 // DataSource.ets
 export class FaultDataSource extends BasicDataSource {
@@ -221,7 +221,7 @@ export class FaultDataSource extends BasicDataSource {
 
 ### 高性能知识点
 
-本示例使用了[LazyForEach](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-rendering-control-lazyforeach-0000001524417213-V3)进行数据懒加载，将叠加获取到的应用异常信息进行渲染。
+本示例使用了[LazyForEach](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V4/arkts-rendering-control-lazyforeach-0000001820879609-V4?catalogVersion=V4)进行数据懒加载，将叠加获取到的应用异常信息进行渲染。
 
 ### 工程结构&模块类型
 
@@ -241,7 +241,8 @@ aplicationexception                             // har类型
 
 ### 参考资料
 
-[应用事件打点HiAppEvent](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/js-apis-hiviewdfx-hiappevent-0000001478341401-V3)
-[数据懒加载LazyForEach](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-rendering-control-lazyforeach-0000001524417213-V3)
+[应用事件打点HiAppEvent](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V1/js-apis-hiviewdfx-hiappevent-0000001580345558-V1)
+
+[数据懒加载LazyForEach](https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V4/arkts-rendering-control-lazyforeach-0000001820879609-V4?catalogVersion=V4)
 
 
