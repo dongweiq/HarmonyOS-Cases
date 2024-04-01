@@ -51,76 +51,65 @@ export struct NavigationBarChangeView {
     Stack() {
       Scroll(this.scroller) {
         Column({space: this.columnSpace}) {
-          Column() {
-            Text($r('app.string.text_welcome'))
-              .fontSize($r('app.integer.font_size_twenty_two'))
-            Text($r('app.string.text_new_user_registration'))
-              .fontSize($r('app.integer.font_size_fourteen'))
-              .margin({top: $r('app.integer.top_interval_five')})
-            Button({ type: ButtonType.Capsule}) {
-              Text($r('app.string.text_load'))
-                .fontSize($r('app.integer.font_size_eighteen'))
-                .fontColor(Color.White)
-            }
+          Text($r('app.string.text_welcome'))
+            .fontSize($r('app.integer.font_size_twenty_two'))
+            .width($r('app.string.width_and_height_one_hundred_percent'))
+            .textAlign(TextAlign.Start)
+            .margin({top: $r('app.integer.top_interval_sixty')})
+
+          Text($r('app.string.text_new_user_registration'))
+            .fontSize($r('app.integer.font_size_fourteen'))
+            .margin({top: $r('app.integer.top_interval_minus_five')})
+            .width($r('app.string.width_and_height_one_hundred_percent'))
+            .textAlign(TextAlign.Start)
+
+          Button($r('app.string.text_load'), { type: ButtonType.Capsule})
             .margin({top: $r('app.integer.top_interval_twenty')})
+            .fontSize($r('app.integer.font_size_eighteen'))
             .height($r('app.integer.width_and_height_forty'))
             .width($r('app.integer.width_and_height_one_hundred_and_thirty'))
-          }
-          .width($r('app.string.width_and_height_one_hundred_percent'))
-          .height($r('app.string.width_and_height_fifteen_percent'))
-          .alignItems(HorizontalAlign.Start)
-          .margin({top: $r('app.integer.top_interval_sixty')})
+            .position({y: $r('app.integer.positionY')})
 
           // "购物"功能区
-          Column() {
-            Text($r('app.string.text_shopping'))
-              .fontColor(Color.Black)
-              .fontSize($r('app.integer.font_size_twenty'))
-              .margin({bottom: $r('app.integer.bottom_interval_five')})
+          Text($r('app.string.text_shopping'))
+            .fontColor(Color.Black)
+            .fontSize($r('app.integer.font_size_twenty'))
+            .margin({top: $r('app.integer.top_interval_sixty'), bottom: $r('app.integer.bottom_interval_minus_five')})
+            .width($r('app.string.width_and_height_one_hundred_percent'))
+            .textAlign(TextAlign.Center)
 
-            Image($r('app.media.shopping'))
-              .width($r('app.string.width_and_height_one_hundred_percent'))
-              .height($r('app.string.width_and_height_eighty_percent'))
-              .borderRadius($r('app.integer.borderRadius_twelve'))
-          }
-          .backgroundColor($r('app.color.mine_background'))
-          .borderRadius($r('app.integer.borderRadius_twelve'))
-          .width($r('app.string.width_and_height_one_hundred_percent'))
-          .height($r('app.string.width_and_height_thirty_two_percent'))
+          Image($r('app.media.shopping'))
+            .width($r('app.string.width_and_height_one_hundred_percent'))
+            .height($r('app.string.width_and_height_twenty_five_percent'))
+            .borderRadius($r('app.integer.borderRadius_twelve'))
 
           // "娱乐"功能区
-          Column() {
-            Text($r('app.string.text_happy'))
-              .fontColor(Color.Black)
-              .fontSize($r('app.integer.font_size_twenty'))
-              .margin({bottom: $r('app.integer.bottom_interval_five')})
+          Text($r('app.string.text_happy'))
+            .fontColor(Color.Black)
+            .fontSize($r('app.integer.font_size_twenty'))
+            .margin({top: $r('app.integer.top_interval_ten'), bottom: $r('app.integer.bottom_interval_minus_ten')})
+            .width($r('app.string.width_and_height_one_hundred_percent'))
+            .textAlign(TextAlign.Center)
 
-            Image($r('app.media.happly'))
-              .width($r('app.string.width_and_height_one_hundred_percent'))
-              .height($r('app.string.width_and_height_eighty_percent'))
-              .borderRadius($r('app.integer.borderRadius_twelve'))
-          }
-          .backgroundColor($r('app.color.mine_background'))
-          .borderRadius($r('app.integer.borderRadius_twelve'))
-          .width($r('app.string.width_and_height_one_hundred_percent'))
-          .height($r('app.string.width_and_height_thirty_two_percent'))
+          Image($r('app.media.happly'))
+            .width($r('app.string.width_and_height_one_hundred_percent'))
+            .height($r('app.string.width_and_height_twenty_five_percent'))
+            .borderRadius($r('app.integer.borderRadius_twelve'))
 
           // "休闲"功能区
-          Column() {
-            Text($r('app.string.text_relaxation'))
-              .fontColor(Color.Black)
-              .fontSize($r('app.integer.font_size_twenty'))
-              .margin({bottom: $r('app.integer.bottom_interval_five')})
+          Text($r('app.string.text_relaxation'))
+            .fontColor(Color.Black)
+            .fontSize($r('app.integer.font_size_twenty'))
+            .margin({top: $r('app.integer.top_interval_ten'), bottom: $r('app.integer.bottom_interval_minus_ten')})
+            .width($r('app.string.width_and_height_one_hundred_percent'))
+            .textAlign(TextAlign.Center)
 
-            Image($r('app.media.relaxation'))
-              .width($r('app.string.width_and_height_one_hundred_percent'))
-              .height($r('app.string.width_and_height_eighty_percent'))
-              .borderRadius($r('app.integer.borderRadius_twelve'))
-          }
-          .backgroundColor($r('app.color.mine_background'))
-          .borderRadius($r('app.integer.borderRadius_twelve'))
-          .width($r('app.string.width_and_height_one_hundred_percent'))
-          .height($r('app.string.width_and_height_thirty_two_percent'))
+          Image($r('app.media.relaxation'))
+            .width($r('app.string.width_and_height_one_hundred_percent'))
+            .height($r('app.string.width_and_height_twenty_five_percent'))
+            .borderRadius($r('app.integer.borderRadius_twelve'))
+            .margin({bottom: $r('app.integer.bottom_interval_five')})
+
         }
         .width($r('app.string.width_and_height_ninety_two_percent'))
       }
