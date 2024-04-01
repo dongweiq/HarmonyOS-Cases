@@ -68,6 +68,8 @@ export struct CardSwiperAnimation {
       .loop(false)
       .prevMargin(this.swiperMargin)
       .nextMargin(this.swiperMargin)
+      .duration(Constants.DURATION)
+      .curve(Curve.Friction)
       .onChange((index) => {
         logger.info(TAG, `Target index: ${index}`);
         this.calculateOffset(index);
