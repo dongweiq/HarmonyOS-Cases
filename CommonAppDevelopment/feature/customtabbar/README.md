@@ -38,7 +38,7 @@ Column() {
 
 改变图标显示功能可以先声明一个变量selectedIndex，此变量代表被选定的tabBar下标，点击的时候将当前tabBar的下标值进行赋值。
 通过当前被选中的tabBar下标值和tabBar自己的下标值进行判断来达到点击之后改变图标显示的效果。
-动画效果可以将Image添加一个offset属性和[animation属性](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/ts-animatorproperty-0000001478181445-V3)，
+动画效果可以将Image添加一个offset属性和[animation属性](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-animatorproperty-0000001774281022)，
 offset属性可以控制组件的横向和纵向偏移量； animation在组件的某些通用 属性变化时，可以通过属性动画animation实现过
 渡效果。 点击TabBar页签，改变offset的属性值，自动触发animation属性动画。
 具体代码可参考[TabView.ets](./src/main/ets/view/TabView.ets)
@@ -86,8 +86,8 @@ customtabbar                                    // har类型
 不涉及。
 
 ### 参考资料
-[属性动画(animation)](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/ts-animatorproperty-0000001478181445-V3)
+[属性动画(animation)](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V4/ts-animatorproperty-0000001815927688-V4?catalogVersion=V4)
 
-[Tabs组件](https://developer.harmonyos.com/cn/docs/documentation/doc-references/ts-container-tabs-0000001281001258)
+[Tabs组件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V4/ts-container-tabs-0000001815927636-V4?catalogVersion=V4)
 
 
