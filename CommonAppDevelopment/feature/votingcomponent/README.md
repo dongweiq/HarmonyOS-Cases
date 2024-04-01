@@ -115,8 +115,8 @@ Column()
 
 ### 参考资料
 
-[Polygon](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-drawing-components-polygon-0000001579866574-V2)
+[Polygon](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-drawing-components-polygon-0000001774280982)
 
-[animationTo](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-explicit-animation-0000001580185790-V2)
+[animationTo](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-explicit-animation-0000001774121350)
 
-[borderRadius](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-universal-attributes-border-0000001630146301-V2#ZH-CN_TOPIC_0000001758946317__borderradiuses9%E5%AF%B9%E8%B1%A1%E8%AF%B4%E6%98%8E)
+[borderRadius](https://developer.huawei.com/consumer/cn/doc/harmonyos-references/ts-universal-attributes-border-0000001774280846#ZH-CN_TOPIC_0000001774280846__borderradius)
