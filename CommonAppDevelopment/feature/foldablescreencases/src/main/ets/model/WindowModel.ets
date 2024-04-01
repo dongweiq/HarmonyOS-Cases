@@ -21,24 +21,7 @@ import { logger } from '@ohos/utils';
  * 窗口管理模型
  */
 export default class WindowModel {
-  private constructor() {
-  }
-
-  /**
-   * WindowModel 单例
-   */
-  private static instance?: WindowModel;
-
-  /**
-   * 获取WindowModel单例实例
-   * @returns {WindowModel} WindowModel
-   */
-  static getInstance(): WindowModel {
-    if (!WindowModel.instance) {
-      WindowModel.instance = new WindowModel();
-    }
-
-    return WindowModel.instance;
+  constructor() {
   }
 
   /**

@@ -13,36 +13,37 @@
  * limitations under the License.
  */
 
-import { logger } from '@ohos/utils';
 import CommonConstants from '../common/constants/CommonConstants';
 import { AVPlayerModel } from '../model/AVPlayerModel';
 import { MusicModel } from '../model/MusicModel';
+import { promptAction } from '@kit.ArkUI';
 
 export class MusicPlayerViewModel {
-  /**
-   * MusicPlayerViewModel 单例
-   */
-  private static instance?: MusicPlayerViewModel;
-
-  /**
-   * 获取MusicPlayerViewModel单例实例
-   * @returns {MusicPlayerViewModel} MusicPlayerViewModel
-   */
-  static getInstance(musicModel: MusicModel): MusicPlayerViewModel {
-    if (!MusicPlayerViewModel.instance) {
-      MusicPlayerViewModel.instance = new MusicPlayerViewModel(musicModel);
-    }
-
-    return MusicPlayerViewModel.instance;
+  constructor() {
   }
 
-  private musicModel: MusicModel;
-  private avplayerModel: AVPlayerModel = AVPlayerModel.getInstance();
+  private avplayerModel: AVPlayerModel = new AVPlayerModel();
+
+  private musicModelRaw?: MusicModel;
+
+  public get musicModel(): MusicModel | undefined {
+    return this.musicModelRaw;
+  }
+
+  public set musicModel(val: MusicModel | undefined) {
+    this.musicModelRaw = val;
+  }
 
   private totalTimeStrRaw: string = '';
 
   public get totalTimeStr(): string {
     return this.totalTimeStrRaw;
+  }
+
+  private curTimeRaw: number = 0;
+
+  public get curTime(): number {
+    return this.curTimeRaw;
   }
 
   private curTimeStrRaw: string = '';
@@ -63,8 +64,14 @@ export class MusicPlayerViewModel {
     return this.curPlayerStateRaw;
   }
 
-  private constructor(musicModel: MusicModel) {
-    this.musicModel = musicModel;
+  private progressLockRaw: boolean = false;
+
+  public get progressLock(): boolean {
+    return this.progressLockRaw;
+  }
+
+  public set progressLock(val: boolean) {
+    this.progressLockRaw = val;
   }
 
   /**
@@ -76,12 +83,35 @@ export class MusicPlayerViewModel {
     this.updateCurTime(0);
     await this.avplayerModel.initAVPlayer(
       (newTime: number) => {
+        // 如果slider进度正在被用户拖动或点击过程中，则不通过avplayer来同步进度
+        if (this.progressLockRaw) {
+          // 如果本次同步过来的时间与slider当前时间一致，表示用户拖动或点击结束，此次之后开始接收avplayer的同步进度
+          if (Math.abs(this.curTimeRaw - newTime) < 5) {
+            this.progressLockRaw = false;
+          }
+
+          return;
+        }
+
         this.updateCurTime(newTime);
       },
       (state: string) => {
         this.curPlayerStateRaw = state;
       }
     );
+    this.prepare();
+  }
+
+  /**
+   * 加载播放资源
+   * @returns {void}
+   */
+  prepare(): void {
+    if (!this.musicModelRaw) {
+      return;
+    }
+
+    this.avplayerModel.prepare(this.musicModelRaw.res);
   }
 
   /**
@@ -89,8 +119,7 @@ export class MusicPlayerViewModel {
    * @returns {void}
    */
   play(): void {
-    logger.info('vm play');
-    this.avplayerModel.playLocalRawfile(this.musicModel.res);
+    this.avplayerModel.play();
   }
 
   /**
@@ -98,7 +127,6 @@ export class MusicPlayerViewModel {
    * @returns {void}
    */
   pause(): void {
-    logger.info('vm pause');
     this.avplayerModel.pause();
   }
 
@@ -107,7 +135,6 @@ export class MusicPlayerViewModel {
    * @returns {void}
    */
   resume(): void {
-    logger.info('vm resume');
     this.avplayerModel.resume();
   }
 
@@ -117,16 +144,23 @@ export class MusicPlayerViewModel {
    * @returns {void}
    */
   seek(timeMs: number): void {
-    logger.info('vm seek');
     this.avplayerModel.seek(timeMs);
+  }
+
+  /**
+   * 释放播放器资源
+   * @returns {void}
+   */
+  release(): void {
+    this.avplayerModel.releaseAVPlayer();
   }
 
   /**
    * 生成时间字符串
    * @param timeMs 毫秒数
-   * @returns 时:分:秒 规格的字符串
+   * @returns {string} 时:分:秒 规格的字符串
    */
-  private genTimeStr(timeMs: number) {
+  genTimeStr(timeMs: number) {
     const totalTime = timeMs / 1000;
     let hours = Math.floor(totalTime / CommonConstants.SECONDS_IN_HOUR);
     let leftTime = totalTime % CommonConstants.SECONDS_IN_HOUR;
@@ -161,19 +195,40 @@ export class MusicPlayerViewModel {
 
   /**
    * 更新播放歌曲总时间
+   * @returns {void}
    */
   updateTotalTime(): void {
-    const totalTime = this.musicModel.totalTime;
+    if (!this.musicModelRaw) {
+      return;
+    }
+
+    const totalTime = this.musicModelRaw.totalTime;
     this.totalTimeStrRaw = this.genTimeStr(totalTime);
   }
 
   /**
    * 更新播放歌曲当前进度时间
    * @param curTime 当前进度时间
+   * @returns {void}
    */
-  updateCurTime(curTime: number) {
+  updateCurTime(curTime: number): void {
+    if (!this.musicModelRaw) {
+      return;
+    }
+
+    this.curTimeRaw = curTime;
     this.curTimeStrRaw = this.genTimeStr(curTime);
-    this.curProgressRaw = curTime / this.musicModel.totalTime * 100;
+    this.curProgressRaw = curTime / this.musicModelRaw.totalTime * CommonConstants.MUSIC_SLIDER_MAX;
+  }
+
+  /**
+   * 未完成的功能，显示TODO消息提示
+   * @returns {void}
+   */
+  showTodoToast() {
+    promptAction.showToast({
+      message: $r('app.string.toast_todo_show')
+    })
   }
 }
 

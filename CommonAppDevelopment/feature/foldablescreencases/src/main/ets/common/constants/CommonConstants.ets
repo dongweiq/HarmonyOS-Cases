@@ -83,7 +83,7 @@ export default class CommonConstants {
   /**
    * 音乐播放器控制按钮尺寸（大）
    */
-  static readonly MUSIC_PLAYER_CTRL_BTN_SIZE_BIG = 40;
+  static readonly MUSIC_PLAYER_CTRL_BTN_SIZE_BIG = 50;
   /**
    * 歌曲封面图尺寸（折叠屏展开态）
    */
@@ -96,6 +96,18 @@ export default class CommonConstants {
    * 歌曲封面图尺寸（折叠屏折叠态或者非折叠屏）
    */
   static readonly MUSIC_COVER_SIZE_COMMON = 150;
+  /**
+   * 歌曲时间显示文本展示最大行数
+   */
+  static readonly MUSIC_TIME_MAX_LINES = 1;
+  /**
+   * 歌曲时间显示文本flex布局所占父组件尺寸的比例
+   */
+  static readonly MUSIC_TIME_FLEX_SHRINK = 0;
+  /**
+   * 歌曲控制按钮flex布局所占父组件尺寸的比例
+   */
+  static readonly MUSIC_CTRL_BTN_FLEX_SHRINK = 1;
   /**
    * 歌曲信息组件高度（折叠屏半折叠态）
    */
@@ -116,5 +128,21 @@ export default class CommonConstants {
    * 歌曲歌词组件高度（折叠屏折叠态或者非折叠屏）
    */
   static readonly MUSIC_LYRICS_COMP_HEIGHT_COMMON = '30%';
+  /**
+   * 歌曲歌词组件上外边距（折叠屏折叠态或非折叠屏）
+   */
+  static readonly MUSIC_LYRICS_COMP_MARGIN_TOP_COMMON = 0;
+  /**
+   * 歌曲歌词组件上外边距（折叠屏半折叠态或展开态）
+   */
+  static readonly MUSIC_LYRICS_COMP_MARGIN_TOP_EXPANDED = 100;
+  /**
+   * 歌曲进度条最小值
+   */
+  static readonly MUSIC_SLIDER_MIN = 0;
+  /**
+   * 歌曲进度条最大值
+   */
+  static readonly MUSIC_SLIDER_MAX = 100;
 }
 
