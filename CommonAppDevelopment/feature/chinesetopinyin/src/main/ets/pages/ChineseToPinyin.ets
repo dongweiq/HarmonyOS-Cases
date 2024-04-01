@@ -22,6 +22,7 @@
 // TODO: 知识点: 引入pinyin4js三方库
 import { pinyin4js } from '@ohos/pinyin4js';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsRouter/Index';
+import promptAction from '@ohos.promptAction';
 
 const LAYOUT_WEIGHT: number = 1; // 自动分配剩余空间
 const LIST_SPACE: number = 16;
@@ -132,6 +133,9 @@ export struct ChineseToPinyin {
       Button($r('app.string.button_content'))
         .width($r('app.string.button_width'))
         .margin({ top: $r('app.integer.button_margin_top') })
+        .onClick(()=>{
+          promptAction.showToast({ message: $r('app.string.only_show') });
+        })
     }
     .backgroundColor($r('app.color.body_background'))
     .height($r('app.string.body_height'))
