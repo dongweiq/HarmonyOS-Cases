@@ -241,4 +241,4 @@ export function getImageCommentView(): void {
 }
 
 // 动态路由第一次加载当前页面时调用，创建WrappedBuilder对象，并注册到路由中
-DynamicsRouter.registerRouterPage(RouterInfo.LIGHT, wrapBuilder(getImageCommentView));
+DynamicsRouter.registerRouterPage(RouterInfo.HIGH_LIGHT_GUIDE, wrapBuilder(getImageCommentView));

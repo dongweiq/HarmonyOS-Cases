@@ -104,4 +104,7 @@ export class RouterInfo {
   static readonly PAGE_FLIP: RouterInfo = new RouterInfo('@ohos/pageflip', 'PageFlip');
   static readonly VIDEO_CACHE: RouterInfo = new RouterInfo('@ohos/videocache', 'VideoCacheView');
   static readonly ICON_MAIN_COLOR: RouterInfo = new RouterInfo('@ohos/iconmaincolor', 'MainPage');
+  static readonly EFFECT_KIT: RouterInfo = new RouterInfo('@ohos/effectKit', 'MainPage');
+  static readonly HIGH_LIGHT_GUIDE: RouterInfo = new RouterInfo('@ohos/highlightguide', 'Index');
+  static readonly WORD_RECOGNITION: RouterInfo = new RouterInfo('@ohos/wordrecognition', 'WordRecognition');
 }

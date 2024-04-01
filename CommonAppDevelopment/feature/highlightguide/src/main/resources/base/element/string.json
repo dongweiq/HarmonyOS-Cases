@@ -59,6 +59,10 @@
     {
       "name": "custom_text",
       "value": "自定义功能页面"
+    },
+    {
+      "name": "grid_module",
+      "value": "模块"
     }
   ]
 }

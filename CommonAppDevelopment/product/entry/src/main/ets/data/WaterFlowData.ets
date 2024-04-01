@@ -99,4 +99,7 @@ export const waterFlowData: SceneModuleInfo[] = [
   new SceneModuleInfo($r('app.media.page_flip'), '阅读翻页方式案例', RouterInfo.PAGE_FLIP, '动效', 3),
   new SceneModuleInfo($r('app.media.video_cache'), '边缓存边播放案例', RouterInfo.VIDEO_CACHE, '其他', 3),
   new SceneModuleInfo($r('app.media.icon_main_color'), '根据icon自适应背景颜色', RouterInfo.ICON_MAIN_COLOR, '其他', 3),
+  new SceneModuleInfo($r('app.media.color_picker'), '使用colorPicker实现背景跟随主题颜色转换', RouterInfo.EFFECT_KIT, '其他', 3),
+  new SceneModuleInfo($r("app.media.high_light_guide"), '应用新功能引导实现案例', RouterInfo.HIGH_LIGHT_GUIDE, '其他'),
+  new SceneModuleInfo($r('app.media.word_recognition'), '文字识别案例', RouterInfo.WORD_RECOGNITION, '其他'),
 ]

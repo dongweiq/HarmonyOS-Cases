@@ -115,6 +115,20 @@
    |   |---pageflip                       // 阅读翻页方式案例
    |   |---videocache                     // 边缓存边播放案例
    |   |---iconmaincolor                  // 根据icon自适应背景颜色
+   |   |---bottomdrawerslidecase          // 底部抽屉滑动效果案例
+   |   |---chinesetopinyin                // 汉字转拼音案例
+   |   |---customsafekeyboard             // 自定义安全键盘案例
+   |   |---nativesavepictosandbox         // Native保存图片到应用沙箱
+   |   |---shortvideo                     // 短视频切换实现案例
+   |   |---digitalscrollanimation         // 数字滚动动效实现
+   |   |---expandtitle                    // 标题下拉缩放案例
+   |   |---pageloading                    // 页面加载效果实现案例
+   |   |---databaseupgrade                // 数据库版本升级案例
+   |   |---hilogmonitormanagement         // 监听HiLog日志实现测试用例验证
+   |   |---transitionanimation            // 一镜到底“页面转场”动画
+   |   |---imagegridlayout                // 图片九宫格封装案例
+   |   |---highlightguide                 // 应用新功能引导实现案例
+   |   |---wordrecognition                // 文字识别案例
    |---libs
    |---product 
    |   |---entry                          // 产品定制层-应用入口
@@ -556,6 +570,101 @@ OhosVideoCache是一个支持边播放边缓存的库，只需要将音视频的
 
 <img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/icon_main_color.png" width="200">
 
+#### 底部抽屉滑动效果案例
+
+本示例主要介绍了利用List实现底部抽屉滑动效果场景，并将界面沉浸式（全屏）显示，及背景地图可拖动。[详细说明文档](./CommonAppDevelopment/feature/bottomdrawerslidecase/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/bottom_drawer_slide.gif" width="200">
+
+#### 汉字转拼音案例
+
+本示例介绍使用第三方库的pinyin4js组件实现汉字转大写拼音。[详细说明文档](./CommonAppDevelopment/feature/chinesetopinyin/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/Chinese_to_pinyin.gif" width="200">
+
+#### 自定义安全键盘案例
+
+金融类应用在密码输入时，一般会使用自定义安全键盘。本示例介绍如何使用TextInput组件实现自定义安全键盘场景，主要包括TextInput.customKeyboard绑定自定义键盘、自定义键盘布局和状态更新等知识点。[详细说明文档](./CommonAppDevelopment/feature/customsafekeyboard/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/custom_safe_keyboard.gif" width="200">
+
+#### Navigation页面跳转对象传递案例
+
+本示例主要介绍在使用Navigation实现页面跳转时，如何在跳转页面得到转入页面传的类对象的方法。实现过程中使用了第三方插件class-transformer，传递对象经过该插件的plainToClass方法转换后可以直接调用对象的方法[详细说明文档](./CommonAppDevelopment/feature/navigationparametertransfer/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/navigationParameterTransfer.gif" width="200">
+
+#### Swiper高度可变化效果实现
+
+在很多应用中，swiper组件每一个page的高度是不一致的，所以需要swiper组件下方页面的高度跟着一起变化。[详细说明文档](./CommonAppDevelopment/feature/swipersmoothvariation/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/swiper_smooth_variation.gif" width="200">
+
+#### Native保存图片到应用沙箱
+
+本示例主要介绍Native如何将网络上的图片及Rawfile中的图片保存到应用沙箱中。[详细说明文档](./CommonAppDevelopment/feature/nativesavepictosandbox/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/native_image2sandbox.gif" width="200">
+
+#### 短视频切换实现案例
+
+短视频切换在应用开发中是一种常见场景，上下滑动可以切换视频，十分方便。本模块基于Swiper组件和Video组件实现短视频切换功能。[详细说明文档](./CommonAppDevelopment/feature/shortvideo/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/short_video.gif" width="200">
+
+#### 数字滚动动效实现
+
+本示例主要介绍了数字滚动动效的实现方案。 该方案多用于数字刷新，例如页面刷新抢票数量等场景。[详细说明文档](./CommonAppDevelopment/feature/digitalscrollanimation/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/number_scroll.gif" width="200">
+
+#### 标题下拉缩放案例
+
+本文以备忘录应用为示例，介绍如何在实现标题展开时继续下拉的动效。[详细说明文档](./CommonAppDevelopment/feature/expandtitle/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/expand_title.gif" width="200">
+
+#### 页面加载效果实现案例
+
+本示例介绍Stack堆叠组件和LoadingProgress加载组件模拟首次进入页面实现页面加载的效果。加载完成后，LoadingProgress组件会消失并展示加载结果页（即商品页）。[详细说明文档](./CommonAppDevelopment/feature/pageloading/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/page_loading.gif" width="200">
+
+#### 监听HiLog日志实现测试用例验证
+
+日常中在进行测试用例验证时，会出现部分场景无法通过判断UI的变化来确认用例是否正常运行，我们可以通过监听日志的方式来巧妙的实现这种场景。本示例通过监听hilog日志的回调，判断指定日志是否打印，来确定测试用例的执行结果是成功还是失败。由于ArkTS没有注册日志回调的接口，示例通过Native来注册日志回调，并在Native的自定义日志处理函数中过滤用户传入的日志内容后回调ArkTS端的回调函数。[详细说明文档](./CommonAppDevelopment/feature/hilogmonitormanagement/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/HiLogMonitor.gif" width="200">
+
+#### 数据库版本升级案例
+
+本示例介绍使用关系型数据库的接口来进行数据库升降级场景实现[详细说明文档](./CommonAppDevelopment/feature/databaseupgrade/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/database_upgrade.gif" width="200">
+
+#### 一镜到底“页面转场”动画
+
+本方案做的是页面点击卡片跳转到详情预览的转场动画效果[详细说明文档](./CommonAppDevelopment/feature/transitionanimation/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/transition_animation.gif" width="200">
+
+#### 跨文件样式复用和组件复用
+
+本示例主要介绍了跨文件样式复用和组件复用的场景。在应用开发中，我们通常需要使用相同功能和样式的ArkUI组件，例如购物页面中会使用相同样式的Button按钮、Text显示文字，我们常用的方法是抽取公共样式或者封装成一个自定义组件到公共组件库中以减少冗余代码。[详细说明文档](./CommonAppDevelopment/feature/dynamicattributes/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/dynamic_attributes.gif" width="200">
+
+#### 应用新功能引导实现案例
+
+本文介绍如何使用high_light_guide三方库完成应用新版本功能导航。通过高亮区域与蒙版背景的明暗度对比，让用户快速锁定重点功能，了解版本变更和业务入口。[详细说明文档](./CommonAppDevelopment/feature/highlightguide/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/high_light_guide.gif" width="200">
+
+#### 文字识别案例
+
+本示例介绍使用text组件的enableDataDetector属性实现文本特殊文字识别。[详细说明文档](./CommonAppDevelopment/feature/wordrecognition/README.md)
+
+<img src="./CommonAppDevelopment/product/entry/src/main/resources/base/media/word_recognition.gif" width="200">
 
 ### 公共能力层
 
