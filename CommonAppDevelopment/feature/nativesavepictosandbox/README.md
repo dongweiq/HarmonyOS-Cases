@@ -166,4 +166,4 @@
 
 ### 参考资料    
 [开源库libcurl](https://github.com/curl/curl)    
-[libcurl编译](https://gitee.com/openharmony-sig/tpc_c_cplusplus/blob/master/thirdparty/curl/docs/hap_integrate.md)。
+[libcurl编译](https://gitee.com/openharmony-sig/tpc_c_cplusplus/blob/master/thirdparty/curl/docs/hap_integrate.md)
