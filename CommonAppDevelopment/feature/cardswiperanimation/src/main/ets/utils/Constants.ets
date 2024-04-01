@@ -34,5 +34,5 @@ export default class Constants {
   // 图片动画透明度值
   public static readonly OPACITY: number = 0.99;
   // 图片动画时长
-  public static readonly DURATION: number = 350;
+  public static readonly DURATION: number = 280;
 }
