@@ -12,32 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { window } from '@kit.ArkUI'
 
-@Observed
-export class ImagePositionModel {
-  public currentX: number;
-  public currentY: number;
-  public lastX: number = 0;
-  public lastY: number = 0;
+class WindowSizeManager {
+  private size: window.Size = { width: 0, height: 0 };
 
-  constructor(currentX: number = 0, currentY: number = 0) {
-    this.currentX = currentX;
-    this.currentY = currentY;
+  constructor() {
+    window.getLastWindow(getContext()).then((value: window.Window) => {
+      const rect: window.Rect = value.getWindowProperties().windowRect;
+      this.size.width = px2vp(rect.width);
+      this.size.height = px2vp(rect.height);
+      console.log(`[windowWidth]${this.size.width} [windowHeight]${this.size.height}`);
+    })
   }
 
-  reset(): void {
-    this.currentX = 0;
-    this.currentY = 0;
-    this.lastX = 0;
-    this.lastY = 0;
-  }
-
-  stash(): void {
-    this.lastX = this.currentX;
-    this.lastY = this.currentY;
-  }
-
-  toString(): string {
-    return `[currentX: ${this.currentX} currentY: ${this.currentY} lastX: ${this.lastX} lastY: ${this.lastY}]`;
+  get(): window.Size {
+    return this.size;
   }
 }
+
+export const windowSizeManager: WindowSizeManager = new WindowSizeManager();
