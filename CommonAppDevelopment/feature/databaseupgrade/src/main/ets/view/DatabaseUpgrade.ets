@@ -97,7 +97,7 @@ export struct DatabaseUpgrade {
         // 表模块
         Column() {
           // V1版本表
-          Stack() {
+          Column() {
             if ((this.isUpdatedToV2 || this.isUpdatedToV3) && !(this.isUpdatedToV2 && this.isUpdatedToV3)) {
               CustomFormComponent({ res: this.v1Res, title: Constants.V1 })
               Row() {
@@ -116,8 +116,8 @@ export struct DatabaseUpgrade {
             }
           }
 
-          Stack() {
-            // V2版本表
+          // V2版本表
+          Column() {
             if (this.isUpdatedToV2 && this.isUpdatedToV3) {
               CustomFormComponent({ res: this.v2Res, title: Constants.V2 })
               Row() {
@@ -130,6 +130,7 @@ export struct DatabaseUpgrade {
               }
             }
           }
+
           // 当前版本表
           CustomFormComponent({ res: this.res, title: this.versionNumber })
             .margin({ bottom: Constants.NUMBER_20 })
