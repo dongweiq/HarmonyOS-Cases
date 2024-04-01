@@ -121,7 +121,7 @@ export struct CityView {
     .padding({ bottom: $r('app.integer.padding_bottom') })
     /* 性能知识点：由于需要通过搜索按钮频繁的控制自定义组件的显隐状态，因此推荐使用显隐控制替代条件渲染，
      * 参考合理选择条件渲染和显隐控制文章：
-     * https://docs.openharmony.cn/pages/v4.0/zh-cn/application-dev/performance/proper-choice-between-if-and-visibility.md/
+     * https://gitee.com/harmonyos-cases/cases/blob/master/docs/performance/proper-choice-between-if-and-visibility.md
      */
     .visibility(this.isSearchState ? Visibility.None : Visibility.Visible)
     .margin({ top: $r('app.integer.margin_top') })
