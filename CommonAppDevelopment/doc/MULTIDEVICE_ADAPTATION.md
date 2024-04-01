@@ -25,7 +25,7 @@
 Navigation(this.pageStack) { ... }
   .backgroundColor($r('app.color.main_background_color'))
   .hideTitleBar(true)
-  .navBarWidth(this.isFullScreen)
+  .navBarWidth(this.fullScreenSize)
   .navDestination(this.pageMap)
   .mode(NavigationMode.Auto)
 ```
@@ -40,12 +40,12 @@ Navigation(this.pageStack) { ... }
 ```ts
  // EntryView.ets
  ...
- @Provide('isFullScreen') isFullScreen: string = '50%';
+ @Provide('fullScreenSize') fullScreenSize: string = '50%';
  ...
  Navigation(this.pageStack) { ... }
    .backgroundColor($r('app.color.main_background_color'))
    .hideTitleBar(true)
-   .navBarWidth(this.isFullScreen)
+   .navBarWidth(this.fullScreenSize)
    .navDestination(this.pageMap)
    .mode(NavigationMode.Auto)
  ...
@@ -53,7 +53,7 @@ Navigation(this.pageStack) { ... }
  
  // MusicPlayerInfoComp.ets
  ...
- @Consume('isFullScreen') isFullScreen: string;
+ @Consume('fullScreenSize') fullScreenSize: string;
  ...
  aboutToAppear(): void {
    ...
@@ -62,7 +62,7 @@ Navigation(this.pageStack) { ... }
      duration: 400,
      curve: Curve.EaseInOut,
    }, () => {
-     this.isFullScreen = '0.01%';
+     this.fullScreenSize = '0.01%';
    })
    ...
  }
@@ -79,7 +79,7 @@ Navigation(this.pageStack) { ... }
            duration: 200,
            curve: Curve.EaseInOut,
          }, () => {
-           this.isFullScreen = '50%';
+           this.fullScreenSize = '50%';
          })
        })
        .position({ x: $r('app.integer.image_position_x'), y: $r('app.integer.image_position_y') })
