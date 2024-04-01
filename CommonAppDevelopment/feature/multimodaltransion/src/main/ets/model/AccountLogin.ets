@@ -33,6 +33,8 @@ export struct AccountLogin {
   @State pwdIsblank: boolean = true;
   // 通过控制此变量来展示验证码登录或者账户登录，通过link和父组件双向绑定
   @Link isDefaultLogin: boolean;
+  // 用于标识转场类型，从半模态跳转至手机验证码组件时为false，从账号密码组件跳转至手机验证码组件时为true
+  @Link isShowTransition: boolean;
 
   build() {
     Column({ space: SPACE_TEN }) {
@@ -72,6 +74,7 @@ export struct AccountLogin {
           .onClick(() => {
             // 切换到验证码登录
             this.isDefaultLogin = true;
+            this.isShowTransition = true;
           })
       }
       .width($r('app.string.size_eighty_percent'))

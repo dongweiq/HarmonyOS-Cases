@@ -26,7 +26,7 @@
 
 在日常开发过程中经常会碰到这样的问题：主页的开发场景中有多个Tab页展示不同内容，在首次加载完主页后，切换到第二个Tab页时需要加载和处理网络数据，导致第二个Tab页的页面显示较慢，有较大的完成时延。
 
-碰到此类问题，我们可以在生命周期aboutToAppear中，使用多线程并发（详细介绍可参考文章：[高效并发编程](efficient-concurrent-programming.md)、[多线程能力场景化](multi_thread_capability.md)）的方法执行第二个Tab页的网络数据访问解析、数据加载等耗时操作，既可以提前完成数据加载，也不会影响主线程UI绘制和渲染。
+碰到此类问题，我们可以在生命周期aboutToAppear中，使用多线程并发（详细介绍可参考文章：[高效并发编程](efficient-concurrent-programming.md)、[多线程能力场景化示例实践](multi_thread_capability.md)）的方法执行第二个Tab页的网络数据访问解析、数据加载等耗时操作，既可以提前完成数据加载，也不会影响主线程UI绘制和渲染。
 
 使用TaskPool进行耗时操作的示例代码如下：
 ```typescript
@@ -35,7 +35,7 @@ import taskpool from '@ohos.taskpool';
 aboutToAppear() {
   ...
   // 在生命周期中，使用TaskPool加载和解析网络数据
-  this.requestByTaskPool()
+  this.requestByTaskPool();
 }
 
 @Concurrent
@@ -50,7 +50,7 @@ requestByTaskPool(): void {
   try {
 	// 执行网络加载函数
 	taskpool.execute(task, taskpool.Priority.HIGH).then((res: string[]) => {
-	})
+	});
   } catch (err) {
 	 logger.error(TAG, "failed, " + (err as BusinessError).toString());
   }
@@ -66,7 +66,7 @@ requestByTaskPool(): void {
 
 #### 使用异步执行耗时操作
 
-问题：在aboutToAppear生命周期中，运行了业务数据解析和处理等耗时操作，影响了上一页面点击跳转该页面的响应时延。
+问题：在aboutToAppear生命周期函数中，运行了业务数据解析和处理等耗时操作，影响了上一页面点击跳转该页面的响应时延。
 
 可以把耗时操作的执行从同步执行改为异步或者延后执行（详细介绍可参考文章：[提升应用冷启动速度](improve-application-cold-start-speed.md)），比如使用setTimeOut执行耗时操作，示例如下：
 
@@ -75,13 +75,13 @@ aboutToAppear() {
   ...
   // 在生命周期中，使用异步处理数据，延时大小视情况确定
   setTimeout(() => {
-    this.workoutResult()
+    this.workoutResult();
   }, 1000)
 }
 
 workoutResult(): string[] {
   // 处理需要展示的业务数据
-  let data: Data[] = []
+  let data: Data[] = [];
   for(let i = 1; i < 100; i++) {
     result += data[i];
   }
@@ -105,15 +105,16 @@ preload() {
   // Web组件引擎初始化
   webview.WebviewController.initializeWebEngine();
   // 启动预连接，连接地址为即将打开的网址
-  webview.WebviewController.prepareForPageLoad('https://gitee.com/  harmonyos-cases/cases', true, 2);
+  webview.WebviewController.prepareForPageLoad('https://gitee.com/harmonyos-cases/cases', true, 2);
 }
+...
 ```
 相关案例：
 * [Web组件的动态加载实现案例](https://gitee.com/harmonyos-cases/cases/blob/master/CommonAppDevelopment/product/entry/src/main/ets/view/HelperView.ets)
 
 #### 使用cachedCount属性实现预加载
 
-推荐在使用List、Swiper、Grid、WaterFlow等组件时，配合使用cachedCount属性实现预加载（详细介绍可参考文章：[WaterFlow高性能开发指导](waterflow_optimization.md)、[Swiper高性能开发指导](swiper_optimization.md)、[Grid高性能开发指导](grid_optimization.md)、[列表场景性能提升实践](list-perf-improvment.md)），示例代码如下所示：
+推荐在使用List、Swiper、Grid、WaterFlow等组件时，配合使用cachedCount属性实现预加载（详细介绍可参考文章：[WaterFlow高性能开发指导](waterflow_optimization.md)、[Swiper高性能开发指导](swiper_optimization.md)、[Grid高性能开发指导](grid_optimization.md)、[应用列表场景性能提升实践](list-perf-improvment.md)），示例代码如下所示：
 
 ```typescript
   private source: MyDataSource = new MyDataSource();
@@ -135,7 +136,7 @@ preload() {
 
 #### 使用条件渲染实现预加载
 
-问题：页面布局复杂度较高，导致跳转该页面的响应时延较慢。
+问题：页面布局复杂度较高，导致跳转该页面的响应时延较高。
 
 可以使用条件渲染（详细介绍可参考文章：[合理选择条件渲染和显隐控制](proper-choice-between-if-and-visibility.md)的方式，添加页面的简单骨架图作为默认展示页面，等数据加载完成后再显示最终的复杂布局，加快点击响应速度。
 
@@ -150,15 +151,15 @@ import businessComponent from "./businessComponent"
 aboutToAppear() {
   ...
   // 从网络获取页面数据
-  requestByTaskPool()
+  requestByTaskPool();
 }
 
 build() {
   // 当数据未就位时展示骨架图，提升用户体验，减少页面渲染时间
   if(!this.isInitialized) {
-    skeletonComponent()
+    skeletonComponent();
   } else {
-    businessComponent()
+    businessComponent();
   }
 }
 
@@ -191,7 +192,7 @@ requestByTaskPool(): void {
 
 HarmonyOS应用框架提供了组件复用能力，可复用组件从组件树上移除时，会进入到一个回收缓存区。后续创建新组件节点时，会复用缓存区中的节点，节约组件重新创建的时间。
 
-若业务实现中存在以下场景，并成为UI线程的帧率瓶颈，推荐使用组件复用（详细介绍可参考文章：[组件复用使用指导](component-recycle.md)、[列表场景性能提升实践](list-perf-improvment.md)）：
+若业务实现中存在以下场景，并成为UI线程的帧率瓶颈，推荐使用组件复用（详细介绍可参考文章：[组件复用实践](component-recycle.md)、[应用列表场景性能提升实践](list-perf-improvment.md)）：
 
 * 列表滚动（本例中的场景）：当应用需要展示大量数据的列表，并且用户进行滚动操作时，频繁创建和销毁列表项的视图可能导致卡顿和性能问题。在这种情况下，使用列表组件的组件复用机制可以重用已经创建的列表项视图，提高滚动的流畅度。
 * 动态布局更新：如果应用中的界面需要频繁地进行布局更新，例如根据用户的操作或数据变化动态改变视图结构和样式，重复创建和销毁视图可能导致频繁的布局计算，影响帧率。在这种情况下，使用组件复用可以避免不必要的视图创建和布局计算，提高性能。
@@ -214,7 +215,7 @@ struct MyComponent {
 
   aboutToAppear() {
     for (let i = 0; i < 1000; i++) {
-      this.data.pushData(i.toString())
+      this.data.pushData(i.toString());
     }
   }
 
@@ -321,7 +322,7 @@ export struct IconItem {
 
 #### 使用显隐控制进行页面缓存
 
-控制元素显示与隐藏是一种常见的场景，使用Visibility.none、if条件判断等都能够实现该效果。其中if条件判断控制的是组件的创建、布局阶段，visibility属性控制的是元素在布局阶段是否参与布局渲染。使用时如果使用的方式不当，将引起性能上的问题。
+控制元素显示与隐藏是一种常见的场景，使用Visibility.None、if条件判断等都能够实现该效果。其中if条件判断控制的是组件的创建、布局阶段，visibility属性控制的是元素在布局阶段是否参与布局渲染。使用时如果使用的方式不当，将引起性能上的问题。
 如果会频繁响应显示与隐藏的交互效果，建议使用切换Visibility.None和Visibility.Visible来控制元素显示与隐藏(详细介绍可参考文章: [合理选择条件渲染和显隐控制](proper-choice-between-if-and-visibility.md))，在组件无需展示的时候进行缓存，提高性能。
 
 示例代码如下：
@@ -400,17 +401,17 @@ struct ComponentB {
 // 反例
 Row() {
   Row() {
-    Image()
+    Text()
     Text()
   }
-  Image()
+  Text()
 }
 
 // 正例
 Row() {
-  Image()
   Text()
-  Image()
+  Text()
+  Text()
 }
 ```
 #### 删除build函数中最外层无用容器嵌套
@@ -421,11 +422,11 @@ Row() {
 ```typescript
 // 反例
 @Component
-MyComponent {
+struct MyComponent {
   build() {
     Stack() {
-	  Row {
-      Image()
+	  Row() {
+      Text()
       Text()
 	  }
 	}
@@ -434,10 +435,10 @@ MyComponent {
 
 // 正例
 @Component
-MyComponent {
+struct MyComponent {
   build() {
     Row {
-      Image()
+      Text()
       Text()
     }
   }
@@ -571,7 +572,7 @@ aboutToAppear() {
 build() {
   Column() {
     if(this.isVisible) {
-      Image()
+      Text()
     }
     ForEach(this.realData,(item: Data) => {
       Text(`${item.label}`)
@@ -593,7 +594,7 @@ build() {
   Column() {
     Column() {
       if(this.isVisible) {
-        Image()
+        Text()
       }
     }
     ForEach(this.realData,(item: Data) => {
@@ -636,7 +637,7 @@ struct componentSon{
   build() {
     Column() {
       Text(data.text)
-      ComponentGrandSon({data: this.data})
+      componentGrandSon({data: this.data})
     }
   }
 }
@@ -681,7 +682,7 @@ struct componentSon{
   build() {
     Column() {
       Text(data.text)
-      ComponentGrandSon({data: this.data})
+      componentGrandSon({data: this.data})
     }
   }
 }
@@ -1037,7 +1038,9 @@ struct Page {
 struct component {
   @State bgcolor: string | Color = '#ffffff';
   @State selectColor: string | Color = '#007DFF';
-
+  
+  build() {
+  }
 }
 ```
 正例代码如下：
@@ -1047,6 +1050,8 @@ struct component {
   bgcolor: string | Color = '#ffffff';
   selectColor: string | Color = '#007DFF';
   
+  build() {
+  }
 }
 ```
 
@@ -1271,7 +1276,7 @@ SmartPerf-Host是一款深入挖掘数据、细粒度展示数据的性能功耗
 
 该工具为OpenHarmony应用开发者提供性能采样分析手段，可在不插桩情况下获取调用栈上各层函数的执行时间，并展示在时间轴上。
 
-开发者可通过该工具查看TS/JS代码及NAPI代码执行过程中的时序及耗时情况，进而发现热点函数及性能瓶颈，进行应用层性能优化
+开发者可通过该工具查看TS/JS代码及NAPI代码执行过程中的时序及耗时情况，进而发现热点函数及性能瓶颈，进行应用层性能优化。
 
 ### 使用[状态变量组件定位工具](state_variable_dfx_pratice.md)分析状态变量关联信息
 

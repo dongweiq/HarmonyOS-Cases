@@ -92,9 +92,7 @@ export struct VibrateEffectView {
 
       Scroll() {
         // 应用图标
-        Column({
-          space: CONFIGURATION.MARGIN_VERTICAL
-        }) {
+        Column({ space: CONFIGURATION.MARGIN_VERTICAL }) {
           Image($r('app.media.speed_train'))
             .width($r('app.integer.image_size'))
             .height($r('app.integer.image_size'))
