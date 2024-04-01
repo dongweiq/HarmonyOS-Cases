@@ -15,6 +15,7 @@
 
 import { ICON_DATA1, ICON_DATA2 } from '../mock/IconMock';
 import { IconDataModel } from '../model/IconModel';
+import { promptAction } from '@kit.ArkUI';
 
 const ICONVIEWSPACE: number = 10; // 图标之间间距
 const ASPECT_RATIO: number = 1; // 图片的宽高比
@@ -45,6 +46,9 @@ struct iconView1 {
     .justifyContent(FlexAlign.Center)
     .backgroundColor(Color.White)
     .borderRadius($r('app.integer.icon_view_border_radius'))
+    .onClick(()=>{
+      promptAction.showToast({ message: $r('app.string.component_stack_other_function')});
+    })
   }
 }
 
@@ -71,6 +75,9 @@ struct iconView2 {
     .justifyContent(FlexAlign.Center)
     .backgroundColor(Color.White)
     .borderRadius($r('app.integer.icon_view_border_radius'))
+    .onClick(()=>{
+      promptAction.showToast({ message: $r('app.string.component_stack_other_function')});
+    })
   }
 }
 
@@ -95,6 +102,9 @@ struct iconView3 {
     .width('100%')
     .height($r('app.integer.icon_view_height3'))
     .justifyContent(FlexAlign.Center)
+    .onClick(()=>{
+      promptAction.showToast({ message: $r('app.string.component_stack_other_function')});
+    })
   }
 }
 

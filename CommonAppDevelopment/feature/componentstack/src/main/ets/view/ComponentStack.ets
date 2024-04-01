@@ -16,6 +16,7 @@
 import { IconList1, IconList2, IconList3 } from '../view/IconView';
 import { ProductList } from '../view/ProductList';
 import { DynamicsRouter, RouterInfo } from '@ohos/dynamicsrouter';
+import { promptAction } from '@kit.ArkUI';
 
 /**
  * 实现步骤：
@@ -31,7 +32,6 @@ const OPACITY: number = 0.6; // 字体设置透明度
 const ZINDEX: number = 1; // 快截图标区域3放在最上层
 const LAYOUT_WEIGHT: number = 1; // 分配剩余空间
 
-@Preview
 @Component
 export struct ComponentStack {
   @State searchHeight: number = 100; // 搜索框原始高度
@@ -65,6 +65,7 @@ export struct ComponentStack {
           .aspectRatio(ASPECT_RATIO)
           .borderRadius($r('app.integer.user_portrait_border_radius'))
 
+
         Image($r("app.media.stack_scan"))
           .width($r('app.integer.scan_width'))
           .aspectRatio(ASPECT_RATIO)
@@ -83,7 +84,7 @@ export struct ComponentStack {
             Image($r('app.media.search'))
               .width($r('app.integer.search_width'))
               .aspectRatio(ASPECT_RATIO)
-              .margin({ left: $r('app.integer.search_margin_left') })
+              .margin({ left: $r('app.integer.search_icon_margin_left') })
 
             Text($r('app.string.search_title'))
               .opacity(OPACITY)
@@ -95,6 +96,9 @@ export struct ComponentStack {
           .height(this.searchHeight)
           .backgroundColor(Color.White)
           .borderRadius($r('app.integer.search_border_radius'))
+          .onClick(()=>{
+            promptAction.showToast({ message: $r('app.string.component_stack_other_function')});
+          });
 
           // Stack堆叠组件
           Stack({ alignContent: Alignment.Top }) {

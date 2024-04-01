@@ -110,10 +110,10 @@ componentstack                                   // har类型
 
 ### 参考资料
 
-[WaterFlow](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-container-waterflow-0000001579866570-V2)
+[WaterFlow](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V4/ts-container-waterflow-0000001815767844-V4?catalogVersion=V4)
 
-[Stack](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-container-stack-0000001630425685-V2)
+[Stack](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V4/ts-container-stack-0000001815767840-V4?catalogVersion=V4)
 
-[Z序控制](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-universal-attributes-z-order-0000001580185722-V2)
+[Z序控制](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V4/ts-universal-attributes-z-order-0000001862687545-V4?catalogVersion=V4)
 
-[组件可见区域变化事件](https://developer.harmonyos.com/cn/docs/documentation/doc-references-V2/ts-universal-component-visible-area-change-event-0000001580345642-V2?catalogVersion=V2)
+[组件可见区域变化事件](https://developer.huawei.com/consumer/cn/doc/harmonyos-references-V4/ts-universal-component-visible-area-change-event-0000001815767708-V4?catalogVersion=V4)

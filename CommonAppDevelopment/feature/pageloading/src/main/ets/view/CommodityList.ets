@@ -16,6 +16,7 @@
 import { PRODUCTS_DATA } from '../mock/CommodityMock';
 import { CommodityDataModel } from '../model/CommodityDataModel';
 import { CommodityDataSource } from '../model/CommodityDataSource';
+import { promptAction } from '@kit.ArkUI';
 
 const IMAGE_ASPECT_RATIO: number = 1; // 图片的宽高比
 const OFFSET: number = -4; // 价格控件偏移量
@@ -139,6 +140,9 @@ export struct CommodityList {
                 center: { anchor: "image", align: VerticalAlign.Center }
               })
               .id('column')
+              .onClick(()=>{
+                promptAction.showToast({ message: $r('app.string.commodity_other_function')});
+              })
             }
             .height($r('app.integer.commodity_list_item_height'))
             .borderRadius($r('app.integer.commodity_border_radius'))

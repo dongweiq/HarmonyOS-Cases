@@ -83,6 +83,10 @@
     {
       "name": "warning_text",
       "value": "本示例介绍运用Stack组件以构建多层次堆叠的视觉效果。通过绑定Scroll组件的onScroll滚动事件回调函数，精准捕获滚动动作的发生。当滚动时，实时地调节组件的透明度、高度等属性，从而成功实现了嵌套滚动效果、透明度动态变化以及平滑的组件切换。"
+    },
+    {
+      "name": "component_stack_other_function",
+      "value": "仅演示，可自行实现业务功能"
     }
   ]
 }

@@ -102,6 +102,10 @@
     {
       "name": "commodity_insurance05",
       "value": "30天保价"
+    },
+    {
+      "name": "commodity_other_function",
+      "value": "仅演示，可自行实现业务功能"
     }
   ]
 }

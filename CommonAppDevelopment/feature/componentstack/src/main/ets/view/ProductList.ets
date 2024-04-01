@@ -16,6 +16,7 @@
 import { PRODUCT_DATA } from '../mock/IconMock';
 import { ProductDataModel } from '../model/IconModel';
 import { ProductDataSource } from '../model/DataSource';
+import { promptAction } from '@kit.ArkUI';
 
 const COLUMNSPACE: number = 5; // column各子组件间距
 const ASPECT_RATIO: number = 1; // 图片的宽高比
@@ -78,6 +79,9 @@ export struct ProductList {
           .height($r('app.integer.water_flow_column_height'))
           .backgroundColor(Color.White)
           .borderRadius($r('app.integer.water_flow_column_border_radius'))
+          .onClick(()=>{
+            promptAction.showToast({ message: $r('app.string.component_stack_other_function')});
+          });
         }
       }, (item: ProductDataModel) => item.id.toString())
     }
