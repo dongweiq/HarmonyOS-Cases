@@ -29,13 +29,12 @@
       "value": 130
     },
     {
-      "name": "button_spacing",
-      "value": 20
+      "name": "bt_height",
+      "value": 40
     },
     {
-      "name": "progress_margin",
+      "name": "button_spacing",
       "value": 20
     }
-
   ]
 }

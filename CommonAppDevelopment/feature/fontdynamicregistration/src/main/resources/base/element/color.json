@@ -11,6 +11,30 @@
     {
       "name": "gery_bg",
       "value": "#ffefefef"
+    },
+    {
+      "name": "progress_normal",
+      "value": "#ff3f89fd"
+    },
+    {
+      "name": "progress_downloading",
+      "value": "#ffefefef"
+    },
+    {
+      "name": "progress_bg_normal",
+      "value": "#ff3f89fd"
+    },
+    {
+      "name": "progress_bg_downloading",
+      "value": "#ffffffff"
+    },
+    {
+      "name": "progress_font_normal",
+      "value": "#ffffffff"
+    },
+    {
+      "name": "progress_font_downloading",
+      "value": "#ff182431"
     }
   ]
 }
