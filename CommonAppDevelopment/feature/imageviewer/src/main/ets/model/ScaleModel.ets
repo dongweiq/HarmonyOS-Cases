@@ -14,34 +14,37 @@
  */
 
 @Observed
-export class ImageScaleModel {
+export class ScaleModel {
   /**
    * scaleValue: 本次缩放因子，用于控制图片的大小显示
-   * pinchValue：记录上次缩放完后的缩放因子
+   * lastValue：记录上次缩放完后的缩放因子
    * defaultMaxScaleValue：默认的最大放大值
    * defaultScaleValue：默认缩放值，1
    */
   public scaleValue: number;
-  public pinchValue: number;
-  public defaultMaxScaleValue: number;
+  public lastValue: number;
+  public maxScaleValue: number;
+  public extraScaleValue: number;
   public readonly defaultScaleValue: number = 1;
 
-  constructor(scaleValue: number, pinchValue: number, defaultMaxScaleValue: number = 3) {
+  constructor(scaleValue: number = 1.0, lastValue: number = 1.0,
+              maxScaleValue: number = 1.5, extraScaleValue: number = 0.2) {
     this.scaleValue = scaleValue;
-    this.pinchValue = pinchValue;
-    this.defaultMaxScaleValue = defaultMaxScaleValue;
+    this.lastValue = lastValue;
+    this.maxScaleValue = maxScaleValue;
+    this.extraScaleValue = extraScaleValue;
   }
 
   reset(): void {
     this.scaleValue = this.defaultScaleValue;
-    this.pinchValue = this.scaleValue;
+    this.lastValue = this.scaleValue;
   }
 
   stash(): void {
-    this.pinchValue = this.scaleValue;
+    this.lastValue = this.scaleValue;
   }
 
   toString(): string {
-    return `[scaleValue: ${this.scaleValue} pinchValue: ${this.pinchValue}]`;
+    return `[scaleValue: ${this.scaleValue} lastValue: ${this.lastValue}]`;
   }
 }

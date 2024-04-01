@@ -13,9 +13,13 @@
  * limitations under the License.
  */
 
-export class ImageViewerConstants {
-  // 缩放动画的持续时间
-  static readonly ANIMATE_DURATION: number = 300;
-  // swiper中缓存图片的数量
-  static readonly SWIPER_CACHE_COUNT: number = 2;
+@Observed
+export class PositionModel {
+  x: number;
+  y: number;
+
+  constructor(x: number = 0, y: number = 0) {
+    this.x = x;
+    this.y = y;
+  }
 }
