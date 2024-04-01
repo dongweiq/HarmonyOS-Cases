@@ -5,6 +5,10 @@
       "value": "15%"
     },
     {
+      "name": "width_and_height_twenty_five_percent",
+      "value": "25%"
+    },
+    {
       "name": "width_and_height_thirty_percent",
       "value": "30%"
     },

@@ -1,8 +1,12 @@
 {
   "integer": [
     {
-      "name": "top_interval_five",
-      "value": 5
+      "name": "top_interval_minus_five",
+      "value": -5
+    },
+    {
+      "name": "top_interval_ten",
+      "value": 10
     },
     {
       "name": "top_interval_twenty",
@@ -21,12 +25,16 @@
       "value": -10
     },
     {
+      "name": "bottom_interval_minus_five",
+      "value": -5
+    },
+    {
       "name": "bottom_interval_five",
       "value": 5
     },
     {
-      "name": "bottom_interval_ten",
-      "value": 10
+      "name": "bottom_interval_minus_ten",
+      "value": -10
     },
     {
       "name": "font_size_fourteen",
@@ -69,8 +77,8 @@
       "value": 12
     },
     {
-      "name": "lanes_size",
-      "value": 4
+      "name": "positionY",
+      "value": 110
     }
   ]
 }
