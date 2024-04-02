@@ -24,7 +24,7 @@ export class MusicPlayerViewModel {
 
   private avplayerModel: AVPlayerModel = new AVPlayerModel();
 
-  private musicModelRaw?: MusicModel;
+  private musicModelRaw?: MusicModel = undefined;
 
   public get musicModel(): MusicModel | undefined {
     return this.musicModelRaw;
@@ -160,12 +160,12 @@ export class MusicPlayerViewModel {
    * @param timeMs 毫秒数
    * @returns {string} 时:分:秒 规格的字符串
    */
-  genTimeStr(timeMs: number) {
+  genTimeStr(timeMs: number): string {
     const totalTime = timeMs / 1000;
-    let hours = Math.floor(totalTime / CommonConstants.SECONDS_IN_HOUR);
-    let leftTime = totalTime % CommonConstants.SECONDS_IN_HOUR;
-    let minutes = Math.floor(leftTime / CommonConstants.SECONDS_IN_MINUTE);
-    let seconds = Math.floor(leftTime % CommonConstants.SECONDS_IN_MINUTE);
+    const hours = Math.floor(totalTime / CommonConstants.SECONDS_IN_HOUR);
+    const leftTime = totalTime % CommonConstants.SECONDS_IN_HOUR;
+    const minutes = Math.floor(leftTime / CommonConstants.SECONDS_IN_MINUTE);
+    const seconds = Math.floor(leftTime % CommonConstants.SECONDS_IN_MINUTE);
 
     let hoursStr = '';
     let minutesStr = '';
@@ -225,7 +225,7 @@ export class MusicPlayerViewModel {
    * 未完成的功能，显示TODO消息提示
    * @returns {void}
    */
-  showTodoToast() {
+  showTodoToast(): void {
     promptAction.showToast({
       message: $r('app.string.toast_todo_show')
     })

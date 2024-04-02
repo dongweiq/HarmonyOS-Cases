@@ -27,7 +27,7 @@ export default class WindowModel {
   /**
    * 缓存的当前WindowStage实例
    */
-  private windowStage?: window.WindowStage;
+  private windowStage?: window.WindowStage = undefined;
 
   /**
    * 缓存windowStage

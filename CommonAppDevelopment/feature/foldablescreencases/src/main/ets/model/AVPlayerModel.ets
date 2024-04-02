@@ -21,7 +21,7 @@ import CommonConstants from '../common/constants/CommonConstants';
 
 export class AVPlayerModel {
   // avPlayer播放器实例
-  private avPlayer?: media.AVPlayer;
+  private avPlayer?: media.AVPlayer = undefined;
 
   /**
    * 初始化AVPlayer
@@ -151,10 +151,10 @@ export class AVPlayerModel {
     }
 
     // 通过UIAbilityContext的resourceManager成员的getRawFd接口获取媒体资源播放地址
-    let context = getContext(this) as common.UIAbilityContext;
+    const context = getContext(this) as common.UIAbilityContext;
     // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度
-    let fileDescriptor = await context.resourceManager.getRawFd(fileName);
-    let avFileDescriptor: media.AVFileDescriptor = {
+    const fileDescriptor = await context.resourceManager.getRawFd(fileName);
+    const avFileDescriptor: media.AVFileDescriptor = {
       fd: fileDescriptor.fd,
       offset: fileDescriptor.offset,
       length: fileDescriptor.length

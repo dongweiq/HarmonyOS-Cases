@@ -124,12 +124,10 @@ export struct MusicPlayerInfoComp {
       List({ space: 20, scroller: this.lyricsScrollerCtrl }) {
         LazyForEach(this.musicModel.lyricsInfo, (lyricsLine: string) => {
           ListItem() {
-            Column() {
-              Text(lyricsLine)
-                .width('100%')
-                .textAlign(TextAlign.Center)
-                .fontColor(Color.White)
-            }
+            Text(lyricsLine)
+              .width('100%')
+              .textAlign(TextAlign.Center)
+              .fontColor(Color.White)
           }
         })
       }
