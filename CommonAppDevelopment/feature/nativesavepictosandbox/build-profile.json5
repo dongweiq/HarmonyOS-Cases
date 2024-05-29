@@ -19,8 +19,7 @@
     "externalNativeOptions": {
       "path": "./src/main/cpp/CMakeLists.txt",
       "abiFilters": [
-        "arm64-v8a",
-        "armeabi-v7a"
+        "arm64-v8a"
       ],
       "arguments": "-v -DOHOS_STL=c++_shared",
       "cppFlags": "-s"

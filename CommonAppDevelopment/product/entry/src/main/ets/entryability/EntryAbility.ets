@@ -163,7 +163,8 @@ export default class EntryAbility extends UIAbility {
   // TODO: 知识点：检测当前的深浅模式是否发生变化，刷新状态栏
   onConfigurationUpdate(config: Configuration) {
     // 获取最新的变更颜色并更新到AppStorage
-    AppStorage.setOrCreate('currentColorMode', config.colorMode);
+    // AppStorage.setOrCreate('currentColorMode', config.colorMode);
+    AppStorage.setOrCreate('currentColorMode', 0);
     logger.info(`onConfigurationUpdate, config: ${JSON.stringify(config)}`);
   }
 

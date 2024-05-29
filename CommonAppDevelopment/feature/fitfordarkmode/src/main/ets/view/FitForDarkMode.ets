@@ -36,7 +36,8 @@ const IMAGE_ASPECT_RATIO: number = 1; // 图片的宽高比
 const LAYOUT_WEIGHT: number = 1; // 自适应占满父容器Column剩余空间
 const OPACITY: number = 0.6; // 字体设置透明度
 
-@Preview
+// @Preview
+@Entry
 @Component
 export struct FitForDarkMode {
   @State banner: ResourceStr = '';

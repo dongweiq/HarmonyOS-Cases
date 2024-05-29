@@ -20,7 +20,6 @@
       "path": "./src/main/cpp/CMakeLists.txt",
       "abiFilters": [
         "arm64-v8a",
-        "armeabi-v7a",
         "x86_64"
       ],
       "arguments": "-v -DOHOS_STL=c++_shared",
